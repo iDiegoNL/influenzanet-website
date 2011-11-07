@@ -5,7 +5,7 @@
 .survey-error-message { border: 1px solid #C00; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; background: #FBB; margin-bottom: 10px; font-size: 0.75em; font-weight: bold; }
 .question { border: 1px solid #CCC; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; background: #fff; margin-bottom: 10px; }
 .question ul.choices, .question ul.derived-values { list-style: none; margin-bottom: 10px;}
-.question li { margin-left: 20px; padding-bottom: 2px; }
+.question li { margin-left: 20px; padding-bottom: 2px; clear: both; }
 .question select.choices { margin-left: 20px; margin-bottom: 10px; max-width: 95%; }
 .question input[type=text] { margin: 0 0 10px 6px; padding: 0; }
 .question .choices input[type=text] { margin: 0 0 0 15px; }
@@ -42,6 +42,10 @@
 #survey-translation-edit .question input[type="text"], #survey-translation-edit .question textarea { margin-left: 0; width: 335px; border: 1px solid #888; }
 #survey-translation-edit li { margin-top: 15px; position: relative; }
 #survey-translation-edit li .item-name:first-child { position: absolute; top: -9px; right: 1px; }
+
+#pollster-canvas .chart { width: 440px; height: 330px; position: relative; }
+#pollster-canvas .chart-no-data { background:#EEE; padding:20px; }
+
 /* MESSAGES & ERRORS */
 /* Taken from /django/contrib/admin/media/css/base.css */
 
