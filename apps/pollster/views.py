@@ -165,7 +165,8 @@ def survey_run(request, shortname, next=None):
         if form.is_valid():
             form.save()
             next_url = next or _get_next_url(request, reverse(survey_run, kwargs={'shortname': shortname}))
-            next_url += "?gid="+global_id
+            if global_id:
+                next_url = next_url + "?gid=" + global_id
             return HttpResponseRedirect(next_url)
         else:
             survey.set_form(form)
