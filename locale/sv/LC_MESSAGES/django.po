@@ -830,3 +830,6 @@ msgstr "Influensakoll ger ingen diagnostisk information om deltagarnas hälsosta
 
 msgid "Unknown"
 msgstr ""
+
+msgid "Questionnaire for participant"
+msgstr ""

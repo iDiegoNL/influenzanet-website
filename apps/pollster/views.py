@@ -180,6 +180,7 @@ def survey_run(request, shortname, next=None):
         "default_postal_code_format": fields.PostalCodeField.get_default_postal_code_format(),
         "last_participation_data_json": last_participation_data_json,
         "form": form
+        "person": survey_user
     })
 
 @staff_member_required

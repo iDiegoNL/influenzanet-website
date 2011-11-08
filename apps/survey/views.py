@@ -184,9 +184,6 @@ def index(request):
         url = '%s?gid=%s&next=%s' % (url, survey_user.global_id, url_next)
         return HttpResponseRedirect(url)
 
-    messages.add_message(request, messages.INFO,
-         _('Completing for participant') + ' ' + survey_user.name)
-
     try:
         survey = pollster.models.Survey.get_by_shortname('weekly')
     except:
@@ -207,9 +204,6 @@ def profile_index(request):
     if survey_user is None:
         url = '%s?next=%s' % (reverse(select_user), reverse(profile_index))
         return HttpResponseRedirect(url)
-
-    messages.add_message(request, messages.INFO,
-         _('Completing for participant') + ' ' + survey_user.name)
 
     try:
         survey = pollster.models.Survey.get_by_shortname('intake')
