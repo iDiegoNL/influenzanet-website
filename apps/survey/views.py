@@ -113,6 +113,10 @@ def thanks(request):
     except:
         raise Exception("The survey application requires a published survey with the shortname 'weekly'")
     Weekly = survey.as_model()
+    try:
+        survey_user = get_active_survey_user(request)
+    except ValueError:
+        pass
 
     history = list(_get_health_history(request, survey))
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
@@ -122,12 +126,16 @@ def thanks(request):
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][-7:]
-    return render_to_response('survey/thanks.html', {'persons': persons, 'history': history}, 
+    return render_to_response('survey/thanks.html', {'person': survey_user, 'persons': persons, 'history': history},
                               context_instance=RequestContext(request))
 
 @login_required
 def thanks_profile(request):
-    return render_to_response('survey/thanks_profile.html',
+    try:
+        survey_user = get_active_survey_user(request)
+    except ValueError:
+        pass
+    return render_to_response('survey/thanks_profile.html', {'person': survey_user},
         context_instance=RequestContext(request))
 
 @login_required
