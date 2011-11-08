@@ -49,7 +49,7 @@ def _decode_person_health_status(status):
     elif status == "NON-INFLUENZA":
        diag = _('Other non-influenza symptons')
     else:
-       diag = _('Next status')
+       diag = _('Unknown')
     return diag
 
 def _get_person_health_status(request, survey, global_id):
