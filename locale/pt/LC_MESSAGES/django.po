@@ -768,8 +768,6 @@ msgstr "O perfil foi alterado."
 #: templates/survey/thanks_profile.html:6
 msgid "Please, if you have not already done so, fill in"
 msgstr "Caso não tenha ainda preenchido o questionário semanal, pode faze-lo no link\n"
-"\n"
-"http://(%site)s/survey/"
 
 #: templates/survey/thanks_profile.html:6
 msgid "the symptoms questionaire"
@@ -804,10 +802,10 @@ msgid "Below is the list of participants currently managed by you. Click the cor
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "Histórico"
 
 msgid "Symptoms"
-msgstr ""
+msgstr "Sintomas"
 
 msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
 msgstr ""
@@ -816,27 +814,27 @@ msgid "Completing for participant"
 msgstr ""
 
 msgid "Symptoms survey"
-msgstr ""
+msgstr "Questionário semanal"
 
 msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
-msgstr ""
+msgstr "O estado de cada participante é baseado nos sintomas do questionário semanal.<strong>O resultado não é um diagnóstico médico.</strong>. Se possuir sintomas de gripe, entre em contato com o seu médico."
 
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 msgid "Questionnaire for participant"
-msgstr ""
+msgstr "Questionário por participante"
 
 msgid "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please"
-msgstr ""
+msgstr "Verifique a pasta de spam da sua conta de correio caso não receba o email de ativação."
 
 msgid "contact us"
-msgstr ""
+msgstr "Contacte-nos"
 
 # translations should reflect whatever can be seen on the map of the thanks page
 msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
-msgstr ""
+msgstr "As regiões a vermelho possuem ILI. As regiões a azul são áreas onde não foi reportado ILI."
 
 # translations should reflect however often maps are updated
 msgid "Map updated hourly."
-msgstr ""
+msgstr "Mapa actualizado a cada hora"
