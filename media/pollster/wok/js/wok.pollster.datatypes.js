@@ -76,7 +76,7 @@
     function PostalCodeType() {
         var self = this;
         if (window.pollster_get_postal_code_format)
-            this._regex = new RegExp('^'+pollster_get_postal_code_format()+'$');
+            this._regex = new RegExp('^'+pollster_get_postal_code_format()+'$', 'i');
         else
             this._regex = null;
 
