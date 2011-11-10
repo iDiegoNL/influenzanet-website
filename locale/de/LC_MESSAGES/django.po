@@ -830,3 +830,9 @@ msgstr ""
 
 msgid "Questionnaire for participant"
 msgstr ""
+
+msgid "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please"
+msgstr ""
+
+msgid "contact us"
+msgstr ""
