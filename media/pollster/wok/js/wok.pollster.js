@@ -1,4 +1,25 @@
 (function($) {
+    // IE fixes.
+
+    if (!(Array.indexOf)) {
+        Array.prototype.indexOf = function(obj) {
+            for(var i=0; i<this.length; i++){
+                if (this[i] == obj)
+                    return i;
+            }
+            return -1;
+        }
+    }
+    if (!('map' in Array.prototype)) {
+        Array.prototype.map= function(mapper, that /*opt*/) {
+            var other= new Array(this.length);
+            for (var i= 0, n= this.length; i<n; i++)
+                if (i in this)
+                    other[i]= mapper.call(that, this[i], i, this);
+            return other;
+        };
+    }
+    
     // MODULE: wok.pollster
 
     window.wok = window.wok || {

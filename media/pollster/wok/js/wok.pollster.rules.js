@@ -20,6 +20,9 @@
     }
 
     function was_filled($survey, question, options, last_participation_data) {
+        if (!last_participation_data)
+            return false;
+
         var $question = $survey.find("#question-"+question);
         if ($question.is('.question-text')) {
             var data = last_participation_data[$question.find('.user-field').attr("name")];
