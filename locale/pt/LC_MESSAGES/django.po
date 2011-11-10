@@ -838,3 +838,6 @@ msgstr "As regiões a vermelho possuem ILI. As regiões a azul são áreas onde 
 # translations should reflect however often maps are updated
 msgid "Map updated hourly."
 msgstr "Mapa actualizado a cada hora"
+
+msgid "Option"
+msgstr "Opções"
