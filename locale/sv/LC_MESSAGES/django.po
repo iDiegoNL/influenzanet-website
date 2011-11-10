@@ -839,3 +839,11 @@ msgstr ""
 
 msgid "contact us"
 msgstr ""
+
+# translations should reflect whatever can be seen on the map of the thanks page
+msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
+msgstr ""
+
+# translations should reflect however often maps are updated
+msgid "Map updated hourly."
+msgstr ""
