@@ -416,6 +416,7 @@ ul.map_buttons li {
 
 #account ul.member li a,
 #account ul.anonymous li a {
+ display: block;
  text-decoration: none;
  color: #f8f8f8;
 }
@@ -1136,6 +1137,10 @@ div.pagination {
   position: absolute;
   left: -10000px;
 }
+
+
+/* Charts & Maps */
+
 #chart_div {
  width: 752px;
  height: 484px;
