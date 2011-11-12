@@ -16,7 +16,7 @@
         {% block add_head %}{% endblock add_head %}
 
         <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}base/css/default.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="/colors.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/sw.css" />
         {% block add_css %}{% endblock add_css %}
         {% render_block "css" %}
 		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/jquery-1.5.1.min.js"></script>
@@ -102,9 +102,13 @@
 		
 		<div id="footer">{% block footercontent %}
             <div id="footerclose">
-                &copy; {% now "Y" %} {{ site_name }} &nbsp;|&nbsp;
-                {% language_chooser %}
-                <a href="{% url contact_form %}" title="{% trans "Contact us" %}">{% trans "Contact" %}</a>
+             &copy; {% now "Y" %}  epipop.fr
+			 <a href="http://www.sentiweb.fr">réseau Sentinelles</a>, UMR S 707, 
+			 <img src="{{MEDIA_URL}}sw/inserm-xs.gif" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale" width="99" height="25" /> 
+			 <img src="{{MEDIA_URL}}sw/upmc-xs.gif" width="75" height="25" alt="UPMC" title="Université Pierre et Marie Curie"/>
+			 <img src="{{MEDIA_URL}}sw/invs-xs.gif" width="50" height="35" alt="InVS" title="Institut de Veille Sanitaire"/>
+			 
+			 - <a href="mailto:contact@epipop.fr">Nous écrire</a>
             </div>
 			</div>{% endblock footercontent %}
 		</div>

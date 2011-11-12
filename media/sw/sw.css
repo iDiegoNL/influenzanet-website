@@ -1,0 +1,78 @@
+
+/**
+ * Menu
+ */
+#menubar li.selected, #menubar li.ancestor {
+	
+}
+
+#menubar li {
+	background-color: #DDD0C1;
+}
+
+#account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
+ background: #EEE;
+}
+
+#account ul.anonymous li:hover, #account ul.member li:hover, #searchbar input#searchsubmit:hover, input#commentsubmit:hover {
+ background: #333;
+}
+
+#col2 p.title {
+ background: #DDD0C1;
+}
+
+#col1 a, #col2 a, #col3 a {
+ color: #333;
+}
+
+#box input#boxsubmit {
+ background: #DDD0C1;
+ color: #333;
+}
+
+#searchbar input#searchsubmit {
+	color: #333;
+}
+
+#searchbar input#searchsubmit:hover {
+	background-color: #333;
+	color: white;
+}
+
+#box input#boxsubmit:hover,#box input#boxsubmit:focus {
+ background: #333;
+ color: white;
+}
+
+#footer {
+	font-size: .8em;
+}
+
+#footer img {
+ display: inline;
+ vertical-align: middle;
+ margin: .2em .3em;
+}
+
+#footerclose {
+ padding: .7em 1.1em;
+ border: 0;
+ border-top: 1px solid #666;
+ border-bottom: 10px solid #DDD;
+ color: #333;
+ font-weight: normal;
+ font-size: 0.75em;
+ text-align: center;
+}
+
+#footer a , #footerclose a {
+ color: #333;
+ text-decoration: none;
+ font-weight: normal;
+}
+
+#footer a:hover, #footerclose a:hover {
+ color: #333;
+ text-decoration: underline;
+}
