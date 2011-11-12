@@ -866,24 +866,22 @@ input#commentsubmit:hover {
 }
 
 #footerclose {
- width: 946px;
  padding: 8px 14px 10px 14px;
- background: #000000;
  border-top: 2px solid #222222;
  border-bottom: 10px solid #d5d5d5;
- color: #f8f8f8;
- font-weight: bold;
+ color: #333;
+ font-weight: normal;
  font-size: 0.75em;
 }
 
-#footer a, #footerclose a {
- color: #f8f8f8;
+#footer a , #footerclose a {
+ color: #333;
  text-decoration: none;
- font-weight: bold;
+ font-weight: normal;
 }
 
 #footer a:hover, #footerclose a:hover {
- color: #f8f8f8;
+ color: #333;
  text-decoration: underline;
 }
 

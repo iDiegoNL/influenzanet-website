@@ -21,3 +21,5 @@ media/journal_images/
 _pollster_tile_cache/
 .project
 lib64/
+.settings/
+.pydevproject
