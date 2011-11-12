@@ -3,6 +3,7 @@
 #col1 ul.choices li img { margin: 0 0 -4px 0; }
 
 .survey-error-message { border: 1px solid #C00; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; background: #FBB; margin-bottom: 10px; font-size: 0.75em; font-weight: bold; }
+.survey-message { border: 1px solid #CCC; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; margin-bottom: 10px; font-size: 0.75em; font-weight: bold; }
 .question { border: 1px solid #CCC; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; background: #fff; margin-bottom: 10px; }
 .question ul.choices, .question ul.derived-values { list-style: none; margin-bottom: 10px;}
 .question li { margin-left: 20px; padding-bottom: 2px; clear: both; }
@@ -22,7 +23,7 @@
 
 .starts-hidden { display: none; }
 .error-message { display: none; margin: 0 0 10px 20px; color: #C00; }
-.question.error { border-color: #C00; }
+.question.error { border: 5px solid #C00; }
 .question.error .error-message { display: block; }
 
 #survey-list form { display: inline; text-transform: lowercase; }

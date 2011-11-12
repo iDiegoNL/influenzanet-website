@@ -52,6 +52,10 @@
 
 <br/>
 
+<p>{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+
+<br/>
+
 <ul class="diag">
 {% for person in persons %}
 {% if person.health_history %}
@@ -81,6 +85,10 @@
     </div>
 </div>
 
+<p>{% trans "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."%}<br>
+<strong>{% trans "Map updated hourly."%}</strong></p>
+
+
 <br/>
 
 <table class="imagetable">
@@ -88,7 +96,7 @@
 <tr>
     <th>{% trans "Fill out date" %}</th>
     <th>{% trans "Member" %}</th>
-    <th colspan="2">{% trans "Influweb result" %}</th>
+    <th colspan="2">{% trans "Health status" %}</th>
 </tr>
 </thead>
 <tbody>

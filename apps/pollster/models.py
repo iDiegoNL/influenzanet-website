@@ -1032,7 +1032,11 @@ class Chart(models.Model):
         filename = "%s/%s/%s_%s" % (self.get_map_tile_base(), z, x, y)
         pathname = os.path.dirname(filename)
         if not os.path.exists(pathname):
-            os.makedirs(pathname)
+            try:
+                os.makedirs(pathname)
+            except OSError:
+                # Another thread created the directory in the meantime: just go on.
+                pass
         return filename
 
     def clear_map_tile_cache(self):

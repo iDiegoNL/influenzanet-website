@@ -40,7 +40,7 @@ def send_reminders():
     now = datetime.datetime.now()
 
     i = -1
-    for i, (user, message) in enumerate(get_reminders_for_users(now, User.objects.all())):
+    for i, (user, message) in enumerate(get_reminders_for_users(now, User.objects.filter(is_active=True))):
         send(now, user, message)
 
     return i + 1

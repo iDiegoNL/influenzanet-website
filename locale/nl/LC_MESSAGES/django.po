@@ -803,3 +803,44 @@ msgstr "Manage huishouden"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
 msgstr "U heeft deze email ontvangen omdat geregistreerd staat bij %(site_name)s. Uw bijdrage helpt ons de verspreiding van de griep bij te houden. Als u deze wekelijkse herinnering niet wenst te ontvange, gelieve u <a href=\"%(unsubscribe_url)s\">uit te schrijven</a> van onze mailings."
+
+msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Symptoms"
+msgstr ""
+
+msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
+msgstr ""
+
+msgid "Completing for participant"
+msgstr ""
+
+msgid "Symptoms survey"
+msgstr ""
+
+msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Questionnaire for participant"
+msgstr ""
+
+msgid "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please"
+msgstr ""
+
+msgid "contact us"
+msgstr ""
+
+# translations should reflect whatever can be seen on the map of the thanks page
+msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
+msgstr ""
+
+# translations should reflect however often maps are updated
+msgid "Map updated hourly."
+msgstr ""

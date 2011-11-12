@@ -767,9 +767,7 @@ msgstr "O perfil foi alterado."
 
 #: templates/survey/thanks_profile.html:6
 msgid "Please, if you have not already done so, fill in"
-msgstr "Caso não tenha ainda preenchido o questionário semanal, pode faze-lo no link\n"
-"\n"
-"http://(%site)s/survey/"
+msgstr "Caso não tenha ainda preenchido o questionário semanal, pode faze-lo no link"
 
 #: templates/survey/thanks_profile.html:6
 msgid "the symptoms questionaire"
@@ -799,3 +797,55 @@ msgstr "Grupo doméstico"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
 msgstr ""
+
+msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
+msgstr ""
+
+msgid "Background"
+msgstr "Histórico"
+
+msgid "Symptoms"
+msgstr "Sintomas"
+
+msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
+msgstr ""
+
+msgid "Completing for participant"
+msgstr ""
+
+msgid "Symptoms survey"
+msgstr "Questionário semanal"
+
+msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
+msgstr "O estado de cada participante é baseado nos sintomas do questionário semanal.<strong>O resultado não é um diagnóstico médico.</strong>. Se possuir sintomas de gripe, entre em contato com o seu médico."
+
+msgid "Unknown"
+msgstr "Desconhecido"
+
+msgid "Questionnaire for participant"
+msgstr "Questionário por participante"
+
+msgid "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please"
+msgstr "Verifique a pasta de spam da sua conta de correio caso não receba o email de ativação."
+
+msgid "contact us"
+msgstr "Contacte-nos"
+
+# translations should reflect whatever can be seen on the map of the thanks page
+msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
+msgstr "As regiões a vermelho possuem ILI. As regiões a azul são áreas onde não foi reportado ILI."
+
+# translations should reflect however often maps are updated
+msgid "Map updated hourly."
+msgstr "Mapa actualizado a cada hora"
+
+msgid "Option"
+msgstr "Opções"
+
+
+msgid "terms usage\n"
+msgstr "Termos de utilização"
+"\n\n"
+"Ao inscrever-se como participante no projeto Gripenet, está a participar num estudo científico sobre a epidemiologia da gripe, nomeadamente a monitorização da incidência gripal e fatores de risco associados ao síndrome gripal. Os participantes podem usar o nome de utilizador que entenderem e em nenhum momento é solicitado o seu endereço ou contacto telefónico.Todos os dados que fornecer serão tratados de forma confidencial e anónima. A informação que fornecer será guardada em bases de dados protegidas por acesso com chaves criptográficas e o seu e-mail estará separado da informação do seu estado de saúde, garantindo a anonimização dos dados. Ao concordar em participar neste estudo, permitirá que a equipa de projeto o contacte por e-mail, para envio de informação (newsletter). Poderá sempre cancelar essa subscrição, através da ligação que aparece no final do corpo da newsletter. Para além de informação, a newsletter terá também uma ligação de acesso automático que direciona o participante para o seu questionário de sintomas sem ser necessário iniciar a sessão.\n"
+"\n\n"
+"Ao activar a sua conta, clicando no link inserido no mail de confirmação, estará a dar o seu consentimento em participar no estudo, indicando que leu (e concordou com) todos os termos deste Consentimento\n"

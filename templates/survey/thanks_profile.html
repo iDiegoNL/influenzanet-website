@@ -2,6 +2,18 @@
 {% load i18n %}
 
 {% block col1 %}
-<p>{% trans "Thanks for changing your profile," %} {{ user }}</p>
-{% trans "Please, if you have not already done so, fill in" %} <a href="/survey/">{% trans "the symptoms questionaire" %}</a>.
+<p>{% trans "Thanks for changing your profile," %}
+{% if person %}
+{{ person }}
+{% else %}
+{{ user }}
+{% endif %}
+</p>
+{% trans "Please, if you have not already done so, fill in" %}
+{% if person %}
+<a href="/survey/?gid={{person.global_id}}">
+{% else %}
+<a href="/survey/">
+{% endif %}
+{% trans "the symptoms questionaire" %}</a>.
 {% endblock %}

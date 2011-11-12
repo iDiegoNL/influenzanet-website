@@ -12,7 +12,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from cms import settings as cms_settings
 from apps.survey.models import SurveyUser
 from . import models, forms, fields, parser, json
-import re, datetime, locale, csv
+import re, datetime, locale, csv, urlparse, urllib
 
 def request_render_to_response(req, *args, **kwargs):
     kwargs['context_instance'] = RequestContext(req)
@@ -165,6 +165,13 @@ def survey_run(request, shortname, next=None):
         if form.is_valid():
             form.save()
             next_url = next or _get_next_url(request, reverse(survey_run, kwargs={'shortname': shortname}))
+            if global_id:
+                # add or override the 'gid' query parameter
+                next_url_parts = list(urlparse.urlparse(next_url))
+                query = dict(urlparse.parse_qsl(next_url_parts[4]))
+                query.update({'gid': global_id})
+                next_url_parts[4] = urllib.urlencode(query)
+                next_url = urlparse.urlunparse(next_url_parts)
             return HttpResponseRedirect(next_url)
         else:
             survey.set_form(form)
@@ -177,7 +184,8 @@ def survey_run(request, shortname, next=None):
         "survey": survey,
         "default_postal_code_format": fields.PostalCodeField.get_default_postal_code_format(),
         "last_participation_data_json": last_participation_data_json,
-        "form": form
+        "form": form,
+        "person": survey_user
     })
 
 @staff_member_required

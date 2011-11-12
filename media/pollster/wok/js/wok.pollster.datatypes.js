@@ -56,7 +56,7 @@
 
     function NumericType() {
         var self = this;
-        this._regex = /^[0-9]$/;
+        this._regex = /^[0-9]+$/;
 
         // Public methods.
 
@@ -76,7 +76,7 @@
     function PostalCodeType() {
         var self = this;
         if (window.pollster_get_postal_code_format)
-            this._regex = new RegExp('^'+pollster_get_postal_code_format()+'$');
+            this._regex = new RegExp('^'+pollster_get_postal_code_format()+'$', 'i');
         else
             this._regex = null;
 
