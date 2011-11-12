@@ -212,9 +212,13 @@ class ReminderTestCase(unittest.TestCase):
                 self.assertEqual(expected, result[0][1].subject, "%s, %s, %s, '%s' failed with actual: '%s'" %(language, active, last_reminder, expected, result[0][1].subject))
 
     def test_create_message(self):
+        class Message(object):
+            def __init__(self):
+                self.message = 'this is text'
+                
         user = User.objects.create(username="user")
 
-        text_base, html = create_message(user, 'this is text')
+        text_base, html = create_message(user, Message())
         self.assertTrue('this is text' in text_base)
         self.assertTrue('<body' in html)
         self.assertTrue('this is text' in html)
