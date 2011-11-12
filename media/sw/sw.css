@@ -2,6 +2,9 @@
 /**
  * Menu
  */
+#header {
+}
+
 #menubar li.selected, #menubar li.ancestor {
 	
 }
@@ -11,11 +14,23 @@
 }
 
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
- background: #EEE;
+ background: #DDD0C1;
+ color: #333;
 }
 
 #account ul.anonymous li:hover, #account ul.member li:hover, #searchbar input#searchsubmit:hover, input#commentsubmit:hover {
  background: #333;
+ color: white;
+}
+
+#account ul.member li a, #account ul.anonymous li a { 
+	display: inline;
+	padding: .3em;
+}
+
+#account li, #account ul {
+	display: inline;
+	padding: .2em;
 }
 
 #col2 p.title {
