@@ -9,7 +9,7 @@ from django import forms
 from mock import Mock, patch, patch_object
 
 from .send import create_message, send
-from .models import NO_INTERVAL, UserReminderInfo, ReminderSettings, NewsLetter, NewsLetterTemplate, get_upcoming_dates, get_prev_reminder_date, get_prev_reminder, get_reminders_for_users, ReminderError, ReminderError
+from .models import NO_INTERVAL, WEEK_AFTER_ACTION, UserReminderInfo, ReminderSettings, NewsLetter, NewsLetterTemplate, get_upcoming_dates, get_prev_reminder_date, get_prev_reminder, get_reminders_for_users, ReminderError, ReminderError
 from .forms import NewsLetterForm
 
 class ReminderTestCase(unittest.TestCase):
@@ -17,6 +17,7 @@ class ReminderTestCase(unittest.TestCase):
         ReminderSettings.objects.all().delete()
         NewsLetter.objects.all().delete()
         NewsLetterTemplate.objects.all().delete()
+        User.objects.all().delete()
 
         self.old_languages = settings.LANGUAGES
         settings.LANGUAGES = (('en', 'English'), ('de', 'German'), ('fr', 'French'))
@@ -262,3 +263,32 @@ class ReminderTestCase(unittest.TestCase):
         newsletter.save()
 
         send(datetime(2010, 10, 10, 12, 0, 0), user, newsletter)
+
+
+    def test_week_after_action(self):
+        september_first = datetime(2010, 9, 1, 14, 0, 0)
+
+        site = Site.objects.get()
+        settings = ReminderSettings.objects.create(
+            site=site,
+            send_reminders=True,
+            begin_date=september_first,
+            interval=WEEK_AFTER_ACTION,
+        )
+
+        template = NewsLetterTemplate.objects.create(is_default_reminder=True, sender_email="test@example.org", sender_name="Test")
+        template.translate('en')
+        template.subject = "English subject"
+        template.message = "English message"
+        template.save()
+
+        for i, (last_reminder, expected_len) in enumerate([
+            (None, 1),
+            (september_first - timedelta(days=6), 0),
+            (september_first - timedelta(days=8), 1),
+        ]):
+            user = User.objects.create(username="week-after-user-%s" % i)
+            info = UserReminderInfo.objects.create(user=user, last_reminder=last_reminder, active=True, language="en")
+
+            result = list(get_reminders_for_users(september_first, User.objects.filter(id=user.id)))
+            self.assertEqual(expected_len, len(result), result)

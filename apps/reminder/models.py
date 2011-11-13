@@ -13,6 +13,7 @@ from nani.models import TranslatableModel, TranslatedFields
 # that's based on the is_default_reminder NewsLetterTemplate
 
 NO_INTERVAL = -1
+WEEK_AFTER_ACTION = -2
 
 class UserReminderInfo(models.Model):
     user = models.ForeignKey(User, unique=True)
@@ -31,7 +32,7 @@ class UserReminderInfo(models.Model):
 class ReminderSettings(models.Model):
     site = models.OneToOneField(Site)
     send_reminders = models.BooleanField(_("Send reminders"), help_text=_("Check this box to send reminders"))
-    interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval"))), null=True, blank=True)
+    interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval")), (WEEK_AFTER_ACTION, "Send a reminder exactly a week after the last action was taken")), null=True, blank=True)
     begin_date = models.DateTimeField(_("Begin date"), help_text="Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: %s)" % settings.TIME_ZONE, null=True, blank=True)
 
     def __unicode__(self):
@@ -178,9 +179,16 @@ def get_prev_reminder(now):
     return result
 
 def get_reminders_for_users(now, users):
-    reminder_dict = get_prev_reminder(now)
-    if not reminder_dict:
-        raise StopIteration()
+    if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
+        reminder_dict = {}
+        for language, name in settings.LANGUAGES:
+            reminder_dict[language] = get_default_for_reminder(language)
+
+    else:
+        reminder_dict = get_prev_reminder(now)
+        if not reminder_dict:
+            raise StopIteration()
+
 
     for user in users:
         info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True})
@@ -192,6 +200,17 @@ def get_reminders_for_users(now, users):
             language = settings.LANGUAGE_CODE
         
         reminder = reminder_dict[language]
-        if info.last_reminder is None or info.last_reminder < reminder.date:
+
+        if info.last_reminder is None:
             yield user, reminder
+            continue
+
+        if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
+            if (now - info.last_reminder).days >= 7:
+                yield user, reminder
+                
+        else:
+            if info.last_reminder < reminder.date:
+                yield user, reminder
+
 
