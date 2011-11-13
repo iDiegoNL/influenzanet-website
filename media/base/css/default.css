@@ -925,6 +925,10 @@ hr {
  line-height: 1.5em;
 }
 
+#col1 img.left {
+ margin: 0 10px 0 0; 
+}
+
 #col1 a,
 #col2 a,
 #col3 a {
