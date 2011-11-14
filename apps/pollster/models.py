@@ -1026,7 +1026,7 @@ class Chart(models.Model):
                 geometry_field="geometry", estimate_extent=False, table=table)
 
     def get_map_tile_base(self):
-        return "_pollster_tile_cache/survey_%s/%s" % (self.survey.id, self.shortname)
+        return "%s/_pollster_tile_cache/survey_%s/%s" % (settings.POLLSTER_CACHE_PATH, self.survey.id, self.shortname)
 
     def get_map_tile_filename(self, z, x, y):
         filename = "%s/%s/%s_%s" % (self.get_map_tile_base(), z, x, y)
