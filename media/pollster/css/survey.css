@@ -23,7 +23,7 @@
 
 .starts-hidden { display: none; }
 .error-message { display: none; margin: 0 0 10px 20px; color: #C00; }
-.question.error { border-color: #C00; }
+.question.error { border: 5px solid #C00; }
 .question.error .error-message { display: block; }
 
 #survey-list form { display: inline; text-transform: lowercase; }

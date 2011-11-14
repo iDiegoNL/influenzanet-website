@@ -416,6 +416,7 @@ ul.map_buttons li {
 
 #account ul.member li a,
 #account ul.anonymous li a {
+ display: block;
  text-decoration: none;
  color: #f8f8f8;
 }
@@ -924,6 +925,14 @@ hr {
  line-height: 1.5em;
 }
 
+#col1 img.left {
+ margin: 0 14px 0 0; 
+}
+
+#col1 img.right {
+ margin: 0 0 0 14px; 
+}
+
 #col1 a,
 #col2 a,
 #col3 a {
@@ -1136,6 +1145,10 @@ div.pagination {
   position: absolute;
   left: -10000px;
 }
+
+
+/* Charts & Maps */
+
 #chart_div {
  width: 752px;
  height: 484px;
