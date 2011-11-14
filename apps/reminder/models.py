@@ -34,6 +34,7 @@ class ReminderSettings(models.Model):
     send_reminders = models.BooleanField(_("Send reminders"), help_text=_("Check this box to send reminders"))
     interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval")), (WEEK_AFTER_ACTION, "Send a reminder exactly a week after the last action was taken")), null=True, blank=True)
     begin_date = models.DateTimeField(_("Begin date"), help_text="Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: %s)" % settings.TIME_ZONE, null=True, blank=True)
+    currently_sending = models.BooleanField("Currently sending", help_text="This indicates if the reminders are being sent right now. Don't tick this box unless you absolutely know what you're doing", default=False)
 
     def __unicode__(self):
         return _(u"Reminder settings")
