@@ -20,6 +20,21 @@ class YearMonthField(CharField):
         defaults.update(kwargs)
         return super(YearMonthField, self).formfield(**defaults)
 
+class DateField(CharField):
+    description = _("Date (in YYYY-MM-DD format)")
+
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 10
+        super(DateField, self).__init__(*args, **kwargs)
+
+    def get_internal_type(self):
+        return 'CharField'
+
+    def formfield(self, **kwargs):
+        defaults = {'form_class': fields.DateField}
+        defaults.update(kwargs)
+        return super(DateField, self).formfield(**defaults)
+
 class PostalCodeField(CharField):
     description = _("Postal code")
 
