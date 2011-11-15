@@ -219,11 +219,14 @@ class ReminderTestCase(unittest.TestCase):
                 
         user = User.objects.create(username="user")
 
-        text_base, html = create_message(user, Message())
+        text_base, html = create_message(user, Message(), 'nl')
         self.assertTrue('this is text' in text_base)
         self.assertTrue('<body' in html)
         self.assertTrue('this is text' in html)
         self.assertFalse('<body' in text_base)
+
+        self.assertFalse('You have received this email because' in html)
+        self.assertTrue('U heeft deze email ontvangen omdat' in html)
 
     def test_irregular_intervals_form(self):
         form = NewsLetterForm() 
@@ -262,7 +265,7 @@ class ReminderTestCase(unittest.TestCase):
         newsletter.message = "English message"
         newsletter.save()
 
-        send(datetime(2010, 10, 10, 12, 0, 0), user, newsletter)
+        send(datetime(2010, 10, 10, 12, 0, 0), user, newsletter, 'en')
 
 
     def test_week_after_action(self):

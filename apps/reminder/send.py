@@ -11,13 +11,17 @@ from django.conf import settings
 from django.utils.html import strip_tags
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
+from django.utils.translation import activate
 
 import loginurl.utils
 from apps.partnersites.context_processors import site_context
 
 from .models import get_reminders_for_users, UserReminderInfo, ReminderError
 
-def create_message(user, message):
+def create_message(user, message, language):
+    if language:
+        activate(language)
+
     t = Template(message.message)
     c = {
         'url': get_url(user),
@@ -40,8 +44,8 @@ def send_reminders():
     now = datetime.datetime.now()
 
     i = -1
-    for i, (user, message) in enumerate(get_reminders_for_users(now, User.objects.filter(is_active=True))):
-        send(now, user, message)
+    for i, (user, message, language) in enumerate(get_reminders_for_users(now, User.objects.filter(is_active=True))):
+        send(now, user, message, language)
 
     return i + 1
 
@@ -71,8 +75,8 @@ def get_survey_url():
     path = reverse('apps.survey.views.index')
     return 'http://%s%s' % (domain, path)
 
-def send(now, user, message):
-    text_base, html_content = create_message(user, message)
+def send(now, user, message, language):
+    text_base, html_content = create_message(user, message, language)
     text_content = strip_tags(text_base)
 
     msg = EmailMultiAlternatives(

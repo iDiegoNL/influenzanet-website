@@ -39,7 +39,7 @@ def manage(request, year, month, day, hour, minute):
 
     if request.method == "POST":
         sent = True
-        send(None, request.user, reminder)
+        send(None, request.user, reminder, None)
         
     return render(request, 'reminder/manage.html', locals())
 

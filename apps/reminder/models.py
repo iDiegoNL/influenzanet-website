@@ -204,15 +204,15 @@ def get_reminders_for_users(now, users):
         reminder = reminder_dict[language]
 
         if info.last_reminder is None:
-            yield user, reminder
+            yield user, reminder, language
             continue
 
         if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
             if (now - info.last_reminder).days >= 7:
-                yield user, reminder
+                yield user, reminder, language
                 
         else:
             if info.last_reminder < reminder.date:
-                yield user, reminder
+                yield user, reminder, language
 
 
