@@ -849,3 +849,18 @@ msgstr "Termos de utilização"
 "Ao inscrever-se como participante no projeto Gripenet, está a participar num estudo científico sobre a epidemiologia da gripe, nomeadamente a monitorização da incidência gripal e fatores de risco associados ao síndrome gripal. Os participantes podem usar o nome de utilizador que entenderem e em nenhum momento é solicitado o seu endereço ou contacto telefónico.Todos os dados que fornecer serão tratados de forma confidencial e anónima. A informação que fornecer será guardada em bases de dados protegidas por acesso com chaves criptográficas e o seu e-mail estará separado da informação do seu estado de saúde, garantindo a anonimização dos dados. Ao concordar em participar neste estudo, permitirá que a equipa de projeto o contacte por e-mail, para envio de informação (newsletter). Poderá sempre cancelar essa subscrição, através da ligação que aparece no final do corpo da newsletter. Para além de informação, a newsletter terá também uma ligação de acesso automático que direciona o participante para o seu questionário de sintomas sem ser necessário iniciar a sessão.\n"
 "\n\n"
 "Ao activar a sua conta, clicando no link inserido no mail de confirmação, estará a dar o seu consentimento em participar no estudo, indicando que leu (e concordou com) todos os termos deste Consentimento\n"
+
+msgid "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to"
+msgstr ""
+
+msgid "log in"
+msgstr ""
+
+msgid "using the username and password you provided during registration. If this still fails, please try to"
+msgstr ""
+
+msgid "register"
+msgstr ""
+
+msgid "with a different username. If everything else fails, please do not hesitate to"
+msgstr ""

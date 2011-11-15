@@ -13,14 +13,13 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         c = MySQLdb.connect(host="localhost", user="root", passwd="", db="ggm_existing_tmp", charset='utf8')
         cursor = c.cursor ()
-        cursor.execute ("SELECT * FROM `meter`")
+        #cursor.execute ("SELECT * FROM `meter` WHERE laatste_meting > '2009-11-01' AND wil_herinnering =  '1'")
+        cursor.execute ("SELECT * FROM `meter` WHERE laatste_mail >= 117 AND wil_herinnering =  '1'")
 
         rows = cursor.fetchall()
         for i, row in enumerate(rows):
             meter_id, UUID, email, naam, postcode, geb_datum, geslacht, password, _pw_new, laatste_meting, laatste_mail, herinnering, reken_postcode, wil_herinnering, stress = row
             print i, email
-            if i > 10:
-                break
 
             if User.objects.filter(email=email).count():
                 continue

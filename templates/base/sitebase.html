@@ -21,7 +21,7 @@
         {% render_block "css" %}
 		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/jquery-1.5.1.min.js"></script>
 		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/influenzanet.js"></script>
-		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<!--		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> -->
         {% block add_js %}{% endblock add_js %}
         {% render_block "js" %}
 
@@ -38,24 +38,25 @@
 				<p class="_toggle influenzanet">Influenzanet is a system to monitor the activity of influenza-like-illness (ILI) with the aid of volunteers via the internet</p>
 				<div class="_toggle influenzabarcontent" id="top">
 					<div id="epiwork">
+						<a href="http://www.influenzanet.eu/" title="Influenzanet website" rel="external">http://www.influenzanet.eu/</a><br /><br />
 						<img src="{{ MEDIA_URL }}base/img/influbar/epiwork.gif" alt="Epiwork Logo" title="Epiwork" /><br />
 						Developing the framework for an epidemic forecast infrastructure.<br />
-						<a href="http://www.epiwork.eu/" title="Epiwork website">http://www.epiwork.eu/</a><br /><br />
+						<a href="http://www.epiwork.eu/" title="Epiwork website" rel="external">http://www.epiwork.eu/</a><br /><br />
 						The Seventh Framework Programme (FP7) bundles all research-related EU initiatives.<br /><br />
-						<img src="{{ MEDIA_URL }}base/img/influbar/7thframework.gif" alt="7th Framework Logo" title="7th Framework" /><br /><br /><br />
+						<img src="{{ MEDIA_URL }}base/img/influbar/7thframework.gif" alt="7th Framework Logo" title="7th Framework" />
 					</div>
 				    <div id="participants">
 						Participating countries and volunteers:<br /><br />
-						<a href="http://www.degrotegriepmeting.nl/"><img src="{{ MEDIA_URL }}base/img/influbar/nl.png" title="The Netherlands" alt="The Netherlands" /></a> {% member_count "nl" %}<br />
-						<a href="http://www.degrotegriepmeting.be/"><img src="{{ MEDIA_URL }}base/img/influbar/be.png" title="Belgium" alt="Belgium" /></a> {% member_count "be" %}<br />
-						<a href="http://www.gripenet.pt/"><img src="{{ MEDIA_URL }}base/img/influbar/pt.png" title="Portugal" alt="Portugal" /></a> {% member_count "pt" %}<br />
-						<a href="http://www.influweb.it/"><img src="{{ MEDIA_URL }}base/img/influbar/it.png" title="Italy" alt="Italy" /></a> {% member_count "it" %}<br />
-						<a href="http://flusurvey.org.uk/"><img src="{{ MEDIA_URL }}base/img/influbar/gb.png" title="Great Britain" alt="Great Britain" /></a> {% member_count "uk" %}<br />
-						<a href="http://www.influensakoll.se/"><img src="{{ MEDIA_URL }}base/img/influbar/se.png" title="Sweden" alt="Sweden" /></a> {% member_count "se" %}<br />
-						<a href="http://www.aktivgegengrippe.de/"><img src="{{ MEDIA_URL }}base/img/influbar/de.png" title="Germany" alt="Germany" /></a> <span class="disable">{% member_count "de" %}</span>In preparation<br />
-						<a href="http://www.aktivgegengrippe.at/"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> <span class="disable">{% member_count "at" %}</span>In preparation<br />
-						<a href="http://www.aktivgegengrippe.ch/"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> <span class="disable">{% member_count "ch" %}</span>In preparation<br />
-						<a href="http://www.epipop.fr/"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span class="disable">{% member_count "fr" %}</span>In preparation<br />
+						<a href="http://www.degrotegriepmeting.nl/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/nl.png" title="The Netherlands" alt="The Netherlands" /></a> {% member_count "nl" %}<br />
+						<a href="http://www.degrotegriepmeting.be/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/be.png" title="Belgium" alt="Belgium" /></a> {% member_count "be" %}<br />
+						<a href="http://www.gripenet.pt/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/pt.png" title="Portugal" alt="Portugal" /></a> {% member_count "pt" %}<br />
+						<a href="http://www.influweb.it/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/it.png" title="Italy" alt="Italy" /></a> {% member_count "it" %}<br />
+						<a href="http://flusurvey.org.uk/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/gb.png" title="Great Britain" alt="Great Britain" /></a> {% member_count "uk" %}<br />
+						<a href="http://www.influensakoll.se/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/se.png" title="Sweden" alt="Sweden" /></a> {% member_count "se" %}<br />
+						<a href="http://www.aktivgegengrippe.de/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/de.png" title="Germany" alt="Germany" /></a> <span class="disable">{% member_count "de" %}</span>In preparation<br />
+						<a href="http://www.aktivgegengrippe.at/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> <span class="disable">{% member_count "at" %}</span>In preparation<br />
+						<a href="http://www.aktivgegengrippe.ch/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> <span class="disable">{% member_count "ch" %}</span>In preparation<br />
+						<a href="http://www.epipop.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span class="disable">{% member_count "fr" %}</span>In preparation<br />
 					</div>
 				    <div id="influenzatext">
 						InfluenzaNet is a system to monitor the activity of influenza-like-illness (ILI) with the aid of volunteers via the internet. It has been operational in The Netherlands and Belgium (since 2003), Portugal (since 2005) and Italy (since 2008), and the current objective is to implement InfluenzaNet in more European countries.<br /><br />
@@ -77,8 +78,8 @@
 			    <p class="loggedinas"><a href="/survey/profile/">{% trans "Logged in as" %} {{ user.username }}</a></p>
 			{% else %}
 			    <ul class="anonymous">
-			        <li><a href="/accounts/login/" class="fancybox1">{% trans "Log in" %}</a></li>
-			        <li><a href="/accounts/register/" class="fancybox2">{% trans "Register" %}</a></li>
+			        <li><a href="/accounts/login/">{% trans "Log in" %}</a></li>
+			        <li><a href="/accounts/register/">{% trans "Register" %}</a></li>
 			    </ul>
 			    <p><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>{% endif %}
 			</div>{% endblock authentication %}
