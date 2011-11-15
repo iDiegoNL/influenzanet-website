@@ -1072,6 +1072,7 @@ class Chart(models.Model):
             cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
             if self.type.shortname != 'google-charts':
                 cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
+            transaction.commit_unless_managed()
             self.clear_map_tile_cache()
             return True
             #except IntegrityError:
@@ -1088,6 +1089,7 @@ class Chart(models.Model):
             try:
                 cursor.execute("DELETE FROM %s" % (table,))
                 cursor.execute("INSERT INTO %s %s" % (table, table_query))
+                transaction.commit_unless_managed()
                 self.clear_map_tile_cache()
                 return True
             except IntegrityError:

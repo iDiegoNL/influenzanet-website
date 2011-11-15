@@ -10,11 +10,15 @@ YEARMONTH_INPUT_FORMATS = (
     '%Y-%m', '%m/%Y', '%m/%y', # '2006-10', '10/2006', '10/06'
 )
 
+DATE_INPUT_FORMATS = (
+    '%Y-%m-%d', '%d-%m-%Y', '%d/%m/%Y', '%d/%m/%y', '%d-%m-%y'
+)
+
 POSTALCODE_INPUT_FORMATS = {
     'it': r'\d{5}', # e.g. 10100
     'uk': r'(GIR)|(((A[BL]|B[ABDHLNRSTX]?|C[ABFHMORTVW]|D[ADEGHLNTY]|E[HNX]?|F[KY]|G[LUY]?|H[ADGPRSUX]|I[GMPV]|JE|K[ATWY]|L[ADELNSU]?|M[EKL]?|N[EGNPRW]?|O[LX]|P[AEHLOR]|R[GHM]|S[AEGKLMNOPRSTY]?|T[ADFNQRSW]|UB|W[ADFNRSV]|YO|ZE)[1-9]?[0-9]|((E|N|NW|SE|SW|W)1|EC[1-4]|WC[12])[A-HJKMNPR-Y]|(SW|W)([2-9]|[1-9][0-9])|EC[1-9][0-9]))', #
-    'nl': r'\d{5}',
-    'be': r'\d{5}',
+    'nl': r'\d{4}',
+    'be': r'\d{4}',
     'de': r'\d{5}',
     'pt': r'\d{4}',
     'at': r'\d{4}',
@@ -50,6 +54,35 @@ class YearMonthField(CharField):
             try:
                 date = datetime.date(*time.strptime(value, fmt)[:3])
                 return format(date, '%Y-%m')
+            except ValueError:
+                continue
+        raise ValidationError(self.error_messages['invalid'])
+
+class DateField(CharField):
+    default_error_messages = {
+        'invalid': _('Enter a valid date.'),
+    }
+
+    def __init__(self, input_formats=None, *args, **kwargs):
+        super(DateField, self).__init__(*args, **kwargs)
+        self.input_formats = input_formats
+
+    def clean(self, value):
+        """
+        Validate month and year values.
+        
+        Returns a string object in YYYY-MM-DD format.
+        """
+        if value in validators.EMPTY_VALUES:
+            return None
+        if isinstance(value, datetime.datetime):
+            return format(value, '%Y-%m-%d')
+        if isinstance(value, datetime.date):
+            return format(value, '%Y-%m-%d')
+        for fmt in self.input_formats or DATE_INPUT_FORMATS:
+            try:
+                date = datetime.date(*time.strptime(value, fmt)[:3])
+                return format(date, '%Y-%m-%d')
             except ValueError:
                 continue
         raise ValidationError(self.error_messages['invalid'])
