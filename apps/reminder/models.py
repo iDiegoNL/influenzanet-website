@@ -135,7 +135,8 @@ def get_prev_reminder_date(now):
 
     if settings.interval == NO_INTERVAL:
         qs = NewsLetter.objects.filter(date__lte=now).exclude(date__gt=now).order_by("-date")
-        if qs.count() == 0:
+        qs = list(qs)
+        if len(qs) == 0:
             return None
         return qs[0].date
 
