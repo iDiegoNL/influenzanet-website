@@ -9,8 +9,8 @@ from django.core.cache import cache
 register = Library()
 
 SOURCES = {
-    'nl': 'http://www.grotegriepmeting.nl/count/counter/?country=NL',
-    'be': 'http://www.grotegriepmeting.be/count/counter/?country=BE',
+    'nl': 'http://www.degrotegriepmeting.nl/count/counter/?country=NL',
+    'be': 'http://www.degrotegriepmeting.nl/count/counter/?country=BE',
     'de': 'http://www.aktivgegengrippe.de/count/counter/',
     'at': 'http://www.aktivgegengrippe.at/count/counter/',
     'ch': 'http://www.aktivgegengrippe.ch/count/counter/',
