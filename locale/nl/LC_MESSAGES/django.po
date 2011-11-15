@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-11-14 17:52+0200\n"
+"PO-Revision-Date: 2011-11-15 15:39+0200\n"
 "Last-Translator: Prime-Creation <antwan@prime-creation.com>\n"
 "Language-Team: Very good.\n"
 "Language: nl\n"
@@ -857,7 +857,7 @@ msgstr ""
 "Als u problemen hebt met het activeren van uw registratie, kunt u altijd"
 
 msgid "contact us"
-msgstr "contact opnemen"
+msgstr "contact op te nemen"
 
 # translations should reflect whatever can be seen on the map of the thanks page
 msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
@@ -871,15 +871,20 @@ msgstr "De kaart word ieder uur ververst."
 
 msgid "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to"
 msgstr ""
+"U kunt proberen de link uit uw activatie-e-mail te kopiëren, waarna u hem "
+"nogmaals in uw browservenster plakt. Let u er a.u.b. dat u alle letters en "
+"cijfers kopieert. Als dit niet lukt kunt u proberen "
 
 msgid "log in"
-msgstr ""
+msgstr "in te loggen"
 
 msgid "using the username and password you provided during registration. If this still fails, please try to"
 msgstr ""
+"met de gebruikersnaam en het wachtwoord dat u hebt ingevuld tijdens de "
+"registratie. Als u hiermee niet verder komt willen wij u vragen opnieuw te"
 
 msgid "register"
-msgstr ""
+msgstr "registreren"
 
 msgid "with a different username. If everything else fails, please do not hesitate to"
-msgstr ""
+msgstr "met een andere gebruikersnaam. Mocht u er niet uitkomen vragen wij u "
