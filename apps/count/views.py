@@ -7,7 +7,7 @@ from django.db import connection, transaction
 def counter(request):
     def q_count(country):
         cursor = connection.cursor()
-        cursor.execute("SELECT COUNT(*) FROM pollster_results_intake WHERE Qcountry = %s", [country])
+        cursor.execute("SELECT COUNT(*) FROM pollster_results_intake WHERE \"Qcountry\" = %s", [country])
         row = cursor.fetchone()
         return row[0]
 
