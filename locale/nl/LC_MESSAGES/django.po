@@ -888,3 +888,18 @@ msgstr "registreren"
 
 msgid "with a different username. If everything else fails, please do not hesitate to"
 msgstr "met een andere gebruikersnaam. Mocht u er niet uitkomen vragen wij u "
+
+msgid "Check this box if you wish to receive weekly reminders throughout the flu season"
+msgstr "Vink dit vakje aan indien u wekelijkse herinneringen per email wenst te ontvangen gedurende het griepseizoen"
+
+msgid "This email is already in use"
+msgstr "Dit email adres is al in gebruik"
+
+msgid "My settings"
+msgstr "Mijn instellingen"
+
+msgid "Your settings have been updated"
+msgstr "Uw instellingen zijn gewijzigd"
+
+msgid "Change password"
+msgstr "Wijzig wachtwoord"

@@ -859,3 +859,18 @@ msgstr ""
 
 msgid "with a different username. If everything else fails, please do not hesitate to"
 msgstr ""
+
+msgid "Check this box if you wish to receive weekly reminders throughout the flu season"
+msgstr ""
+
+msgid "This email is already in use"
+msgstr ""
+
+msgid "My settings"
+msgstr ""
+
+msgid "Your settings have been updated"
+msgstr ""
+
+msgid "Change password"
+msgstr ""
