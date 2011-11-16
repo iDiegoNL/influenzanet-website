@@ -867,7 +867,7 @@ msgstr ""
 
 # translations should reflect however often maps are updated
 msgid "Map updated hourly."
-msgstr "De kaart word ieder uur ververst."
+msgstr "De kaart wordt ieder uur ververst."
 
 msgid "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to"
 msgstr ""
