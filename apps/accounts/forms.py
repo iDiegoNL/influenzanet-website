@@ -39,7 +39,7 @@ class MySettingsForm(forms.Form):
         initial = kwargs.pop('initial', {})
         initial['email'] = self.instance.email
         initial['send_reminders'] = self.reminder_info.active
-        initial['language'] = self.reminder_info.language
+        initial['language'] = self.reminder_info.language if self.reminder_info.language else settings.LANGUAGE_CODE
         kwargs['initial'] = initial
 
         super(MySettingsForm, self).__init__(*args, **kwargs)
