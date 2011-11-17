@@ -7,6 +7,9 @@ class Command(NoArgsCommand):
     help = "Send reminders."
 
     def handle_noargs(self, **options):
+        if not get_settings():
+            return u"0 reminders sent"
+
         if get_settings() and get_settings().currently_sending:
             return u"0 reminders sent"
 
