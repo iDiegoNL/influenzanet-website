@@ -102,6 +102,8 @@ def survey_test(request, id, language=None):
     if language:
         translation = get_object_or_404(models.TranslationSurvey, survey=survey, language=language)
         survey.set_translation_survey(translation)
+    if language is None:
+        language = get_language()
     locale_code = locale.locale_alias.get(language)
     if locale_code:
         locale_code = locale_code.split('.')[0].replace('_', '-')
