@@ -1165,7 +1165,7 @@ class Chart(models.Model):
             return {}
 
 class GoogleProjection:
-    def __init__(self,levels=18):
+    def __init__(self, levels=25):
         self.Bc = []
         self.Cc = []
         self.zc = []

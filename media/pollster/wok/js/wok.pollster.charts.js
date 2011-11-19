@@ -64,6 +64,7 @@
 
                 var map = new google.maps.Map(self.$container[0], {
                     zoom: z,
+                    maxZoom: 22,
                     center: c,
                     mapTypeId: mapTypeId
                 });

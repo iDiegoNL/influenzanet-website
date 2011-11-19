@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-11-14 17:52+0200\n"
+"PO-Revision-Date: 2011-11-15 15:39+0200\n"
 "Last-Translator: Prime-Creation <antwan@prime-creation.com>\n"
 "Language-Team: Very good.\n"
 "Language: nl\n"
@@ -812,7 +812,7 @@ msgid "Manage household"
 msgstr "Manage huishouden"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
-msgstr "U heeft deze email ontvangen omdat geregistreerd staat bij %(site_name)s. Uw bijdrage helpt ons de verspreiding van de griep bij te houden. Als u deze wekelijkse herinnering niet wenst te ontvange, gelieve u <a href=\"%(unsubscribe_url)s\">uit te schrijven</a> van onze mailings."
+msgstr "U ontvangt deze mail omdat u staat geregistreerd als griepmeter bij De Grote GriepMeting (GGM). Uw meting helpt ons om de verspreiding van griep en verkoudheid in kaart te brengen. Al u niet langer wenst deel te nemen aan ons onderzoek <a href=\"%(unsubscribe_url)s\">meldt u zich dan af</a> voor onze wekelijkse nieuwsbrieven."
 
 msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
 msgstr ""
@@ -857,7 +857,7 @@ msgstr ""
 "Als u problemen hebt met het activeren van uw registratie, kunt u altijd"
 
 msgid "contact us"
-msgstr "contact opnemen"
+msgstr "contact op te nemen"
 
 # translations should reflect whatever can be seen on the map of the thanks page
 msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
@@ -867,19 +867,39 @@ msgstr ""
 
 # translations should reflect however often maps are updated
 msgid "Map updated hourly."
-msgstr "De kaart word ieder uur ververst."
+msgstr "De kaart wordt ieder uur ververst."
 
 msgid "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to"
 msgstr ""
+"U kunt proberen de link uit uw activatie-e-mail te kopiëren, waarna u hem "
+"nogmaals in uw browservenster plakt. Let u er a.u.b. dat u alle letters en "
+"cijfers kopieert. Als dit niet lukt kunt u proberen "
 
 msgid "log in"
-msgstr ""
+msgstr "in te loggen"
 
 msgid "using the username and password you provided during registration. If this still fails, please try to"
 msgstr ""
+"met de gebruikersnaam en het wachtwoord dat u hebt ingevuld tijdens de "
+"registratie. Als u hiermee niet verder komt willen wij u vragen opnieuw te"
 
 msgid "register"
-msgstr ""
+msgstr "registreren"
 
 msgid "with a different username. If everything else fails, please do not hesitate to"
-msgstr ""
+msgstr "met een andere gebruikersnaam. Mocht u er niet uitkomen vragen wij u "
+
+msgid "Check this box if you wish to receive weekly reminders throughout the flu season"
+msgstr "Vink dit vakje aan indien u wekelijkse herinneringen per email wenst te ontvangen gedurende het griepseizoen"
+
+msgid "This email is already in use"
+msgstr "Dit email adres is al in gebruik"
+
+msgid "My settings"
+msgstr "Mijn instellingen"
+
+msgid "Your settings have been updated"
+msgstr "Uw instellingen zijn gewijzigd"
+
+msgid "Change password"
+msgstr "Wijzig wachtwoord"

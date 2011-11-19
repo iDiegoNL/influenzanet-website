@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import get_resolver, reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.utils.safestring import mark_safe
@@ -102,6 +102,8 @@ def survey_test(request, id, language=None):
     if language:
         translation = get_object_or_404(models.TranslationSurvey, survey=survey, language=language)
         survey.set_translation_survey(translation)
+    if language is None:
+        language = get_language()
     locale_code = locale.locale_alias.get(language)
     if locale_code:
         locale_code = locale_code.split('.')[0].replace('_', '-')
@@ -300,6 +302,8 @@ def survey_chart_data(request, id, shortname):
 
 @staff_member_required
 def survey_chart_map_tile(request, id, shortname, z, x, y):
+    if int(z) > 22:
+        raise Http404
     survey = get_object_or_404(models.Survey, pk=id)
     chart = get_object_or_404(models.Chart, survey=survey, shortname=shortname)
     survey_user = _get_active_survey_user(request)
@@ -358,6 +362,8 @@ def chart_data(request, survey_shortname, chart_shortname):
     return HttpResponse(chart.to_json(user_id, global_id), mimetype='application/json')
 
 def map_tile(request, survey_shortname, chart_shortname, z, x, y):
+    if int(z) > 22:
+        raise Http404
     chart = None
     if request.user.is_active and request.user.is_staff:
         survey = get_object_or_404(models.Survey, shortname=survey_shortname)

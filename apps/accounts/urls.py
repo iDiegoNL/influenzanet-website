@@ -72,6 +72,8 @@ urlpatterns = patterns('',
         {'template_name': 'registration/password_reset_done.html'},
         name='auth_password_reset_done'),
 
+    url(r'^settings/$', views.my_settings),
+
     # Additional URLs
     url(r'^$', views.index),
 )
