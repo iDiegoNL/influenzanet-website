@@ -2,6 +2,11 @@
 /**
  * Menu
  */
+
+#headerlogo {
+	width: auto;
+}
+
 #header {
 }
 
@@ -11,6 +16,9 @@
 
 #menubar li {
 	background-color: #DDD0C1;
+	border-radius: .3em;
+	-moz-border-radius: .3em;
+	-webkit-border-radius: .3em;
 }
 
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
@@ -25,12 +33,19 @@
 
 #account ul.member li a, #account ul.anonymous li a { 
 	display: inline;
-	padding: .3em;
+	font-size: 1em;
+	font-weight: bold;
 }
 
 #account li, #account ul {
 	display: inline;
-	padding: .2em;
+}
+
+#account ul li {
+	padding: .5em;
+	border-radius: .4em;
+	-moz-border-radius: .4em;
+	-webkit-border-radius: .4em;
 }
 
 #col2 p.title {
@@ -90,4 +105,8 @@
 #footer a:hover, #footerclose a:hover {
  color: #333;
  text-decoration: underline;
+}
+
+.survey label {
+	cursor: pointer;
 }
