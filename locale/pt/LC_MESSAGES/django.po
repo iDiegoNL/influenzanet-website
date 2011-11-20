@@ -879,3 +879,6 @@ msgstr ""
 
 msgid "Change password"
 msgstr ""
+
+msgid "Dear participant,\n\nThank you for registering for the Flusurvey.\n\nTo activate your account, please click on the following link or copy and paste it into your internet browser:\n\nhttp://%(site)s/accounts/activate/%(activation_key)s/\n\nYou will then be able to start taking part in the Flusurvey, helping us to track the spread of flu across the UK.\n\nThis activation URL will expire in {{ expiration_days }} days.\n\nBest wishes,\nThe Flusurvey team"
+msgstr ""
