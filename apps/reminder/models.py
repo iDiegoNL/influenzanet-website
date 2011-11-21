@@ -8,6 +8,8 @@ from django.conf import settings
 
 from nani.models import TranslatableModel, TranslatedFields
 
+from apps.survey.models import SurveyUser
+
 # A short word on terminology:
 # "Reminder" may refer to a NewsLetter object, or simply a placeholder
 # that's based on the is_default_reminder NewsLetterTemplate
@@ -191,9 +193,9 @@ def get_reminders_for_users(now, users):
         if not reminder_dict:
             raise StopIteration()
 
-
     for user in users:
-        info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True})
+        info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
+
         if not info.active:
             continue
 
@@ -209,7 +211,17 @@ def get_reminders_for_users(now, users):
 
         if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
             if (now - info.last_reminder).days >= 7:
-                yield user, reminder, language
+                survey_users = SurveyUser.objects.filter(user=user, deleted=False)
+                if not survey_users.count():
+                    survey_user = SurveyUser.objects.create(user=user, name=user.username)
+                    survey_users = SurveyUser.objects.filter(user=user)
+
+                if user.pk % 7 == now.weekday():
+                    yield user, reminder, language
+
+                #last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
+                #if last_action >= 7 and last_action <= 30:
+                    #yield user, reminder, language
                 
         else:
             if info.last_reminder < reminder.date:

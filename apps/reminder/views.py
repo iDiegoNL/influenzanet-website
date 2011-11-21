@@ -13,7 +13,7 @@ from .send import create_message, send
 @login_required
 def unsubscribe(request):
     if request.method == "POST":
-        info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True})
+        info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True, 'last_reminder': request.user.date_joined})
         info.active = False
         info.save()
         return render_to_response('reminder/unsubscribe_successful.html', locals(), context_instance=RequestContext(request))
@@ -56,7 +56,7 @@ def preview(request, year, month, day, hour, minute):
     return HttpResponse(html_content)
 
 def _reminder(reminder_dict, user):
-    info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True})
+    info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
     language = info.get_language()
 
     if not language in reminder_dict:

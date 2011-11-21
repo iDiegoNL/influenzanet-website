@@ -54,11 +54,11 @@ $(function() {
 
 /* Close any Fancybox that is currently open */
  
-window.onload = closeFancybox;
+/* window.onload = closeFancybox;
 
 function closeFancybox(){
   parent.$.fancybox.close();
-}
+} */
 
 /* Redirect if Fancybox-page is opened directly */
 
@@ -69,7 +69,7 @@ function forcefancy(){
 }
 
 /* Fancybox */
-
+/*
 $(document).ready(function() {
 
  // login fancybox
@@ -104,8 +104,8 @@ $(document).ready(function() {
   'type'				: 'iframe',
   'onClosed'            : function() { parent.location.reload(true); }
  });
-
-});
+}); 
+*/
 
 /* Include jquery.easing-1.3.pack.js */
 
