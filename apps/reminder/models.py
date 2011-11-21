@@ -194,7 +194,7 @@ def get_reminders_for_users(now, users):
             raise StopIteration()
 
     for user in users:
-        info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True})
+        info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
 
         if not info.active:
             continue

@@ -34,7 +34,7 @@ class MySettingsForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
         self.instance = kwargs.pop('instance')
-        self.reminder_info, _ = UserReminderInfo.objects.get_or_create(user=self.instance, defaults={'active': True})
+        self.reminder_info, _ = UserReminderInfo.objects.get_or_create(user=self.instance, defaults={'active': True, 'last_reminder': self.instance.date_joined})
 
         initial = kwargs.pop('initial', {})
         initial['email'] = self.instance.email
