@@ -1,16 +1,8 @@
 {% load i18n %}
-{% blocktrans %}Dear participant,
+{% blocktrans %}Activate your account:
 
-Thank you for registering for the Flusurvey.
-
-To activate your account, please click on the following link or copy and paste it into your internet browser:
+Click the following URL or copy and paste it to the browser's address bar.
 
 http://{{ site }}/accounts/activate/{{ activation_key }}/
 
-You will then be able to start taking part in the Flusurvey, helping us to track the spread of flu across the UK.
-
-This activation URL will expire in {{ expiration_days }} days.
-
-Best wishes,
-The Flusurvey team{% endblocktrans %}
-http://{{site}}
+This activation URL will expire in {{ expiration_days }} days.{% endblocktrans %}
