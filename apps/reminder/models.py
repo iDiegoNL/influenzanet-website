@@ -195,7 +195,7 @@ def get_reminders_for_users(now, users):
 
     for user in users:
         info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True})
-        survey_users = SurveyUser.objects.filter(user=user)
+        survey_users = SurveyUser.objects.filter(user=user, deleted=False)
         if not survey_users.count():
             survey_user = SurveyUser.objects.create(user=user, name=user.username)
             survey_users = SurveyUser.objects.filter(user=user)
