@@ -195,10 +195,6 @@ def get_reminders_for_users(now, users):
 
     for user in users:
         info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True})
-        survey_users = SurveyUser.objects.filter(user=user, deleted=False)
-        if not survey_users.count():
-            survey_user = SurveyUser.objects.create(user=user, name=user.username)
-            survey_users = SurveyUser.objects.filter(user=user)
 
         if not info.active:
             continue
@@ -215,6 +211,11 @@ def get_reminders_for_users(now, users):
 
         if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
             if (now - info.last_reminder).days >= 7:
+                survey_users = SurveyUser.objects.filter(user=user, deleted=False)
+                if not survey_users.count():
+                    survey_user = SurveyUser.objects.create(user=user, name=user.username)
+                    survey_users = SurveyUser.objects.filter(user=user)
+
                 last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
                 if last_action >= 7 and last_action <= 30:
                     yield user, reminder, language
