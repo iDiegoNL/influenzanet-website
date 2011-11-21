@@ -5,6 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.core.urlresolvers import reverse
+from django.db import connection, transaction
+
 from times import epoch
 
 def create_global_id():
@@ -44,6 +46,16 @@ class SurveyUser(models.Model):
     def get_remove_url(self):
         from . import views
         return '%s?gid=%s' % (reverse(views.people_remove), self.global_id)
+
+    def get_last_weekly_survey_date(self):
+        cursor = connection.cursor()
+        cursor.execute("select max(timestamp) from pollster_results_weekly where global_id = %s", [self.global_id])
+        row = cursor.fetchone()
+        result = row[0]
+
+        if result is None:
+            return self.user.date_joined
+        return result
 
 class Survey(models.Model):
     survey_id = models.CharField(max_length=50, unique=True)
