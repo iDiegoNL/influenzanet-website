@@ -214,9 +214,10 @@ def get_reminders_for_users(now, users):
             continue
 
         if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
-            if (now - info.last_reminder).days >= 7 and \
-               (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days >= 7:
-                yield user, reminder, language
+            if (now - info.last_reminder).days >= 7:
+                last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
+                if last_action >= 7 and last_action <= 30:
+                    yield user, reminder, language
                 
         else:
             if info.last_reminder < reminder.date:
