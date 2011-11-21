@@ -20,6 +20,19 @@
                         changeMonth: true,
                         changeYear: true 
                     })
+                    .change(function(evt){
+                        var $this = $(this);
+                        var date = Date.parseExact($this.val(), "yyyy-MM-dd");
+                        if (date)
+                            $this.val(date.toString('dd/MM/yyyy'));
+                        else
+                            date = Date.parseExact($this.val(), "dd/MM/yyyy");
+                            if (date)
+                                $this.val(date.toString('dd/MM/yyyy'));
+                            else
+                                $this.val('');
+                    });
+
             }
         });
     }
