@@ -854,28 +854,28 @@ msgid "Please try to copy and paste the link from the activation email, making s
 msgstr ""
 
 msgid "log in"
-msgstr ""
+msgstr "entrar"
 
 msgid "using the username and password you provided during registration. If this still fails, please try to"
 msgstr ""
 
 msgid "register"
-msgstr ""
+msgstr "registar"
 
 msgid "with a different username. If everything else fails, please do not hesitate to"
-msgstr ""
+msgstr "com um nome de utilizador diferente. Caso o problema persista, não em hesite em nos "
 
 msgid "Check this box if you wish to receive weekly reminders throughout the flu season"
-msgstr ""
+msgstr "Assinale esta opção se deseja receber o lembrete semanal"
 
 msgid "This email is already in use"
-msgstr ""
+msgstr "Este email já está registado"
 
 msgid "My settings"
-msgstr ""
+msgstr "Minha conta"
 
 msgid "Your settings have been updated"
-msgstr ""
+msgstr "As alterações foram gravadas"
 
 msgid "Change password"
-msgstr ""
+msgstr "Alterar palavra passe"
