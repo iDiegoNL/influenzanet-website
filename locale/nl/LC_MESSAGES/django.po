@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-11-15 15:39+0200\n"
+"PO-Revision-Date: 2011-11-22 11:15+0200\n"
 "Last-Translator: Prime-Creation <antwan@prime-creation.com>\n"
 "Language-Team: Very good.\n"
 "Language: nl\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: apps/survey/forms/__init__.py:16
 #: templates/survey/people.html:8
 msgid "Name"
-msgstr "Naam"
+msgstr "sNaam"
 
 #: apps/ew_contact_form/forms.py:13
 msgid "Email"
@@ -809,7 +809,7 @@ msgid "Weekly survey"
 msgstr "Wekelijkse vragenlijst"
 
 msgid "Manage household"
-msgstr "Manage huishouden"
+msgstr "Beheer huishouden"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
 msgstr "U ontvangt deze mail omdat u staat geregistreerd als griepmeter bij De Grote GriepMeting (GGM). Uw meting helpt ons om de verspreiding van griep en verkoudheid in kaart te brengen. Al u niet langer wenst deel te nemen aan ons onderzoek <a href=\"%(unsubscribe_url)s\">meldt u zich dan af</a> voor onze wekelijkse nieuwsbrieven."
@@ -829,7 +829,7 @@ msgstr "Meting"
 msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
 msgstr ""
 "Voordat we u naar de daadwerkelijke meting doorsturen, zouden we het op "
-"prijs stellen als u onderstaande vragen éénmalig beantwoord."
+"prijs stellen als u onderstaande vragen éénmalig beantwoordt:<br /><br />"
 
 msgid "Completing for participant"
 msgstr "Wordt ingevuld voor "
