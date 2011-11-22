@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 
-from .models import UserReminderInfo, get_upcoming_dates, get_prev_reminder
+from .models import UserReminderInfo, get_upcoming_dates, get_prev_reminder, get_settings, WEEK_AFTER_ACTION, get_default_for_reminder
 from .send import create_message, send
 
 @login_required
@@ -53,7 +53,14 @@ def manage(request, year, month, day, hour, minute):
 
 @staff_member_required
 def preview(request, year, month, day, hour, minute):
-    reminder_dict = get_prev_reminder(datetime(*map(int, [year, month, day, hour, minute, 59])))
+    if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
+        reminder_dict = {}
+        for language, name in settings.LANGUAGES:
+            reminder_dict[language] = get_default_for_reminder(language)
+
+    else:
+        reminder_dict = get_prev_reminder(datetime(*map(int, [year, month, day, hour, minute, 59])))
+
     if not reminder_dict:
         return HttpResponse("There are no newsletters or reminders configured yet. Make sure to do so")
     reminder = _reminder(reminder_dict, request.user)
