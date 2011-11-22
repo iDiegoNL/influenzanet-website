@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-10-18 16:22+0100\n"
+"PO-Revision-Date: 2011-11-22 15:31+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,11 +54,11 @@ msgstr "Ne pas mettre en ligne les articles d'actualité sélectionnés"
 
 #: apps/journal/cms_app.py:7
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #: apps/journal/cms_plugins.py:15
 msgid "Journal entries"
-msgstr ""
+msgstr "Entrées du journal"
 
 #: apps/journal/models.py:9
 #: apps/journal/models.py:35
@@ -69,11 +69,11 @@ msgstr "Titre"
 #: apps/journal/models.py:10
 #: apps/journal/models.py:36
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
 #: apps/journal/models.py:11
 msgid "A slug is a short name which uniquely identifies the category"
-msgstr ""
+msgstr "Un slug est un nom court qui identifie de façon unique la catégorie"
 
 #: apps/journal/models.py:14
 msgid "Category"
@@ -85,7 +85,7 @@ msgstr "Catégories"
 
 #: apps/journal/models.py:37
 msgid "A slug is a short name which uniquely identifies the news item for this day"
-msgstr ""
+msgstr "Un slug est un nom court qui identifie de façon unique les nouveaux éléments de cette journée"
 
 #: apps/journal/models.py:38
 msgid "Excerpt"
@@ -101,7 +101,7 @@ msgstr "Image"
 
 #: apps/journal/models.py:41
 msgid "Alignment"
-msgstr ""
+msgstr "Alignement"
 
 #: apps/journal/models.py:41
 msgid "Alignment of the image"
@@ -288,12 +288,12 @@ msgstr "Date"
 #: apps/reminder/models.py:106
 #, python-format
 msgid "%(current)s (in %(days)s days)"
-msgstr ""
+msgstr "%(current)s (in %(days)s jours)"
 
 #: apps/reminder/models.py:108
 #, python-format
 msgid "%(current)s (in %(weeks)s weeks)"
-msgstr ""
+msgstr "%(current)s (in %(weeks)s semaines)"
 
 #: apps/reminder/templates/reminder/unsubscribe.html:6
 #: apps/reminder/templates/reminder/unsubscribe.html:10
@@ -331,7 +331,7 @@ msgstr "Autres symptômes non grippaux"
 
 #: apps/survey/views.py:60
 msgid "Next status"
-msgstr ""
+msgstr "Statuts suivants"
 
 #: apps/survey/views.py:104
 msgid "You have to fill your profile data first."
@@ -373,7 +373,7 @@ msgstr "Antécédents"
 
 #: templates/admin/pollster/survey/change_form.html:9
 msgid "Full Editor"
-msgstr ""
+msgstr "Edition complète"
 
 #: templates/base/sitebase.html:68
 msgid "My account"
@@ -385,7 +385,7 @@ msgstr "Se déconnecter"
 
 #: templates/base/sitebase.html:71
 msgid "Logged in as"
-msgstr "La personne connectée est"
+msgstr "Vous êtes connecté sous le nom de"
 
 #: templates/base/sitebase.html:74
 #: templates/registration/boxbase.html:11
@@ -414,7 +414,7 @@ msgstr "Ecrivez-nous"
 
 #: templates/base/sitebase.html:122
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: templates/contact_form/contact_form.html:10
 msgid "Send"
@@ -452,7 +452,7 @@ msgstr "Suivant"
 #: templates/journal/archive_month.html:3
 #: templates/journal/archive_year.html:3
 msgid "Entries for"
-msgstr ""
+msgstr "Entrées pour"
 
 #: templates/journal/categories.html:3
 msgid "Archive"
@@ -560,7 +560,7 @@ msgstr "Réinitialisation du mot de passe achevée"
 
 #: templates/registration/password_reset_complete.html:10
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Votre mot de passe a été mis en place. Vous pouvez poursuivre et vous connecter."
+msgstr "Votre nouveau mot de passe a été mis en place. Vous pouvez poursuivre et vous connecter."
 
 #: templates/registration/password_reset_confirm.html:4
 #: templates/registration/password_reset_form.html:4
@@ -587,7 +587,7 @@ msgstr "Le lien pour réinitialiser le mot de passe n'est pas valide, peut-être
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
 msgid "Password reset successful"
-msgstr "Le mot de passe a été rélinitialisé"
+msgstr "Le mot de passe a été réinitialisé"
 
 #: templates/registration/password_reset_done.html:10
 msgid "We've e-mailed you instructions for setting your password to the e-mail address you submitted. You should be receiving it shortly."
@@ -604,7 +604,7 @@ msgstr "pour votre compte d'utilisateur sur %(site_name)s"
 
 #: templates/registration/password_reset_email.html:6
 msgid "Please go to the following page and choose a new password:"
-msgstr "Allez s'il-vous-plaît sur la page suivante et choisissez un nouveau mot de passe :"
+msgstr "Rendez-vous s'il-vous-plaît sur la page suivante afin de choisir un nouveau mot de passe :"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Your username, in case you've forgotten:"
@@ -665,11 +665,11 @@ msgstr "Soumettre"
 
 #: templates/survey/index.html:16
 msgid "Survey Form"
-msgstr ""
+msgstr "Formulaire de sondage"
 
 #: templates/survey/people.html:5
 msgid "People"
-msgstr ""
+msgstr "Individu"
 
 #: templates/survey/people.html:13
 msgid "Edit"
@@ -681,7 +681,7 @@ msgstr "Profile"
 
 #: templates/survey/people.html:15
 msgid "Survey"
-msgstr ""
+msgstr "Sondage"
 
 #: templates/survey/people.html:16
 #: templates/survey/thanks.html:19
@@ -699,7 +699,7 @@ msgstr "Ajouter un participant"
 
 #: templates/survey/people_edit.html:5
 msgid "Edit Person"
-msgstr ""
+msgstr "Editer la fiche de la personne"
 
 #: templates/survey/people_edit.html:10
 msgid "Save"
@@ -747,7 +747,7 @@ msgstr "Etat de santé"
 
 #: templates/survey/thanks.html:11
 msgid "Manage "
-msgstr ""
+msgstr "Modification des informations"
 
 #: templates/survey/thanks.html:16
 msgid "Change name"
@@ -773,91 +773,106 @@ msgstr "Si vous ne l'avez pas encore fait, merci de remplir"
 msgid "the symptoms questionaire"
 msgstr "le questionnaire hebdomadaire"
 
-msgid "Activate your account:\n\nClick the following URL or copy and paste it to the browser's address bar.\n\nhttp://%(site)s/accounts/activate/%(activation_key)s/\n\nThis activation URL will expire in %(expiration_days)s days."
-msgstr "Activez votre compte:\n\nCliquez sur le lien URL ou copiez-collez le dans la barre d'adresse de votre navigateur.\n\nhttp://%(site)s/accounts/activate/%(activation_key)s/\n\nCe lien URL d'activation expirera dans %(expiration_days)s jours."
+msgid ""
+"Activate your account:\n"
+"\n"
+"Click the following URL or copy and paste it to the browser's address bar.\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"This activation URL will expire in %(expiration_days)s days."
+msgstr ""
+"Activez votre compte:\n"
+"\n"
+"Cliquez sur le lien URL ou copiez-collez le dans la barre d'adresse de votre navigateur.\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"Ce lien URL d'activation expirera dans %(expiration_days)s jours."
 
 msgid "Activate your account! %(site)s"
 msgstr "Activez votre compte %(site)s"
 
 msgid "Please check the answers for the highlighted questions."
-msgstr ""
+msgstr "Vérifiez s'il-vous-plaît les réponses des questions encadrées en rouge."
 
 msgid "Weekly survey"
-msgstr "Questionário de sintomas"
+msgstr "Questionnaire hebdomadaire"
 
 msgid "Manage household"
-msgstr ""
+msgstr "Gérer le foyer"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
-msgstr ""
+msgstr "Vous recevez cet email car vous êtes inscrits sur Epipop.fr. Votre participation nous aide à suivre les tendances de la grippe. Si vous ne souhaitez plus recevoir cet email hebdomadaire de rappel, s'il-vous-plaît <a href=\"%(unsubscribe_url)s\">unsubscribe</a> de la liste de distribution."
 
 msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
-msgstr ""
+msgstr "La liste des participants inscrits sur votre compte figure ci-dessous. Cliquez sur le lien situé à côté de chaque participant pour remplir le questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, ou pour retirer un participant."
 
 msgid "Background"
-msgstr ""
+msgstr "Préliminaire"
 
 msgid "Symptoms"
-msgstr ""
+msgstr "Symptômes"
 
 msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
-msgstr ""
+msgstr "Avant d'accéder au questionnaire hebdomadaire, complétez s'il-vous-plaît ce court questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une seule fois."
 
 msgid "Completing for participant"
-msgstr ""
+msgstr "Compléter pour le participant"
 
 msgid "Symptoms survey"
-msgstr ""
+msgstr "Questionnaire hebdomadaire"
 
 msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
-msgstr ""
+msgstr "L'état de santé indiqué pour chaque participant s'appuie sur les symptômes que vous avez rapportés. <strong>Ceci n'est pas un diagnostic médical</strong>. Nous vous interrogeons uniquement sur les symptômes évoquateurs de syndrome grippal, rhume, ou gastro-entérite. Si vous avez d'autres symptômes, ou que vous êtes inquiet, nous vous recommandons de contacter votre médecin généraliste."
 
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnu"
 
 msgid "Questionnaire for participant"
-msgstr ""
+msgstr "Questionnaire du participant"
 
 msgid "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please"
-msgstr ""
+msgstr "Vérifiez s'il-vous-plaît le dossier \"indésirables\" de votre boîte mail si vous ne recevez pas cet email d'activation. Si vous avez des difficultés pour activer votre compte, s'il-vous-plaît"
 
 msgid "contact us"
-msgstr ""
+msgstr "contactez-nous"
 
 # translations should reflect whatever can be seen on the map of the thanks page
 msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
-msgstr ""
+msgstr "Les régions dans lesquelles des participants rapportent actuellement des syndromes grippaux sont représentées en rouge, et celles dans lesquelles aucun participant ne rapporte actuellement de syndrome grippal sont représentées en bleu."
 
 # translations should reflect however often maps are updated
 msgid "Map updated hourly."
-msgstr ""
+msgstr "Carte mise à jour toutes les heures."
 
 msgid "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to"
-msgstr ""
+msgstr "Essayez s'il-vous-plaît de copier-coller dans votre barre des tâches le lien figurant dans l'email d'activation, en vérifiant que toutes les lettres ont bien été copiées. Si cela échoue, essayez s'il-vous-plaît"
 
 msgid "log in"
-msgstr ""
+msgstr "de vous connecter"
 
 msgid "using the username and password you provided during registration. If this still fails, please try to"
-msgstr ""
+msgstr "en utilisant le nom d'utilisateur et le mot de passe que vous avez donnés lors de l'inscription. Si cela échoue, essayez s-il-vous-plaît de"
 
 msgid "register"
-msgstr ""
+msgstr "vous inscrire"
 
 msgid "with a different username. If everything else fails, please do not hesitate to"
-msgstr ""
+msgstr "avec un nom d'utilisateur différent. Si tout ceci échoue, n'hésitez pas s'il-vous-plaît à "
 
 msgid "Check this box if you wish to receive weekly reminders throughout the flu season"
-msgstr ""
+msgstr "Cochez cette case si vous souhaitez recevoir un email hebdomadaire de rappel"
 
 msgid "This email is already in use"
-msgstr ""
+msgstr "Cet email est déjà utilisé"
 
 msgid "My settings"
-msgstr ""
+msgstr "Mes paramètres"
 
 msgid "Your settings have been updated"
-msgstr ""
+msgstr "Vos paramètres ont été mis à jour"
 
 msgid "Change password"
-msgstr ""
+msgstr "Changez votre mot de passe"
+
