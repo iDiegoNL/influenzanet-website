@@ -879,3 +879,6 @@ msgstr "As alterações foram gravadas"
 
 msgid "Change password"
 msgstr "Alterar palavra passe"
+
+msgid="Your username can only have letters(uppercase and lowercase, dash, underscores, numbers. do not use spaces."
+msgstr="O seu nome de utilizador apenas poderá conter letras (maiúsculas e minúsculas), números, hífen (-) e underscore (_). Não usar espaços. "
