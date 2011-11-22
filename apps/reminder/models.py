@@ -104,6 +104,10 @@ def get_upcoming_dates(now):
     to_yield = 5
     current = settings.begin_date
 
+    if settings.interval < 0:
+        yield now, "Current newsletter"
+        raise StopIteration()
+
     while to_yield > 0:
         if current >= now:
             diff = current - now
