@@ -319,7 +319,7 @@ msgstr "Sintomas de Gripe"
 
 #: apps/survey/views.py:54
 msgid "Cold / allergy"
-msgstr "Frio / alergia"
+msgstr "Constipação / alergia"
 
 #: apps/survey/views.py:56
 msgid "Gastrointestinal symptoms"
@@ -802,16 +802,16 @@ msgid "Below is the list of participants currently managed by you. Click the cor
 msgstr ""
 
 msgid "Background"
-msgstr "Histórico"
+msgstr "Perfil"
 
 msgid "Symptoms"
 msgstr "Sintomas"
 
 msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
-msgstr ""
+msgstr "Antes de responder ao questionário semanal, preencha o questionário de perfil abaixo. Será apenas solicitado uma única vez."
 
 msgid "Completing for participant"
-msgstr ""
+msgstr "Preencher por cada membro do agregado"
 
 msgid "Symptoms survey"
 msgstr "Questionário semanal"
