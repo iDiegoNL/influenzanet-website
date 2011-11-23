@@ -104,6 +104,10 @@ def get_upcoming_dates(now):
     to_yield = 5
     current = settings.begin_date
 
+    if settings.interval < 0:
+        yield now, "Current newsletter"
+        raise StopIteration()
+
     while to_yield > 0:
         if current >= now:
             diff = current - now
@@ -132,7 +136,7 @@ def get_prev_reminder_date(now):
 
     settings = get_settings()
 
-    if not settings or not settings.send_reminders or not settings.begin_date or now < settings.begin_date:
+    if not settings or not settings.send_reminders or not settings.begin_date or now < settings.begin_date or settings.interval == WEEK_AFTER_ACTION:
         return None
 
     if settings.interval == NO_INTERVAL:

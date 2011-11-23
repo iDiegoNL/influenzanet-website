@@ -75,7 +75,7 @@ def get_survey_url():
     path = reverse('apps.survey.views.index')
     return 'http://%s%s' % (domain, path)
 
-def send(now, user, message, language):
+def send(now, user, message, language, is_test_message=False):
     text_base, html_content = create_message(user, message, language)
     text_content = strip_tags(text_base)
 
@@ -97,7 +97,7 @@ def send(now, user, message, language):
             traceback=format_exc(),
         )
 
-    if now:
+    if not is_test_message:
         info = UserReminderInfo.objects.get(user=user)
         info.last_reminder = now
         info.save()

@@ -24,6 +24,15 @@ def get_object_or_none(model, **kwargs):
     except model.DoesNotExist:
         return None
 
+def retry(f, *args, **kwargs):
+    tries = 2
+    while tries:
+        try:
+            return f(*args, **kwargs)
+        except:
+            tries -= 1
+            if tries == 0:
+                raise
 
 @staff_member_required
 def survey_list(request):
@@ -309,7 +318,7 @@ def survey_chart_map_tile(request, id, shortname, z, x, y):
     survey_user = _get_active_survey_user(request)
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
-    return HttpResponse(chart.get_map_tile(user_id, global_id, int(z), int(x), int(y)), mimetype='image/png')
+    return HttpResponse(retry(chart.get_map_tile, user_id, global_id, int(z), int(x), int(y)), mimetype='image/png')
 
 @staff_member_required
 def survey_chart_map_click(request, id, shortname, lat, lng):
@@ -374,7 +383,7 @@ def map_tile(request, survey_shortname, chart_shortname, z, x, y):
     survey_user = _get_active_survey_user(request)
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
-    return HttpResponse(chart.get_map_tile(user_id, global_id, int(z), int(x), int(y)), mimetype='image/png')
+    return HttpResponse(retry(chart.get_map_tile, user_id, global_id, int(z), int(x), int(y)), mimetype='image/png')
 
 def map_click(request, survey_shortname, chart_shortname, lat, lng):
     chart = None
