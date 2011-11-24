@@ -101,22 +101,28 @@ def get_upcoming_dates(now):
     if not settings or not settings.send_reminders or not settings.begin_date:
         raise StopIteration()
 
-    to_yield = 5
-    current = settings.begin_date
-
     if settings.interval < 0:
         yield now, "Current newsletter"
         raise StopIteration()
 
+    to_yield = 7
+    current = settings.begin_date
+
     while to_yield > 0:
-        if current >= now:
+        if current >= now - datetime.timedelta(2 * settings.interval):
             diff = current - now
-            days = diff.days % 7
-            weeks = diff.days / 7 
-            if weeks == 0:
-                yield current, _("%(current)s (in %(days)s days)") % locals()
+            days = abs(diff.days) % 7
+            weeks = abs(diff.days) / 7 
+            if diff.days > 0:
+                if weeks == 0:
+                    yield current, _("%(current)s (in %(days)s days)") % locals()
+                else:
+                    yield current, _("%(current)s (in %(weeks)s weeks)") % locals()
             else:
-                yield current, _("%(current)s (in %(weeks)s weeks)") % locals()
+                if weeks == 0:
+                    yield current, _("%(current)s (%(days)s days ago)") % locals()
+                else:
+                    yield current, _("%(current)s (%(weeks)s weeks ago)") % locals()
             to_yield -= 1
         current += datetime.timedelta(settings.interval)
 
