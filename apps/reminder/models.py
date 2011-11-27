@@ -62,6 +62,8 @@ class NewsLetter(TranslatableModel):
     sender_email = models.EmailField(_("Sender email"), help_text="Only use email addresses for your main domain to ensure deliverability")
     sender_name = models.CharField(_("Sender name"), max_length=255)
 
+    published = models.BooleanField("Is published", help_text="Uncheck this box to postpone sending of this newsletter until the box is checked.", default=True)
+
     translations = TranslatedFields(
         subject = models.CharField(max_length=255),
         message = models.TextField(help_text="The strings {{ url }} and {{ unsubscribe_url }} may be used to refer to the profile url and unsubscribe url."),
@@ -147,7 +149,7 @@ def get_prev_reminder_date(now):
         return None
 
     if settings.interval == NO_INTERVAL:
-        qs = NewsLetter.objects.filter(date__lte=now).exclude(date__gt=now).order_by("-date")
+        qs = NewsLetter.objects.filter(date__lte=now, published=True).exclude(date__gt=now).order_by("-date")
         qs = list(qs)
         if len(qs) == 0:
             return None
@@ -170,11 +172,11 @@ def get_prev_reminder(now):
     if prev_date is None:
         return None
 
-    if NewsLetter.objects.filter(date=prev_date).count():
+    if NewsLetter.objects.filter(date=prev_date, published=True).count():
         result = {}
         for language, name in settings.LANGUAGES:
-            if NewsLetter.objects.language(language).filter(date=prev_date):
-                result[language] = NewsLetter.objects.language(language).get(date=prev_date)
+            if NewsLetter.objects.language(language).filter(date=prev_date, published=True):
+                result[language] = NewsLetter.objects.language(language).get(date=prev_date, published=True)
         return result
 
     result = {}
