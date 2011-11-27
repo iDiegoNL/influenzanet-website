@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-11-22 15:44+0200\n"
+"PO-Revision-Date: 2011-11-23 15:54+0200\n"
 "Last-Translator: Prime-Creation <antwan@prime-creation.com>\n"
 "Language-Team: Very good.\n"
 "Language: nl\n"
@@ -753,7 +753,7 @@ msgstr "Groepsleden"
 
 #: templates/survey/thanks.html:11
 msgid "Health status"
-msgstr "Gezondheids status"
+msgstr "Gezondheidsstatus"
 
 #: templates/survey/thanks.html:11
 msgid "Manage "
@@ -812,7 +812,12 @@ msgid "Manage household"
 msgstr "Beheer huishouden"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
-msgstr "U ontvangt deze mail omdat u staat geregistreerd als griepmeter bij De Grote GriepMeting (GGM). Uw meting helpt ons om de verspreiding van griep en verkoudheid in kaart te brengen. Al u niet langer wenst deel te nemen aan ons onderzoek <a href=\"%(unsubscribe_url)s\">meldt u zich dan af</a> voor onze wekelijkse nieuwsbrieven."
+msgstr ""
+"U ontvangt deze mail omdat u staat geregistreerd als griepmeter bij De Grote "
+"GriepMeting (GGM). Uw meting helpt ons om de verspreiding van griep en "
+"verkoudheid in kaart te brengen. Al u niet langer wenst deel te nemen aan "
+"ons onderzoek <a href=\"%(unsubscribe_url)s\">meldt u zich dan af</a> voor "
+"onze wekelijkse nieuwsbrieven."
 
 msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
 msgstr ""
