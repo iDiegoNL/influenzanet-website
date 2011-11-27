@@ -36,6 +36,7 @@ class ReminderSettings(models.Model):
     send_reminders = models.BooleanField(_("Send reminders"), help_text=_("Check this box to send reminders"))
     interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval")), (WEEK_AFTER_ACTION, "Send a reminder exactly a week after the last action was taken")), null=True, blank=True)
     begin_date = models.DateTimeField(_("Begin date"), help_text="Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: %s)" % settings.TIME_ZONE, null=True, blank=True)
+    batch_size = models.IntegerField("Batch size", null=True, blank=True, help_text="Batch size determines the max. sent emails per call to 'reminder_send'; choose in coordinance with you r crontab interval and total users; Leave empty to not have any maximum")
     currently_sending = models.BooleanField("Currently sending", help_text="This indicates if the reminders are being sent right now. Don't tick this box unless you absolutely know what you're doing", default=False)
 
     def __unicode__(self):
@@ -203,7 +204,13 @@ def get_reminders_for_users(now, users):
         if not reminder_dict:
             raise StopIteration()
 
+    batch_size = get_settings().batch_size if get_settings() else None
+
+    yielded = 0
     for user in users:
+        if batch_size and yielded >= batch_size:
+            raise StopIteration 
+
         info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
 
         if not info.active:
@@ -217,6 +224,7 @@ def get_reminders_for_users(now, users):
 
         if info.last_reminder is None:
             yield user, reminder, language
+            yielded += 1
             continue
 
         if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
@@ -228,6 +236,7 @@ def get_reminders_for_users(now, users):
 
                 if user.pk % 7 == now.weekday():
                     yield user, reminder, language
+                    yielded += 1
 
                 #last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
                 #if last_action >= 7 and last_action <= 30:
@@ -236,5 +245,6 @@ def get_reminders_for_users(now, users):
         else:
             if info.last_reminder < reminder.date:
                 yield user, reminder, language
+                yielded += 1
 
 
