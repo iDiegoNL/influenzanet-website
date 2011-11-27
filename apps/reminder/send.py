@@ -40,12 +40,15 @@ def create_message(user, message, language):
     c['message'] = message
     return inner, t.render(Context(c))
 
-def send_reminders():
+def send_reminders(fake=False):
     now = datetime.datetime.now()
 
     i = -1
     for i, (user, message, language) in enumerate(get_reminders_for_users(now, User.objects.filter(is_active=True))):
-        send(now, user, message, language)
+        if not fake:
+            send(now, user, message, language)
+        else:
+            print 'sending', user.email, message.subject
 
     return i + 1
 
