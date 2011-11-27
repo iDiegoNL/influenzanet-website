@@ -47,7 +47,7 @@ class ReminderTestCase(unittest.TestCase):
         settings.send_reminders = True
         settings.save()
 
-        test(datetime(2010, 10, 13, 14, 0), datetime(2010, 12, 8, 14, 0), get_upcoming_dates(datetime(2010, 10, 1, 15, 0, 0)))
+        test(datetime(2010, 9, 15, 14, 0), datetime(2010, 12, 8, 14, 0), get_upcoming_dates(datetime(2010, 10, 1, 15, 0, 0)))
          
     def test_get_prev_reminder_date(self):
         site = Site.objects.get()
@@ -226,7 +226,7 @@ class ReminderTestCase(unittest.TestCase):
         self.assertFalse('<body' in text_base)
 
         self.assertFalse('You have received this email because' in html)
-        self.assertTrue('U heeft deze email ontvangen omdat' in html)
+        self.assertTrue('U ontvangt deze mail omdat' in html, html)
 
     def test_irregular_intervals_form(self):
         form = NewsLetterForm() 
@@ -285,13 +285,17 @@ class ReminderTestCase(unittest.TestCase):
         template.message = "English message"
         template.save()
 
-        for i, (last_reminder, expected_len) in enumerate([
-            (None, 1),
-            (september_first - timedelta(days=6), 0),
-            (september_first - timedelta(days=8), 1),
-        ]):
-            user = User.objects.create(username="week-after-user-%s" % i)
-            info = UserReminderInfo.objects.create(user=user, last_reminder=last_reminder, active=True, language="en")
+        for weekday in range(7):
+            User.objects.create(username="week-after-user-%s" % weekday)
 
-            result = list(get_reminders_for_users(september_first, User.objects.filter(id=user.id)))
-            self.assertEqual(expected_len, len(result), result)
+        for days_after_startday in range(8):
+            for weekday in range(7):
+                user = User.objects.get(username="week-after-user-%s" % weekday)
+                info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'language': 'en'})
+                info.last_reminder = september_first - timedelta(days=8)
+                info.save()
+
+            result = list(get_reminders_for_users(september_first + timedelta(days=days_after_startday), User.objects.filter(username__startswith="week-after-user-")))
+            self.assertEqual(days_after_startday % 7 + 1, len(result))
+
+            # which newletter?

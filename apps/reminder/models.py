@@ -236,14 +236,15 @@ def get_reminders_for_users(now, users):
                     survey_user = SurveyUser.objects.create(user=user, name=user.username)
                     survey_users = SurveyUser.objects.filter(user=user)
 
-                if user.pk % 7 == now.weekday():
+                last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
+                last_action_recent_enough = last_action < 30
+
+                my_day = (user.pk % 7) >= (get_settings().begin_date.weekday() - now.weekday() - 1) % 7
+                
+                if last_action_recent_enough and my_day:
                     yield user, reminder, language
                     yielded += 1
 
-                #last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
-                #if last_action >= 7 and last_action <= 30:
-                    #yield user, reminder, language
-                
         else:
             if info.last_reminder < reminder.date:
                 yield user, reminder, language
