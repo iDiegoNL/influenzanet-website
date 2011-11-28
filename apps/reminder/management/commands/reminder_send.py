@@ -1,12 +1,20 @@
-from django.core.management.base import NoArgsCommand
+from optparse import make_option
+
+from django.core.management.base import BaseCommand
 
 from ...send import send_reminders
 from ...models import get_settings
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = "Send reminders."
+    option_list = BaseCommand.option_list + (
+        make_option('--fake', action='store_true', dest='fake', default=False,
+            help='Fake the sending of the emails; print the emails to be sent on screen instead.'),
+    )
 
-    def handle_noargs(self, **options):
+    def handle(self, *args, **options):
+        fake = options.get('fake', False)
+
         if not get_settings():
             return u"0 reminders sent"
 
@@ -17,7 +25,7 @@ class Command(NoArgsCommand):
         settings.currently_sending = True
         settings.save()
         try:
-            return u'%d reminders sent.\n' % send_reminders()
+            return u'%d reminders sent.\n' % send_reminders(fake=fake)
         finally:
             settings = get_settings()
             settings.currently_sending = False

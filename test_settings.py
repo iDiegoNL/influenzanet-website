@@ -1,5 +1,7 @@
 from settings import *
 
+LANGUAGE_CODE = 'en'
+
 CACHES = {}
 
 MIDDLEWARE_CLASSES = tuple([
