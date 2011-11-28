@@ -48,10 +48,13 @@ class SurveyUser(models.Model):
         return '%s?gid=%s' % (reverse(views.people_remove), self.global_id)
 
     def get_last_weekly_survey_date(self):
-        cursor = connection.cursor()
-        cursor.execute("select max(timestamp) from pollster_results_weekly where global_id = %s", [self.global_id])
-        row = cursor.fetchone()
-        result = row[0]
+        try:
+            cursor = connection.cursor()
+            cursor.execute("select max(timestamp) from pollster_results_weekly where global_id = %s", [self.global_id])
+            row = cursor.fetchone()
+            result = row[0]
+        except:
+            result = None
 
         if result is None:
             return self.user.date_joined
