@@ -279,11 +279,12 @@ class ReminderTestCase(unittest.TestCase):
             interval=WEEK_AFTER_ACTION,
         )
 
-        template = NewsLetterTemplate.objects.create(is_default_reminder=True, sender_email="test@example.org", sender_name="Test")
-        template.translate('en')
-        template.subject = "English subject"
-        template.message = "English message"
-        template.save()
+        for days_after_startday in [0, 7]:
+            newsletter = NewsLetter.objects.create(date=september_first + timedelta(days=days_after_startday), sender_email="test@example.org", sender_name="Test")
+            newsletter.translate('en')
+            newsletter.subject = "English subject - %s" % days_after_startday
+            newsletter.message = "English message"
+            newsletter.save()
 
         for weekday in range(7):
             User.objects.create(username="week-after-user-%s" % weekday)
@@ -295,7 +296,19 @@ class ReminderTestCase(unittest.TestCase):
                 info.last_reminder = september_first - timedelta(days=8)
                 info.save()
 
-            result = list(get_reminders_for_users(september_first + timedelta(days=days_after_startday), User.objects.filter(username__startswith="week-after-user-")))
+            result = list(get_reminders_for_users(september_first + timedelta(days=days_after_startday, minutes=1), User.objects.filter(username__startswith="week-after-user-")))
             self.assertEqual(days_after_startday % 7 + 1, len(result))
+            if len(result) >= 1:
+                user, reminder, language = result[0]
+                self.assertTrue(str(0 if days_after_startday < 7 else 7) in reminder.subject, reminder.subject)
 
-            # which newletter?
+        NewsLetter.objects.filter(date__gt=september_first).delete()
+        result = list(get_reminders_for_users(september_first + timedelta(days=0, minutes=1), User.objects.filter(username__startswith="week-after-user-")))
+        self.assertEqual(1, len(result))
+        result = list(get_reminders_for_users(september_first + timedelta(days=7, minutes=1), User.objects.filter(username__startswith="week-after-user-")))
+        self.assertEqual(0, len(result))
+
+        NewsLetter.objects.all().delete()
+        result = list(get_reminders_for_users(september_first + timedelta(minutes=1), User.objects.filter(username__startswith="week-after-user-")))
+        self.assertEqual(0, len(result))
+

@@ -42,6 +42,11 @@ class ReminderSettings(models.Model):
     def __unicode__(self):
         return _(u"Reminder settings")
 
+    def get_interval(self):
+        if self.interval == WEEK_AFTER_ACTION:
+            return 7
+        return self.interval
+
 class NewsLetterTemplate(TranslatableModel):
     is_default_reminder = models.BooleanField(_("Is default reminder"), help_text=_("If this option is checked this template is the standard template for reminder emails."))
     is_default_newsitem = models.BooleanField(_("Is default newsitem"), help_text=_("If this option is checked this template is the standard template for new news items."))
@@ -104,7 +109,7 @@ def get_upcoming_dates(now):
     if not settings or not settings.send_reminders or not settings.begin_date:
         raise StopIteration()
 
-    if settings.interval < 0:
+    if settings.get_interval() < 0:
         yield now, "Current newsletter"
         raise StopIteration()
 
@@ -112,7 +117,7 @@ def get_upcoming_dates(now):
     current = settings.begin_date
 
     while to_yield > 0:
-        if current >= now - datetime.timedelta(2 * settings.interval):
+        if current >= now - datetime.timedelta(2 * settings.get_interval()):
             diff = current - now
             days = abs(diff.days) % 7
             weeks = abs(diff.days) / 7 
@@ -127,7 +132,7 @@ def get_upcoming_dates(now):
                 else:
                     yield current, _("%(current)s (%(weeks)s weeks ago)") % locals()
             to_yield -= 1
-        current += datetime.timedelta(settings.interval)
+        current += datetime.timedelta(settings.get_interval())
 
 def get_default_for_reminder(language):
     if NewsLetterTemplate.objects.language(language).filter(is_default_reminder=True).count() == 0:
@@ -145,7 +150,7 @@ def get_prev_reminder_date(now):
 
     settings = get_settings()
 
-    if not settings or not settings.send_reminders or not settings.begin_date or now < settings.begin_date or settings.interval == WEEK_AFTER_ACTION:
+    if not settings or not settings.send_reminders or not settings.begin_date or now < settings.begin_date:
         return None
 
     if settings.interval == NO_INTERVAL:
@@ -162,7 +167,7 @@ def get_prev_reminder_date(now):
         if current >= now:
             return prev
         prev = current
-        current += datetime.timedelta(settings.interval)
+        current += datetime.timedelta(settings.get_interval())
 
 def get_prev_reminder(now):
     """Returns the reminder (newsletter/tempate) to send at a given moment
@@ -196,15 +201,9 @@ def get_prev_reminder(now):
     return result
 
 def get_reminders_for_users(now, users):
-    if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
-        reminder_dict = {}
-        for language, name in settings.LANGUAGES:
-            reminder_dict[language] = get_default_for_reminder(language)
-
-    else:
-        reminder_dict = get_prev_reminder(now)
-        if not reminder_dict:
-            raise StopIteration()
+    reminder_dict = get_prev_reminder(now)
+    if not reminder_dict:
+        raise StopIteration()
 
     batch_size = get_settings().batch_size if get_settings() else None
 
@@ -230,24 +229,21 @@ def get_reminders_for_users(now, users):
             continue
 
         if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
-            if (now - info.last_reminder).days >= 7:
-                survey_users = SurveyUser.objects.filter(user=user, deleted=False)
-                if not survey_users.count():
-                    survey_user = SurveyUser.objects.create(user=user, name=user.username)
-                    survey_users = SurveyUser.objects.filter(user=user)
+            survey_users = SurveyUser.objects.filter(user=user, deleted=False)
+            if not survey_users.count():
+                survey_user = SurveyUser.objects.create(user=user, name=user.username)
+                survey_users = SurveyUser.objects.filter(user=user)
 
-                last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
-                last_action_recent_enough = last_action < 30
+            last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
+            last_action_recent_enough = last_action < 30
 
-                my_day = (user.pk % 7) >= (get_settings().begin_date.weekday() - now.weekday() - 1) % 7
-                
-                if last_action_recent_enough and my_day:
-                    yield user, reminder, language
-                    yielded += 1
+            my_day = (user.pk % 7) >= (get_settings().begin_date.weekday() - now.weekday() - 1) % 7
+            
+            if not last_action_recent_enough or not my_day:
+                continue
 
-        else:
-            if info.last_reminder < reminder.date:
-                yield user, reminder, language
-                yielded += 1
+        if info.last_reminder < reminder.date:
+            yield user, reminder, language
+            yielded += 1
 
 
