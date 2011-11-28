@@ -9,7 +9,7 @@ from django import forms
 from mock import Mock, patch, patch_object
 
 from .send import create_message, send
-from .models import NO_INTERVAL, WEEK_AFTER_ACTION, UserReminderInfo, ReminderSettings, NewsLetter, NewsLetterTemplate, get_upcoming_dates, get_prev_reminder_date, get_prev_reminder, get_reminders_for_users, ReminderError, ReminderError
+from .models import NO_INTERVAL, WEEKLY_WITH_BATCHES, UserReminderInfo, ReminderSettings, NewsLetter, NewsLetterTemplate, get_upcoming_dates, get_prev_reminder_date, get_prev_reminder, get_reminders_for_users, ReminderError, ReminderError
 from .forms import NewsLetterForm
 
 class ReminderTestCase(unittest.TestCase):
@@ -276,7 +276,7 @@ class ReminderTestCase(unittest.TestCase):
             site=site,
             send_reminders=True,
             begin_date=september_first,
-            interval=WEEK_AFTER_ACTION,
+            interval=WEEKLY_WITH_BATCHES,
         )
 
         for days_after_startday in [0, 7]:

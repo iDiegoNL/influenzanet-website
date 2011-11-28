@@ -15,7 +15,7 @@ from apps.survey.models import SurveyUser
 # that's based on the is_default_reminder NewsLetterTemplate
 
 NO_INTERVAL = -1
-WEEK_AFTER_ACTION = -2
+WEEKLY_WITH_BATCHES = -2
 
 class UserReminderInfo(models.Model):
     user = models.ForeignKey(User, unique=True)
@@ -34,7 +34,7 @@ class UserReminderInfo(models.Model):
 class ReminderSettings(models.Model):
     site = models.OneToOneField(Site)
     send_reminders = models.BooleanField(_("Send reminders"), help_text=_("Check this box to send reminders"))
-    interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval")), (WEEK_AFTER_ACTION, "Send a reminder exactly a week after the last action was taken")), null=True, blank=True)
+    interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval")), (WEEKLY_WITH_BATCHES, "Send in weekly batches, but spread out the sending of reminder throughout the week")), null=True, blank=True)
     begin_date = models.DateTimeField(_("Begin date"), help_text="Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: %s)" % settings.TIME_ZONE, null=True, blank=True)
     batch_size = models.IntegerField("Batch size", null=True, blank=True, help_text="Batch size determines the max. sent emails per call to 'reminder_send'; choose in coordinance with you r crontab interval and total users; Leave empty to not have any maximum")
     currently_sending = models.BooleanField("Currently sending", help_text="This indicates if the reminders are being sent right now. Don't tick this box unless you absolutely know what you're doing", default=False)
@@ -43,7 +43,7 @@ class ReminderSettings(models.Model):
         return _(u"Reminder settings")
 
     def get_interval(self):
-        if self.interval == WEEK_AFTER_ACTION:
+        if self.interval == WEEKLY_WITH_BATCHES:
             return 7
         return self.interval
 
@@ -234,7 +234,7 @@ def get_reminders_for_users(now, users):
             yielded += 1
             continue
 
-        if get_settings() and get_settings().interval == WEEK_AFTER_ACTION:
+        if get_settings() and get_settings().interval == WEEKLY_WITH_BATCHES:
             survey_users = SurveyUser.objects.filter(user=user, deleted=False)
             if not survey_users.count():
                 survey_user = SurveyUser.objects.create(user=user, name=user.username)
