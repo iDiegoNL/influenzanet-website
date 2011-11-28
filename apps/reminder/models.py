@@ -144,7 +144,7 @@ def get_default_for_newsitem(language):
         return None
     return NewsLetterTemplate.objects.language(language).filter(is_default_newsitem=True)[0]
 
-def get_prev_reminder_date(now):
+def get_prev_reminder_date(now, published=True):
     """Returns the date of the previous reminder or None if there's no
     such date"""
 
@@ -154,7 +154,9 @@ def get_prev_reminder_date(now):
         return None
 
     if settings.interval == NO_INTERVAL:
-        qs = NewsLetter.objects.filter(date__lte=now, published=True).exclude(date__gt=now).order_by("-date")
+        qs = NewsLetter.objects.filter(date__lte=now).exclude(date__gt=now).order_by("-date")
+        if published:
+            qs = qs.filter(published=published)
         qs = list(qs)
         if len(qs) == 0:
             return None
@@ -169,19 +171,23 @@ def get_prev_reminder_date(now):
         prev = current
         current += datetime.timedelta(settings.get_interval())
 
-def get_prev_reminder(now):
+def get_prev_reminder(now, published=True):
     """Returns the reminder (newsletter/tempate) to send at a given moment
     as a dict with languages as keys, or None if there is no such reminder"""
+    def p(qs):
+        if published:
+            return qs.filter(published=published)
+        return qs
 
-    prev_date = get_prev_reminder_date(now)
+    prev_date = get_prev_reminder_date(now, published)
     if prev_date is None:
         return None
 
-    if NewsLetter.objects.filter(date=prev_date, published=True).count():
+    if p(NewsLetter.objects.filter(date=prev_date)).count():
         result = {}
         for language, name in settings.LANGUAGES:
-            if NewsLetter.objects.language(language).filter(date=prev_date, published=True):
-                result[language] = NewsLetter.objects.language(language).get(date=prev_date, published=True)
+            if p(NewsLetter.objects.language(language).filter(date=prev_date)):
+                result[language] = p(NewsLetter.objects.language(language)).get(date=prev_date)
         return result
 
     result = {}

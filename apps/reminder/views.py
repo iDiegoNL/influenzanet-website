@@ -30,7 +30,7 @@ def overview(request):
 
 @staff_member_required
 def manage(request, year, month, day, hour, minute):
-    reminder_dict = get_prev_reminder(datetime(*map(int, [year, month, day, hour, minute, 59])))
+    reminder_dict = get_prev_reminder(datetime(*map(int, [year, month, day, hour, minute, 59])), published=False)
     if not reminder_dict:
         return HttpResponse("There are no newsletters or reminders configured yet. Make sure to do so")
     
@@ -46,7 +46,7 @@ def manage(request, year, month, day, hour, minute):
 
 @staff_member_required
 def preview(request, year, month, day, hour, minute):
-    reminder_dict = get_prev_reminder(datetime(*map(int, [year, month, day, hour, minute, 59])))
+    reminder_dict = get_prev_reminder(datetime(*map(int, [year, month, day, hour, minute, 59])), published=False)
     if not reminder_dict:
         return HttpResponse("There are no newsletters or reminders configured yet. Make sure to do so")
 
