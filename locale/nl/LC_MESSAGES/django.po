@@ -21,7 +21,7 @@ msgstr ""
 #: apps/survey/forms/__init__.py:16
 #: templates/survey/people.html:8
 msgid "Name"
-msgstr "sNaam"
+msgstr "Naam"
 
 #: apps/ew_contact_form/forms.py:13
 msgid "Email"
