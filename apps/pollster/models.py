@@ -274,6 +274,8 @@ class Survey(models.Model):
                 val = getattr(result, field.name)
                 if callable(val):
                     val = val()
+                if type(val) is unicode:
+                    val = val.encode('utf-8')
                 row.append(val)
             writer.writerow(row)
 
