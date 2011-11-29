@@ -243,9 +243,9 @@ def get_reminders_for_users(now, users):
             last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
             last_action_recent_enough = last_action < 30
 
-            my_day = (user.pk % 7) >= (get_settings().begin_date.weekday() - now.weekday() - 1) % 7
+            last_action_long_ago_enough = last_action >= 7 
             
-            if not last_action_recent_enough or not my_day:
+            if not last_action_recent_enough or not last_action_long_ago_enough:
                 continue
 
         if info.last_reminder < reminder.date:
