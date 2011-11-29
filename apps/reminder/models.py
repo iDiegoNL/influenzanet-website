@@ -34,7 +34,7 @@ class UserReminderInfo(models.Model):
 class ReminderSettings(models.Model):
     site = models.OneToOneField(Site)
     send_reminders = models.BooleanField(_("Send reminders"), help_text=_("Check this box to send reminders"))
-    interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval")), (WEEKLY_WITH_BATCHES, "Send in weekly batches, but spread out the sending of reminder throughout the week")), null=True, blank=True)
+    interval = models.IntegerField(_("Interval"), choices=((7 ,_("Weekly")), (14,_("Bi-weekly")), (NO_INTERVAL, _("Don't send reminders at a fixed interval")), (WEEKLY_WITH_BATCHES, "Send exactly 7 days after the last action was taken.")), null=True, blank=True)
     begin_date = models.DateTimeField(_("Begin date"), help_text="Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: %s)" % settings.TIME_ZONE, null=True, blank=True)
     batch_size = models.IntegerField("Batch size", null=True, blank=True, help_text="Batch size determines the max. sent emails per call to 'reminder_send'; choose in coordinance with you r crontab interval and total users; Leave empty to not have any maximum")
     currently_sending = models.BooleanField("Currently sending", help_text="This indicates if the reminders are being sent right now. Don't tick this box unless you absolutely know what you're doing", default=False)
