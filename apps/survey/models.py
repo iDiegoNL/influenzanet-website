@@ -57,6 +57,10 @@ class SurveyUser(models.Model):
             result = None
 
         if result is None:
+            # (Klaas) not sure if this is still used in the actual app; it's used here at least for testing
+            # The regular flow uses the pollster_results_weekly table
+            if self.last_participation_date:
+                return self.last_participation_date
             return self.user.date_joined
         return result
 

@@ -8,6 +8,8 @@ from django import forms
 
 from mock import Mock, patch, patch_object
 
+from apps.survey.models import SurveyUser
+
 from .send import create_message, send
 from .models import NO_INTERVAL, WEEKLY_WITH_BATCHES, UserReminderInfo, ReminderSettings, NewsLetter, NewsLetterTemplate, get_upcoming_dates, get_prev_reminder_date, get_prev_reminder, get_reminders_for_users, ReminderError, ReminderError
 from .forms import NewsLetterForm
@@ -287,17 +289,18 @@ class ReminderTestCase(unittest.TestCase):
             newsletter.save()
 
         for weekday in range(7):
-            User.objects.create(username="week-after-user-%s" % weekday)
+            user = User.objects.create(username="week-after-user-%s" % weekday)
+            info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'language': 'en'})
+            info.last_reminder = september_first - timedelta(days=8) # last reminder: long enough ago, is tested elsewhere
+            info.save()
+
+            survey_user, _ = SurveyUser.objects.get_or_create(user=user, deleted=False)
+            survey_user.last_participation_date=september_first - timedelta(days=7 - weekday)
+            survey_user.save()
 
         for days_after_startday in range(8):
-            for weekday in range(7):
-                user = User.objects.get(username="week-after-user-%s" % weekday)
-                info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'language': 'en'})
-                info.last_reminder = september_first - timedelta(days=8)
-                info.save()
-
             result = list(get_reminders_for_users(september_first + timedelta(days=days_after_startday, minutes=1), User.objects.filter(username__startswith="week-after-user-")))
-            self.assertEqual(days_after_startday % 7 + 1, len(result))
+            self.assertEqual(days_after_startday + 1 if days_after_startday < 7 else 7, len(result), "Fail for day %s, len: %s" % (days_after_startday, len(result)))
             if len(result) >= 1:
                 user, reminder, language = result[0]
                 self.assertTrue(str(0 if days_after_startday < 7 else 7) in reminder.subject, reminder.subject)
