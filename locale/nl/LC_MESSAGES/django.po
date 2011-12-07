@@ -908,3 +908,9 @@ msgstr "Uw instellingen zijn gewijzigd"
 
 msgid "Change password"
 msgstr "Wijzig wachtwoord"
+
+msgid "Fill out date"
+msgstr "Laatste meting"
+
+msgid "Member"
+msgstr "Griepmeter"
