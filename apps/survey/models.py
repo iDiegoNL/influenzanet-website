@@ -51,16 +51,17 @@ class SurveyUser(models.Model):
         try:
             cursor = connection.cursor()
             cursor.execute("select max(timestamp) from pollster_results_weekly where global_id = %s", [self.global_id])
-            row = cursor.fetchone()
-            result = row[0]
         except:
-            result = None
-
-        if result is None:
             # (Klaas) not sure if this is still used in the actual app; it's used here at least for testing
             # The regular flow uses the pollster_results_weekly table
             if self.last_participation_date:
                 return self.last_participation_date
+            return self.user.date_joined
+
+        row = cursor.fetchone()
+        result = row[0]
+
+        if result is None:
             return self.user.date_joined
         return result
 
