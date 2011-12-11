@@ -168,6 +168,7 @@ INSTALLED_APPS = (
     'publisher',
     'haystack',
     'apps.pollster',
+    'apps.municipal',
 )
 
 HAYSTACK_SITECONF = 'search_sites'

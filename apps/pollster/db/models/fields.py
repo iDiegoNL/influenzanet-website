@@ -49,3 +49,18 @@ class PostalCodeField(CharField):
         defaults = {'form_class': fields.PostalCodeField}
         defaults.update(kwargs)
         return super(PostalCodeField, self).formfield(**defaults)
+
+class CodeSelectField(CharField):
+    description = _("Municipal Code")
+
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 30
+        super(CodeSelectField, self).__init__(*args, **kwargs)
+
+    def get_internal_type(self):
+        return 'CharField'
+
+    def formfield(self, **kwargs):
+        defaults = {'form_class': fields.CodeSelectField}
+        defaults.update(kwargs)
+        return super(CodeSelectField, self).formfield(**defaults)
