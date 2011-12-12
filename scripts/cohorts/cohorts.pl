@@ -52,7 +52,7 @@ for (my $i = 0; $i < scalar(@header); $i++) {
     if ("$header[$i]" eq "non_ili") {
 	$nonili_index = $i;
     }
-    if ($i > $breakindex) { return 1; }
+    if ($i > $breakindex) { die "Stuck in loop? (1)\n";; }
 }
 
 if ($vaccinated_index == -1) {
@@ -133,7 +133,7 @@ while (<STDIN>) {
     } else {
 	$index++;
     }
-    if ($index > $breakindex) { return 1 };
+    if ($index > $breakindex) { die "Stuck in loop? (2)\n"; };
 }
 
 if ($motionchart) {
