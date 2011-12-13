@@ -10,7 +10,6 @@ from .models import MunicipalCodes;
 def search(request):
    if request.method == "POST":
        zip = request.POST['zip']
-       print zip
        codes = MunicipalCodes.objects.filter(zip=zip)
        data = serializers.serialize('json', codes);
        return HttpResponse(data, mimetype="application/javascript")
