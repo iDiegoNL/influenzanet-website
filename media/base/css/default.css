@@ -18,7 +18,7 @@ html {
  background: #d5d5d5;
 }
 
-body, p {
+body, ph {
  margin:0;
  padding: 0;
 }
@@ -71,26 +71,25 @@ img {
 
 #influenzabar {
  width: 974px;
- margin: 10px auto 0 auto;
- background: #ffffff url(../img/influbar/influbar.gif) top center no-repeat;
+ margin: 0 auto;
+ background: #ffffff url(../img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
+ position: absolute;
+ top: 0;
+ z-index: 1000;
 }
 
 p.influenzanet {
- height: 22px;
- padding: 11px 26px 0 240px;
  text-align: right;
- color: #c8c8c8;
  font-size: 11px;
- overflow: hidden;
 }
 
 p.toggle {
- background: url(../img/influbar/influbar-closed.gif) top left no-repeat;
+ background: url(../img/influbar/closed.png) top left no-repeat;
  cursor: pointer;
 }
 
 p.expanded {
- background: url(../img/influbar/influbar-opened.gif) top left no-repeat;
+ background: url(../img/influbar/opened.png) top left no-repeat;
  cursor: pointer;
 }
 
@@ -114,12 +113,18 @@ div.influenzabarcontent{
  overflow: auto;
  padding: 0 12px 16px 12px;
  text-align: left;
- color: #ffffff;
+ color: #333;
  font-size: 0.75em;
  line-height: 1.3em;
- background: #444444;
- border-left: 12px solid #ffffff;
- border-right: 12px solid #ffffff; 
+ background: none repeat scroll 0 0 #F4F4F4;
+ border-width: 1px 2px;
+ border-style: solid;
+ border-color: #AAA;
+ -moz-border-bottom-colors: none;
+ -moz-border-image: none;
+ -moz-border-left-colors: none;
+ -moz-border-right-colors: none;
+ -moz-border-top-colors: none;
 }
 
 a.jsclose {
