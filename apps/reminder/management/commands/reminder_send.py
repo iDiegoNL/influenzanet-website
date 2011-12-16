@@ -25,6 +25,7 @@ class Command(BaseCommand):
 
         settings = get_settings()
         settings.currently_sending = True
+        settings.last_process_started_date = datetime.now()
         settings.save()
         try:
             return u'%d reminders sent.\n' % send_reminders(fake=fake)
