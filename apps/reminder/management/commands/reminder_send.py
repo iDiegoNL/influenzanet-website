@@ -1,4 +1,5 @@
 from optparse import make_option
+from datetime import datetime, timedelta
 
 from django.core.management.base import BaseCommand
 
@@ -18,7 +19,8 @@ class Command(BaseCommand):
         if not get_settings():
             return u"0 reminders sent"
 
-        if get_settings() and get_settings().currently_sending:
+        if get_settings() and get_settings().currently_sending and\
+            get_settings().last_process_started_date + timedelta(hours=3) > datetime.now():
             return u"0 reminders sent"
 
         settings = get_settings()

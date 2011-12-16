@@ -38,6 +38,7 @@ class ReminderSettings(models.Model):
     begin_date = models.DateTimeField(_("Begin date"), help_text="Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: %s)" % settings.TIME_ZONE, null=True, blank=True)
     batch_size = models.IntegerField("Batch size", null=True, blank=True, help_text="Batch size determines the max. sent emails per call to 'reminder_send'; choose in coordinance with you r crontab interval and total users; Leave empty to not have any maximum")
     currently_sending = models.BooleanField("Currently sending", help_text="This indicates if the reminders are being sent right now. Don't tick this box unless you absolutely know what you're doing", default=False)
+    last_process_started_date = models.DateTimeField("Last process started at", help_text="This indicates if the reminders are being sent right now. Don't change this value unless you absolutely know what you're doing")
 
     def __unicode__(self):
         return _(u"Reminder settings")
