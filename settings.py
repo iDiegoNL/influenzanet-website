@@ -104,7 +104,6 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
     'apps.reminder.middleware.multilingual.MultilingualURLMiddleware',
-    'cms.middleware.multilingual.MultilingualURLMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
