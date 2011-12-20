@@ -70,6 +70,7 @@
                 });
                 map.overlayMapTypes.insertAt(0, zipMapType);
 
+                var info = null;
                 google.maps.event.addListener(map, 'click', function(evt) {
                     $.getJSON(tileBase+"/click/" + evt.latLng.lat() + "/" + evt.latLng.lng(), function(json) {
                         if (!json.zip_code_key)
@@ -80,7 +81,9 @@
                                 html += '<span>' + k + ': </span>' + json[k] + '<br/>';
                         }
                         html += '</div>';
-                        var info = new google.maps.InfoWindow({
+                        if (info)
+                            info.close()
+                        info = new google.maps.InfoWindow({
                             content: html,
                             position: evt.latLng
                         });
