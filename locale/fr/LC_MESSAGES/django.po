@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-11-23 17:31+0100\n"
+"PO-Revision-Date: 2011-12-15 10:53+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Message"
 msgid "%(count)d newsitem was published"
 msgid_plural "%(count)d newsitems where published"
 msgstr[0] "La %(count)d actualité a été publiée"
-msgstr[1] "Les %(count)de articles d'actualité ont été publiés"
+msgstr[1] "Les %(count)de actualités ont été publiées"
 
 #: apps/journal/admin.py:46
 msgid "Publish selected news"
@@ -46,7 +46,7 @@ msgstr "Mettre en ligne les actualités selectionnées"
 msgid "%(count)d newsitem was unpublished"
 msgid_plural "%(count)d newsitems where unpublished"
 msgstr[0] "La %(count)d actualité n'a pas été publiée"
-msgstr[1] "Les %(count)de articles d'actualité n'ont pas été publiés"
+msgstr[1] "Les %(count)de actualités n'ont pas été publiées"
 
 #: apps/journal/admin.py:56
 msgid "Unpublish selected news"
@@ -205,7 +205,7 @@ msgstr "Saisir un code postal valide."
 
 #: apps/pollster/forms.py:16
 msgid "Enter a valid value consisting of letters, numbers or underscores"
-msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)"
+msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
 #: apps/pollster/db/models/fields.py:9
 msgid "Year and month (in YYYY-MM format)"
@@ -303,7 +303,7 @@ msgstr "Se désinscrire"
 
 #: apps/reminder/templates/reminder/unsubscribe.html:7
 msgid "You may unsubscribe from the Influenzanet reminder/newsletter by pressing the button below."
-msgstr "Vous pouvez vous désinscrire de la lettre d'information Epipop en cliquant sur le bouton ci-dessous."
+msgstr "Vous pouvez vous désinscrire de la lettre d'information GrippeNet en cliquant sur le bouton ci-dessous."
 
 #: apps/reminder/templates/reminder/unsubscribe_successful.html:7
 msgid "You have been successfully unsubscribed from the mailing list"
@@ -351,7 +351,7 @@ msgstr "Page introuvable"
 
 #: templates/404.html:8
 msgid "The page you requested could not be found. We apologize for the inconvenience. Go to "
-msgstr "La page que vous demandez ne peut pas être trouvée. Nous nous excusons pour ce désagrément. Retour à la page d'"
+msgstr "La page que vous demandez est introuvable. Nous nous excusons pour ce désagrément. Retour à la page d'"
 
 #: templates/404.html:8
 #: templates/500.html:8
@@ -582,7 +582,7 @@ msgstr "La réinitialisation du mot de passe a échoué"
 
 #: templates/registration/password_reset_confirm.html:26
 msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
-msgstr "Le lien pour réinitialiser votre mot de passe n'est pas valide, peut-être a-t-il déjà été utilisé. Demander s'il-vous-plaît une nouvelle réinitialisation de votre mot de passe."
+msgstr "Le lien pour réinitialiser votre mot de passe n'est pas valide, peut-être a-t-il déjà été utilisé. Demandez s'il-vous-plaît une nouvelle réinitialisation de votre mot de passe."
 
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
@@ -621,7 +621,7 @@ msgstr "L'équipe %(site_name)s"
 
 #: templates/registration/password_reset_form.html:10
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Mot de passe oublié ? Entrer votre adresse email ci-dessous, nous vous enverrons des instructions par email pour mettre en place un nouveau mot de passe."
+msgstr "Mot de passe oublié ? Entrez votre adresse email ci-dessous, nous vous enverrons par email des instructions pour mettre en place un nouveau mot de passe."
 
 #: templates/registration/password_reset_form.html:14
 msgid "E-mail address:"
@@ -782,7 +782,7 @@ msgid ""
 "\n"
 "This activation URL will expire in %(expiration_days)s days."
 msgstr ""
-"Bonjour et bienvenue dans le projet epipop.fr,\n"
+"Bonjour et bienvenue dans le projet GrippeNet,\n"
 "\n"
 "Pour activer votre compte, cliquez sur le lien URL ou copiez-collez le dans la barre d'adresse de votre navigateur.\n"
 "\n"
@@ -803,10 +803,10 @@ msgid "Manage household"
 msgstr "Gérer mon foyer"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
-msgstr "Vous recevez cet email car vous êtes inscrits sur Epipop.fr. Votre participation nous aide à suivre les tendances de la grippe. Si vous ne souhaitez plus recevoir cet email hebdomadaire de rappel, s'il-vous-plaît <a href=\"%(unsubscribe_url)s\">désinscrivez-vous</a> de la liste de diffusion."
+msgstr "Vous recevez cet email car vous êtes inscrits sur GrippeNet. Votre participation nous aide à suivre les tendances de la grippe. Si vous ne souhaitez plus recevoir cet email hebdomadaire de rappel, vous pouvez vous <a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste de diffusion."
 
 msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
-msgstr "La liste des participants inscrits sur votre compte figure ci-dessous. Cliquer sur le lien situé à côté de chaque participant pour remplir le questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, ou pour désinscrire un participant."
+msgstr "La liste des participants inscrits sur votre compte figure ci-dessous. Cliquez sur le lien situé à côté de chaque participant pour remplir le questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, ou pour désinscrire un participant."
 
 msgid "Background"
 msgstr "Questionnaire préliminaire"
@@ -815,7 +815,7 @@ msgid "Symptoms"
 msgstr "Questionnaire hebdomadaire"
 
 msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
-msgstr "Avant d'accéder au questionnaire hebdomadaire, complétez s'il-vous-plaît ce questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une seule fois."
+msgstr "Avant d'accéder au questionnaire hebdomadaire, complétez s'il-vous-plaît ce questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
 msgid "Completing for participant"
 msgstr "Compléter pour le participant"
@@ -868,7 +868,7 @@ msgid "with a different username. If everything else fails, please do not hesita
 msgstr ""
 "avec un nom d'utilisateur différent.\n"
 "\n"
-"Si tout ceci échoue, n'hésitez pas s'il-vous-plaît à"
+"Si tout ceci échoue, n'hésitez pas à"
 
 msgid "Check this box if you wish to receive weekly reminders throughout the flu season"
 msgstr "Cochez cette case si vous souhaitez recevoir un email hebdomadaire de rappel"
