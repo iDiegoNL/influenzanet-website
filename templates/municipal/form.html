@@ -1,0 +1,52 @@
+<div>
+<h2>Trouvez votre commune</h2>
+<form action="" method="post" id="zipform">
+	Entrez votre code postal : <input type="text" name="zip" value="" size="5" id="zip_code"/>
+	<button type="button" onclick="searchZip()">Chercher</button>
+	<ul id="zip_codelist"></ul>
+	{% csrf_token %}
+	<span id="zip_help" style="display:none"></span>
+</form>
+<script type="text/javascript">
+
+function selectZip() {
+	var el = $(this);
+	var code = el.attr('rel');
+	var id="#{{element_id}}";
+	$(id).val(code);
+	$(id+'-title').text( el.text() );
+	$('#facebox').overlay().close();
+}
+
+function searchZip(ev) {
+ var code = $('#zip_code').val();
+ if( code.match(/[0-9]{5}/)) {
+	 $.ajax({
+	  url: '/municipal/search',
+	  type:'POST',
+	  dataType: 'json',
+	  data: $('#zipform').serialize(),
+	  success: function(data) {
+		var $l = $('#zip_codelist');
+		$l.empty();
+		if(data && data.length > 0) {
+			var n = data.length;
+			for(var i=0; i< n; ++i) {
+				var d = data[i].fields;
+				$l.append('<li rel="'+d.code+'">'+d.title+'</li>');
+			}
+			$('#zip_help').show().text('Cliquez sur votre commune');
+			$('#zip_codelist li').click(selectZip)
+		} else {
+			$('#zip_help').show().text('Aucune commune trouvée');
+		}
+	  }
+	});
+ } else {
+ 	$('#zip_help').text('Saisissez les 5 chiffres de votre code postal !');
+ }
+ return ev.preventDefault();
+}
+
+</script>
+</div>

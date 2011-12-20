@@ -43,3 +43,9 @@ msgstr "Map updated every 2 minutes."
 
 msgid "Activate your account:\n\nClick the following URL or copy and paste it to the browser's address bar.\n\nhttp://%(site)s/accounts/activate/%(activation_key)s/\n\nThis activation URL will expire in %(expiration_days)s days."
 msgstr "Dear participant,\n\nThank you for registering for the Flusurvey.\n\nTo activate your account, please click on the following link or copy and paste it into your internet browser:\n\nhttp://%(site)s/accounts/activate/%(activation_key)s/\n\nYou will then be able to start taking part in the Flusurvey, helping us to track the spread of flu across the UK.\n\nThis activation URL will expire in %(expiration_days)s days.\n\nBest wishes,\nThe Flusurvey team\n%(site)s"
+
+msgid "Change profile"
+msgstr "Change background information"
+
+msgid "Thanks for taking the time to fill out this survey."
+msgstr "Thanks for taking the time to fill out this survey.</p><p>Had your flu jab recently? Click on <strong>Change background information</strong> below to let us know."

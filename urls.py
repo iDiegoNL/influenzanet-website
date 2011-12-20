@@ -63,3 +63,5 @@ if settings.MOBILE_INTERFACE_ACTIVE:
 urlpatterns += patterns('', url(r'^', include('cms.urls')))
 
 handler500 = 'views.server_error'
+
+urlpatterns += patterns('', url(r'^municipal/', include('apps.municipal.urls')))

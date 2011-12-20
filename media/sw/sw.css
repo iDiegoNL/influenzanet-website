@@ -107,6 +107,70 @@
  text-decoration: underline;
 }
 
+/**
+ * Survey
+ * 
+ */
+.codeselet-type .button {
+	border: 1px solid #DDD;
+	background-color: #FFF;
+	font-size: .8em;
+	font-weight: bold;
+	padding: .4em;
+	-webkit-border-radius: .3em;
+	-moz-border-radius: .3em;
+	border-radius: .3em;
+	cursor: pointer;
+}
+
+.codeselet-type .button:hover {
+	background-color: #DDD;
+	color: white;
+}
+
+input[type="submit"] {
+	padding: .4em;
+	-webkit-border-radius: .3em;
+	-moz-border-radius: .3em;
+	border-radius: .3em;
+}
+
 .survey label {
 	cursor: pointer;
 }
+
+#facebox {
+z-index:9999;
+display:none;
+width:400px;
+border:10px solid #666;
+border:10px solid rgba(82, 82, 82, 0.698);
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+}
+
+#facebox div {
+padding:10px;
+border:1px solid #3B5998;
+background-color:#fff;
+font-family:"lucida grande",tahoma,verdana,arial,sans-serif
+}
+
+#facebox h2 {
+margin:-11px;
+margin-bottom:0px;
+color:#fff;
+background-color:#6D84B4;
+padding:5px 10px;
+border:1px solid #3B5998;
+font-size:20px;
+}
+
+#zip_codelist li {
+ cursor: pointer;
+}
+
+#zip_codelist li:hover {
+ color: #6D84B4;
+}
+

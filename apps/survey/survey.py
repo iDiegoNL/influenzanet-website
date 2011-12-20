@@ -6,9 +6,7 @@ from inspect import isclass
 from django import forms
 from django.forms.util import ErrorList
 from . import spec as d
-from .forms import ( AdviseField, DatePickerWidget, MonthYearField,
-                     PostCodeField, DateOrOptionField,
-                     TableOptionsSingleField, TableOfSelectsField)
+from .forms.fields import *
 
 def parse_specification(spec, survey_class='Survey'):
     vars = {'d': d}

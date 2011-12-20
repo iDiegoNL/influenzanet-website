@@ -128,3 +128,7 @@ class PostalCodeField(CharField):
             count = cursor.fetchone()[0]
             return count > 0
         return False
+
+class CodeSelectField(CharField):
+    def __init__(self, *args, **kwargs):
+        super(CodeSelectField, self).__init__(*args, **kwargs)
