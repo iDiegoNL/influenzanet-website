@@ -327,7 +327,8 @@ msgstr "Sintomas gastro-intestinais"
 
 #: apps/survey/views.py:58
 msgid "Other non-influenza symptons"
-msgstr "Outros sintomas"
+msgstr "Sintomas não específicos"
+#msgstr "Outros sintomas não gripais"
 
 #: apps/survey/views.py:60
 msgid "Next status"

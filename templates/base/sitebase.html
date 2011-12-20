@@ -56,7 +56,7 @@
 						<a href="http://www.aktivgegengrippe.de/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/de.png" title="Germany" alt="Germany" /></a> <span class="disable">{% member_count "de" %}</span>En pr&eacute;paration<br />
 						<a href="http://www.aktivgegengrippe.at/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> <span class="disable">{% member_count "at" %}</span>En pr&eacute;paration<br />
 						<a href="http://www.aktivgegengrippe.ch/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> <span class="disable">{% member_count "ch" %}</span>En pr&eacute;paration<br />
-						<a href="http://www.epipop.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span class="disable">{% member_count "fr" %}</span>En pr&eacute;paration<br />
+						<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span class="disable">{% member_count "fr" %}</span>En pr&eacute;paration<br />
 					</div>
 				    <div id="influenzatext">
 						Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux avec l’aide de volontaires, par internet. Ce syst&egrave;me est op&eacute;rationnel aux Pays-Bas et en Belgique (depuis 2003), au Portugal (depuis 2005) et en Italie (depuis 2008). L’objectif actuel est d’implanter Influenzanet dans d’autres pays europ&eacute;ens.<br /><br />
@@ -69,7 +69,7 @@
 		</div>
 		
 		<div id="header">
-			<div id="headerlogo"><a href="/" title="Epipop"><img src="{{MEDIA_URL}}/sw/epipop.png" alt="Epipo" /></a></div>
+			<div id="headerlogo"><a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/epipop.png" alt="GrippeNet logo" /></a></div>
 			{% block authentication %}<div id="account">{% if user.is_authenticated %}
 			    <ul class="member">
 			        <li><a href="/survey/profile/">{% trans "My account" %}</a></li>
@@ -101,13 +101,13 @@
 		
 		<div id="footer">{% block footercontent %}
             <div id="footerclose">
-             &copy; {% now "Y" %}  epipop.fr
+             &copy; {% now "Y" %}  GrippeNet.fr
 			 <a href="http://www.sentiweb.fr">réseau Sentinelles</a>, UMR S 707, 
 			 <img src="{{MEDIA_URL}}sw/inserm-xs.gif" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale" width="99" height="25" /> 
 			 <img src="{{MEDIA_URL}}sw/upmc-xs.gif" width="75" height="25" alt="UPMC" title="Université Pierre et Marie Curie"/>
 			 <img src="{{MEDIA_URL}}sw/invs-xs.gif" width="50" height="35" alt="InVS" title="Institut de Veille Sanitaire"/>
 			 
-			 - <a href="mailto:contact@epipop.fr">Nous écrire</a>
+			 - <a href="mailto:contact@grippenet.fr">Nous écrire</a>
             </div>
 			</div>{% endblock footercontent %}
 		</div>
