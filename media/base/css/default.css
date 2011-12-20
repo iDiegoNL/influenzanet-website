@@ -99,7 +99,7 @@ a.close:focus {
 }
 
 p.toggle a {
- color: #c8c8c8;
+ color: #333333;
  text-decoration: none;
 }
 
@@ -155,10 +155,9 @@ a.close {
 
 #participants {
  float: right;
- width: 146px;
- margin: 14px 0 0 0;
+ margin: 14px 0 0;
  padding: 12px;
- background: #222222;
+ width: 146px;
 }
 
 #participants img {
