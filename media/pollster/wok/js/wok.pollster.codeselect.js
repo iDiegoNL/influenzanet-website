@@ -11,10 +11,10 @@
 			$field.css('display','none');
 			var b = $('<button type="button">');
 			b.text('Cliquez ici pour trouver votre commune');
-			b.addClass('button');
+			b.addClass('button-codeselect');
 			b.click(function(ev){
-				searchMunicipalCode(id);
 				ev.preventDefault();
+				searchMunicipalCode(id);
 			});
 			$field.after(b);
 			var b = $('<span id="'+id+'-title"></span>');
