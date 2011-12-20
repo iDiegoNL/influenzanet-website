@@ -33,6 +33,7 @@
              data-question-type="{{ question.type }}" data-data-type="{{ question.data_type.id }}" data-tags="{{ question.tags }}"
              data-regex="{{ question.regex|default:'' }}">
             <p class="data">
+                {% if question.is_mandatory %}<span class="star">*</span>{% endif %}
                 <span class="title">{{ question.translated_title }}</span>
                 {{ question.translated_description }}
             </p>
