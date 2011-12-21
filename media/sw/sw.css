@@ -51,6 +51,11 @@
  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
+#account ul li {
+ margin-bottom: 2px;
+ font-size: 0.7em;
+}
+
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
  background-color: #7AB800;
  border: 1px solid #616365;
