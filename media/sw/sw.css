@@ -69,6 +69,7 @@
 #account ul.member li a, #account ul.anonymous li a { 
  display: inline;
  font-size: 0.7em;
+ line-height: 2em;
  font-weight: bold;
 }
 
