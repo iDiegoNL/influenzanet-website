@@ -19,6 +19,10 @@
  -webkit-border-radius: 2px;
 }
 
+#menubar li:hover {
+ border: 1px solid #C6C6C6;
+}
+
 #menubar li.selected, #menubar li.ancestor {
  padding: 0 0px 0 0px; 
  background-color: #616365;
@@ -44,8 +48,6 @@
 
 #menubar li a:hover {
  background: #F8F8F8;
- border: 1px solid #C6C6C6;
- padding: 0 8px 0 8px;
  color: #333;
  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
