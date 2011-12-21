@@ -44,10 +44,6 @@
 }
 
 #menubar li a:hover {
- font-size: 0.7em;
- line-height: 2em;
- padding: 0 8px 0 8px;
- height: 2em;
  background: #F8F8F8;
  border: 1px solid #C6C6C6;
  color: #333;
