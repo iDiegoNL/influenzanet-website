@@ -20,6 +20,13 @@
  -webkit-border-radius: 2px;
 }
 
+#menubar li.selected, #menubar li.ancestor {
+ padding: 0 0px 0 0px; 
+ background: #616365;
+ font-weight: bold;
+ color: #FFF;
+}
+
 #menubar li a {
  display: block;
  height: 2em;
@@ -42,13 +49,6 @@
  border: 1px solid #C6C6C6;
  color: #333;
  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-
-#menubar li.selected, #menubar li.ancestor {
- padding: 0 0px 0 0px; 
- background: #616365;
- font-weight: bold;
- color: #FFF;
 }
 
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
@@ -74,7 +74,7 @@
  height: 2em;
  padding: 0 8px 0 8px; 
  text-decoration: none;
- color: #666;
+ color: #FFF;
  font-weight: bold;
  font-size: 0.7em;
  line-height: 2em;
