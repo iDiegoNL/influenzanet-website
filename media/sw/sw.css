@@ -68,7 +68,7 @@
 
 #account ul.anonymous li:hover, #account ul.member li:hover, #searchbar input#searchsubmit:hover, input#commentsubmit:hover {
  background-color: #DDFBA2;
- border: 1px solid #000;
+ border: 1px solid #59705D;
  color: #616365;
  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
