@@ -55,8 +55,11 @@
  background-color: #7AB800;
  border: 1px solid #616365;
  border-radius: 2px 2px 2px 2px;
- color: #FFF;
  text-align: center;
+ border-radius: 2px;
+ -moz-border-radius: 2px;
+ -webkit-border-radius: 2px;
+ color: #FFF;
 }
 
 #account ul.anonymous li:hover, #account ul.member li:hover, #searchbar input#searchsubmit:hover, input#commentsubmit:hover {
@@ -67,21 +70,20 @@
 }
 
 #account ul.member li a, #account ul.anonymous li a { 
- display: inline;
+ display: block;
+ height: 2em;
+ padding: 0 8px 0 8px; 
+ text-decoration: none;
+ color: #666;
+ font-weight: bold;
  font-size: 0.7em;
  line-height: 2em;
- font-weight: bold;
+ text-align: center;
+ vertical-align: middle;
 }
 
 #account li, #account ul {
 	display: inline;
-}
-
-#account ul li {
-	padding: 2px 2px 3px 2px;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
 }
 
 #col2 p.title {
