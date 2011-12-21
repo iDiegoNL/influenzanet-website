@@ -22,9 +22,8 @@
 
 #menubar li.selected, #menubar li.ancestor {
  padding: 0 0px 0 0px; 
- background: #616365;
+ background-color: #616365;
  font-weight: bold;
- color: #FFF;
 }
 
 #menubar li a {
@@ -38,6 +37,10 @@
  line-height: 2em;
  text-align: center;
  vertical-align: middle;
+}
+
+#menubar li.selected a, #menubar li.ancestor a {
+ color: #FFF;
 }
 
 #menubar li a:hover {
