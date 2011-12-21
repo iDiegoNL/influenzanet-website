@@ -19,10 +19,6 @@
  -webkit-border-radius: 2px;
 }
 
-#menubar li:hover {
- border: 1px solid #C6C6C6;
-}
-
 #menubar li.selected, #menubar li.ancestor {
  padding: 0 0px 0 0px; 
  background-color: #616365;
