@@ -56,6 +56,8 @@
  border: 1px solid #616365;
  border-radius: 2px 2px 2px 2px;
  text-align: center;
+ font-weight: bold;
+ font-size: 0.7em;
  border-radius: 2px;
  -moz-border-radius: 2px;
  -webkit-border-radius: 2px;
@@ -75,8 +77,6 @@
  padding: 0 8px 0 8px; 
  text-decoration: none;
  color: #FFF;
- font-weight: bold;
- font-size: 0.7em;
  line-height: 2em;
  text-align: center;
  vertical-align: middle;
