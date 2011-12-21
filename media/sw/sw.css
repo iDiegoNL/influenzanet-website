@@ -82,10 +82,6 @@
  vertical-align: middle;
 }
 
-#account li, #account ul {
-	display: inline;
-}
-
 #col2 p.title {
  background: #DDD0C1;
 }
