@@ -15,20 +15,47 @@
 }
 
 #menubar li {
-	background-color: #DDD0C1;
-	border-radius: .3em;
-	-moz-border-radius: .3em;
-	-webkit-border-radius: .3em;
+ background-color: #F5F5F5;
+ border: 1px solid #616365;
+ border-radius: 2px 2px 2px 2px;
+ text-align: center;
+ border-radius: 2px;
+ -moz-border-radius: 2px;
+ -webkit-border-radius: 2px;
+}
+
+#menubar li a {
+ display: block;
+ height: 2em;
+ padding: 0 8px 0 8px; 
+ text-decoration: none;
+ color: #666;
+ font-weight: bold;
+ font-size: 0.7em;
+ line-height: 2em;
+ text-align: center;
+ vertical-align: middle;
+}
+
+#menubar li a:hover {
+ background-color: #F8F8F8;
+ border: 1px solid #C6C6C6;
+ color: #333;
+ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
- background: #DDD0C1;
- color: #333;
+ background-color: #7AB800;
+ border: 1px solid #616365;
+ border-radius: 2px 2px 2px 2px;
+ color: #FFF;
+ text-align: center;
 }
 
 #account ul.anonymous li:hover, #account ul.member li:hover, #searchbar input#searchsubmit:hover, input#commentsubmit:hover {
- background: #333;
- color: white;
+ background-color: #ACE53C;
+ border: 1px solid #000;
+ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 #account ul.member li a, #account ul.anonymous li a { 
@@ -43,9 +70,9 @@
 
 #account ul li {
 	padding: .5em;
-	border-radius: .4em;
-	-moz-border-radius: .4em;
-	-webkit-border-radius: .4em;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 }
 
 #col2 p.title {
@@ -173,5 +200,87 @@ font-size:20px;
 
 #zip_codelist li:hover {
  color: #6D84B4;
+}
+
+/**
+ * Influenzanet bar
+ * 
+ */
+
+#influenzabar {
+ width: 974px;
+ margin: 0 auto;
+ background: #ffffff url(../img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
+ position: absolute;
+ top: 0;
+ z-index: 1000;
+}
+
+p.influenzanet {
+ text-align: right;
+ font-size: 11px;
+}
+
+p.toggle {
+ background: url(../img/influbar/closed.png) top left no-repeat;
+ cursor: pointer;
+}
+
+p.expanded {
+ background: url(../img/influbar/opened.png) top left no-repeat;
+ cursor: pointer;
+}
+
+p.toggle a:focus,
+a.close:focus {
+ background: #000000;
+}
+
+p.toggle a {
+ color: #333333;
+ text-decoration: none;
+}
+
+.influenzabarcontent,
+.influenzamapcontent {
+ display: none;
+}
+
+div.influenzabarcontent{
+ width: 926px;
+ overflow: auto;
+ padding: 0 12px 16px 12px;
+ text-align: left;
+ color: #333;
+ font-size: 0.75em;
+ line-height: 1.3em;
+ background: none repeat scroll 0 0 #F4F4F4;
+ border-width: 1px 2px;
+ border-style: solid;
+ border-color: #AAA;
+ -moz-border-bottom-colors: none;
+ -moz-border-image: none;
+ -moz-border-left-colors: none;
+ -moz-border-right-colors: none;
+ -moz-border-top-colors: none;
+}
+
+#participants {
+ float: right;
+ margin: 14px 0 0;
+ padding: 12px;
+ width: 146px;
+}
+
+/**
+ * Header
+ * 
+ */
+
+#header {
+ float: left;
+ width: 950px;
+ padding: 45px 12px 12px 12px;
+ background: #ffffff;
 }
 
