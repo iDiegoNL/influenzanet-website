@@ -53,7 +53,8 @@
 
 #account ul li {
  margin-bottom: 2px;
- font-size: 0.7em;
+ font-size: 0.85em;
+ padding: 0;
 }
 
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
