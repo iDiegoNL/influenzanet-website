@@ -11,7 +11,10 @@
 }
 
 #menubar li.selected, #menubar li.ancestor {
-	
+ padding: 0 0px 0 0px; 
+ background: #616365;
+ font-weight: bold;
+ color: #FFF;
 }
 
 #menubar li {
@@ -38,6 +41,8 @@
 }
 
 #menubar li a:hover {
+ font-size: 0.7em;
+ line-height: 2em;
  background-color: #F8F8F8;
  border: 1px solid #C6C6C6;
  color: #333;
@@ -59,9 +64,9 @@
 }
 
 #account ul.member li a, #account ul.anonymous li a { 
-	display: inline;
-	font-size: 1em;
-	font-weight: bold;
+ display: inline;
+ font-size: 1em;
+ font-weight: bold;
 }
 
 #account li, #account ul {
@@ -69,7 +74,7 @@
 }
 
 #account ul li {
-	padding: .5em;
+	padding: 2px 2px 3px 2px;
 	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
@@ -210,7 +215,7 @@ font-size:20px;
 #influenzabar {
  width: 974px;
  margin: 0 auto;
- background: #ffffff url(../img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
+ background: #ffffff url(../base/img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
  position: absolute;
  top: 0;
  z-index: 1000;
@@ -222,12 +227,12 @@ p.influenzanet {
 }
 
 p.toggle {
- background: url(../img/influbar/closed.png) top left no-repeat;
+ background: url(../base/img/influbar/closed.png) top left no-repeat;
  cursor: pointer;
 }
 
 p.expanded {
- background: url(../img/influbar/opened.png) top left no-repeat;
+ background: url(../base/img/influbar/opened.png) top left no-repeat;
  cursor: pointer;
 }
 
