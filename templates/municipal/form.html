@@ -2,7 +2,7 @@
 <h2>Trouvez votre commune</h2>
 <form action="" method="post" id="zipform">
 	Entrez votre code postal : <input type="text" name="zip" value="" size="5" id="zip_code"/>
-	<button type="button" onclick="searchZip()">Chercher</button>
+	<button type="button" onclick="searchZip(); return false;">Chercher</button>
 	<ul id="zip_codelist"></ul>
 	{% csrf_token %}
 	<span id="zip_help" style="display:none"></span>
@@ -18,7 +18,7 @@ function selectZip() {
 	$('#facebox').overlay().close();
 }
 
-function searchZip(ev) {
+function searchZip() {
  var code = $('#zip_code').val();
  if( code.match(/[0-9]{5}/)) {
 	 $.ajax({
@@ -45,7 +45,6 @@ function searchZip(ev) {
  } else {
  	$('#zip_help').text('Saisissez les 5 chiffres de votre code postal !');
  }
- return ev.preventDefault();
 }
 
 </script>

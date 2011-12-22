@@ -56,6 +56,11 @@ html {
  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
+#submenu {
+padding: .5em;
+margin: .3em 0 .2em .3em;
+}
+
 #account ul li {
  margin-bottom: 2px;
  font-size: 0.85em;
@@ -173,7 +178,7 @@ html {
  * Survey
  * 
  */
-.codeselet-type .button-codeselect {
+ .codeselect-button {
 	border: 1px solid #DDD;
 	background-color: #FFF;
 	font-size: .8em;
@@ -185,9 +190,16 @@ html {
 	cursor: pointer;
 }
 
-.codeselet-type .button-codeselect:hover {
+.codeselect-button:hover {
 	background-color: #DDD;
 	color: white;
+}
+
+.codeselect-title {
+padding: .3em;
+-webkit-border-radius: .3em;
+-moz-border-radius: .3em;
+border-radius: .3em;
 }
 
 input[type="submit"] {
