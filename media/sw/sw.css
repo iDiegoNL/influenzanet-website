@@ -104,6 +104,13 @@ html {
  color: #00647A;
 }
 
+#col2 {
+ width: 170px;
+}
+
+#col3 {
+}
+
 #col2 p.title {
  background: #DDD0C1;
 }
