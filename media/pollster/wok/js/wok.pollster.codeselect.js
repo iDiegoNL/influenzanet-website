@@ -11,13 +11,14 @@
 			$field.css('display','none');
 			var b = $('<button type="button">');
 			b.text('Cliquez ici pour trouver votre commune');
-			b.addClass('button-codeselect');
+			b.addClass('codeselect-button');
 			b.click(function(ev){
-				ev.preventDefault();
+				console.log(ev);
+				console.log(id);
 				searchMunicipalCode(id);
 			});
 			$field.after(b);
-			var b = $('<span id="'+id+'-title"></span>');
+			var b = $('<span id="'+id+'-title" class="codeselect-title"></span>');
 			var v = $field.val();
 			if(v != '') {
 				b.text(v);	
@@ -28,30 +29,31 @@
 }
 
 searchMunicipalCode = function (id) {
-	var $field = $('#'+id);
-	b = $('<div id="facebox">');
-	$field.after(b);
-
 	var mask = {
 		zIndex: 1000,
 		color: '#fff',
 		loadSpeed: 200,
 		opacity: 0.5
 	};
-	if(jQuery.browser.msie) {
+	if($.browser.msie) {
 		mask = 0; // disable expose mask on ie
 	}
 	$('#facebox').load('/municipal/search?id='+id).overlay({
 		top: 260,
 		mask: mask,
-		closeOnClick: false,
-		load: true
-	});
+		closeOnClick: false
+	}).load();
 };
-
 
 
 // Add the datatype
 window.wok.pollster.datatypes.CodeSelect= CodeSelectType;
+
+$(document).ready(function() {
+	var f = $('#facebox');
+	if(f.length == 0) {
+		$('body').append('<div id="facebox">');	
+	}
+})
 
 })(jQuery);
