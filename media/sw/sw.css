@@ -1,10 +1,18 @@
+/**
+ * Base
+ */
+
+html {
+ color: #444;
+}
+
 
 /**
  * Menu
  */
 
 #headerlogo {
-	width: auto;
+ width: auto;
 }
 
 #header {
@@ -86,6 +94,29 @@
 
 #account ul.member li a:hover, #account ul.anonymous li a:hover { 
  color: #616365;
+}
+
+#submenu li, #submenu li a {
+ color: #00B9E4;
+}
+
+#submenu li.selected a {
+ color: #00647A;
+}
+
+#colright {
+ margin-left: -630px;
+}
+
+#col1wrap {
+}
+
+#col2 {
+  left: 326px;
+ width: 170px;
+}
+
+#col3 {
 }
 
 #col2 p.title {
