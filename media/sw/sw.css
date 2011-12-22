@@ -104,6 +104,10 @@ html {
  color: #00647A;
 }
 
+#colright {
+ margin-left: -630px;
+}
+
 #col2 {
  width: 170px;
 }
