@@ -109,6 +109,10 @@ margin: .3em 0 .2em .3em;
  color: #00647A;
 }
 
+#colmid {
+ left: 214px;
+}
+
 #colright {
  margin-left: -530px;
 }
