@@ -14,7 +14,7 @@ def prijs_grafiek(request):
     result += "<meter_id>%s</meter_id>\n" % request.user.id
     result += "<naam>%s</naam>\n" % request.user.username
 
-    begin = date(2011, 11, 1)
+    begin = date(2011, 11, 15)
     end = date(2012, 5, 1)
     weeknr = 1
 
