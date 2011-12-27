@@ -360,21 +360,20 @@ img.top-page {
 }
 
 #col1 li.flag {
-	padding: .2em 0 .2em 20px;
+	padding: .3em 0 .3em 26px;
 }
 
 .flag-nl,.flag-be,.flag-de, .flag-at, .flag-ch, .flag-se, .flag-uk, .flag-fr, .flag-pt, .flag-es, .flag-it {
  background: #FFF url() left center no-repeat;
- 
 }
 
 .flag-nl { background-image: url(../base/img/influbar/nl.png) }
 .flag-be { background-image: url(../base/img/influbar/be.png) }
 .flag-de { background-image: url(../base/img/influbar/de.png)}
 .flag-at { background-image: url(../base/img/influbar/at.png) }
-.flag-ch { background-image: url(../base/img/influbar/ch.png)}
+.flag-ch { background-image: url(../base/img/influbar/ch.png) }
 .flag-se { background-image: url(../base/img/influbar/se.png)}
-.flag-uk { background-image: url(../base/img/influbar/uk.png)}
+.flag-uk { background-image: url(../base/img/influbar/gb.png)}
 .flag-fr { background-image: url(../base/img/influbar/fr.png)}
 .flag-pt { background-image: url(../base/img/influbar/pt.png) }
 .flag-es { background-image: url(../base/img/influbar/es.png)}
