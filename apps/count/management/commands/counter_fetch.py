@@ -20,5 +20,8 @@ class Command(NoArgsCommand):
             key = "count-counter-%s" % country
             cache.set(key, result, timeout=cache_delay)
 
+        if(settings.DEBUG): 
+            print(data)
+        
         cache.set("count-counter-all", data, timeout=cache_delay)
   
