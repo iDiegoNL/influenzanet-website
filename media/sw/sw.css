@@ -10,11 +10,15 @@ html {
  * Menu
  */
 
-#headerlogo {
- width: auto;
+#header {
+ float: left;
+ width: 950px;
+ padding: 45px 12px 12px 12px;
+ background: #ffffff;
 }
 
-#header {
+#headerlogo {
+ width: auto;
 }
 
 #menubar li {
@@ -137,45 +141,45 @@ margin: .3em 0 .2em .3em;
 }
 
 #footerclose {
- padding: .7em 1.1em;
- border: 0;
- border-top: 1px solid #666;
- border-bottom: 10px solid #DDD;
- color: #333;
- font-weight: normal;
- font-size: 0.75em;
- text-align: center;
+padding: .7em 1.1em;
+border: 0;
+border-top: 1px solid #666;
+border-bottom: 10px solid #DDD;
+color: #333;
+font-weight: normal;
+font-size: 0.75em;
+text-align: center;
 }
 
 #footer a , #footerclose a {
- color: #333;
- text-decoration: none;
- font-weight: normal;
+color: #333;
+text-decoration: none;
+font-weight: normal;
 }
 
 #footer a:hover, #footerclose a:hover {
- color: #333;
- text-decoration: underline;
+color: #333;
+text-decoration: underline;
 }
 
 /**
  * Survey
  */
- .codeselect-button {
-	border: 1px solid #DDD;
-	background-color: #FFF;
-	font-size: .8em;
-	font-weight: bold;
-	padding: .4em;
-	-webkit-border-radius: .3em;
-	-moz-border-radius: .3em;
-	border-radius: .3em;
-	cursor: pointer;
+.codeselect-button {
+border: 1px solid #DDD;
+background-color: #FFF;
+font-size: .8em;
+font-weight: bold;
+padding: .4em;
+-webkit-border-radius: .3em;
+-moz-border-radius: .3em;
+border-radius: .3em;
+cursor: pointer;
 }
 
 .codeselect-button:hover {
-	background-color: #DDD;
-	color: white;
+background-color: #DDD;
+color: white;
 }
 
 .codeselect-title {
@@ -183,6 +187,15 @@ padding: .3em;
 -webkit-border-radius: .3em;
 -moz-border-radius: .3em;
 border-radius: .3em;
+}
+
+#zip_codelist li {
+ font-size: 1em;
+ cursor: pointer;
+}
+
+#zip_codelist li:hover {
+ color: #6D84B4;
 }
 
 input[type="submit"] {
@@ -196,10 +209,18 @@ border-radius: .3em;
 cursor: pointer;
 }
 
+#survey-title {
+text-align: center;
+margin: 1em;	
+}
+
 #col1 .question { /* Hack to make priority higher*/
 width: 80%;
 }
 
+/**
+ * Facebox
+ */
 #facebox {
 z-index:9999;
 display:none;
@@ -227,14 +248,6 @@ border:1px solid #3B5998;
 font-size:20px;
 }
 
-#zip_codelist li {
- font-size: 1em;
- cursor: pointer;
-}
-
-#zip_codelist li:hover {
- color: #6D84B4;
-}
 
 /**
  * Influenzanet bar
@@ -305,16 +318,6 @@ div.influenzabarcontent{
  width: 146px;
 }
 
-/**
- * Header
- */
-
-#header {
- float: left;
- width: 950px;
- padding: 45px 12px 12px 12px;
- background: #ffffff;
-}
 
 /**
  * Misc
