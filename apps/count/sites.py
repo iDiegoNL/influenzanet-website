@@ -25,3 +25,5 @@ def site_fetch_count(country):
         int(result)
     except ValueError:
         result = '0'
+
+    return result    
