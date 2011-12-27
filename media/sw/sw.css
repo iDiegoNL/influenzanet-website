@@ -359,9 +359,13 @@ img.top-page {
  bottom: -3px;
 }
 
+#col1 li.flag {
+	padding: .2em 0 .2em 20px;
+}
+
 .flag-nl,.flag-be,.flag-de, .flag-at, .flag-ch, .flag-se, .flag-uk, .flag-fr, .flag-pt, .flag-es, .flag-it {
  background: #FFF url() left center no-repeat;
- padding: .2em 0 .2em 20px;
+ 
 }
 
 .flag-nl { background-image: url(../base/img/influbar/nl.png) }
