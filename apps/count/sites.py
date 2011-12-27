@@ -3,8 +3,8 @@ import urllib2
 from django.core.cache import cache 
 
 SOURCES = {
-    'nl': 'http://www.degrotegriepmeting.nl/count/counter/?country=NL',
-    'be': 'http://www.degrotegriepmeting.nl/count/counter/?country=BE',
+    'nl': 'https://www.degrotegriepmeting.nl/count/counter/?country=NL',
+    'be': 'https://www.degrotegriepmeting.nl/count/counter/?country=BE',
     'de': 'http://www.aktivgegengrippe.de/count/counter/',
     'at': 'http://www.aktivgegengrippe.at/count/counter/',
     'ch': 'http://www.aktivgegengrippe.ch/count/counter/',
