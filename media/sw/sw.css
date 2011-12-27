@@ -117,7 +117,13 @@ margin: .3em 0 .2em .3em;
 }
 
 #col1 a, #col2 a, #col3 a {
- color: #333;
+ color: #00B9E4;
+ font-weight: bold;
+}
+
+#col1 li {
+	font-size: .9em;
+	font-weight: normal;
 }
 
 #box input#boxsubmit {
@@ -248,6 +254,27 @@ border:1px solid #3B5998;
 font-size:20px;
 }
 
+#people-table {
+	font-size: .8em;
+	width: 80%;
+	margin: .5em auto;
+}
+
+#people-table th, #people-table td {
+	border: 1px solid #ddd;
+	border-width: 0 0 1px 1px;
+	text-align: center;
+}
+
+#people-table td {
+	padding: .8em;
+}
+
+.action-add-people {
+	padding: 2px 2px 2px 18px;
+	
+	background: white url(user-add.png) left center no-repeat;
+}
 
 /**
  * Influenzanet bar
