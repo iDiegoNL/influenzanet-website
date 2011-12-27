@@ -121,8 +121,12 @@ margin: .3em 0 .2em .3em;
  font-weight: bold;
 }
 
+#col1 ul > li { /* Reduce size only for the first level */
+	font-size: .7em;
+}
+
 #col1 li {
-	font-size: .9em;
+	font-size: 1em;
 	font-weight: normal;
 }
 
