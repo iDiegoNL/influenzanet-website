@@ -38,6 +38,7 @@ class MemberCountNode(Node):
         if cache.get(key):
             return cache.get(key)
 
+        return 'N/A' #not in the cache, force not use reload
         try:
             result = urllib2.urlopen(SOURCES[country], timeout=2).read()
         except:
