@@ -5,40 +5,8 @@ from django.db import connection, transaction
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
 
 from .models import Prediction, Week
-
-@login_required
-def main(request):
-    already_done = Prediction.objects.filter(user=request.user).count()
-
-    MEDIA_URL = settings.MEDIA_URL
-    if not already_done:
-        return HttpResponse("""<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" 
-codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" 
-width="770" height="470" id="prijs_grafiek2011" align="middle">
-<param name="allowScriptAccess" value="sameDomain" />
-<param name="movie" value="prijs_grafiek2011.swf" />
-<param name="quality" value="high" />
-<param name="bgcolor" value="#ffffff" />
-<embed src="%(MEDIA_URL)scontest/prijs_grafiek2011.swf" quality="high" bgcolor="#ffffff" width="770" height="470" 
-name="prijs_grafiek2011" align="middle" allowScriptAccess="sameDomain" 
-type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-</object>""" % locals())
-
-    return HttpResponse("""<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" 
-codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" 
-width="770" height="470" id="prijs_grafiek" align="middle">
-<param name="allowScriptAccess" value="sameDomain" />
-<param name="movie" value="prijs_grafiek_weergave2011.swf" />
-<param name="quality" value="high" />
-<param name="bgcolor" value="#ffffff" />
-<embed src="%(MEDIA_URL)scontest/prijs_grafiek_weergave2011.swf" quality="high" bgcolor="#ffffff" width="770" height="470" 
-name="prijs_grafiek_weergave2011" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" 
-pluginspage="http://www.macromedia.com/go/getflashplayer" />
-</object>""" % locals())
-
 
 @login_required
 def prijs_grafiek(request): 

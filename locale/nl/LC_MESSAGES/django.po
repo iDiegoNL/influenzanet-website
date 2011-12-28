@@ -920,3 +920,6 @@ msgstr "Laatste meting"
 
 msgid "Member"
 msgstr "Griepmeter"
+
+msgid "Contest"
+msgstr "Prijsvraag"
