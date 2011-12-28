@@ -120,7 +120,7 @@ def relay2(request):
         """)
 
     prediction, created = Prediction.objects.get_or_create(user=request.user)
-    if created:
+    if not created:
         return HttpResponse("prijsvraag al ingediend")
 
     for week_nr in range(1, 32):
