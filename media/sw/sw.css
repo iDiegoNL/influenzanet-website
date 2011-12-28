@@ -241,13 +241,6 @@ border:10px solid rgba(82, 82, 82, 0.698);
 -webkit-border-radius:8px;
 }
 
-#facebox div {
-padding:10px;
-border:1px solid #3B5998;
-background-color:#fff;
-font-family:"lucida grande",tahoma,verdana,arial,sans-serif
-}
-
 #facebox h2 {
 margin:-11px;
 margin-bottom:0px;
@@ -258,26 +251,37 @@ border:1px solid #3B5998;
 font-size:20px;
 }
 
+#facebox-inner {
+border:1px solid #3B5998;
+background-color:#fff;
+font-family:"lucida grande",tahoma,verdana,arial,sans-serif
+padding: 20px;
+}
+
+#facebox-close {
+text-align: right;
+border: 0;
+}
+
 #people-table {
-	font-size: .8em;
-	width: 80%;
-	margin: .5em auto;
+font-size: .8em;
+width: 80%;
+margin: .5em auto;
 }
 
 #people-table th, #people-table td {
-	border: 1px solid #ddd;
-	border-width: 0 0 1px 1px;
-	text-align: center;
+border: 1px solid #ddd;
+border-width: 0 0 1px 1px;
+text-align: center;
 }
 
 #people-table td {
-	padding: .8em;
+padding: .8em;
 }
 
 .action-add-people {
-	padding: 2px 2px 2px 18px;
-	
-	background: white url(user-add.png) left center no-repeat;
+padding: 2px 2px 2px 18px;
+background: white url(user-add.png) left center no-repeat;
 }
 
 /**

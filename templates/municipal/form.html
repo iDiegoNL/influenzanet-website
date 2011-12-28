@@ -1,4 +1,4 @@
-<div>
+<div id="facebox-inner">
 <h2>Trouvez votre commune</h2>
 <form action="" method="post" id="zipform">
 	Entrez votre code postal : <input type="text" name="zip" value="" size="5" id="zip_code"/>
@@ -6,6 +6,7 @@
 	<ul id="zip_codelist"></ul>
 	{% csrf_token %}
 	<span id="zip_help" style="display:none"></span>
+	<div id="facebox-close"><a href="#facebox-inner" onclick="$('#facebox').overlay().close()">Fermer cette boite</a></div>
 </form>
 <script type="text/javascript">
 
