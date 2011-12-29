@@ -357,7 +357,6 @@ def survey_import(request):
             return redirect(survey)
     return redirect(survey_list)
 
-@login_required
 def chart_data(request, survey_shortname, chart_shortname):
     chart = None
     if request.user.is_active and request.user.is_staff:
@@ -434,7 +433,7 @@ def urls(request, prefix=''):
 
 def _get_active_survey_user(request):
     gid = request.GET.get('gid', None)
-    if gid is None:
+    if gid is None or not request.user.is_active:
         return None
     else:
         return SurveyUser.objects.get(global_id=gid, user=request.user)
