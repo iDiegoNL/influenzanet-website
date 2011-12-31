@@ -29,7 +29,7 @@ SELECT extract(year from age(to_timestamp(I."Q2",'YYYY-MM'))) AS a,
        pollster_health_status AS S,
         pollster_results_weekly AS W
  WHERE I."Q10"<2
-   AND S.pollster_results_weekly_id = W.id
+   AND S.pollster_results_weekly_id = W.id  AND (W."Q2" IS NULL OR W."Q2" != 0)
    AND W.global_id = I.global_id AND extract(year from age(to_timestamp(I."Q2",'YYYY-MM'))) > 0
        ) AS statuses
  GROUP BY year,week,agegroup,risk,children,vaccinated
