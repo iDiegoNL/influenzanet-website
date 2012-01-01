@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     (r'^reminder/', include('apps.reminder.urls')),
     (r'^influenzanet/', 'django.views.generic.simple.direct_to_template', {'template': 'influenzanet.html'}),
     (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
+    (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
 
     url(r'^search/$', search_view_factory(
         view_class=SearchView,
