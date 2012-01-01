@@ -194,18 +194,30 @@ color: white;
 
 .codeselect-title {
 padding: .3em;
+padding-left: 18px;
 -webkit-border-radius: .3em;
 -moz-border-radius: .3em;
 border-radius: .3em;
+border: 1px solid #DDD;
+margin: auto .2em;
+font-size: .9em;
+background: #FFF url(home.png) left center no-repeat;
 }
 
 #zip_codelist li {
+ padding-top: 5px;
+ padding-left: 20px;
+ background: #FFF url(home.png) left center no-repeat;
  font-size: 1em;
  cursor: pointer;
 }
 
 #zip_codelist li:hover {
  color: #6D84B4;
+}
+
+#zip_warning {
+	font-size: .8em;
 }
 
 input[type="submit"] {
@@ -239,11 +251,12 @@ border:10px solid #666;
 border:10px solid rgba(82, 82, 82, 0.698);
 -moz-border-radius:8px;
 -webkit-border-radius:8px;
+border-radius:8px;
 }
 
 #facebox h2 {
 margin:-11px;
-margin-bottom:0px;
+margin-bottom:5px;
 color:#fff;
 background-color:#6D84B4;
 padding:5px 10px;
@@ -254,13 +267,14 @@ font-size:20px;
 #facebox-inner {
 border:1px solid #3B5998;
 background-color:#fff;
-font-family:"lucida grande",tahoma,verdana,arial,sans-serif
-padding: 20px;
+font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+padding: 10px;
 }
 
 #facebox-close {
 text-align: right;
 border: 0;
+font-size: .8em;
 }
 
 #people-table {
@@ -289,17 +303,13 @@ background: white url(user-add.png) left center no-repeat;
  */
 
 #influenzabar {
- width: 974px;
- margin: 0 auto;
  background: #ffffff url(../base/img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
- position: absolute;
- top: 0;
- z-index: 1000;
 }
 
 p.influenzanet {
  text-align: right;
  font-size: 11px;
+ position: relative;
 }
 
 p.toggle {
@@ -312,8 +322,7 @@ p.expanded {
  cursor: pointer;
 }
 
-p.toggle a:focus,
-a.close:focus {
+p.toggle a:focus, a.close:focus {
  background: #000000;
 }
 
@@ -322,8 +331,7 @@ p.toggle a {
  text-decoration: none;
 }
 
-.influenzabarcontent,
-.influenzamapcontent {
+.influenzabarcontent, .influenzamapcontent {
  display: none;
 }
 

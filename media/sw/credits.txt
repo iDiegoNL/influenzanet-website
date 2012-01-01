@@ -1,2 +1,3 @@
-top.png		fugues icons 3.0		
+home.png	fugues icons 3.0
+top.png		fugues icons 3.0
 user-add.png 	fugues icons 3.0
