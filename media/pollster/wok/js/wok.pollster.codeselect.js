@@ -66,6 +66,9 @@ $(document).ready(function() {
 	var last_participation_data = {};
     if(window.pollster_last_participation_data) {
 		last_participation_data = pollster_last_participation_data();
+		if(!last_participation_data) {
+			last_participation_data = {};
+		}
 	}
     window.wok.pollster.last_participation_data = last_participation_data;
 });
