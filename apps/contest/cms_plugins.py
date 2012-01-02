@@ -22,6 +22,7 @@ class CMSContestPlugin(CMSPluginBase):
 
         context.update({
             'filename': filename,
+            'already_done': already_done,
         })
         return context
 
