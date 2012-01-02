@@ -912,9 +912,17 @@ hr {
 #col1 li {
  margin: 0;
  padding: 0;
- font-size: 0.7em;
  font-weight: bold;
  line-height: 1.5em; 
+}
+
+#col1 > ul > li,
+#col1 > ol > li,
+#col2 > ul > li,
+#col2 > ol > li,
+#col3 > ul > li,
+#col3 > ol > li { /* Reduce size only for the first level */
+font-size: 0.7em;
 }
 
 #col1 p,
