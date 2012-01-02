@@ -62,6 +62,12 @@ img {
  text-align: left;
 }
 
+.boldred {
+ color: #A20000;
+ font-weight: bold;
+ font-size: 1.2em;
+}
+
 .disable {
  display: none;
 }
