@@ -70,7 +70,7 @@ def prijs_weergave(request):
         result += "<datum>%s</datum>\n" % prediction.date.strftime("%Y-%m-%d")
 
         for week in prediction.week_set.all():
-            result += "<week nr=\"%s\">%s</week>\n" % (week.number, week.value)
+            result += "<week nr=\"%s\">%s</week>\n" % (week.number, week.value if week.value else 0)
             
     result += "</voorspelling>\n"
     return HttpResponse(result, 'application/xml')
@@ -95,4 +95,4 @@ def relay2(request):
         value = request.POST.get('week%s' % week_nr)    
         Week.objects.create(prediction=prediction, number=week_nr, value=value)
 
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/nl/prijsvraag/")
