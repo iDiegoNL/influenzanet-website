@@ -931,6 +931,12 @@ hr {
 font-size: 0.7em;
 }
 
+#col1 label,
+#col2 label,
+#col3 label {
+ font-size: 0.7em;
+}
+
 #col1 p,
 #col2 p,
 #col3 p {
