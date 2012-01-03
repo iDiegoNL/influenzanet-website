@@ -114,6 +114,8 @@ margin: .3em 0 .2em .3em;
 
 #colmask p.title {
  background: #7AB800; /* 7AB800 */
+ color: white;
+ font-weight: bold;
 }
 
 #colmask a {
