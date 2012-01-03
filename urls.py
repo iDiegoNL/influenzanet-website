@@ -66,4 +66,7 @@ urlpatterns += patterns('', url(r'^', include('cms.urls')))
 
 handler500 = 'views.server_error'
 
-urlpatterns += patterns('', url(r'^municipal/', include('apps.municipal.urls')))
+urlpatterns += patterns('', 
+    url(r'^municipal/', include('apps.municipal.urls')),
+    (r'^news/', include('apps.journal.urls')),
+)
