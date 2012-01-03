@@ -979,6 +979,14 @@ font-size: 0.7em;
  margin: 0 0 0 14px; 
 }
 
+#col2 a { 
+ display: block;
+}
+
+#col2 p a { 
+ display: inline;
+}
+
 #col1 a,
 #col2 a,
 #col3 a {
