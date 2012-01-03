@@ -306,6 +306,7 @@ p.influenzanet {
  text-align: right;
  font-size: 11px;
  position: relative;
+ padding: .9em;
 }
 
 p.toggle {
