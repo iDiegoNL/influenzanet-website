@@ -123,6 +123,10 @@ CMS_TEMPLATES = (
     ('base/influhome.html', "European Map"),
 )
 
+GEOMETRY_TABLES = (
+ ('pollster_zip_codes','zip level'),
+)
+
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
