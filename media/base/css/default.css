@@ -630,6 +630,31 @@ input#commentsubmit:hover {
 }
 
 
+/* Applet basics */
+
+#applet {
+ font-size: 0.7em;
+ line-height: 1.4em;
+ background: #ffffff;
+}
+
+#applet ul {
+ margin: 0;
+ padding: 0;
+}
+
+#applet li {
+ display: inline;
+ margin: 0;
+ padding: 0;
+}
+
+#applet li p {
+ padding: 20px 4px 20px 4px;
+ text-align: left;
+}
+
+
 /* Modal box */
 
 #boxwrapper {
