@@ -14,11 +14,12 @@ html {
  font-family: Verdana, Geneva, sans-serif;
  line-height: 1.2em;
  font-size: 1em;
+ -webkit-text-size-adjust: none;
  color: #595959;
  background: #d5d5d5;
 }
 
-body, ph {
+body, p {
  margin:0;
  padding: 0;
 }
@@ -60,6 +61,12 @@ img {
  margin: 0 auto;
  padding: 0;
  text-align: left;
+}
+
+.boldred {
+ color: #A20000;
+ font-weight: bold;
+ font-size: 1.2em;
 }
 
 .disable {
@@ -628,6 +635,31 @@ input#commentsubmit:hover {
 }
 
 
+/* Applet basics */
+
+#applet {
+ font-size: 0.7em;
+ line-height: 1.4em;
+ background: #ffffff;
+}
+
+#applet ul {
+ margin: 0;
+ padding: 0;
+}
+
+#applet li {
+ display: inline;
+ margin: 0;
+ padding: 0;
+}
+
+#applet li p {
+ padding: 20px 4px 20px 4px;
+ text-align: left;
+}
+
+
 /* Modal box */
 
 #boxwrapper {
@@ -914,9 +946,23 @@ hr {
 #col1 li {
  margin: 0;
  padding: 0;
- font-size: 0.7em;
  font-weight: bold;
  line-height: 1.5em; 
+}
+
+#col1 > ul > li,
+#col1 > ol > li,
+#col2 > ul > li,
+#col2 > ol > li,
+#col3 > ul > li,
+#col3 > ol > li { /* Reduce size only for the first level */
+font-size: 0.7em;
+}
+
+#col1 label,
+#col2 label,
+#col3 label {
+ font-size: 0.7em;
 }
 
 #col1 p,
@@ -933,6 +979,14 @@ hr {
 
 #col1 img.right {
  margin: 0 0 0 14px; 
+}
+
+#col2 a { 
+ display: block;
+}
+
+#col2 p a { 
+ display: inline;
 }
 
 #col1 a,

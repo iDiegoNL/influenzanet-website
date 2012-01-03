@@ -17,10 +17,12 @@ class CMSContestPlugin(CMSPluginBase):
         already_done = Prediction.objects.filter(user=context['request'].user).count()
         if not already_done:
             filename = "prijs_grafiek2011"
-        filename = "prijs_grafiek_weergave2011"
+        else:
+            filename = "prijs_grafiek_weergave2011"
 
         context.update({
             'filename': filename,
+            'already_done': already_done,
         })
         return context
 
