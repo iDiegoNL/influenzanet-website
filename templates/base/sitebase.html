@@ -76,9 +76,9 @@
 			    		<tr>
 			    			<td id="user-avatar"><img src="{{MEDIA_URL}}/sw/avatar.gif" width="60" height="60"/></td>
 							<td>
-							<div id="user-login"><a href="/survey/profile/">{{ user.username }}</a></div>
+							<div id="user-login">{{ user.username }}</div>
 							<div id="user-action">
-								<span><a href="/survey/profile/">{% trans "My account" %}</a></span>
+								<span><a class="icon icon-settings" href="/accounts/settings/">{% trans "My account" %}</a></span>
 								<span class="user-logout"><a href="/accounts/logout/">{% trans "Log out" %}</a></span>
 							</div>
 							</td>
@@ -93,15 +93,15 @@
 			    <p><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>{% endif %}
 			</div>{% endblock authentication %}
 			<div id="navigation">
-				<div id="menubars">
-					{% block menubar %}
-                    {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
-					{% endblock menubar %}
-				</div>
 				<div id="searchbar">
                     <form method="get" action="/search/">
                         <input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" />
                     </form>
+				</div>
+				<div id="menubars">
+					{% block menubar %}
+                    {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
+					{% endblock menubar %}
 				</div>
 			</div>			
 		</div> 
@@ -111,7 +111,7 @@
 		<div id="footer">{% block footercontent %}
             <div id="footerclose">
              &copy; {% now "Y" %}  GrippeNet.fr
-			 <a href="http://www.sentiweb.fr">UMR S 707, réseau Sentinelles</a>, , 			 
+			 &nbsp;-&nbsp;<a href="http://www.sentiweb.fr">UMR S 707, réseau Sentinelles</a> 			 
 			 &nbsp;-&nbsp;<a href="mailto:contact@grippenet.fr">Nous écrire</a>
 			 &nbsp;-&nbsp;<a href="/mentions-legales/">Mentions légales</a> 
             </div>

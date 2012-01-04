@@ -6,7 +6,7 @@ html {
  color: #444;
 }
 
-/**
+/*
  * Menu
  */
 
@@ -448,7 +448,7 @@ position: relative;
 }
 
 #user-box table {
-	border: 0;
+border: 0;
 }
 
 #user-avatar {
@@ -470,6 +470,35 @@ display: block;
 font-size: .8em;
 }
 
+#user-space {
+paddding: .4em;
+border: 1px solid #7AB800;
+border-radius: .4em;
+-webkit-border-radius: .4em;
+-moz-border-radius: .4em;
+}
+
+#user-space ul {
+margin: 0; padding: 0;	
+}
+
+#user-space li {
+list-style-type: none;
+font-size: .7em;
+margin: .8em .2em .5em .4em;
+line-height: 1.4em;
+} 
+
+.icon {
+ padding-left: 20px;
+ background: #FFF url() left center no-repeat;
+}
+
+.icon-users { background-image: url(users.png)}
+.icon-survey { background-image: url(survey.png)}
+.icon-settings { background-image: url(settings.png)}
+.icon-password { background-image: url(password.png)}
+
 /**
  * Externals
  */
@@ -482,7 +511,6 @@ font-size: .7em;
 /**
  * Misc
  */
-
 
 img.top-page {
  position: relative;

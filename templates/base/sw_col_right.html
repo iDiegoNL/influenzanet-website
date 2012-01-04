@@ -1,8 +1,19 @@
+{%load i18n %}
 {%if not user.is_authenticated %}
 <div id="user-buttons">
 	<a href="/accounts/register" id="register-button">S'inscrire</a>
 	<a href="/accounts/login" id="login-button">Se connecter</a>
-</div>	
+</div>
+{% else %}	
+<div id="user-space">
+<ul>
+	<li class="icon icon-survey"><a href="/survey/">{% trans "Symptoms survey" %}</a></li>
+	<li class="icon icon-survey"><a href="/survey/profile/"> Questionnaire préliminaire </a></li>
+	<li class="icon icon-users"><a href="/survey/people/">{% trans "Manage household" %}</a></li>
+	<li class="icon icon-settings"><a href="/accounts/settings/">{% trans "My settings" %}</a></li>
+	<li class="icon icon-password"><a href="/accounts/password/change">{% trans "Change password" %}</a></li>
+</ul>
+</div>
 {% endif %}
 <div id="logos">
  <img src="{{MEDIA_URL}}sw/inserm.gif" width="150" height="60" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"  /> 

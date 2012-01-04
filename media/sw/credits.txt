@@ -1,3 +1,8 @@
 home.png	fugues icons 3.0
 top.png		fugues icons 3.0
 user-add.png 	fugues icons 3.0
+settings.png	fugues icons 3.0
+password.png	fugues icons 3.0
+users.png		fugues icons 3.0
+survey.png		fugues icons 3.0
+avatar.gif	
