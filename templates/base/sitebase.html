@@ -71,11 +71,20 @@
 		<div id="header">
 			<div id="headerlogo"><a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/grippenet.png" alt="GrippeNet logo" /></a></div>
 			{% block authentication %}<div id="account">{% if user.is_authenticated %}
-			    <ul class="member">
-			        <li><a href="/survey/profile/">{% trans "My account" %}</a></li>
-			        <li><a href="/accounts/logout/">{% trans "Log out" %}</a></li>
-			    </ul>
-			    <p class="loggedinas"><a href="/survey/profile/">{% trans "Logged in as" %} {{ user.username }}</a></p>
+			    <div id="user-box">
+			    	<table>
+			    		<tr>
+			    			<td id="user-avatar"><img src="{{MEDIA_URL}}/sw/avatar.gif" width="60" height="60"/></td>
+							<td>
+							<div id="user-login"><a href="/survey/profile/">{{ user.username }}</a></div>
+							<div id="user-action">
+								<span><a href="/survey/profile/">{% trans "My account" %}</a></span>
+								<span class="user-logout"><a href="/accounts/logout/">{% trans "Log out" %}</a></span>
+							</div>
+							</td>
+			    		</tr>
+					</table>
+				</div>
 			{% else %}
 			    <ul class="anonymous">
 			        <li><a href="/accounts/login/">{% trans "Log in" %}</a></li>

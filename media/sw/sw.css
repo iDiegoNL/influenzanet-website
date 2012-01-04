@@ -182,6 +182,13 @@ margin: .8em .3em;
 border: 0;
 }
 
+table.imagetable th {
+background-color: #7AB800;
+}
+
+table.imagetable td {
+	background-color: #FFF;
+}
 /**
  * Survey
  */
@@ -253,6 +260,9 @@ margin: 1em;
 
 #col1 .question { /* Hack to make priority higher*/
 width: 80%;
+}
+#col1 .survey-message {
+width: 512px;
 }
 
 /**
@@ -386,8 +396,6 @@ padding: 0;
 font-size: .7em;
 }
 
-
-
 .journal-latest dt {
 font-weight: bold;
 }
@@ -405,9 +413,76 @@ color: #999;
 .journal-entry-excerpt {}
 .journal-entry-pubdate { color: #999; }
 
+/*
+ * user
+ */
+#user-buttons a {
+display: block;
+margin: .8em;
+padding: 1em;
+border: 1px solid #EEE;
+border-radius: .4em;
+-webkit-border-radius: .4em;
+-moz-border-radius: .4em;
+color: white;
+text-align: center;
+}
+
+#login-button {
+border-color: #007AB8;
+background-color: #007AB8;
+}
+
+#register-button {
+border-color: #7AB800;
+background-color: #7AB800;
+}
+
+#user-box {
+padding: .5em;
+border: 1px solid #EEE;
+border-radius: .4em;
+-webkit-border-radius: .4em;
+-moz-border-radius: .4em;
+position: relative;
+}
+
+#user-box table {
+	border: 0;
+}
+
+#user-avatar {
+float: left;
+margin: .2em;
+}
+
+#user-login {
+text-align: left;
+padding: .3em;
+}
+
+#user-action {
+text-align: left;
+}
+
+#user-action span {
+display: block;
+font-size: .8em;
+}
+
+/**
+ * Externals
+ */
+
+#sentiweb-widget li {
+margin-top: .5em;
+font-size: .7em;
+}
+
 /**
  * Misc
  */
+
 
 img.top-page {
  position: relative;
@@ -415,7 +490,7 @@ img.top-page {
 }
 
 #col1 li.flag {
-	padding: .3em 0 .3em 26px;
+padding: .3em 0 .3em 26px;
 }
 
 .flag-nl,.flag-be,.flag-de, .flag-at, .flag-ch, .flag-se, .flag-uk, .flag-fr, .flag-pt, .flag-es, .flag-it {
@@ -433,5 +508,3 @@ img.top-page {
 .flag-pt { background-image: url(../base/img/influbar/pt.png)}
 .flag-es { background-image: url(../base/img/influbar/es.png)}
 .flag-it { background-image: url(../base/img/influbar/it.png)}
-
-
