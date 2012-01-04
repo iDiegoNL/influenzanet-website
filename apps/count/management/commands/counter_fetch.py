@@ -10,7 +10,7 @@ class Command(NoArgsCommand):
         try:
             cache_delay = settings.COUNT_CACHE_TIMOUT
         except AttributeError:
-            cache_delay = 60 * 30 
+            cache_delay = 60 * 30
 
         data = {}
         for country in SOURCES.keys():
@@ -19,9 +19,8 @@ class Command(NoArgsCommand):
             # set in cache
             key = "count-counter-%s" % country
             cache.set(key, result, timeout=cache_delay)
-
-        if(settings.DEBUG): 
-            print(data)
+            if(settings.DEBUG): 
+                print("%s=%d " %(country,result))
         
         cache.set("count-counter-all", data, timeout=cache_delay)
   
