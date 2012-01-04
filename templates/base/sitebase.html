@@ -18,7 +18,7 @@
 {% render_block "css" %}
 <script type="text/javascript" src="{{ MEDIA_URL }}base/js/jquery-1.5.1.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}base/js/influenzanet.js"></script>
-{% comment %}		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> {%endcomment%}
+{% comment %}<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>{%endcomment%}
 {% block add_js %}{% endblock add_js %}
 {% render_block "js" %}
 
@@ -49,7 +49,7 @@
 				<a href="http://www.aktivgegengrippe.de/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/de.png" title="Germany" alt="Germany" /></a> <span class="disable">{% member_count "de" %}</span>En pr&eacute;paration<br />
 				<a href="http://www.aktivgegengrippe.at/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> <span class="disable">{% member_count "at" %}</span>En pr&eacute;paration<br />
 				<a href="http://www.aktivgegengrippe.ch/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> <span class="disable">{% member_count "ch" %}</span>En pr&eacute;paration<br />
-				<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span class="count-fr">{% member_count "fr" %}</span><br />
+				<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span id="count-fr">{% member_count "fr" %}</span><br />
 			</div>
 		    <div id="influenzatext">
 				Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux avec l’aide de volontaires, par internet. Ce syst&egrave;me est op&eacute;rationnel aux Pays-Bas et en Belgique (depuis 2003), au Portugal (depuis 2005) et en Italie (depuis 2008). L’objectif actuel est d’implanter Influenzanet dans d’autres pays europ&eacute;ens.<br /><br />
@@ -86,6 +86,7 @@
             {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
 			{% endblock menubar %}
 		</div>
+		<span id="counter-div"><span id="counter"></span> Participants</span>
 	</div>			
 </div> 
 {% block content %}{% endblock content %}

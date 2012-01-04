@@ -104,6 +104,11 @@ margin: .3em 0 .2em .3em;
  color: #616365;
 }
 
+#counter-div {
+ padding-left: 1em;
+ font-size: .7em;	
+}
+
 #submenu li, #submenu li a {
  color: #00B9E4;
 }
