@@ -357,7 +357,6 @@ def survey_import(request):
             return redirect(survey)
     return redirect(survey_list)
 
-@login_required
 def chart_data(request, survey_shortname, chart_shortname):
     chart = None
     if request.user.is_active and request.user.is_staff:
