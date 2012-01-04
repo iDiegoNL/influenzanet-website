@@ -5,13 +5,23 @@
 	<a href="/accounts/login" id="login-button">Se connecter</a>
 </div>
 {% else %}	
-<div id="user-space">
+<div id="user-box">
+	<table>
+		<tr>
+			<td id="user-avatar"><img src="{{MEDIA_URL}}/sw/avatar.gif" width="60" height="60"/></td>
+			<td>
+			<div id="user-login">{{ user.username }}</div>
+			</td>
+		</tr>
+	</table>
 <ul>
 	<li class="icon icon-survey"><a href="/survey/">{% trans "Symptoms survey" %}</a></li>
 	<li class="icon icon-survey"><a href="/survey/profile/"> Questionnaire préliminaire </a></li>
 	<li class="icon icon-users"><a href="/survey/people/">{% trans "Manage household" %}</a></li>
 	<li class="icon icon-settings"><a href="/accounts/settings/">{% trans "My settings" %}</a></li>
 	<li class="icon icon-password"><a href="/accounts/password/change">{% trans "Change password" %}</a></li>
+	<li><a href="/accounts/logout/">{% trans "Log out" %}</a></li>
+</li>
 </ul>
 </div>
 {% endif %}
