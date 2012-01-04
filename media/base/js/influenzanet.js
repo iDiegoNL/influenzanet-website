@@ -77,4 +77,9 @@ function externalLinks() {
 $(document).ready(function() {
 	externalLinks();
 	$('#counter').text( $('#count-fr').text() );
+	if($.browser.msie) {
+		var v = Math.ceil(parseFloat($.browser.version));
+		v = 'ie'+v;
+		$('body').addClass('ie '+v);
+	}
 });

@@ -336,6 +336,10 @@ background: white url(user-add.png) left center no-repeat;
  background: #ffffff url(../base/img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
 }
 
+.ie7 #influenzabar {
+ position: relative;
+}
+
 p.influenzanet {
  text-align: right;
  font-size: 11px;
