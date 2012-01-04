@@ -12,7 +12,7 @@ SOURCES = {
     'uk': 'http://flusurvey.org.uk/count/counter/',
     'it': 'http://www.influweb.it/count/counter/',
     'pt': 'http://www.gripenet.pt/count/counter/',
-    'fr': 'http://www.grippenet.fr/count/counter/',
+    'fr': 'https://134.157.220.33/count/counter/',
 }
 
 def site_fetch_count(country):
