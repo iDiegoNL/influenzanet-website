@@ -514,9 +514,9 @@ font-size: .7em;
 }
 
 #social-widgets {
-font-size: .7em;
-max_width: 300px;
-text-align: justify;
+float: left;
+margin: .5em 1em;
+max-width: 300px;
 }
 
 .widget-disabled {
@@ -525,6 +525,8 @@ border: 1px solid #EEE;
 border-radius: .4em;
 padding: .4em;
 width: 250px;	
+font-size: .6em;
+text-align: justify;
 }
 
 /**
