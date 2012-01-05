@@ -8,7 +8,7 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
          
         try:
-            cache_delay = settings.COUNT_CACHE_TIMOUT
+            cache_delay = settings.COUNT_CACHE_TIMEOUT
         except AttributeError:
             cache_delay = 60 * 30
 
