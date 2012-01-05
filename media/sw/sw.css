@@ -523,7 +523,8 @@ text-align: justify;
 color: #666;
 border: 1px solid #EEE;
 border-radius: .4em;
-padding: .4em;	
+padding: .4em;
+width: 250px;	
 }
 
 /**
