@@ -69,15 +69,17 @@
 	    <input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" />
 	</form>
 	</div>
+	<div id="social-widgets">
+	{% if !user.is_authenticated %}
+	<a href="https://twitter.com/grippenet" class="twitter-follow-button" data-show-count="false" data-lang="fr">Suivre @grippenet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FGrippeNet%2F307427382625293&amp;send=false&amp;layout=button_count&amp;width=169&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:169px; height:21px;" allowTransparency="true"></iframe>
+	{%else%}
+		Vous êtes connectés, pour des raisons de sécurité les réseaux sociaux sont désactivés
+	{% endif %}
+	</div>
    {% block authentication %}
 	<div id="account">
-	{% if user.is_authenticated %}
-	{% else %}
-	    <ul class="anonymous">
-	        <li><a href="/accounts/login/">{% trans "Log in" %}</a></li>
-	        <li><a href="/accounts/register/">{% trans "Register" %}</a></li>
-	    </ul>
-	    <p><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>{% endif %}
 	</div>
 	{% endblock authentication %}
 	<div id="navigation">

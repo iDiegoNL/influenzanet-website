@@ -4,6 +4,7 @@
 	<a href="/accounts/register" id="register-button">S'inscrire</a>
 	<a href="/accounts/login" id="login-button">Se connecter</a>
 </div>
+<p><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>
 {% else %}	
 <div id="user-box">
 	<table>
@@ -29,9 +30,4 @@
  <img src="{{MEDIA_URL}}sw/inserm.gif" width="150" height="60" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"  /> 
  <img src="{{MEDIA_URL}}sw/upmc.gif" width="150" height="55" alt="UPMC" title="Université Pierre et Marie Curie"/>
  <img src="{{MEDIA_URL}}sw/invs.gif" width="93" height="65" alt="InVS" title="Institut de Veille Sanitaire"/>
-</div>
-<div id="social-widgets">
-<a href="https://twitter.com/grippenet" class="twitter-follow-button" data-show-count="false" data-lang="fr">Suivre @grippenet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FGrippeNet%2F307427382625293&amp;send=false&amp;layout=button_count&amp;width=169&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:169px; height:21px;" allowTransparency="true"></iframe>
 </div>
