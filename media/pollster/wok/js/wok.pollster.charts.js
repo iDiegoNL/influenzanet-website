@@ -133,7 +133,8 @@
     }
 
     window.wok.pollster.charts.init = function(callback) {
-        google.load('visualization', '1.0', {packages: ['charteditor']});
+        google.load('maps','3', {other_params:"sensor=false"});
+		google.load('visualization', '1.0', {packages: ['charteditor']});
         google.setOnLoadCallback(callback);
     };
 
