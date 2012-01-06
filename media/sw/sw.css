@@ -514,7 +514,7 @@ font-size: .7em;
 }
 
 #social-widgets {
-float: left;
+float: right;
 margin: .5em 1em;
 max-width: 300px;
 }
