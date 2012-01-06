@@ -83,3 +83,9 @@ $(document).ready(function() {
 		$('body').addClass('ie '+v);
 	}
 });
+
+if(!window.console) {
+	window.console = {
+        log: function(e) { }
+    };
+}
