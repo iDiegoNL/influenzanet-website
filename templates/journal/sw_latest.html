@@ -9,7 +9,7 @@
 	{% if news.image %}<img src="{% url journal_thumbnail slug=news.slug %}" {% if news.alignment %}align="{{ news.alignment }}"{% endif %} alt="{{ news.title }}"/>{% endif %}
     <span class="journal-entry-excerpt">{{ news.excerpt }}</span>
     <div class="journal-entry-footer">
-	<a href="/news/{{ news.get_relative_url }}">{% trans "Read more..." %}</a>
+	<a href="{% url journal_index %}{{ news.get_relative_url }}">{% trans "Read more..." %}</a>
 	<span class="journal-entry-pubdate">{{ news.pub_date|date:"d/m/Y" }}</span>
 	</div>
 	</dd>
