@@ -37,8 +37,7 @@ searchMunicipalCode = function (id) {
 		$.ajax({
 		url: '/municipal/search?id='+id,
 		success: function(data) {
-			$('#facebox').html(data);
-			$('#facebox').overlay().load();	
+			show_facebox({contents: data, width: 400, top: 260});
 		}
 	});
 };
@@ -48,20 +47,6 @@ searchMunicipalCode = function (id) {
 window.wok.pollster.datatypes.CodeSelect= CodeSelectType;
 
 $(document).ready(function() {
-	var f = $('#facebox');
-	if(f.length == 0) {
-		$('body').append('<div id="facebox">');
-		var mask = {
-			zIndex: 1000,
-			color: '#fff',
-			loadSpeed: 200,
-			opacity: 0.5
-		};
-		if($.browser.msie) {
-			mask = 0; // disable expose mask on ie
-		}
-		$('#facebox').overlay({ top: 260, mask: mask, closeOnClick: false});
-	}
 	// Patch to pollster, store last particpation data
 	var last_participation_data = {};
     if(window.pollster_last_participation_data) {

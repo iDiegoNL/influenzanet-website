@@ -295,6 +295,8 @@ font-size:20px;
 }
 
 #facebox-inner {
+position: relative;
+height: 100%;
 border:1px solid #3B5998;
 background-color:#fff;
 font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
@@ -305,6 +307,18 @@ padding: 10px;
 text-align: right;
 border: 0;
 font-size: .8em;
+color: white;
+font-weight: bold;
+}
+
+#facebox p {
+ margin: 1em 0 1em 0;
+ line-height: 1.5em;
+}
+
+form.contact_form label, input#id_name, input#id_email, textarea#id_body {
+	clear: none;
+	float: none;
 }
 
 #people-table {
