@@ -61,12 +61,14 @@ if settings.DEBUG:
 if settings.MOBILE_INTERFACE_ACTIVE:
     urlpatterns += patterns('', (r'^ema/', include('apps.survey.api.urls')))
 
+urlpatterns += patterns('', 
+    url(r'^municipal/', include('apps.municipal.urls')),
+    url(r'^feedback/', include('apps.sw_feedback.urls')),
+    (r'^news/', include('apps.journal.urls')),
+)
+
 # Catchall
 urlpatterns += patterns('', url(r'^', include('cms.urls')))
 
 handler500 = 'views.server_error'
 
-urlpatterns += patterns('', 
-    url(r'^municipal/', include('apps.municipal.urls')),
-    (r'^news/', include('apps.journal.urls')),
-)
