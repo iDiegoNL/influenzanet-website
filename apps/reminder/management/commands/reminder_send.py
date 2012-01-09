@@ -17,11 +17,11 @@ class Command(BaseCommand):
         fake = options.get('fake', False)
 
         if not get_settings():
-            return u"0 reminders sent"
+            return u"0 reminders sent - not configured"
 
         if get_settings() and get_settings().currently_sending and\
             get_settings().last_process_started_date + timedelta(hours=3) > datetime.now():
-            return u"0 reminders sent"
+            return u"0 reminders sent - too soon"
 
         settings = get_settings()
         settings.currently_sending = True
