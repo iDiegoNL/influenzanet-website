@@ -561,11 +561,10 @@ position: relative;
 bottom: -3px;
 }
 
-<<<<<<< HEAD
 #user-buttons > p {
  text-align: center;
 }
-=======
+
 #col1 li.flag {
 padding: .3em 0 .3em 26px;
 }
@@ -585,4 +584,3 @@ background: #FFF url() left center no-repeat;
 .flag-pt {background-image: url(../base/img/influbar/pt.png)}
 .flag-es {background-image: url(../base/img/influbar/es.png)}
 .flag-it {background-image: url(../base/img/influbar/it.png)}
->>>>>>> 7d2cdd4726e6dc66da38419c6adac55530737299
