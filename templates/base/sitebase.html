@@ -2,115 +2,106 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ request.LANGUAGE_CODE }}" lang="{{ request.LANGUAGE_CODE }}" dir="ltr">
-
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="initial-scale=0.75, user-scalable=yes" />
-		<meta name="robots" content="index, follow" />
-        <link rel="shortcut icon" href="{{ MEDIA_URL }}sw/grippenet.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="{{ MEDIA_URL }}base/img/apple-touch-icon.png" />      
-
-		<title>{% block title %}{{ site_name }}: {% page_attribute page_title %}{% endblock title %}</title>
-		<meta name="description" content="{% page_attribute meta_description %}"/>
-        <meta name="keywords" content="{% page_attribute meta_keywords %}"/>
-        {% block add_head %}{% endblock add_head %}
-
-        <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}base/css/default.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/sw.css" />
-        {% block add_css %}{% endblock add_css %}
-        {% render_block "css" %}
-		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/jquery-1.5.1.min.js"></script>
-		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/influenzanet.js"></script>
-<!--		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> -->
-        {% block add_js %}{% endblock add_js %}
-        {% render_block "js" %}
-
-	    {% google_analytics %}
-
-	</head>
-
-	<body{% spaceless %}{% block add_body %}{% endblock add_body %}{% endspaceless %}>
-
-	<div id="page">
-		
-		<div id="influenzabar">
-			{% block masthead %}
-				<p class="_toggle influenzanet">Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux par internet.</p>
-				<div class="_toggle influenzabarcontent" id="top">
-					<div id="epiwork">
-						<a href="http://www.influenzanet.eu/" title="Influenzanet website" rel="external">http://www.influenzanet.eu/</a><br /><br />
-						<img src="{{ MEDIA_URL }}base/img/influbar/epiwork.gif" alt="Epiwork Logo" title="Epiwork" /><br />
-						D&eacute;velopper une infrastructure de pr&eacute;vision des &eacute;pid&eacute;mies.<br />
-						<a href="http://www.epiwork.eu/" title="Epiwork website" rel="external">http://www.epiwork.eu/</a><br /><br />
-						Le septi&egrave;me programme-cadre regroupe sous un m&ecirc;me toit toutes les initiatives de l'UE ayant trait à la recherche.<br /><br />
-						<img src="{{ MEDIA_URL }}base/img/influbar/7thframework.gif" alt="7th Framework Logo" title="7th Framework" />
-					</div>
-				    <div id="participants">
-						Pays participants et nombre de volontaires:<br /><br />
-						<a href="http://www.degrotegriepmeting.nl/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/nl.png" title="The Netherlands" alt="The Netherlands" /></a> {% member_count "nl" %}<br />
-						<a href="http://www.degrotegriepmeting.be/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/be.png" title="Belgium" alt="Belgium" /></a> {% member_count "be" %}<br />
-						<a href="http://www.gripenet.pt/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/pt.png" title="Portugal" alt="Portugal" /></a> {% member_count "pt" %}<br />
-						<a href="http://www.influweb.it/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/it.png" title="Italy" alt="Italy" /></a> {% member_count "it" %}<br />
-						<a href="http://flusurvey.org.uk/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/gb.png" title="Great Britain" alt="Great Britain" /></a> {% member_count "uk" %}<br />
-						<a href="http://www.influensakoll.se/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/se.png" title="Sweden" alt="Sweden" /></a> {% member_count "se" %}<br />
-						<a href="http://www.aktivgegengrippe.de/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/de.png" title="Germany" alt="Germany" /></a> <span class="disable">{% member_count "de" %}</span>En pr&eacute;paration<br />
-						<a href="http://www.aktivgegengrippe.at/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> <span class="disable">{% member_count "at" %}</span>En pr&eacute;paration<br />
-						<a href="http://www.aktivgegengrippe.ch/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> <span class="disable">{% member_count "ch" %}</span>En pr&eacute;paration<br />
-						<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span class="disable">{% member_count "fr" %}</span>En pr&eacute;paration<br />
-					</div>
-				    <div id="influenzatext">
-						Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux avec l’aide de volontaires, par internet. Ce syst&egrave;me est op&eacute;rationnel aux Pays-Bas et en Belgique (depuis 2003), au Portugal (depuis 2005) et en Italie (depuis 2008). L’objectif actuel est d’implanter Influenzanet dans d’autres pays europ&eacute;ens.<br /><br />
-						Contrairement au syst&egrave;me traditionnel de surveillance par les m&eacute;decins g&eacute;n&eacute;ralistes, coordonn&eacute; au niveau europ&eacute;en par l’European Influenza Surveillance Scheme, Influenzanet obtient ses données directement de la population. Ceci cr&eacute;&eacute; un syst&egrave;me rapide et flexible, dont l’uniformit&eacute; permet la comparaison directe des taux de syndromes grippaux entre les diff&eacute;rents pays.<br /><br />
-						Tous les habitants d’un pays dans lequel Influenzanet est implant&eacute; peuvent participer en compl&eacute;tant en ligne un formulaire d’inscription. Les participants reçoivent chaque semaine un rappel pour d&eacute;clarer les sympt&ocirc;mes qu’ils ont pu avoir depuis leur dernière visite. L’incidence des syndromes grippaux est calcul&eacute;e sur la base d’une d&eacute;finition de cas standardis&eacute;e.<br /><br />
-						<a href="#top" class="jsclose" title="Close">Masquer ce texte</a>
-				    </div>
-				</div>
-			{% endblock masthead %}
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=0.75, user-scalable=yes" />
+<meta name="robots" content="index, follow" />
+<link rel="shortcut icon" href="{{ MEDIA_URL }}sw/grippenet.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{{ MEDIA_URL }}base/img/apple-touch-icon.png" />      
+<title>{% block title %}{{ site_name }}: {% page_attribute page_title %}{% endblock title %}</title>
+<meta name="description" content="{% page_attribute meta_description %}"/>
+<meta name="keywords" content="{% page_attribute meta_keywords %}"/>
+{% block add_head %}{% endblock add_head %}
+<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}assets/base.css" />
+{% block add_css %}{% endblock add_css %}
+{% render_block "css" %}
+<script type="text/javascript" src="{{ MEDIA_URL }}assets/base.js"></script>
+{% block add_js %}{% endblock add_js %}
+{% render_block "js" %}
+{% google_analytics %}
+</head>
+<body{% spaceless %}{% block add_body %}{% endblock add_body %}{% endspaceless %}>
+<div id="facebox">
+   <div id="facebox-inner">
+   	<div id="facebox-content"></div>
+   <div id="facebox-close"><a href="#facebox-inner" onclick="$('#facebox').overlay().close()">Fermer cette boite</a></div>
+   </div>
+</div>
+<div id="page">
+	<div id="influenzabar">
+	{% block masthead %}
+		<p class="_toggle influenzanet">Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux par internet.</p>
+		<div class="_toggle influenzabarcontent" id="top">
+			<div id="epiwork">
+				<a href="http://www.influenzanet.eu/" title="Influenzanet website" rel="external">http://www.influenzanet.eu/</a><br /><br />
+				<img src="{{ MEDIA_URL }}base/img/influbar/epiwork.gif" alt="Epiwork Logo" title="Epiwork" /><br />
+				D&eacute;velopper une infrastructure de pr&eacute;vision des &eacute;pid&eacute;mies.<br />
+				<a href="http://www.epiwork.eu/" title="Epiwork website" rel="external">http://www.epiwork.eu/</a><br /><br />
+				Le septi&egrave;me programme-cadre regroupe sous un m&ecirc;me toit toutes les initiatives de l'UE ayant trait à la recherche.<br /><br />
+				<img src="{{ MEDIA_URL }}base/img/influbar/7thframework.gif" alt="7th Framework Logo" title="7th Framework" />
+			</div>
+		    <div id="participants">
+				Pays participants et nombre de volontaires:<br /><br />
+				<a href="http://www.degrotegriepmeting.nl/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/nl.png" title="The Netherlands" alt="The Netherlands" /></a> {% member_count "nl" %}<br />
+				<a href="http://www.degrotegriepmeting.be/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/be.png" title="Belgium" alt="Belgium" /></a> {% member_count "be" %}<br />
+				<a href="http://www.gripenet.pt/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/pt.png" title="Portugal" alt="Portugal" /></a> {% member_count "pt" %}<br />
+				<a href="http://www.influweb.it/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/it.png" title="Italy" alt="Italy" /></a> {% member_count "it" %}<br />
+				<a href="http://flusurvey.org.uk/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/gb.png" title="Great Britain" alt="Great Britain" /></a> {% member_count "uk" %}<br />
+				<a href="http://www.influensakoll.se/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/se.png" title="Sweden" alt="Sweden" /></a> {% member_count "se" %}<br />
+				<a href="http://www.aktivgegengrippe.de/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/de.png" title="Germany" alt="Germany" /></a> <span class="disable">{% member_count "de" %}</span>En pr&eacute;paration<br />
+				<a href="http://www.aktivgegengrippe.at/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> <span class="disable">{% member_count "at" %}</span>En pr&eacute;paration<br />
+				<a href="http://www.aktivgegengrippe.ch/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> <span class="disable">{% member_count "ch" %}</span>En pr&eacute;paration<br />
+				<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span id="count-fr">{% member_count "fr" %}</span><br />
+			</div>
+		    <div id="influenzatext">
+				Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux avec l’aide de volontaires, par internet. Ce syst&egrave;me est op&eacute;rationnel aux Pays-Bas et en Belgique (depuis 2003), au Portugal (depuis 2005) et en Italie (depuis 2008). L’objectif actuel est d’implanter Influenzanet dans d’autres pays europ&eacute;ens.<br /><br />
+				Contrairement au syst&egrave;me traditionnel de surveillance par les m&eacute;decins g&eacute;n&eacute;ralistes, coordonn&eacute; au niveau europ&eacute;en par l’European Influenza Surveillance Scheme, Influenzanet obtient ses données directement de la population. Ceci cr&eacute;&eacute; un syst&egrave;me rapide et flexible, dont l’uniformit&eacute; permet la comparaison directe des taux de syndromes grippaux entre les diff&eacute;rents pays.<br /><br />
+				Tous les habitants d’un pays dans lequel Influenzanet est implant&eacute; peuvent participer en compl&eacute;tant en ligne un formulaire d’inscription. Les participants reçoivent chaque semaine un rappel pour d&eacute;clarer les sympt&ocirc;mes qu’ils ont pu avoir depuis leur dernière visite. L’incidence des syndromes grippaux est calcul&eacute;e sur la base d’une d&eacute;finition de cas standardis&eacute;e.<br /><br />
+				<a href="#top" class="jsclose" title="Close">Masquer ce texte</a>
+		    </div>
 		</div>
-		
-		<div id="header">
-			<div id="headerlogo"><a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/grippenet.png" alt="GrippeNet logo" /></a></div>
-			{% block authentication %}<div id="account">{% if user.is_authenticated %}
-			    <ul class="member">
-			        <li><a href="/survey/profile/">{% trans "My account" %}</a></li>
-			        <li><a href="/accounts/logout/">{% trans "Log out" %}</a></li>
-			    </ul>
-			    <p class="loggedinas"><a href="/survey/profile/">{% trans "Logged in as" %} {{ user.username }}</a></p>
-			{% else %}
-			    <ul class="anonymous">
-			        <li><a href="/accounts/login/">{% trans "Log in" %}</a></li>
-			        <li><a href="/accounts/register/">{% trans "Register" %}</a></li>
-			    </ul>
-			    <p><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>{% endif %}
-			</div>{% endblock authentication %}
-			<div id="navigation">
-				<div id="menubars">
-					{% block menubar %}
-                    {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
-					{% endblock menubar %}
-				</div>
-				<div id="searchbar">
-                    <form method="get" action="/search/">
-                        <input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" />
-                    </form>
-				</div>
-			</div>			
-		</div> 
-		
-		{% block content %}{% endblock content %}
-		
-		<div id="footer">{% block footercontent %}
-            <div id="footerclose">
-             &copy; {% now "Y" %}  GrippeNet.fr
-			 <a href="http://www.sentiweb.fr">réseau Sentinelles</a>, UMR S 707, 
-			 <img src="{{MEDIA_URL}}sw/inserm-xs.gif" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale" width="99" height="25" /> 
-			 <img src="{{MEDIA_URL}}sw/upmc-xs.gif" width="75" height="25" alt="UPMC" title="Université Pierre et Marie Curie"/>
-			 <img src="{{MEDIA_URL}}sw/invs-xs.gif" width="50" height="35" alt="InVS" title="Institut de Veille Sanitaire"/>
-			 
-			 - <a href="mailto:contact@grippenet.fr">Nous écrire</a>
-            </div>
-			</div>{% endblock footercontent %}
-		</div>
+	{% endblock masthead %}
 	</div>
-	</body>
+	
+<div id="header">
+	<div id="headerlogo"><a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/grippenet.png" alt="GrippeNet logo" /></a></div>
+	
+	<div id="searchbar">
+	<form method="get" action="/search/">
+	    <input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" />
+	</form>
+	</div>
+	<div id="social-widgets">
+	{% if not user.is_authenticated %}
+	<iframe src="//platform.twitter.com/widgets/follow_button.html?screen_name=grippenet&lang=fr&show_count=false" allowtransparency="true" frameborder="0" scrolling="no" style="width:169px; height:21px;"></iframe>
+	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FGrippeNet%2F307427382625293&amp;send=false&amp;layout=button_count&amp;width=169&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:169px; height:21px;" allowTransparency="true"></iframe>
+	{%else%}
+		<div class="widget-disabled">Vous êtes connectés, pour des raisons de sécurité les réseaux sociaux sont désactivés</div>
+	{% endif %}
+	</div>
+   {% block authentication %}
+	<div id="account">
+	</div>
+	{% endblock authentication %}
+	<div id="navigation">
+		<div id="menubars">
+			{% block menubar %}
+            {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
+			{% endblock menubar %}
+		</div>
+		<span id="counter-div"><span id="counter"></span> Participants</span>
+	</div>			
+</div> 
+{% block content %}{% endblock content %}
+<div id="footer">{% block footercontent %}
+    <div id="footerclose">
+     &copy; {% now "Y" %}  GrippeNet.fr
+	 &nbsp;-&nbsp;<a href="http://www.sentiweb.fr">UMR S 707, réseau Sentinelles</a> 			 
+	 &nbsp;-&nbsp;<a href="mailto:contact@grippenet.fr">Nous écrire</a>
+	 &nbsp;-&nbsp;<a href="/mentions-legales/">Mentions légales</a> 
+    </div>
+	</div>{% endblock footercontent %}
+</div>
+</div>
+</body>
 </html>

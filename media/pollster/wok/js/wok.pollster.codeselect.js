@@ -13,36 +13,33 @@
 			b.text('Cliquez ici pour trouver votre commune');
 			b.addClass('codeselect-button');
 			b.click(function(ev){
-				console.log(ev);
-				console.log(id);
 				searchMunicipalCode(id);
 			});
 			$field.after(b);
 			var b = $('<span id="'+id+'-title" class="codeselect-title"></span>');
-			var v = $field.val();
-			if(v != '') {
-				b.text(v);	
-			}
 			$field.after(b);
+			var name = $field.attr('name');
+			var v = window.wok.pollster.last_participation_data[name] || '';
+			if(v != '') {
+				$.ajax({
+					url: '/municipal/title/'+v,
+					success: function(data) {
+						console.log(data);
+						b.text(data);
+					}
+				});	
+			}
 		}
     });
 }
 
 searchMunicipalCode = function (id) {
-	var mask = {
-		zIndex: 1000,
-		color: '#fff',
-		loadSpeed: 200,
-		opacity: 0.5
-	};
-	if($.browser.msie) {
-		mask = 0; // disable expose mask on ie
-	}
-	$('#facebox').load('/municipal/search?id='+id).overlay({
-		top: 260,
-		mask: mask,
-		closeOnClick: false
-	}).load();
+		$.ajax({
+		url: '/municipal/search?id='+id,
+		success: function(data) {
+			show_facebox({contents: data, width: 400, top: 260});
+		}
+	});
 };
 
 
@@ -50,10 +47,15 @@ searchMunicipalCode = function (id) {
 window.wok.pollster.datatypes.CodeSelect= CodeSelectType;
 
 $(document).ready(function() {
-	var f = $('#facebox');
-	if(f.length == 0) {
-		$('body').append('<div id="facebox">');	
+	// Patch to pollster, store last particpation data
+	var last_participation_data = {};
+    if(window.pollster_last_participation_data) {
+		last_participation_data = pollster_last_participation_data();
+		if(!last_participation_data) {
+			last_participation_data = {};
+		}
 	}
-})
+    window.wok.pollster.last_participation_data = last_participation_data;
+});
 
 })(jQuery);

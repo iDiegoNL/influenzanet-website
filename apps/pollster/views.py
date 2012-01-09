@@ -433,7 +433,7 @@ def urls(request, prefix=''):
 
 def _get_active_survey_user(request):
     gid = request.GET.get('gid', None)
-    if gid is None:
+    if gid is None or not request.user.is_active:
         return None
     else:
         return SurveyUser.objects.get(global_id=gid, user=request.user)

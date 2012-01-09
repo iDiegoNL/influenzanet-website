@@ -123,6 +123,10 @@ CMS_TEMPLATES = (
     ('base/influhome.html', "European Map"),
 )
 
+GEOMETRY_TABLES = (
+ ('pollster_zip_codes','zip level'),
+)
+
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
@@ -169,6 +173,8 @@ INSTALLED_APPS = (
     'haystack',
     'apps.pollster',
     'apps.municipal',
+    'apps.sw_feedback',
+    'apps.contest',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -215,10 +221,15 @@ MOBILE_INTERFACE_ACTIVE = False
 
 STORE_RESPONSES_LOCALLY = False
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
 try:
     from local_settings import *
 except ImportError:
     pass
+
+INSTALLED_APPS += LOCAL_APPS
+MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    
 
 CACHES = {
     'default': {

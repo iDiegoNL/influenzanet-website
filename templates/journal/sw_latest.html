@@ -1,0 +1,21 @@
+{% load i18n %}
+<div class="journal-latest">
+<p class="title">{% trans "Latest news" %}</p>
+<dl>
+{% for news in latest %}
+	<dt>{{ news.title }}</dt>
+    {# see latest.html #}
+	<dd>
+	{% if news.image %}<img src="{% url journal_thumbnail slug=news.slug %}" {% if news.alignment %}align="{{ news.alignment }}"{% endif %} alt="{{ news.title }}"/>{% endif %}
+    <span class="journal-entry-excerpt">{{ news.excerpt }}</span>
+    <div class="journal-entry-footer">
+	<a href="{% url journal_index %}{{ news.get_relative_url }}">{% trans "Read more..." %}</a>
+	<span class="journal-entry-pubdate">{{ news.pub_date|date:"d/m/Y" }}</span>
+	</div>
+	</dd>
+{% empty %}
+	<dt>{% trans "No news yet" %}</dt>
+	<dd>&nbsp;</dd>
+{% endfor %}
+</dl>
+</div>

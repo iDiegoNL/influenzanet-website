@@ -1,4 +1,3 @@
-<div>
 <h2>Trouvez votre commune</h2>
 <form action="" method="post" id="zipform">
 	Entrez votre code postal : <input type="text" name="zip" value="" size="5" id="zip_code"/>
@@ -6,6 +5,7 @@
 	<ul id="zip_codelist"></ul>
 	{% csrf_token %}
 	<span id="zip_help" style="display:none"></span>
+	<div id="zip_warning">Les codes postaux saisis ne seront pas conservés</div>
 </form>
 <script type="text/javascript">
 
@@ -48,4 +48,3 @@ function searchZip() {
 }
 
 </script>
-</div>
