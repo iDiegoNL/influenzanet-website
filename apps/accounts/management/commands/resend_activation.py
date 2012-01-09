@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from registration.models import RegistrationProfile
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 
 class Command(BaseCommand):
     help = 'Register a survey specification.'
@@ -20,13 +21,21 @@ class Command(BaseCommand):
         
         user = options.get('user')
         fake = options.get('fake')
+        
+        site = Site.objects.get_current()
+    
         if user is None:
             users = User.objects.filter(is_active=False)
         else:
             users = User.objects.filter(login=user)
+    
+        if len(users) == 0:
+            print 'Nothing to resend'
+            return
         
+        print "%d user(s) to scan " % len(users)        
         for u in users:
             profile = RegistrationProfile.objects.get(user=u)
             if not profile.activation_key_expired:
-                print u
+                profile.send_activation_email(site)
 
