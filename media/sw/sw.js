@@ -78,4 +78,8 @@ function show_facebox(options) {
 	fb.css(style);
 	fb.overlay().load();
 }
+
+function close_facebox() {
+	$('#facebox').overlay().close();
+}
 	
