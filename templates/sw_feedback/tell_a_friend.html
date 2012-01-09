@@ -1,0 +1,8 @@
+{% load i18n %}
+{% block col1 %}
+<h2>Envoyer à un ami</h2>
+<form method="post" action="" class="contact_form">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" id="commentsubmit" value="{% trans "Send" %}" />
+</form>
+{% endblock col1 %}
