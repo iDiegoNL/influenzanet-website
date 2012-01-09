@@ -37,7 +37,6 @@ def change_path(m, path_to ):
  path = os.path.normpath(os.path.realpath(p))
  path = os.path.relpath(path, path_to)
  path = path.replace("\\",'/')
- print "%s => %s" % (p, path)
  return "url(%s)" % path
  
 def process_file(filename, type, path_to, context=None):
