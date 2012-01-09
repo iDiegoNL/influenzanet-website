@@ -861,7 +861,8 @@ class Chart(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=255, default='DRAFT', choices=CHART_STATUS_CHOICES)
-
+    geotable = models.CharField(max_length=255, default='pollster_zip_codes', choices=settings.GEOMETRY_TABLES)
+    
     class Meta:
         ordering = ['survey', 'shortname']
         unique_together = ('survey', 'shortname')
@@ -1055,18 +1056,20 @@ class Chart(models.Model):
 
     def update_table(self):
         table_query = self.sqlsource
+        geo_table = self.geotable
         if table_query:
             table = self.get_table_name()
             view = self.get_view_name()
+            
             if re.search(r'\bzip_code_country\b', table_query):
                 view_query = """SELECT A.*, B.id AS OGC_FID, B.geometry
-                                  FROM pollster_zip_codes B, (SELECT * FROM %s) A
+                                  FROM %s B, (SELECT * FROM %s) A
                                  WHERE upper(A.zip_code_key) = upper(B.zip_code_key)
-                                   AND upper(A.zip_code_country) = upper(B.country)""" % (table,)
+                                   AND upper(A.zip_code_country) = upper(B.country)""" % (geo_table, table,)
             else:
                 view_query = """SELECT A.*, B.id AS OGC_FID, B.geometry
-                                  FROM pollster_zip_codes B, (SELECT * FROM %s) A
-                                 WHERE upper(A.zip_code_key) = upper(B.zip_code_key)""" % (table,)
+                                  FROM %s B, (SELECT * FROM %s) A
+                                 WHERE upper(A.zip_code_key) = upper(B.zip_code_key)""" % (geo_table, table,)
             cursor = connection.cursor()
             #try:
             cursor.execute("DROP VIEW IF EXISTS %s" % (view,))
@@ -1146,15 +1149,16 @@ class Chart(models.Model):
             return (None, [])
 
     def load_zip_coords(self, zip_code_key, zip_code_country=None):
+        geo_table = self.geotable
         if zip_code_country:
             query = """SELECT ST_Y(ST_Centroid(geometry)) AS lat, ST_X(ST_Centroid(geometry)) AS lng
-                         FROM pollster_zip_codes WHERE zip_code_key = %s AND country = %s"""
-            args = (zip_code_key, zip_code_country)
+                         FROM %s WHERE zip_code_key = %s AND country = %s"""
+            args = (geo_table,zip_code_key, zip_code_country)
 
         else:
             query = """SELECT ST_Y(ST_Centroid(geometry)) AS lat, ST_X(ST_Centroid(geometry)) AS lng
-                         FROM pollster_zip_codes WHERE zip_code_key = %s"""
-            args = (zip_code_key,)
+                         FROM %s WHERE zip_code_key = %s"""
+            args = (geo_table,zip_code_key,)
         try:
             cursor = connection.cursor()
             cursor.execute(query, args)
