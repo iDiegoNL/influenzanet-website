@@ -12,19 +12,21 @@
 <meta name="description" content="{% page_attribute meta_description %}"/>
 <meta name="keywords" content="{% page_attribute meta_keywords %}"/>
 {% block add_head %}{% endblock add_head %}
-<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}base/css/default.css" />
-<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/sw.css" />
+<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}assets/base.css" />
 {% block add_css %}{% endblock add_css %}
 {% render_block "css" %}
-<script type="text/javascript" src="{{ MEDIA_URL }}base/js/jquery-1.5.1.min.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}base/js/influenzanet.js"></script>
-{% comment %}<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>{%endcomment%}
+<script type="text/javascript" src="{{ MEDIA_URL }}assets/base.js"></script>
 {% block add_js %}{% endblock add_js %}
 {% render_block "js" %}
-
 {% google_analytics %}
 </head>
 <body{% spaceless %}{% block add_body %}{% endblock add_body %}{% endspaceless %}>
+<div id="facebox">
+   <div id="facebox-inner">
+   	<div id="facebox-content"></div>
+   <div id="facebox-close"><a href="#facebox-inner" onclick="$('#facebox').overlay().close()">Fermer cette boite</a></div>
+   </div>
+</div>
 <div id="page">
 	<div id="influenzabar">
 	{% block masthead %}
