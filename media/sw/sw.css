@@ -525,10 +525,12 @@ line-height: 1.4em;
 #sentiweb-widget li {
  margin-top: .5em;
  font-size: .7em;
+}
+
+.icon-sentiweb, .icon-invs, .icon-grog {
  padding-left: 40px;
  background: #FFF url() left center no-repeat;
 }
-
 .icon-sentiweb { background-image: url(logos/sentiweb-xs.gif) }
 .icon-invs { background-image: url(logos/invs-xs.gif) }
 .icon-grog { background-image: url(logos/grog-xs.gif) }
