@@ -320,3 +320,7 @@ img.top-page {
  position: relative;
  bottom: -3px;
 }
+
+#user-buttons > p {
+ text-align: center;
+}
