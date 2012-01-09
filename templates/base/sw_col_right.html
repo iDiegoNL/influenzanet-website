@@ -1,11 +1,11 @@
 {%load i18n %}
 {%if not user.is_authenticated %}
 <div id="user-buttons">
-	<a href="/accounts/register" id="register-button">S'inscrire</a>
+	<a href="/accounts/register" id="register-button" rel="facebox-iframe" data-iframe-style="width:400px;height:500px;border:0" data-facebox-width="500px">S'inscrire</a>
 	<a href="/accounts/login" id="login-button">Se connecter</a>
 	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
 </div>
-<p><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>
+<p><a href="/accounts/password/reset/" rel="facebox">{% trans "Forgot password?" %}</a></p>
 {% else %}	
 <div id="user-box">
 	<table>
@@ -28,7 +28,7 @@
 </div>
 {% endif %}
 <div id="logos">
- <img src="{{MEDIA_URL}}sw/inserm.gif" width="150" height="60" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"  /> 
- <img src="{{MEDIA_URL}}sw/upmc.gif" width="150" height="55" alt="UPMC" title="Université Pierre et Marie Curie"/>
- <img src="{{MEDIA_URL}}sw/invs.gif" width="93" height="65" alt="InVS" title="Institut de Veille Sanitaire"/>
+ <a href="http://www.inserm.fr" rel="external"><img src="{{MEDIA_URL}}sw/inserm.gif" width="150" height="60" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"  /></a> 
+ <a href="http://www.upmc.fr" rel="external"><img src="{{MEDIA_URL}}sw/upmc.gif" width="150" height="55" alt="UPMC" title="Université Pierre et Marie Curie"/></a>
+ <a href="http://www.invs.sante.fr" rel="external"><img src="{{MEDIA_URL}}sw/invs.gif" width="93" height="65" alt="InVS" title="Institut de Veille Sanitaire"/></a>
 </div>
