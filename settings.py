@@ -173,6 +173,7 @@ INSTALLED_APPS = (
     'haystack',
     'apps.pollster',
     'apps.municipal',
+    'apps.sw_feedback',
     'apps.contest',
 )
 
@@ -220,10 +221,15 @@ MOBILE_INTERFACE_ACTIVE = False
 
 STORE_RESPONSES_LOCALLY = False
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
 try:
     from local_settings import *
 except ImportError:
     pass
+
+INSTALLED_APPS += LOCAL_APPS
+MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    
 
 CACHES = {
     'default': {
