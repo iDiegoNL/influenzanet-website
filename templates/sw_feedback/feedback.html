@@ -1,1 +1,5 @@
-{{ response }}
+{%if token %}
+<iframe src="https://websenti.u707.jussieu.fr/feedback/?token={{token}}&from={{page}}" width="100%" height="400px" frameborder="0" style="border:0" scrolling="no"></iframe>
+{%else%}
+Feedback inteface unavailable, retry later
+{%endif%}

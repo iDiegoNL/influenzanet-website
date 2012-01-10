@@ -55,6 +55,8 @@ $(function() {
 		show_facebox({iframe: {src: url, style: style}, top: 0 });
 		return false;
 	});
+	var from = escape(document.location.pathname);
+	$('#feedback-link').attr('href', '/feedback?from='+from);
 });
 
 function show_facebox(options) {
@@ -80,9 +82,11 @@ function show_facebox(options) {
 	}
 	fb.css(style);
 	fb.overlay().load();
+	var h = fb.height();
+	$('#facebox-inner').height( h - 20 );
+	
 }
 
 function close_facebox() {
 	$('#facebox').overlay().close();
 }
-	

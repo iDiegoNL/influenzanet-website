@@ -7,7 +7,7 @@ def feeback_token(site):
         r = urlopen(url)
         result = r.read()
         if r.getcode() == 202:
-            result = json.load(result)
+            result = json.loads(result)
             return result
     except HTTPError, e:
         print url
