@@ -296,11 +296,11 @@ font-size:20px;
 
 #facebox-inner {
 position: relative;
-height: 100%;
 border:1px solid #3B5998;
 background-color:#fff;
 font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 padding: 10px;
+overflow: auto;
 }
 
 #facebox-close {
@@ -550,6 +550,22 @@ padding: .4em;
 width: 250px;	
 font-size: .6em;
 text-align: justify;
+}
+
+#feedback {
+font-size: .8em;
+margin: .5em .3em;
+border:1px solid #DDD;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+border-radius:3px;
+padding: .3em;
+background-color: #EEE;
+}
+
+#feedback a {
+text-decoration:none;
+color: #222;	
 }
 
 /**

@@ -70,6 +70,9 @@
 	<form method="get" action="/search/">
 	    <input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" />
 	</form>
+	<div id="feedback">
+		<a href="/feedback" rel="facebox" data-facebox-width="650" data-facebox-height="450" id="feedback-link">Un commentaire, un problème</a>
+	</div>
 	</div>
 	<div id="social-widgets">
 	{% if not user.is_authenticated %}
@@ -79,10 +82,7 @@
 		<div class="widget-disabled">Vous êtes connectés, pour des raisons de sécurité les réseaux sociaux sont désactivés</div>
 	{% endif %}
 	</div>
-   {% block authentication %}
-	<div id="account">
-	</div>
-	{% endblock authentication %}
+   {% block authentication %}{% endblock authentication %}
 	<div id="navigation">
 		<div id="menubars">
 			{% block menubar %}
