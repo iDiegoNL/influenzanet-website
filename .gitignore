@@ -19,3 +19,4 @@ dist/
 media/uploads/
 media/journal_images/
 _pollster_tile_cache/
+epidb/client/epidb_results.sql*
