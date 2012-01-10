@@ -23,7 +23,7 @@ $(function() {
 	}
 	$('#facebox').overlay({ top: '10%', mask: mask, closeOnClick: false});
 	$('a[rel=facebox]').click(function(ev){
-		uvar rl = $(this).attr('href');
+		var url = $(this).attr('href');
 		console.log('facebox');
 		var width = $(this).attr('data-facebox-width');
 		var height = $(this).attr('data-facebox-height');
