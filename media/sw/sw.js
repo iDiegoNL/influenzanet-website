@@ -67,7 +67,11 @@ function show_facebox(options) {
 		iframe = options.iframe;
 		$('#facebox-content').html('<iframe src="'+iframe.src+'" style="'+iframe.style+'"></iframe>');
 	}
-	top = options.top ? options.top : 0;
+	if(options.top) {
+		top = options.top;
+	} else {
+		top = 0;	
+	}
 	style = {top: options.top };
 	if(options.width) {
 		style.width = options.width;
