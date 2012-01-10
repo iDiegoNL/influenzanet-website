@@ -23,11 +23,11 @@ $(function() {
 	}
 	$('#facebox').overlay({ top: '10%', mask: mask, closeOnClick: false});
 	$('a[rel=facebox]').click(function(ev){
-		url = $(this).attr('href');
+		uvar rl = $(this).attr('href');
 		console.log('facebox');
-		width = $(this).attr('data-facebox-width');
-		height = $(this).attr('data-facebox-height');
-		o = {};
+		var width = $(this).attr('data-facebox-width');
+		var height = $(this).attr('data-facebox-height');
+		var o = {};
 		if(width) {
 			o.width = width;
 		}
@@ -44,11 +44,11 @@ $(function() {
 		return false;
 	});
 	$('a[rel=facebox-iframe]').click(function(ev){
-		url = $(this).attr('href');
+		var url = $(this).attr('href');
 		console.log('facebox-iframe');
-		width = $(this).attr('data-facebox-width');
-		style = $(this).attr('data-iframe-style');
-		opt = {};
+		var width = $(this).attr('data-facebox-width');
+		var style = $(this).attr('data-iframe-style');
+		var opt = {};
 		if(width) {
 			opt.width = width;
 		}
@@ -59,20 +59,19 @@ $(function() {
 
 function show_facebox(options) {
 	options = options || {};
-	fb = $('#facebox');
+	var fb = $('#facebox');
 	if(options.contents) {
 		$('#facebox-content').html(options.contents);
 	}
 	if(options.iframe) {
-		iframe = options.iframe;
+		var iframe = options.iframe;
 		$('#facebox-content').html('<iframe src="'+iframe.src+'" style="'+iframe.style+'"></iframe>');
 	}
+	var top = 0;
 	if(options.top) {
 		top = options.top;
-	} else {
-		top = 0;	
 	}
-	style = {top: options.top };
+	var style = {'top': top };
 	if(options.width) {
 		style.width = options.width;
 	}
