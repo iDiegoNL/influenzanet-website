@@ -4,10 +4,10 @@ from django.shortcuts import render_to_response, redirect
 from django.core.mail import send_mail
 from django.template import RequestContext
 from .feedback import feeback_token
+
 def feedback(request):
     r = feeback_token('FB-OJ74GAJD-85')
-    token = r['token']
-    return render_to_response('sw_feedback/feedback.html',{token:token})
+    return render_to_response('sw_feedback/feedback.html',{ 'response':r })
 
 def tell_a_friend(request):
     if request.method == 'POST':
