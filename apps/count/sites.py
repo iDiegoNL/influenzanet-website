@@ -18,11 +18,10 @@ def site_fetch_count(country):
         result = urllib2.urlopen(SOURCES[country], timeout=2).read()
     except Exception, e:
         print e
-        result = '0'
-
+        result = 'NA'
     try:
         int(result)
     except ValueError:
-        result = '0'
+        result = 'NA'
 
     return result    
