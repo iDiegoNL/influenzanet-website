@@ -65,11 +65,12 @@
 	
 <div id="header">
 	<div id="headerlogo"><a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/grippenet.png" alt="GrippeNet logo" /></a></div>
-	
+	{%comment%}
 	<div id="searchbar">
 	<form method="get" action="/search/">
 	    <input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" />
 	</form>
+	{%endcomment%}
 	<div id="feedback">
 		<a href="/feedback" rel="facebox" data-facebox-width="650" data-facebox-height="450" id="feedback-link">Un commentaire, un problème</a>
 	</div>
