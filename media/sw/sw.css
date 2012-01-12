@@ -541,9 +541,10 @@ line-height: 1.4em;
 .icon-grog { background-image: url(logos/grog-xs.gif) }
 
 #social-widgets {
-float: right;
-margin: .5em 1em;
-max-width: 300px;
+	float: right;
+	margin: .5em 0;
+	padding:0; 
+	max-width: 300px;
 }
 
 .widget-disabled {
