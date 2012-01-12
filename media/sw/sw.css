@@ -361,6 +361,7 @@ p.influenzanet {
  font-size: 11px;
  position: relative;
  padding: .9em;
+ border-bottom: 1px solid #E5E5E5;
 }
 
 p.toggle {
