@@ -20,6 +20,7 @@ media/uploads/
 media/journal_images/
 _pollster_tile_cache/
 .project
+epidb/client/epidb_results.sql*
 lib64/
 .settings/
 .pydevproject
