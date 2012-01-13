@@ -22,7 +22,8 @@
 </tr>
 {% endfor %}
 <tr>
-	<td colspan="4" style="text-align:left"><a href="{% url survey_people_add %}" class="action-add-people">{% trans "Add new person" %}</a></td>
+	<td colspan="4" style="text-align:left"><a href="{% url survey_people_add %}" class="action-add-people">{% trans "Add new person" %}</a>
+	<div style="font-size: .8em">L'autorisation de recueillir des données concernant les mineurs étant en cours, il n'est pour le moment pas possible d'inscrire un participant de moins de 18 ans.</div></td>
 </tr>
 </table>
 {% endblock %}
