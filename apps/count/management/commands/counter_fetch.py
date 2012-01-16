@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     help = 'Fetch counter value'
     option_list = BaseCommand.option_list + (
-        make_option('-c', '--country', action='store_string',
+        make_option('-c', '--country', action='store', type='string',
             dest='country', default='all',
             help='Country to fetch.'),
      )
