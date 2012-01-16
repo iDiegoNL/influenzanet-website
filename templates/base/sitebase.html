@@ -70,10 +70,25 @@
 	<form method="get" action="/search/">
 	    <input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" />
 	</form>
+	<a onclick="show_facebox($('#searchbox'))" href="#">Rechercher</a> 
+	<div id="searchbox" style="display:none">
+	<FORM method="GET" action="http://www.google.fr/search" style="display:inline"> 
+	<A HREF="http://www.google.fr"> 
+	<IMG SRC="//websenti.u707.jussieu.fr/sentiweb/img/tags/google.gif" border="0" 
+	ALT="Google" align="absmiddle"></A> 
+	<input name="sitesearch" type="hidden" value="grippenet.fr"/>
+	<input type="text" name="q" size="31" maxlength="255" value=""/> 
+	<input type="hidden" name="hl" value="fr"/> 
+	<button type="submit">Rechercher</button> 
+	</FORM> 
+	<!-- Google --> 
+	</div>
 	{%endcomment%}
+		
 	<div id="feedback">
 		<a href="/feedback" rel="facebox" data-facebox-width="650" data-facebox-height="450" id="feedback-link" class="icon icon-feeback">Un commentaire, un problème ?</a>
 	</div>
+		<span id="counter-div"><span id="counter"></span> Participants (actualisé toutes les 5 min.)</span> 
 	</div>
    {% block authentication %}{% endblock authentication %}
 	<div id="navigation">
@@ -82,7 +97,6 @@
             {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
 			{% endblock menubar %}
 		</div>
-		<span id="counter-div"><span id="counter"></span> Participants</span>
 	</div>			
 </div> 
 {% block content %}{% endblock content %}
