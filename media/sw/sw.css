@@ -521,6 +521,7 @@ line-height: 1.4em;
 .icon-settings { background-image: url(settings.png)}
 .icon-password { background-image: url(password.png)}
 .icon-feeback { background-image:url(avis.png)}
+.icon-logout { background-image:url(logout.png)}
 
 /**
  * Externals
