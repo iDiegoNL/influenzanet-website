@@ -907,7 +907,6 @@ class Chart(models.Model):
                 shortname = settings.POLLSTER_USER_PROFILE_SURVEY
                 survey = Survey.objects.get(shortname=shortname, status='PUBLISHED')
                 lpd = survey.get_last_participation_data(user_id, global_id)
-                print 'about to not happen',lpd ,hasattr(settings, 'POLLSTER_USER_ZIP_CODE_DATA_NAME')
                 if lpd and hasattr(settings, 'POLLSTER_USER_ZIP_CODE_DATA_NAME'):
                     zip_code = lpd.get(settings.POLLSTER_USER_ZIP_CODE_DATA_NAME)
                     if zip_code is not None:
