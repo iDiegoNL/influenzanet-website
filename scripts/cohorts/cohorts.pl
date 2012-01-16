@@ -105,30 +105,37 @@ while (<STDIN>) {
 	my @unvaccinated = @data;
 	my @data = split /,/, <STDIN>;
 
-	my $matching_group = ($data[$vaccinated_index] == 1);
-	for (my $i = 0; $i < $vaccinated_index; $i++) {
-	    $matching_group *= ("$data[$i]" eq "$unvaccinated[$i]");
-	}
-	if ($matching_group) {
-	    my @vaccinated = @data;
-	    my $vaccinated_total =
-		$vaccinated[$ili_index] + $vaccinated[$nonili_index];
-	    my $unvaccinated_total =
-		$unvaccinated[$ili_index] + $unvaccinated[$nonili_index];
-	    my $smaller_total = min($vaccinated_total, $unvaccinated_total);
-	    $unvaccinated_ili{$year}{$week} +=
-		$unvaccinated[$ili_index] *
-		    $smaller_total / $unvaccinated_total;
-	    $unvaccinated_nonili{$year}{$week} +=
-		$unvaccinated[$nonili_index] *
-		    $smaller_total / $unvaccinated_total;
-	    $vaccinated_ili{$year}{$week} +=
-		$vaccinated[$ili_index] *
-		    $smaller_total / $vaccinated_total;
-	    $vaccinated_nonili{$year}{$week} +=
-		$vaccinated[$nonili_index] *
-		    $smaller_total / $vaccinated_total;
-	    $index++;
+	if (scalar (@data) > $vaccinated_index) {
+	    my $matching_group = 0;
+	    if ($data[$vaccinated_index] == 1) {
+		$matching_group = 1;
+		for (my $i = 0; $i < $vaccinated_index; $i++) {
+		    if (!("$data[$i]" eq "$unvaccinated[$i]")) {
+			$matching_group = 0;
+		    }
+		}
+	    }
+	    if ($matching_group) {
+		my @vaccinated = @data;
+		my $vaccinated_total =
+		    $vaccinated[$ili_index] + $vaccinated[$nonili_index];
+		my $unvaccinated_total =
+		    $unvaccinated[$ili_index] + $unvaccinated[$nonili_index];
+		my $smaller_total = min($vaccinated_total, $unvaccinated_total);
+		$unvaccinated_ili{$year}{$week} +=
+		    $unvaccinated[$ili_index] *
+			$smaller_total / $unvaccinated_total;
+		$unvaccinated_nonili{$year}{$week} +=
+		    $unvaccinated[$nonili_index] *
+			$smaller_total / $unvaccinated_total;
+		$vaccinated_ili{$year}{$week} +=
+		    $vaccinated[$ili_index] *
+			$smaller_total / $vaccinated_total;
+		$vaccinated_nonili{$year}{$week} +=
+		    $vaccinated[$nonili_index] *
+			$smaller_total / $vaccinated_total;
+		$index++;
+	    }
 	}
     } else {
 	$index++;
