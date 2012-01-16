@@ -143,6 +143,11 @@ background: #333;
 color: white;
 }
 
+#box .helptext {
+font-size: .7em;
+display: block;
+}
+
 #footer {
 font-size: .8em;
 }

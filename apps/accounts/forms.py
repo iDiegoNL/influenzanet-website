@@ -11,6 +11,7 @@ attrs_dict = {'class': 'required'}
 
 class UnicodeRegistrationForm(RegistrationForm):
     username = forms.RegexField(regex=r'(?u)^[\w.@+-]+$',
+                                help_text=u'Le nom d\'utilisateur vous permettra de vous connecter, il peut contenir : lettres, nombres, point, @. Vous pouvez utiliser un pseudonyme.',
                                 max_length=30,
                                 widget=forms.TextInput(attrs=attrs_dict),
                                 label=_("Username"),
