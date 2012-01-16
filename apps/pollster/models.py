@@ -907,6 +907,7 @@ class Chart(models.Model):
                 shortname = settings.POLLSTER_USER_PROFILE_SURVEY
                 survey = Survey.objects.get(shortname=shortname, status='PUBLISHED')
                 lpd = survey.get_last_participation_data(user_id, global_id)
+                print 'about to not happen',lpd ,hasattr(settings, 'POLLSTER_USER_ZIP_CODE_DATA_NAME')
                 if lpd and hasattr(settings, 'POLLSTER_USER_ZIP_CODE_DATA_NAME'):
                     zip_code = lpd.get(settings.POLLSTER_USER_ZIP_CODE_DATA_NAME)
                     if zip_code is not None:
@@ -1152,13 +1153,13 @@ class Chart(models.Model):
         geo_table = self.geotable
         if zip_code_country:
             query = """SELECT ST_Y(ST_Centroid(geometry)) AS lat, ST_X(ST_Centroid(geometry)) AS lng
-                         FROM %s WHERE zip_code_key = %s AND country = %s"""
-            args = (geo_table,zip_code_key, zip_code_country)
+                         FROM """ + geo_table + """ WHERE zip_code_key = %s AND country = %s"""
+            args = (zip_code_key, zip_code_country)
 
         else:
             query = """SELECT ST_Y(ST_Centroid(geometry)) AS lat, ST_X(ST_Centroid(geometry)) AS lng
-                         FROM %s WHERE zip_code_key = %s"""
-            args = (geo_table,zip_code_key,)
+                         FROM """ + geo_table + """ WHERE zip_code_key = %s"""
+            args = (zip_code_key,)
         try:
             cursor = connection.cursor()
             cursor.execute(query, args)
