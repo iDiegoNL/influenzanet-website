@@ -1152,13 +1152,13 @@ class Chart(models.Model):
         geo_table = self.geotable
         if zip_code_country:
             query = """SELECT ST_Y(ST_Centroid(geometry)) AS lat, ST_X(ST_Centroid(geometry)) AS lng
-                         FROM %s WHERE zip_code_key = %s AND country = %s"""
-            args = (geo_table,zip_code_key, zip_code_country)
+                         FROM """ + geo_table + """ WHERE zip_code_key = %s AND country = %s"""
+            args = (zip_code_key, zip_code_country)
 
         else:
             query = """SELECT ST_Y(ST_Centroid(geometry)) AS lat, ST_X(ST_Centroid(geometry)) AS lng
-                         FROM %s WHERE zip_code_key = %s"""
-            args = (geo_table,zip_code_key,)
+                         FROM """ + geo_table + """ WHERE zip_code_key = %s"""
+            args = (zip_code_key,)
         try:
             cursor = connection.cursor()
             cursor.execute(query, args)

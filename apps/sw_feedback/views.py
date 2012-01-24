@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 
 from .forms import *
 from django.shortcuts import render_to_response, redirect
 from django.core.mail import send_mail
+from django.conf import settings
 from django.template import RequestContext
 from .feedback import feeback_token
 
@@ -21,8 +23,12 @@ def tell_a_friend(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
-            message =  form.cleaned_data['message']
-            return redirect(sent_to_friend)
+            
+            message = "Bonjour,\n\nUn ami vous conseille le site GrippeNet.fr.\nVous pouvez visiter le site à l'adresse https://www.grippenet.fr.\n\nL'équipe GrippeNet.fr"
+            
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email] )
+            
+            return render_to_response('sw_feedback/sent.html', RequestContext(request, { email: email }))
     else:
         form = TellAFriendForm()
     value = form.updateCaptcha()
@@ -31,6 +37,3 @@ def tell_a_friend(request):
     return render_to_response('sw_feedback/tell_a_friend.html',RequestContext(request, {
         'form': form,
     }))
-    
-def sent_to_friend(request):
-    return render_to_response('sw_feedback/sent.html')
