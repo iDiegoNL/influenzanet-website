@@ -37,7 +37,7 @@ searchMunicipalCode = function (id) {
 		$.ajax({
 		url: '/municipal/search?id='+id,
 		success: function(data) {
-			show_facebox({contents: data, width: 400, top: 260});
+			show_facebox({contents: data, width: 450, height:300, top: 260});
 		}
 	});
 };
