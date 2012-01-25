@@ -1,3 +1,4 @@
+from datetime import date
 from decimal import Decimal
 from datetime import date, timedelta
 
@@ -78,7 +79,9 @@ def prijs_weergave(request):
 @login_required
 @csrf_exempt
 def relay2(request):
-    raise Exception("The contest is closed")
+    if date.today() > date(2012, 1, 25):
+        raise Exception("The contest is closed")
+
     if request.method == "GET":
         return HttpResponse("""<form method="POST" action="">
 <input name="week1" value="3.32">
