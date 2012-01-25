@@ -159,6 +159,7 @@ font-weight: bold;
 #col1 li {
 font-size: 1em;
 font-weight: normal;
+padding-top: .3em;
 }
 
 #box input#boxsubmit {
