@@ -20,6 +20,8 @@ class CMSContestPlugin(CMSPluginBase):
         else:
             filename = "prijs_grafiek_weergave2011"
 
+        filename = "prijs_grafiek_weergave2011" # no longer possible to enter results
+
         context.update({
             'filename': filename,
             'already_done': already_done,
