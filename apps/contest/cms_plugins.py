@@ -1,3 +1,4 @@
+from datetime import date
 from django.utils.translation import ugettext_lazy as _
 
 from cms.plugin_base import CMSPluginBase
@@ -19,6 +20,9 @@ class CMSContestPlugin(CMSPluginBase):
             filename = "prijs_grafiek2011"
         else:
             filename = "prijs_grafiek_weergave2011"
+
+        if date.today() > date(2012, 1, 25):
+            filename = "prijs_grafiek_weergave2011" # no longer possible to enter results
 
         context.update({
             'filename': filename,

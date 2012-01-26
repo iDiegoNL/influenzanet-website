@@ -42,7 +42,7 @@ def create_message(user, message, language):
 
 def send_reminders(fake=False):
     now = datetime.datetime.now()
-
+    print "now=%s" % str(now)
     i = -1
     for i, (user, message, language) in enumerate(get_reminders_for_users(now, User.objects.filter(is_active=True))):
         if not fake:
