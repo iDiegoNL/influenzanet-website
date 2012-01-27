@@ -24,7 +24,7 @@ POSTALCODE_INPUT_FORMATS = {
     'at': r'\d{4}',
     'ch': r'\d{4}',
     'se': r'\d{5}',
-    'fr': r'\d{5}',
+    'fr': r'[0-9][0-9AB][0-9]{3}',
 }
 
 logger = logging.getLogger(__name__)
@@ -129,6 +129,6 @@ class PostalCodeField(CharField):
             return count > 0
         return False
 
-class CodeSelectField(CharField):
+class CodeSelectField(PostalCodeField):
     def __init__(self, *args, **kwargs):
         super(CodeSelectField, self).__init__(*args, **kwargs)
