@@ -39,8 +39,10 @@ urlpatterns = patterns('',
     (r'^count/', include('apps.count.urls')),
     (r'^contest/', include('apps.contest.urls')),
 
-    url(r'^contact/$', 'contact_form.views.contact_form', {'form_class': ContactForm}, name='contact_form'),
-    url(r'^contact/sent/$', 'django.views.generic.simple.direct_to_template', {'template': 'contact_form/contact_form_sent.html'}, name='contact_form_sent'),
+    url(r'^contact/$', redirect_to, {'url':'/contacts/'}, name='contact_form'),
+
+#    url(r'^contact/$', 'contact_form.views.contact_form', {'form_class': ContactForm}, name='contact_form'),
+#    url(r'^contact/sent/$', 'django.views.generic.simple.direct_to_template', {'template': 'contact_form/contact_form_sent.html'}, name='contact_form_sent'),
 
     (r'^colors.css$', 'apps.partnersites.views.colors_css'),
 

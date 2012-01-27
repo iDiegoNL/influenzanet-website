@@ -18,6 +18,7 @@ SOURCES = {
     'uk': 'http://flusurvey.org.uk/count/counter/',
     'it': 'http://www.influweb.it/count/counter/',
     'pt': 'http://www.gripenet.pt/count/counter/',
+    'fr': 'http://www.grippenet.fr/count/counter/',
 }
 
 def do_member_count(parser, token):
