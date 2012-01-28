@@ -801,7 +801,7 @@ msgid "Weekly survey"
 msgstr "Wöchentlicher Fragebogen"
 
 msgid "Manage household"
-msgstr "Haushalt verwalten"
+msgstr "Teilnehmer verwalten"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
 msgstr "Sie erhalten diese E-Mail, weil sie sich auf der Webseite \"Aktiv gegen Grippe\" angemeldet haben. Ihr Beitrag hilft uns, die Ausbreitung der Grippe zu verfolgen. Wenn Sie diese wöchentliche Erinnerungsmail nicht mehr erhalten wollen, dann können Sie dies ganz einfach <a href=\"%(unsubscribe_url)s\">abmelden</a>."
@@ -869,7 +869,7 @@ msgid "This email is already in use"
 msgstr "Diese E-Mail-Adresse wird bereits verwendet"
 
 msgid "My settings"
-msgstr "Meine Einstellungen"
+msgstr "E-Mail"
 
 msgid "Your settings have been updated"
 msgstr "Ihre Einstellungen wurden aktualisiert"
