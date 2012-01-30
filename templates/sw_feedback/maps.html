@@ -9,6 +9,17 @@
 </ul>
 
 {% if chart_id %}
+<div id="feedback_map">
 {% include "pollster/cms_survey_chart.html" %}
+</div>
 {% endif %}
 {%endblock%}
+
+<style>
+#feedback_map .chart {
+	width: 750px;
+	height: 750px;
+}		
+	
+	
+</style>
