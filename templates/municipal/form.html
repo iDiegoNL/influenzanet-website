@@ -1,13 +1,21 @@
 <h2>Trouvez votre commune</h2>
 <form action="" method="post" id="zipform">
-	Entrez votre code postal : <input type="text" name="zip" value="" size="5" id="zip_code"/>
+	Entrez votre code postal : <input type="text" name="zip" value="" size="5" id="zip_code" onkeydown="return checkEnterZip(event)"/>
 	<button type="button" onclick="searchZip(); return false;">Chercher</button>
 	<ul id="zip_codelist"></ul>
 	{% csrf_token %}
 	<span id="zip_help" style="display:none"></span>
-	<div id="zip_warning">Les codes postaux saisis ne seront pas conservés</div>
+	<div id="zip_warning">Les codes postaux saisis ne seront pas conservés. Précisez l'arrondissement pour Paris, Lyon et Marseille</div>
 </form>
 <script type="text/javascript">
+
+function checkEnterZip(event) {
+	if(event.keyCode == 13) {
+		event.preventDefault();
+		return false;
+	}
+	return true;
+}
 
 function selectZip() {
 	var el = $(this);
@@ -43,7 +51,7 @@ function searchZip() {
 	  }
 	});
  } else {
- 	$('#zip_help').text('Saisissez les 5 chiffres de votre code postal !');
+ 	$('#zip_help').show().text('Saisissez les 5 chiffres de votre code postal !');
  }
 }
 
