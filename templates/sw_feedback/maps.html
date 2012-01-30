@@ -1,4 +1,13 @@
 {% extends "sw_feedback/base.html" %}
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+<style>
+#feedback_map .chart {
+	width: 750px;
+	height: 750px;
+}		
+</style>
+{% endaddtoblock %}
 
 {% block col1 %}
 {{ charts.length }}
@@ -15,11 +24,3 @@
 {% endif %}
 {%endblock%}
 
-<style>
-#feedback_map .chart {
-	width: 750px;
-	height: 750px;
-}		
-	
-	
-</style>
