@@ -7,6 +7,8 @@ from django.conf import settings
 from django.template import RequestContext
 from .feedback import feeback_token
 
+from apps.pollster.models import Chart
+
 def feedback(request):
     page = request.GET.get('from', '')
     r = feeback_token('FB-OJ74GAJD-85')
@@ -37,3 +39,18 @@ def tell_a_friend(request):
     return render_to_response('sw_feedback/tell_a_friend.html',RequestContext(request, {
         'form': form,
     }))
+
+def maps(request):
+    charts = Chart.objects.all() # filter(status='PUBLISHED')
+    chart_id = request.GET.get('chart',None)
+    if( not chart_id is None ):
+        chart = Chart.objects.get(shortname=chart_id)
+    else:
+        chart = None
+    return render_to_response('sw_feedback/maps.html',
+                              RequestContext(request, {
+                                'charts': charts,
+                                'chart_id':chart_id,
+                                'chart':chart
+                                }
+                               ))

@@ -1,0 +1,14 @@
+{% extends "sw_feedback/base.html" %}
+
+{% block col1 %}
+{{ charts.length }}
+<ul>
+{% for c in charts %}
+<li><a href="?chart={{ c.shortname }}">{{ c.survey.shortname }} : {{ c.shortname }}</a></li>
+{% endfor %}
+</ul>
+
+{% if chart_id %}
+{% include "pollster/cms_survey_chart.html" %}
+{% endif %}
+{%endblock%}

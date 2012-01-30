@@ -38,7 +38,7 @@
                 {{ question.translated_description }}
             </p>
             {% if question.is_text %}
-            <input type="text" name="{{ question.data_name }}" id="question-{{ question.id }}-field"
+            <input type="{%if question.data_type.title == 'CodeSelect'%}hidden{% else %}text{%endif%}" name="{{ question.data_name }}" id="question-{{ question.id }}-field"
                    value="{{ question.form_value }}" class="user-field" />
             <p class="error-message">{{ question.translated_error_message }}</p>
             <ul class="derived-values">
