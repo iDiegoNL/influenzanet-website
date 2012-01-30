@@ -1,16 +1,6 @@
 {% extends "sw_feedback/base.html" %}
 {% load sekizai_tags %}
-{% addtoblock "css" %}
-<style>
-#feedback_map .chart {
-	width: 750px;
-	height: 750px;
-}		
-</style>
-{% endaddtoblock %}
-
 {% block col1 %}
-{{ charts.length }}
 <ul>
 {% for c in charts %}
 <li><a href="?chart={{ c.shortname }}">{{ c.survey.shortname }} : {{ c.shortname }}</a></li>
