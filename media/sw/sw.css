@@ -639,3 +639,8 @@ background: #FFF url() left center no-repeat;
 .flag-pt {background-image: url(../base/img/influbar/pt.png)}
 .flag-es {background-image: url(../base/img/influbar/es.png)}
 .flag-it {background-image: url(../base/img/influbar/it.png)}
+
+#feedback_map .chart {
+	width: 750px;
+	height: 750px;
+}
