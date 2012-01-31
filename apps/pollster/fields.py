@@ -132,3 +132,8 @@ class PostalCodeField(CharField):
 class CodeSelectField(PostalCodeField):
     def __init__(self, *args, **kwargs):
         super(CodeSelectField, self).__init__(*args, **kwargs)
+
+    def clean(self, value):
+        if value in validators.EMPTY_VALUES and self.required:
+            raise ValidationError(self.error_messages['required'])
+        return super(CodeSelectField, self).clean(value)
