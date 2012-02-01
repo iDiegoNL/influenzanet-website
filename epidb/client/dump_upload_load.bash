@@ -1,17 +1,17 @@
 #!/bin/bash
 set -e
 
-#cat dump_intake_2_countries.sql | psql
-#cat dump_weekly_2_countries.sql | psql
+#cat /home/ggm/scripts/dump_intake_2_countries.sql | psql > /dev/null
+#cat /home/ggm/scripts/dump_weekly_2_countries.sql | psql > /dev/null
 
-cat dump_intake.sql | psql
-cat dump_weekly.sql | psql
+cat /home/ggm/scripts/dump_intake.sql | psql > /dev/null
+cat /home/ggm/scripts/dump_weekly.sql | psql > /dev/null
 
-pg_dump -t epidb_results_intake -t epidb_results_weekly --clean > epidb_results.sql
-grep -v 'ALTER TABLE public.*OWNER TO' epidb_results.sql.tmp
-mv epidb_results.sql.tmp epidb_results.sql
+pg_dump -t epidb_results_intake -t epidb_results_weekly --clean > /home/ggm/data/epidb_results.sql
+grep -v 'ALTER TABLE public.*OWNER TO' /home/ggm/data/epidb_results.sql > /home/ggm/data/epidb_results.sql.tmp
+mv /home/ggm/data/epidb_results.sql.tmp /home/ggm/data/epidb_results.sql
 
-scp epidb_results.sql YOURUSER@85.90.70.27:
+scp /home/ggm/data/epidb_results.sql ggm@85.90.70.27: >/dev/null
 
-ssh YOURUSER@85.90.70.27 'cat epidb_results.sql | psql'
+ssh ggm@85.90.70.27 'cat epidb_results.sql | psql' > /dev/null
 
