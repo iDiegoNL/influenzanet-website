@@ -19,7 +19,7 @@ class Command(BaseCommand):
     )
 
     def send_reminders(self, fake, target, verbose):
-        now = datetime.datetime.now()
+        now = datetime.now()
         if(target is not None):
             users = User.objects.get(id=target)
         else:
