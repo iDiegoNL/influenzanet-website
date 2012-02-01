@@ -567,6 +567,7 @@ line-height: 1.4em;
 }
 
 .icon-sentiweb, .icon-invs, .icon-grog {
+ margin-left: 0px;
  padding-left: 40px;
  line-height: 35px;
  background: #FFF url() left center no-repeat;
