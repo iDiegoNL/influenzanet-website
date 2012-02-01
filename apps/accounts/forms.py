@@ -55,7 +55,10 @@ class MySettingsForm(forms.Form):
         return email
 
     def save(self):
+        if self.instance.email == self.instance.username:
+            self.instance.username = self.cleaned_data['email']
         self.instance.email = self.cleaned_data['email']
+
         self.reminder_info.active = self.cleaned_data['send_reminders']
         
         if 'language' in self.cleaned_data:
