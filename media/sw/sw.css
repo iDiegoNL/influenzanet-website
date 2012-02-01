@@ -352,6 +352,10 @@ font-weight: bold;
  line-height: 1.5em;
 }
 
+p#passwd-reset {
+ text-align: center;
+}
+
 form.contact_form label, input#id_name, input#id_email, textarea#id_body {
 	clear: none;
 	float: none;
@@ -561,13 +565,17 @@ line-height: 1.4em;
  * Externals
  */
 
+#sentiweb-widget ul {
+ margin-left: 0px;
+ padding-left: 0px;
+}
+
 #sentiweb-widget li {
  margin-top: .5em;
  font-size: .7em;
 }
 
 .icon-sentiweb, .icon-invs, .icon-grog {
- margin-left: 0px;
  padding-left: 40px;
  line-height: 35px;
  background: #FFF url() left center no-repeat;
