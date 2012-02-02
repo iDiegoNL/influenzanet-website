@@ -862,6 +862,7 @@ class Chart(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=255, default='DRAFT', choices=CHART_STATUS_CHOICES)
     geotable = models.CharField(max_length=255, default='pollster_zip_codes', choices=settings.GEOMETRY_TABLES)
+    hastitle = models.BooleanField(default=False)
     
     class Meta:
         ordering = ['survey', 'shortname']
@@ -1140,7 +1141,11 @@ class Chart(models.Model):
 
     def load_info(self, lat, lng):
         view = self.get_view_name()
-        query = "SELECT * FROM %s WHERE ST_Contains(geometry, 'SRID=4326;POINT(%%s %%s)')" % (view,)
+        if(self.hastitle):
+            geotable = self.geotable
+            query = "SELECT v.*, g.title as zip_title FROM %s as v left join %s g ON v.zip_code_key=g.zip_code_key WHERE ST_Contains(v.geometry, 'SRID=4326;POINT(%%s %%s)')" % (view,geotable,)
+        else:
+            query = "SELECT * FROM %s WHERE ST_Contains(geometry, 'SRID=4326;POINT(%%s %%s)')" % (view,)
         try:
             cursor = connection.cursor()
             cursor.execute(query, (lng, lat))

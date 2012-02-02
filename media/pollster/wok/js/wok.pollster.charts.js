@@ -75,9 +75,10 @@
                     $.getJSON(tileBase+"/click/" + evt.latLng.lat() + "/" + evt.latLng.lng(), function(json) {
                         if (!json.zip_code_key)
                             return;
-                        var html = '<div><strong>'+json.zip_code_key+'</strong><br/>';
+						var title = (json.zip_title) ? json.zip_title : json.zip_code_key;
+                        var html = '<div><strong>'+title+'</strong><br/>';
                         for (var k in json) {
-                            if (k !== "zip_code_key" && k !== "zip_code_country")
+                            if (k !== "zip_code_key" && k !== "zip_code_country" && k !== "zip_title")
                                 html += '<span>' + k + ': </span>' + json[k] + '<br/>';
                         }
                         html += '</div>';
