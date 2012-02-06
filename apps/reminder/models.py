@@ -242,6 +242,9 @@ def get_reminders_for_users(now, users):
                 survey_users = SurveyUser.objects.filter(user=user)
 
             last_action = (now - max(su.get_last_weekly_survey_date() for su in survey_users)).days
+            if info.last_reminder and info.last_reminder > last_action:
+                last_action = info.last_reminder
+
             last_action_long_ago_enough = last_action >= 7 
             
             if not last_action_long_ago_enough:
