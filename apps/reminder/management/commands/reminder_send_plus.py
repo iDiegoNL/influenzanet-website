@@ -38,7 +38,7 @@ class Command(BaseCommand):
         now = datetime.now()
         if(target is not None):
             print "target user=%s" % (target)
-            users = User.objects.get(id=target)
+            users = [User.objects.get(id=target)]
             print users
         else:
             users = User.objects.filter(is_active=True)
