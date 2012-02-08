@@ -37,7 +37,7 @@ class Command(BaseCommand):
     def send_reminders(self, fake, target, verbose, log):
         now = datetime.now()
         if(target is not None):
-            print "target user=%d" % (target)
+            print "target user=%s" % (target)
             users = User.objects.get(id=target)
             print users
         else:
