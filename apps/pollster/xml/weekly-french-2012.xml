@@ -4,7 +4,7 @@
     <shortname>weekly</shortname>
     <version>1</version>
     <created>2011-11-08T10:34:10.218594</created>
-    <updated>2012-01-05T09:56:41.460791</updated>
+    <updated>2012-01-20T17:40:37.836274</updated>
     <questions>
     
         <question id="question-214">
@@ -3430,59 +3430,6 @@
             </object_options>
         </rule>
         
-        <rule id="rule-379">
-            <type>wok.pollster.rules.HideOptions</type>
-            <is_sufficient>true</is_sufficient>
-            <subject_question ref="question-215"/>
-            <subject_options>
-                 
-                 <subject_option ref="option-1072"/>
-                 
-                 <subject_option ref="option-1073"/>
-                 
-                 <subject_option ref="option-1074"/>
-                 
-                 <subject_option ref="option-1075"/>
-                 
-                 <subject_option ref="option-1076"/>
-                 
-                 <subject_option ref="option-1077"/>
-                 
-                 <subject_option ref="option-1078"/>
-                 
-                 <subject_option ref="option-1079"/>
-                 
-                 <subject_option ref="option-1080"/>
-                 
-                 <subject_option ref="option-1081"/>
-                 
-                 <subject_option ref="option-1082"/>
-                 
-                 <subject_option ref="option-1083"/>
-                 
-                 <subject_option ref="option-1084"/>
-                 
-                 <subject_option ref="option-1085"/>
-                 
-                 <subject_option ref="option-1086"/>
-                 
-                 <subject_option ref="option-1087"/>
-                 
-                 <subject_option ref="option-1088"/>
-                 
-                 <subject_option ref="option-1089"/>
-                 
-                 <subject_option ref="option-1090"/>
-                 
-            </subject_options>
-            <object_question ref="question-216"/>
-            <object_options>
-                 
-                 <object_option ref="option-1094"/>
-                 
-            </object_options>
-        </rule>
-        
         <rule id="rule-386">
             <type>wok.pollster.rules.ShowQuestion</type>
             <is_sufficient>true</is_sufficient>
@@ -3948,6 +3895,59 @@
             </object_options>
         </rule>
         
+        <rule id="rule-379">
+            <type>wok.pollster.rules.HideOptions</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-215"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1072"/>
+                 
+                 <subject_option ref="option-1073"/>
+                 
+                 <subject_option ref="option-1074"/>
+                 
+                 <subject_option ref="option-1075"/>
+                 
+                 <subject_option ref="option-1076"/>
+                 
+                 <subject_option ref="option-1077"/>
+                 
+                 <subject_option ref="option-1078"/>
+                 
+                 <subject_option ref="option-1079"/>
+                 
+                 <subject_option ref="option-1080"/>
+                 
+                 <subject_option ref="option-1081"/>
+                 
+                 <subject_option ref="option-1082"/>
+                 
+                 <subject_option ref="option-1083"/>
+                 
+                 <subject_option ref="option-1084"/>
+                 
+                 <subject_option ref="option-1085"/>
+                 
+                 <subject_option ref="option-1086"/>
+                 
+                 <subject_option ref="option-1087"/>
+                 
+                 <subject_option ref="option-1088"/>
+                 
+                 <subject_option ref="option-1089"/>
+                 
+                 <subject_option ref="option-1090"/>
+                 
+            </subject_options>
+            <object_question ref="question-216"/>
+            <object_options>
+                 
+                 <object_option ref="option-1094"/>
+                 
+            </object_options>
+        </rule>
+        
         <rule id="rule-391">
             <type>wok.pollster.rules.UncheckOptions</type>
             <is_sufficient>true</is_sufficient>
@@ -4037,37 +4037,6 @@
                  <object_option ref="option-1173"/>
                  
                  <object_option ref="option-1174"/>
-                 
-            </object_options>
-        </rule>
-        
-        <rule id="rule-418">
-            <type>wok.pollster.rules.Fill</type>
-            <is_sufficient>true</is_sufficient>
-            <subject_question ref="question-216"/>
-            <subject_options>
-                 
-                 <subject_option ref="option-1091"/>
-                 
-            </subject_options>
-            <object_question ref="question-226"/>
-            <object_options>
-                 
-                 <object_option ref="option-1124"/>
-                 
-                 <object_option ref="option-1125"/>
-                 
-                 <object_option ref="option-1126"/>
-                 
-                 <object_option ref="option-1127"/>
-                 
-                 <object_option ref="option-1128"/>
-                 
-                 <object_option ref="option-1129"/>
-                 
-                 <object_option ref="option-1130"/>
-                 
-                 <object_option ref="option-1131"/>
                  
             </object_options>
         </rule>
@@ -4368,27 +4337,6 @@
             </object_options>
         </rule>
         
-        <rule id="rule-406">
-            <type>wok.pollster.rules.Fill</type>
-            <is_sufficient>true</is_sufficient>
-            <subject_question ref="question-216"/>
-            <subject_options>
-                 
-                 <subject_option ref="option-1091"/>
-                 
-            </subject_options>
-            <object_question ref="question-223"/>
-            <object_options>
-                 
-                 <object_option ref="option-1108"/>
-                 
-                 <object_option ref="option-1109"/>
-                 
-                 <object_option ref="option-1110"/>
-                 
-            </object_options>
-        </rule>
-        
         <rule id="rule-421">
             <type>wok.pollster.rules.ShowQuestion</type>
             <is_sufficient>false</is_sufficient>
@@ -4667,6 +4615,8 @@
                  
                  <object_option ref="option-1119"/>
                  
+                 <object_option ref="option-1208"/>
+                 
                  <object_option ref="option-1120"/>
                  
                  <object_option ref="option-1121"/>
@@ -4687,29 +4637,6 @@
             </subject_options>
             <object_question ref="question-239"/>
             <object_options>
-                 
-            </object_options>
-        </rule>
-        
-        <rule id="rule-408">
-            <type>wok.pollster.rules.UncheckOptions</type>
-            <is_sufficient>true</is_sufficient>
-            <subject_question ref="question-216"/>
-            <subject_options>
-                 
-                 <subject_option ref="option-1092"/>
-                 
-                 <subject_option ref="option-1093"/>
-                 
-            </subject_options>
-            <object_question ref="question-232"/>
-            <object_options>
-                 
-                 <object_option ref="option-1164"/>
-                 
-                 <object_option ref="option-1165"/>
-                 
-                 <object_option ref="option-1166"/>
                  
             </object_options>
         </rule>
@@ -4824,6 +4751,178 @@
                  <object_option ref="option-1144"/>
                  
                  <object_option ref="option-1145"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-418">
+            <type>wok.pollster.rules.Fill</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1091"/>
+                 
+            </subject_options>
+            <object_question ref="question-226"/>
+            <object_options>
+                 
+                 <object_option ref="option-1124"/>
+                 
+                 <object_option ref="option-1125"/>
+                 
+                 <object_option ref="option-1126"/>
+                 
+                 <object_option ref="option-1127"/>
+                 
+                 <object_option ref="option-1128"/>
+                 
+                 <object_option ref="option-1129"/>
+                 
+                 <object_option ref="option-1130"/>
+                 
+                 <object_option ref="option-1131"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-406">
+            <type>wok.pollster.rules.Fill</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1091"/>
+                 
+            </subject_options>
+            <object_question ref="question-223"/>
+            <object_options>
+                 
+                 <object_option ref="option-1108"/>
+                 
+                 <object_option ref="option-1109"/>
+                 
+                 <object_option ref="option-1110"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-408">
+            <type>wok.pollster.rules.UncheckOptions</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1092"/>
+                 
+                 <subject_option ref="option-1093"/>
+                 
+            </subject_options>
+            <object_question ref="question-232"/>
+            <object_options>
+                 
+                 <object_option ref="option-1164"/>
+                 
+                 <object_option ref="option-1165"/>
+                 
+                 <object_option ref="option-1166"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-535">
+            <type>wok.pollster.rules.Fill</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1091"/>
+                 
+            </subject_options>
+            <object_question ref="question-239"/>
+            <object_options>
+                 
+                 <object_option ref="option-1203"/>
+                 
+                 <object_option ref="option-1204"/>
+                 
+                 <object_option ref="option-1205"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-536">
+            <type>wok.pollster.rules.Fill</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1091"/>
+                 
+            </subject_options>
+            <object_question ref="question-238"/>
+            <object_options>
+                 
+                 <object_option ref="option-1199"/>
+                 
+                 <object_option ref="option-1200"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-537">
+            <type>wok.pollster.rules.Fill</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1091"/>
+                 
+            </subject_options>
+            <object_question ref="question-240"/>
+            <object_options>
+                 
+                 <object_option ref="option-1207"/>
+                 
+                 <object_option ref="option-1206"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-538">
+            <type>wok.pollster.rules.Fill</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1091"/>
+                 
+            </subject_options>
+            <object_question ref="question-241"/>
+            <object_options>
+                 
+                 <object_option ref="option-1210"/>
+                 
+                 <object_option ref="option-1211"/>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-539">
+            <type>wok.pollster.rules.Fill</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-216"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1091"/>
+                 
+            </subject_options>
+            <object_question ref="question-242"/>
+            <object_options>
+                 
+                 <object_option ref="option-1212"/>
+                 
+                 <object_option ref="option-1213"/>
                  
             </object_options>
         </rule>
@@ -4962,21 +5061,6 @@
             </object_options>
         </rule>
         
-        <rule id="rule-431">
-            <type>wok.pollster.rules.Exclusive</type>
-            <is_sufficient>true</is_sufficient>
-            <subject_question ref="question-229"/>
-            <subject_options>
-                 
-                 <subject_option ref="option-1146"/>
-                 
-            </subject_options>
-            <object_question ref="question-215"/>
-            <object_options>
-                 
-            </object_options>
-        </rule>
-        
         <rule id="rule-440">
             <type>wok.pollster.rules.ShowQuestion</type>
             <is_sufficient>true</is_sufficient>
@@ -4987,6 +5071,21 @@
                  
             </subject_options>
             <object_question ref="question-241"/>
+            <object_options>
+                 
+            </object_options>
+        </rule>
+        
+        <rule id="rule-431">
+            <type>wok.pollster.rules.Exclusive</type>
+            <is_sufficient>true</is_sufficient>
+            <subject_question ref="question-229"/>
+            <subject_options>
+                 
+                 <subject_option ref="option-1146"/>
+                 
+            </subject_options>
+            <object_question ref="question-215"/>
             <object_options>
                  
             </object_options>
@@ -5213,7 +5312,7 @@
                 </question>
             
                 <question ref="question-236">
-                    <title>Sans compter les membres de votre foyer, combien de personnes avez-vous rencontré avec des symptômes de rhume ou de grippe au cours des 7 derniers jours ?</title>
+                    <title>Sans compter les membres de votre foyer, combien de personnes avez-vous rencontrées avec des symptômes de rhume ou de grippe au cours des 7 derniers jours ?</title>
                     <description></description>
                     <error_message></error_message>
                 </question>
@@ -5731,6 +5830,10 @@
                     <text>Je ne sais pas</text>
                 </option>
             
+                <option ref="option-1234">
+                    <text></text>
+                </option>
+            
                 <option ref="option-1181">
                     <text>0</text>
                 </option>
@@ -5761,6 +5864,10 @@
             
                 <option ref="option-1188">
                     <text>Je ne sais pas</text>
+                </option>
+            
+                <option ref="option-1235">
+                    <text></text>
                 </option>
             
                 <option ref="option-1189">
