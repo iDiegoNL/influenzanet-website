@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     option_list = BaseCommand.option_list + (
         make_option('--fake', action='store_true', dest='fake', default=False, help='Fake the sending of the emails; print the emails to be sent on screen instead.'),
-        make_option('--user', action='store', dest='target', default=None, help='Send only to this user (user id)'),
+        make_option('--user', action='store', dest='user', default=None, help='Send only to this user (user id)'),
         make_option('--verbose', action='store_true', dest='verbose', default=False, help='Print verbose message'),
         make_option('--counter', action='store', dest='counter', default=None, help='Store counter value into this file'),
         make_option('--log', action='store', dest='log', default=None, help='Store user email in a log file'),
@@ -37,7 +37,9 @@ class Command(BaseCommand):
     def send_reminders(self, fake, target, verbose, log):
         now = datetime.now()
         if(target is not None):
+            print "target user=%d" % (target)
             users = User.objects.get(id=target)
+            print users
         else:
             users = User.objects.filter(is_active=True)
         
@@ -46,28 +48,31 @@ class Command(BaseCommand):
         i = -1
         message = self.get_reminder('toto')
         language = 'fr'
-        for user in users :
-            if batch_size and i >= batch_size:
-                raise StopIteration 
-            to_send = False
-            info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
-
-            if not info.active:
-                continue
-            if info.last_reminder is None:
-                to_send = True
-
-            if info.last_reminder < message.date:
-                to_send = True    
-        
-            if to_send:
-                i += 1
-                if not fake:
-                    if(verbose):
-                        print 'sending', user.email
-                    send(now, user, message, language)
-                else:
-                    print '[fake] sending', user.email, message.subject
+        try:
+            for user in users :
+                if batch_size and i >= batch_size:
+                    raise StopIteration 
+                to_send = False
+                info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
+    
+                if not info.active:
+                    continue
+                if info.last_reminder is None:
+                    to_send = True
+    
+                if info.last_reminder < message.date:
+                    to_send = True    
+            
+                if to_send:
+                    i += 1
+                    if not fake:
+                        if(verbose):
+                            print 'sending', user.email
+                        send(now, user, message, language)
+                    else:
+                        print '[fake] sending', user.email, message.subject
+        except StopIteration:
+            pass
         return i + 1
 
     def handle(self, *args, **options):
