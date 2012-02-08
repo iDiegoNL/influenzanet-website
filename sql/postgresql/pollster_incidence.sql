@@ -30,9 +30,11 @@ SELECT day,
 FROM (SELECT calendar('1999-1-1','2020-12-31') as day) A;
 
 
+DROP FUNCTION IF EXISTS pollster_active_users();
 -- returns the global_id for active users in a given date
 CREATE OR REPLACE FUNCTION pollster_active_users (
-    date -- $1 current day
+  date, -- $1 current day
+  min_survey int default 4 -- $2 min number of survey needed to be active
 ) RETURNS TABLE (
     global_id text
 ) AS $body$ 
@@ -48,16 +50,18 @@ SELECT global_id
          GROUP BY W.global_id
        ) AS ranges
        -- to be considered active an user needs at least 4 filled survey
- WHERE rate > 4
+ WHERE rate > $2
        -- the first compiled survey should be at least one day old
    AND date_trunc('day', first) + '1 day' < date_trunc('day', $1)
        -- the last compilation should not be after the current date
    AND date_trunc('day', $1) >= date_trunc('day', latest)
 $body$ LANGUAGE 'sql';
 
+DROP FUNCTION IF EXISTS pollster_ili_users();
 -- returns the global_id for active users with ILI onset on a given date
 CREATE OR REPLACE FUNCTION pollster_ili_users (
-  date -- $1 current day
+  date, -- $1 current day
+  min_survey int default 4 -- $2 min number of survey needed to be active
 ) RETURNS TABLE (
   global_id text
 )
@@ -65,12 +69,12 @@ AS $body$
 SELECT DISTINCT A.global_id
       FROM pollster_health_status S,
            pollster_results_weekly W,
-           pollster_active_users($1) A
+           pollster_active_users($1,$2) A
      WHERE S.pollster_results_weekly_id = W.id
        AND W.global_id = A.global_id
        -- consider only user which set the onset date as the current date or
        -- take the submission date as the onset date
-       AND date_trunc('day', COALESCE(W."Q3_0_open", W.timestamp)) = date_trunc('day', $1)
+       AND date_trunc('day', COALESCE(to_date(W."Q3_0_open",'YYYY-MM-DD'), W.timestamp)) = date_trunc('day', $1)
        -- filter only ILI-related symptoms
        AND S.status = 'ILI'
 $body$
