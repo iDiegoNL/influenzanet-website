@@ -73,7 +73,7 @@
         <img class="diag-icon" src="{{ MEDIA_URL }}/survey/img/diag-{{ item.status|default:'UNKNOWN' }}.png"
              alt="{{ item.diag }}:" title="{{ item.diag }}"/>
         <span title="{{ item.timestamp }}" class="diag-timestamp">
-            {{ item.timestamp|date:'SHORT_DATE_FORMAT' }}
+            {{ item.timestamp|date:'d/m/Y' }}
         </span>
     </li>
     {% endfor %}
@@ -108,7 +108,7 @@
 <tbody>
 {% for item in history reversed %}
 <tr>
-    <td title="{{ item.timestamp }}">{{ item.timestamp|date:'SHORT_DATE_FORMAT' }}</td>
+    <td title="{{ item.timestamp }}">{{ item.timestamp|date:'d/m/Y' }}</td>
     <td>{{ item.person.name }}</td>
     <td>{{ item.diag }}</td>
     <td><img class="diag-icon" src="{{ MEDIA_URL }}/survey/img/diag-{{ item.status|default:'UNKNOWN' }}-small.png"/></td>
