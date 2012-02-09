@@ -1,9 +1,16 @@
 {% load i18n %}
 <form class="survey {% if survey.form.errors %}error{% endif %}" id="survey-{{ survey.id }}" method="POST">
     {% csrf_token %}
-    <div class="survey-message">
-        {% trans "Questionnaire for participant" %} {{ person }}
-    </div>
+    {% if survey.shortname == "contact" %}
+      <div class="survey-message">
+          {% trans "Social contact survey for participant" %} {{ person }}
+      </div>
+      <img width=530 src="/media/uploads/timeline.jpg" />
+    {% else %}
+      <div class="survey-message">
+          {% trans "Questionnaire for participant" %} {{ person }}
+      </div>
+    {% endif %}
     {% if survey.form.errors %}
     <div class="survey-error-message">
         {% trans "Please check the answers for the highlighted questions." %}
