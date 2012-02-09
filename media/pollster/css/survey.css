@@ -3,7 +3,7 @@
 #col1 ul.choices li img { margin: 0 0 -4px 0; }
 
 .survey-error-message { border: 1px solid #C00; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; background: #FBB; margin-bottom: 10px; font-size: 0.75em; font-weight: bold; }
-.survey-message { border: 1px solid #CCC; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; margin-bottom: 10px; font-size: 0.75em; font-weight: bold; }
+.survey-message { border: 1px solid #CCC; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; margin-bottom: 10px; font-size: 0.75em; font-weight: bold; width: 500px; }
 .question { border: 1px solid #CCC; -webkit-border-radius: 5px; padding: 10px 10px 16px 10px; background: #fff; margin-bottom: 10px; }
 .question ul.choices, .question ul.derived-values { list-style: none; margin-bottom: 10px;}
 .question li { margin-left: 20px; padding-bottom: 2px; clear: both; }
@@ -18,7 +18,6 @@
 .question .matrix th { background: #EEE; border: 1px solid white; padding: 3px; }
 .question .matrix th.empty { background: none; border: none; padding: 0; }
 .question .matrix select, .question .matrix input { width: auto; margin: 0; }
-.question.mandatory .star { color: red; margin-left: -0.25em; }
 
 .rules, .derived-values { display: none; }
 
