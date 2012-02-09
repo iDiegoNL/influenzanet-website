@@ -180,7 +180,7 @@ def survey_run(request, shortname, next=None):
                 # add or override the 'gid' query parameter
                 next_url_parts = list(urlparse.urlparse(next_url))
                 query = dict(urlparse.parse_qsl(next_url_parts[4]))
-                query.update({'gid': global_id})
+                query.update({'gid': global_id, 'survey': survey.shortname})
                 next_url_parts[4] = urllib.urlencode(query)
                 next_url = urlparse.urlunparse(next_url_parts)
             return HttpResponseRedirect(next_url)
@@ -433,7 +433,7 @@ def urls(request, prefix=''):
 
 def _get_active_survey_user(request):
     gid = request.GET.get('gid', None)
-    if gid is None:
+    if gid is None  or not request.user.is_active:
         return None
     else:
         return SurveyUser.objects.get(global_id=gid, user=request.user)

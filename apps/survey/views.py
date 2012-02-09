@@ -126,7 +126,8 @@ def thanks(request):
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][-7:]
-    return render_to_response('survey/thanks.html', {'person': survey_user, 'persons': persons, 'history': history},
+    last_survey = request.GET.get('survey', None)
+    return render_to_response('survey/thanks.html', {'person': survey_user, 'persons': persons, 'history': history, 'last_survey': last_survey},
                               context_instance=RequestContext(request))
 
 @login_required
