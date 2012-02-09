@@ -19,7 +19,13 @@
 
 {% block col1 %}
 
-<p>{% trans "Thanks for taking the time to fill out this survey." %}</p>
+<p>{% blocktrans with last_survey=last_survey %}Thanks for taking the time to fill out the {{ last_survey }} survey.{% endblocktrans %}</p>
+
+{%if last_survey != "contact"%}
+<h1>{%blocktrans with id=person.global_id name=person.name %}Next, why not do the <a href="/surveys/contact/?gid={{id}}&next=/survey/thanks">social contact survey</a> for {{name}}?{% endblocktrans %}</h1>
+{%endif%}
+
+<p>{% trans "Had your flu jab recently? Click on <strong>Change background information</strong> below to let us know."%}</p>
 
 <p>
 {% trans "Here is a summary of the information you entered for you and the members of your group or family:" %}
