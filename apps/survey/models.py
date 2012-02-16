@@ -19,8 +19,8 @@ class SurveyUser(models.Model):
 
     global_id = models.CharField(max_length=36, unique=True,
                                  default=create_global_id)
-    last_participation = models.ForeignKey('Participation', null=True)
-    last_participation_date = models.DateTimeField(null=True)
+    last_participation = models.ForeignKey('Participation', null=True, blank=True)
+    last_participation_date = models.DateTimeField(null=True, blank=True)
 
     name = models.CharField(max_length=100)
     deleted = models.BooleanField(default=False)
