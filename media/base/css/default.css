@@ -960,7 +960,8 @@ font-size: 0.7em;
 #col1 label,
 #col2 label,
 #col3 label {
- font-size: 0.7em;
+ font-size: 0.9em;
+ font-weight: bold;
 }
 
 #col1 p,
