@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-12-14 16:40+0200\n"
-"Last-Translator: Prime-Creation <antwan@prime-creation.com>\n"
+"PO-Revision-Date: 2012-02-20 16:27+0100\n"
+"Last-Translator: Antwan <antwan@prime-creation.com>\n"
 "Language-Team: Very good.\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -164,8 +164,7 @@ msgstr "Lichte kleur"
 
 #: apps/partnersites/forms.py:9
 msgid "Hexidecimal value w/o preceding '#'; The dark color is calculated from this."
-msgstr ""
-"Hexidecimale waarde zonder #; de donkere kleur wordt automatisch berekend."
+msgstr "Hexidecimale waarde zonder #; de donkere kleur wordt automatisch berekend."
 
 #: apps/partnersites/forms.py:9
 msgid "Use a hexidecimal value (length: 6) without the preceding #"
@@ -263,9 +262,7 @@ msgstr "Is standaard herrinering"
 
 #: apps/reminder/models.py:39
 msgid "If this option is checked this template is the standard template for reminder emails."
-msgstr ""
-"Vink dit hokje aan om de opmaak van deze herinnering in te stellen als "
-"standaard opmaak voor de herinnerings e-mail."
+msgstr "Vink dit hokje aan om de opmaak van deze herinnering in te stellen als standaard opmaak voor de herinnerings e-mail."
 
 #: apps/reminder/models.py:40
 msgid "Is default newsitem"
@@ -401,7 +398,7 @@ msgstr "Log in"
 #: templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:9
 msgid "Register"
-msgstr "Registreren"
+msgstr "Doe mee!"
 
 #: templates/base/sitebase.html:77
 msgid "Forgot password?"
@@ -595,9 +592,7 @@ msgstr "Wachtwoord resetten geslaagd"
 
 #: templates/registration/password_reset_done.html:10
 msgid "We've e-mailed you instructions for setting your password to the e-mail address you submitted. You should be receiving it shortly."
-msgstr ""
-"U ontvangt zodadelijk een e-mail met instructies over het instellen van een "
-"wachtwoord op het e-mailadres dat u bij ons heeft doorgegeven."
+msgstr "U ontvangt zodadelijk een e-mail met instructies over het instellen van een wachtwoord op het e-mailadres dat u bij ons heeft doorgegeven."
 
 #: templates/registration/password_reset_email.html:3
 msgid "You're receiving this e-mail because you requested a password reset"
@@ -627,9 +622,7 @@ msgstr "Het team van %(site_name)s"
 
 #: templates/registration/password_reset_form.html:10
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr ""
-"Bent u uw wachtwoord vergeten? Vul hieronder uw e-mailadres in en wij sturen "
-"u een e-mail met instructies om een nieuw wachtwoord in te stellen"
+msgstr "Bent u uw wachtwoord vergeten? Vul hieronder uw e-mailadres in en wij sturen u een e-mail met instructies om een nieuw wachtwoord in te stellen"
 
 #: templates/registration/password_reset_form.html:14
 msgid "E-mail address:"
@@ -649,9 +642,7 @@ msgstr "Registratie geslaagd."
 
 #: templates/registration/registration_complete.html:7
 msgid "An e-mail containing information about how to activate your account has been sent to your e-mail address."
-msgstr ""
-"Een e-mail met informatie hoe u uw account kunt activeren is naar uw "
-"e-mailadres verstuurd"
+msgstr "Een e-mail met informatie hoe u uw account kunt activeren is naar uw e-mailadres verstuurd"
 
 #: templates/registration/registration_form.html:8
 msgid "Registration Form"
@@ -812,18 +803,10 @@ msgid "Manage household"
 msgstr "Beheer huishouden"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
-msgstr ""
-"U ontvangt deze mail omdat u staat geregistreerd als griepmeter bij De Grote "
-"GriepMeting (GGM). Uw meting helpt ons om de verspreiding van griep en "
-"verkoudheid in kaart te brengen. Al u niet langer wenst deel te nemen aan "
-"ons onderzoek <a href=\"%(unsubscribe_url)s\">meldt u zich dan af</a> voor "
-"onze wekelijkse nieuwsbrieven."
+msgstr "U ontvangt deze mail omdat u staat geregistreerd als griepmeter bij De Grote GriepMeting (GGM). Uw meting helpt ons om de verspreiding van griep en verkoudheid in kaart te brengen. Al u niet langer wenst deel te nemen aan ons onderzoek <a href=\"%(unsubscribe_url)s\">meldt u zich dan af</a> voor onze wekelijkse nieuwsbrieven."
 
 msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
-msgstr ""
-"Hier vindt u de lijst van personen die u beheert. Kies de gewenste optie "
-"naast de betreffende persoon om de aanmelding of meting te voltooien, of om "
-"die persoon te verwijderen."
+msgstr "Hier vindt u de lijst van personen die u beheert. Kies de gewenste optie naast de betreffende persoon om de aanmelding of meting te voltooien, of om die persoon te verwijderen."
 
 msgid "Background"
 msgstr "Aanmelding"
@@ -832,9 +815,7 @@ msgid "Symptoms"
 msgstr "Meting"
 
 msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
-msgstr ""
-"Voordat we u naar de daadwerkelijke meting doorsturen, zouden we het op "
-"prijs stellen als u onderstaande vragen éénmalig beantwoordt:"
+msgstr "Voordat we u naar de daadwerkelijke meting doorsturen, zouden we het op prijs stellen als u onderstaande vragen éénmalig beantwoordt:"
 
 msgid "Completing for participant"
 msgstr "Wordt ingevuld voor "
@@ -843,12 +824,7 @@ msgid "Symptoms survey"
 msgstr "Meting"
 
 msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
-msgstr ""
-"De griepstatus van iedere persoon is gebaseerd op de gegevens die u aan ons "
-"doorgeeft. <strong>Dit is geen medische diagnose</strong>. We vragen alleen "
-"naar symptomen die duiden op griep, verkoudheid en buikgriep. Indien u "
-"andere symptomen hebt of om wat voor reden dan ook bezorgd bent, raden we u "
-"aan contact op te nemen met uw huisarts."
+msgstr "De griepstatus van iedere persoon is gebaseerd op de gegevens die u aan ons doorgeeft. <strong>Dit is geen medische diagnose</strong>. We vragen alleen naar symptomen die duiden op griep, verkoudheid en buikgriep. Indien u andere symptomen hebt of om wat voor reden dan ook bezorgd bent, raden we u aan contact op te nemen met uw huisarts."
 
 msgid "Unknown"
 msgstr "Onbekend"
@@ -857,42 +833,27 @@ msgid "Questionnaire for participant"
 msgstr "Vragenlijst voor"
 
 msgid "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please"
-msgstr ""
-"Indien u deze mail niet ontvangt, raden wij u aan in uw spam-map te kijken. "
-"Als u problemen hebt met het activeren van uw registratie, kunt u altijd"
+msgstr "Indien u deze mail niet ontvangt, raden wij u aan in uw spam-map te kijken. Als u problemen hebt met het activeren van uw registratie, kunt u altijd"
 
 msgid "contact us"
 msgstr "contact op te nemen"
 
 # translations should reflect whatever can be seen on the map of the thanks page
 msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
-msgstr ""
-"In de <strong style=\"color: #0037ff;\">&#x25B8; blauw</strong> gekleurde "
-"postcodegebieden doen zich gevallen voor die op verkoudheid wijzen. In de "
-"<strong style=\"color: #f2b40e;\">&#x25B8; geel</strong> gekleurde gebieden "
-"doen zich (ook) verschijnselen van buikgriep voor. In de <strong "
-"style=\"color: #ff2300;\">&#x25B8; rood</strong> gekleurde postcodegebieden "
-"heersen (ook) griepachtige verschijnselen. In de <strong style=\"color: "
-"#707070;\">&#x25B8; grijze</strong> gebieden zijn wel metingen verricht, maar "
-"geen symptomen van bovengenoemde ziekten gevonden."
+msgstr "In de <strong style=\"color: #0037ff;\">&#x25B8; blauw</strong> gekleurde postcodegebieden doen zich gevallen voor die op verkoudheid wijzen. In de <strong style=\"color: #f2b40e;\">&#x25B8; geel</strong> gekleurde gebieden doen zich (ook) verschijnselen van buikgriep voor. In de <strong style=\"color: #ff2300;\">&#x25B8; rood</strong> gekleurde postcodegebieden heersen (ook) griepachtige verschijnselen. In de <strong style=\"color: #707070;\">&#x25B8; grijze</strong> gebieden zijn wel metingen verricht, maar geen symptomen van bovengenoemde ziekten gevonden."
 
 # translations should reflect however often maps are updated
 msgid "Map updated hourly."
 msgstr "De kaart wordt ieder uur ververst."
 
 msgid "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to"
-msgstr ""
-"U kunt proberen de link uit uw activatie-e-mail te kopiëren, waarna u hem "
-"nogmaals in uw browservenster plakt. Let u er a.u.b. dat u alle letters en "
-"cijfers kopieert. Als dit niet lukt kunt u proberen "
+msgstr "U kunt proberen de link uit uw activatie-e-mail te kopiëren, waarna u hem nogmaals in uw browservenster plakt. Let u er a.u.b. dat u alle letters en cijfers kopieert. Als dit niet lukt kunt u proberen "
 
 msgid "log in"
 msgstr "in te loggen"
 
 msgid "using the username and password you provided during registration. If this still fails, please try to"
-msgstr ""
-"met de gebruikersnaam en het wachtwoord dat u hebt ingevuld tijdens de "
-"registratie. Als u hiermee niet verder komt willen wij u vragen opnieuw te"
+msgstr "met de gebruikersnaam en het wachtwoord dat u hebt ingevuld tijdens de registratie. Als u hiermee niet verder komt willen wij u vragen opnieuw te"
 
 msgid "register"
 msgstr "Doe mee!"
@@ -923,3 +884,4 @@ msgstr "Griepmeter"
 
 msgid "Contest"
 msgstr "Prijsvraag"
+
