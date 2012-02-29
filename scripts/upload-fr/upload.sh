@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-HOST="grippenet@85.90.70.27"
-DBNAME="epiwork"
+HOST=grippenet@85.90.70.27
+DBNAME=epiwork
 
 DIR=`dirname $0`
 
