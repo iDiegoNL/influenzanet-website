@@ -17,3 +17,4 @@ scp -v epidb_results.sql $HOST
 
 echo "Importing data in target host"
 ssh $HOST 'psql -f epidb_results.sql'
+
