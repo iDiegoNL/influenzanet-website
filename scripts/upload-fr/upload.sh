@@ -10,11 +10,10 @@ echo "Creating export tables"
 psql -f $DIR/dump.sql $DBNAME
 
 echo "Creating dump"
-pg_dump -t epidb_results_intake -t epidb_results_weekly --clean --no-owner $DBNAME > epidb_results.sql
+pg_dump -t epidb_results_intake -t epidb_results_weekly --clean --no-owner -x $DBNAME > epidb_results.sql
 
 echo "Uploading"
 scp -v epidb_results.sql $HOST:.
 
 echo "Importing data in target host"
-ssh $HOST 'psql -f epidb_results.sql'
-
+ssh $HOST './import-epidb.sh'
