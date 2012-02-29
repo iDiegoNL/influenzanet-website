@@ -9,8 +9,8 @@
 
 
 	<p>
-    {% if news.image %}<img src="{% url journal_thumbnail slug=news.slug %}" {% if news.alignment %}align="{{ news.alignment }}"{% endif %} alt="{{ news.title }}"/>{% endif %}
-    {{ news.excerpt }}
+    {% if news.image %}<img src="{% url journal_thumbnail slug=news.slug %}" {% if news.alignment %}align="{{ news.alignment }}"{% endif %} alt="{{ news.title }}" class="journalimgsmall" />{% endif %}
+    <strong>{{ news.excerpt }}</strong>
     <a href="/news/{{ news.get_relative_url }}">{% trans "Read more..." %}</a></p><hr />
 
 {% empty %}

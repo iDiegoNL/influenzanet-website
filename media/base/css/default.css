@@ -1021,6 +1021,7 @@ hr {
  padding: 0;
  color: #0a0a0a;
  font-size: 1.2em;
+ line-height: 1.1em;
 }
 
 #col1 h2 {
@@ -1185,6 +1186,14 @@ div.pagination {
 
 .pagination a {
  font-size: 0.7em;
+}
+
+.journalimg {
+ margin: 0 10px 2px 0;	
+}
+
+.journalimgsmall {
+ margin: -2px 10px 2px 0;	
 }
 
 
