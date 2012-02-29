@@ -1157,8 +1157,8 @@ table.imagetable td {
 /* Journal */
 
 ul.archive {
- margin: 10px 0 0 0;
- font-size: 0.8em;
+ margin: 10px 0 0 8px;
+ font-size: 1em;
 }
 
 div.entries {
