@@ -598,14 +598,14 @@ textarea#id_body {
 textarea#id_body {
  width: 400px;
  height: 114px;
- font-size: 1em;
+ font-size: 12px;
  line-height: 1.2em;
  padding: 4px;
 }
 
 input#id_name:focus,
 input#id_email:focus,
-textarea#id_message:focus {
+textarea#id_body:focus {
  background-color: #f0f0f0;
  border: 1px solid #000000;
 }
