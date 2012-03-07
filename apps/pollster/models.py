@@ -1076,6 +1076,9 @@ class Chart(models.Model):
             cursor.execute("DROP VIEW IF EXISTS %s" % (view,))
             cursor.execute("DROP TABLE IF EXISTS %s" % (table,))
             cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
+            if hasattr(settings, 'POLLSTER_GRANT_CHART'):
+                for g in settings.POLLSTER_GRANT_CHART:
+                    cursor.execute("GRANT SELECT ON TABLE %s TO %s" % (table, g))
             if self.type.shortname != 'google-charts':
                 cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
             transaction.commit_unless_managed()
