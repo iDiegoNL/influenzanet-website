@@ -173,8 +173,8 @@ INSTALLED_APPS = (
     'haystack',
     'apps.pollster',
     'apps.contest',
-    'apps.captcha',
-    'apps.tellafriend',
+    #'apps.captcha',
+    #'apps.tellafriend',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
