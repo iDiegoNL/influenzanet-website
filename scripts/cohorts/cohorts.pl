@@ -148,14 +148,14 @@ if ($motionchart) {
     my @vaccinated_data;
     my @unvaccinated_data;
     foreach my $year (sort keys %vaccinated_ili) {
-	foreach my $week (sort keys %{ $vaccinated_ili{$year} }) {
+	foreach my $week (sort {$a <=> $b} keys %{ $vaccinated_ili{$year} }) {
 	    push @categories, "'$week/$year'";
 	    push @vaccinated_data,
-		sprintf("%.0f", ($vaccinated_ili{$year}{$week} * 100 /
+		sprintf("%.1f", ($vaccinated_ili{$year}{$week} * 100 /
 		     ($vaccinated_ili{$year}{$week} +
 			  $vaccinated_nonili{$year}{$week} + .0)));
 	    push @unvaccinated_data,
-		sprintf("%.f", ($unvaccinated_ili{$year}{$week} * 100 /
+		sprintf("%.1f", ($unvaccinated_ili{$year}{$week} * 100 /
 		     ($unvaccinated_ili{$year}{$week} +
 			  $unvaccinated_nonili{$year}{$week} + .0)));
 	}
