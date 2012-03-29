@@ -4,8 +4,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import get_hexdigest, check_password, User
 from django.db import transaction
 import utils
+from .backend import login_handler
+from .utils import create_token
 
-from apps.sw_auth.utils import create_token
+# Connect to login_in signal
+# This allow us to set the real user id in session
+from django.contrib.auth import user_logged_in
+user_logged_in.connect(login_handler)
 
 class EpiworkUserManager(models.Manager):
     
@@ -77,3 +82,19 @@ class EpiworkUser(models.Model):
     def create_token_activate(self):
         token = create_token()
         self.token_activate = token
+    
+    @transaction.commit_manually()
+    def activate(self):
+        self.is_active = True
+        self.token_activate = ''
+        dju = self.get_django_user()
+        dju.is_active = True
+        try:
+            self.save()
+            dju.save()
+            transaction.commit()
+            return True
+        except:
+            transaction.rollback()
+            return False
+            

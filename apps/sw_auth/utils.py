@@ -1,5 +1,5 @@
 
-from django.utils.http import int_to_base36
+from django.utils.http import int_to_base36, base36_to_int
 from datetime import date
 from random import choice
              
@@ -16,3 +16,8 @@ def create_token():
     token += '-' + ts36
     return token
 
+def get_token_age(token):
+    ts36,r = token.split("-")
+    timestamp = base36_to_int(ts36)
+    now = get_timestamp()
+    return now - timestamp

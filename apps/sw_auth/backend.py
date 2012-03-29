@@ -7,7 +7,7 @@ from models import EpiworkUser
  Real user identity is handled by EpiworkUser
 """
 
-class CustomModelBackend(ModelBackend):
+class EpiworkAuthBackend(ModelBackend):
     
     def authenticate(self, username=None, password=None):
         try:
@@ -16,6 +16,7 @@ class CustomModelBackend(ModelBackend):
                 
                 try:
                     u = user.get_django_user()
+                    u._epiwork_user = user # temporary store it in user
                     return u
                 except DjangoUser.DoesNotExist:
                     return None
@@ -29,3 +30,10 @@ class CustomModelBackend(ModelBackend):
         except EpiworkUser.DoesNotExist:
             return None
 
+
+# Connect to auth login signal
+def login_handler(sender,**kwargs):
+    user = kwargs['user']
+    request = kwargs['request']
+    epiwork_user = user._epiwork_user
+    request.session['epiwork_user'] = epiwork_user # store real user in session

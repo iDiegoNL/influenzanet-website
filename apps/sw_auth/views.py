@@ -1,18 +1,19 @@
 from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.cache import never_cache
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import send_mail
 from django.contrib.sites.models import get_current_site
-from .forms import PasswordResetForm, RegistrationForm
+from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm
 from django.http import HttpResponseRedirect
 from apps.sw_auth.models import EpiworkUser
 from django.conf import settings
-from werkzeug.contrib.jsrouting import render_template
+from apps.sw_auth.utils import get_token_age
 
 
-def render_template(name, request, context):
+def render_template(name, request, context=None):
     return render_to_response('sw_auth/'+name+'.html',
                               context,
                               context_instance=RequestContext(request)
@@ -46,10 +47,16 @@ def register_user(request):
     return render_template('registration_form', request, { 'form': form}) 
             
 
-def activate_user(request):
-    toto = 1
-    
-    
+def activate_user(request, activation_key):
+    try:
+        age = get_token_age(activation_key)
+        if(age < settings.ACCOUNT_ACTIVATION_DAYS):
+            user = EpiworkUser.objects.get(token_activate=activation_key)
+            user.activate()
+            return HttpResponseRedirect(reverse('registration_activation_complete'))
+    except EpiworkUser.DoesNotExist:
+        user = None
+    return render_template('activate', request)
 
 @csrf_protect
 def password_reset(request):
@@ -69,18 +76,33 @@ def password_reset(request):
             
             send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/email_reset_password.html', c)
             
-            post_reset_redirect = reverse('sw_auth.views.password_reset_done')
+            post_reset_redirect = reverse('auth_password_reset_done')
             return HttpResponseRedirect(post_reset_redirect)
     form = PasswordResetForm()
     return render_template('password_reset', request, {'form': form})
-    
+
+@never_cache
+def password_confirm(request, token=None):    
+    """
+    """
+    assert token is not None
+    try:
+        age = get_token_age(token)
+        if(age < settings.ACCOUNT_ACTIVATION_DAYS):
+            user = EpiworkUser.objects.get(token_password=token)
+            if request.method == 'POST':
+                form = SetPasswordForm(user, request.POST)
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect(reverse('auth_password_reset_complete'))
+            else:
+                form = SetPasswordForm()
+    except:
+        pass
 
 def password_done(request):
     """
-    """
-    
-def password_confirm(request):    
-    """
+    Nothing to do
     """
     
 def password_complete(request):

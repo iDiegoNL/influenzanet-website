@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     # From registration.backends.default.urls
     url(r'^activate/complete/$',
         direct_to_template,
-        { 'template': 'registration/activation_complete.html' },
+        { 'template': 'sw_auth/activation_complete.html' },
         name='registration_activation_complete'),
     
     # Activation keys get matched by \w+ instead of the more specific
@@ -26,33 +26,32 @@ urlpatterns = patterns('',
     
     url(r'^register/complete/$',
         direct_to_template,
-        { 'template': 'registration/registration_complete.html' },
+        { 'template': 'sw_auth/registration_complete.html' },
         name='registration_complete'),
     
     url(r'^register/closed/$',
         direct_to_template,
-        { 'template': 'registration/registration_closed.html' },
+        { 'template': 'sw_auth/registration_closed.html' },
         name='registration_disallowed'),
     
     # From registration.auth_urls
     url(r'^login/$',
         auth_views.login,
-        {'template_name': 'registration/login.html'},
+        {'template_name': 'sw_auth/login.html'},
         name='auth_login'),
     
     url(r'^logout/$',
         auth_views.logout,
-        {'template_name': 'registration/logout.html'},
+        {'template_name': 'sw_auth/logout.html'},
         name='auth_logout'),
     
     url(r'^password/change/$',
-        auth_views.password_change,
-        {'template_name': 'registration/password_change_form.html'},
+        views.password_reset,
         name='auth_password_change'),
     
     url(r'^password/change/done/$',
         auth_views.password_change_done,
-        {'template_name': 'registration/password_change_done.html'},
+        {'template_name': 'sw_auth/password_change_done.html'},
         name='auth_password_change_done'),
     
     url(r'^password/reset/$',
@@ -65,11 +64,13 @@ urlpatterns = patterns('',
         ),
     
     url(r'^password/reset/complete/$',
-        views.password_complete,
+        auth_views.password_reset_complete,
+        {'template_name': 'sw_auth/password_reset_complete.html'},
         name='auth_password_reset_complete'),
     
     url(r'^password/reset/done/$',
-        views.password_done,
+        auth_views.password_reset_done,
+        {'template_name': 'sw_auth/password_change_done.html'},
         name='auth_password_reset_done'),
 
     url(r'^settings/$', views.my_settings),
