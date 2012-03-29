@@ -4,12 +4,20 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import get_hexdigest, check_password, User
 from django.db import transaction
 import utils
-from .backend import login_handler
 from .utils import create_token
-
+from .logger import auth_notify
 # Connect to login_in signal
 # This allow us to set the real user id in session
 from django.contrib.auth import user_logged_in
+
+# Connect to auth login signal
+def login_handler(sender,**kwargs):
+    auth_notify('login_handler','ok')
+    user = kwargs['user']
+    request = kwargs['request']
+    epiwork_user = user._epiwork_user
+    request.session['epiwork_user'] = epiwork_user # store real user in session
+
 user_logged_in.connect(login_handler)
 
 class EpiworkUserManager(models.Manager):
@@ -67,7 +75,7 @@ class EpiworkUser(models.Model):
             self.password = '%s$%s$%s' % (algo, salt, hsh)
 
     def check_password(self, raw_password):
-        check_password(raw_password, self.password)
+        return check_password(raw_password, self.password)
          
     def get_django_user(self):
         username = self.get_user()
@@ -82,6 +90,8 @@ class EpiworkUser(models.Model):
     def create_token_activate(self):
         token = create_token()
         self.token_activate = token
+        self.save()
+        return token
     
     @transaction.commit_manually()
     def activate(self):
@@ -97,4 +107,22 @@ class EpiworkUser(models.Model):
         except:
             transaction.rollback()
             return False
-            
+
+    def personalize(self, user):
+        user.username = self.login
+        user.email = self.email
+
+class FakedUser(User):
+    class Meta:
+        proxy = True
+        """"
+        """ 
+        
+    def save(self, force_insert=False, force_update=False, using=None):
+        raise Exception
+        """
+            Fake User is readonly once authenticated this account
+        """
+    
+    def safe_save(self, force_insert=False, force_update=False, using=None):
+        self.save_base( force_insert=False, force_update=False, using=None)

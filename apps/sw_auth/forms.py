@@ -73,11 +73,11 @@ class PasswordResetForm(forms.Form):
         Validates that an active user exists with the given e-mail address.
         """
         email = self.cleaned_data["email"]
-        
+       
         # get back the real django user
-        self.users_cache = EpiworkUser.objects.filter(email__iexact=email, is_active=True) 
-        
-        if len(self.users_cache) == 0:
+        try:
+            self.user_cache = EpiworkUser.objects.get(email__iexact=email, is_active=True) 
+        except EpiworkUser.DoesNotExist:
             raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
         return email
             
