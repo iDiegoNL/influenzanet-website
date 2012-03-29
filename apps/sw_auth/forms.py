@@ -1,11 +1,68 @@
 from django import forms
 from models import EpiworkUser
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.models import get_current_site
-from django.template import Context, loader
 from django.utils.translation import ugettext_lazy as _
-from django.utils.http import int_to_base36
 
+attrs_dict = { 'class': 'required' }
+
+class RegistrationForm(forms.Form):
+    """
+    Form for registering a new user account.
+    
+    Validates that the requested username is not already in use, and
+    requires the password to be entered twice to catch typos.
+    
+    Subclasses should feel free to add any additional validation they
+    need, but should avoid defining a ``save()`` method -- the actual
+    saving of collected user data is delegated to the active
+    registration backend.
+    
+    """
+    username = forms.RegexField(regex=r'^\w+$',
+                                max_length=255,
+                                widget=forms.TextInput(attrs=attrs_dict),
+                                label=_("Username"),
+                                error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
+    email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
+                                                               maxlength=75)),
+                             label=_("Email address"))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
+                                label=_("Password"))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
+                                label=_("Password (again)"))
+    
+    def clean_username(self):
+        """
+        Validate that the username is alphanumeric and is not already
+        in use.
+        
+        """
+        try:
+            user = EpiworkUser.objects.get(login__iexact=self.cleaned_data['username'])
+        except EpiworkUser.DoesNotExist:
+            return self.cleaned_data['username']
+        raise forms.ValidationError(_("A user with that username already exists."))
+
+    def clean_email(self):
+        """
+        Validate that the supplied email address is unique for the
+        site.
+        
+        """
+        if EpiworkUser.objects.filter(email__iexact=self.cleaned_data['email']):
+            raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
+        return self.cleaned_data['email']
+    def clean(self):
+        """
+        Verifiy that the values entered into the two password fields
+        match. Note that an error here will end up in
+        ``non_field_errors()`` because it doesn't apply to a single
+        field.
+        
+        """
+        if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
+            if self.cleaned_data['password1'] != self.cleaned_data['password2']:
+                raise forms.ValidationError(_("The two password fields didn't match."))
+        return self.cleaned_data
 
 class PasswordResetForm(forms.Form):
     email = forms.EmailField(label=_("E-mail"), max_length=75)
@@ -22,32 +79,6 @@ class PasswordResetForm(forms.Form):
         if len(self.users_cache) == 0:
             raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
         return email
-
-    def save(self, domain_override=None, email_template_name='registration/password_reset_email.html',
-             use_https=False, token_generator=default_token_generator, from_email=None, request=None):
-        """
-        Generates a one-use only link for resetting password and sends to the user
-        """
-        from django.core.mail import send_mail
-        for user in self.users_cache:
-            if not domain_override:
-                current_site = get_current_site(request)
-                site_name = current_site.name
-                domain = current_site.domain
-            else:
-                site_name = domain = domain_override
-            t = loader.get_template(email_template_name)
-            c = {
-                'email': user.email,
-                'domain': domain,
-                'site_name': site_name,
-                'uid': int_to_base36(user.id),
-                'user': user,
-                'token': token_generator.make_token(user),
-                'protocol': use_https and 'https' or 'http',
-            }
-            send_mail(_("Password reset on %s") % site_name,
-                t.render(Context(c)), from_email, [user.email])
             
 class SetPasswordForm(forms.Form):
     """

@@ -1,0 +1,14 @@
+{% extends "registration/boxbase.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}: {% trans "Account Activation" %}{% endblock %}
+
+{% block content %}<h1>{% trans "Account Activation" %}</h1>
+                <p>{% trans "User activation failed." %}</p>
+<br>
+<p>
+{% trans "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to" %} <a href="/accounts/login">{% trans "log in" %}</a> {% trans "using the username and password you provided during registration. If this still fails, please try to" %} <a href="/accounts/register">register</a> {% trans "with a different username. If everything else fails, please do not hesitate to" %} <a href="/contact">{% trans "contact us" %}</a>.
+</p>
+
+                <p>&nbsp;</p>
+                <p><a href="/">{% trans "Back to the home page" %}</a>.</p>{% endblock content %}
