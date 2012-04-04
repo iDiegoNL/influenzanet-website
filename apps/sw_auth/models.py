@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import get_hexdigest, check_password, User
 from django.db import transaction
 import utils
-from .utils import create_token
+from .utils import create_token, encrypt_user, decrypt_user
 from .logger import auth_notify
 # Connect to login_in signal
 # This allow us to set the real user id in session
@@ -19,6 +19,7 @@ def login_handler(sender,**kwargs):
     request.session['epiwork_user'] = epiwork_user # store real user in session
 
 user_logged_in.connect(login_handler)
+    
 
 class EpiworkUserManager(models.Manager):
     
@@ -44,7 +45,7 @@ class EpiworkUserManager(models.Manager):
         except:
             transaction.rollback()
             raise 
-        return user
+        return user        
 
 class EpiworkUser(models.Model):
     user = models.CharField(_('username'),max_length=255) # encrypted user name in auth_user
@@ -59,10 +60,10 @@ class EpiworkUser(models.Model):
     
     # Get the user login
     def get_user(self):
-        return self.user
+        return decrypt_user(self.user)
 
     def set_user(self, username):
-        self.user = username
+        self.user = encrypt_user(username)
 
     def set_password(self, raw_password):
         if raw_password is None:

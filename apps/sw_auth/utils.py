@@ -5,6 +5,8 @@ from random import choice
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
+
+from crypto import AES256
              
 def get_timestamp():
     tm = date.today() - date(2001, 1, 1)
@@ -38,3 +40,27 @@ def send_activation_email(user, site):
     message = render_to_string('registration/activation_email.txt', ctx_dict)
     
     send_mail(subject, message, None, [user.email])
+
+
+"""
+Cipher Config
+SWAUTH_AES_KEY should contains a base64 encoded 32bytes (256bits) key used to encrypt username using AES256 algorithm
+"""
+
+def get_encryption_key():
+    if not hasattr(settings,'SWAUTH_AES_KEY'):
+        raise Exception("Encryption key not defined in settings")
+    return settings.SWAUTH_AES_KEY
+  
+def encrypt_user(username):
+    key = get_encryption_key()
+    aes = AES256(key)
+    return aes.encrypt(username)
+
+"""
+Decrypt username
+""" 
+def decrypt_user(username):
+    key = get_encryption_key()
+    aes = AES256(key)
+    return aes.decrypt(username)
