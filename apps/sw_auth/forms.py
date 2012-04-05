@@ -2,6 +2,7 @@ from django import forms
 from django.conf import settings
 from models import EpiworkUser
 from django.utils.translation import ugettext_lazy as _
+from apps.reminder.models import UserReminderInfo
 
 attrs_dict = { 'class': 'required' }
 
@@ -113,11 +114,14 @@ class MySettingsForm(forms.Form):
     language = forms.ChoiceField(label=_("Language"), choices=settings.LANGUAGES)
     
     def __init__(self, *args, **kwargs):
+                
         self.instance = kwargs.pop('instance')
+        self.epiwork_user = kwargs.pop('epiwork')
+        
         self.reminder_info, _ = UserReminderInfo.objects.get_or_create(user=self.instance, defaults={'active': True, 'last_reminder': self.instance.date_joined})
 
         initial = kwargs.pop('initial', {})
-        initial['email'] = self.instance.email
+        initial['email'] = self.epiwork_user.email
         initial['send_reminders'] = self.reminder_info.active
         initial['language'] = self.reminder_info.language if self.reminder_info.language else settings.LANGUAGE_CODE
         kwargs['initial'] = initial
@@ -129,19 +133,22 @@ class MySettingsForm(forms.Form):
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        if User.objects.exclude(id=self.instance.id).filter(email=email).count():
-            raise forms.ValidationError(_("This email is already in use"))
+        # check if email has been changed
+        if email != self.epiwork_user.email:
+            if EpiworkUser.objects.exclude(id=self.epiwork_user.id).filter(email=email).count():
+                raise forms.ValidationError(_("This email is already in use"))
         return email
 
     def save(self):
-        if self.instance.email == self.instance.username:
-            self.instance.username = self.cleaned_data['email']
-        self.instance.email = self.cleaned_data['email']
+        if self.epiwork_user.email == self.epiwork_user.login:
+            self.epiwork_user.username = self.cleaned_data['email']
+        self.epiwork_user.email = self.cleaned_data['email']
 
         self.reminder_info.active = self.cleaned_data['send_reminders']
         
         if 'language' in self.cleaned_data:
             self.reminder_info.language = self.cleaned_data['language']
 
-        self.instance.save()
+        #self.instance.save()
         self.reminder_info.save()
+        self.epiwork_user.save()

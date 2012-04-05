@@ -6,13 +6,14 @@ from django.template import RequestContext, Context
 from django.template.loader import get_template
 from django.core.mail import send_mail
 from django.contrib.sites.models import get_current_site
-from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm
+from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm, MySettingsForm
 from django.http import HttpResponseRedirect
 from apps.sw_auth.models import EpiworkUser
 from django.conf import settings
 from apps.sw_auth.utils import get_token_age, send_activation_email
 from apps.sw_auth.logger import auth_notify
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.decorators import login_required
 
 
 def render_template(name, request, context=None):
@@ -113,10 +114,20 @@ def password_complete(request):
     """
     """
     
-    
+@login_required    
 def my_settings(request):
     """
     """
+    if request.method == "POST":
+        form = MySettingsForm(request.POST, instance=request.user, epiwork=request.session['epiwork_user'])
+        if form.is_valid():
+            form.save()
+            success = True
+    else:
+        form = MySettingsForm(instance=request.user, epiwork=request.session['epiwork_user'])
+
+    return render_to_response('accounts/my_settings.html', locals(), RequestContext(request))
+
     
 def index(request):
     """
