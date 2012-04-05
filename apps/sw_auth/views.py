@@ -118,6 +118,9 @@ def password_complete(request):
 def my_settings(request):
     """
     """
+    if not hasattr(request.session,'epiwork_user'):
+        return render_to_response('sw_auth/no_settings.html', locals(), RequestContext(request))
+        
     if request.method == "POST":
         form = MySettingsForm(request.POST, instance=request.user, epiwork=request.session['epiwork_user'])
         if form.is_valid():

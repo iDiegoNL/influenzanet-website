@@ -82,6 +82,10 @@ class EpiworkUser(models.Model):
         username = self.get_user()
         return User.objects.get(username=username)
 
+    def get_fake_user(self):
+        username = self.get_user()
+        return FakedUser.objects.get(username=username)
+    
     def create_token_password(self):
         token = create_token()
         self.token_password = token
@@ -118,6 +122,10 @@ class FakedUser(User):
         proxy = True
         """"
         """ 
+    
+    def personalize(self, user):
+        self.username = user.login
+        self.email = user.email
         
     def save(self, force_insert=False, force_update=False, using=None):
         raise Exception
