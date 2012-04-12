@@ -73,7 +73,7 @@ POLLSTER_CACHE_PATH = PROJECT_PATH
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'
+STATIC_URL = MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -103,6 +103,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
+    'pybb.middleware.PybbMiddleware',
     'cms.middleware.multilingual.MultilingualURLMiddleware',
 )
 
@@ -115,6 +116,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "cms.context_processors.media",
     "apps.partnersites.context_processors.customizations",
+    "pybb.context_processors.processor",
+    "django.core.context_processors.static",
 )
 
 CMS_TEMPLATES = (
@@ -175,6 +178,11 @@ INSTALLED_APPS = (
     'apps.contest',
     #'apps.captcha',
     #'apps.tellafriend',
+
+    'pybb',
+    'pytils',
+    'sorl.thumbnail',
+    'pure_pagination',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -241,3 +249,7 @@ CMS_SEO_FIELDS = True
 SESSION_COOKIE_AGE = 60 * 60 * 2
 
 LOGIN_REDIRECT_URL = '/survey/'
+
+# PyBB settings
+AUTH_PROFILE_MODULE = 'pybb.Profile'
+PYBB_TEMPLATE = 'base/sitebase.html'
