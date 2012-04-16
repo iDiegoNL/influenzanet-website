@@ -44,8 +44,8 @@ class Command(BaseCommand):
                 resend = True
             else:
                 if renew:
-                    user.date_joined = datetime.datetime.now()
-                    user.save()
+                    u.date_joined = datetime.datetime.now()
+                    u.save()
                     resend = True
                 else:    
                     print 'Activation expired for user %d' % u.id
