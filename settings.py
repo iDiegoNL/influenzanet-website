@@ -133,6 +133,7 @@ GEOMETRY_TABLES = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
+    os.path.join(PROJECT_PATH, 'custom_templates'),
     os.path.join(PROJECT_PATH, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -253,3 +254,4 @@ LOGIN_REDIRECT_URL = '/survey/'
 # PyBB settings
 AUTH_PROFILE_MODULE = 'pybb.Profile'
 PYBB_TEMPLATE = 'base/sitebase.html'
+PYBB_TEMPLATE = 'pybb/bootstrap_base.html'
