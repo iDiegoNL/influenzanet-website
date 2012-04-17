@@ -52,6 +52,8 @@ urlpatterns = patterns('',
         { 'backend': 'registration.backends.default.DefaultBackend',
           'template_name': 'registration/registration_explanation.html' },
         name='registration_register_explanation'),
+
+    (r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 
 if settings.DEBUG:
