@@ -32,30 +32,6 @@
 
 <body{% spaceless %}{% block add_body %}{% endblock add_body %}{% endspaceless %}>
 <div id="page" class="forum">
-	
-                {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                    {% endif %}
-
-                {% else %}
-<div class="topbar">
-    <div class="fill">
-        <div class="container">
-            <ul class="nav">
-                	<li>
-           		        <a class="brand" href="/">Het forum is alleen toegankelijk voor geregistreerde meters van de Grote Griepmeting</a>
-                	</li>
-                    <li>
-                        <a href="{% url auth_login %}">Login</a>
-                    </li>
-                    <li>
-                        <a href="{% url registration_register %}">Registreer</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</div>
 
 		<div id="influenzabar">
 			{% block masthead %}
