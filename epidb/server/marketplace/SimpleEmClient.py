@@ -9,6 +9,8 @@ import os, urllib2, re, xml.dom.minidom, base64, pickle, sys, optparse, getpass,
 
 from xml.etree.ElementTree import ElementTree
 
+import xml.etree.ElementTree as ET
+
 from optparse import OptionParser
 
 from urllib2 import Request, urlopen, URLError, HTTPError
@@ -57,7 +59,7 @@ class User:
 class Resource:
     def __init__(self, pid, folder, data=None, name=None):
 
-	global resourceURL, RegexResourcePID
+        global resourceURL, RegexResourcePID
 
         regex = re.compile(RegexResourcePID)
         
@@ -98,6 +100,9 @@ class Resource:
       tree = ElementTree()
 
       xmlTree = tree.parse(StringIO.StringIO(xmlStr))
+
+      #print ET.tostring(xmlTree)
+      #print xmlStr
 
       titleList = xmlTree.findall("result/title/")
 
@@ -218,11 +223,11 @@ class Collection:
         nameList = tree.findall("collection/header/title")
 
         if len(nameList) > 0:
-          self.name = nameList[0].text	
+          self.name = nameList[0].text
 
-      	resourceList = tree.findall(CollectionResourceXPath)
+        resourceList = tree.findall(CollectionResourceXPath)
 
-      	for element in resourceList:
+        for element in resourceList:
           resource = element.text
           regexID = re.compile("\d+$")
 
@@ -257,39 +262,27 @@ def getURL(user, url):
     username = user.username
     password = user.password
     # a great password
-
     passman = urllib2.HTTPPasswordMgrWithDefaultRealm()
     # this creates a password manager
     passman.add_password(None, theurl, username, password)
     # because we have put None at the start it will always
     # use this username/password combination for  urls
     # for which `theurl` is a super-url
-
     authhandler = urllib2.HTTPBasicAuthHandler(passman)
     # create the AuthHandler
-
-
-
+  
     opener = urllib2.build_opener(authhandler)
-
-
-
-
     urllib2.install_opener(opener)
-
 
     # All calls to urllib2.urlopen will now use our handler
     # Make sure not to include the protocol in with the URL, or
     # HTTPPasswordMgrWithDefaultRealm will be very confused.
     # You must (of course) use it when fetching the page though.
-
+    #print "theurl", theurl
     pagehandle = urllib2.urlopen(theurl)
-
     # authentication is now handled automatically for us
 
     return pagehandle.read()
-
-
 
 #
 # POST to URL
@@ -298,17 +291,23 @@ def getURL(user, url):
 
 def postToURL(user, url, content):
 
-    theurl = url
     username = user.username
     password = user.password
     # a great password
+    
+    #csantos code
+    import socket
+    # timeout in seconds
+    timeout = 20
+    socket.setdefaulttimeout(timeout)
+    #end of csantos code
 
     passman = urllib2.HTTPPasswordMgrWithDefaultRealm()
     # this creates a password manager
-    passman.add_password(None, theurl, username, password)
+    passman.add_password(None, url, username, password)
     # because we have put None at the start it will always
     # use this username/password combination for  urls
-    # for which `theurl` is a super-url
+    # for which `url` is a super-url
 
     authhandler = urllib2.HTTPBasicAuthHandler(passman)
     # create the AuthHandler
@@ -323,21 +322,36 @@ def postToURL(user, url, content):
     # HTTPPasswordMgrWithDefaultRealm will be very confused.
     # You must (of course) use it when fetching the page though.
 
-    request = urllib2.Request(url, content)
-
-    pagehandle = urllib2.urlopen(request)
-
-    print pagehandle.read()
+    
+    #csantos code
+    result = ""
+    print "csantos: url: " + url + "\ncontent: "+content
+    try:
+      request = urllib2.Request(url, content)
+      pagehandle = urllib2.urlopen(request)
+    except HTTPError, e:
+      result = result + 'The server couldn\'t fulfill the request.\n'
+      result = result + 'Error code: ' + str(e.code) + '\n'
+    except URLError, e:
+      result = result + 'We failed to reach a server.\n'
+      result = result + 'Reason: ', str(e.reason) + '\n'
+    else: 
+      print "Everything went better than expected"
+      result = pagehandle.read()
+    #end csantos code
+    #previous code
+    ##request = urllib2.Request(url, content)
+    ##pagehandle = urllib2.urlopen(request)
+    ##print pagehandle.read()
+    ##return pagehandle.read()
+    #end of previous code
 
     # authentication is now handled automatically for us
-
-    return pagehandle.read()
-
-
+    return result
 
 #Upload
 def upload(FILE, collection, metadataPath, uploadURL):
-
+    print "Entrei no upload"
     data = None
 
     if FILE != "" :
@@ -450,7 +464,8 @@ def upload(FILE, collection, metadataPath, uploadURL):
     #print xmlData
 
     upload = postToURL(user, uploadURL, xmlData)
-
+    print "csantos: depois do upload"
+    print "upload result:\n" + upload
     return True
 
 
@@ -535,7 +550,7 @@ class Run:
 
     def __init__(self):
 
-	global resourceURL, collectionURL, RegexResourcePID, RegexCollectionPID, CollectionResourceXPath, loginURL, uploadURL
+        global resourceURL, collectionURL, RegexResourcePID, RegexCollectionPID, CollectionResourceXPath, loginURL, uploadURL
 
         parser = OptionParser()
         parser.add_option("-U", "--username", dest="username",
@@ -547,37 +562,37 @@ class Run:
                   action="store_true", dest="getResource", default=False,
                   help="Get a resource from the Epidemic Marketplace. Syntax \"-g \"resourcePID\" \"folderPath\"\"")
 
-        parser.add_option("-a", "--add-resource",
-                  action="store_true", dest="addResource", default=False,
-                  help="Add a resource to the monitored resource list. Syntax \"-a \"resourcePID\" \"folderPath\"\"")
+        #parser.add_option("-a", "--add-resource",
+        #          action="store_true", dest="addResource", default=False,
+        #          help="Add a resource to the monitored resource list. Syntax \"-a \"resourcePID\" \"folderPath\"\"")
 
-        parser.add_option("-A", "--add-collection",
-                  action="store_true", dest="addCollection", default=False,
-                  help="Add a resource to the monitored resource list. Syntax \"-A \"collectionPID\" \"folderPath\"\"")
+        #parser.add_option("-A", "--add-collection",
+        #          action="store_true", dest="addCollection", default=False,
+        #          help="Add a resource to the monitored resource list. Syntax \"-A \"collectionPID\" \"folderPath\"\"")
 
-        parser.add_option("-l", "--list-resources",
-                  action="store_true", dest="listResources", default=False,
-                  help="Lists all the currently monitored resources")
+        #parser.add_option("-l", "--list-resources",
+        #          action="store_true", dest="listResources", default=False,
+        #          help="Lists all the currently monitored resources")
 
-        parser.add_option("-L", "--list-collections",
-                  action="store_true", dest="listCollections", default=False,
-                  help="Lists all the currently monitored collections")
+        #parser.add_option("-L", "--list-collections",
+        #          action="store_true", dest="listCollections", default=False,
+        #          help="Lists all the currently monitored collections")
 
-        parser.add_option("-r", "--remove-resource",
-                  action="store_true", dest="removeResource", default=False,
-                  help="Remove a resource from the monitored resource list. Syntax \"-r resourceID\"")
+        #parser.add_option("-r", "--remove-resource",
+        #          action="store_true", dest="removeResource", default=False,
+        #          help="Remove a resource from the monitored resource list. Syntax \"-r resourceID\"")
 
-        parser.add_option("-R", "--remove-collection",
-                  action="store_true", dest="removeCollection", default=False,
-                  help="Remove a collection from the monitored collection list. Syntax \"-R collectionID\"")
+        #parser.add_option("-R", "--remove-collection",
+        #          action="store_true", dest="removeCollection", default=False,
+        #          help="Remove a collection from the monitored collection list. Syntax \"-R collectionID\"")
 
         parser.add_option("-u", "--upload",
                   action="store_true", dest="upload", default=False,
                   help="Submits a resource to the EM respository. Syntax \"-u \"filepath\" \"collectionName\" \"filepathToEMMetadata\"\"")
 
-        parser.add_option("-d", "--download-updates",
-                  action="store_true", dest="downloadUpdates", default=False,
-                  help="Downloads updates to the resources and collections in the monitored lists.")
+        #parser.add_option("-d", "--download-updates",
+        #          action="store_true", dest="downloadUpdates", default=False,
+        #          help="Downloads updates to the resources and collections in the monitored lists.")
 
 
         parser.add_option("-i", "--interactive",
@@ -588,30 +603,31 @@ class Run:
               dest="uploadURL", default="http://api.epimarketplace.net/upload", help="URL for the upload web service. Default value: \"http://api.epimarketplace.net/upload\" .")
 
         parser.add_option("-z", "--resource-url",
-		          dest="resourceURL", default="http://api.epimarketplace.net/fetch/pid/$PID", help="The URL used in fetching the resource, $PID is replaced by the resource PID. Default value: \"http://api.epimarketplace.net/fetch/pid/$PID\" .")
+                           dest="resourceURL", default="http://api.epimarketplace.net/fetch/pid/$PID", help="The URL used in fetching the resource, $PID is replaced by the resource PID. Default value: \"http://api.epimarketplace.net/fetch/pid/$PID\" .")
 
-        parser.add_option("-Z", "--collection-url",
-              dest="collectionURL", default="http://api.epimarketplace.net/list/repositorytree/pid/$PID/level/2", help="The URL used in a collection's resource list, $PID is replaced by the collection PID. Default value: \"http://api.epimarketplace.net/list/repositorytree/pid/$PID/level/2\" .")
+        #parser.add_option("-Z", "--collection-url",
+        #      dest="collectionURL", default="http://api.epimarketplace.net/list/repositorytree/pid/$PID/level/2", help="The URL used in a collection's resource list, $PID is replaced by the collection PID. Default value: \"http://api.epimarketplace.net/list/repositorytree/pid/$PID/level/2\" .")
 
         parser.add_option("-n", "--resource-PID-Regex",
               dest="resourcePIDRegex", default=".*", help="The regex for the part of the PID that is used in the resource URL. Default expression: \" .* \"")
 
-        parser.add_option("-N", "--collection-PID-Regex",
-              dest="collectionPIDRegex", default=".*", help="The regex for the part of the PID that is used in the collection URL. Default expression: \" .* \"")
+        #parser.add_option("-N", "--collection-PID-Regex",
+        #      dest="collectionPIDRegex", default=".*", help="The regex for the part of the PID that is used in the collection URL. Default expression: \" .* \"")
 
-        parser.add_option("-x", "--resource-Xpath",
-              dest="resourceXpath", default="collection/content/resource/header/download", help="Xpath expression for elements containing the resource PID in a collection's resource list. Default value: \"collection/content/resource/header/download\"")
+        #parser.add_option("-x", "--resource-Xpath",
+        #      dest="resourceXpath", default="collection/content/resource/header/download", help="Xpath expression for elements containing the resource PID in a collection's resource list. Default value: \"collection/content/resource/header/download\"")
 
         parser.add_option("-v", "--login-URL",
-              dest="loginURL", default="https://epiwork.di.fc.ul.pt/Mediator/resources/search/objects/identifier/ThisDoesNotExist", help="URL to test your credentials. If the request fails, login fails. If the request succeeds your credentials will be used for the remaining requests.")
+              dest="loginURL", default="http://api.epimarketplace.net/list/datastreams/pid/empid:1", help="URL to test your credentials. If the request fails, login fails. If the request succeeds your credentials will be used for the remaining requests.")
+              #v1: "https://epiwork.di.fc.ul.pt/Mediator/resources/search/objects/identifier/ThisDoesNotExist"
 
         (options, args) = parser.parse_args()
 
         resourceURL = options.resourceURL
-        collectionURL = options.collectionURL
+        #collectionURL = options.collectionURL
         RegexResourcePID = options.resourcePIDRegex
-        RegexCollectionPID = options.collectionPIDRegex
-        CollectionResourceXPath = options.resourceXpath
+        #RegexCollectionPID = options.collectionPIDRegex
+        #CollectionResourceXPath = options.resourceXpath
         loginURL = options.loginURL
         uploadURL = options.uploadURL
 
@@ -622,29 +638,30 @@ class Run:
 
         if (options.getResource == True):
             if (len(args) != 2):
-	        print "-g requires 2 parameters. Syntax \"-a resourcePID folderPath\""
+                print "-g requires 2 parameters. Syntax \"-a resourcePID folderPath\""
             else:
-		if(options.username != None):
-		    self.username = options.username
+                if(options.username != None):
+                    self.username = options.username
 
-		else:
-		    #ask for username:
-		    self.username = raw_input("Username: ")
+                else:
+                    #ask for username:
+                    self.username = raw_input("Username: ")
 
 
-		if (options.password != None):
-		    #ask for password
-		    self.password = options.password
+                if (options.password != None):
+                    #ask for password
+                    self.password = options.password
 
-		else:
-		    #ask for password:
-		    self.password = getpass.getpass()
+                else:
+                    #ask for password:
+                    self.password = getpass.getpass()
 
-		#run login:
-		self.login()
+                #run login:
+                self.login()
                 getResource(False, args[0], args[1])
 
-        elif (options.addResource == True):
+        #elif (options.addResource == True):
+        elif False:
             if (len(args) != 2):
               print "-a requires 2 parameters. Syntax \"-a resourcePID folderPath\""
             else:
@@ -666,186 +683,194 @@ class Run:
               self.login()
               addResource(False, args[0], args[1])
 
-        elif (options.addCollection == True):
+        elif False:
+        #elif (options.addCollection == True):
             if (len(args) != 2):
-	        print "-A requires 2 parameters. Syntax \"-A collectionPID folderPath\""
+                print "-A requires 2 parameters. Syntax \"-A collectionPID folderPath\""
             else:
-		if(options.username != None):
-		    self.username = options.username
+                if(options.username != None):
+                    self.username = options.username
 
-		else:
-		    #ask for username:
-		    self.username = raw_input("Username: ")
+                else:
+                    #ask for username:
+                    self.username = raw_input("Username: ")
 
 
-		if (options.password != None):
-		    #ask for password
-		    self.password = options.password
+                if (options.password != None):
+                    #ask for password
+                    self.password = options.password
 
-		else:
-		    #ask for password:
-		    self.password = getpass.getpass()
+                else:
+                    #ask for password:
+                    self.password = getpass.getpass()
 
-		#run login:
-		self.login()
+                #run login:
+                self.login()
                 addCollection(False, args[0], args[1])
 
-        elif (options.listResources == True):
-	    if(options.username != None):
-	        self.username = options.username
+        elif False:
+        #elif (options.listResources == True):
+            if(options.username != None):
+                self.username = options.username
 
-	    else:
-	        #ask for username:
-	        self.username = raw_input("Username: ")
+            else:
+                #ask for username:
+                self.username = raw_input("Username: ")
 
 
-	    if (options.password != None):
-	        #ask for password
-	        self.password = options.password
+            if (options.password != None):
+                #ask for password
+                self.password = options.password
 
-	    else:
+            else:
                 #ask for password:
                 self.password = getpass.getpass()
 
-	    #run login:
-	    self.login()
+            #run login:
+            self.login()
             showResources(False)
 
-        elif (options.listCollections == True):
-	    if(options.username != None):
-	        self.username = options.username
+        elif False:
+        #elif (options.listCollections == True):
+            if(options.username != None):
+                self.username = options.username
 
-	    else:
-	        #ask for username:
-	        self.username = raw_input("Username: ")
+            else:
+                #ask for username:
+                self.username = raw_input("Username: ")
 
 
-	    if (options.password != None):
-	        #ask for password
-	        self.password = options.password
+            if (options.password != None):
+                #ask for password
+                self.password = options.password
 
-	    else:
+            else:
                 #ask for password:
                 self.password = getpass.getpass()
 
-	    #run login:
-	    self.login()
+            #run login:
+            self.login()
             showCollections(False)
 
-        elif (options.removeResource == True):
+        elif False:
+        #elif (options.removeResource == True):
             if (len(args) != 1):
-	        print "-r requires 1 parameter. Syntax \"-r resourceID\""
+                print "-r requires 1 parameter. Syntax \"-r resourceID\""
             else:
-		if(options.username != None):
-		    self.username = options.username
+                if(options.username != None):
+                    self.username = options.username
 
-		else:
-		    #ask for username:
-		    self.username = raw_input("Username: ")
+                else:
+                    #ask for username:
+                    self.username = raw_input("Username: ")
 
 
-		if (options.password != None):
-		    #ask for password
-		    self.password = options.password
+                if (options.password != None):
+                    #ask for password
+                    self.password = options.password
 
-		else:
-		    #ask for password:
-		    self.password = getpass.getpass()
+                else:
+                    #ask for password:
+                    self.password = getpass.getpass()
 
-		#run login:
-		self.login()
+                #run login:
+                self.login()
                 deleteResource(False, args[0])
 
-        elif (options.removeCollection == True):
+        elif False:
+        #elif (options.removeCollection == True):
             if (len(args) != 1):
-	        print "-R requires 1 parameter. Syntax \"-R collectionID\""
+                print "-R requires 1 parameter. Syntax \"-R collectionID\""
             else:
-		if(options.username != None):
-		    self.username = options.username
+                if(options.username != None):
+                    self.username = options.username
 
-		else:
-		    #ask for username:
-		    self.username = raw_input("Username: ")
+                else:
+                    #ask for username:
+                    self.username = raw_input("Username: ")
 
 
-		if (options.password != None):
-		    #ask for password
-		    self.password = options.password
+                if (options.password != None):
+                    #ask for password
+                    self.password = options.password
 
-		else:
-		    #ask for password:
-		    self.password = getpass.getpass()
+                else:
+                    #ask for password:
+                    self.password = getpass.getpass()
 
-		#run login:
-		self.login()
+                #run login:
+                self.login()
                 deleteCollection(False, args[0])
 
         elif (options.upload == True):
             if (len(args) != 3):
-	        print "-u requires 3 parameters. Syntax \"-u filepath collectionName filepathToEMMetadata\""
+                print "-u requires 3 parameters. Syntax \"-u filepath collectionName filepathToEMMetadata\""
             else:
-		if(options.username != None):
-		    self.username = options.username
+                if(options.username != None):
+                    self.username = options.username
 
-		else:
-		    #ask for username:
-		    self.username = raw_input("Username: ")
+                else:
+                    #ask for username:
+                    self.username = raw_input("Username: ")
 
 
-		if (options.password != None):
-		    #ask for password
-		    self.password = options.password
+                if (options.password != None):
+                    #ask for password
+                    self.password = options.password
 
-		else:
-		    #ask for password:
-		    self.password = getpass.getpass()
+                else:
+                    #ask for password:
+                    self.password = getpass.getpass()
 
-		#run login:
-		self.login()
+                
+                #run login:
+                self.login()
+                print "uploading in progress..."
                 uploadResource(False, args[0], args[1], args[2])
 
-        elif (options.downloadUpdates == True):
-	    if(options.username != None):
-	        self.username = options.username
+        elif False:
+        #elif (options.downloadUpdates == True):
+            if(options.username != None):
+                self.username = options.username
 
-	    else:
-	        #ask for username:
-	        self.username = raw_input("Username: ")
+            else:
+                #ask for username:
+                self.username = raw_input("Username: ")
 
 
-	    if (options.password != None):
-	        #ask for password
-	        self.password = options.password
+            if (options.password != None):
+                #ask for password
+                self.password = options.password
 
-	    else:
+            else:
                 #ask for password:
                 self.password = getpass.getpass()
 
-	    #run login:
-	    self.login()
+            #run login:
+            self.login()
             downloadUpdates(False)
-	elif (options.interactive == True):
-	    if(options.username != None):
-	        self.username = options.username
+        elif (options.interactive == True):
+            if(options.username != None):
+                self.username = options.username
 
-	    else:
-	        #ask for username:
-	        self.username = raw_input("Username: ")
+            else:
+                #ask for username:
+                self.username = raw_input("Username: ")
 
 
-	    if (options.password != None):
-	        #ask for password
-	        self.password = options.password
+            if (options.password != None):
+                #ask for password
+                self.password = options.password
 
-	    else:
+            else:
                 #ask for password:
                 self.password = getpass.getpass()
 
-	    #run login:
-	    self.login()
-	    Menu()
+            #run login:
+            self.login()
+            Menu()
         else :
-            print "Usage: .\\SimpleEMClient.py [-U username] [-p password] {-g|-a|-A|-l|-L|-r|-R|-u|-d|-i|-h|-z|-Z|-n|-N|-x|-v} [additional parameters] \n\n For more information on the available options: \"SimpleEMClient.py -h\".\n To run interactively: \"SimpleEMClient.py -i\""
+            print "Usage: .\\SimpleEMClient.py [-U username] [-p password] {-g|-a|-A|-l|-L|-r|-R|-u|-d|-i|-h|-z|-Z|-n|-N|-x|-v} [additional parameters] \n\n For more information on the available options: \"SimpleEMClient.py -h\".\n To run interactively: \"SimpleEmClient.py -i\""
 
 
     def login(self):
@@ -856,7 +881,6 @@ class Run:
         loggedIn = False
 
         #verifying login
-        
         #make a call to https://epiwork.di.fc.ul.pt/Mediator/resources/search/objects/identifier/ThisDoesNotExist
         try :
             dl = getURL(user, loginURL)
@@ -864,7 +888,9 @@ class Run:
             dom = xml.dom.minidom.parseString(dl)
                 
         except HTTPError, e:
-          print "Wrong Username or Password!"
+          print "Unsuccessful auth!"
+          if e.code != 200:
+            print "HTTP response code: ", e.code
           sys.exit(0)
 
         loadPickle()
@@ -881,8 +907,8 @@ class Menu:
             
         choice = raw_input("Pick an option (\"e\" or \"q\" to leave): ")
 
-	if choice =="g":
-	    getResource()
+        if choice =="g":
+            getResource()
         elif choice == "l":
             showResources()
         elif choice == "L":
@@ -914,11 +940,10 @@ class showResources:
     if len(resources) == 0:
         print "Empty.\n"
     else :
-
+    
         rList = list()
-
         rList.append(["Id", "Name", "URL", "Folder"])
-
+        
         for k,v in resources.items():
             rList.append([k, v.name, v.url, v.folder])
 
