@@ -253,5 +253,6 @@ LOGIN_REDIRECT_URL = '/survey/'
 
 # PyBB settings
 AUTH_PROFILE_MODULE = 'pybb.Profile'
-PYBB_TEMPLATE = 'base/sitebase.html'
-PYBB_TEMPLATE = 'pybb/bootstrap_base.html'
+PYBB_TEMPLATE = 'base/forum.html'
+PYBB_ENABLE_ANONYMOUS_POST = True
+PYBB_ANONYMOUS_USERNAME = 'Gast'
