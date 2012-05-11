@@ -21,7 +21,6 @@ from .survey import ( Specification,
                       JavascriptBuilder,
                       get_survey_context, )
 import apps.pollster as pollster
-import pickle
 
 survey_form_helper = None
 profile_form_helper = None
@@ -222,8 +221,9 @@ def run_index(request):
         survey_user = get_active_survey_user(request)
     except ValueError:
         raise Http404()
+
     if survey_user is None:
-        url = '%s?next=%s' % (reverse(select_user), reverse(profile_index))
+        url = '%s?next=%s' % (reverse(select_user), reverse(run_index))
         return HttpResponseRedirect(url)
 
     try:
