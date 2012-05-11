@@ -233,7 +233,7 @@ def run_index(request, shortname):
 
     next = None
     if 'next' not in request.GET:
-        next = reverse(thanks_run, shortname=shortname)
+        next = reverse(thanks_run, kwargs={shortname:shortname})
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
