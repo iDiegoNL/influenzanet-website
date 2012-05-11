@@ -10,7 +10,9 @@ try:
 except:
     CSS_MINIFIER = False
 
-
+# bundle file definifions
+# key = file relative path and name
+# value = list of files to include
 bundles_js = {
  'assets/base':(
      'base/js/jquery-1.5.1.min.js',
