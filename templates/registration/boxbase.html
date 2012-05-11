@@ -8,4 +8,4 @@
 
 {% block content %}<h1>{% trans "Login" %}</h1>
                 <p>{% trans "Enter your username and password to log in." %} <a href="{% url django.contrib.auth.views.password_reset %}">{% trans "Forgot your password?" %}</a></p>
-                {% spaceless %}<form method="post" action="?next={{ redirect_field_name }}" id="login">{% csrf_token %}{{ form.as_p }}<p><input type="submit" id="boxsubmit" value="{% trans "Log in" %}" /></p></form>{% endspaceless %}{% endblock content %}
+                {% spaceless %}<form method="post" action="?next={{ next }}" id="login">{% csrf_token %}{{ form.as_p }}<p><input type="submit" id="boxsubmit" value="{% trans "Log in" %}" /></p></form>{% endspaceless %}{% endblock content %}
