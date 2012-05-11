@@ -216,7 +216,7 @@ def profile_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
-def run_index(request):
+def run_index(request, shortname):
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
@@ -227,7 +227,6 @@ def run_index(request):
         return HttpResponseRedirect(url)
 
     try:
-        shortname = request.GET.get('survey', None)
         survey = pollster.models.Survey.get_by_shortname(shortname)
     except:
         raise Exception("The survey application requires a published survey with the shortname 'intake'")
@@ -239,9 +238,8 @@ def run_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
-def thanks_run(request):
+def thanks_run(request, shortname):
     try:
-        shortname = request.GET.get('survey', None)
         survey_user = get_active_survey_user(request)
     except ValueError:
         pass
