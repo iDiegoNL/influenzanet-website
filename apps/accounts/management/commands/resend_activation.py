@@ -6,7 +6,7 @@ from django.contrib.sites.models import Site
 import datetime
 
 class Command(BaseCommand):
-    help = 'Register a survey specification.'
+    help = 'Resend activation mail to user(s).'
     option_list = BaseCommand.option_list + (
         make_option('-f', '--fake', action='store_true',
             dest='fake', default=False,
@@ -21,8 +21,13 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         
+        # user id
         user = options.get('user')
+        
+        # fake the action
         fake = options.get('fake')
+        
+        # force to renew the activation
         renew = options.get('renew')
         
         site = Site.objects.get_current()
@@ -44,6 +49,8 @@ class Command(BaseCommand):
                 resend = True
             else:
                 if renew:
+                    # Set the date_joined to today
+                    # to make the activation key valid
                     u.date_joined = datetime.datetime.now()
                     u.save()
                     resend = True
