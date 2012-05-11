@@ -223,7 +223,7 @@ def run_index(request, shortname):
         raise Http404()
 
     if survey_user is None:
-        url = '%s?next=%s' % (reverse(select_user), reverse(run_index))
+        url = '%s?next=%s' % (reverse(select_user), reverse(run_index,kwargs={'shortname':shortname}))
         return HttpResponseRedirect(url)
 
     try:
