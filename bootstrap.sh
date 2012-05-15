@@ -323,9 +323,9 @@ python manage.py question_data_type_register --title 'Numeric' --dbtype 'django.
 python manage.py question_data_type_register --title 'Date' --dbtype 'django.db.models.DateField(null=True, blank=True)' --cssclass 'date-type' --jsclass 'wok.pollster.datatypes.Date'
 python manage.py question_data_type_register --title 'YearMonth' --dbtype 'db.models.YearMonthField(null=True, blank=True)' --cssclass 'monthyear-type' --jsclass 'wok.pollster.datatypes.YearMonth'
 python manage.py question_data_type_register --title 'Timestamp' --dbtype 'django.db.models.DateTimeField(null=True, blank=True)' --cssclass 'timestamp-type' --jsclass 'wok.pollster.datatypes.Timestamp'
-
 #epipop specific
 python manage.py question_data_type_register --title 'CodeSelect' --dbtype 'django.db.models.CodeSelectField(null=True, blank=True)' --cssclass 'codeselect-type' --jsclass 'wok.pollster.datatypes.CodeSelect'
+python manage.py question_data_type_register --title 'TimeElapsed' --dbtype 'django.db.models.PositiveIntegerField(null=True, blank=True)' --cssclass 'timeelapsed-type' --jsclass 'wok.pollster.datatypes.TimeElapsed'
 
 # PostalCode is added by the pollster migration 0005_postalcodefield.py
 # python manage.py question_data_type_register --title 'PostalCode' --dbtype 'django.db.models.PostalCodeField(null=True, blank=True)' --cssclass 'postalcode-type' --jsclass 'wok.pollster.datatypes.PostalCode'
