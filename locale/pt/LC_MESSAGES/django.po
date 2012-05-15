@@ -818,7 +818,7 @@ msgid "Symptoms survey"
 msgstr "Questionário semanal"
 
 msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
-msgstr "O estado de cada participante é baseado nos sintomas do questionário semanal.<strong>O resultado não é um diagnóstico médico.</strong> Se possuir sintomas de gripe, entre em contato com o seu médico."
+msgstr ", de acordo com as definições que pode encontar <a href='http://www.gripenet.pt/pt/resultados/faq-resultados/'>aqui</a>.<strong>O resultado não é um diagnóstico médico.</strong> Se possuir sintomas de gripe, entre em contato com o seu médico."
 
 msgid "Unknown"
 msgstr "Desconhecido"
