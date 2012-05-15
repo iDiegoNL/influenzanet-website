@@ -10,7 +10,7 @@
 				var id = $field.attr('id');
 				var d = new Date();
 				$field.data('timestart', d.valueOf());
-				$('#commentsubmit').click(function() {
+				$field.closest('form').submit(function() {
 					d = new Date();
 					d = d.valueOf();
 					duration = d - parseInt($(id).data('timestart'));
@@ -18,7 +18,7 @@
 				});
 			}
 	    });
-	}
+	}	
 
 // Add the datatype
 window.wok.pollster.datatypes.TimeElapsed = TimeElapsedType;
