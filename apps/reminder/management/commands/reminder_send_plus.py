@@ -19,6 +19,7 @@ class Command(BaseCommand):
         make_option('--verbose', action='store_true', dest='verbose', default=False, help='Print verbose message'),
         make_option('--counter', action='store', dest='counter', default=None, help='Store counter value into this file'),
         make_option('--log', action='store', dest='log', default=None, help='Store user email in a log file'),
+        make_option('--next', action='store', dest='next', default=None, help='Next url for login url'),
     )
 
     def get_reminder(self, reminder):
@@ -34,7 +35,7 @@ class Command(BaseCommand):
         reminder.date = res[5]
         return reminder
     
-    def send_reminders(self, fake, target, verbose, log):
+    def send_reminders(self, fake, target, verbose, log, next):
         now = datetime.now()
         if(target is not None):
             print "target user=%s" % (target)
@@ -67,8 +68,8 @@ class Command(BaseCommand):
                     i += 1
                     if not fake:
                         if(verbose):
-                            print 'sending', user.email
-                        send(now, user, message, language)
+                            print 'sending', user.email 
+                            send(now, user, message, language, next)
                     else:
                         print '[fake] sending', user.email, message.subject
         except StopIteration:
@@ -81,6 +82,7 @@ class Command(BaseCommand):
         verbose = options.get('verbose', False)
         counter = options.get('counter', None)
         log = options.get('log', None)
+        next = options.get('next', None)
         
         if not get_settings():
             return u"0 reminders sent - not configured"
@@ -94,7 +96,7 @@ class Command(BaseCommand):
         settings.last_process_started_date = datetime.now()
         settings.save()
         try:
-            count = self.send_reminders(fake=fake, target=user, verbose=verbose, log=log)
+            count = self.send_reminders(fake=fake, target=user, verbose=verbose, log=log, next=next)
             if(counter is not None):
                 file(counter,'w').write(str(count))
             return u'%d reminders sent.\n' % count 
