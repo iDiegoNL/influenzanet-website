@@ -302,8 +302,14 @@ color: #007AB8;
 #col1 .question { /* Hack to make priority higher*/
 width: 80%;
 }
+
 #col1 .survey-message {
 width: 512px;
+}
+
+#col1 table.matrix th {
+font-size: 11px;
+padding: .3em;
 }
 
 /**
