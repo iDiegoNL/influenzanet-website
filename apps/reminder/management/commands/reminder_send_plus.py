@@ -69,7 +69,7 @@ class Command(BaseCommand):
                     if not fake:
                         if(verbose):
                             print 'sending', user.email 
-                            send(now, user, message, language, next)
+                            send(now, user, message, language, next=next)
                     else:
                         print '[fake] sending', user.email, message.subject
         except StopIteration:
