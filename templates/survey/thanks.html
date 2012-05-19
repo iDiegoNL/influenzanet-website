@@ -19,7 +19,13 @@
 
 {% block col1 %}
 
-<p>{% trans "Thanks for taking the time to fill out this survey." %}</p>
+<p>{% blocktrans with last_survey=last_survey %}Thanks for taking the time to fill out the {{ last_survey }} survey.{% endblocktrans %}</p>
+
+{%if last_survey != "contact"%}
+<h1>{%blocktrans with id=person.global_id name=person.name %}Next, why not do the <a href="/surveys/contact/?gid={{id}}&next=/survey/thanks">social contact survey</a> for {{name}}?{% endblocktrans %}</h1>
+{%endif%}
+
+<p>{% trans "Had your flu jab recently? Click on <strong>Change background information</strong> below to let us know."%}</p>
 
 <p>
 {% trans "Here is a summary of the information you entered for you and the members of your group or family:" %}
@@ -67,7 +73,7 @@
         <img class="diag-icon" src="{{ MEDIA_URL }}/survey/img/diag-{{ item.status|default:'UNKNOWN' }}.png"
              alt="{{ item.diag }}:" title="{{ item.diag }}"/>
         <span title="{{ item.timestamp }}" class="diag-timestamp">
-            {{ item.timestamp|date:'SHORT_DATE_FORMAT' }}
+            {{ item.timestamp|date:'d/m/Y' }}
         </span>
     </li>
     {% endfor %}
@@ -102,7 +108,7 @@
 <tbody>
 {% for item in history reversed %}
 <tr>
-    <td title="{{ item.timestamp }}">{{ item.timestamp|date:'SHORT_DATE_FORMAT' }}</td>
+    <td title="{{ item.timestamp }}">{{ item.timestamp|date:'d/m/Y' }}</td>
     <td>{{ item.person.name }}</td>
     <td>{{ item.diag }}</td>
     <td><img class="diag-icon" src="{{ MEDIA_URL }}/survey/img/diag-{{ item.status|default:'UNKNOWN' }}-small.png"/></td>
