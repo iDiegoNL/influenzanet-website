@@ -15,7 +15,7 @@
                                     d = new Date();
                                     d = d.valueOf();
                                     var $el = $('#'+id);
-                                    duration = d - parseInt($el.data('timestart'));
+                                    var duration = d - parseInt($el.data('timestart'));
                                     $el.val(duration);
                             });
                         }
