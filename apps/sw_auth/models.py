@@ -1,11 +1,13 @@
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
-from django.contrib.auth.models import get_hexdigest, check_password, User
+from django.db import models
 from django.db import transaction
+from django.contrib.auth.models import get_hexdigest, check_password, User
 import utils
+import random
+import sys
 from .utils import create_token, encrypt_user, decrypt_user
 from .logger import auth_notify
+
 # Connect to login_in signal
 # This allow us to set the real user id in session
 from django.contrib.auth import user_logged_in
@@ -20,12 +22,27 @@ def login_handler(sender,**kwargs):
 
 user_logged_in.connect(login_handler)
     
+def get_random_user_id():
+    # get a random int 
+    id = random.randint(1, sys.maxint)
+    i = 10 # try a maximum of 10 times
+    while i > 0:
+        try:
+            u = EpiworkUser.objects.get(id=id)
+        except EpiworkUser.DoesNotExist:
+            return id
+        --i
+    return None
+
 
 class EpiworkUserManager(models.Manager):
     
     @transaction.commit_manually()
     def create_user(self, login, email, password):
         user = EpiworkUser()
+        user.id = get_random_user_id()
+        if user.id is None:
+            raise Exception('Unable to find user id')
         user.login = login
         user.email = email
         user.set_password(password)
@@ -48,6 +65,7 @@ class EpiworkUserManager(models.Manager):
         return user        
 
 class EpiworkUser(models.Model):
+    id = models.BigIntegerField(primary_key=True)
     user = models.CharField(_('username'),max_length=255) # encrypted user name in auth_user
     email = models.CharField(_('e-mail address'),max_length=255) # encrypted email
     login = models.CharField(_('username'),max_length=255) # 
