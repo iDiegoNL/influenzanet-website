@@ -3,12 +3,12 @@ from datetime import datetime, timedelta
 
 from django.core.management.base import BaseCommand
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as DjangoUser
 
-from ...send import get_reminders_for_users, send
-from ...models import get_settings, UserReminderInfo
+from ...send import send
+from ...models import get_settings, UserReminderInfo, MockNewsLetter
 from django.db import connection
-from apps.reminder.models import MockNewsLetter
+from apps.sw_auth.models import EpiworkUser as User
 
 class Command(BaseCommand):
     help = "Send reminders."
@@ -21,7 +21,7 @@ class Command(BaseCommand):
         make_option('--log', action='store', dest='log', default=None, help='Store user email in a log file'),
     )
 
-    def get_reminder(self, reminder):
+    def get_reminder(self):
         query = "SELECT n.id, subject, message, sender_email, sender_name, date FROM reminder_newslettertranslation t left join reminder_newsletter n on n.id=t.master_id where t.language_code='fr' and published=True order by date desc"
         cursor = connection.cursor()
         cursor.execute(query)
@@ -46,14 +46,17 @@ class Command(BaseCommand):
         batch_size = get_settings().batch_size if get_settings() else None
 
         i = -1
-        message = self.get_reminder('toto')
+        message = self.get_reminder()
         language = 'fr'
         try:
             for user in users :
                 if batch_size and i >= batch_size:
                     raise StopIteration 
                 to_send = False
-                info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
+                
+                django_user = user.get_fake_user()
+                
+                info, _ = UserReminderInfo.objects.get_or_create(user=django_user, defaults={'active': True, 'last_reminder': user.date_joined})
     
                 if not info.active:
                     continue
@@ -65,9 +68,11 @@ class Command(BaseCommand):
             
                 if to_send:
                     i += 1
+                    
                     if not fake:
                         if(verbose):
                             print 'sending', user.email
+                            
                         send(now, user, message, language)
                     else:
                         print '[fake] sending', user.email, message.subject
