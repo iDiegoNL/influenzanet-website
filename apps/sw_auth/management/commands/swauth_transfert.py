@@ -1,6 +1,6 @@
 from optparse import make_option
 from django.core.management.base import CommandError, BaseCommand
-from apps.sw_auth.models import EpiworkUser
+from apps.sw_auth.models import EpiworkUser, get_random_user_id
 from django.contrib.auth.models import User, UNUSABLE_PASSWORD
 from ...utils import random_string
 from django.db import transaction, connection
@@ -46,6 +46,7 @@ class Command(BaseCommand):
         e.login = login
         e.password = password
         e.is_active = active
+        e.id = get_random_user_id()
         e.set_user(username)
         
         check = e.get_user()
