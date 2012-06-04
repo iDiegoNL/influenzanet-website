@@ -97,7 +97,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+#    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'apps.sw_auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
@@ -146,7 +147,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.messages',
     'sekizai',
-    'registration',
+#    'registration',
     'loginurl',
     'apps.accounts',
     'apps.survey',
@@ -174,7 +175,8 @@ INSTALLED_APPS = (
     'apps.pollster',
     'apps.municipal',
     'apps.sw_feedback',
-    'apps.contest',
+    'apps.sw_auth',
+#    'apps.contest',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -188,6 +190,7 @@ except:
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
+    'apps.sw_auth.backend.EpiworkAuthBackend',
     'loginurl.backends.LoginUrlBackend',
 )
 

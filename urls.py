@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     ), name='haystack_search'),
 
     (r'^test-search/$', 'views.test_search'),
-    (r'^accounts/', include('apps.accounts.urls')),
+    (r'^accounts/', include('apps.sw_auth.urls')),
     url(r'^login/$', redirect_to, {'url': settings.LOGIN_URL}, 
                      name='loginurl-index'),
     (r'^login/', include('loginurl.urls')),
@@ -47,9 +47,7 @@ urlpatterns = patterns('',
     (r'^colors.css$', 'apps.partnersites.views.colors_css'),
 
     url(r'^register/$',
-        'registration.views.register',
-        { 'backend': 'registration.backends.default.DefaultBackend',
-          'template_name': 'registration/registration_explanation.html' },
+        'apps.sw_auth.views.register_user',
         name='registration_register_explanation'),
 )
 
