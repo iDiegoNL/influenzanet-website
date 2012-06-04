@@ -18,13 +18,13 @@ from apps.partnersites.context_processors import site_context
 
 from .models import get_reminders_for_users, UserReminderInfo, ReminderError
 
-def create_message(user, message, language):
+def create_message(user, message, language, next=None):
     if language:
         activate(language)
 
     t = Template(message.message)
     c = {
-        'url': get_url(user),
+        'url': get_url(user, next),
         'unsubscribe_url': get_login_url(user, reverse('apps.reminder.views.unsubscribe')),
         'first_name': user.first_name,
         'last_name': user.last_name,
@@ -58,8 +58,10 @@ def get_site_url():
 def get_media_url():
     return '%s%s' % (get_site_url(), settings.MEDIA_URL)
 
-def get_url(user):
-    return get_login_url(user, get_survey_url())
+def get_url(user, next):
+    if next is None:
+        next = get_survey_url()
+    return get_login_url(user, next)
 
 def get_login_url(user, next):
     expires = datetime.datetime.now() + datetime.timedelta(days=30)
@@ -78,8 +80,8 @@ def get_survey_url():
     path = reverse('apps.survey.views.index')
     return 'http://%s%s' % (domain, path)
 
-def send(now, user, message, language, is_test_message=False):
-    text_base, html_content = create_message(user, message, language)
+def send(now, user, message, language, is_test_message=False, next=None):
+    text_base, html_content = create_message(user, message, language, next)
     text_content = strip_tags(text_base)
 
     msg = EmailMultiAlternatives(

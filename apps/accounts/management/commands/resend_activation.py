@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from registration.models import RegistrationProfile
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+import datetime
 
 class Command(BaseCommand):
     help = 'Register a survey specification.'
@@ -14,23 +15,28 @@ class Command(BaseCommand):
             help='Fake the resent (show list).'),
         make_option('-u', '--user', action='store', type='string',
                 dest='user', default=None,
-                help='Login of user to resend.'),
-       make_option('-x', '--force', action='store_true',
-                dest='force', default=False,
-                help='Force and reactivate.'),
+                help='ID of user to resend.'),
+         make_option('-r', '--renew', action='store_true', dest='renew', default=False,
+                help='renew activation (set user date_joined to today)'),
     )
     
     def handle(self, *args, **options):
         
+        # user id
         user = options.get('user')
+        
+        # fake the action
         fake = options.get('fake')
+        
+        # force to renew the activation
+        renew = options.get('renew')
         
         site = Site.objects.get_current()
     
         if user is None:
             users = User.objects.filter(is_active=False)
         else:
-            users = User.objects.filter(login=user)
+            users = User.objects.filter(id=user)
     
         if len(users) == 0:
             print 'Nothing to resend'
@@ -39,6 +45,18 @@ class Command(BaseCommand):
         print "%d user(s) to scan " % len(users)        
         for u in users:
             profile = RegistrationProfile.objects.get(user=u)
+            resend = False
             if not profile.activation_key_expired:
+                resend = True
+            else:
+                if renew:
+                    # Set the date_joined to today
+                    # to make the activation key valid
+                    u.date_joined = datetime.datetime.now()
+                    u.save()
+                    resend = True
+                else:    
+                    print 'Activation expired for user %d' % u.id
+            if resend:
                 profile.send_activation_email(site)
 
