@@ -15,6 +15,9 @@ class Command(BaseCommand):
         make_option('-u', '--user', action='store', type='string',
                 dest='user', default=None,
                 help='Login of user to resend.'),
+       make_option('-x', '--force', action='store_true',
+                dest='force', default=False,
+                help='Force and reactivate.'),
     )
     
     def handle(self, *args, **options):
