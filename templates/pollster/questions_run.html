@@ -7,9 +7,21 @@
       </div>
       <img width=530 src="/media/uploads/timeline.jpg" />
     {% else %}
-      <div class="survey-message">
-          {% trans "Questionnaire for participant" %} {{ person }}
-      </div>
+      {% if survey.shortname == "swabbing" %}
+        <div class="survey-message">
+          {% trans "Swabbing question for participant" %} {{ person }}
+        </div>
+      {% else %}
+        {% if survey.shortname == "comment" %}
+          <div class="survey-message">
+            {% trans "Comments box for participant" %} {{ person }}
+          </div>
+        {% else %}
+            <div class="survey-message">
+              {% trans "Questionnaire for participant" %} {{ person }}
+            </div>
+        {% endif %}
+      {% endif %}
     {% endif %}
     {% if survey.form.errors %}
     <div class="survey-error-message">
