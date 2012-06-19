@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     (r'^reminder/', include('apps.reminder.urls')),
     (r'^influenzanet/', 'django.views.generic.simple.direct_to_template', {'template': 'influenzanet.html'}),
     (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
+    (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
 
     url(r'^search/$', search_view_factory(
         view_class=SearchView,
@@ -36,6 +37,7 @@ urlpatterns = patterns('',
                      name='loginurl-index'),
     (r'^login/', include('loginurl.urls')),
     (r'^count/', include('apps.count.urls')),
+    (r'^contest/', include('apps.contest.urls')),
 
     url(r'^contact/$', 'contact_form.views.contact_form', {'form_class': ContactForm}, name='contact_form'),
     url(r'^contact/sent/$', 'django.views.generic.simple.direct_to_template', {'template': 'contact_form/contact_form_sent.html'}, name='contact_form_sent'),
