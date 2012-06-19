@@ -14,7 +14,7 @@ html {
  font-family: Verdana, Geneva, sans-serif;
  line-height: 1.2em;
  font-size: 1em;
- color: #595959;
+ color: #000000;
  background: #d5d5d5;
 }
 
@@ -72,7 +72,7 @@ img {
 #influenzabar {
  width: 974px;
  margin: 10px auto 0 auto;
- background: #ffffff url(../img/influbar/influbar.gif) top center no-repeat;
+ background: url(../img/influbar/influbar.gif) top center no-repeat, url(../img/influbar/top_bg.gif) repeat-x top center;
 }
 
 p.influenzanet {
@@ -110,7 +110,7 @@ p.toggle a {
 }
 
 div.influenzabarcontent{
- width: 926px;
+ width: 950px;
  overflow: auto;
  padding: 0 12px 16px 12px;
  text-align: left;
@@ -118,8 +118,8 @@ div.influenzabarcontent{
  font-size: 0.75em;
  line-height: 1.3em;
  background: #444444;
- border-left: 12px solid #ffffff;
- border-right: 12px solid #ffffff; 
+/* border-left: 12px solid #ffffff;
+ border-right: 12px solid #ffffff; */
 }
 
 a.jsclose {
@@ -368,8 +368,8 @@ ul.map_buttons li {
 
 #header {
  float: left;
- width: 950px;
- padding: 10px 12px 12px 12px;
+ width: 974px;
+ padding: 10px 0px 12px 0px;
  background: #ffffff;
 }
 
@@ -379,12 +379,12 @@ ul.map_buttons li {
  width: 756px;
  overflow: hidden;
  padding: 0;
- margin: 0 0 12px 0;
+ margin: 0 0 12px 12px;
 }
 
 #account {
  float: right;
- margin: 0 0 10px 0;
+ margin: 0 12px 10px 0;
  text-align: center;
  font-size: 0.75em;
 }
@@ -433,24 +433,27 @@ ul.map_buttons li {
 }
 
 #navigation {
- width: 950px;
+ width: 974px;
  clear: both;
 }
 
 #menubar {
  float: left;
- max-width: 754px;
  overflow: hidden;
  margin: 0 0 4px 0 !important;
+ font-size: 1.25em;
+ background: url(../img/influbar/top_bg.gif) repeat top left;
+ width: 100%
 }
 
 #menubar li {
  float: left;
- margin: 0 0 0 4px;
- background: #939393;
- border-left: 1px solid #cccccc;   
- border-top: 1px solid #cccccc;   
- border-right: 1px solid #cccccc;
+/* margin: 0 0 0 0px;*/
+/* background: #444444;*/
+ border-left: 0 solid #cccccc;   
+ border-top: 0 solid #cccccc;   
+ border-right: 0 solid #cccccc;
+ color: white;
 }
 
 #menubar li:first-child {
@@ -460,9 +463,10 @@ ul.map_buttons li {
 #menubar li a {
  display: block;
  height: 2em;
- padding: 0 8px 0 8px; 
+ padding: 0 10px 0 16px; 
  text-decoration: none;
- color: #ffffff;
+/* color: #ffffff;*/
+ color: inherit;
  font-weight: bold;
  font-size: 0.7em;
  line-height: 2em;
@@ -471,16 +475,14 @@ ul.map_buttons li {
 }
 
 #menubar li a:hover {
- background: #515151;
- color: #ffffff;
+ background: #bbbbbb;
+ color: #000000;
 }
 
 #menubar li.selected,
 #menubar li.ancestor {
- padding: 0 0px 0 0px; 
- background: #2e2e31;
- font-weight: bold;
- color: #ffffff;
+ background: #bbbbbb;
+ color: #000000;
 }
 
 #menubar li.error {
@@ -735,9 +737,9 @@ input#commentsubmit:hover {
 
 #colmid {
  float: left;
- width: 200%;
+ width: 204%;
  position: relative;
- left: 314px;
+ left: 234px;
  background: #ffffff;
  border-left: 1px solid #e2e2e2;
 }
@@ -747,7 +749,7 @@ input#commentsubmit:hover {
  width: 100%;
  position: relative;
  left: 50%;
- margin-left: -510px;
+ margin-left: -427px;
  background: #ffffff;
  border-left: 1px solid #e2e2e2;
 }
@@ -760,7 +762,7 @@ input#commentsubmit:hover {
 }
 
 #col1pad {
- margin: 0 13px 0 521px;
+ margin: 0 13px 0 434px;
  overflow: hidden;
 }
 
@@ -782,7 +784,7 @@ input#commentsubmit:hover {
 
 #col3 {
  float: left;
- width: 170px;
+ width: 150px;
  min-height: 300px;
  position: relative;
  left: 12px;
@@ -796,13 +798,13 @@ input#commentsubmit:hover {
  float: left;
  width: 200%;
  position: relative;
- left: 314px;
+ left: 214px;
  background: #ffffff;
  border: 0px solid #e2e2e2;
 }
 
 #colleftpad {
- margin: 0 13px 0 206px;
+ margin: 0 13px 0 226px;
  overflow: hidden;
 }
 
@@ -1163,5 +1165,33 @@ div.pagination {
   -webkit-transform: rotate(-11deg); -moz-transform: rotate(-11deg); -o-transform: rotate(-11deg); -ms-transform: rotate(-11deg);
   transform: rotate(-11deg); }
 
-.survey-chart .chart { width: 750px; height: 400px; position: relative; }
+.survey-chart .chart { width: 215px; height: 400px; position: relative; }
 .survey-chart .chart-no-data { background:#EEE; padding:20px; }
+
+/*
+ * user
+ */
+#user-buttons a {
+  display: block;
+  margin: .8em 0 0 0;
+  padding: 1em;
+  border: 1px solid #EEE;
+  border-radius: .4em;
+  -webkit-border-radius: .4em;
+  -moz-border-radius: .4em;
+  color: white;
+  text-align: center;
+  font-size: 1em;
+}
+
+#red-button {
+  border-color: #fa2507;
+  background-color: #fa2507;
+  color: white;
+}
+
+#blue-button {
+  border-color: #0b31f4;
+  background-color: #0b31f4;
+}
+
