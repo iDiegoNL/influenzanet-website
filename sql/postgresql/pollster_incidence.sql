@@ -52,7 +52,7 @@ SELECT global_id
        -- the first compiled survey should be at least one day old
    AND date_trunc('day', first) + '1 day' < date_trunc('day', $1)
        -- the last compilation should not be after the current date
-   AND date_trunc('day', $1) >= date_trunc('day', latest)
+   AND date_trunc('day', $1) <= date_trunc('day', latest)
 $body$ LANGUAGE 'sql';
 
 -- returns the global_id for active users with ILI onset on a given date
