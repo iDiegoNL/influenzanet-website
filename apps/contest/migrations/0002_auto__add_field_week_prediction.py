@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding field 'Week.prediction'
-        db.add_column('contest_week', 'prediction', self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['contest.Prediction']), keep_default=False)
+        db.add_column('contest_week', 'prediction', self.gf('django.db.models.fields.related.ForeignKey')(null=False, default=0, to=orm['contest.Prediction']), keep_default=False)
 
 
     def backwards(self, orm):

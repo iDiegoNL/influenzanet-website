@@ -6,6 +6,7 @@ from django.db import connection, transaction
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Prediction, Week
 
@@ -15,45 +16,8 @@ def prijs_grafiek(request):
     result += "<meter_id>%s</meter_id>\n" % request.user.id
     result += "<naam>%s</naam>\n" % request.user.username
 
-    begin = date(2011, 11, 15)
-    end = date(2012, 5, 1)
-    weeknr = 1
-
-    cursor = connection.cursor()
-
-    while begin + timedelta((weeknr - 1) * 7) <= end:
-        this_begin = begin + timedelta((weeknr - 1) * 7)
-
-        cursor.execute("""SELECT status, count(*) AS cnt
-
-FROM pollster_health_status AS S,
-
-(SELECT MAX(id) AS id, global_id 
-FROM pollster_results_weekly
-WHERE timestamp BETWEEN %s AND %s + 7
-GROUP BY global_id
-ORDER BY global_id DESC
-) AS W
-
-WHERE S.pollster_results_weekly_id = W.id
-
-GROUP BY status
-""", [this_begin, this_begin])
-
-        rows = cursor.fetchall()
-        illnesses = dict(rows)
-
-        total = sum(illnesses.values())
-        ili = illnesses.get("ILI", 0)
-
-        if total == 0: 
-            result += '<week nr="%s">0.00</week>' % weeknr
-
-        else:
-            percentage = (100 * Decimal(ili) / Decimal(total)).quantize(Decimal('0.01'))
-            result += '<week nr="%s">%s</week>' % (weeknr, percentage)
-
-        weeknr += 1
+    for weeknr, percentage in ili_percentages():
+        result += '<week nr="%s">%s</week>' % (weeknr, percentage)
 
     result += "</grafiekinput>"
     return HttpResponse(result, 'application/xml')
@@ -100,3 +64,83 @@ def relay2(request):
         Week.objects.create(prediction=prediction, number=week_nr, value=value)
 
     return HttpResponseRedirect("/nl/prijsvraag/")
+
+
+@staff_member_required
+def winners(request):
+    percentages = dict(ili_percentages())
+    result = []
+    
+    for prediction in Prediction.objects.all():
+        score = 0
+        for week in prediction.week_set.all():
+            if week <= 9:
+                continue # no need; this info was available when the contest started
+
+            if not percentages.get(week.number):
+                continue
+            score += pow(Decimal(week.value) - percentages[week.number], 2)# / pow(percentages[week.number], 2)
+
+        result.append((score, prediction))
+
+    result = sorted(result)
+    result_str = ""
+    result_str += 'percentages: %s<br>' % percentages
+
+    for score, prediction in result:
+        result_str += "%s (%s, %s)<br>" % (score, prediction.user.username, prediction.user.pk)
+
+    result_str += "=====<br>"
+
+    best_prediction = result[0][1]
+    for week in best_prediction.week_set.all():
+        if week.number <= 9:
+            continue # no need; this info was available when the contest started
+
+        if not percentages.get(week.number):
+            continue
+        this_part = pow(Decimal(week.value) - percentages[week.number], 2)# / pow(percentages[week.number], 2)
+        result_str +=  "%s ?= %s, %s<br>" % (percentages[week.number], week.value, this_part)
+
+    return HttpResponse(result_str)
+
+def ili_percentages():
+    begin = date(2011, 11, 15)
+    end = date(2012, 5, 1)
+    weeknr = 1
+
+    cursor = connection.cursor()
+
+    while begin + timedelta((weeknr - 1) * 7) <= end:
+        this_begin = begin + timedelta((weeknr - 1) * 7)
+
+        cursor.execute("""SELECT status, count(*) AS cnt
+
+FROM pollster_health_status AS S,
+
+(SELECT MAX(id) AS id, global_id 
+FROM pollster_results_weekly
+WHERE timestamp BETWEEN %s AND %s + 7
+GROUP BY global_id
+ORDER BY global_id DESC
+) AS W
+
+WHERE S.pollster_results_weekly_id = W.id
+
+GROUP BY status
+""", [this_begin, this_begin])
+
+        rows = cursor.fetchall()
+        illnesses = dict(rows)
+
+        total = sum(illnesses.values())
+        ili = illnesses.get("ILI", 0)
+
+        if total == 0: 
+            yield (weeknr, Decimal('0.00'))
+
+        else:
+            percentage = (100 * Decimal(ili) / Decimal(total)).quantize(Decimal('0.01'))
+            yield (weeknr, percentage)
+
+        weeknr += 1

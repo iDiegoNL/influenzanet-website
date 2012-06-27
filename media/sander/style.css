@@ -1,5 +1,5 @@
 .influenzabar {
-   background: #ffffff url(/eu/influbar.gif) top center no-repeat !important;
+   background: #ffffff url(influbar.gif) top center no-repeat !important;
    height: 30px;
 }
 
@@ -28,7 +28,7 @@
 }
 .col2 {
     float: left !important; 
-    width: 163px !important; /* 175-12 = 163 */
+    width: 180px !important; /* 175-12 = 163 */
 
     left: 0 !important;
     margin-left: 0 !important;
@@ -69,7 +69,8 @@
     border: 2px solid #000000;
 }
 .casedef ul {
-    margin: 0.7em 0 0em 1em;
+    /* margin: 0.7em 0 0em 1em; */
+    margin-top: 0.7em !important;
 }
 
 .casedef ul li {
@@ -104,10 +105,6 @@ div.logolink {
     text-align: center;
     margin: 1em;
     font-size: 0.7em;
-}
-
-#col1 li, #col2 li, #col3 li {
-   font-size: 0.7em; 
 }
 
 table.grey {

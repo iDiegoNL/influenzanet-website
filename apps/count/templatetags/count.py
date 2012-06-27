@@ -5,6 +5,7 @@ import urllib2
 from django.template import Library, Node
 from django.contrib.sites.models import Site
 from django.core.cache import cache 
+from django.conf import settings
 
 register = Library()
 
@@ -40,7 +41,7 @@ class MemberCountNode(Node):
             return cache.get(key)
 
         try:
-            result = urllib2.urlopen(SOURCES[country], timeout=2).read()
+            result = urllib2.urlopen(SOURCES[country], timeout=0.1 if settings.DEBUG else 2).read()
         except:
             result = '0'
 
