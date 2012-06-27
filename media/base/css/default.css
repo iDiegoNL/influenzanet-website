@@ -10,7 +10,7 @@ Version: 1.0
 
 /* Main */
 
-html {
+html body {
  font-family: Verdana, Geneva, sans-serif;
  line-height: 1.2em;
  font-size: 1em;
@@ -386,12 +386,12 @@ ul.map_buttons li {
  float: right;
  margin: 0 12px 10px 0;
  text-align: center;
- font-size: 0.75em;
 }
 
 #account p {
  margin: 0 0 4px 0;
- font-size: 0.95em;
+/* font-size: 0.95em;*/
+ font-size: 0.7em;
 }
 
 #account a {
@@ -427,9 +427,9 @@ ul.map_buttons li {
 }
 
 .loggedinas {
- width: 183px;
+ width: 150px;
  padding: 4px 0 0 0;
- line-height: 1.3em;
+ line-height: 0.5em;
 }
 
 #navigation {
@@ -775,7 +775,7 @@ input#commentsubmit:hover {
 #col2 {
  float: left;
  width: 290px;
- min-height: 300px;
+/* min-height: 300px;*/
  position: relative;
  margin-left: -50%;
  left: 206px;
@@ -1182,6 +1182,7 @@ div.pagination {
   color: white;
   text-align: center;
   font-size: 1em;
+  font-weight: bold;
 }
 
 #red-button {
