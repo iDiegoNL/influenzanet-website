@@ -133,8 +133,9 @@ a.jsclose {
  display: none;
 }
 
-a.close {
+a:link.close {
  color: #b2b2b2;
+ text-decoration: underline;
 }
 
 .show {
