@@ -10,7 +10,7 @@ Version: 1.0
 
 /* Main */
 
-html {
+html body {
  font-family: Verdana, Geneva, sans-serif;
  line-height: 1.2em;
  font-size: 1em;
