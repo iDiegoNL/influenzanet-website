@@ -125,7 +125,8 @@ def thanks(request):
         item['person'] = persons_dict.get(item['global_id'])
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
-        person.health_history = [i for i in history if i['global_id'] == person.global_id][-7:]
+        person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
+
     return render_to_response('survey/thanks.html', {'person': survey_user, 'persons': persons, 'history': history},
                               context_instance=RequestContext(request))
 

@@ -45,6 +45,13 @@
 {% if persons|length > 1 %}
         <td><a href="{{ person.get_remove_url }}">{% trans "Remove" %}</a></td>
 {% endif %}
+
+    <td>
+    {% for h in person.health_history %}
+        {{ h.timestamp }} / {{ h.status }} / {{ h.diag }}<br>
+    {% endfor %}
+    </td>
+
 </tr>
 
 {% endfor %}
