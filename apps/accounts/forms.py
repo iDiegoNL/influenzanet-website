@@ -27,7 +27,7 @@ class UnicodeUserCreationForm(UserCreationForm):
         error_messages = {'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
 
 
-class MySettingsForm(forms.Form):
+class EmailSettingsForm(forms.Form):
     email = forms.EmailField(label=_("Email"))
     send_reminders = forms.BooleanField(label=_("Send reminders"), help_text=_("Check this box if you wish to receive weekly reminders throughout the flu season"), required=False)
     language = forms.ChoiceField(label=_("Language"), choices=settings.LANGUAGES)
@@ -42,7 +42,7 @@ class MySettingsForm(forms.Form):
         initial['language'] = self.reminder_info.language if self.reminder_info.language else settings.LANGUAGE_CODE
         kwargs['initial'] = initial
 
-        super(MySettingsForm, self).__init__(*args, **kwargs)
+        super(EmailSettingsForm, self).__init__(*args, **kwargs)
         
         if len(settings.LANGUAGES) == 1:
             del self.fields['language']
@@ -66,4 +66,17 @@ class MySettingsForm(forms.Form):
         self.instance.save()
         self.reminder_info.save()
 
+
+class UsernameForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', )
+     
+    def clean_username(self):
+        value = self.cleaned_data['username']
+
+        if User.objects.exclude(pk=self.instance.pk).filter(username=value).count():
+            raise forms.ValidationError(_("A user with this username already exists"))
+
+        return value
 
