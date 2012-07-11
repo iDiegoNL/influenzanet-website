@@ -3,12 +3,32 @@ from datetime import datetime, timedelta
 
 from django.core.management.base import BaseCommand
 
-from django.contrib.auth.models import User as DjangoUser
+from django.conf import settings as app_config
 
 from ...send import send
 from ...models import get_settings, UserReminderInfo, MockNewsLetter
 from django.db import connection
-from apps.sw_auth.models import EpiworkUser as User
+from django.contrib.auth.models import User 
+
+if getattr(app_config, 'SWAUTH_FAKE_USER', 0):
+    from apps.sw_auth.models import EpiworkUserProvider as UserProvider
+else:
+    # Default User list provider
+    class UserProvider(object):
+        
+        def __init__(self):
+            self.users = User.objects.filter(is_active=True)  
+            self.iter = None
+        
+        def __iter__(self):
+            self.iter = self.users.__iter__()
+            return self # return self to force use of our next() method
+        
+        def get_by_id(self, id):
+            return User.objects.get(id=id)
+        
+        def next(self): 
+            return next(self.iter)    
 
 class Command(BaseCommand):
     help = "Send reminders."
@@ -20,7 +40,13 @@ class Command(BaseCommand):
         make_option('--counter', action='store', dest='counter', default=None, help='Store counter value into this file'),
         make_option('--log', action='store', dest='log', default=None, help='Store user email in a log file'),
         make_option('--next', action='store', dest='next', default=None, help='Next url for login url'),
+        make_option('--mock', action='store_true', dest="mock", default=False, help="Create a mock newsletter and fake send it (always fake)"),
     )
+
+    def __init__(self):
+        super(BaseCommand, self).__init__()
+        self.log = None
+        self.fake = False
 
     def get_reminder(self):
         query = "SELECT n.id, subject, message, sender_email, sender_name, date FROM reminder_newslettertranslation t left join reminder_newsletter n on n.id=t.master_id where t.language_code='fr' and published=True order by date desc"
@@ -34,33 +60,43 @@ class Command(BaseCommand):
         reminder.sender_name = res[4]
         reminder.date = res[5]
         return reminder
-    
-    def send_reminders(self, fake, target, verbose, log, next):
+           
+    def get_mock_reminder(self):
+        reminder = MockNewsLetter()
+        reminder.subject = "Mock newsletter"
+        reminder.message = "Lorem ipsum"
+        reminder.sender_email = "mock@localhost"
+        reminder.sender_name = "mock"
+        reminder.date = datetime.now()
+        return reminder
+        
+    def send_reminders(self, message, target, next, batch_size):
+        
         now = datetime.now()
+        
+        users = UserProvider()
+        
         if(target is not None):
             print "target user=%s" % (target)
-            users = [User.objects.get(id=target)]
+            users = [ users.get_by_id(target) ]
             print users
-        else:
-            users = User.objects.filter(is_active=True)
-        
-        batch_size = get_settings().batch_size if get_settings() else None
 
         i = -1
-        message = self.get_reminder()
         language = 'fr'
         try:
             for user in users :
                 if batch_size and i >= batch_size:
                     raise StopIteration 
+                
                 to_send = False
                 
-                django_user = user.get_fake_user()
-                
-                info, _ = UserReminderInfo.objects.get_or_create(user=django_user, defaults={'active': True, 'last_reminder': user.date_joined})
+                print user.__class__
+                   
+                info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
     
                 if not info.active:
                     continue
+                
                 if info.last_reminder is None:
                     to_send = True
     
@@ -69,10 +105,10 @@ class Command(BaseCommand):
             
                 if to_send:
                     i += 1
-                    if not fake:
-                        if(verbose):
+                    if not self.fake:
+                        if(self.verbose):
                             print 'sending', user.email 
-                            send(now, user, message, language, next=next)
+                        send(now, user, message, language, next=next)
                     else:
                         print '[fake] sending', user.email, message.subject
         except StopIteration:
@@ -80,31 +116,44 @@ class Command(BaseCommand):
         return i + 1
 
     def handle(self, *args, **options):
-        fake    = options.get('fake', False)
-        user    = options.get('user', None)
-        verbose = options.get('verbose', False)
-        counter = options.get('counter', None)
-        log = options.get('log', None)
-        next = options.get('next', None)
+        self.fake    = options.get('fake', False)
+        self.log = options.get('log', None)
+        self.verbose = options.get('verbose', False)
         
-        if not get_settings():
+        user    = options.get('user', None)
+        counter = options.get('counter', None)
+        next = options.get('next', None)
+        mock = options.get('mock', False)
+        
+        conf = get_settings()
+        
+        if conf is None:
             return u"0 reminders sent - not configured"
+        else:
+            if conf.currently_sending and conf.last_process_started_date + timedelta(hours=3) > datetime.now():
+                return u"0 reminders sent - too soon"
 
-        if get_settings() and get_settings().currently_sending and\
-            get_settings().last_process_started_date + timedelta(hours=3) > datetime.now():
-            return u"0 reminders sent - too soon"
+        batch_size = conf.batch_size
 
-        settings = get_settings()
-        settings.currently_sending = True
-        settings.last_process_started_date = datetime.now()
-        settings.save()
+        conf.currently_sending = True
+        conf.last_process_started_date = datetime.now()
+        conf.save()
+        
         try:
-            count = self.send_reminders(fake=fake, target=user, verbose=verbose, log=log, next=next)
+            if mock:
+                message = self.get_mock_reminder()
+                self.fake = True
+            else:
+                message = self.get_reminder()
+            
+            count = self.send_reminders(message=message, target=user, batch_size=batch_size, next=next)
+        
             if(counter is not None):
                 file(counter,'w').write(str(count))
             return u'%d reminders sent.\n' % count 
+       
         finally:
-            settings = get_settings()
-            settings.currently_sending = False
-            settings.save()
+            conf = get_settings()
+            conf.currently_sending = False
+            conf.save()
             
