@@ -1,0 +1,5 @@
+get_european_results.sh gets the results and puts them into a local
+PostgreSQL database called "flusurvey". It uses add_epidb_key.sql and
+epidb_health_status.sql (all attached).
+
+analysis_euro.R--  R script for the plots about gender, education, vaccination uptake etc
