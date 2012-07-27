@@ -152,7 +152,7 @@ def survey_test(request, id, language=None):
     })
 
 @login_required
-def survey_run(request, shortname, next=None):
+def survey_run(request, shortname, next=None, clean_template=False):
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
     language = get_language()
     locale_code = locale.locale_alias.get(language)
@@ -189,7 +189,7 @@ def survey_run(request, shortname, next=None):
     encoder = json.JSONEncoder(ensure_ascii=False, indent=2)
     last_participation_data_json = encoder.encode(last_participation_data)
 
-    return request_render_to_response(request, 'pollster/survey_run.html', {
+    return request_render_to_response(request, "pollster/survey_run_clean.html" if clean_template else 'pollster/survey_run.html', {
         "language": language,
         "locale_code": locale_code,
         "survey": survey,

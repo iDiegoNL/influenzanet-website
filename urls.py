@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
     (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
     
+    (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True}),
+
     #url(r'^captcha/', include('captcha.urls')),
     #(r'^tellafriend/', include('tellafriend.urls')),
 
