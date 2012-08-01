@@ -3,6 +3,7 @@ from django.core.management.base import NoArgsCommand
 from ...crypto import AES256
 from ...utils import random_string
 from base64 import b64decode, b64encode
+from django.conf import settings
 
 class Command(NoArgsCommand):
     
@@ -21,11 +22,11 @@ class Command(NoArgsCommand):
     
     def handle_noargs(self, **options):
         
-        key = b64encode('uz9eikzdi9d2do2nxmqInzHD02nSZl92')
+        key = settings.SWAUTH_AES_KEY
         
         aes = AES256(key)
         
-        N = 100
+        N = 10000
         ok = 0
         for i in range(N):
             txt = random_string(30)

@@ -17,7 +17,14 @@ def login_handler(sender,**kwargs):
     auth_notify('login_handler','ok')
     user = kwargs['user']
     request = kwargs['request']
-    epiwork_user = user._epiwork_user
+    if hasattr(user, '_epiwork_user' ):
+        epiwork_user = user._epiwork_user
+    else:
+        if not user.is_staff:
+            raise Exception('Invalid user backend usage')
+        # Staff users should have same username
+        epiwork_user = EpiworkUser.objects.get(login=user.username)
+        
     request.session['epiwork_user'] = epiwork_user # store real user in session
 
 user_logged_in.connect(login_handler)

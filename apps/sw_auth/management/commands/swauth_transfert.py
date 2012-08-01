@@ -30,9 +30,13 @@ class Command(BaseCommand):
         active = u.is_active
         
         if u.is_staff:
-            print "[skip] user %d %s" % (u.id, u.username)
-            return 1
-        username = random_string(30)
+            print "[staff] user %d %s" % (u.id, u.username)
+            #return 1
+            # keep username for staff
+            username = u.username
+        else:
+            # random username
+            username = random_string(30)
         
         try:
             e = EpiworkUser.objects.get(login=login)
@@ -54,11 +58,12 @@ class Command(BaseCommand):
             print "[bad] user %d %s %s bad cipher" % (u.id, username, check)
             return 1
         
-        u.email = "%s@localhost" % username
         u.username = username
-        u.password = UNUSABLE_PASSWORD
-        u.first_name = ''
-        u.last_name = ''
+        if not u.is_staff:
+            u.email = "%s@localhost" % username
+            u.password = UNUSABLE_PASSWORD
+            u.first_name = ''
+            u.last_name = ''
         if not fake:
             try:
                 e.save()
