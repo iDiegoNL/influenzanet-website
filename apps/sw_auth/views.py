@@ -118,18 +118,22 @@ def password_complete(request):
 def my_settings(request):
     """
     """
-    if not hasattr(request.session,'epiwork_user'):
+    try:
+        epiwork_user = request.session['epiwork_user']
+        if request.method == "POST":
+            form = MySettingsForm(request.POST, instance=request.user, epiwork=epiwork_user)
+            if form.is_valid():
+                form.save()
+                success = True
+        else:
+            form = MySettingsForm(instance=request.user, epiwork=epiwork_user)
+    
+        return render_to_response('accounts/my_settings.html', locals(), RequestContext(request))
+    except KeyError:
+        auth_notify('setting', 'No settings')
         return render_to_response('sw_auth/no_settings.html', locals(), RequestContext(request))
         
-    if request.method == "POST":
-        form = MySettingsForm(request.POST, instance=request.user, epiwork=request.session['epiwork_user'])
-        if form.is_valid():
-            form.save()
-            success = True
-    else:
-        form = MySettingsForm(instance=request.user, epiwork=request.session['epiwork_user'])
-
-    return render_to_response('accounts/my_settings.html', locals(), RequestContext(request))
+    
 
     
 def index(request):
