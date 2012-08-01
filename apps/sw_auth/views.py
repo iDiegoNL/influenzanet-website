@@ -128,7 +128,7 @@ def my_settings(request):
         else:
             form = MySettingsForm(instance=request.user, epiwork=epiwork_user)
     
-        return render_to_response('accounts/my_settings.html', locals(), RequestContext(request))
+        return render_to_response('sw_auth/my_settings.html', locals(), RequestContext(request))
     except KeyError:
         auth_notify('setting', 'No settings')
         return render_to_response('sw_auth/no_settings.html', locals(), RequestContext(request))

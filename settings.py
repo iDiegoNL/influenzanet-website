@@ -153,7 +153,7 @@ INSTALLED_APPS = (
     'sekizai',
 #    'registration',
     'loginurl',
-#    'apps.accounts',
+#   'apps.accounts',
     'apps.survey',
     'apps.reminder',
 #    'apps.banner',

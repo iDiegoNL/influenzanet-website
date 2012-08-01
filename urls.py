@@ -5,7 +5,7 @@ from django.views.generic.simple import redirect_to
 from haystack.views import SearchView, search_view_factory
 from haystack.forms import SearchForm
 
-from apps.ew_contact_form.forms import ContactForm
+#from apps.ew_contact_form.forms import ContactForm
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -43,7 +43,7 @@ urlpatterns = patterns('',
                      name='loginurl-index'),
     (r'^login/', include('loginurl.urls')),
     (r'^count/', include('apps.count.urls')),
-    (r'^contest/', include('apps.contest.urls')),
+#    (r'^contest/', include('apps.contest.urls')),
 
     url(r'^contact/$', redirect_to, {'url':'/contacts/'}, name='contact_form'),
 
@@ -56,7 +56,7 @@ urlpatterns = patterns('',
         'apps.sw_auth.views.register_user',
         name='registration_register_explanation'),
 
-    (r'^forum/', include('pybb.urls', namespace='pybb')),
+#    (r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 
 if settings.DEBUG:
@@ -79,4 +79,3 @@ urlpatterns += patterns('',
 urlpatterns += patterns('', url(r'^', include('cms.urls')))
 
 handler500 = 'views.server_error'
-
