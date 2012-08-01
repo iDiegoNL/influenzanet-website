@@ -14,4 +14,4 @@ wsgiref==0.1.2
 -e git://github.com/ojii/django-nani.git#egg=django-nani
 simplejson
 mock
-pybbm
+#pybbm
