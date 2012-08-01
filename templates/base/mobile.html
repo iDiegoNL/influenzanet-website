@@ -13,8 +13,7 @@
 		<title>{% block title %}{{ site_name }}: {% page_attribute page_title %}{% endblock title %}</title>
         {% block add_head %}{% endblock add_head %}
 
-        <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}base/css/default.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="/colors.css" />
+		<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}assets/base.css" />
         {% block add_css %}{% endblock add_css %}
         {% block add_js %}{% endblock add_js %}
         {% render_block "js" %}
