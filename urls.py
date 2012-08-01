@@ -25,6 +25,12 @@ urlpatterns = patterns('',
     (r'^influenzanet/', 'django.views.generic.simple.direct_to_template', {'template': 'influenzanet.html'}),
     (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
     (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
+    
+    (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True}),
+    (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
+
+    #url(r'^captcha/', include('captcha.urls')),
+    #(r'^tellafriend/', include('tellafriend.urls')),
 
     url(r'^search/$', search_view_factory(
         view_class=SearchView,
@@ -49,6 +55,8 @@ urlpatterns = patterns('',
     url(r'^register/$',
         'apps.sw_auth.views.register_user',
         name='registration_register_explanation'),
+
+    (r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 
 if settings.DEBUG:
