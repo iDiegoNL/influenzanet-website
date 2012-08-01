@@ -17,7 +17,7 @@ class Command(NoArgsCommand):
         return 0
     
     def handle_noargs(self, **options): 
-        N = 100
+        N = 10000
         ok = 0
         for i in range(N):
             txt = random_string(30)
