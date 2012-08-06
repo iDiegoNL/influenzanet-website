@@ -202,7 +202,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
 
 def survey_map(request, survey_shortname, chart_shortname):
     survey = get_object_or_404(models.Survey, shortname=survey_shortname, status='PUBLISHED')
-    chart = models.Chart(survey=survey, shortname=chart_shortname)
+    chart = get_object_or_404(models.Chart, survey=survey, shortname=chart_shortname)
 
     global_id = request.GET.get('gid', None)
     profile = None
