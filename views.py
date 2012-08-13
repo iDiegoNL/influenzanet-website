@@ -3,6 +3,13 @@ from django import http
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response
 from django import forms
+from django.contrib.auth import authenticate, login
+from django.utils import simplejson
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
+from apps.survey.models import SurveyUser
+from loginurl.utils import create as create_login_key
 
 def server_error(request, template_name='500.html'):
     """
@@ -38,3 +45,18 @@ def test_search(request):
     }
     form = SearchForm()
     return render_to_response('search/search.html', locals(), context_instance=RequestContext(request))
+
+
+@csrf_exempt
+def mobile_login(request):
+    if request.method != "POST":
+        return HttpResponse(simplejson.dumps({'error': True, 'error_code': 1, 'error_msg': 'request method must be POST'}), mimetype="application/json") 
+
+    user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+    if user is None:
+        return HttpResponse(simplejson.dumps({'error': True, 'error_code': 2, 'error_msg': 'invalid login'}), mimetype="application/json") 
+
+    global_ids = [su.global_id for su in SurveyUser.objects.filter(user=user)]
+    login_key = create_login_key(user, None, None, None)
+    
+    return HttpResponse(simplejson.dumps({'error': False, 'global_ids': global_ids, 'login_key': login_key.key}), mimetype="application/json") 

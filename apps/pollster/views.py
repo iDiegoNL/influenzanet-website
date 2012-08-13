@@ -9,6 +9,9 @@ from django.utils.translation import to_locale, get_language
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.views import redirect_to_login
+from django.contrib.auth import authenticate, login
+
 from cms import settings as cms_settings
 from apps.survey.models import SurveyUser
 from .utils import get_user_profile
@@ -152,8 +155,19 @@ def survey_test(request, id, language=None):
         "form": form
     })
 
-@login_required
 def survey_run(request, shortname, next=None, clean_template=False):
+    if 'login_key' in request.GET:
+        user = authenticate(key=request.GET['login_key'])
+        if user is not None:
+            login(request, user)
+
+        # deal with the else branch somehow, since it's rather unexpected to have login_key in the
+        # GET, yet have it be incorrect?
+
+    # @login_required from this point on.
+    if not request.user.is_authenticated():
+        return redirect_to_login(path, login_url, redirect_field_name)
+
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
     language = get_language()
     locale_code = locale.locale_alias.get(language)
