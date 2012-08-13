@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth import authenticate, login
+from django.conf import settings
 
 from cms import settings as cms_settings
 from apps.survey.models import SurveyUser
@@ -166,7 +167,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
 
     # @login_required from this point on.
     if not request.user.is_authenticated():
-        return redirect_to_login(path, login_url, redirect_field_name)
+        return redirect_to_login(request.path)
 
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
     language = get_language()
