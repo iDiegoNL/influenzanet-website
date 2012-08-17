@@ -9,8 +9,13 @@ from django.utils.translation import to_locale, get_language
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.views import redirect_to_login
+from django.contrib.auth import authenticate, login
+from django.conf import settings
+
 from cms import settings as cms_settings
 from apps.survey.models import SurveyUser
+from .utils import get_user_profile
 from . import models, forms, fields, parser, json
 import re, datetime, locale, csv, urlparse, urllib
 
@@ -151,8 +156,19 @@ def survey_test(request, id, language=None):
         "form": form
     })
 
-@login_required
-def survey_run(request, shortname, next=None):
+def survey_run(request, shortname, next=None, clean_template=False):
+    if 'login_key' in request.GET:
+        user = authenticate(key=request.GET['login_key'])
+        if user is not None:
+            login(request, user)
+
+        # deal with the else branch somehow, since it's rather unexpected to have login_key in the
+        # GET, yet have it be incorrect?
+
+    # @login_required from this point on.
+    if not request.user.is_authenticated():
+        return redirect_to_login(request.path)
+
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
     language = get_language()
     locale_code = locale.locale_alias.get(language)
@@ -189,7 +205,7 @@ def survey_run(request, shortname, next=None):
     encoder = json.JSONEncoder(ensure_ascii=False, indent=2)
     last_participation_data_json = encoder.encode(last_participation_data)
 
-    return request_render_to_response(request, 'pollster/survey_run.html', {
+    return request_render_to_response(request, "pollster/survey_run_clean.html" if clean_template else 'pollster/survey_run.html', {
         "language": language,
         "locale_code": locale_code,
         "survey": survey,
@@ -197,6 +213,20 @@ def survey_run(request, shortname, next=None):
         "last_participation_data_json": last_participation_data_json,
         "form": form,
         "person": survey_user
+    })
+
+def survey_map(request, survey_shortname, chart_shortname):
+    survey = get_object_or_404(models.Survey, shortname=survey_shortname, status='PUBLISHED')
+    chart = get_object_or_404(models.Chart, survey=survey, shortname=chart_shortname)
+
+    global_id = request.GET.get('gid', None)
+    profile = None
+    if global_id:
+        profile = get_user_profile(request.user.id, global_id)
+
+    return request_render_to_response(request, 'pollster/mobile_survey_chart.html', {
+        'profile': profile,
+        'chart': chart,
     })
 
 @staff_member_required

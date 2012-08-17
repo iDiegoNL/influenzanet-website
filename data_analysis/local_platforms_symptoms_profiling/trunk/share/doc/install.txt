@@ -1,0 +1,19 @@
+Installation
+===============
+
+Define location
+----------------
+
+in the root dir : create a file named "location.r" (you can use location.sample.r as template)
+and define the local config
+
+Define platform
+----------------
+in share/platform, create a file named as you want (but it should be the value set in .Share$platform and for i18n file)
+
+fr.r is the example for french platform
+
+Create cache
+-----------------
+create share/cache directory, and allow R to r/w in it
+
