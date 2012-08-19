@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from django.utils import simplejson
 from django.core.urlresolvers import get_resolver, reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
@@ -167,6 +167,8 @@ def survey_run(request, shortname, next=None, clean_template=False):
 
     # @login_required from this point on.
     if not request.user.is_authenticated():
+        if clean_template: # i.e. "if is_mobile"
+            return HttpResponse(simplejson.dumps({'error': True, 'error_code': 3, 'error_msg': 'you must be logged in'}), mimetype="application/json")
         return redirect_to_login(request.path)
 
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
