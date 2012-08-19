@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.utils import simplejson
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.db import connection
 
 from apps.survey.models import SurveyUser
 from loginurl.utils import create as create_login_key
@@ -56,7 +57,18 @@ def mobile_login(request):
     if user is None:
         return HttpResponse(simplejson.dumps({'error': True, 'error_code': 2, 'error_msg': 'invalid login'}), mimetype="application/json") 
 
-    global_ids = [su.global_id for su in SurveyUser.objects.filter(user=user)]
+    survey_users = SurveyUser.objects.filter(user=user)
+    users = []
+    for survey_user in survey_users:
+        cursor = connection.cursor()
+        cursor.execute("""SELECT MAX(`timestamp`) FROM `pollster_results_weekly` WHERE `global_id` = %s""", [survey_user.global_id])
+
+        users.append({
+            'global_id': survey_user.global_id,
+            'last_survey_date': cursor.fetchall()[0][0],
+            'name': survey_user.name,
+        })
+        
     login_key = create_login_key(user, None, None, None)
     
-    return HttpResponse(simplejson.dumps({'error': False, 'global_ids': global_ids, 'login_key': login_key.key}), mimetype="application/json") 
+    return HttpResponse(simplejson.dumps({'error': False, 'user': users, 'login_key': login_key.key}), mimetype="application/json") 
