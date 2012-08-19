@@ -64,11 +64,12 @@ def mobile_login(request):
     users = []
     for survey_user in survey_users:
         cursor = connection.cursor()
-        cursor.execute("""SELECT MAX(`timestamp`) FROM `pollster_results_weekly` WHERE `global_id` = %s""", [survey_user.global_id])
+        cursor.execute("""SELECT MAX(timestamp) FROM pollster_results_weekly WHERE global_id = %s""", [survey_user.global_id])
+        last_survey_date = cursor.fetchall()[0][0]
 
         users.append({
             'global_id': survey_user.global_id,
-            'last_survey_date': cursor.fetchall()[0][0],
+            'last_survey_date': "%4d-%02d-%02d" % (last_survey_date.year, last_survey_date.month, last_survey_date.day),
             'name': survey_user.name,
         })
         
