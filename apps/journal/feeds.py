@@ -4,6 +4,8 @@ from django.conf import settings
 
 from .models import Entry, published_filter
 
+# this file appears to have fallen in disuse.
+
 class EntryEntryFeed(Feed):
     title = settings.CMSPLUGIN_NEWS_RSS_TITLE
     description = settings.CMSPLUGIN_NEWS_RSS_DESCRIPTION

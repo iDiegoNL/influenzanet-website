@@ -8,7 +8,10 @@ from django.utils import simplejson
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.db import connection
+from django.contrib.syndication.views import Feed
+from django.core.urlresolvers import reverse, NoReverseMatch
 
+from apps.journal.models import Entry
 from apps.survey.models import SurveyUser
 from loginurl.utils import create as create_login_key
 
@@ -72,3 +75,23 @@ def mobile_login(request):
     login_key = create_login_key(user, None, None, None)
     
     return HttpResponse(simplejson.dumps({'error': False, 'user': users, 'login_key': login_key.key}), mimetype="application/json") 
+
+class LatestEntriesFeed(Feed):
+    title = "Influenzanet news"
+    link = "/" # not correct, but not used
+    description = "Influenzanet news"
+
+    def items(self):
+        return Entry.objects.order_by('-pub_date')[:5]
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.excerpt
+
+    def item_link(self, item):
+        try:
+            return reverse("news") + "/" + item.get_relative_url()
+        except:
+            return "/"
