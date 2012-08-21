@@ -468,7 +468,7 @@ def _get_active_survey_user(request):
     if gid is None or not request.user.is_active:
         return None
     else:
-        return SurveyUser.objects.get(global_id=gid, user=request.user)
+        return get_object_or_404(SurveyUser, global_id=gid, user=request.user)
 
 def _get_next_url(request, default):
     url = request.GET.get('next', default)
