@@ -66,10 +66,14 @@ def mobile_login(request):
         cursor = connection.cursor()
         cursor.execute("""SELECT MAX(timestamp) FROM pollster_results_weekly WHERE global_id = %s""", [survey_user.global_id])
         last_survey_date = cursor.fetchall()[0][0]
+        if isinstance(last_survey_date, unicode): # sqlite
+            last_survey_date = last_survey_date[:10]
+        else: # psql
+            last_survey_date = ("%4d-%02d-%02d" % (last_survey_date.year, last_survey_date.month, last_survey_date.day)) if last_survey_date else None
 
         users.append({
             'global_id': survey_user.global_id,
-            'last_survey_date': "%4d-%02d-%02d" % (last_survey_date.year, last_survey_date.month, last_survey_date.day),
+            'last_survey_date': last_survey_date,
             'name': survey_user.name,
         })
         
