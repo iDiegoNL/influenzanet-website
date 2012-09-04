@@ -1,0 +1,210 @@
+/*
+Template Name: User login & Group management
+Description: Initial SASS setup 
+Author: Antwan Wiersma (http://www.prime-creation.com/)
+Version: 0.1
+*/
+
+@import "compass";
+/* @import "partials/normalize"; */
+@import "partials/font-awesome";
+
+
+/* Vars */
+
+$gray: #707070;
+$blue: #0037ff;
+$yellow: #f2b40e;
+$red: #ff2300;
+$offwhite: #f5f5f5;
+$important: #bf1a15 !important;
+
+
+/* General */
+
+.important { color: $important; }
+.topspace { margin-top: 6px; }
+
+
+/* Forms */
+
+.submitbutton {
+    height: 2.2em;
+    width: auto;
+    margin: 4px 0 0 0;
+    padding: 0 10px 3px 10px;
+    font-size: 1em;
+    font-weight:  bold;
+    line-height: 2.2em;
+    border: 0;
+    color: #f8f8f8;
+    text-align: center;
+    cursor: pointer;
+}
+
+#col1 {
+
+    .formwrap {
+
+        input[type="text"],
+        input[type="password"] {
+            background-color: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            font-size: 1em;
+            height: 2em;
+            line-height: 2em;
+            margin: 4px 0 0 0;
+            padding: 0 4px;
+            width: 200px;
+        }
+
+        input {
+            float: none !important;
+        }
+            
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+        background-color: #F0F0F0;
+        border: 1px solid #000000;
+        }
+        
+        p,
+        label,
+        .helptext {
+            display: block;
+            margin: 8px 0 0 0;
+            padding: 0;
+        }
+        
+    }
+
+}
+
+
+/* User display, side menu */
+
+#userdisplay {
+    margin: 14px 0 0 0;
+    font-size: 12px;
+    clear: both;
+
+    .useravatar {
+        float: left;
+        width: 50px;
+        height: 50px;
+        border: 2px solid #b2b2b2;
+        margin: 0 10px 10px 0;
+    }
+
+    .username {
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    .usermail a {
+        color: #595959;
+        font-weight: normal;
+    }
+
+}
+
+#usermenu {
+    margin: 30px 0 0 0;
+    clear: both;
+}
+
+#sidemenu,
+#usermenu {
+    
+    ul {
+        margin-left: 27px;
+        padding: 0;
+    }
+     
+    li {
+        margin-bottom: 4px;
+    }
+    
+    i {
+        margin: 0;
+        font-size: 16px;
+        color: #ababab;
+    }
+    
+    a {
+        font-size: 12px;
+        display: inline-block;
+        margin-left: 4px;
+        vertical-align: top;
+      }
+    
+    a.selected {
+        color: #2e2e31;
+      }
+
+}
+
+#usertext {
+    margin-bottom: 20px;
+}
+
+#userchart {
+    width: 290px;
+    height: 290px;
+    margin-top: 6px;
+    position: relative;
+    background: #eeeeee;
+}
+
+    .nosymptoms { color: $gray }
+    .cold { color: $blue }
+    .gastro { color: $yellow }
+    .flu { color: $red }
+
+
+/* User content */
+
+.usermessage {
+    padding: 10px;
+    background-color: $offwhite;
+    border: 1px solid #cccccc;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+#groupheader {
+    background: #b1b2b2;
+    color: #fffef4;
+}
+
+#groupwrapper {
+	width: 440px;
+	margin-left: auto;
+	margin-right: auto;
+    
+    .accordionButton {	
+        width: 440px;
+        float: left;
+        _float: none;
+        background: #f8f9fa;
+        border-bottom: 1px solid #FFFFFF;
+        cursor: pointer;
+        }
+        
+    .accordionContent {	
+        width: 440px;
+        float: left;
+        _float: none;
+        background: #ffffff;
+        }
+        
+    .on {
+        background: #f8f9fa;
+        }
+        
+    .over {
+        background: #ececec;
+        }
+    
+}
