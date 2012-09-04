@@ -1,0 +1,25 @@
+{% extends "base/threecol.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }} {% trans "Login" %}{% endblock %}
+
+{% block col1 %}
+
+<h1>{% trans "Login" %}</h1>
+
+<div class="formwrap">
+    <form method="post" action="?next=/survey/" id="login">{% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" class="submitbutton" value="{% trans "Log in" %}" /></p>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block col2 %}
+
+<p class="title">{% trans "Please login to continue" %}</p>
+
+<p>If you have forgotten your password or username, you can <a href="{% url django.contrib.auth.views.password_reset %}">request a new password</a> and find out your username.</p>
+
+{% endblock %}
