@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True}),
     (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
 
-    (r'^xss/$', LatestEntriesFeed()),
+    (r'^rss/$', LatestEntriesFeed()),
 
     #url(r'^captcha/', include('captcha.urls')),
     #(r'^tellafriend/', include('tellafriend.urls')),
