@@ -1,5 +1,5 @@
 {% extends "base/sitebase.html" %}
-{% load cms_tags %}
+{% load cms_tags menu_tags %}
 
 {% block content %}
         <div id="colmask">
@@ -13,6 +13,7 @@
                          </div> 
                     </div> 
                     <div id="col2"> 
+                        {% spaceless %}{% show_menu 0 2 100 100 "base/sidebar_menu.html" %}{% endspaceless %}
                         {% block col2 %}{% placeholder "Left bar" %}{% endblock col2 %}
                     </div> 
                     <div id="col3"> 
