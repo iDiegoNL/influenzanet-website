@@ -1,6 +1,6 @@
 {% extends "base/threecol.html" %}
 
-{% load i18n sekizai_tags %}
+{% load i18n sekizai_tags cms_tags %}
 
 {% block title %}{{ block.super }} {% trans "Group management" %}{% endblock %}
 
@@ -12,7 +12,7 @@
 <h1>{% trans "Group management" %}</h1>
 
 <div class="usermessage">{% trans "The last survey was submitted for" %} <span class="flu">(USER)</span> {% trans "on" %} <span class="flu">(DATE AND TIME)</span></div>
-<p><strong><span class="flu">This content should be editable through the admin-backend</span>: Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu.</strong>
+{% placeholder "Main content" %}
 
 <p><a href="{% url survey_people_add %}">+</a></p>
 
