@@ -11,7 +11,9 @@
 {% block col1 %}
 <h1>{% trans "Group management" %}</h1>
 
-<div class="usermessage">{% trans "The last survey was submitted for" %} <span class="flu">(USER)</span> {% trans "on" %} <span class="flu">(DATE AND TIME)</span></div>
+{% if last_survey %}
+<div class="usermessage">{% trans "The last survey was submitted for" %} <span class="flu">{{ last_survey.survey_user }}</span> {% trans "on" %} <span class="flu">{{ last_survey.timestamp }}</span></div>
+{% endif %}
 {% placeholder "Main content" %}
 
 <p><a href="{% url survey_people_add %}">+</a></p>

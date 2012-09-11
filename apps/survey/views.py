@@ -104,7 +104,8 @@ def _get_health_history(request, survey):
     results = cursor.fetchall()
     for ret in results:
         timestamp, global_id, status = ret
-        yield {'global_id': global_id, 'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status)}
+        survey_user = models.SurveyUser.objects.get(global_id=global_id)
+        yield {'global_id': global_id, 'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status), 'survey_user': survey_user}
 
 
 @login_required
