@@ -106,8 +106,9 @@ def _get_health_history(request, survey):
         timestamp, global_id, status = ret
         yield {'global_id': global_id, 'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status)}
 
+
 @login_required
-def thanks(request):
+def group_management(request):
     try:
         survey = pollster.models.Survey.get_by_shortname('weekly')
     except:
@@ -127,8 +128,9 @@ def thanks(request):
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
 
-    return render_to_response('survey/thanks.html', {'person': survey_user, 'persons': persons, 'history': history},
+    return render_to_response('survey/group_management.html', {'person': survey_user, 'persons': persons, 'history': history},
                               context_instance=RequestContext(request))
+
 
 @login_required
 def thanks_profile(request):
@@ -141,6 +143,10 @@ def thanks_profile(request):
 
 @login_required
 def select_user(request, template='survey/select_user.html'):
+    # select_user is still used in some cases: notably when there are unqualified calls to
+    # 'profile_index'. So we've not yet removed this template & view.
+    # Obviously it's a good candidate for refactoring.
+
     next = request.GET.get('next', None)
     if next is None:
         next = reverse(index)
@@ -172,8 +178,7 @@ def index(request):
     except ValueError:
         raise Http404()
     if survey_user is None:
-        url = '%s?next=%s' % (reverse(select_user), reverse(index))
-        return HttpResponseRedirect(url)
+        return HttpResponseRedirect(reverse(group_management))
 
     # Check if the user has filled user profile
     profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
@@ -192,7 +197,7 @@ def index(request):
 
     next = None
     if 'next' not in request.GET:
-        next = reverse(thanks)
+        next = reverse(group_management) # is this necessary? Or would it be the default?
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
@@ -299,9 +304,4 @@ def people_add(request):
     return render_to_response('survey/people_add.html', {'form': form},
                               context_instance=RequestContext(request))
 
-@login_required
-def people(request):
-    users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
-    return render_to_response('survey/people.html', {'people': users},
-                              context_instance=RequestContext(request))
 

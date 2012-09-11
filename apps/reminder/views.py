@@ -10,6 +10,10 @@ from django.conf import settings
 from .models import UserReminderInfo, get_upcoming_dates, get_prev_reminder, get_settings, get_default_for_reminder
 from .send import create_message, send
 
+
+def latest_newsletter(request):
+    return render_to_response('reminder/latest_newsletter.html', locals(), context_instance=RequestContext(request))
+
 @login_required
 def unsubscribe(request):
     if request.method == "POST":

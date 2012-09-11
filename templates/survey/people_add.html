@@ -1,4 +1,4 @@
-{% extends "survey/base.html" %}
+{% extends "base/threecol.html" %}
 {% load i18n %}
 
 {% block col1 %}
@@ -12,3 +12,9 @@
 
 {% endblock %}
 
+{% block col2 %}
+
+{% include "accounts/partials/usermenu.html" %}
+{% include "accounts/partials/usermap.html" %}
+
+{% endblock %}
