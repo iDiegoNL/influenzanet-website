@@ -175,7 +175,8 @@ class EpiworkUserProvider(object):
         return self
     
     def fake(self, user):
-        django_user = user.get_django_user()
+        django_user = user.get_fake_user()
+        django_user.personalize(user)
         print "find user  %d %s"  % (django_user.id, django_user.email)
         return django_user
     
