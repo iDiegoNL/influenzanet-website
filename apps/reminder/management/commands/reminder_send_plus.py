@@ -26,6 +26,9 @@ else:
         
         def get_by_id(self, id):
             return User.objects.get(id=id)
+
+        def get_by_login(self, login):
+            return User.objects.get(username=login)
         
         def next(self): 
             return next(self.iter)    
@@ -35,7 +38,7 @@ class Command(BaseCommand):
 
     option_list = BaseCommand.option_list + (
         make_option('--fake', action='store_true', dest='fake', default=False, help='Fake the sending of the emails; print the emails to be sent on screen instead.'),
-        make_option('--user', action='store', dest='user', default=None, help='Send only to this user (user id)'),
+        make_option('--user', action='store', dest='user', default=None, help='Send only to this user (user login)'),
         make_option('--verbose', action='store_true', dest='verbose', default=False, help='Print verbose message'),
         make_option('--counter', action='store', dest='counter', default=None, help='Store counter value into this file'),
         make_option('--log', action='store', dest='log', default=None, help='Store user email in a log file'),
@@ -76,9 +79,12 @@ class Command(BaseCommand):
         
         users = UserProvider()
         
+        if self.verbose:
+            print "> User provider class : %s " % str(users.__class__)
+        
         if(target is not None):
-            print "target user=%s" % (target)
-            users = [ users.get_by_id(target) ]
+            print "> target user=%s" % (target)
+            users = [ users.get_by_login(target) ]
             print users
 
         i = -1
@@ -91,8 +97,6 @@ class Command(BaseCommand):
                 
                 to_send = False
                 
-                print user.__class__
-                   
                 info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
     
                 if not info.active:
@@ -112,6 +116,9 @@ class Command(BaseCommand):
                         send(now, user, message, language, next=next)
                     else:
                         print '[fake] sending', user.email, message.subject
+                else:
+                    if self.verbose:
+                        print 'skip ', user.email
         except StopIteration:
             pass
         return i + 1
