@@ -1,5 +1,6 @@
 #from optparse import make_option
 from django.core.management.base import CommandError, BaseCommand
+from getpass import getpass
 from ...models import EpiworkUser
 from django.contrib.auth import authenticate
 
@@ -14,7 +15,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        pwd = raw_input("root django password : ")
+        pwd = getpass("root django password : ")
         
         root = authenticate(username="root", password=pwd)
         
