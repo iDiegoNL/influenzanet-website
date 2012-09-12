@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 from ... import fields
 from django.db.models.fields import CharField
+from django.db import models
 from django.core import exceptions, validators
 from django.utils.translation import ugettext_lazy as _
 
@@ -20,15 +21,8 @@ class YearMonthField(CharField):
         defaults.update(kwargs)
         return super(YearMonthField, self).formfield(**defaults)
 
-class DateField(CharField):
+class DateField(models.DateField):
     description = _("Date (in YYYY-MM-DD format)")
-
-    def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = 10
-        super(DateField, self).__init__(*args, **kwargs)
-
-    def get_internal_type(self):
-        return 'CharField'
 
     def formfield(self, **kwargs):
         defaults = {'form_class': fields.DateField}

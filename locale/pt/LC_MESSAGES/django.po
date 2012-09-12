@@ -818,7 +818,7 @@ msgid "Symptoms survey"
 msgstr "Questionário semanal"
 
 msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
-msgstr "O estado de cada participante é baseado nos sintomas do questionário semanal.<strong>O resultado não é um diagnóstico médico.</strong>. Se possuir sintomas de gripe, entre em contato com o seu médico."
+msgstr "O estado de cada participante é baseado nos sintomas do questionário semanal, de acordo com as definições que pode encontrar <a href='http://www.gripenet.pt/pt/resultados/faq-resultados/#faq01'>aqui</a>.<strong>O resultado não é um diagnóstico médico.</strong> Se possuir sintomas de gripe, entre em contato com o seu médico."
 
 msgid "Unknown"
 msgstr "Desconhecido"
@@ -834,7 +834,7 @@ msgstr "Contacte-nos"
 
 # translations should reflect whatever can be seen on the map of the thanks page
 msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
-msgstr "As regiões a vermelho possuem ILI. As regiões a azul são áreas onde não foi reportado ILI."
+msgstr "O mapa mostra a distribuição actual dos sintomas reportados no Gripenet, ao nível da primeira parte do código postal. Nas regiões a vermelho, pelo menos um dos nossos participantes está actualmente com sintomas de gripe; nas regiões a amarelo, pelo menos um dos participantes está com sintomas não indicativos de gripe, e nas regiões a cinzento os participantes estão sem sintomas."
 
 # translations should reflect however often maps are updated
 msgid "Map updated hourly."

@@ -19,7 +19,6 @@
     color:#ffffff !important; /*button-text*/
     background:#555555; /*button-color*/
     border: 2px solid #000000; /*button-border*/
-    font-size: 11px;
     text-decoration:none; 
     text-align:left;
     margin-right: 0.5em;
@@ -29,6 +28,7 @@
     padding-right: 0.5em;
     padding-top: 0.1em;
     padding-bottom: 0.1em;
+    display: inline !important; /* NEW */
 }
 
 .nav li a:hover {
@@ -50,14 +50,20 @@
     font-weight: bold;
 }
 
+.nav li.dropdown {
+    font-size: 0.7em; /* NEW */
+}
+
 .nav li.dropdown ul {
     position:absolute; 
     z-index: 100; /* overlap submenus over other menus */
+    padding: 0 !important;
 }
 
 .nav li.option ul {
     position:relative; 
     margin-left: 15px;
+    padding: 0 !important;
 }
 
 /* submenu, it's hidden by default */
@@ -76,8 +82,7 @@
     color:#000000 !important; /*item-text*/
     background: #ffffff; /*item-color*/
     border: 2px solid #555555; /*item-border*/
-    font-size: 11px;
-    display:block;  
+    display:block !important;  /*NEW*/ 
 }
 
 .nav ul a:hover {

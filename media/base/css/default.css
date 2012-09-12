@@ -138,8 +138,9 @@ a.jsclose {
  display: none;
 }
 
-a.close {
+a:link.close {
  color: #b2b2b2;
+ text-decoration: underline;
 }
 
 .show {
@@ -602,14 +603,14 @@ textarea#id_body {
 textarea#id_body {
  width: 400px;
  height: 114px;
- font-size: 1em;
+ font-size: 12px;
  line-height: 1.2em;
  padding: 4px;
 }
 
 input#id_name:focus,
 input#id_email:focus,
-textarea#id_message:focus {
+textarea#id_body:focus {
  background-color: #f0f0f0;
  border: 1px solid #000000;
 }
@@ -956,12 +957,19 @@ hr {
 #col2 > ol > li,
 #col3 > ul > li,
 #col3 > ol > li { /* Reduce size only for the first level */
-font-size: 0.7em;
+ font-size: 0.7em;
 }
 
 #col1 label,
 #col2 label,
 #col3 label {
+ font-size: 0.9em;
+ font-weight: bold;
+}
+
+#col1 li label,
+#col2 li label,
+#col3 li label {
  font-size: 0.7em;
 }
 
@@ -1016,6 +1024,7 @@ font-size: 0.7em;
  padding: 0;
  color: #0a0a0a;
  font-size: 1.2em;
+ line-height: 1.1em;
 }
 
 #col1 h2 {
@@ -1068,8 +1077,8 @@ ul.bullets li {
 
 .graphitem {
  float: left;
- width: 338px;
- margin: 5px 10px 5px 0;
+ width: 332px;
+ margin: 5px 10px 12px 0;
  padding: 16px;
  text-align: center;
  background-color: #dfdbdb;
@@ -1077,14 +1086,14 @@ ul.bullets li {
 }
 
 .graphitem img {
- width: 326px;
+ width: 320px;
  border: 6px solid #ffffff;
 }
 
 .biggraphitem {
  float: left;
- width: 718px;
- margin: 5px 10px 5px 0;
+ width: 708px;
+ margin: 5px 10px 12px 0;
  padding: 16px;
  text-align: center;
  background-color: #dfdbdb;
@@ -1151,8 +1160,8 @@ table.imagetable td {
 /* Journal */
 
 ul.archive {
- margin: 10px 0 0 0;
- font-size: 0.8em;
+ margin: 10px 0 0 8px;
+ font-size: 1em;
 }
 
 div.entries {
@@ -1180,6 +1189,14 @@ div.pagination {
 
 .pagination a {
  font-size: 0.7em;
+}
+
+.journalimg {
+ margin: 0 10px 2px 0;	
+}
+
+.journalimgsmall {
+ margin: -2px 10px 2px 0;	
 }
 
 
@@ -1221,3 +1238,164 @@ div.pagination {
 
 .survey-chart .chart { width: 440px; height: 330px; position: relative; }
 .survey-chart .chart-no-data { background:#EEE; padding:20px; }
+
+
+/*** PYBBM (Forum) ***/
+
+/* PYBBM General */
+
+body {
+ background-color: transparent;
+}
+
+div#page {
+ background-color: #ffffff;
+}
+
+.forum {
+ font-size: 1em;
+ font-family: Verdana,Geneva,sans-serif;
+ font-weight: normal;
+}
+
+.forum label, .forum input, .forum select, textarea {
+ font-family: Verdana,Geneva,sans-serif;
+}
+
+.forum h1 {
+ color: #0A0A0A; font-size: 1.2em; line-height: 1.1em; margin: 6px 0 12px; padding: 0;
+}
+
+.forum #header {
+ height: 22px;
+}
+
+/* PYBBM Buttons, Links, Input */
+
+.forum input[type="submit"] {
+ text-shadow: none;
+}
+
+.forum a,
+.forum input {
+ border-radius: 0px;
+ box-shadow: 0;
+ text-shadow: 0;
+}
+
+.forum input,
+.forum textarea { -moz-transition: none; box-shadow: none;}
+
+.forum a:focus,
+.forum input:focus, 
+.forum textarea:focus {
+ outline: none;
+ border-color: transparent; box-shadow: none;}
+
+.forum #searchbar input#searchfield,
+.forum #searchbar input#searchsubmit {
+ font-size: 0.85em;
+ box-shadow: none;
+ display: inline;
+ font-family: Verdana,Geneva,sans-serif;
+}
+
+/* PYBBM Influenzabar */
+
+.forum #header {
+ background: transparent;
+ font-size: 0.96em;
+}
+
+.forum p.influenzanet a {
+ line-height: 1.8em;
+}
+
+.forum div#epiwork a {
+ text-decoration: underline;
+}
+
+.forum a.close {
+ color: #B2B2B2;
+ float: none; font-size: inherit; font-weight: inherit; line-height: inherit; opacity: 1; text-shadow: none;
+ text-decoration: underline;
+}
+
+/* PYBBM Forum Layout */
+
+.forum div#content {
+ width: 950px;
+}
+
+.forum div.main-block {
+ float: left;
+ width: 946px;
+ margin: 92px 0 0 -4px;
+ padding: 0;
+ background: white;
+}
+
+.forum div.topbar {
+ display: none;
+}
+
+/* PYBBM Forum Forms */
+
+.forum form {
+ padding: 0;
+}
+
+.forum .post {
+ width: 100%;
+}
+
+.forum input#id_name,
+.forum input#id_email,
+.forum textarea#id_body {
+ float: none;
+ clear: both; border: 1px solid #CCCCCC; font-size: 1em; height: 1.6em; line-height: 1.6em; margin: 0 0 10px; padding: 0 4px; width: 940px;}
+
+.forum textarea#id_body { height: 10em;
+ line-height: 1em;
+ padding-top: 4px;}
+
+.forum div#emoticons {
+ margin-bottom: 16px;
+}
+
+/* PYBBM Forum Breadcrumb */
+
+.forum ul.breadcrumb {
+ width: 920px;
+ clear: both;
+ margin: 0 0 18px 0;
+ border-radius: 0px;
+ font-size: 0.7em;
+}
+
+.forum ul.breadcrumb li,
+.forum ul.breadcrumb li a {
+ font-weight: bold;
+}
+
+.forum ul.breadcrumb li:nth-child(1) {
+ display: none;
+}
+
+/* PYBBM Forum Userinfo */
+
+.forum .userinfo .info {
+ padding: 10px 0 0 0;
+ font-size: 0.8em;
+}
+
+.forum .userinfo .info .label {
+ margin: 0 0 10px 0;
+}
+
+/* PYBBM Forum Footer */
+
+.forum footer {
+ display: none;
+}
+

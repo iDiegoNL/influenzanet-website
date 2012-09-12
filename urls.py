@@ -5,7 +5,7 @@ from django.views.generic.simple import redirect_to
 from haystack.views import SearchView, search_view_factory
 from haystack.forms import SearchForm
 
-from apps.ew_contact_form.forms import ContactForm
+#from apps.ew_contact_form.forms import ContactForm
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -25,6 +25,12 @@ urlpatterns = patterns('',
     (r'^influenzanet/', 'django.views.generic.simple.direct_to_template', {'template': 'influenzanet.html'}),
     (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
     (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
+    
+    (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True}),
+    (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
+
+    #url(r'^captcha/', include('captcha.urls')),
+    #(r'^tellafriend/', include('tellafriend.urls')),
 
     url(r'^search/$', search_view_factory(
         view_class=SearchView,
@@ -37,7 +43,7 @@ urlpatterns = patterns('',
                      name='loginurl-index'),
     (r'^login/', include('loginurl.urls')),
     (r'^count/', include('apps.count.urls')),
-    (r'^contest/', include('apps.contest.urls')),
+#    (r'^contest/', include('apps.contest.urls')),
 
     url(r'^contact/$', redirect_to, {'url':'/contacts/'}, name='contact_form'),
 
@@ -49,6 +55,8 @@ urlpatterns = patterns('',
     url(r'^register/$',
         'apps.sw_auth.views.register_user',
         name='registration_register_explanation'),
+
+#    (r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 
 if settings.DEBUG:
@@ -71,4 +79,3 @@ urlpatterns += patterns('',
 urlpatterns += patterns('', url(r'^', include('cms.urls')))
 
 handler500 = 'views.server_error'
-

@@ -73,7 +73,7 @@ POLLSTER_CACHE_PATH = PROJECT_PATH
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'
+STATIC_URL = MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -104,6 +104,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
+#   'pybb.middleware.PybbMiddleware',
     'cms.middleware.multilingual.MultilingualURLMiddleware',
 )
 
@@ -116,6 +117,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "cms.context_processors.media",
     "apps.partnersites.context_processors.customizations",
+#   "pybb.context_processors.processor",
+#   "django.core.context_processors.static",
 )
 
 CMS_TEMPLATES = (
@@ -131,6 +134,7 @@ GEOMETRY_TABLES = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
+#   os.path.join(PROJECT_PATH, 'custom_templates'),
     os.path.join(PROJECT_PATH, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -149,15 +153,15 @@ INSTALLED_APPS = (
     'sekizai',
 #    'registration',
     'loginurl',
-#    'apps.accounts',
+#   'apps.accounts',
     'apps.survey',
     'apps.reminder',
 #    'apps.banner',
     'apps.search',
     'apps.journal',
-    'apps.sander',
+#    'apps.sander',
     'contact_form',
-    'apps.ew_contact_form',
+   'apps.ew_contact_form',
     'apps.partnersites',
     'apps.count',
     'cms',
@@ -177,6 +181,13 @@ INSTALLED_APPS = (
     'apps.sw_feedback',
     'apps.sw_auth',
 #    'apps.contest',
+    #'apps.captcha',
+    #'apps.tellafriend',
+
+#   'pybb',
+#   'pytils',
+#   'sorl.thumbnail',
+#   'pure_pagination',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -250,3 +261,9 @@ MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE
 
 
 LOGIN_REDIRECT_URL = '/survey/'
+
+# PyBB settings
+#AUTH_PROFILE_MODULE = 'pybb.Profile'
+#PYBB_TEMPLATE = 'base/forum.html'
+#PYBB_ENABLE_ANONYMOUS_POST = True
+#PYBB_ANONYMOUS_USERNAME = 'Gast'
