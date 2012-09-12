@@ -72,6 +72,9 @@ urlpatterns = patterns('',
         {'template_name': 'registration/password_reset_done.html'},
         name='auth_password_reset_done'),
 
+    url(r'^settings/email/$', views.my_settings, {'form': 'email'}),
+    url(r'^settings/password/$', views.my_settings, {'form': 'password'}),
+    url(r'^settings/username/$', views.my_settings, {'form': 'username'}),
     url(r'^settings/$', views.my_settings),
 
     # Additional URLs

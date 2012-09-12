@@ -965,7 +965,10 @@ class Chart(models.Model):
 
         im = mapnik.Image(256, 256)
         mapnik.render(m, im)
-        im.save(str(filename), "png256")
+        # See https://github.com/mapnik/mapnik/wiki/OutputFormats for output
+        # formats and special parameters. The default here is 32 bit PNG with 8
+        # bit per component and alpha channel.
+        im.save(str(filename), "png32")
 
     def generate_mapnik_map(self, user_id, global_id):
         m = mapnik.Map(256, 256)

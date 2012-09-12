@@ -17,8 +17,16 @@ def login_handler(sender,**kwargs):
     auth_notify('login_handler','ok')
     user = kwargs['user']
     request = kwargs['request']
-    epiwork_user = user._epiwork_user
-    request.session['epiwork_user'] = epiwork_user # store real user in session
+    epiwork_user = None
+    if hasattr(user, '_epiwork_user' ):
+        epiwork_user = user._epiwork_user
+    else:
+        if  user.is_staff:
+            # Staff users should have same username
+            epiwork_user = EpiworkUser.objects.get(login=user.username)
+        
+    if epiwork_user is not None:
+        request.session['epiwork_user'] = epiwork_user # store real user in session
 
 user_logged_in.connect(login_handler)
     
@@ -62,7 +70,8 @@ class EpiworkUserManager(models.Manager):
         except:
             transaction.rollback()
             raise 
-        return user        
+        return user
+                   
 
 class EpiworkUser(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -100,6 +109,10 @@ class EpiworkUser(models.Model):
         username = self.get_user()
         return User.objects.get(username=username)
 
+    def get_fake_user(self):
+        username = self.get_user()
+        return FakedUser.objects.get(username=username)
+    
     def create_token_password(self):
         token = create_token()
         self.token_password = token
@@ -136,6 +149,10 @@ class FakedUser(User):
         proxy = True
         """"
         """ 
+    
+    def personalize(self, user):
+        self.username = user.login
+        self.email = user.email
         
     def save(self, force_insert=False, force_update=False, using=None):
         raise Exception
@@ -145,3 +162,25 @@ class FakedUser(User):
     
     def safe_save(self, force_insert=False, force_update=False, using=None):
         self.save_base( force_insert=False, force_update=False, using=None)
+        
+# Provide a fake user list
+class EpiworkUserProvider(object):
+    
+    def __init__(self):
+        self.users = EpiworkUser.objects.filter(is_active=True)  
+        self.iter = None
+        
+    def __iter__(self):
+        self.iter = self.users.__iter__()
+        return self
+    
+    def fake(self, user):
+        django_user = user.get_django_user()
+        print "find user  %d %s"  % (django_user.id, django_user.email)
+        return django_user
+    
+    def get_by_id(self, id):
+        return self.fake(EpiworkUser.objects.get(id=id))
+    
+    def next(self): 
+        return self.fake(next(self.iter))

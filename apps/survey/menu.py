@@ -28,16 +28,16 @@ class SurveyMenu(CMSAttachMenu):
                 reverse(views.people),
                 "views.people",
             ),
-            NavigationNode(
-                _("My settings"),
-                reverse(accounts_views.my_settings),
-                "accounts_views.my_settings",
-            ),
-            NavigationNode(
-                _("Change password"),
-                reverse(auth_views.password_change),
-                "auth_views.password_change",
-            ),
+#            NavigationNode(
+#                _("My settings"),
+#                reverse(accounts_views.my_settings),
+#                "accounts_views.my_settings",
+#            ),
+#            NavigationNode(
+#                _("Change password"),
+#                reverse(auth_views.password_change),
+#                "auth_views.password_change",
+#            ),
         ]
 
         return nodes

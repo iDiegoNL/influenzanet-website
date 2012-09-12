@@ -1,12 +1,14 @@
 from django.core.management.base import CommandError, BaseCommand
 from optparse import make_option
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from registration.models import RegistrationProfile
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 import datetime
 
 class Command(BaseCommand):
-    help = 'Resend activation mail to user(s).'
+    help = 'Register a survey specification.'
     option_list = BaseCommand.option_list + (
         make_option('-f', '--fake', action='store_true',
             dest='fake', default=False,
@@ -14,10 +16,9 @@ class Command(BaseCommand):
         make_option('-u', '--user', action='store', type='string',
                 dest='user', default=None,
                 help='ID of user to resend.'),
-        make_option('-r', '--renew', action='store_true', dest='renew', default=False,
+         make_option('-r', '--renew', action='store_true', dest='renew', default=False,
                 help='renew activation (set user date_joined to today)'),
     )
-    
     
     def handle(self, *args, **options):
         

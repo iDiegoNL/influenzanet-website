@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
         
         # Adding model 'EpiworkUser'
         db.create_table('sw_auth_epiworkuser', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('id', self.gf('django.db.models.fields.BigIntegerField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('email', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('login', self.gf('django.db.models.fields.CharField')(max_length=255)),
@@ -32,7 +32,7 @@ class Migration(SchemaMigration):
         'sw_auth.epiworkuser': {
             'Meta': {'object_name': 'EpiworkUser'},
             'email': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.BigIntegerField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'login': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),

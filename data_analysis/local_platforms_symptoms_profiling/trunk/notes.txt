@@ -1,0 +1,8 @@
+The scripts  are done using an R micro framework to allow running on several config.
+
+The run scripts are in the web/ directory
+
+The "share" directory contains the code of the "framework". There's a documentation in the "doc/" subdir.
+
+To make analysis easier for statisticians, there is a set of functions (survey_*) to load surveys definitions and results without writing any SQL. It also handle an aliases system to transform name of question "Q*" to a semantically significant variable name. It's totally transparent to the "user". It's also possible to join geographic locations by defining the geographic levels and tables (in share/platform/ directory there is a "platform specific" file to define surveys and tables).
+

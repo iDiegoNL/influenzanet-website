@@ -1,0 +1,6 @@
+
+France
+* Source: Population légale de l'INSEE (3 ans de retard!)
+* Fichiers total par commune
+=> Sauvegarder en CSV et ne garder que les colonnes de codes (virer colonne nom région et nom de commune)
+Colonnes:Code région	Code département	Code arrondissement	Code canton	Code commune	Population municipale	Population comptée à part	Population totale
