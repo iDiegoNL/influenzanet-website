@@ -116,9 +116,6 @@ class Command(BaseCommand):
                         send(now, user, message, language, next=next)
                     else:
                         print '[fake] sending', user.email, message.subject
-                else:
-                    if self.verbose:
-                        print 'skip ', user.email
         except StopIteration:
             pass
         return i + 1

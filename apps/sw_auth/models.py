@@ -150,7 +150,11 @@ class FakedUser(User):
         """"
         """ 
     
+    
     def personalize(self, user):
+        """
+        Personalize the account with real information
+        """
         self.username = user.login
         self.email = user.email
         
@@ -177,7 +181,6 @@ class EpiworkUserProvider(object):
     def fake(self, user):
         django_user = user.get_fake_user()
         django_user.personalize(user)
-        print "find user  %d %s"  % (django_user.id, django_user.email)
         return django_user
     
     def get_by_login(self, login):
