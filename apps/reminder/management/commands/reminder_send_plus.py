@@ -83,6 +83,7 @@ class Command(BaseCommand):
 
         i = -1
         language = 'fr'
+        print "next=%s" % (next)
         try:
             for user in users :
                 if batch_size and i >= batch_size:
