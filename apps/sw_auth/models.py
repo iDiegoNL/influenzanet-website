@@ -179,6 +179,9 @@ class EpiworkUserProvider(object):
         print "find user  %d %s"  % (django_user.id, django_user.email)
         return django_user
     
+    def get_by_login(self, login):
+        return self.fake(EpiworkUser.objects.get(login=login))
+    
     def get_by_id(self, id):
         return self.fake(EpiworkUser.objects.get(id=id))
     
