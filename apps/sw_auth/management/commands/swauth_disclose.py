@@ -5,7 +5,7 @@ from ...models import EpiworkUser
 from django.contrib.auth import authenticate
 
 class Command(BaseCommand):
-    help = 'Disclose a user'
+    help = 'Disclose a user (django root credential needed)'
     args = 'username'
     
     option_list = BaseCommand.option_list 
@@ -21,9 +21,7 @@ class Command(BaseCommand):
         
         if root is None:
             return
-        
-        print "[ok]"
-        
+    
         if len(args) < 1:
             raise CommandError("User login is requirer as first argument")
         
@@ -34,11 +32,11 @@ class Command(BaseCommand):
         
         try:
             user = EpiworkUser.objects.get(login=login)
-            print "found user", str(user)
+            print "found user ", str(user.username)
             u = user.get_django_user()
             print "id=", u.id
             print "username=",u.username
             
         except EpiworkUser.DoesNotExist:
-            print "user does not exists"
+            print "user %s does not exists" % login
     
