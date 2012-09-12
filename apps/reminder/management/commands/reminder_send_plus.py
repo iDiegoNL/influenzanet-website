@@ -49,6 +49,7 @@ class Command(BaseCommand):
         i = -1
         message = self.get_reminder('toto')
         language = 'fr'
+        print "next=%s" % (next)
         try:
             for user in users :
                 if batch_size and i >= batch_size:
