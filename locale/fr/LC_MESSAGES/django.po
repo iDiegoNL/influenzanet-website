@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 14:27+0200\n"
-"PO-Revision-Date: 2011-12-15 10:53+0100\n"
+"PO-Revision-Date: 2012-09-10 16:22+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -225,11 +225,11 @@ msgstr "S'il n'y a pas de date qui s'affiche, vérifier les paramètres du site"
 
 #: apps/reminder/models.py:31
 msgid "Send reminders"
-msgstr "Envoyer des mails de rappel"
+msgstr "Envoyer des emails de rappel"
 
 #: apps/reminder/models.py:31
 msgid "Check this box to send reminders"
-msgstr "Cocher cette case pour envoyer des mails de rappel"
+msgstr "Cocher cette case pour envoyer des emails de rappel"
 
 #: apps/reminder/models.py:32
 msgid "Begin date"
@@ -237,7 +237,7 @@ msgstr "Date de début"
 
 #: apps/reminder/models.py:32
 msgid "Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: MET)"
-msgstr "Date et heure du premier mail de rappel et point de référence pour les rappels suivants (fuseau horaire : MET)"
+msgstr "Date et heure du premier email de rappel et point de référence pour les rappels suivants (fuseau horaire : MET)"
 
 #: apps/reminder/models.py:33
 msgid "Interval"
@@ -303,7 +303,7 @@ msgstr "Se désinscrire"
 
 #: apps/reminder/templates/reminder/unsubscribe.html:7
 msgid "You may unsubscribe from the Influenzanet reminder/newsletter by pressing the button below."
-msgstr "Vous pouvez vous désinscrire de la lettre d'information GrippeNet en cliquant sur le bouton ci-dessous."
+msgstr "Vous pouvez vous désinscrire de la lettre d'information de GrippeNet.fr en cliquant sur le bouton ci-dessous."
 
 #: apps/reminder/templates/reminder/unsubscribe_successful.html:7
 msgid "You have been successfully unsubscribed from the mailing list"
@@ -661,7 +661,7 @@ msgstr "Aucun résultat trouvé"
 
 #: templates/survey/form.html:21
 msgid "Submit"
-msgstr "Soumettre"
+msgstr "Valider"
 
 #: templates/survey/index.html:16
 msgid "Survey Form"
@@ -739,7 +739,7 @@ msgstr "Voici un résumé des informations que vous avez saisies pour vous et le
 
 #: templates/survey/thanks.html:11
 msgid "Group members"
-msgstr "Membres du groupe"
+msgstr "Membre(s) du groupe"
 
 #: templates/survey/thanks.html:11
 msgid "Health status"
@@ -763,7 +763,7 @@ msgstr "Saisir les symptômes"
 
 #: templates/survey/thanks_profile.html:5
 msgid "Thanks for changing your profile,"
-msgstr "Merci d'avoir changé votre profil,"
+msgstr "Merci pour ces modifications, "
 
 #: templates/survey/thanks_profile.html:6
 msgid "Please, if you have not already done so, fill in"
@@ -803,7 +803,7 @@ msgid "Manage household"
 msgstr "Gérer mon foyer"
 
 msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
-msgstr "Vous recevez cet email car vous êtes inscrits sur GrippeNet. Votre participation nous aide à suivre les tendances de la grippe. Si vous ne souhaitez plus recevoir cet email hebdomadaire de rappel, vous pouvez vous <a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste de diffusion."
+msgstr "Vous recevez cet email car vous êtes inscrit sur GrippeNet.fr. Votre participation nous aide à suivre les tendances de la grippe. Si vous ne souhaitez plus recevoir cet email hebdomadaire de rappel, vous pouvez vous <a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste de diffusion."
 
 msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
 msgstr "La liste des participants inscrits sur votre compte figure ci-dessous. Cliquez sur le lien situé à côté de chaque participant pour remplir le questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, ou pour désinscrire un participant."
@@ -824,7 +824,7 @@ msgid "Symptoms survey"
 msgstr "Questionnaire hebdomadaire"
 
 msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
-msgstr "L'état de santé indiqué pour chaque participant s'appuie sur les symptômes que vous avez rapportés. <strong>Ceci n'est pas un diagnostic médical</strong>. Nous vous interrogeons uniquement sur les symptômes évoquateurs de syndrome grippal, rhume, ou gastro-entérite. Si vous avez d'autres symptômes, ou que vous êtes inquiet, nous vous recommandons de contacter votre médecin généraliste."
+msgstr "L'état de santé indiqué pour chaque participant s'appuie sur les symptômes que vous avez rapportés. <strong>Ceci n'est pas un diagnostic médical</strong>. Nous vous interrogeons uniquement sur les symptômes évocateurs de syndrome grippal, rhume, ou gastro-entérite. Si vous avez d'autres symptômes, ou que vous êtes inquiet, nous vous recommandons de contacter votre médecin généraliste."
 
 msgid "Unknown"
 msgstr "Inconnu"
@@ -885,3 +885,11 @@ msgstr "Vos paramètres ont été mis à jour"
 msgid "Change password"
 msgstr "Changer mon mot de passe"
 
+msgid "Email address:"
+msgstr "Adresse email :"
+
+msgid "Fill out date"
+msgstr "Date"
+
+msgid "Member"
+msgstr "Membre du groupe"
