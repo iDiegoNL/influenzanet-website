@@ -32,7 +32,7 @@ class Command(BaseCommand):
         
         try:
             user = EpiworkUser.objects.get(login=login)
-            print "found user #%s %s", str(user.id), str(user.login)
+            print "found user #%s %s" % (str(user.id), str(user.login))
             u = user.get_django_user()
             print "id=", u.id
             print "username=",u.username

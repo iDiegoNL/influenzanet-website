@@ -17,10 +17,13 @@ RAD_TO_DEG = 180/pi
 
 try:
     import mapnik2 as mapnik
+    mapnik_version = 2
 except:
     try:
         import mapnik
+        mapnik_version = 1
     except ImportError:
+        mapnik_version = None
         warnings.warn("No working version for library 'mapnik' found. Continuing without mapnik")
         
 
@@ -968,7 +971,10 @@ class Chart(models.Model):
         # See https://github.com/mapnik/mapnik/wiki/OutputFormats for output
         # formats and special parameters. The default here is 32 bit PNG with 8
         # bit per component and alpha channel.
-        im.save(str(filename), "png32")
+        if mapnik_version == 2:
+            im.save(str(filename), "png32")
+        else:
+            im.save(str(filename), "png")
 
     def generate_mapnik_map(self, user_id, global_id):
         m = mapnik.Map(256, 256)

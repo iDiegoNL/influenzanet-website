@@ -2,12 +2,12 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from django.views.generic.simple import redirect_to
 
-from haystack.views import SearchView, search_view_factory
-from haystack.forms import SearchForm
+#from haystack.views import SearchView, search_view_factory
+#from haystack.forms import SearchForm
 
 #from apps.ew_contact_form.forms import ContactForm
+#from views import LatestEntriesFeed
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
@@ -26,18 +26,21 @@ urlpatterns = patterns('',
     (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
     (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
     
+#    (r'^mobile/login/$', 'views.mobile_login'),
     (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True}),
     (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
+
+#    (r'^rss/$', LatestEntriesFeed()),
 
     #url(r'^captcha/', include('captcha.urls')),
     #(r'^tellafriend/', include('tellafriend.urls')),
 
-    url(r'^search/$', search_view_factory(
-        view_class=SearchView,
-        form_class=SearchForm
-    ), name='haystack_search'),
+#    url(r'^search/$', search_view_factory(
+#        view_class=SearchView,
+#        form_class=SearchForm
+#    ), name='haystack_search'),
 
-    (r'^test-search/$', 'views.test_search'),
+#    (r'^test-search/$', 'views.test_search'),
     (r'^accounts/', include('apps.sw_auth.urls')),
     url(r'^login/$', redirect_to, {'url': settings.LOGIN_URL}, 
                      name='loginurl-index'),
@@ -50,7 +53,7 @@ urlpatterns = patterns('',
 #    url(r'^contact/$', 'contact_form.views.contact_form', {'form_class': ContactForm}, name='contact_form'),
 #    url(r'^contact/sent/$', 'django.views.generic.simple.direct_to_template', {'template': 'contact_form/contact_form_sent.html'}, name='contact_form_sent'),
 
-    (r'^colors.css$', 'apps.partnersites.views.colors_css'),
+#    (r'^colors.css$', 'apps.partnersites.views.colors_css'),
 
     url(r'^register/$',
         'apps.sw_auth.views.register_user',
