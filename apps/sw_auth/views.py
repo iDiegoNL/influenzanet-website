@@ -14,7 +14,7 @@ from apps.sw_auth.utils import get_token_age, send_activation_email
 from apps.sw_auth.logger import auth_notify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
-
+from datetime import date, datetime
 
 def render_template(name, request, context=None):
     return render_to_response('sw_auth/'+name+'.html',
@@ -54,6 +54,16 @@ def activate_user(request, activation_key):
     except EpiworkUser.DoesNotExist:
         user = None
     return render_template('activate', request)
+
+def activate_complete(request):
+    if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
+        d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
+        d = d.date()
+        if date.today() >= d:
+            d = None # dont show launch date after the date
+    else:
+        d = None
+    return render_template('activation_complete', request, {'launch_date': d})
 
 @csrf_protect
 def password_reset(request):
