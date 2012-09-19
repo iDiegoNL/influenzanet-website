@@ -61,18 +61,21 @@ def password_reset(request):
     if(request.method == "POST"):
         form = PasswordResetForm(request.POST)
         if( form.is_valid() ):
-            user = form.user_cache
-            current_site = get_current_site(request)
-            site_name = current_site.name
-            c = {
-                'email': user.email,
-                'domain': current_site.domain,
-                'site_name': site_name,
-                'token': user.create_token_password(),
-                'protocol': request.is_secure() and 'https' or 'http',
-            }
-            
-            send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
+            has_several = len(form.users_cache) > 1
+            for user in form.users_cache:
+                current_site = get_current_site(request)
+                site_name = current_site.name
+                c = {
+                    'has_several': has_several,
+                    'username': user.login,
+                    'email': user.email,
+                    'domain': current_site.domain,
+                    'site_name': site_name,
+                    'token': user.create_token_password(),
+                    'protocol': request.is_secure() and 'https' or 'http',
+                }
+                
+                send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
             
             post_reset_redirect = reverse('auth_password_change_done')
             return HttpResponseRedirect(post_reset_redirect)

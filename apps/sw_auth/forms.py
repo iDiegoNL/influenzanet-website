@@ -50,9 +50,12 @@ class RegistrationForm(forms.Form):
         site.
         
         """
-        if EpiworkUser.objects.filter(email__iexact=self.cleaned_data['email']):
-            raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
-        return self.cleaned_data['email']
+        try:
+            user = EpiworkUser.objects.get(email__iexact=self.cleaned_data['email'])
+        except EpiworkUser.DoesNotExist:
+            return self.cleaned_data['email']
+        raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
+
     def clean(self):
         """
         Verifiy that the values entered into the two password fields
@@ -75,9 +78,8 @@ class PasswordResetForm(forms.Form):
         """
         email = self.cleaned_data["email"]
        
-        # get back the real django user
         try:
-            self.user_cache = EpiworkUser.objects.get(email__iexact=email, is_active=True) 
+            self.users_cache = EpiworkUser.objects.filter(email__iexact=email, is_active=True) 
         except EpiworkUser.DoesNotExist:
             raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
         return email
