@@ -14,7 +14,7 @@ from apps.sw_auth.utils import get_token_age, send_activation_email
 from apps.sw_auth.logger import auth_notify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
-
+from datetime import date, datetime
 
 def render_template(name, request, context=None):
     return render_to_response('sw_auth/'+name+'.html',
@@ -55,24 +55,37 @@ def activate_user(request, activation_key):
         user = None
     return render_template('activate', request)
 
+def activate_complete(request):
+    if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
+        d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
+        d = d.date()
+        if date.today() >= d:
+            d = None # dont show launch date after the date
+    else:
+        d = None
+    return render_template('activation_complete', request, {'launch_date': d})
+
 @csrf_protect
 def password_reset(request):
     form = None
     if(request.method == "POST"):
         form = PasswordResetForm(request.POST)
         if( form.is_valid() ):
-            user = form.user_cache
-            current_site = get_current_site(request)
-            site_name = current_site.name
-            c = {
-                'email': user.email,
-                'domain': current_site.domain,
-                'site_name': site_name,
-                'token': user.create_token_password(),
-                'protocol': request.is_secure() and 'https' or 'http',
-            }
-            
-            send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
+            has_several = len(form.users_cache) > 1
+            for user in form.users_cache:
+                current_site = get_current_site(request)
+                site_name = current_site.name
+                c = {
+                    'has_several': has_several,
+                    'username': user.login,
+                    'email': user.email,
+                    'domain': current_site.domain,
+                    'site_name': site_name,
+                    'token': user.create_token_password(),
+                    'protocol': request.is_secure() and 'https' or 'http',
+                }
+                
+                send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
             
             post_reset_redirect = reverse('auth_password_reset_done')
             return HttpResponseRedirect(post_reset_redirect)

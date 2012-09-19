@@ -8,8 +8,7 @@ urlpatterns = patterns('',
     
     # From registration.backends.default.urls
     url(r'^activate/complete/$',
-        direct_to_template,
-        { 'template': 'sw_auth/activation_complete.html' },
+        views.activate_complete,
         name='registration_activation_complete'),
     
     # Activation keys get matched by \w+ instead of the more specific
