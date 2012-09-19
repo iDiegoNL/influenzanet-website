@@ -12,14 +12,12 @@
 
 		<title>{% block title %}{{ site_name }}: {% page_attribute page_title %}{% endblock title %}</title>
         {% block add_head %}{% endblock add_head %}
-
 		<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}assets/base.css" />
         {% block add_css %}{% endblock add_css %}
-        {% block add_js %}{% endblock add_js %}
+		<script type="text/javascript" src="{{ MEDIA_URL }}assets/base.js"></script>
+		{% block add_js %}{% endblock add_js %}
         {% render_block "js" %}
-
 	    {% google_analytics %}
-
 	</head>
 
     <body {% spaceless %}{% block add_body %}{% endblock add_body %}{% endspaceless %}>

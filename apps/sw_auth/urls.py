@@ -70,7 +70,7 @@ urlpatterns = patterns('',
     
     url(r'^password/reset/done/$',
         auth_views.password_reset_done,
-        {'template_name': 'sw_auth/password_change_done.html'},
+        {'template_name': 'sw_auth/password_reset_done.html'},
         name='auth_password_reset_done'),
 
     url(r'^settings/$', views.my_settings),

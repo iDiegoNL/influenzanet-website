@@ -77,7 +77,7 @@ def password_reset(request):
                 
                 send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
             
-            post_reset_redirect = reverse('auth_password_change_done')
+            post_reset_redirect = reverse('auth_password_reset_done')
             return HttpResponseRedirect(post_reset_redirect)
     if form is None:
         form = PasswordResetForm()
@@ -93,7 +93,6 @@ def password_confirm(request, token=None):
         age = get_token_age(token)
         if(age < settings.ACCOUNT_ACTIVATION_DAYS):
             user = EpiworkUser.objects.get(token_password=token)
-            
             form = None
             if request.method == 'POST':
                 form = SetPasswordForm(user, request.POST)
@@ -101,8 +100,9 @@ def password_confirm(request, token=None):
                     form.save()
                     return HttpResponseRedirect(reverse('auth_password_reset_complete'))
             if form is None:
-                form = SetPasswordForm(user)    
-            return render_template('password_change_form', request, {'form': form})
+                form = SetPasswordForm(user)   
+                print form 
+            return render_template('password_reset_confirm', request, {'form': form})
     except EpiworkUser.DoesNotExist:
         pass
     return render_template('password_reset_error', request)
