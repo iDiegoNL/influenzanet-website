@@ -170,34 +170,108 @@ $important: #bf1a15 !important;
     background-color: $offwhite;
     border: 1px solid #cccccc;
     font-size: 0.7em;
+    line-height: 1.3em;
     font-weight: bold;
 }
 
-#groupheader {
-    background: #b1b2b2;
-    color: #fffef4;
+#groupwrapper {
+
+    p {
+        display: inline-block;
+        margin: 0;
+        padding: 8px 10px;
+        border-right: 2px solid white;
+    }
+    
+    p:first-child {
+        width: 150px;
+        
+        & + p {
+            width: 110px;
+        }
+
+        & + p + p {
+            width: 116px;
+            border: 0;
+        }
+        
+    }
+    
 }
 
-#groupwrapper {
-	width: 440px;
-	margin-left: auto;
-	margin-right: auto;
+#groupheader {
+    height: 32px;
+    margin-bottom: 2px;
+    padding: 0;
+    background: #b1b2b2;
+    color: #fffef4;
+    font-weight: bold;
+    vertical-align: middle;
     
-    .accordionButton {	
+    a i {
+        color: #ffffff;
+        font-size: 16px;
+    }
+    
+    a i:hover {
+        color: #000000;
+        text-decoration: none;
+    }
+    
+}
+
+#groupmembers {
+    
+    .accordionButton,
+    .accordionContent {	
         width: 440px;
         float: left;
         _float: none;
         background: #f8f9fa;
         border-bottom: 1px solid #FFFFFF;
         cursor: pointer;
+
+        p {
+            height: 28px;
+            border-bottom: 1px solid #FFFFFF;
         }
         
-    .accordionContent {	
-        width: 440px;
-        float: left;
-        _float: none;
-        background: #ffffff;
+        p:first-child +p +p {
+            padding-left: 32px;
+            width: 90px;
+            border-bottom: 1px solid #FFFFFF;
+            
+            img {
+                position: absolute;
+                padding: 0;
+                margin-left: -28px;
+                margin-top: -2px;
+            }
+            
         }
+        
+        input {
+            margin-right: 2px;
+        }
+        
+        a i {
+            color: #000000;
+            font-size: 16px;
+            text-decoration: none;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+    
+    }
+    
+    .accordionContent {
+        margin-bottom: 6px;
+        
+        p:first-child {
+            background: #ffffff;
+        }
+        
+    }
         
     .on {
         background: #f8f9fa;
@@ -207,4 +281,15 @@ $important: #bf1a15 !important;
         background: #ececec;
         }
     
+}
+
+.groupsave {
+    margin-top: 20px;
+    
+    select {
+        height: 26px;
+        vertical-align: bottom;
+        margin-bottom: -1px;
+        margin-right: 4px;
+        }
 }

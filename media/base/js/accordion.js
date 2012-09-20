@@ -19,4 +19,23 @@ $(document).ready(function() {
 
 	$('.accordionContent').hide();
 
+
+
+    $('.accordionButton input[type=checkbox]').click(function(evt){
+		evt.stopPropagation();
+	});
+    
+
+
+    $('#select_all').change(function() {
+        var checkboxes = $(this).closest('form').find(':checkbox');
+        if($(this).is(':checked')) {
+            checkboxes.attr('checked', 'checked');
+        } else {
+            checkboxes.removeAttr('checked');
+        }
+    });
+
+
+
 });
