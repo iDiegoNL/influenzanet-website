@@ -241,7 +241,7 @@ def people_edit(request):
             survey_user.name = form.cleaned_data['name']
             survey_user.save()
 
-            return HttpResponseRedirect(reverse(people))
+            return HttpResponseRedirect(reverse(group_management))
 
     else:
         form = forms.AddPeople(initial={'name': survey_user.name})
@@ -257,7 +257,7 @@ def people_remove(request):
         raise Http404()
 
     if survey_user is None:
-        url = reverse(people)
+        url = reverse(group_management)
         return HttpResponseRedirect(url)
     elif survey_user.deleted == True:
         raise Http404()
@@ -268,11 +268,11 @@ def people_remove(request):
         survey_user.deleted = True
         survey_user.save()
    
-        url = reverse(people)
+        url = reverse(group_management)
         return HttpResponseRedirect(url)
 
     elif confirmed == 'N':
-        url = reverse(people)
+        url = reverse(group_management)
         return HttpResponseRedirect(url)
 
     else:
@@ -294,7 +294,7 @@ def people_add(request):
 
             next = request.GET.get('next', None)
             if next is None:
-                url = reverse(people)
+                url = reverse(group_management)
             else:
                 url = '%s?gid=%s' % (next, survey_user.global_id)
             return HttpResponseRedirect(url)
