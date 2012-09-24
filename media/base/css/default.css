@@ -995,6 +995,12 @@ hr {
  font-size: 1em;
 }
 
+#col1 ul.messages {
+ list-style: none;
+ margin: 0 0 20px 0;
+ padding: 0;	
+}
+
 ul.bullets {
  margin: 0 0 0.7em 0;
 }

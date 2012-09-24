@@ -6,8 +6,8 @@ from haystack.views import SearchView, search_view_factory
 from haystack.forms import SearchForm
 
 from apps.ew_contact_form.forms import ContactForm
+from views import LatestEntriesFeed
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
@@ -29,6 +29,8 @@ urlpatterns = patterns('',
     (r'^mobile/login/$', 'views.mobile_login'),
     (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True}),
     (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
+
+    (r'^rss/$', LatestEntriesFeed()),
 
     #url(r'^captcha/', include('captcha.urls')),
     #(r'^tellafriend/', include('tellafriend.urls')),
