@@ -1,0 +1,7 @@
+{% extends "survey/base.html" %}
+{% load i18n %}
+
+{% block col1 %}
+<h1>{% trans "Launch date" %}</h1>
+<p class="warning">{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin, from the " %} {{ launch_date|date:"DATE_FORMAT" }}</p>
+{% endblock %}

@@ -20,12 +20,12 @@ class SurveyMenu(CMSAttachMenu):
         nodes = [
             NavigationNode(
                 _("Symptoms survey"),
-                reverse(views.index),
+                reverse('survey_index'),
                 "views.index",
             ),
             NavigationNode(
                 _("Manage household"),
-                reverse(views.people),
+                reverse('survey_people'),
                 "views.people",
             ),
 #            NavigationNode(
