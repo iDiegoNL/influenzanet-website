@@ -33,7 +33,7 @@
             {% for health_line in person.health_history %}
             <div class="accordionContent">
                 <div>
-                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i><span class="flu">(DATE)</span></a></p><p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-small.png"/>{{ health_line.diag }}</p>
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i><span class="flu">{{ health_line.timestamp|date:"d/m" }}</span></a></p><p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-small.png"/>{{ health_line.diag }}</p>
                 </div>
             </div>
             {% endfor %}
