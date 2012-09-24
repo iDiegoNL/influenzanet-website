@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-17 13:20+0200\n"
-"PO-Revision-Date: 2012-09-17 13:09+0100\n"
+"POT-Creation-Date: 2012-09-19 17:55+0200\n"
+"PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,28 +38,28 @@ msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
 
 #: .\apps\accounts\forms.py:32 .\apps\ew_contact_form\forms.py:13
-#: .\apps\sw_auth\forms.py:112 .\templates\accounts\my_settings.html.py:13
+#: .\apps\sw_auth\forms.py:114 .\templates\accounts\my_settings.html.py:13
 msgid "Email"
 msgstr "Email"
 
 #: .\apps\accounts\forms.py:33 .\apps\reminder\models.py:36
-#: .\apps\sw_auth\forms.py:113
+#: .\apps\sw_auth\forms.py:115
 msgid "Send reminders"
 msgstr "Envoyer des emails de rappel"
 
-#: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:113
+#: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:115
 msgid ""
 "Check this box if you wish to receive weekly reminders throughout the flu "
 "season"
 msgstr ""
 "Cochez cette case si vous souhaitez recevoir un email hebdomadaire de rappel"
 
-#: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:114
+#: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:116
 #, fuzzy
 msgid "Language"
 msgstr "Modification des informations"
 
-#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:139
+#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:141
 msgid "This email is already in use"
 msgstr "Cet adresse email est déjà utilisée"
 
@@ -478,7 +478,7 @@ msgstr "Changement du mot de passe"
 msgid "A user with that username already exists."
 msgstr "Ce nom d'utilisateur existe déjà."
 
-#: .\apps\sw_auth\forms.py:54
+#: .\apps\sw_auth\forms.py:57
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
@@ -486,16 +486,16 @@ msgstr ""
 "Cette adresse est déjà en cours d'utilisation. Utilisez une autre adresse ou "
 "la procédure de récupération de mot de passe pour utiliser ce compte."
 
-#: .\apps\sw_auth\forms.py:66 .\apps\sw_auth\forms.py:102
+#: .\apps\sw_auth\forms.py:69 .\apps\sw_auth\forms.py:104
 msgid "The two password fields didn't match."
 msgstr "Le mot de passe saisi et sa confirmation ne correspondent pas."
 
-#: .\apps\sw_auth\forms.py:70
+#: .\apps\sw_auth\forms.py:73
 #, fuzzy
 msgid "E-mail"
 msgstr "Email"
 
-#: .\apps\sw_auth\forms.py:82
+#: .\apps\sw_auth\forms.py:84
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
@@ -503,12 +503,12 @@ msgstr ""
 "Cette adresse email n'est pas associée à un compte connu. Etes vous certain "
 "d'être inscrit avec cette adresse ?"
 
-#: .\apps\sw_auth\forms.py:90
+#: .\apps\sw_auth\forms.py:92
 #, fuzzy
 msgid "New password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\forms.py:91
+#: .\apps\sw_auth\forms.py:93
 #, fuzzy
 msgid "New password confirmation"
 msgstr "Nouveau mot de passe :"
@@ -527,7 +527,7 @@ msgstr "Adresse email :"
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\views.py:75
+#: .\apps\sw_auth\views.py:88
 #, fuzzy, python-format
 msgid "Password reset on %s"
 msgstr "Réinitialisation du mot de passe"
@@ -676,7 +676,7 @@ msgstr "Vous êtes connecté sous le nom de"
 #: .\templates\base\forum.html.py:82
 #: .\templates\registration\boxbase.html.py:11
 #: .\templates\registration\password_reset_complete.html.py:12
-#: .\templates\sw_auth\boxbase.html.py:11
+#: .\templates\sw_auth\boxbase.html.py:13
 #: .\templates\sw_auth\password_reset_complete.html.py:12
 msgid "Log in"
 msgstr "Se connecter"
@@ -779,7 +779,7 @@ msgstr "Valider"
 #: .\templates\sw_auth\activate.html.py:4
 #: .\templates\sw_auth\activate.html.py:6
 #: .\templates\sw_auth\activation_complete.html.py:4
-#: .\templates\sw_auth\activation_complete.html.py:6
+#: .\templates\sw_auth\activation_complete.html.py:7
 msgid "Account Activation"
 msgstr "Activation du compte"
 
@@ -837,40 +837,41 @@ msgstr "nous contacter"
 #: .\templates\registration\activation_complete.html.py:9
 #: .\templates\registration\registration_complete.html.py:11
 #: .\templates\sw_auth\activate.html.py:14
-#: .\templates\sw_auth\activation_complete.html.py:9
+#: .\templates\sw_auth\activation_complete.html.py:15
 #: .\templates\sw_auth\registration_complete.html.py:11
 msgid "Back to the home page"
 msgstr "Retourner à la page d'accueil"
 
 #: .\templates\registration\activation_complete.html.py:7
-#: .\templates\sw_auth\activation_complete.html.py:7
+#: .\templates\sw_auth\activation_complete.html.py:8
 msgid "Activation is complete."
 msgstr "Votre compte a été activé."
 
 #: .\templates\registration\activation_complete.html.py:9
-#: .\templates\sw_auth\activation_complete.html.py:9
+#: .\templates\sw_auth\activation_complete.html.py:15
 msgid "or"
 msgstr "ou"
 
 #: .\templates\registration\activation_complete.html.py:9
-#: .\templates\sw_auth\activation_complete.html.py:9
+#: .\templates\sw_auth\activation_complete.html.py:15
 msgid "proceed to the login page"
 msgstr "se connecter."
 
 #: .\templates\registration\boxbase.html.py:4
 #: .\templates\registration\boxbase.html.py:9
-#: .\templates\sw_auth\boxbase.html.py:4 .\templates\sw_auth\boxbase.html.py:9
+#: .\templates\sw_auth\boxbase.html.py:4
+#: .\templates\sw_auth\boxbase.html.py:10
 msgid "Login"
 msgstr "Se connecter"
 
 #: .\templates\registration\boxbase.html.py:10
-#: .\templates\sw_auth\boxbase.html.py:10
+#: .\templates\sw_auth\boxbase.html.py:11
 msgid "Enter your username and password to log in."
 msgstr ""
 "Entrez votre nom d'utilisateur et votre mot de passe pour vous connecter."
 
 #: .\templates\registration\boxbase.html.py:10
-#: .\templates\sw_auth\boxbase.html.py:10
+#: .\templates\sw_auth\boxbase.html.py:11
 msgid "Forgot your password?"
 msgstr "Vous avez oublié votre mot de passe ?"
 
@@ -931,21 +932,21 @@ msgstr "Ancien mot de passe :"
 #: .\templates\registration\password_change_form.html.py:17
 #: .\templates\registration\password_reset_confirm.html.py:16
 #: .\templates\sw_auth\password_change_form.html.py:17
-#: .\templates\sw_auth\password_reset_confirm.html.py:16
+#: .\templates\sw_auth\password_reset_confirm.html.py:14
 msgid "New password:"
 msgstr "Nouveau mot de passe :"
 
 #: .\templates\registration\password_change_form.html.py:19
 #: .\templates\registration\password_reset_confirm.html.py:18
 #: .\templates\sw_auth\password_change_form.html.py:19
-#: .\templates\sw_auth\password_reset_confirm.html.py:18
+#: .\templates\sw_auth\password_reset_confirm.html.py:16
 msgid "Confirm password:"
 msgstr "Confirmer le mot de passe :"
 
 #: .\templates\registration\password_change_form.html.py:21
 #: .\templates\registration\password_reset_confirm.html.py:19
 #: .\templates\sw_auth\password_change_form.html.py:21
-#: .\templates\sw_auth\password_reset_confirm.html.py:19
+#: .\templates\sw_auth\password_reset_confirm.html.py:17
 msgid "Change my password"
 msgstr "Changer mon mot de passe"
 
@@ -973,12 +974,12 @@ msgid "Password reset"
 msgstr "Réinitialisation du mot de passe"
 
 #: .\templates\registration\password_reset_confirm.html.py:10
-#: .\templates\sw_auth\password_reset_confirm.html.py:10
+#: .\templates\sw_auth\password_reset_confirm.html.py:8
 msgid "Enter new password"
 msgstr "Entrer un nouveau mot de passe"
 
 #: .\templates\registration\password_reset_confirm.html.py:12
-#: .\templates\sw_auth\password_reset_confirm.html.py:12
+#: .\templates\sw_auth\password_reset_confirm.html.py:10
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
@@ -987,12 +988,10 @@ msgstr ""
 "puissions vérifier qu'il a été correctement saisi."
 
 #: .\templates\registration\password_reset_confirm.html.py:24
-#: .\templates\sw_auth\password_reset_confirm.html.py:24
 msgid "Password reset unsuccessful"
 msgstr "La réinitialisation du mot de passe a échoué"
 
 #: .\templates\registration\password_reset_confirm.html.py:26
-#: .\templates\sw_auth\password_reset_confirm.html.py:26
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
@@ -1009,7 +1008,7 @@ msgid "Password reset successful"
 msgstr "Votre mot de passe a été réinitialisé"
 
 #: .\templates\registration\password_reset_done.html.py:10
-#: .\templates\sw_auth\password_reset_done.html.py:10
+#: .\templates\sw_auth\password_reset_done.html.py:9
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should be receiving it shortly."
@@ -1031,24 +1030,24 @@ msgid "for your user account at %(site_name)s"
 msgstr "pour votre compte d'utilisateur sur %(site_name)s"
 
 #: .\templates\registration\password_reset_email.html.py:6
-#: .\templates\sw_auth\password_reset_email.html.py:6
+#: .\templates\sw_auth\password_reset_email.html.py:10
 msgid "Please go to the following page and choose a new password:"
 msgstr ""
 "Rendez-vous s'il-vous-plaît sur la page suivante afin de choisir un nouveau "
 "mot de passe :"
 
 #: .\templates\registration\password_reset_email.html.py:10
-#: .\templates\sw_auth\password_reset_email.html.py:10
+#: .\templates\sw_auth\password_reset_email.html.py:14
 msgid "Your username, in case you've forgotten:"
 msgstr "Votre nom d'utilisateur, au cas où vous l'auriez oublié est :"
 
 #: .\templates\registration\password_reset_email.html.py:12
-#: .\templates\sw_auth\password_reset_email.html.py:12
+#: .\templates\sw_auth\password_reset_email.html.py:16
 msgid "Thanks for using our site!"
 msgstr "Merci de votre visite sur notre site !"
 
 #: .\templates\registration\password_reset_email.html.py:14
-#: .\templates\sw_auth\password_reset_email.html.py:14
+#: .\templates\sw_auth\password_reset_email.html.py:18
 #, python-format
 msgid "The %(site_name)s team"
 msgstr "L'équipe %(site_name)s"
@@ -1147,7 +1146,7 @@ msgstr "Questionnaire du participant"
 
 #: .\templates\survey\people.html.py:13
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: .\templates\survey\people.html.py:18
 msgid "Edit"
@@ -1289,6 +1288,26 @@ msgstr "Si vous ne l'avez pas encore fait, merci de remplir"
 #: .\templates\survey\thanks_profile.html.py:18
 msgid "the symptoms questionaire"
 msgstr "le questionnaire hebdomadaire"
+
+#: .\templates\sw_auth\activation_complete.html.py:11
+msgid ""
+"The project has not started yet for the season. We will contact you as soon "
+"as the follow-up begin, from the "
+msgstr ""
+"Le suivi de GrippeNet.fr n'a pas encore débuté cette saison. Vous recevrez "
+"prochainement un email vous informant du lancement de la saison et vous "
+"invitant à remplir votre questionnaire préliminaire et votre premier "
+"questionnaire hebdomadaire. Pour toute question, n'hésitez pas à nous "
+"contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</"
+"a>. Le lancement de la prochaine saison est prévu le"
+
+#: .\templates\sw_auth\password_reset_email.html.py:7
+msgid ""
+"This e-mail is associated with several active accounts. You will recieve an "
+"email like this for each account"
+msgstr ""
+"Cette adresse email est associée à plusieurs compte GrippeNet. Vous recevrez "
+"un mail comme celui-ci pour chaque compte associé à cet email."
 
 #: .\templates\sw_auth\password_reset_error.html.py:4
 #: .\templates\sw_auth\password_reset_error.html.py:8
