@@ -1,31 +1,33 @@
 $(document).ready(function() {
-	$('.accordionButton').click(function() {
+	$('div.accordionButton').click(function() {
 		
-		$('.accordionButton').removeClass('on');
-	 	$('.accordionContent').slideUp('normal');
-		
+		$('div.accordionButton').removeClass('on');
+	 	$('div.accordionContent').slideUp('normal');
+		$('div.accordionContent img').fadeIn('slow');
+        
 		if($(this).next().is(':hidden') == true) {
 			$(this).addClass('on');
 			$(this).next().slideDown('normal');
 		 } 
 	 });
 
-	$('.accordionButton').mouseover(function() {
+	$('div.accordionButton').mouseover(function() {
 		$(this).addClass('over');
 
 	}).mouseout(function() {
-		$(this).removeClass('over');										
+		$(this).removeClass('over');
 	});
 
-	$('.accordionContent').hide();
+	$('div.accordionContent').hide();
 
 
-
-    $('.accordionButton input[type=checkbox]').click(function(evt){
+    $('div.accordionButton input[type=checkbox]').click(function(evt){
 		evt.stopPropagation();
 	});
     
-
+    $('div.accordionButton a.noslide').click(function(evt){
+		evt.stopPropagation();
+	});
 
     $('#select_all').change(function() {
         var checkboxes = $(this).closest('form').find(':checkbox');

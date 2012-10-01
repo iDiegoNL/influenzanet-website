@@ -11,7 +11,7 @@
 <h1>{% trans "Group management" %}</h1>
 
 {% if last_survey %}
-<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>
+<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on " %}{{ last_survey.timestamp }}</div>
 {% endif %}
 
 {% placeholder "Main content" %}
@@ -19,7 +19,7 @@
 <form>
     <div id="groupwrapper">
         <div id="groupheader">
-            <p><input type="checkbox" id="select_all"/>&nbsp; Name <a href="{% url survey_people_add %}"><i class="icon-plus right"></i></a></p><p>Survey date</p><p>Condition</p>
+            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; Name <a href="{% url survey_people_add %}" title="{% trans "Add person" %}"><i class="icon-plus right"></i></a></p><p>{% trans "Survey date" %}</p><p>{% trans "Condition" %}</p>
         </div>
         <div id="groupmembers">
 
@@ -27,13 +27,13 @@
 
         	{% for person in persons %}
             <div class="accordionButton">
-                <p><input type="checkbox" id="{{ person.pk }}" /> <a href="{{ person.get_edit_url }}"><i class="icon-edit"></i>{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><img src="{{ MEDIA_URL }}base/img/account/female-black.png" alt="No complaints" title="No complaints" />Condition</p>
+                <p><input type="checkbox" id="{{ person.pk }}" /> <a href="#show">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
             </div>
             
             {% for health_line in person.health_history %}
             <div class="accordionContent">
                 <div>
-                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i><span class="flu">(DATE)</span></a></p><p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-small.png"/>{{ health_line.diag }}</p>
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i><span class="flu">01-01-2013</span></a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-small.png"/><p>{{ health_line.diag }}</p>
                 </div>
             </div>
             {% endfor %}
