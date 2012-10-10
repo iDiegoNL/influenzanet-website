@@ -249,7 +249,7 @@ def thanks_run(request, shortname):
 
 @login_required
 def wait_launch(request):
-    launch_date = getattr(settings, 'SURVEY_LAUCH_DATE', None)
+    launch_date = getattr(settings, 'SURVEY_LAUNCH_DATE', None)
     return render_to_response('survey/wait_launch.html', {launch_date: launch_date}, context_instance=RequestContext(request))
         
 @login_required
