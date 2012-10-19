@@ -34,10 +34,10 @@ def send_activation_email(user, site):
         'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
         'site': site 
     }
-    subject = render_to_string('registration/activation_email_subject.txt', ctx_dict)
+    subject = render_to_string('sw_auth/activation_email_subject.txt', ctx_dict)
     # Email subject *must not* contain newlines
     subject = ''.join(subject.splitlines())
-    message = render_to_string('registration/activation_email.txt', ctx_dict)
+    message = render_to_string('sw_auth/activation_email.txt', ctx_dict)
     
     send_mail(subject, message, None, [user.email])
 
