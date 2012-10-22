@@ -893,3 +893,9 @@ msgstr "Date"
 
 msgid "Member"
 msgstr "Membre du groupe"
+
+msgid "Mark as healthy"
+msgstr "Marquer en bonne santé"
+
+msgid "Delete member(s)"
+msgstr "Effacer"

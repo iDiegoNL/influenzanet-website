@@ -873,3 +873,9 @@ msgstr ""
 
 msgid "Change password"
 msgstr ""
+
+msgid "Mark as healthy"
+msgstr ""
+
+msgid "Delete member(s)"
+msgstr ""

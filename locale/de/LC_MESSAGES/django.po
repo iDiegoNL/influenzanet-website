@@ -886,3 +886,8 @@ msgstr "Teilnehmer"
 msgid "Contest"
 msgstr "Preisfrage"
 
+msgid "Mark as healthy"
+msgstr "Markieren wie gesund"
+
+msgid "Delete member(s)"
+msgstr "Löschen"

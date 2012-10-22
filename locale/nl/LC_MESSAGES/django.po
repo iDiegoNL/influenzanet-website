@@ -1422,3 +1422,8 @@ msgstr "gisteren, %s"
 msgid "Mark all forums as read"
 msgstr "Alle berichten als gelezen markeren"
 
+msgid "Mark as healthy"
+msgstr "Als gezond aanmerken"
+
+msgid "Delete member(s)"
+msgstr "Participanten verwijderen"
