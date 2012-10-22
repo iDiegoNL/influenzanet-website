@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 
 from django import forms
 from django.template import Context, loader, RequestContext
@@ -132,6 +133,21 @@ def group_management(request):
         survey_user = get_active_survey_user(request)
     except ValueError:
         pass
+
+    if request.method == "POST":
+        global_ids = request.POST.getlist('global_ids')
+
+        for survey_user in request.user.surveyuser_set.filter(global_id__in=global_ids):
+            if request.POST.get('action') == 'healthy':
+                Weekly.objects.create(
+                    user=request.user.id,
+                    global_id=survey_user.global_id,
+                    Q1_0=True, # Q1_0 => "No symptoms. The other fields are assumed to have the correct default information in them.
+                    timestamp=datetime.now(),
+                )
+            elif request.POST.get('action') == 'delete':
+                survey_user.deleted = True
+                survey_user.save()
 
     history = list(_get_health_history(request, survey))
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
