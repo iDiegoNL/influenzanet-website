@@ -76,6 +76,19 @@ def _get_person_health_status(request, survey, global_id):
         status = cursor.fetchone()[0]
     return (status, _decode_person_health_status(status))
 
+def _get_person_is_female(global_id):
+    try:
+        cursor = connection.cursor()
+        queries = {
+            'sqlite':"""SELECT Q1 FROM pollster_results_intake WHERE global_id = %s""",
+            'mysql':"""SELECT `Q1` FROM pollster_results_intake WHERE `global_id` = %s""",
+            'postgresql':"""SELECT "Q1" FROM pollster_results_intake WHERE "global_id" = %s""",
+        }
+        cursor.execute(queries[utils.get_db_type(connection)], [global_id,])
+        return cursor.fetchone()[0] == 1 # 0 for male, 1 for female
+    except:
+        return None
+
 def _get_health_history(request, survey):
     results = []
     cursor = connection.cursor()
@@ -128,6 +141,7 @@ def group_management(request):
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
+        person.is_female = _get_person_is_female(person.global_id)
 
     return render_to_response('survey/group_management.html', {'person': survey_user, 'persons': persons, 'history': history},
                               context_instance=RequestContext(request))
