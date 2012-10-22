@@ -18,12 +18,15 @@
  color: #{{ settings.dark_color }};
 }
 
-#box input#boxsubmit {
+#box input#boxsubmit,
+.submitbutton {
  background: #{{ settings.light_color }};
 }
 
 #box input#boxsubmit:hover,
-#box input#boxsubmit:focus {
+#box input#boxsubmit:focus,
+.submitbutton:hover,
+.submitbutton:focus {
  background: #{{ settings.dark_color }};
 }
 
@@ -33,9 +36,12 @@
  color: #{{ settings.light_color }};
 }
 
-.forum .pills .active a { background-color: #{{ settings.light_color }};}
+.forum .pills .active a {
+ background-color: #{{ settings.light_color }};
+}
 
-.forum .media-grid a:hover { border-color: #{{ settings.dark_color }};
+.forum .media-grid a:hover {
+ border-color: #{{ settings.dark_color }};
 }
 
 .forum a.new-topic,
