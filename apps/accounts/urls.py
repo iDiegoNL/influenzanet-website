@@ -12,8 +12,7 @@ urlpatterns = patterns('',
     # From registration.backends.default.urls
     url(r'^activate/complete/$',
         direct_to_template,
-    #   { 'template': 'registration/activation_complete.html' },
-        { 'template': 'accounts/u_activation_complete.html' },
+        { 'template': 'registration/activation_complete.html' },
         name='registration_activation_complete'),
     # Activation keys get matched by \w+ instead of the more specific
     # [a-fA-F0-9]{40} because a bad activation key should still get to the view;
