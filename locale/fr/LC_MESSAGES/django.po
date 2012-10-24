@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-24 20:55+0200\n"
+"POT-Creation-Date: 2012-10-24 21:13+0200\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -558,12 +558,16 @@ msgid "Recommendation by %s"
 msgstr ""
 
 #: .\apps\tellafriend\templates\tellafriend\email.html.py:2
+#: .\apps\tellafriend\templates\tellafriend\email.txt.py:1
 #: .\templates\tellafriend\email.html.py:2
+#: .\templates\tellafriend\email.txt.py:1
 msgid "Recommendation"
 msgstr ""
 
 #: .\apps\tellafriend\templates\tellafriend\email.html.py:3
+#: .\apps\tellafriend\templates\tellafriend\email.txt.py:3
 #: .\templates\tellafriend\email.html.py:3
+#: .\templates\tellafriend\email.txt.py:3
 #, python-format
 msgid "%(email_sender)s recommends this page to you:"
 msgstr ""
@@ -856,6 +860,33 @@ msgstr "ou"
 #: .\templates\sw_auth\activation_complete.html.py:16
 msgid "proceed to the login page"
 msgstr "se connecter."
+
+#: .\templates\registration\activation_email.txt.py:2
+#: .\templates\sw_auth\activation_email.txt.py:2
+#, python-format
+msgid ""
+"Activate your account:\n"
+"\n"
+"Click the following URL or copy and paste it to the browser's address bar.\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"This activation URL will expire in %(expiration_days)s days."
+msgstr ""
+"Bonjour et bienvenue dans le projet GrippeNet,\n"
+"\n"
+"Pour activer votre compte, cliquez sur le lien URL ou copiez-collez le dans "
+"la barre d'adresse de votre navigateur.\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"Ce lien d'activation expirera dans %(expiration_days)s jours."
+
+#: .\templates\registration\activation_email_subject.txt.py:1
+#: .\templates\sw_auth\activation_email_subject.txt.py:1
+#, python-format
+msgid "Activate your account! %(site)s"
+msgstr "Activer votre compte %(site)s"
 
 #: .\templates\registration\boxbase.html.py:4
 #: .\templates\registration\boxbase.html.py:9
@@ -1344,28 +1375,6 @@ msgstr ""
 "Le lien pour réinitialiser votre mot de passe n'est pas valide, peut-être a-"
 "t-il déjà été utilisé. Demandez s'il-vous-plaît une nouvelle "
 "réinitialisation de votre mot de passe."
-
-#~ msgid ""
-#~ "Activate your account:\n"
-#~ "\n"
-#~ "Click the following URL or copy and paste it to the browser's address "
-#~ "bar.\n"
-#~ "\n"
-#~ "http://%(site)s/accounts/activate/%(activation_key)s/\n"
-#~ "\n"
-#~ "This activation URL will expire in %(expiration_days)s days."
-#~ msgstr ""
-#~ "Bonjour et bienvenue dans le projet GrippeNet,\n"
-#~ "\n"
-#~ "Pour activer votre compte, cliquez sur le lien URL ou copiez-collez le "
-#~ "dans la barre d'adresse de votre navigateur.\n"
-#~ "\n"
-#~ "http://%(site)s/accounts/activate/%(activation_key)s/\n"
-#~ "\n"
-#~ "Ce lien d'activation expirera dans %(expiration_days)s jours."
-
-#~ msgid "Activate your account! %(site)s"
-#~ msgstr "Activer votre compte %(site)s"
 
 #~ msgid ""
 #~ "Date & time of the first reminder and point of reference for subsequent "
