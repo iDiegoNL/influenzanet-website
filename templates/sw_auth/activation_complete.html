@@ -9,7 +9,8 @@
 
 {% if launch_date %}
 <p>&nbsp;</p>
-<p class="warning">{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin, from the " %} {{ launch_date|date:"DATE_FORMAT" }}</p>
+<p class="warning">{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin." %}</p>
+<p class="launch-date">{%trans "The project will be launched from the" %} <b>{{ launch_date|date:"DATE_FORMAT" }}</b></p>
 {% endif %}
 
 <p>&nbsp;</p>
