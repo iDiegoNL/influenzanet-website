@@ -18,10 +18,9 @@ def latest_newsletter(request):
     if newsletter_queryset.count():
         latest_newsletter = newsletter_queryset.all()[0]
 
-        #info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True, 'last_reminder': request.user.date_joined})
-        #language = info.get_language()
-        #inner, message = create_message(request.user, latest_newsletter, language)
-        #print inner, message
+        info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True, 'last_reminder': request.user.date_joined})
+        language = info.get_language()
+        inner, message = create_message(request.user, latest_newsletter, language)
 
     return render_to_response('reminder/latest_newsletter.html', locals(), context_instance=RequestContext(request))
 
