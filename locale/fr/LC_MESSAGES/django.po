@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-24 21:13+0200\n"
+"POT-Creation-Date: 2012-10-24 21:21+0200\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -841,7 +841,7 @@ msgstr "nous contacter"
 #: .\templates\registration\activation_complete.html.py:9
 #: .\templates\registration\registration_complete.html.py:11
 #: .\templates\sw_auth\activate.html.py:14
-#: .\templates\sw_auth\activation_complete.html.py:16
+#: .\templates\sw_auth\activation_complete.html.py:17
 #: .\templates\sw_auth\registration_complete.html.py:11
 msgid "Back to the home page"
 msgstr "Retourner à la page d'accueil"
@@ -852,12 +852,12 @@ msgid "Activation is complete."
 msgstr "Votre compte a été activé."
 
 #: .\templates\registration\activation_complete.html.py:9
-#: .\templates\sw_auth\activation_complete.html.py:16
+#: .\templates\sw_auth\activation_complete.html.py:17
 msgid "or"
 msgstr "ou"
 
 #: .\templates\registration\activation_complete.html.py:9
-#: .\templates\sw_auth\activation_complete.html.py:16
+#: .\templates\sw_auth\activation_complete.html.py:17
 msgid "proceed to the login page"
 msgstr "se connecter."
 
@@ -1325,7 +1325,7 @@ msgid "Launch date"
 msgstr "Date de lancement de GrippeNet.fr pour la saison 2012"
 
 #: .\templates\survey\wait_launch.html.py:6
-#, fuzzy
+#: .\templates\sw_auth\activation_complete.html.py:12
 msgid ""
 "The project has not started yet for the season. We will contact you as soon "
 "as the follow-up begin."
@@ -1334,24 +1334,12 @@ msgstr ""
 "prochainement un email vous informant du lancement de la saison et vous "
 "invitant à remplir votre questionnaire préliminaire et votre premier "
 "questionnaire hebdomadaire. Pour toute question, n'hésitez pas à nous "
-"contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</"
-"a>. Le lancement de la prochaine saison est prévu le"
+"contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>."
 
 #: .\templates\survey\wait_launch.html.py:7
+#: .\templates\sw_auth\activation_complete.html.py:13
 msgid "The project will be launched from the"
-msgstr "GrippeNet.fr redémarrera le"
-
-#: .\templates\sw_auth\activation_complete.html.py:12
-msgid ""
-"The project has not started yet for the season. We will contact you as soon "
-"as the follow-up begin, from the "
-msgstr ""
-"Le suivi de GrippeNet.fr n'a pas encore débuté cette saison. Vous recevrez "
-"prochainement un email vous informant du lancement de la saison et vous "
-"invitant à remplir votre questionnaire préliminaire et votre premier "
-"questionnaire hebdomadaire. Pour toute question, n'hésitez pas à nous "
-"contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</"
-"a>. Le lancement de la prochaine saison est prévu le"
+msgstr "Le lancement de la prochaine saison de GrippeNet.fr est prévu le"
 
 #: .\templates\sw_auth\password_reset_email.html.py:7
 msgid ""
@@ -1367,7 +1355,6 @@ msgid "Password reset error"
 msgstr "Problème lors de la réinitialisation du mot de passe"
 
 #: .\templates\sw_auth\password_reset_error.html.py:10
-#, fuzzy
 msgid ""
 "This password reset request is not valid or is expired. Please restart the "
 "password reset."
@@ -1375,6 +1362,18 @@ msgstr ""
 "Le lien pour réinitialiser votre mot de passe n'est pas valide, peut-être a-"
 "t-il déjà été utilisé. Demandez s'il-vous-plaît une nouvelle "
 "réinitialisation de votre mot de passe."
+
+#~ msgid ""
+#~ "The project has not started yet for the season. We will contact you as "
+#~ "soon as the follow-up begin, from the "
+#~ msgstr ""
+#~ "Le suivi de GrippeNet.fr n'a pas encore débuté cette saison. Vous "
+#~ "recevrez prochainement un email vous informant du lancement de la saison "
+#~ "et vous invitant à remplir votre questionnaire préliminaire et votre "
+#~ "premier questionnaire hebdomadaire. Pour toute question, n'hésitez pas à "
+#~ "nous contacter à <a href=\"mailto:contact@grippenet.fr"
+#~ "\">contact@grippenet.fr</a>. Le lancement de la prochaine saison est "
+#~ "prévu le"
 
 #~ msgid ""
 #~ "Date & time of the first reminder and point of reference for subsequent "
