@@ -1390,3 +1390,9 @@ msgstr ""
 
 #~ msgid "register"
 #~ msgstr "vous inscrire"
+
+msgid "Mark as healthy"
+msgstr "Marquer en bonne santé"
+
+msgid "Delete member(s)"
+msgstr "Effacer"

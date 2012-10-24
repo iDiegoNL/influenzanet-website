@@ -9,6 +9,7 @@ class SiteSettings(models.Model):
     light_color = models.CharField(max_length=6, default="ce2626")
     footer = models.TextField(_("Footer"), help_text=_("The footer will be displayed at the bottom of each page"), blank=True, null=True)
     contact_form_recipient = models.EmailField(blank=True, default=settings.MANAGERS[0][1])
+    show_cookie_warning = models.BooleanField(_("Show cookie warning"), blank=True, default=False)
 
     @property
     def dark_color(self):

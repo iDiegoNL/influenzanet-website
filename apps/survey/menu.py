@@ -7,8 +7,8 @@ from menus.base import Menu, NavigationNode
 from menus.menu_pool import menu_pool
 
 from . import views
-from apps.accounts import views as accounts_views
-from django.contrib.auth import views as auth_views
+#from apps.accounts import views as accounts_views
+#from django.contrib.auth import views as auth_views
 
 class SurveyMenu(CMSAttachMenu):
     name = "Survey menu"
@@ -25,8 +25,8 @@ class SurveyMenu(CMSAttachMenu):
             ),
             NavigationNode(
                 _("Manage household"),
-                reverse('survey_people'),
-                "views.people",
+                reverse('group_management'),
+                "views.group_management",
             ),
 #            NavigationNode(
 #                _("My settings"),

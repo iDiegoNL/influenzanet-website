@@ -27,7 +27,8 @@ urlpatterns = patterns('',
     (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
     
 #    (r'^mobile/login/$', 'views.mobile_login'),
-    (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True}),
+    (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True, 'next': '/mobile/success/'}),
+    (r'^mobile/success/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
     (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
 
 #    (r'^rss/$', LatestEntriesFeed()),

@@ -6,13 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=0.75, user-scalable=yes" />
 <meta name="robots" content="index, follow" />
+		<meta name="viewport" content="initial-scale=0.75, user-scalable=yes" />
 <link rel="shortcut icon" href="{{ MEDIA_URL }}sw/grippenet.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" href="{{ MEDIA_URL }}base/img/apple-touch-icon.png" />      
+        <link rel="shortcut icon" href="{{ MEDIA_URL }}base/img/favicon.ico" type="image/x-icon" />
 <title>{% block title %}{{ site_name }}: {% page_attribute page_title %}{% endblock title %}</title>
 <meta name="description" content="{% page_attribute meta_description %}"/>
 <meta name="keywords" content="{% page_attribute meta_keywords %}"/>
 {% block add_head %}{% endblock add_head %}
 <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}assets/base.css" />
+<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}base/css/screen.css" />
 {% block add_css %}{% endblock add_css %}
 {% render_block "css" %}
 <script type="text/javascript" src="{{ MEDIA_URL }}assets/base.js"></script>
@@ -52,6 +54,8 @@
 				<a href="http://www.aktivgegengrippe.at/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> {% member_count "at" %}<br />
 				<a href="http://www.aktivgegengrippe.ch/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> {% member_count "ch" %}<br />
 				<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span id="count-fr">{% member_count "fr" %}</span><br />
+				<a href="http://www.gripenet.es/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/es.png" title="Spain" alt="Spain" /></a> {% member_count "es" %}<br />
+				<a href="http://flusurvey.ie/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ie.png" title="Ireland" alt="Ireland" /></a> {% member_count "ie" %}<br />
 			</div>
 		    <div id="influenzatext">
 				Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux avec l’aide de volontaires, par internet. Ce syst&egrave;me est op&eacute;rationnel aux Pays-Bas et en Belgique (depuis 2003), au Portugal (depuis 2005) et en Italie (depuis 2008). L’objectif actuel est d’implanter Influenzanet dans d’autres pays europ&eacute;ens.<br /><br />

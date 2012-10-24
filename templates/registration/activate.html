@@ -1,14 +1,20 @@
-{% extends "registration/boxbase.html" %}
+{% extends "base/threecol.html" %}
 {% load i18n %}
 
-{% block title %}{{ block.super }}: {% trans "Account Activation" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Account Activation" %}{% endblock %}
 
-{% block content %}<h1>{% trans "Account Activation" %}</h1>
-                <p>{% trans "User activation failed." %}</p>
-<br>
-<p>
-{% trans "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to" %} <a href="/accounts/login">{% trans "log in" %}</a> {% trans "using the username and password you provided during registration. If this still fails, please try to" %} <a href="/accounts/register">register</a> {% trans "with a different username. If everything else fails, please do not hesitate to" %} <a href="/contact">{% trans "contact us" %}</a>.
-</p>
+{% block col1 %}
 
-                <p>&nbsp;</p>
-                <p><a href="/">{% trans "Back to the home page" %}</a>.</p>{% endblock content %}
+<h1 class="important">{% trans "User activation failed." %}</h1>
+<p>{% trans "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to" %} <a href="/accounts/login">{% trans "log in" %}</a> {% trans "using the username and password you provided during registration. If this still fails, please try to" %} <a href="/accounts/register">register</a> {% trans "with a different username. If everything else fails, please do not hesitate to" %} <a href="/contact">{% trans "contact us" %}</a>.</p>
+
+{% endblock %}
+
+{% block col2 %}
+
+<p class="title">{% trans "Influenza virus" %}</p>
+<img src="{{ MEDIA_URL }}base/img/main/virus.jpg" alt="EM of influenza virus" title="Influenza virus" class="topspace" />
+<p>{% trans "Be part of a Europe-wide project to improve our understanding of how flu spreads." %}<br />
+<a href="/">{% trans "Back to the home page" %}</a>.</p>
+
+{% endblock %}

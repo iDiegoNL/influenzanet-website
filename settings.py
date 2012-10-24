@@ -119,6 +119,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "apps.partnersites.context_processors.customizations",
 #   "pybb.context_processors.processor",
 #   "django.core.context_processors.static",
+    "apps.pollster.context_processors.last_survey",
 )
 
 CMS_TEMPLATES = (
