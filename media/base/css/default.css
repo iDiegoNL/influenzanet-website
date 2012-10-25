@@ -377,7 +377,7 @@ ul.map_buttons li {
 
 #headerlogo {
  float: left;
- width: 756px;
+ width: 436px;
  overflow: hidden;
  padding: 0;
  margin: 0 0 12px 12px;
@@ -1172,7 +1172,7 @@ div.pagination {
   -webkit-transform: rotate(-11deg); -moz-transform: rotate(-11deg); -o-transform: rotate(-11deg); -ms-transform: rotate(-11deg);
   transform: rotate(-11deg); }
 
-.survey-chart .chart { width: 215px; height: 400px; position: relative; }
+.survey-chart .chart { width: 550px; height: 300px; position: relative; display: block; margin-left: auto; margin-right: auto }
 .survey-chart .chart-no-data { background:#EEE; padding:20px; }
 
 /*
@@ -1226,7 +1226,11 @@ div#page {
 }
 
 .forum h1 {
- color: #0A0A0A; font-size: 1.2em; line-height: 1.1em; margin: 6px 0 12px; padding: 0;
+ color: #0A0A0A;
+ font-size: 1.2em;
+ line-height: 1.1em;
+ margin: 6px 0 12px;
+ padding: 0;
 }
 
 .forum #header {
@@ -1247,13 +1251,18 @@ div#page {
 }
 
 .forum input,
-.forum textarea { -moz-transition: none; box-shadow: none;}
+.forum textarea {
+ -moz-transition: none;
+ box-shadow: none;
+}
 
 .forum a:focus,
 .forum input:focus, 
 .forum textarea:focus {
  outline: none;
- border-color: transparent; box-shadow: none;}
+ border-color: transparent;
+ box-shadow: none;
+}
 
 .forum #searchbar input#searchfield,
 .forum #searchbar input#searchsubmit {
@@ -1280,7 +1289,12 @@ div#page {
 
 .forum a.close {
  color: #B2B2B2;
- float: none; font-size: inherit; font-weight: inherit; line-height: inherit; opacity: 1; text-shadow: none;
+ float: none;
+ font-size: inherit;
+ font-weight: inherit;
+ line-height: inherit;
+ opacity: 1;
+ text-shadow: none;
  text-decoration: underline;
 }
 
@@ -1316,11 +1330,21 @@ div#page {
 .forum input#id_email,
 .forum textarea#id_body {
  float: none;
- clear: both; border: 1px solid #CCCCCC; font-size: 1em; height: 1.6em; line-height: 1.6em; margin: 0 0 10px; padding: 0 4px; width: 940px;}
+ clear: both;
+ border: 1px solid #CCCCCC;
+ font-size: 1em;
+ height: 1.6em;
+ line-height: 1.6em;
+ margin: 0 0 10px;
+ padding: 0 4px;
+ width: 940px;
+}
 
-.forum textarea#id_body { height: 10em;
+.forum textarea#id_body {
+ height: 10em;
  line-height: 1em;
- padding-top: 4px;}
+ padding-top: 4px;
+}
 
 .forum div#emoticons {
  margin-bottom: 16px;
