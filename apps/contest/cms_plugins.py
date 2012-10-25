@@ -21,7 +21,7 @@ class CMSContestPlugin(CMSPluginBase):
         else:
             filename = "prijs_grafiek_weergave2012"
 
-        if date.today() > date(2012, 1, 25):
+        if date.today() > date(2012, 11, 15):
             filename = "prijs_grafiek_weergave2012" # no longer possible to enter results
 
         context.update({
