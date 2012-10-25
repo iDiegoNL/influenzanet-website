@@ -118,6 +118,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "apps.partnersites.context_processors.customizations",
     "pybb.context_processors.processor",
     "django.core.context_processors.static",
+    "apps.pollster.context_processors.last_survey",
 )
 
 CMS_TEMPLATES = (
@@ -230,11 +231,6 @@ MOBILE_INTERFACE_ACTIVE = False
 
 STORE_RESPONSES_LOCALLY = False
 
-try:
-    from local_settings import *
-except ImportError:
-    pass
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
@@ -256,3 +252,9 @@ AUTH_PROFILE_MODULE = 'pybb.Profile'
 PYBB_TEMPLATE = 'base/forum.html'
 PYBB_ENABLE_ANONYMOUS_POST = True
 PYBB_ANONYMOUS_USERNAME = 'Gast'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+

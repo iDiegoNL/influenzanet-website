@@ -9,7 +9,6 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.db import connection
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse, NoReverseMatch
 
 from apps.journal.models import Entry
 from apps.survey.models import SurveyUser
@@ -96,7 +95,8 @@ class LatestEntriesFeed(Feed):
         return item.excerpt
 
     def item_link(self, item):
-        try:
-            return reverse("news") + "/" + item.get_relative_url()
-        except:
-            return "/"
+        from cms.models import Page
+        qs = Page.objects.filter(reverse_id='news')
+        if not qs:
+            return '/'
+        return qs.get().get_absolute_url() + item.get_relative_url()

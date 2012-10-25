@@ -1,4 +1,5 @@
 {% extends "base/threecol.html" %}
+{% load cms_tags %}
 
 {% block add_css %}
     <link rel="stylesheet" type="text/css" href="/media/pollster/jquery/css/smoothness/jquery-ui-1.8.14.css" media="all" />
@@ -27,4 +28,10 @@
     <script type="text/javascript" src="{% url pollster_urls %}"></script>
 
     {% block extrahead %}{% endblock %}
+{% endblock %}
+
+
+{% block col2 %}
+{% include "accounts/partials/usermenu.html" %}
+{{ block.super }}
 {% endblock %}

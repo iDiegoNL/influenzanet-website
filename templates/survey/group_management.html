@@ -1,0 +1,67 @@
+{% extends "base/threecol.html" %}
+{% load i18n sekizai_tags cms_tags %}
+
+{% block title %}{{ block.super }} {% trans "Group management" %}{% endblock %}
+
+{% block add_js %}
+		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
+{% endblock add_js %}
+
+{% block col1 %}
+<h1>{% trans "Group management" %}</h1>
+
+{% if last_survey %}
+<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on " %}{{ last_survey.timestamp }}</div>
+{% endif %}
+
+{% placeholder "Main content" %}
+
+<form action="" method="POST">{% csrf_token %}
+    <div id="groupwrapper">
+        <div id="groupheader">
+            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; Name <a href="{% url survey_people_add %}" title="{% trans "Add person" %}"><i class="icon-plus right"></i></a></p><p>{% trans "Survey date" %}</p><p>{% trans "Condition" %}</p>
+        </div>
+        <div id="groupmembers">
+
+
+
+        	{% for person in persons %}
+            <div class="accordionButton">
+                <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="#show">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
+            </div>
+            
+            {% for health_line in person.health_history %}
+            <div class="accordionContent">
+                <div>
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i><span class="flu">{{ health_line.timestamp|date:"d/m" }}</span></a></p><p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}-female{% endif %}small.png"/>{{ health_line.diag }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+
+
+
+
+        </div>
+    </div>
+    <br class="source"/>
+    <p class="groupsave">
+        <select name="action">
+            <option value="healthy">{% trans "Mark as healthy" %}</option>
+            <option value="delete">{% trans "Delete member(s)" %}</option>
+        </select>
+        <input type="submit" class="submitbutton" value="{% trans "Save" %}">
+    </p>
+</form>
+
+
+<p>{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+
+{% endblock %}
+
+{% block col2 %}
+
+{% include "accounts/partials/usermenu.html" %}
+{% include "accounts/partials/usermap.html" %}
+
+{% endblock %}

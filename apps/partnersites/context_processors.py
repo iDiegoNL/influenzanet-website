@@ -16,4 +16,5 @@ def site_context():
         'site_name': site.name,
         'site_logo': settings.logo.url if settings.logo else "",
         'site_footer': mark_safe(clean_html(settings.footer, full=False)) if settings.footer else None,
+        'show_cookie_warning': settings.show_cookie_warning,
     }
