@@ -245,7 +245,7 @@ CMS_SEO_FIELDS = True
 
 SESSION_COOKIE_AGE = 60 * 60 * 2
 
-LOGIN_REDIRECT_URL = '/survey/'
+LOGIN_REDIRECT_URL = '/survey/main/'
 
 # PyBB settings
 AUTH_PROFILE_MODULE = 'pybb.Profile'
