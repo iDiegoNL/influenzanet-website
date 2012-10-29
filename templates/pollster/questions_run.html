@@ -1,3 +1,6 @@
+{% block add_css %}<link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endblock add_css %}
+{% block add_js %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/js/qtip.js"></script>{% endblock add_js %}
+
 {% load i18n %}
 <form class="survey {% if survey.form.errors %}error{% endif %}" id="survey-{{ survey.id }}" method="POST">
     {% csrf_token %}
@@ -32,10 +35,10 @@
         <div id="question-{{ question.id }}" class="{{ question.css_classes|join:' ' }}"
              data-question-type="{{ question.type }}" data-data-type="{{ question.data_type.id }}" data-tags="{{ question.tags }}"
              data-regex="{{ question.regex|default:'' }}">
+	        <div id="hoverinfo">{% if question.translated_description %}<img src="{{ MEDIA_URL }}pollster/img/info.gif" class="hoverinfo" title="{{ question.translated_description }}" alt="" />{% endif %}</div>
             <p class="data">
                 {% if question.is_mandatory %}<span class="star">*</span>{% endif %}
                 <span class="title">{{ question.translated_title }}</span>
-                {{ question.translated_description }}
             </p>
             {% if question.is_text %}
             <input type="text" name="{{ question.data_name }}" id="question-{{ question.id }}-field"
