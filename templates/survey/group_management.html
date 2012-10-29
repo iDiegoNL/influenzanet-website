@@ -3,14 +3,17 @@
 
 {% block title %}{{ block.super }} {% trans "Group management" %}{% endblock %}
 
+{% block add_css %}<link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endblock add_css %}
+
 {% block add_js %}
-		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/js/qtip.js"></script>
 
 <script type="text/javascript" src="//www.google.com/jsapi"></script>
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
-
 <script type="text/javascript">
     wok.pollster.charts.init(function() {
         $(function() {
@@ -25,6 +28,7 @@
 
 {% if last_survey %}
 <div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on " %}{{ last_survey.timestamp }}</div>
+<br />
 {% endif %}
 
 {% placeholder "Main content" %}
@@ -46,7 +50,7 @@
             {% for health_line in person.health_history %}
             <div class="accordionContent">
                 <div>
-                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i><span class="flu">{{ health_line.timestamp|date:"d/m" }}</span></a></p><p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}-female{% endif %}small.png"/>{{ health_line.diag }}</p>
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}-female{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
                 </div>
             </div>
             {% endfor %}
