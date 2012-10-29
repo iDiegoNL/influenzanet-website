@@ -43,7 +43,7 @@
 <form action="" method="POST">{% csrf_token %}
     <div id="groupwrapper">
         <div id="groupheader">
-            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; Name <a href="{% url survey_people_add %}" title="{% trans "Add person" %}"><i class="icon-plus right"></i></a></p><p>{% trans "Survey date" %}</p><p>{% trans "Condition" %}</p>
+            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; Name <a href="{% url survey_people_add %}"><i class="icon-plus right" title="{% trans "Add person" %}"></i></a></p><p>{% trans "Survey date" %}</p><p>{% trans "Condition" %}</p>
         </div>
         <div id="groupmembers">
 

@@ -15,7 +15,7 @@
 // A copy of the license is included in the section entitled "GNU
 // Free Documentation License".
 
-var qTipTag = "img,input"; //Which tag do you want to qTip-ize? Keep it lowercase!//
+var qTipTag = "img,input,i"; //Which tag do you want to qTip-ize? Keep it lowercase!//
 var qTipX = 0; //This is qTip's X offset//
 var qTipY = 18; //This is qTip's Y offset//
 
