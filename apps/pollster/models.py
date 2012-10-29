@@ -87,13 +87,13 @@ SURVEY_EXTRA_SQL = {
                                 case true when "Q1_15" then 1 else 0 end + 
                                 case true when "Q1_16" then 1 else 0 end + 
                                 case true when "Q1_18" then 1 else 0 end >= 2
-                            ) then 'ALLERGY/HAY FEVER and GASTROINTESTINAL'
+                            ) then 'ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL'
 
                           when (not "Q1_1") and (not "Q1_2") 
                            and (("Q6d" = 0) or ("Q6d" is null)) 
                            and ("Q1_3" or "Q1_4" or "Q1_14")
                            and ("Q11" = 2)
-                              then 'ALLERGY/HAY FEVER' 
+                              then 'ALLERGY-or-HAY-FEVER' 
 
                           when
                             (
@@ -107,7 +107,7 @@ SURVEY_EXTRA_SQL = {
                                 case true when "Q1_15" then 1 else 0 end + 
                                 case true when "Q1_16" then 1 else 0 end + 
                                 case true when "Q1_18" then 1 else 0 end >= 2
-                            ) then 'COMMON-COLD and GASTROINTESTINAL'
+                            ) then 'COMMON-COLD-and-GASTROINTESTINAL'
 
                           when 
                             case true when "Q1_3" then 1 else 0 end + 
@@ -124,7 +124,7 @@ SURVEY_EXTRA_SQL = {
                             case true when "Q1_18" then 1 else 0 end >= 2
                               then 'GASTROINTESTINAL'
 
-                          else 'NON-INFLUENZA'
+                          else 'NON-SPECIFIC-SYMPTOMS'
                       end as status
                  FROM pollster_results_weekly"""
         ]
@@ -154,13 +154,13 @@ SURVEY_EXTRA_SQL = {
                                 case true when Q1_15 then 1 else 0 end + 
                                 case true when Q1_16 then 1 else 0 end + 
                                 case true when Q1_18 then 1 else 0 end >= 2
-                            ) then 'ALLERGY/HAY FEVER and GASTROINTESTINAL'
+                            ) then 'ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL'
 
                           when (not Q1_1) and (not Q1_2) 
                            and ((Q6d = 0) or (Q6d is null)) 
                            and (Q1_3 or Q1_4 or Q1_14)
                            and (Q11 = 2)
-                              then 'ALLERGY/HAY FEVER' 
+                              then 'ALLERGY-or-HAY-FEVER' 
 
                           when
                             (
@@ -174,7 +174,7 @@ SURVEY_EXTRA_SQL = {
                                 case true when Q1_15 then 1 else 0 end + 
                                 case true when Q1_16 then 1 else 0 end + 
                                 case true when Q1_18 then 1 else 0 end >= 2
-                            ) then 'COMMON-COLD and GASTROINTESTINAL'
+                            ) then 'COMMON-COLD-and-GASTROINTESTINAL'
 
                           when 
                             case true when Q1_3 then 1 else 0 end + 
@@ -191,7 +191,7 @@ SURVEY_EXTRA_SQL = {
                             case true when Q1_18 then 1 else 0 end >= 2
                               then 'GASTROINTESTINAL'
 
-                          else 'NON-INFLUENZA'
+                          else 'NON-SPECIFIC-SYMPTOMS'
                       end as status
 
                  FROM pollster_results_weekly"""
