@@ -203,6 +203,10 @@ def select_user(request, template='survey/select_user.html'):
 
 @login_required
 def index(request):
+    # this is the index for a actual survey-taking
+    # it falls back to 'group management' if no 'gid' is provided.
+    # i.e. it expects gid to be part of the request!
+
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
@@ -233,6 +237,13 @@ def index(request):
 
 @login_required
 def profile_index(request):
+    # this appears to be ready-for-cleanup; but at this moment I (KvS) cannot be absolutely
+    # sure and don't have the time to check, so I'll leave it.
+
+    # what does this do? if no "gid" parameter is presented in the GET, 'select_user' is
+    # called to select the user.
+    # if one is present, 
+
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
@@ -251,6 +262,20 @@ def profile_index(request):
         next = reverse(thanks_profile)
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
+
+def main_index(request):
+    print 'main happens'
+    # the generalness of the name of this method reflects the mess that the various
+    # indexes have become. 
+
+    # this is the one that does the required redirection for the button 'my account'
+    # i.e. to group if there is a group, to the main index otherwise
+
+    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() != 1:
+        return HttpResponseRedirect(reverse(group_management))
+
+    gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
+    return HttpResponseRedirect(reverse(index) + '?gid=' + gid)
 
 @login_required
 def run_index(request, shortname):

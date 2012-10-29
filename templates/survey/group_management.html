@@ -5,6 +5,19 @@
 
 {% block add_js %}
 		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
+
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
+
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
 {% endblock add_js %}
 
 {% block col1 %}

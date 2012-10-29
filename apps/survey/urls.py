@@ -6,6 +6,7 @@ WAIT_LAUNCH = getattr(settings,'SURVEY_WAIT_LAUNCH', False)
 
 urlpatterns = patterns('',
     url(r'^profile/$', views.wait_launch if WAIT_LAUNCH else views.profile_index, name='survey_profile'),
+    url(r'^main/$', views.main_index),
     url(r'^group_management/$', views.group_management, name='group_management'),
     url(r'^run/(?P<shortname>.+)/$', views.wait_launch if WAIT_LAUNCH else views.run_index, name='survey_run'),
     url(r'^thanks/(?P<shortname>.+)/$', views.thanks_run, name='survey_run_thanks'),
