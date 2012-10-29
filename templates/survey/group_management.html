@@ -56,7 +56,7 @@
             <div class="accordionContent">
             {% for health_line in person.health_history %}
                 <div>
-                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}-female{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
                 </div>
             {% endfor %}
             </div>
