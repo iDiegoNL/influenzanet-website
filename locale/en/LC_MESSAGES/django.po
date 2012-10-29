@@ -428,6 +428,18 @@ msgstr ""
 msgid "Cold / allergy"
 msgstr ""
 
+msgid "Cold"
+msgstr "Symptomen die passen bij verkoudheid"
+
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr ""
+
+msgid "Allergy / hay fever"
+msgstr ""
+
+msgid "Common cold and gastrointestinal symptoms"
+msgstr ""
+
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
 msgstr ""

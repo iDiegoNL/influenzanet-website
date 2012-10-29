@@ -440,6 +440,18 @@ msgstr "Symptomen die passen bij griep"
 msgid "Cold / allergy"
 msgstr "Symptomen die passen bij verkoudheid of allergie"
 
+msgid "Cold"
+msgstr "Symptomen die passen bij verkoudheid"
+
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr ""
+
+msgid "Allergy / hay fever"
+msgstr ""
+
+msgid "Common cold and gastrointestinal symptoms"
+msgstr ""
+
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
 msgstr "Symptomen die passen bij maag-/darmklachten"
@@ -447,6 +459,7 @@ msgstr "Symptomen die passen bij maag-/darmklachten"
 #: apps/survey/views.py:51
 msgid "Other non-influenza symptons"
 msgstr "Andere symptomen die niet passen bij griep"
+
 
 #: apps/survey/views.py:53
 msgid "Unknown"
