@@ -53,13 +53,13 @@
                 <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="#show">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
             </div>
             
-            {% for health_line in person.health_history %}
             <div class="accordionContent">
+            {% for health_line in person.health_history %}
                 <div>
                     <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}-female{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
                 </div>
-            </div>
             {% endfor %}
+            </div>
             {% endfor %}
 
 
