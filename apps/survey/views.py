@@ -42,7 +42,7 @@ def _decode_person_health_status(status):
     d = {
         "NO-SYMPTOMS":                                  _('No symptoms'),
         "ILI":                                          _('Flu symptoms'),
-        "COMMON-COLD":                                  _('Cold / allergy'),
+        "COMMON-COLD":                                  _('Common cold'),
         "GASTROINTESTINAL":                             _('Gastrointestinal symptoms'),
         "ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL":    _('Allergy / hay fever and gastrointestinal symptoms'),
         "ALLERGY-or-HAY-FEVER":                         _('Allergy / hay fever'), 

@@ -428,7 +428,7 @@ msgstr ""
 msgid "Cold / allergy"
 msgstr ""
 
-msgid "Cold"
+msgid "Common cold"
 msgstr "Symptomen die passen bij verkoudheid"
 
 msgid "Allergy / hay fever and gastrointestinal symptoms"
