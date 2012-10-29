@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 16:46+0100\n"
+"POT-Creation-Date: 2012-10-29 17:08+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,7 +246,7 @@ msgstr "Le pied de page sera affiché en bas de chaque page"
 
 #: .\apps\partnersites\models.py:12
 msgid "Show cookie warning"
-msgstr ""
+msgstr "Montrer les alertes concernant les cookies"
 
 #: .\apps\partnersites\models.py:20 .\apps\partnersites\models.py:23
 #: .\apps\partnersites\models.py:24
@@ -394,12 +394,12 @@ msgstr "Vous êtes connecté sous le nom de"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:7
 msgid "You are logged in"
-msgstr ""
+msgstr "Vous êtes connecté"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:10
 #: .\templates\survey\group_management.html.py:27
 msgid "The last survey was submitted for"
-msgstr ""
+msgstr "Le dernier questionnaire à été soumis le"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:10
 msgid "on"
@@ -407,7 +407,7 @@ msgstr ""
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:15
 msgid "Last newsletter from"
-msgstr ""
+msgstr "La dernière lettre"
 
 #: .\apps\reminder\templates\reminder\message.html.py:66
 #, fuzzy, python-format
@@ -452,27 +452,41 @@ msgstr "Gérer mon foyer"
 msgid "No symptoms"
 msgstr "Aucun symptôme"
 
-#: .\apps\survey\views.py:44
+#: .\apps\survey\views.py:43
 msgid "Flu symptoms"
 msgstr "Symptômes grippaux"
 
-#: .\apps\survey\views.py:46
+#: .\apps\survey\views.py:44
 msgid "Cold / allergy"
 msgstr "Rhume / allergie"
 
-#: .\apps\survey\views.py:48
+#: .\apps\survey\views.py:45
 msgid "Gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux"
 
-#: .\apps\survey\views.py:50
+#: .\apps\survey\views.py:46
+#, fuzzy
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr "Symptômes gastro-intestinaux"
+
+#: .\apps\survey\views.py:47
+msgid "Allergy / hay fever"
+msgstr "Allergies"
+
+#: .\apps\survey\views.py:48
+#, fuzzy
+msgid "Common cold and gastrointestinal symptoms"
+msgstr "Symptômes gastro-intestinaux"
+
+#: .\apps\survey\views.py:49
 msgid "Other non-influenza symptons"
 msgstr "Autres symptômes non grippaux"
 
-#: .\apps\survey\views.py:52
+#: .\apps\survey\views.py:54
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: .\apps\survey\views.py:221
+#: .\apps\survey\views.py:222
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
@@ -481,7 +495,7 @@ msgstr ""
 "questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une "
 "seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
-#: .\apps\survey\views.py:383
+#: .\apps\survey\views.py:384
 msgid "A new person has been added."
 msgstr "Une nouvelle personne a été ajoutée."
 
@@ -957,7 +971,7 @@ msgstr ""
 #: .\templates\registration\password_reset_done.html.py:15
 #: .\templates\registration\registration_complete.html.py:16
 msgid "Influenza virus"
-msgstr ""
+msgstr "Syndrômes grippaux"
 
 #: .\templates\registration\activate.html.py:17
 #: .\templates\registration\activation_complete.html.py:18
@@ -1494,7 +1508,7 @@ msgstr "le questionnaire hebdomadaire"
 
 #: .\templates\survey\wait_launch.html.py:5
 msgid "Launch date"
-msgstr ""
+msgstr "Date de lancement"
 
 #: .\templates\survey\wait_launch.html.py:6
 #: .\templates\sw_auth\activation_complete.html.py:12
