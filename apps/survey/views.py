@@ -266,7 +266,6 @@ def profile_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 def main_index(request):
-    print 'main happens'
     # the generalness of the name of this method reflects the mess that the various
     # indexes have become. 
 
