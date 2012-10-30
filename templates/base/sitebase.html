@@ -177,7 +177,7 @@
             <div id="footerclose">
                 &copy; {% now "Y" %} {{ site_name }} &nbsp;|&nbsp;
                 <span class="disable">{% language_chooser %}</span>
-                <a href="#" class="cc-privacy-link">{% trans "Cookie settings" %}</a>  &nbsp;|&nbsp; <a href="{% url contact_form %}" title="{% trans "Contact us" %}">{% trans "Contact" %}</a>
+                {% if show_cookie_warning %}<a href="#" class="cc-privacy-link">{% trans "Cookie settings" %}</a>  &nbsp;|&nbsp; {% endif %}<a href="{% url contact_form %}" title="{% trans "Contact us" %}">{% trans "Contact" %}</a>
             </div>
 			</div>{% endblock footercontent %}
 		</div>
