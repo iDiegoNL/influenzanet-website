@@ -440,7 +440,7 @@ msgstr "Symptomen die passen bij griep"
 msgid "Cold / allergy"
 msgstr "Symptomen die passen bij verkoudheid of allergie"
 
-msgid "Cold"
+msgid "Common cold"
 msgstr "Symptomen die passen bij verkoudheid"
 
 msgid "Allergy / hay fever and gastrointestinal symptoms"

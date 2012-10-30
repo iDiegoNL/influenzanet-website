@@ -3,28 +3,25 @@
 
 {% block title %}{{ block.super }} {% trans "Group management" %}{% endblock %}
 
+{% block add_css %}<link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endblock add_css %}
+
 {% block add_js %}
-		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
-
-<script type="text/javascript" src="//www.google.com/jsapi"></script>
-<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
-
-<script type="text/javascript">
-    wok.pollster.charts.init(function() {
-        $(function() {
-            wok.pollster.charts.createCharts('.survey-chart .chart');
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
 {% endblock add_js %}
 
 {% block col1 %}
-<h1>{% trans "Group management" %}</h1>
+<h1>{% trans "Your results" %}</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="usermessage"><span class="boldgreen">{{ message }}</span></div>
+        <br />
+    {% endfor %}
+{% endif %}
 
 {% if last_survey %}
 <div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on " %}{{ last_survey.timestamp }}</div>
+<br />
 {% endif %}
 
 {% placeholder "Main content" %}
@@ -32,7 +29,7 @@
 <form action="" method="POST">{% csrf_token %}
     <div id="groupwrapper">
         <div id="groupheader">
-            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; Name <a href="{% url survey_people_add %}" title="{% trans "Add person" %}"><i class="icon-plus right"></i></a></p><p>{% trans "Survey date" %}</p><p>{% trans "Condition" %}</p>
+            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; Name <a href="{% url survey_people_add %}"><i class="icon-plus right" title="{% trans "Add person" %}"></i></a></p><p>{% trans "Survey date" %}</p><p>{% trans "Condition" %}</p>
         </div>
         <div id="groupmembers">
 
@@ -43,13 +40,13 @@
                 <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="#show">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
             </div>
             
-            {% for health_line in person.health_history %}
             <div class="accordionContent">
+            {% for health_line in person.health_history %}
                 <div>
-                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i><span class="flu">{{ health_line.timestamp|date:"d/m" }}</span></a></p><p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}-female{% endif %}small.png"/>{{ health_line.diag }}</p>
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
                 </div>
-            </div>
             {% endfor %}
+            </div>
             {% endfor %}
 
 

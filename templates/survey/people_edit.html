@@ -4,11 +4,10 @@
 {% block col1 %}
 <h1>{% trans "Edit Person" %}</h1>
 
-<form method="post">
+<form method="post" class="contact_form">
 {% csrf_token %}
 {{ form.as_p }}
-<p><input type="submit" value="{% trans "Save" %}"/></p>
+<input type="submit" id="commentsubmit" value="{% trans "Save" %}"/>
 </form>
 
 {% endblock %}
-

@@ -252,6 +252,14 @@ SESSION_COOKIE_AGE = 60 * 60 * 2
 
 LOCAL_APPS = ()
 LOCAL_MIDDLEWARE = ()
+LOGIN_REDIRECT_URL = '/survey/main/'
+
+# PyBB settings
+#AUTH_PROFILE_MODULE = 'pybb.Profile'
+#PYBB_TEMPLATE = 'base/forum.html'
+#PYBB_ENABLE_ANONYMOUS_POST = True
+#PYBB_ANONYMOUS_USERNAME = 'Gast'
+
 try:
     from local_settings import *
 except ImportError:
@@ -260,11 +268,3 @@ except ImportError:
 INSTALLED_APPS += LOCAL_APPS
 MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    
 
-
-LOGIN_REDIRECT_URL = '/survey/'
-
-# PyBB settings
-#AUTH_PROFILE_MODULE = 'pybb.Profile'
-#PYBB_TEMPLATE = 'base/forum.html'
-#PYBB_ENABLE_ANONYMOUS_POST = True
-#PYBB_ANONYMOUS_USERNAME = 'Gast'

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 17:08+0100\n"
+"POT-Creation-Date: 2012-10-30 17:47+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: .\apps\accounts\forms.py:17 .\apps\accounts\forms.py:21
 #: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:25
-#: .\templates\accounts\my_settings.html.py:32
+#: .\templates\accounts\my_settings.html.py:46
 #, fuzzy
 msgid "Username"
 msgstr "Nom de l'expéditeur"
@@ -274,6 +274,10 @@ msgstr "Saisir un code postal valide."
 msgid "Enter a valid value consisting of letters, numbers or underscores"
 msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
+#: .\apps\pollster\views.py:204 .\templates\survey\thanks.html.py:22
+msgid "Thanks for taking the time to fill out this survey."
+msgstr "Merci d'avoir pris le temps de remplir ce questionnaire."
+
 #: .\apps\pollster\db\models\fields.py:10
 msgid "Year and month (in YYYY-MM format)"
 msgstr "Année et mois (au format AAAA-MM)"
@@ -392,20 +396,20 @@ msgstr "%(current)s (in %(weeks)s semaines)"
 msgid "Logged in"
 msgstr "Vous êtes connecté sous le nom de"
 
-#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:7
+#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:21
 msgid "You are logged in"
 msgstr "Vous êtes connecté"
 
-#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:10
-#: .\templates\survey\group_management.html.py:27
+#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:24
+#: .\templates\survey\group_management.html.py:23
 msgid "The last survey was submitted for"
 msgstr "Le dernier questionnaire à été soumis le"
 
-#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:10
+#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:24
 msgid "on"
 msgstr ""
 
-#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:15
+#: .\apps\reminder\templates\reminder\latest_newsletter.html.py:29
 msgid "Last newsletter from"
 msgstr "La dernière lettre"
 
@@ -457,8 +461,8 @@ msgid "Flu symptoms"
 msgstr "Symptômes grippaux"
 
 #: .\apps\survey\views.py:44
-msgid "Cold / allergy"
-msgstr "Rhume / allergie"
+msgid "Common cold"
+msgstr "Rhume"
 
 #: .\apps\survey\views.py:45
 msgid "Gastrointestinal symptoms"
@@ -495,7 +499,7 @@ msgstr ""
 "questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une "
 "seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
-#: .\apps\survey\views.py:384
+#: .\apps\survey\views.py:383
 msgid "A new person has been added."
 msgstr "Une nouvelle personne a été ajoutée."
 
@@ -504,7 +508,7 @@ msgstr "Une nouvelle personne a été ajoutée."
 msgid "Email address"
 msgstr "Adresse email :"
 
-#: .\apps\sw_auth\forms.py:31 .\templates\accounts\my_settings.html.py:25
+#: .\apps\sw_auth\forms.py:31 .\templates\accounts\my_settings.html.py:39
 #, fuzzy
 msgid "Password"
 msgstr "Réinitialisation du mot de passe"
@@ -571,6 +575,22 @@ msgstr "Nouveau mot de passe :"
 #, fuzzy, python-format
 msgid "Password reset on %s"
 msgstr "Réinitialisation du mot de passe"
+
+#: .\apps\sw_cohort\models.py:31
+msgid "No usage left for this token"
+msgstr "Ce ticket d'inscription n'est plus disponible"
+
+#: .\apps\sw_cohort\models.py:34
+msgid "this token has expired"
+msgstr "Ticket d'inscription au groupe expiré"
+
+#: .\apps\sw_cohort\views.py:33
+msgid "token not provided"
+msgstr "Ticket d'inscription non fourni"
+
+#: .\apps\sw_cohort\views.py:50
+msgid "invalid token"
+msgstr "Ticket d'inscription au groupe invalide"
 
 #: .\apps\tellafriend\forms.py:13
 msgid "URL"
@@ -688,32 +708,32 @@ msgstr "Vous avez été déconnecté. Retour à la page d'"
 msgid "My profile"
 msgstr "Profil"
 
-#: .\templates\accounts\my_profile.html.py:18
+#: .\templates\accounts\my_profile.html.py:32
 #, fuzzy
 msgid "My Profile"
 msgstr "Profil"
 
 #: .\templates\accounts\my_settings.html.py:4
-#: .\templates\accounts\my_settings.html.py:7
+#: .\templates\accounts\my_settings.html.py:21
 #: .\templates\accounts\partials\usermenu.html.py:19
 #, fuzzy
 msgid "Account settings"
 msgstr "Activation du compte"
 
-#: .\templates\accounts\my_settings.html.py:10
+#: .\templates\accounts\my_settings.html.py:24
 #: .\templates\sw_auth\my_settings.html.py:9
 msgid "Your settings have been updated"
 msgstr "Vos paramètres ont été mis à jour"
 
-#: .\templates\accounts\my_settings.html.py:18
+#: .\templates\accounts\my_settings.html.py:32
 #, fuzzy
 msgid "Email settings"
 msgstr "Paramètres du site"
 
-#: .\templates\accounts\my_settings.html.py:21
-#: .\templates\accounts\my_settings.html.py:28
 #: .\templates\accounts\my_settings.html.py:35
-#: .\templates\survey\group_management.html.py:66
+#: .\templates\accounts\my_settings.html.py:42
+#: .\templates\accounts\my_settings.html.py:49
+#: .\templates\survey\group_management.html.py:63
 #: .\templates\survey\people_edit.html.py:10
 #: .\templates\sw_auth\my_settings.html.py:17
 msgid "Save"
@@ -753,11 +773,10 @@ msgid "Weekly survey"
 msgstr "Questionnaire hebdomadaire"
 
 #: .\templates\accounts\partials\usermenu.html.py:18
-#: .\templates\survey\group_management.html.py:4
-#: .\templates\survey\group_management.html.py:24
+#: .\templates\survey\group_management.html.py:13
 #, fuzzy
-msgid "Group management"
-msgstr "Membre(s) du groupe"
+msgid "Your results"
+msgstr "Aucun résultat trouvé"
 
 #: .\templates\accounts\partials\usermenu.html.py:20
 #: .\templates\base\forum.html.py:79 .\templates\base\sw_col_right.html.py:25
@@ -1069,7 +1088,7 @@ msgstr "Mettre à jour mon profil"
 
 #: .\templates\registration\login.html.py:21
 msgid "Please login to continue"
-msgstr ""
+msgstr "Connectez vous à votre compte pour continuer"
 
 #: .\templates\registration\password_change_done.html.py:4
 #: .\templates\registration\password_change_done.html.py:8
@@ -1286,7 +1305,7 @@ msgstr "Formulaire d'inscription"
 
 #: .\templates\registration\registration_form.html.py:21
 msgid "Join the survey"
-msgstr ""
+msgstr "Rejoignez le projet"
 
 #: .\templates\search\search.html.py:5
 msgid "Search result"
@@ -1300,47 +1319,52 @@ msgstr "Resultats"
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
-#: .\templates\survey\group_management.html.py:27
+#: .\templates\survey\group_management.html.py:4
+#, fuzzy
+msgid "Group management"
+msgstr "Membre(s) du groupe"
+
+#: .\templates\survey\group_management.html.py:23
 msgid "on "
 msgstr ""
 
-#: .\templates\survey\group_management.html.py:35
+#: .\templates\survey\group_management.html.py:32
 msgid "Select/deselect all"
-msgstr ""
+msgstr "Sélectionnez/désélectionnez tous les choix"
 
-#: .\templates\survey\group_management.html.py:35
+#: .\templates\survey\group_management.html.py:32
 #, fuzzy
 msgid "Add person"
 msgstr "Ajouter un participant"
 
-#: .\templates\survey\group_management.html.py:35
+#: .\templates\survey\group_management.html.py:32
 #, fuzzy
 msgid "Survey date"
 msgstr "Graphique de l'étude"
 
-#: .\templates\survey\group_management.html.py:35
+#: .\templates\survey\group_management.html.py:32
 #, fuzzy
 msgid "Condition"
 msgstr "Contenu"
 
-#: .\templates\survey\group_management.html.py:43
+#: .\templates\survey\group_management.html.py:40
 msgid "Report"
-msgstr ""
+msgstr "Rapport"
 
-#: .\templates\survey\group_management.html.py:43
+#: .\templates\survey\group_management.html.py:40
 #: .\templates\survey\thanks.html.py:43
 msgid "Change profile"
 msgstr "Changer le profil"
 
-#: .\templates\survey\group_management.html.py:63
+#: .\templates\survey\group_management.html.py:60
 msgid "Mark as healthy"
 msgstr "Marquer en bonne santé"
 
-#: .\templates\survey\group_management.html.py:64
+#: .\templates\survey\group_management.html.py:61
 msgid "Delete member(s)"
 msgstr "Effacer"
 
-#: .\templates\survey\group_management.html.py:71
+#: .\templates\survey\group_management.html.py:68
 #: .\templates\survey\thanks.html.py:62
 msgid ""
 "The flu status of each participant is based on the symptoms you reported. "
@@ -1442,10 +1466,6 @@ msgstr "Afficher le profil"
 msgid "Select User"
 msgstr "Sélectionner un utilisateur"
 
-#: .\templates\survey\thanks.html.py:22
-msgid "Thanks for taking the time to fill out this survey."
-msgstr "Merci d'avoir pris le temps de remplir ce questionnaire."
-
 #: .\templates\survey\thanks.html.py:25
 msgid ""
 "Here is a summary of the information you entered for you and the members of "
@@ -1545,6 +1565,9 @@ msgstr ""
 "Le lien pour réinitialiser votre mot de passe n'est pas valide, peut-être a-"
 "t-il déjà été utilisé. Demandez s'il-vous-plaît une nouvelle "
 "réinitialisation de votre mot de passe."
+
+#~ msgid "Cold / allergy"
+#~ msgstr "Rhume / allergie"
 
 #~ msgid ""
 #~ "Date & time of the first reminder and point of reference for subsequent "
