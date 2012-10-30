@@ -20,6 +20,6 @@
 
 <p class="title">{% trans "Please login to continue" %}</p>
 
-<p>If you have forgotten your password or username, you can <a href="{% url django.contrib.auth.views.password_reset %}">request a new password</a> and find out your username.</p>
+<p>{% trans "If you have forgotten your password or username, you can" %} <a href="{% url django.contrib.auth.views.password_reset %}">{% trans "request a new password" %}</a> {% trans "and find out your username." %}</p>
 
 {% endblock %}
