@@ -35,14 +35,14 @@ TIME_ZONE = 'Europe/Amsterdam'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 # LANGUAGE_CODE = 'en'
 
 # For checking postcodes etc.
 # Use ISO3166 two-letter country code
 # See http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
 # Avaliable: be, it, nl, uk, pt, se
-COUNTRY = 'en'
+COUNTRY = 'es'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -52,12 +52,12 @@ USE_L10N = True
 LANGUAGES = (
    ('en', u'English'),
    ('de', u'Deutsch'),
-   ('fr', u'Français'),
+   ('fr', u'Francais'),
    ('nl', u'Nederlands'),
    ('it', u'Italiano'),
    ('sv', u'Svenska'),
-   ('pt', u'Português'),
-   ('es', u'Español'),
+   ('pt', u'Portugues'),
+   ('es', u'Espanol'),
 )
 
 # Absolute path to the directory that holds media.
@@ -106,7 +106,6 @@ MIDDLEWARE_CLASSES = (
     'pybb.middleware.PybbMiddleware',
     'cms.middleware.multilingual.MultilingualURLMiddleware',
 )
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.i18n",

@@ -1,3 +1,18 @@
+select[name="plugins"] {
+	width: 150px;
+}
+
+.plugin-holder-nopage{
+}
+
+.plugin-holder-config{
+    border-top: 0px;
+}
+
+.form-row label.plugin-holder-config-label{
+    width: 300px;
+}
+
 .plugin-holder .form-row{
 	padding:0;
 }
@@ -32,10 +47,12 @@
 .plugin-list-holder .plugin-select-holder{
 	padding:10px;
 }
-.plugin-list-holder .add-plugin{
+.plugin-list-holder .add-plugin, .plugin-list-holder .copy-plugins {
 	margin-left:10px;
 	cursor:pointer;
 }
+
+ul.plugin-list{min-height:5px;_height:5px;}
 
 ul.plugin-list li{
 	clear:both;	
@@ -79,12 +96,12 @@ ul.plugin-list span.delete{
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/cms/images/pluginlist-delete.png',sizingMethod='crop');	
 }
 
-ul.plugin-list li:hover{background-position:0px -300px; color:#fff;}
+ul.plugin-list li:hover{background-position:0px -100px; color:#fff;}
 ul.plugin-list li:hover .drag{background-position:0px -40px;}
 ul.plugin-list li:hover span.delete{background-position:0px -40px;}
 
 
-ul.plugin-list li.active:hover{background-position:0px -300px; color:#fff;}
+ul.plugin-list li.active:hover{background-position:0px -100px; color:#fff;}
 ul.plugin-list li.active:hover .drag{background-position:0px -40px;}
 
 
