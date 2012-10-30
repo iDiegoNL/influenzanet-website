@@ -1213,3 +1213,89 @@ msgstr ""
 "Best wishes,\n"
 "The Flusurvey team\n"
 "%(site)s"
+
+# ##########################
+# Login and Register helptexts translationbelow #
+# ##########################
+
+msgid "If you have forgotten your password or username, you can"
+msgstr ""
+
+msgid "request a new password"
+msgstr ""
+
+msgid "and find out your username."
+msgstr ""
+
+msgid ""
+"You will need a working email address in order to register for the flusurvey."
+msgstr ""
+
+msgid ""
+"Choose a username consisting of numbers, letters and/or underscores (no "
+"spaces) and a password.<br />If you have forgotten your password or "
+"username, you can"
+msgstr ""
+
+# ##########################
+# Cookie Consent translation below #
+# ##########################
+
+msgid "Your experience on this site will be improved by allowing cookies"
+msgstr ""
+
+msgid "Allow cookies"
+msgstr ""
+
+msgid "Save preference"
+msgstr ""
+
+msgid "see details"
+msgstr ""
+
+msgid "hide details"
+msgstr ""
+
+msgid "Strictly necessary"
+msgstr ""
+
+msgid ""
+"Some cookies on this website are strictly necessary and can not be disabled."
+msgstr ""
+
+msgid "Social media"
+msgstr ""
+
+msgid ""
+"Facebook, Twitter and other social websites need to know who you are to work "
+"properly."
+msgstr ""
+
+msgid "Analytics"
+msgstr ""
+
+msgid ""
+"We anonymously measure your use of this website to improve your experience."
+msgstr ""
+
+msgid "Privacy settings"
+msgstr ""
+
+msgid "for this website"
+msgstr ""
+
+msgid ""
+"Some features of this website need your consent to remember who you are."
+msgstr ""
+
+msgid "I consent"
+msgstr ""
+
+msgid "I decline"
+msgstr ""
+
+msgid "Close window"
+msgstr ""
+
+msgid "Cookie settings"
+msgstr ""

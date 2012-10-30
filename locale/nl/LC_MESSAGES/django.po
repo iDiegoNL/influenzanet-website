@@ -9,7 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
@@ -26,10 +27,14 @@ msgstr ""
 #: apps/accounts/forms.py:21 apps/accounts/forms.py:26
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
+"Gebruik maximaal 30 tekens. De volgende karakters zijn toegestaan: letters, "
+"cijfers, @ . + - en _"
 
 #: apps/accounts/forms.py:22 apps/accounts/forms.py:27
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
+"Hier kunt u alleen letters, cijfers en de volgende karakters invullen: @ . + "
+"- en _"
 
 #: apps/accounts/forms.py:31 apps/ew_contact_form/forms.py:13
 msgid "Email"
@@ -57,20 +62,20 @@ msgstr "Dit email adres is al in gebruik"
 
 #: apps/accounts/forms.py:79
 msgid "A user with this username already exists"
-msgstr ""
+msgstr "Deze gebruikersnaam bestaat al"
 
 #: apps/captcha/fields.py:54
 msgid "Play captcha as audio file"
-msgstr ""
+msgstr "Speel chaptcha af als audio-file"
 
 #: apps/captcha/fields.py:72 apps/captcha/fields.py:97
 #: apps/captcha/tests/__init__.py:70
 msgid "Invalid CAPTCHA"
-msgstr ""
+msgstr "Ongeldige captcha"
 
 #: apps/captcha/tests/__init__.py:97
 msgid "This field is required."
-msgstr ""
+msgstr "Dit is een verplicht veld"
 
 #: apps/contest/cms_plugins.py:14
 msgid "Contest"
@@ -235,7 +240,7 @@ msgstr "De voetnoot is zichtbaar aan de onderkant van iedere pagina"
 
 #: apps/partnersites/models.py:12
 msgid "Show cookie warning"
-msgstr ""
+msgstr "Laat cookie waarschuwingen zien"
 
 #: apps/partnersites/models.py:20 apps/partnersites/models.py:23
 #: apps/partnersites/models.py:24
@@ -308,7 +313,7 @@ msgstr "Om de week"
 
 #: apps/reminder/models.py:37
 msgid "Don't send reminders at a fixed interval"
-msgstr ""
+msgstr "Stuur mij geen wekelijkse herinneringen"
 
 #: apps/reminder/models.py:38
 msgid "Begin date"
@@ -381,20 +386,20 @@ msgstr "Ingelogd als"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:7
 msgid "You are logged in"
-msgstr ""
+msgstr "U bent ingelogd"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:10
 #: templates/survey/group_management.html:14
 msgid "The last survey was submitted for"
-msgstr ""
+msgstr "De laatste vragenlijst is ingevuld voor"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:10
 msgid "on"
-msgstr ""
+msgstr "op"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:15
 msgid "Last newsletter from"
-msgstr ""
+msgstr "Laatste nieuwsbrief van"
 
 #: apps/reminder/templates/reminder/message.html:66
 #, fuzzy, python-format
@@ -440,18 +445,6 @@ msgstr "Symptomen die passen bij griep"
 msgid "Cold / allergy"
 msgstr "Symptomen die passen bij verkoudheid of allergie"
 
-msgid "Common cold"
-msgstr "Symptomen die passen bij verkoudheid"
-
-msgid "Allergy / hay fever and gastrointestinal symptoms"
-msgstr ""
-
-msgid "Allergy / hay fever"
-msgstr ""
-
-msgid "Common cold and gastrointestinal symptoms"
-msgstr ""
-
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
 msgstr "Symptomen die passen bij maag-/darmklachten"
@@ -459,7 +452,6 @@ msgstr "Symptomen die passen bij maag-/darmklachten"
 #: apps/survey/views.py:51
 msgid "Other non-influenza symptons"
 msgstr "Andere symptomen die niet passen bij griep"
-
 
 #: apps/survey/views.py:53
 msgid "Unknown"
@@ -479,7 +471,7 @@ msgstr "Een nieuw persoon is toegevoegd"
 
 #: apps/tellafriend/forms.py:13
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/tellafriend/forms.py:14
 #, fuzzy
@@ -493,21 +485,21 @@ msgstr "Beschrijving"
 
 #: apps/tellafriend/forms.py:17
 msgid "Please enter the characters shown in the image in the field next to it."
-msgstr ""
+msgstr "Type de karakters uit de afbeelding over in het invulveld"
 
 #: apps/tellafriend/forms.py:17
 msgid "Captcha"
-msgstr ""
+msgstr "Captcha"
 
 #: apps/tellafriend/views.py:34
 #, python-format
 msgid "Recommendation by %s"
-msgstr ""
+msgstr "Aanbevelingen door %s"
 
 #: apps/tellafriend/templates/tellafriend/email.html:2
 #: templates/tellafriend/email.html:2
 msgid "Recommendation"
-msgstr ""
+msgstr "Aanbeveling"
 
 #: apps/tellafriend/templates/tellafriend/email.html:3
 #: templates/tellafriend/email.html:3
@@ -520,12 +512,12 @@ msgstr ""
 #: templates/tellafriend/success.html:5
 #: templates/tellafriend/tellafriend.html:5
 msgid "Recommend"
-msgstr ""
+msgstr "Aanbevelen"
 
 #: apps/tellafriend/templates/tellafriend/success.html:6
 #: templates/tellafriend/success.html:6
 msgid "Your recommendation was sent out successfully."
-msgstr ""
+msgstr "Uw aanbeveling is met succes verzonden"
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:6
 #: templates/tellafriend/tellafriend.html:6
@@ -533,6 +525,8 @@ msgid ""
 "Please enter your and the recipient's e-mail address, and an optional "
 "message."
 msgstr ""
+"Vul hier uw e-mailadres en het e-mailadres vang de ontvanger in en voeg een "
+"persoonlijk bericht toe (optioneel)"
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:35
 #: templates/contact_form/contact_form.html:10
@@ -615,7 +609,7 @@ msgstr "Reset wachtwoord"
 
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
-msgstr ""
+msgstr "Uw omgeving"
 
 #: templates/accounts/partials/usermap.html:9
 msgid ""
@@ -626,6 +620,10 @@ msgid ""
 "<strong class=\"gastro\">▸ yellow</strong> and common cold reports are "
 "displayed in <strong class=\"cold\">▸ blue</strong>."
 msgstr ""
+"Regio's waar momenteel griepachtige verschijselen zijn gemeld > rood, "
+"regio's waar geen van de deelnemers griepachtige verschijnselen heeft gemeld "
+"> grijs. Regio's waar maag- en darmklachten zijn gemeld > geel en regio's "
+"waar verkoudheidsverschijnselen zijn gerapporteerd > blauw"
 
 # translations should reflect however often maps are updated
 #: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
@@ -665,6 +663,10 @@ msgid ""
 "accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
 "address</a>. To leave feedback or get support,"
 msgstr ""
+"U kunt meerdere personen (bijvoorbeeld uit uw gezin, klas of bedrijf) "
+"toevoegen via \"Beheer huishouden\". Elk account kan maar één gebruikersnaam "
+"en één e-mailadres hebben. Om een bericht achter te laten of een vraag te "
+"stellen,"
 
 #: templates/accounts/partials/usermenu.html:25
 #: templates/registration/activate.html:9
@@ -823,7 +825,7 @@ msgstr "met een andere gebruikersnaam. Mocht u er niet uitkomen vragen wij u "
 #: templates/registration/password_reset_form.html:23
 #: templates/registration/registration_complete.html:16
 msgid "Influenza virus"
-msgstr ""
+msgstr "griepvirus"
 
 #: templates/registration/activate.html:17
 #: templates/registration/activation_complete.html:18
@@ -832,6 +834,8 @@ msgid ""
 "Be part of a Europe-wide project to improve our understanding of how flu "
 "spreads."
 msgstr ""
+"Wees onderdeel van een Europees project om ons begrip van hoe griep zich "
+"verpreid te verbeteren."
 
 #: templates/registration/activate.html:18
 #: templates/registration/activation_complete.html:9
@@ -880,7 +884,7 @@ msgstr "Profiel aanpassen"
 
 #: templates/registration/login.html:21
 msgid "Please login to continue"
-msgstr ""
+msgstr "Log in om door te gaan"
 
 #: templates/registration/password_change_done.html:4
 #: templates/registration/password_change_done.html:8
@@ -1047,7 +1051,7 @@ msgstr "Registratie formulier"
 
 #: templates/registration/registration_form.html:21
 msgid "Join the survey"
-msgstr ""
+msgstr "Doe mee"
 
 #: templates/search/search.html:5
 msgid "Search result"
@@ -1063,11 +1067,11 @@ msgstr "Geen resultaten gevonden"
 
 #: templates/survey/group_management.html:14
 msgid "on "
-msgstr ""
+msgstr "op"
 
 #: templates/survey/group_management.html:22
 msgid "Select/deselect all"
-msgstr ""
+msgstr "Alles (de)selecteren"
 
 #: templates/survey/group_management.html:22
 #, fuzzy
@@ -1121,7 +1125,7 @@ msgstr "Vragenlijst"
 
 #: templates/survey/mobile_success.html:6
 msgid "Put your success message here"
-msgstr ""
+msgstr "Laat hier uw bericht achter"
 
 #: templates/survey/people_add.html:5 templates/survey/people_add.html:10
 msgid "Add Person"
@@ -1261,8 +1265,7 @@ msgstr "Voeg een nieuwe Griepmeter toe"
 msgid ""
 "Activate your account:\n"
 "\n"
-"Click the following URL or copy and paste it to the browser's address "
-"bar.\n"
+"Click the following URL or copy and paste it to the browser's address bar.\n"
 "\n"
 "http://%(site)s/accounts/activate/%(activation_key)s/\n"
 "\n"
@@ -1270,8 +1273,7 @@ msgid ""
 msgstr ""
 "Activeer uw account:\n"
 "\n"
-"Klik op de volgende URL of kopieer deze naar de adresbalk van uw "
-"browser:\n"
+"Klik op de volgende URL of kopieer deze naar de adresbalk van uw browser:\n"
 "http://%(site)s/accounts/activate/%(activation_key)s/\n"
 "\n"
 "Deze activatie-url blijft %(expiration_days)s dagen geldig."
@@ -1284,12 +1286,12 @@ msgstr "Beheer huishouden"
 
 msgid ""
 "Below is the list of participants currently managed by you. Click the "
-"corresponding option next to the participant to complete the background "
-"or symptoms questionnaire for that person, or to remove a participant."
+"corresponding option next to the participant to complete the background or "
+"symptoms questionnaire for that person, or to remove a participant."
 msgstr ""
 "Hier vindt u de lijst van personen die u beheert. Kies de gewenste optie "
-"naast de betreffende persoon om de aanmelding of meting te voltooien, of "
-"om die persoon te verwijderen."
+"naast de betreffende persoon om de aanmelding of meting te voltooien, of om "
+"die persoon te verwijderen."
 
 msgid "Background"
 msgstr "Aanmelding"
@@ -1476,8 +1478,7 @@ msgid ""
 "See topic: %(post_url)s\n"
 "Unsubscribe %(unsubscribe_url)s"
 msgstr ""
-"Nieuwe reactie van %(username)s op een bericht waarop je bent "
-"geabonneerd.\n"
+"Nieuwe reactie van %(username)s op een bericht waarop je bent geabonneerd.\n"
 "---\n"
 "%(message)s\n"
 "---\n"
@@ -1544,8 +1545,7 @@ msgid "Search powered by Google"
 msgstr "Zoekfunctie door Google"
 
 msgid "Enter topic id for add to merged topics"
-msgstr ""
-"Geef onderwerp-id in voor het toevoegen aan samengevoegde onderwerpen"
+msgstr "Geef onderwerp-id in voor het toevoegen aan samengevoegde onderwerpen"
 
 msgid "Add"
 msgstr "Toevoegen"
@@ -1660,3 +1660,97 @@ msgstr "gisteren, %s"
 
 msgid "Mark all forums as read"
 msgstr "Alle berichten als gelezen markeren"
+
+# ##########################
+# Login and Register helptexts translationbelow #
+# ##########################
+msgid "If you have forgotten your password or username, you can"
+msgstr "Als u uw wachtwoord of gebruikersnaam bent vergeten, kunt u"
+
+msgid "request a new password"
+msgstr "een nieuw wachtwoord aanvragen"
+
+msgid "and find out your username."
+msgstr "en op die manier ook uw gebruikersnaam te weten komen."
+
+msgid ""
+"You will need a working email address in order to register for the flusurvey."
+msgstr ""
+"U hebt een geldig e-mailadres nodig om aan de Grote Griepmeting mee te "
+"kunnen doen."
+
+msgid ""
+"Choose a username consisting of numbers, letters and/or underscores (no "
+"spaces) and a password.<br />If you have forgotten your password or "
+"username, you can"
+msgstr ""
+"Kies een gebruikersnaam bestaande uit letters en/of cijfers (geen spaties) "
+"en een wachtwoord.<br />Als u uw wachtwoord of gebruikersnaam bent vergeten, "
+"kunt u"
+
+# ##########################
+# Cookie Consent translation below #
+# ##########################
+msgid "Your experience on this site will be improved by allowing cookies"
+msgstr "Deze website maakt gebruik van cookies"
+
+msgid "Allow cookies"
+msgstr "Cookies toestaan"
+
+msgid "Save preference"
+msgstr "Instellingen opslaan"
+
+msgid "see details"
+msgstr "Meer details"
+
+msgid "hide details"
+msgstr "Minder details"
+
+msgid "Strictly necessary"
+msgstr "Strikt noodzakelijk"
+
+msgid ""
+"Some cookies on this website are strictly necessary and can not be disabled."
+msgstr ""
+"Sommige cookies op deze website zijn strikt noodzakelijk en kunnen niet "
+"worden uitgezet."
+
+msgid "Social media"
+msgstr "Sociale media"
+
+msgid ""
+"Facebook, Twitter and other social websites need to know who you are to work "
+"properly."
+msgstr ""
+"Facebook, Twitter en andere social-media-websites maken gebruik van cookies. "
+"Als u geen toestemming geeft, worden onderdelen van deze website niet "
+"getoond."
+
+msgid "Analytics"
+msgstr "Statistieken"
+
+msgid ""
+"We anonymously measure your use of this website to improve your experience."
+msgstr "We meten (anonieme) bezoekgegevens om de site te kunnen verbeteren."
+
+msgid "Privacy settings"
+msgstr "Cookie instellingen"
+
+msgid "for this website"
+msgstr "voor deze website"
+
+msgid ""
+"Some features of this website need your consent to remember who you are."
+msgstr "Uw instellingen met betrekking tot het plaatsen van cookies:"
+
+msgid "I consent"
+msgstr "Ik geef toestemming"
+
+msgid "I decline"
+msgstr "Ik geef geen toestemming"
+
+msgid "Close window"
+msgstr "Venster sluiten"
+
+msgid "Cookie settings"
+msgstr "Cookie instellingen"
