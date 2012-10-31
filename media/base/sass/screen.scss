@@ -16,6 +16,11 @@ $gray: #707070;
 $blue: #0037ff;
 $yellow: #f2b40e;
 $red: #ff2300;
+$black: #000000;
+$green: #42d525;
+$orange: #f36700;
+$purple: #7800ff;
+    
 $offwhite: #f5f5f5;
 $important: #bf1a15 !important;
 
@@ -163,7 +168,10 @@ $important: #bf1a15 !important;
     .cold { color: $blue }
     .gastro { color: $yellow }
     .flu { color: $red }
-
+    .healthy { color: $black }
+    .allergy { color: $green }
+    .allergygastro { color: $orange }
+    .coldgastro { color: $purple }
 
 /* User content */
 
