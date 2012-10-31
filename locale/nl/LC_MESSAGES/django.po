@@ -14,12 +14,10 @@ msgstr ""
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
-#, fuzzy
 msgid "Username"
 msgstr "Gebruiker"
 
 #: apps/accounts/forms.py:17
-#, fuzzy
 msgid "This value must contain only letters, numbers and underscores."
 msgstr ""
 "Vul een geldige waarde in bestaande uit letters, cijfers of underscores"
@@ -581,18 +579,16 @@ msgstr "Mijn profiel"
 
 #: templates/accounts/my_settings.html:4 templates/accounts/my_settings.html:7
 #: templates/accounts/partials/usermenu.html:19
-#, fuzzy
 msgid "Account settings"
-msgstr "Account activatie"
+msgstr "Account instellingen"
 
 #: templates/accounts/my_settings.html:10
 msgid "Your settings have been updated"
 msgstr "Uw instellingen zijn gewijzigd"
 
 #: templates/accounts/my_settings.html:18
-#, fuzzy
 msgid "Email settings"
-msgstr "Website instellingen"
+msgstr "E-mail instellingen"
 
 #: templates/accounts/my_settings.html:21
 #: templates/accounts/my_settings.html:28
@@ -603,13 +599,12 @@ msgid "Save"
 msgstr "Opslaan"
 
 #: templates/accounts/my_settings.html:25
-#, fuzzy
 msgid "Password"
-msgstr "Reset wachtwoord"
+msgstr "Wachtwoord"
 
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
-msgstr "Uw omgeving"
+msgstr "Mijn omgeving"
 
 #: templates/accounts/partials/usermap.html:9
 msgid ""
@@ -620,10 +615,13 @@ msgid ""
 "<strong class=\"gastro\">▸ yellow</strong> and common cold reports are "
 "displayed in <strong class=\"cold\">▸ blue</strong>."
 msgstr ""
-"Regio's waar momenteel griepachtige verschijselen zijn gemeld > rood, "
-"regio's waar geen van de deelnemers griepachtige verschijnselen heeft gemeld "
-"> grijs. Regio's waar maag- en darmklachten zijn gemeld > geel en regio's "
-"waar verkoudheidsverschijnselen zijn gerapporteerd > blauw"
+"Regio's waar momenteel griepachtige verschijnselen zijn gemeld zijn "
+"<nobr><strong class=\"flu\">▸ rood</strong></nobr>, regio's waar geen van de "
+"deelnemers griepachtige verschijnselen heeft gemeld zijn <nobr><strong class="
+"\"nosymptoms\">▸ grijs</strong></nobr>. Regio's waar maag- en darmklachten "
+"zijn gemeld zijn <nobr><strong class=\"gastro\">▸ geel</strong></nobr> van "
+"kleur en regio's waar verkoudheidsverschijnselen zijn gerapporteerd worden "
+"<nobr><strong class=\"cold\">▸ blauw</strong></nobr> weergegeven."
 
 # translations should reflect however often maps are updated
 #: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
@@ -631,14 +629,12 @@ msgid "Map updated hourly."
 msgstr "De kaart wordt ieder uur ververst."
 
 #: templates/accounts/partials/usermenu.html:3
-#, fuzzy
 msgid "Your account"
 msgstr "Mijn account"
 
 #: templates/accounts/partials/usermenu.html:12
-#, fuzzy
 msgid "Newsletter"
-msgstr "wis"
+msgstr "Nieuwsbrief"
 
 #: templates/accounts/partials/usermenu.html:15
 msgid "Weekly survey"
@@ -647,9 +643,8 @@ msgstr "Wekelijkse vragenlijst"
 #: templates/accounts/partials/usermenu.html:18
 #: templates/survey/group_management.html:4
 #: templates/survey/group_management.html:11
-#, fuzzy
-msgid "Group management"
-msgstr "Groepsleden"
+msgid "Your results"
+msgstr "Meetresultaten"
 
 #: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
 #: templates/base/sitebase.html:82
@@ -666,7 +661,7 @@ msgstr ""
 "U kunt meerdere personen (bijvoorbeeld uit uw gezin, klas of bedrijf) "
 "toevoegen via \"Beheer huishouden\". Elk account kan maar één gebruikersnaam "
 "en één e-mailadres hebben. Om een bericht achter te laten of een vraag te "
-"stellen,"
+"stellen, vragen wij u"
 
 #: templates/accounts/partials/usermenu.html:25
 #: templates/registration/activate.html:9
@@ -1074,24 +1069,20 @@ msgid "Select/deselect all"
 msgstr "Alles (de)selecteren"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
 msgid "Add person"
 msgstr "Voeg Griepmeter toe"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
 msgid "Survey date"
-msgstr "Griepkaart"
+msgstr "Datum"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
 msgid "Condition"
-msgstr "Positie"
+msgstr "Meetresultaat"
 
 #: templates/survey/group_management.html:30
-#, fuzzy
 msgid "Report"
-msgstr "Root"
+msgstr "Doe meting"
 
 #: templates/survey/group_management.html:30 templates/survey/thanks.html:43
 msgid "Change profile"
