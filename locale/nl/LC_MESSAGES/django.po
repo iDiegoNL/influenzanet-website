@@ -659,8 +659,8 @@ msgid ""
 "address</a>. To leave feedback or get support,"
 msgstr ""
 "U kunt meerdere personen (bijvoorbeeld uit uw gezin, klas of bedrijf) "
-"toevoegen via \"Beheer huishouden\". Elk account kan maar één gebruikersnaam "
-"en één e-mailadres hebben. Om een bericht achter te laten of een vraag te "
+"toevoegen via \"Meetresultaten\". Elk account kan maar één gebruikersnaam en "
+"één e-mailadres hebben. Om een bericht achter te laten of een vraag te "
 "stellen, vragen wij u"
 
 #: templates/accounts/partials/usermenu.html:25
