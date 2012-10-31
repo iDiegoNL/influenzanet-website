@@ -28,7 +28,9 @@
 
 {% if messages %}
     {% for message in messages %}
-        <div class="usermessage"><span class="boldgreen">{{ message }}</span></div>
+        <div class="usermessage"><span class="boldgreen">{{ message }}</span><br/>
+        {% trans "Your diagnosis:" %} {{ health_line.diag }}
+        <span class="disable"><br/>{% trans "Your diagnosis:" %} {{ health_line.diag }}</span></div>
         <br />
     {% endfor %}
 {% endif %}
