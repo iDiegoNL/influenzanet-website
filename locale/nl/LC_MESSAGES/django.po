@@ -455,6 +455,16 @@ msgstr "Andere symptomen die niet passen bij griep"
 msgid "Unknown"
 msgstr "Onbekend"
 
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr "Symptomen die passen bij allergie/hooikoorts en maag-/darmklachten"
+
+msgid "Allergy / hay fever"
+msgstr "Symptomen die passen bij allergie/hooikoorts"
+
+msgid "Common cold and gastrointestinal symptoms"
+msgstr "Symptomen die passen bij verkoudheid en maag-/darmklachten"
+
+
 #: apps/survey/views.py:222
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "

@@ -458,6 +458,15 @@ msgstr "Sintomas não específicos"
 msgid "Unknown"
 msgstr "Desconhecido"
 
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr ""
+
+msgid "Allergy / hay fever"
+msgstr ""
+
+msgid "Common cold and gastrointestinal symptoms"
+msgstr ""
+
 #: apps/survey/views.py:222
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
