@@ -181,6 +181,7 @@ INSTALLED_APPS = (
     'apps.municipal',
     'apps.sw_feedback',
     'apps.sw_auth',
+    'apps.sw_cohort',
 #    'apps.contest',
     #'apps.captcha',
     #'apps.tellafriend',

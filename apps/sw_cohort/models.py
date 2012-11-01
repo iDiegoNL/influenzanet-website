@@ -19,7 +19,7 @@ class CohortUser(models.Model):
 class Token(models.Model):
     cohort = models.ForeignKey(Cohort)
     token = models.CharField(max_length=30, unique=True)
-    usage_left = models.IntegerField(min=1, null=True, blank=True)
+    usage_left = models.PositiveIntegerField(null=True, blank=True)
     valid_until = models.DateField(null=True)
     
     class TokenException(Exception):

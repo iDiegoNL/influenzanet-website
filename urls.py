@@ -78,7 +78,8 @@ if settings.MOBILE_INTERFACE_ACTIVE:
 urlpatterns += patterns('', 
     url(r'^municipal/', include('apps.municipal.urls')),
     url(r'^feedback/', include('apps.sw_feedback.urls')),
-    (r'^news/', include('apps.journal.urls')),
+    url(r'^news/', include('apps.journal.urls')),
+    url(r'^cohort/', include('apps.sw_cohort.urls')),
 )
 
 # Catchall

@@ -17,23 +17,8 @@ def render_template(name, request, context=None):
     )
 
 
-
-@login_required
-def form(request):
-    users = SurveyUser.objects.filter(user=request.user)
-    return render_template('form',request, { 'users':users} )
-
-# register a user to a cohort
-@login_required
 @transaction.commit_manually()
-def register(request):
-    gid = request.GET.get('gid',None)
-    token = request.GET.get('token', None)
-    if token is None:
-        messages.error(_('token not provided'))
-    if gid is None or token is None:
-        messages.error('User n')
-        return redirect(reverse('cohort_form'))
+def do_register(gid, token):
     cohort = None
     try:
         user = SurveyUser.objects.get(global_id=gid)
@@ -48,8 +33,28 @@ def register(request):
         cohort = token.cohort
     except Token.DoesNotExist:
         messages.error(_('invalid token'))
-        transaction.rollback()
     except Token.TokenException as e:
         messages.error(str(e))
-        transaction.rollback()
+    except Exception:
+        pass
+    if not cohort:
+            transaction.rollback()
+    return cohort
+
+@login_required
+def form(request):
+    users = SurveyUser.objects.filter(user=request.user)
+    return render_template('form', request, { 'users':users} )
+
+# register a user to a cohort
+@login_required
+def register(request):
+    gid = request.GET.get('gid',None)
+    token = request.GET.get('token', None)
+    if token is None:
+        messages.error(_('token not provided'))
+    if gid is None or token is None:
+        messages.error('User n')
+        return redirect(reverse('cohort_form'))
+    cohort = do_register(gid, token)
     return render_template('register', request, {'cohort':cohort })
