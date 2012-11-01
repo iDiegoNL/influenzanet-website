@@ -28,7 +28,7 @@
 
 <div class="formwrap">
 
-    <br /><hr />
+    <hr />
     <h2>{% trans "Email settings" %}</h1>
     <form action="{% url apps.accounts.views.my_settings %}email/" method="post">{% csrf_token %}
     {{ email_form.as_p }}

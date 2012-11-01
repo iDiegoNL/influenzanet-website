@@ -1405,3 +1405,10 @@ div#page {
  display: none;
 }
 
+/* Cookie Consent */
+
+#cc-notification h2 span,
+#cc-notification a {
+ font-size: 12pt !important;
+}
+
