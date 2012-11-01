@@ -8,6 +8,10 @@ from apps.survey.models import SurveyUser
 class Cohort(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField()
+    
+    def __unicode__(self):
+        return self.title
+
 
 # Register a user in a given cohort
 class CohortUser(models.Model):
@@ -33,4 +37,9 @@ class Token(models.Model):
             if self.valid_until < date.today():
                 raise Token.TokenException(_('this token has expired'))
         self.usage_left = self.usage_left - 1
+        
+    def __unicode__(self):
+        return self.token
+
+
             
