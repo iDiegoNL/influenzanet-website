@@ -13,7 +13,7 @@
 <div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>
 <br />
 {% endif %}
-<form action="" method="POST">{% csrf_token %}
+<form action="" method="POST" id="users_form">{% csrf_token %}
 <table border="0" id="people-table">
 <tr>
 	<th>{% trans "Name" %}</th>
@@ -21,19 +21,18 @@
 </tr>
 {% for person in persons %}
 <tr id="person-{{ person.pk }}">
-	<td class="person-name"><input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }}</td>
-<!--    <td><a href="{{ person.get_edit_url }}">{% trans "Edit" %}</a></td>-->
-    <td><a href="{{ person.get_profile_url }}">{% trans "Background" %}</a></td>
-    <td><a href="{{ person.get_survey_url }}">{% trans "Symptoms" %}</a></td>
+	<td class="person-name"><input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> <a href="{{ person.get_edit_url }}">{{ person.name }}</a></td>
+<!--    <td>{% trans "Edit" %}</a></td>-->
+    <td><a href="{{ person.get_profile_url }}" class="icon icon-survey">{% trans "Background" %}</a></td>
+    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey">{% trans "Symptoms" %}</a></td>
 </tr>
 {% endfor %}
 <tr>
 	<td colspan="5">
-    {%trans "For the checked users"%} <select name="action">
-        <option value="healthy">{% trans "Mark as healthy" %}</option>
-        <option value="delete">{% trans "Delete member(s)" %}</option>
-    </select>
-    <button type="submit">{% trans "Save" %}</button> <span class="tip" title="Test my tooltip">x</span>
+	<input type="hidden" name="action" value="" id="input_action"/>
+	{% trans "For the checked users" %} :
+    <button type="button" onclick="submit_users('healthy')" class="button">{% trans "Mark as healthy" %}</button><span class="tip icon icon-tip" title="{%trans "mark as healthy help text"%}">&nbsp;</span>
+	<button type="button" onclick="submit_users('delete')" class="button">{% trans "Delete member(s)" %}</button>
 	</td>
 
 </tr>
@@ -65,6 +64,7 @@
 {%endcomment%}
 <h2>{%trans "Household diagnosis history" %}</h2>
 <div id="story"></div>
+<p class="info">{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
 <script type="text/javascript">
 var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
 var history = [	
@@ -78,6 +78,16 @@ Story.media = '{{MEDIA_URL}}';
 $(function() {
 	Story.render('#story');
 });
+
+function submit_users(action) {
+	if(action == 'delete') {
+		if( !confirm('{% trans "Delete selected users ?" %}') ) {
+			return;
+		}		
+	}
+	$('#input_action').val(action);
+	$('#users_form').submit();
+}
 
 </script>
 {% endblock %}
