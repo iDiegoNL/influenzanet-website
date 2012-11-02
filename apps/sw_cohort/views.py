@@ -31,6 +31,8 @@ def do_register(gid, token):
         token.save()
         transaction.commit() 
         cohort = token.cohort
+    except SurveyUser.DoesNotExist:
+        messages.error(_('User does not exist'))
     except Token.DoesNotExist:
         messages.error(_('invalid token'))
     except Token.TokenException as e:
