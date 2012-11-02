@@ -1262,15 +1262,16 @@ div.pagination {
   font-weight: bold;
 }
 
-#red-button {
+#page #red-button {
   border-color: #fa2507;
   background-color: #fa2507;
-  color: white;
+  color: white
 }
 
-#blue-button {
+#page #blue-button {
   border-color: #0b31f4;
   background-color: #0b31f4;
+  color: white
 }
 
 /*** PYBBM (Forum) ***/
