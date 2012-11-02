@@ -26,9 +26,14 @@ bundles_js = {
 bundles_css = {
  'assets/base':(
      'base/css/default.css',                         
-     'sw/sw.css',
-     'sw/users.css',
-     'sw/tooltip.css',
+     'sw/css/layout.css',
+     'sw/css/survey.css',
+     'sw/css/journal.css',
+     'sw/css/widgets.css',
+     'sw/css/facebox.css',
+     'sw/css/feedback.css',
+     'sw/css/users.css',
+     'sw/css/tooltip.css',
   )           
 }
 

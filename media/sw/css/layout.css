@@ -228,144 +228,6 @@ background-color: #7AB800;
 table.imagetable td {
 	background-color: #FFF;
 }
-/**
- * Survey
- */
-.codeselect-button {
-border: 1px solid #DDD;
-background-color: #FFF;
-font-size: .8em;
-font-weight: bold;
-padding: .4em;
--webkit-border-radius: .3em;
--moz-border-radius: .3em;
-border-radius: .3em;
-cursor: pointer;
-}
-
-.codeselect-button:hover {
-background-color: #DDD;
-color: white;
-}
-
-.codeselect-title {
-padding: .3em;
-padding-left: 18px;
--webkit-border-radius: .3em;
--moz-border-radius: .3em;
-border-radius: .3em;
-border: 1px solid #DDD;
-margin: auto .2em;
-font-size: .9em;
-background: #FFF url(home.png) left center no-repeat;
-}
-
-#zip_codelist li {
- padding-top: 5px;
- padding-left: 20px;
- background: #FFF url(home.png) left center no-repeat;
- font-size: 1em;
- cursor: pointer;
-}
-
-#zip_codelist li:hover {
- color: #6D84B4;
-}
-
-#zip_warning {
-	font-size: .8em;
-}
-
-input[type="submit"] {
-padding: .4em;
--webkit-border-radius: .3em;
--moz-border-radius: .3em;
-border-radius: .3em;
-}
-
-.survey label {
-cursor: pointer;
-}
-
-.survey label:hover {
-color: #007AB8;
-}
-
-
-#survey-title {
-text-align: center;
-margin: 1em;
-font-weight: bold;
-color: #007AB8;		
-}
-
-#col1 .question { /* Hack to make priority higher*/
-width: 80%;
-}
-
-#col1 .survey-message {
-width: 512px;
-}
-
-#col1 table.matrix th {
-font-size: 11px;
-padding: .3em;
-}
-
-/**
- * Facebox
- */
-#facebox {
-z-index:9999;
-display:none;
-width:400px;
-border:10px solid #666;
-border:10px solid rgba(82, 82, 82, 0.698);
--moz-border-radius:8px;
--webkit-border-radius:8px;
-border-radius:8px;
-}
-
-#facebox h2 {
-margin:-11px;
-margin-bottom:5px;
-color:#fff;
-background-color:#6D84B4;
-padding:5px 10px;
-border:1px solid #3B5998;
-font-size:20px;
-}
-
-#facebox-inner {
-position: relative;
-border:1px solid #3B5998;
-background-color:#fff;
-font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
-padding: 10px;
-overflow: auto;
-}
-
-#facebox-close {
-text-align: right;
-border: 0;
-font-size: .8em;
-color: white;
-font-weight: bold;
-}
-
-#facebox p {
- margin: 1em 0 1em 0;
- line-height: 1.5em;
-}
-
-p#passwd-reset {
- text-align: center;
-}
-
-form.contact_form label, input#id_name, input#id_email, textarea#id_body {
-	clear: none;
-	float: none;
-}
 
 
 /**
@@ -373,7 +235,7 @@ form.contact_form label, input#id_name, input#id_email, textarea#id_body {
  */
 
 #influenzabar {
- background: #ffffff url(../base/img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
+ background: #ffffff url(../../base/img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
 }
 
 .ie7 #influenzabar {
@@ -389,12 +251,12 @@ p.influenzanet {
 }
 
 p.toggle {
- background: url(../base/img/influbar/closed.png) top left no-repeat;
+ background: url(../../base/img/influbar/closed.png) top left no-repeat;
  cursor: pointer;
 }
 
 p.expanded {
- background: url(../base/img/influbar/opened.png) top left no-repeat;
+ background: url(../../base/img/influbar/opened.png) top left no-repeat;
  cursor: pointer;
 }
 
@@ -438,91 +300,38 @@ div.influenzabarcontent{
 }
 
 /**
- * journal
+ * Forms
  */
-dd,dt {
-margin: 0;
-padding: 0;
-font-size: .7em;
+.button {
+ border: 1px solid #EEE;
+ padding: 3px;
+ border-radius: 3px;
+ cursor: pointer;	
 }
 
-.journal-latest dt {
-font-weight: bold;
+.button:hover {
+	background-color: #DDD;
+	color: white;
+} 
+
+#contact_form input[type=text] {
+	border: 1px solid #DDD;
+	padding: 3px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 }
 
-.journal-latest dd {
-	border-bottom: 1px solid #EEE;
+p#passwd-reset {
+ text-align: center;
 }
 
-.journal-entry-footer {
-text-align: right;
-font-size: .8em;
-color: #999;
+
+
+form.contact_form label, input#id_name, input#id_email, textarea#id_body {
+	clear: none;
+	float: none;
 }
-
-.journal-entry-excerpt {}
-.journal-entry-pubdate { color: #999; }
-
-
-/**
- * Externals
- */
-
-#sentiweb-widget ul {
- margin-left: 0px;
- padding-left: 0px;
-}
-
-#sentiweb-widget li {
- margin-top: .5em;
- font-size: .7em;
-}
-
-.icon-sentiweb, .icon-invs, .icon-grog, .icon-qmark {
- padding-left: 40px;
- line-height: 35px;
- background: #FFF url() left center no-repeat;
-}
-.icon-sentiweb { background-image: url(logos/sentiweb-xs.gif) }
-.icon-invs { background-image: url(logos/invs-xs.gif) }
-.icon-grog { background-image: url(logos/grog-xs.gif) }
-.icon-qmark { background-image: url(logos/grippenet-qmark.png) }
-
-#social-widgets {
-margin: .5em 0;
-padding:0; 
-max-width: 300px;
-}
-
-.widget-disabled {
-color: #666;
-border: 1px solid #EEE;
-border-radius: .4em;
-padding: .4em;
-font-size: .6em;
-text-align: justify;
-}
-
-#feedback {
-font-size: .7em;
-margin: .5em .3em;
-padding: .3em;
-border:1px solid #DDD;
--moz-border-radius:3px;
--webkit-border-radius:3px;
-border-radius:3px;
-padding: .3em;
-background-color: #FFF;
-}
-
-#feedback a {
-text-decoration:none;
-color: #007AB8;	
-}
-
-/**
- * Misc
- */
 
 img.top-page {
 position: relative;
@@ -537,17 +346,17 @@ padding: .3em 0 .3em 26px;
 background: #FFF url() left center no-repeat;
 }
 
-.flag-nl {background-image: url(../base/img/influbar/nl.png)}
-.flag-be {background-image: url(../base/img/influbar/be.png)}
-.flag-de {background-image: url(../base/img/influbar/de.png)}
-.flag-at {background-image: url(../base/img/influbar/at.png)}
-.flag-ch {background-image: url(../base/img/influbar/ch.png)}
-.flag-se {background-image: url(../base/img/influbar/se.png)}
-.flag-uk {background-image: url(../base/img/influbar/gb.png)}
-.flag-fr {background-image: url(../base/img/influbar/fr.png)}
-.flag-pt {background-image: url(../base/img/influbar/pt.png)}
-.flag-es {background-image: url(../base/img/influbar/es.png)}
-.flag-it {background-image: url(../base/img/influbar/it.png)}
+.flag-nl {background-image: url(../../base/img/influbar/nl.png)}
+.flag-be {background-image: url(../../base/img/influbar/be.png)}
+.flag-de {background-image: url(../../base/img/influbar/de.png)}
+.flag-at {background-image: url(../../base/img/influbar/at.png)}
+.flag-ch {background-image: url(../../base/img/influbar/ch.png)}
+.flag-se {background-image: url(../../base/img/influbar/se.png)}
+.flag-uk {background-image: url(../../base/img/influbar/gb.png)}
+.flag-fr {background-image: url(../../base/img/influbar/fr.png)}
+.flag-pt {background-image: url(../../base/img/influbar/pt.png)}
+.flag-es {background-image: url(../../base/img/influbar/es.png)}
+.flag-it {background-image: url(../../base/img/influbar/it.png)}
 
 #feedback_map .chart {
 	width: 750px;

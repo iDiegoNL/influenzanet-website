@@ -78,12 +78,13 @@
  background: #FFF url() left center no-repeat;
 }
 
-.icon-users { background-image: url(users.png)}
-.icon-survey { background-image: url(survey.png)}
-.icon-settings { background-image: url(settings.png)}
-.icon-password { background-image: url(password.png)}
-.icon-feeback { background-image:url(avis.png)}
-.icon-logout { background-image:url(logout.png)}
+.icon-users { background-image: url(../users.png)}
+.icon-survey { background-image: url(../survey.png)}
+.icon-settings { background-image: url(../settings.png)}
+.icon-password { background-image: url(../password.png)}
+.icon-feeback { background-image:url(../avis.png)}
+.icon-logout { background-image:url(../logout.png)}
+.icon-tip { background-image:url(../help-tip.png) }
 
 
 /* People / Group management pages */
@@ -118,7 +119,7 @@
 
 .action-add-people {
 	padding: 2px 2px 2px 18px;
-	background: white url(user-add.png) left center no-repeat;
+	background: white url(../user-add.png) left center no-repeat;
 }
 
 
