@@ -1,0 +1,45 @@
+div#qTip {
+ padding: 6px 6px 8px 6px;
+ border: 1px solid #666;
+ display: none;
+ background: #999;
+ color: #FFF;
+ font: bold 9px Verdana, Arial, sans-serif;
+ text-align: left;
+ position: absolute;
+ z-index: 1000;
+ max-width: 250px;
+}
+
+div#qTip em {
+ color: #FFF;
+ font: bold 12px Verdana, Arial, sans-serif;
+ display: block;
+ margin: 0 0 6px 0;
+}
+
+div#qTip em + em {
+ margin: 8px 0 6px 0;
+}
+
+div#hoverinfo {
+ float: right;
+ height: 25px;
+ width: 25px;
+ margin: -2px -4px 0 0;
+}
+
+.hoverinfo {
+ cursor: pointer;
+ filter:alpha(opacity=40);
+ -moz-opacity:0.4;
+ -khtml-opacity: 0.4;
+ opacity: 0.4;
+}
+
+.hoverinfo:hover {
+ filter:alpha(opacity=100);
+ -moz-opacity: 1;
+ -khtml-opacity: 1;
+ opacity: 1;
+}

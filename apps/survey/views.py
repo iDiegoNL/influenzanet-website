@@ -39,19 +39,20 @@ def get_active_survey_user(request):
             raise ValueError()
 
 def _decode_person_health_status(status):
-    if status == "NO-SYMPTOMS":
-        diag = _('No symptoms')
-    elif status == "ILI":
-        diag = _('Flu symptoms')
-    elif status == "COMMON-COLD":
-       diag = _('Cold / allergy')
-    elif status == "GASTROINTESTINAL":
-       diag = _('Gastrointestinal symptoms')
-    elif status == "NON-INFLUENZA":
-       diag = _('Other non-influenza symptons')
-    else:
-       diag = _('Unknown')
-    return diag
+    d = {
+        "NO-SYMPTOMS":                                  _('No symptoms'),
+        "ILI":                                          _('Flu symptoms'),
+        "COMMON-COLD":                                  _('Common cold'),
+        "GASTROINTESTINAL":                             _('Gastrointestinal symptoms'),
+        "ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL":    _('Allergy / hay fever and gastrointestinal symptoms'),
+        "ALLERGY-or-HAY-FEVER":                         _('Allergy / hay fever'), 
+        "COMMON-COLD-and-GASTROINTESTINAL":             _('Common cold and gastrointestinal symptoms'),
+        "NON-SPECIFIC-SYMPTOMS":                        _('Other non-influenza symptons'),
+    }
+    if status in d:
+        return d[status]
+
+    return _('Unknown')
 
 def _get_person_health_status(request, survey, global_id):
     data = survey.get_last_participation_data(request.user.id, global_id)
@@ -266,7 +267,6 @@ def profile_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 def main_index(request):
-    print 'main happens'
     # the generalness of the name of this method reflects the mess that the various
     # indexes have become. 
 
