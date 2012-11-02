@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-02 16:55+0100\n"
+"POT-Creation-Date: 2012-11-02 19:46+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -482,9 +482,8 @@ msgid "Allergy / hay fever"
 msgstr "Allergies"
 
 #: .\apps\survey\views.py:48
-#, fuzzy
 msgid "Common cold and gastrointestinal symptoms"
-msgstr "Symptômes gastro-intestinaux"
+msgstr "Symptômes gastro-intestinaux et/ou rhume"
 
 #: .\apps\survey\views.py:49
 msgid "Other non-influenza symptons"
@@ -508,19 +507,17 @@ msgid "A new person has been added."
 msgstr "Une nouvelle personne a été ajoutée."
 
 #: .\apps\sw_auth\forms.py:29
-#, fuzzy
 msgid "Email address"
 msgstr "Adresse email :"
 
 #: .\apps\sw_auth\forms.py:31 .\templates\accounts\my_settings.html.py:39
-#, fuzzy
 msgid "Password"
 msgstr "Réinitialisation du mot de passe"
 
 #: .\apps\sw_auth\forms.py:33
 #, fuzzy
 msgid "Password (again)"
-msgstr "Changement du mot de passe"
+msgstr "Changement du mot de passe (confirmation)"
 
 #: .\apps\sw_auth\forms.py:45
 msgid "A user with that username already exists."
@@ -539,7 +536,6 @@ msgid "The two password fields didn't match."
 msgstr "Le mot de passe saisi et sa confirmation ne correspondent pas."
 
 #: .\apps\sw_auth\forms.py:73
-#, fuzzy
 msgid "E-mail"
 msgstr "Email"
 
@@ -552,39 +548,35 @@ msgstr ""
 "d'être inscrit avec cette adresse ?"
 
 #: .\apps\sw_auth\forms.py:92
-#, fuzzy
 msgid "New password"
 msgstr "Nouveau mot de passe :"
 
 #: .\apps\sw_auth\forms.py:93
-#, fuzzy
 msgid "New password confirmation"
-msgstr "Nouveau mot de passe :"
+msgstr "Confirmation du nouveau mot de passe :"
 
 #: .\apps\sw_auth\models.py:78 .\apps\sw_auth\models.py:80
 msgid "username"
 msgstr "Nom de l'utilisateur"
 
 #: .\apps\sw_auth\models.py:79
-#, fuzzy
 msgid "e-mail address"
 msgstr "Adresse email :"
 
 #: .\apps\sw_auth\models.py:81
-#, fuzzy
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
 #: .\apps\sw_auth\views.py:88
-#, fuzzy, python-format
+#, python-format
 msgid "Password reset on %s"
-msgstr "Réinitialisation du mot de passe"
+msgstr "Réinitialisation du mot de passe le"
 
-#: .\apps\sw_cohort\models.py:35
+#: .\apps\sw_cohort\models.py:36
 msgid "No usage left for this token"
 msgstr "Ce ticket d'inscription n'est plus disponible"
 
-#: .\apps\sw_cohort\models.py:38
+#: .\apps\sw_cohort\models.py:39
 msgid "this token has expired"
 msgstr "Ticket d'inscription au groupe expiré"
 
@@ -690,13 +682,12 @@ msgid "Error"
 msgstr "Erreur"
 
 #: .\templates\500.html.py:8
-#, fuzzy
 msgid ""
 "An unexpected system error has occured. We apologize for the inconvenience. "
 "Go to"
 msgstr ""
 "Une erreur inattendue est survenue. Nous nous excusons pour ce désagrément. "
-"Retour à la page d'"
+"Retour à la page "
 
 #: .\templates\accounts\logged_out.html.py:4
 #: .\templates\registration\logout.html.py:4
@@ -712,21 +703,18 @@ msgstr "Vous avez été déconnecté. Retour à la page d'"
 
 #: .\templates\accounts\my_profile.html.py:4
 #: .\templates\accounts\partials\usermenu.html.py:16
-#, fuzzy
 msgid "My profile"
 msgstr "Profil"
 
 #: .\templates\accounts\my_profile.html.py:32
-#, fuzzy
 msgid "My Profile"
 msgstr "Profil"
 
 #: .\templates\accounts\my_settings.html.py:4
 #: .\templates\accounts\my_settings.html.py:21
 #: .\templates\accounts\partials\usermenu.html.py:19
-#, fuzzy
 msgid "Account settings"
-msgstr "Activation du compte"
+msgstr "Parametres du compte"
 
 #: .\templates\accounts\my_settings.html.py:24
 #: .\templates\sw_auth\my_settings.html.py:9
@@ -742,7 +730,6 @@ msgstr "Paramètres du site"
 #: .\templates\accounts\my_settings.html.py:42
 #: .\templates\accounts\my_settings.html.py:49
 #: .\templates\survey\group_management.html.py:64
-#: .\templates\survey\group_management_sw.html.py:36
 #: .\templates\survey\people_edit.html.py:10
 #: .\templates\sw_auth\my_settings.html.py:17
 msgid "Save"
@@ -1393,17 +1380,17 @@ msgid "Change profile"
 msgstr "Changer le profil"
 
 #: .\templates\survey\group_management.html.py:61
-#: .\templates\survey\group_management_sw.html.py:33
+#: .\templates\survey\group_management_sw.html.py:34
 msgid "Mark as healthy"
 msgstr "Marquer en bonne santé"
 
 #: .\templates\survey\group_management.html.py:62
-#: .\templates\survey\group_management_sw.html.py:34
+#: .\templates\survey\group_management_sw.html.py:35
 msgid "Delete member(s)"
 msgstr "Effacer"
 
 #: .\templates\survey\group_management.html.py:69
-#: .\templates\survey\group_management_sw.html.py:68
+#: .\templates\survey\group_management_sw.html.py:67
 #: .\templates\survey\thanks.html.py:62
 msgid ""
 "The flu status of each participant is based on the symptoms you reported. "
@@ -1450,25 +1437,34 @@ msgstr "Préliminaire"
 msgid "Symptoms"
 msgstr "Hebdomadaire"
 
-#: .\templates\survey\group_management_sw.html.py:32
+#: .\templates\survey\group_management_sw.html.py:33
 msgid "For the checked users"
 msgstr "Pour les participants cochés"
 
-#: .\templates\survey\group_management_sw.html.py:36
-msgid "People management help text"
+#: .\templates\survey\group_management_sw.html.py:34
+msgid "mark as healthy help text"
 msgstr ""
+"Ce bouton vous permet de remplir automatiquement le questionnaire "
+"hebdomadaire en indiquant que ces participants n'ont présentés <b>aucun "
+"symptome</b> depuis leur dernier questionnaire.\nSi un des participants a "
+"présenté au moins un symptome, merci de remplir un questionnaire pour ce "
+"participant."
 
-#: .\templates\survey\group_management_sw.html.py:43
+#: .\templates\survey\group_management_sw.html.py:42
 msgid "Add new person"
 msgstr "Ajouter un nouveau participant"
 
-#: .\templates\survey\group_management_sw.html.py:44
+#: .\templates\survey\group_management_sw.html.py:43
 msgid "Register a participant in a Cohort"
 msgstr "Inscrivez un participant à un sous-projet de GrippeNet.fr"
 
-#: .\templates\survey\group_management_sw.html.py:66
+#: .\templates\survey\group_management_sw.html.py:65
 msgid "Household diagnosis history"
 msgstr "Historique des états de santé"
+
+#: .\templates\survey\group_management_sw.html.py:84
+msgid "Delete selected users ?"
+msgstr "Supprimer les participants selectionnés ?"
 
 #: .\templates\survey\index.html.py:16
 msgid "Survey Form"
@@ -1483,10 +1479,7 @@ msgstr "Merci d'avoir enregistré ce formulaire."
 msgid "Add Person"
 msgstr "Ajouter un participant à votre compte"
 
-#: .\templates\survey\people_edit.html.py:5
-msgid "Edit Person"
-msgstr "Editer la fiche de ce participant"
-
+#: .\templates\survey\people_add.html.py:6
 #: .\templates\survey\people_edit.html.py:6
 msgid ""
 "This form allow you to customize the way this participant is named. In order "
@@ -1497,6 +1490,10 @@ msgstr ""
 "de préserver l'anonymat des utilisateur de GrippeNet, nous vous conseillons "
 "fortement à n'utiliser que des surnoms et des prénom et à éviter tout nom de "
 "famille ou mail. Ces informations ne sont pas utilisées lors des analyses."
+
+#: .\templates\survey\people_edit.html.py:5
+msgid "Edit Person"
+msgstr "Editer la fiche de ce participant"
 
 #: .\templates\survey\people_remove.html.py:5
 msgid "Confirm removal"
@@ -1639,7 +1636,7 @@ msgstr ""
 
 #: .\templates\sw_cohort\form.html.py:17
 msgid "Select the participant to register"
-msgstr "Cochez l'utilisateur que vous souhaiter inscrire"
+msgstr "Cochez l'utilisateur que vous souhaitez inscrire"
 
 #: .\templates\sw_cohort\form.html.py:23
 msgid "Enter the token"
@@ -1650,8 +1647,8 @@ msgid "valider"
 msgstr "Valider"
 
 #: .\templates\sw_cohort\register.html.py:6
-msgid "You have been registred in the cohort :"
-msgstr ""
+msgid "The participant have been registred in the cohort :"
+msgstr "Le participant a bien été inscrit au sous-projet GrippeNet"
 
 #: .\templates\sw_cohort\register.html.py:9
 msgid "Problem occured during registration, try later or contact us"
