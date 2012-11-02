@@ -55,8 +55,13 @@ $(function() {
 		show_facebox({iframe: {src: url, style: style}, top: 0 });
 		return false;
 	});
+	
+	$('.tip').tooltip();
+	
 	var from = escape(document.location.pathname);
 	$('#feedback-link').attr('href', '/feedback?from='+from);
+	
+	
 });
 
 function show_facebox(options) {

@@ -1,0 +1,135 @@
+/*
+ * user
+ */
+#user-buttons a {
+	display: block;
+	margin: .8em;
+	padding: 1em;
+	border: 1px solid #EEE;
+	border-radius: .4em;
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+	color: white;
+	text-align: center;
+	font-size: .8em;
+}
+
+#login-button {
+	border-color: #007AB8;
+	background-color: #007AB8;
+}
+
+#register-button {
+	border-color: #7AB800;
+	background-color: #7AB800;
+}
+
+#user-box {
+	padding: .5em;
+	border: 1px solid #EEE;
+	border-radius: .4em;
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+}
+
+#user-buttons > p {
+ text-align: center;
+}
+
+#user-box table {
+	border: 0;
+}
+
+#user-avatar {
+	float: left;
+	margin: .2em;
+}
+
+#user-login {
+	text-align: left;
+	padding: .3em;
+	font-size: .7em;
+}
+
+#user-action {
+	text-align: left;
+}
+
+#user-action span {
+	display: block;
+	font-size: .8em;
+}
+
+#user-box{}
+
+#user-box ul {
+	margin: 0; padding: 0;	
+}
+
+#user-box li {
+	list-style-type: none;
+	font-size: .7em;
+	margin: .8em .2em .5em .4em;
+	line-height: 1.4em;
+} 
+
+.icon {
+ padding-left: 20px;
+ background: #FFF url() left center no-repeat;
+}
+
+.icon-users { background-image: url(users.png)}
+.icon-survey { background-image: url(survey.png)}
+.icon-settings { background-image: url(settings.png)}
+.icon-password { background-image: url(password.png)}
+.icon-feeback { background-image:url(avis.png)}
+.icon-logout { background-image:url(logout.png)}
+
+
+/* People / Group management pages */
+.people-actions {
+	text-align: left;
+}
+
+.people-actions li {
+	list-style-type: none;
+}
+
+#people-table {
+	font-size: .8em;
+	width: 80%;
+	margin: .5em auto;
+}
+
+#people-table th, #people-table td {
+	border: 1px solid #ddd;
+	border-width: 0 0 1px 1px;
+	text-align: center;
+}
+
+#people-table td {
+	padding: .4em;
+}
+
+#people-table td.person-name {
+	 text-align: left;
+	 white-space: nowrap;
+}
+
+.action-add-people {
+	padding: 2px 2px 2px 18px;
+	background: white url(user-add.png) left center no-repeat;
+}
+
+
+#story td {
+	font-size: .9em;
+	text-align: center;
+	padding: .3em;
+	border-bottom: 1px solid #EEE;
+	border-right: 1px solid #EEE;
+}
+
+#story td.date {
+ text-align:left;
+}	

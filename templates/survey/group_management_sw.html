@@ -1,0 +1,84 @@
+{% extends "survey/base.html" %}
+{% load i18n %}
+
+{%block add_js%}
+<script src="{{ MEDIA_URL }}/sw/story.js" type="text/javascript"></script>
+{% endblock %}
+{% block col1 %}
+<h1>{% trans "People" %}</h1>
+
+<p>{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}<br><br>
+
+{% if last_survey %}
+<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>
+<br />
+{% endif %}
+<form action="" method="POST">{% csrf_token %}
+<table border="0" id="people-table">
+<tr>
+	<th>{% trans "Name" %}</th>
+	<th colspan="2" style="width:200px">{% trans "Fill a questionnaire" %}</th>
+</tr>
+{% for person in persons %}
+<tr id="person-{{ person.pk }}">
+	<td class="person-name"><input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }}</td>
+<!--    <td><a href="{{ person.get_edit_url }}">{% trans "Edit" %}</a></td>-->
+    <td><a href="{{ person.get_profile_url }}">{% trans "Background" %}</a></td>
+    <td><a href="{{ person.get_survey_url }}">{% trans "Symptoms" %}</a></td>
+</tr>
+{% endfor %}
+<tr>
+	<td colspan="5">
+    {%trans "For the checked users"%} <select name="action">
+        <option value="healthy">{% trans "Mark as healthy" %}</option>
+        <option value="delete">{% trans "Delete member(s)" %}</option>
+    </select>
+    <button type="submit">{% trans "Save" %}</button> <span class="tip" title="Test my tooltip">x</span>
+	</td>
+
+</tr>
+<tr>
+	<td colspan="5" class="people-actions">
+	<ul >
+		<li><a href="{% url survey_people_add %}" class="action-add-people">{% trans "Add new person" %}</a></li>
+		<li><a href="{% url cohort_form %}" class="action-cohort">{% trans "Register a participant in a Cohort" %}</a></li>
+	</ul>
+	</td>
+</tr>
+</table>
+</form>
+{% comment %}
+<div id="history">
+<dl>
+	{% for person in persons %}
+	<dt>{{person.name}}</dt>
+	<dd>
+	<ul>
+	{% for health_line in person.health_history %}
+      <li>{{ health_line.timestamp|date:"d/m" }}<img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" /></li>
+    {% endfor %}
+	</ul>
+	</dd>
+    {% endfor %}
+</dl>            
+</div>	
+{%endcomment%}
+<h2>{%trans "Household diagnosis history" %}</h2>
+<div id="story"></div>
+<script type="text/javascript">
+var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
+var history = [	
+ {% for h in history %}
+ { date: new Date({{h.timestamp|date:"Y,m,d"}}), diag:'{{ h.diag }}','status':'{{h.status}}', user: '{{h.survey_user.name }}' }{%if not forloop.last%},{%endif%}     
+ {%endfor%}
+];	
+
+Story.media = '{{MEDIA_URL}}';
+
+$(function() {
+	Story.render('#story');
+});
+
+</script>
+{% endblock %}
+

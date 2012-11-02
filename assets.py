@@ -27,6 +27,8 @@ bundles_css = {
  'assets/base':(
      'base/css/default.css',                         
      'sw/sw.css',
+     'sw/users.css',
+     'sw/tooltip.css',
   )           
 }
 
