@@ -40,6 +40,10 @@ var Story = {
 		return '<img src="'+Story.media+'/survey/img/diag-'+s+'-small.png" title="'+ h.diag +'" alt="" />';
 	},
 	
+	ymd: function(d) {
+		return d.getDate()+'-'+ (d.getMonth() + 1) +'-' + d.getFullYear();
+	},
+	
 	render : function(container) {
 		var d = null;
 		var row = {};
@@ -55,11 +59,12 @@ var Story = {
 		n = history.length;
 		for(var i=0; i < n; ++i) {
 			var h = history[i];
-			if( d != h.date ) {
-				if( d != null) {
-					out += Story.buildRow(d, row);
-					row = {};
-				}
+			if(i == 0)  {
+				d = h.date;
+			}
+			if( Story.ymd(d) != Story.ymd(h.date) ) {
+				out += Story.buildRow(d, row);
+				row = {};
 				d = h.date;	
 			}
 			row[ h.user ] = Story.buildDiag(h);
