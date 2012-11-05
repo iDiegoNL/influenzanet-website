@@ -400,7 +400,6 @@ msgid "Last newsletter from"
 msgstr "Laatste nieuwsbrief van"
 
 #: apps/reminder/templates/reminder/message.html:66
-#, fuzzy, python-format
 msgid ""
 "You have received this email because you are registered with %(site_name)s. "
 "Your contribution helps us track the spread of flu. If you do not wish to "
@@ -463,7 +462,6 @@ msgstr "Symptomen die passen bij allergie/hooikoorts"
 
 msgid "Common cold and gastrointestinal symptoms"
 msgstr "Symptomen die passen bij verkoudheid en maag-/darmklachten"
-
 
 #: apps/survey/views.py:222
 msgid ""
@@ -1226,7 +1224,7 @@ msgstr "Dank voor het aanpassen van uw profiel"
 
 #: templates/survey/thanks_profile.html:12
 msgid "Please, if you have not already done so, fill in"
-msgstr "Vul in, als u dat nog niet heeft gedaan"
+msgstr "Als u wilt, kunt u nu een meting doen met<br />"
 
 #: templates/survey/thanks_profile.html:18
 msgid "the symptoms questionaire"
