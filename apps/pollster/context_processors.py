@@ -12,4 +12,9 @@ def last_survey(request):
     if not history:
         return {}
 
-    return {'last_survey': history[-1]}
+    surveyuser_qs = request.user.surveyuser_set.filter(deleted=False)
+    return {
+        'last_survey': history[-1],
+        'surveyuser_count': surveyuser_qs.count(),
+        'surveyuser_gid': surveyuser_qs.get().global_id if surveyuser_qs.count() == 1 else None,
+    }
