@@ -2,18 +2,27 @@
 {% load i18n %}
 
 {% block col1 %}
-<p>{% trans "Thanks for changing your profile," %}
+<h1>{% trans "Thanks for changing your profile," %}
 {% if person %}
-{{ person }}
+{{ person }}.
 {% else %}
-{{ user }}
+{{ user }}.
 {% endif %}
-</p>
-{% trans "Please, if you have not already done so, fill in" %}
+</h1>
+<p>{% trans "Please, if you have not already done so, fill in" %}
 {% if person %}
 <a href="/survey/?gid={{person.global_id}}">
 {% else %}
 <a href="/survey/">
 {% endif %}
 {% trans "the symptoms questionaire" %}</a>.
+</p>
+{% endblock %}
+
+
+{% block col2 %}
+
+<p class="title">{% trans "Influenza virus" %}</p>
+<img src="{{ MEDIA_URL }}base/img/main/virus.jpg" alt="EM of influenza virus" title="Influenza virus" class="topspace" />
+
 {% endblock %}
