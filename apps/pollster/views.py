@@ -193,7 +193,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
         form = survey.as_form()(data)
         if form.is_valid():
             form.save()
-            next_url = next or _get_next_url(request, reverse(survey_run, kwargs={'shortname': shortname}))
+            next_url = next or _get_next_url(request, reverse("survey_run", kwargs={'shortname': shortname}))
             if global_id:
                 # add or override the 'gid' query parameter
                 next_url_parts = list(urlparse.urlparse(next_url))

@@ -273,8 +273,14 @@ def main_index(request):
     # this is the one that does the required redirection for the button 'my account'
     # i.e. to group if there is a group, to the main index otherwise
 
-    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() != 1:
+    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))
+
+    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
+        survey_user = models.SurveyUser.objects.create(
+            user=request.user,
+            name=request.user.username,
+        )
 
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
     return HttpResponseRedirect(reverse(index) + '?gid=' + gid)

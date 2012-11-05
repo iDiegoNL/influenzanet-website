@@ -56,7 +56,7 @@ LANGUAGES = (
    ('nl', u'Nederlands'),
    ('it', u'Italiano'),
    ('sv', u'Svenska'),
-   ('pt', u'Português'),
+   ('pt', u'Portugues'),
    ('es', u'Español'),
 )
 
@@ -119,6 +119,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "pybb.context_processors.processor",
     "django.core.context_processors.static",
     "apps.pollster.context_processors.last_survey",
+    "apps.pollster.context_processors.surveyuser_count",
 )
 
 CMS_TEMPLATES = (
