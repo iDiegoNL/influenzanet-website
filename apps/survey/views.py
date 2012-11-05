@@ -160,7 +160,7 @@ def group_management(request):
         person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
         person.is_female = _get_person_is_female(person.global_id)
 
-    return render_to_response('survey/group_management.html', {'person': survey_user, 'persons': persons, 'history': history},
+    return render_to_response('survey/group_management.html', {'person': survey_user, 'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
                               context_instance=RequestContext(request))
 
 

@@ -51,7 +51,7 @@
 
 
         	{% for person in persons %}
-            <div class="accordionButton">
+            <div class="accordionButton" {% if person.global_id == gid %}id="open"{% endif %}>
                 <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="#show">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
             </div>
             
