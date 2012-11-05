@@ -14,9 +14,8 @@
         {% if surveyuser_count == 1%}
         <li><i class="icon-list-ul"></i> <a href="{% url apps.survey.views.index %}?gid={{ surveyuser_gid }}">{% trans "Weekly survey" %}</a></li>
         <li><i class="icon-edit"></i> <a href="{% url apps.survey.views.profile_index %}">{% trans "My profile" %}</a></li>
-        {% else %}
-        <li><i class="icon-user"></i> <a href="{% url apps.survey.views.group_management %}">{% trans "Your results" %}</a></li>
         {% endif %}
+        <li><i class="icon-user"></i> <a href="{% url apps.survey.views.group_management %}">{% trans "Your results" %}</a></li>
         <li><i class="icon-cog"></i> <a href="{% url apps.accounts.views.my_settings %}">{% trans "Account settings" %}</a></li>
         <li><i class="icon-off"></i> <a href="{% url django.contrib.auth.views.logout %}">{% trans "Log out" %}</a></li>
     </ul>
