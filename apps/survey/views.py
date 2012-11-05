@@ -276,11 +276,10 @@ def main_index(request):
         return HttpResponseRedirect(reverse(group_management))
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
-        try:
-            survey = pollster.models.Survey.get_by_shortname('intake')
-        except:
-            raise Exception("The survey application requires a published survey with the shortname 'intake'")
-        return pollster_views.survey_run(request, survey.shortname)
+        survey_user = models.SurveyUser.objects.create(
+            user=request.user,
+            name=request.user.username,
+        )
 
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
     return HttpResponseRedirect(reverse(index) + '?gid=' + gid)
