@@ -15,7 +15,7 @@ class GoogleAnalyticsNode(Node):
         if not hasattr(settings, 'GOOGLE_ANALYTICS_ACCOUNT') or settings.GOOGLE_ANALYTICS_ACCOUNT is None:
             return ""
 
-        return """<script type="text/javascript">
+        return """{% if show_cookie_warning %}<script type="text/plain" class="cc-onconsent-analytics">{% else %}<script type="text/javascript">{% endif %}
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '%s']);
   _gaq.push(['_setDomainName', 'none']);

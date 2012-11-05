@@ -20,8 +20,7 @@
 
 <p class="title">{% trans "Join the survey" %}</p>
 
-<p><strong>You will need a working email address in order to register for the flusurvey.</strong></p>
-<p>Choose a username consisting of numbers, letters and/or underscores (no spaces) and a password.<br />
-If you have forgotten your password or username, you can <a href="{% url django.contrib.auth.views.password_reset %}">request a new password</a> and find out your username.</p>
+<p><strong>{% trans "You will need a working email address in order to register for the flusurvey." %}</strong></p>
+<p>{% trans "Choose a username consisting of numbers, letters and/or underscores (no spaces) and a password.<br />If you have forgotten your password or username, you can" %}<a href="{% url django.contrib.auth.views.password_reset %}">{% trans "request a new password" %}</a> {% trans "and find out your username." %}</p>
 
 {% endblock %}

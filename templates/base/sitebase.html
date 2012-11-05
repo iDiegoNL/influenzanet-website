@@ -24,7 +24,51 @@
 		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/jquery-1.5.1.min.js"></script>
 		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/influenzanet.js"></script>
 		<script type="text/javascript" src="{{ MEDIA_URL }}custom/js/custom.js"></script>
-<!--		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> -->
+<!--	<script type="text/javascript" src="{{ MEDIA_URL }}base/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> -->
+
+		{% if show_cookie_warning %}
+	  	<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}base/js/cconsent/style.min.css"/>
+		<script type="text/javascript" src="{{ MEDIA_URL }}base/js/cconsent/plugin.min.js"></script>
+		<script type="text/javascript">
+		// <![CDATA[
+		cc.initialise({
+			cookies: {
+				social: {},
+				analytics: {},
+				necessary: {}
+			},
+			settings: {
+				bannerPosition: "push",
+				hideprivacysettingstab: true,
+				refreshOnConsent: true,
+				disableallsites: true
+			},
+			strings: {
+				notificationTitle: '{% trans "Your experience on this site will be improved by allowing cookies" %}',
+				allowCookies: '{% trans "Allow cookies" %}',
+				savePreference: '{% trans "Save preference" %}',
+				seeDetails: '{% trans "see details" %}',
+				hideDetails: '{% trans "hide details" %}',
+				necessaryDefaultTitle: '{% trans "Strictly necessary" %}',
+				necessaryDefaultDescription: '{% trans "Some cookies on this website are strictly necessary and can not be disabled." %}',
+				socialDefaultTitle: '{% trans "Social media" %}',
+				socialDefaultDescription: '{% trans "Facebook, Twitter and other social websites need to know who you are to work properly." %}',
+				analyticsDefaultTitle: '{% trans "Analytics" %}',
+				analyticsDefaultDescription: '{% trans "We anonymously measure your use of this website to improve your experience." %}',
+				privacySettingsDialogTitleA: '{% trans "Privacy settings" %}',
+				privacySettingsDialogTitleB: '{% trans "for this website" %}',
+				privacySettingsDialogSubtitle: '{% trans "Some features of this website need your consent to remember who you are." %}',
+				preferenceConsent: '{% trans "I consent" %}',
+				preferenceDecline: '{% trans "I decline" %}',
+				closeWindow: '{% trans "Close window" %}'
+			}
+		});
+		// ]]>
+		</script>
+		<!-- End Cookie Consent plugin -->
+		{% endif %}
+		 
         {% block add_js %}{% endblock add_js %}
         {% render_block "js" %}
 
@@ -133,7 +177,7 @@
             <div id="footerclose">
                 &copy; {% now "Y" %} {{ site_name }} &nbsp;|&nbsp;
                 <span class="disable">{% language_chooser %}</span>
-                <a href="{% url contact_form %}" title="{% trans "Contact us" %}">{% trans "Contact" %}</a>
+                {% if show_cookie_warning %}<a href="#" class="cc-privacy-link">{% trans "Cookie settings" %}</a>  &nbsp;|&nbsp; {% endif %}<a href="{% url contact_form %}" title="{% trans "Contact us" %}">{% trans "Contact" %}</a>
             </div>
 			</div>{% endblock footercontent %}
 		</div>

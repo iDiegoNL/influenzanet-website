@@ -26,11 +26,14 @@
 {% placeholder "Main content" %}
 
 {% if latest_newsletter %}
-<p>{% trans "Last newsletter from" %} {{ latest_newsletter.date.date }}.<br />
-<strong>{{ latest_newsletter.subject }}</strong></p>
+<h3>{% trans "Last newsletter from" %} {{ latest_newsletter.date.date }}:</h3>
+
+<div class="latestnewsletter">
+<span class="title">{{ latest_newsletter.subject }}</span>
+<hr />
 
 {{ message|safe }}
-
+</div>
 {% endif %}
 
 {% endblock %}
