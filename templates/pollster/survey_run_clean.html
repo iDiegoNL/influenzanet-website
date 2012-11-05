@@ -8,13 +8,36 @@
     <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.rules.js"></script>
     <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.virtualoptions.js"></script>
     <script type="text/javascript">$(function() { wok.pollster.createPollsterRuntime(null, {}); })</script>
+    <script type="text/javascript">
+
+     $(document).ready(function() {
+       // Handler for .ready() called.
+        $('input[type=text]').each(function () {
+                var dt = $(this).hasClass('hasDatepicker');
+                    $(this).click(function() {
+                         if(dt){ $(this).blur();  } });
+          });
+        $('.question li').each(function(index) {
+          $(this).bind('mouseover', function() {
+
+                 $(this).css('background','#CE2626 !important');$(this).css('color','#FFF !important');
+          });
+
+          $(this).bind('mouseout', function() {
+                          $(this).css('background','#eee !important');$(this).css('color','#600 !important');
+          });
+       });
+        $('.question li').mousedown(function() {$(this).find('input').click();  });
+        $('input[type=checkbox]').mousedown(function (e) { e.stopPropagation(); });
+        $('input[type=radio]').mousedown(function (e) { e.stopPropagation();});
+        });
+ </script>
 {% endblock %}
 
 {% block content %}
-<div id="wok-main-panel-content">
+<div id="wok-main-panel-content" class="mobile">
 
-{% if messages %}
-<ul class="messages">
+{% if messages %}<ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
@@ -23,4 +46,70 @@
 
 {% include "pollster/questions_run.html" %}
 </div>
+
+
+<style type="text/css">
+body {background:#ccc !important;}
+#cms_toolbar,#influenzabar,#cms_toolbar_spacer{
+display: none !important;
+}
+#cms_toolbar_mini{
+display:none !important;
+}
+.survey-error-message, .question {
+display:inline-block !important;
+margin-left:-10px !important;
+border-radius: 0;
+}
+.question-wrapper{
+width:0px !important;
+}
+#colmid{
+left:0 !important;
+}
+
+.survey-message {
+background : #ccc !important;
+color : #600 !important;
+display :block !important;
+margin-left: -10px !important;
+margin-bottom: 1px !important;
+text-align: center;
+margin-right:-2px;
+border-radius: 0;
+}
+.question {
+background : #CCC !important;
+color : #600 !important;
+}
+.question .title {
+color : #222 !important;
+}
+.question li{
+min-height : 30px !important;
+background: #eee;
+padding: 8px !important;
+margin-bottom:5px !important;
+margin-left:-40px !important;
+vertical-align: middle;
+}
+input#commentsubmit{
+height:3.2em !important;
+min-width:100px !important;
+float: none !important;
+margin-bottom: 5px !important;
+font-size:0.9em !important;
+}
+.question .choices .open-option-data {
+float : none !important;
+width: 80px !important;
+}
+#wok-main-panel-content{
+padding-top:0px !important;
+}
+</style>
 {% endblock %}
+
+
+
+

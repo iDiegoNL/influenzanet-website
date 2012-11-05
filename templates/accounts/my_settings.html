@@ -3,6 +3,20 @@
 
 {% block title %}{{ block.super }} {% trans "Account settings" %}{% endblock %}
 
+{% block add_js %}
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
+{% endblock add_js %}
+
 {% block col1 %}
 <h1>{% trans "Account settings" %}</h1>
 
@@ -14,7 +28,7 @@
 
 <div class="formwrap">
 
-    <br /><hr />
+    <hr />
     <h2>{% trans "Email settings" %}</h1>
     <form action="{% url apps.accounts.views.my_settings %}email/" method="post">{% csrf_token %}
     {{ email_form.as_p }}

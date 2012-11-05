@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.utils.safestring import mark_safe
-from django.utils.translation import to_locale, get_language
+from django.utils.translation import to_locale, get_language, ugettext as _
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
@@ -201,6 +201,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
                 query.update({'gid': global_id, 'survey': survey.shortname})
                 next_url_parts[4] = urllib.urlencode(query)
                 next_url = urlparse.urlunparse(next_url_parts)
+            messages.info(request, _("Thanks for taking the time to fill out this survey."))
             return HttpResponseRedirect(next_url)
         else:
             survey.set_form(form)

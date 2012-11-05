@@ -20,7 +20,8 @@ def latest_newsletter(request):
 
         info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True, 'last_reminder': request.user.date_joined})
         language = info.get_language()
-        inner, message = create_message(request.user, latest_newsletter, language)
+        message, outer_message = create_message(request.user, latest_newsletter, language)
+        #inner, message = create_message(request.user, latest_newsletter, language)
 
     return render_to_response('reminder/latest_newsletter.html', locals(), context_instance=RequestContext(request))
 

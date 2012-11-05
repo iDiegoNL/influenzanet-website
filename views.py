@@ -91,12 +91,11 @@ class LatestEntriesFeed(Feed):
     def item_title(self, item):
         return item.title
 
+    def item_pubdate(self, item):
+        return item.pub_date
+
     def item_description(self, item):
         return item.excerpt
 
     def item_link(self, item):
-        from cms.models import Page
-        qs = Page.objects.filter(reverse_id='news')
-        if not qs:
-            return '/'
-        return qs.get().get_absolute_url() + item.get_relative_url()
+        return '/mobile/' + item.get_relative_url()
