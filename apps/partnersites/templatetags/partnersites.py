@@ -21,7 +21,7 @@ class GoogleAnalyticsNode(Node):
         site = Site.objects.get_current()
         site_settings = SiteSettings.get(site)
 
-        return """<script type="text/plain" class="cc-onconsent-analytics">""" if site_settings.show_cookie_warning else """<script type="text/javascript">""" + \
+        return ("""<script type="text/plain" class="cc-onconsent-analytics">""" if site_settings.show_cookie_warning else """<script type="text/javascript">""") + \
 """  var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '%s']);
   _gaq.push(['_setDomainName', 'none']);
