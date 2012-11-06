@@ -115,6 +115,7 @@ def _get_health_history(request, survey):
              ORDER BY W.timestamp""",
     }
     cursor.execute(queries[utils.get_db_type(connection)], params)
+
     results = cursor.fetchall()
     for ret in results:
         timestamp, global_id, status = ret
@@ -159,7 +160,7 @@ def group_management(request):
         person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
         person.is_female = _get_person_is_female(person.global_id)
 
-    return render_to_response('survey/group_management_sw.html', {'person': survey_user, 'persons': persons, 'history': history},
+    return render_to_response('survey/group_management_sw.html', {'person': survey_user, 'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
                               context_instance=RequestContext(request))
 
 
@@ -271,8 +272,14 @@ def main_index(request):
     # this is the one that does the required redirection for the button 'my account'
     # i.e. to group if there is a group, to the main index otherwise
 
-    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() != 1:
+    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))
+
+    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
+        survey_user = models.SurveyUser.objects.create(
+            user=request.user,
+            name=request.user.username,
+        )
 
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
     return HttpResponseRedirect(reverse(index) + '?gid=' + gid)
