@@ -1,8 +1,7 @@
-{% extends "survey/base.html" %}
 {% load i18n %}
 
 {% block col1 %}
-<h1>{% trans "Edit Person" %}</h1>
+<h2>{% trans "Edit Person" %}</h2>
 <p class="info">{% trans "This form allow you to customize the way this participant is named. In order to preserve privacy we ought you to avoid family name or email. Use surname or given name." %}</p>
 <form method="post" class="contact_form">
 {% csrf_token %}

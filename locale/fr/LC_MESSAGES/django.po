@@ -1387,7 +1387,7 @@ msgstr "Marquer en bonne santé"
 #: .\templates\survey\group_management.html.py:62
 #: .\templates\survey\group_management_sw.html.py:35
 msgid "Delete member(s)"
-msgstr "Effacer"
+msgstr "Supprimer le(s) participant(s)"
 
 #: .\templates\survey\group_management.html.py:69
 #: .\templates\survey\group_management_sw.html.py:67
@@ -1427,7 +1427,7 @@ msgstr "Remplissez un questionnaire"
 
 #: .\templates\survey\group_management_sw.html.py:25
 msgid "Edit"
-msgstr "Afficher"
+msgstr "Modifier"
 
 #: .\templates\survey\group_management_sw.html.py:26
 msgid "Background"
@@ -1487,9 +1487,10 @@ msgid ""
 "or given name."
 msgstr ""
 "Ce formulaire vous permet de modifier le nom attribué à un utilisateur. Afin "
-"de préserver l'anonymat des utilisateur de GrippeNet, nous vous conseillons "
-"fortement à n'utiliser que des surnoms et des prénom et à éviter tout nom de "
-"famille ou mail. Ces informations ne sont pas utilisées lors des analyses."
+"de préserver l'anonymat des utilisateur de GrippeNet.fr, nous vous "
+"conseillons fortement à n'utiliser que des surnoms et des prénom et à éviter "
+"tout nom de famille ou mail. Ces informations ne sont pas utilisées lors des "
+"analyses."
 
 #: .\templates\survey\people_edit.html.py:5
 msgid "Edit Person"
@@ -1648,7 +1649,7 @@ msgstr "Valider"
 
 #: .\templates\sw_cohort\register.html.py:6
 msgid "The participant have been registred in the cohort :"
-msgstr "Le participant a bien été inscrit au sous-projet GrippeNet"
+msgstr "Le participant a bien été inscrit au sous-projet GrippeNet.fr"
 
 #: .\templates\sw_cohort\register.html.py:9
 msgid "Problem occured during registration, try later or contact us"
