@@ -18,6 +18,13 @@ def last_survey(request):
 
 
 def surveyuser_count(request):
+    # not logged in, possibly other cases as well:
+    if not hasattr(request, 'user') or not hasattr(request.user, 'surveyuser_set'):
+        return {
+            'surveyuser_count': 0,
+            'surveyuser_gid': None,
+        }
+
     surveyuser_qs = request.user.surveyuser_set.filter(deleted=False)
     return {
         'surveyuser_count': surveyuser_qs.count(),

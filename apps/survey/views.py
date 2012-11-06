@@ -116,6 +116,7 @@ def _get_health_history(request, survey):
              ORDER BY W.timestamp""",
     }
     cursor.execute(queries[utils.get_db_type(connection)], params)
+
     results = cursor.fetchall()
     for ret in results:
         timestamp, global_id, status = ret
@@ -161,7 +162,7 @@ def group_management(request):
         last_survey = request.GET.get('survey', None)
         person.is_female = _get_person_is_female(person.global_id)
 
-    return render_to_response('survey/group_management.html', {'person': survey_user, 'persons': persons, 'history': history, 'last_survey': last_survey},
+    return render_to_response('survey/group_management.html', {'person': survey_user, 'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'last_survey': last_survey},
                               context_instance=RequestContext(request))
 
 
