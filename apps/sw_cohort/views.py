@@ -9,6 +9,7 @@ from apps.sw_cohort.models import CohortUser
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
+from django.utils.translation import ugettext_lazy as _
 
 def render_template(name, request, context=None):
     return render_to_response('sw_cohort/'+name+'.html',
@@ -18,7 +19,7 @@ def render_template(name, request, context=None):
 
 
 @transaction.commit_manually()
-def do_register(gid, token):
+def do_register(request, gid, token):
     cohort = None
     try:
         user = SurveyUser.objects.get(global_id=gid)
@@ -32,20 +33,20 @@ def do_register(gid, token):
         transaction.commit() 
         cohort = token.cohort
     except SurveyUser.DoesNotExist:
-        messages.error(_('User does not exist'))
+        messages.error(request, _('User does not exist'))
     except Token.DoesNotExist:
-        messages.error(_('invalid token'))
+        messages.error(request, _('invalid token'))
     except Token.TokenException as e:
-        messages.error(str(e))
-    except Exception:
+        messages.error(request, str(e))
+    except:
         pass
-    if not cohort:
-            transaction.rollback()
+    if not cohort or cohort is None:
+        transaction.rollback()
     return cohort
 
 @login_required
 def form(request):
-    users = SurveyUser.objects.filter(user=request.user)
+    users = SurveyUser.objects.filter(user=request.user, deleted=False)
     return render_template('form', request, { 'users':users} )
 
 # register a user to a cohort
@@ -54,9 +55,9 @@ def register(request):
     gid = request.GET.get('gid',None)
     token = request.GET.get('token', None)
     if token is None:
-        messages.error(_('token not provided'))
+        messages.error(request, _('token not provided'))
     if gid is None or token is None:
-        messages.error('User n')
+        messages.error(request, 'User n')
         return redirect(reverse('cohort_form'))
-    cohort = do_register(gid, token)
+    cohort = do_register(request, gid, token)
     return render_template('register', request, {'cohort':cohort })

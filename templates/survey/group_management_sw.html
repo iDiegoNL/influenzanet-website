@@ -22,7 +22,6 @@
 {% for person in persons %}
 <tr id="person-{{ person.pk }}">
 	<td class="person-name"><input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }} <a rel="facebox" href="{{ person.get_edit_url }}" class="button button-mini edit-user" data-facebox-height="360px">{% trans "Edit" %}</a></td>
-<!--    <td>{% trans "Edit" %}</a></td>-->
     <td><a href="{{ person.get_profile_url }}" class="icon icon-survey">{% trans "Background" %}</a></td>
     <td><a href="{{ person.get_survey_url }}" class="icon icon-survey">{% trans "Symptoms" %}</a></td>
 </tr>
