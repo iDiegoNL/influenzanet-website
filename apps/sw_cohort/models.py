@@ -3,6 +3,7 @@ from datetime import date
 
 from apps.survey.models import SurveyUser
 
+
 # Cohort is a group of user
 
 class Cohort(models.Model):
