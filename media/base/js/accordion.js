@@ -19,8 +19,6 @@ $(document).ready(function() {
 	});
 
 	$('div.accordionContent').hide();
-
-	$("div.accordionButton:eq(0)").trigger('click');
 	
     $('div.accordionButton input[type=checkbox]').click(function(evt){
 		evt.stopPropagation();
