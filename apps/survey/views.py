@@ -115,11 +115,7 @@ def _get_health_history(request, survey):
                AND W.user = %(user_id)s
              ORDER BY W.timestamp""",
     }
-    try:
-        cursor.execute(queries[utils.get_db_type(connection)], params)
-    except:
-        # probably: no pollster_results_weekly
-        raise StopIteration
+    cursor.execute(queries[utils.get_db_type(connection)], params)
 
     results = cursor.fetchall()
     for ret in results:
