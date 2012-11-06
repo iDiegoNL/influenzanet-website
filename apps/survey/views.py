@@ -343,7 +343,7 @@ def people_edit(request):
     else:
         form = forms.AddPeople(initial={'name': survey_user.name})
 
-    return render_to_response('survey/people_edit.html', {'form': form},
+    return render_to_response('survey/people_edit.html', {'form': form,'survey_user':survey_user},
                               context_instance=RequestContext(request))
 
 @login_required
