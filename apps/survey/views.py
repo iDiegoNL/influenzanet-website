@@ -75,7 +75,8 @@ def _get_person_health_status(request, survey, global_id):
              WHERE S.pollster_results_weekly_id = %(weekly_id)s"""
         }
         cursor.execute(queries[utils.get_db_type(connection)], params)
-        status = cursor.fetchone()[0]
+        result = cursor.fetchone()
+        status = result[0] if result else None
     return (status, _decode_person_health_status(status))
 
 def _get_person_is_female(global_id):
