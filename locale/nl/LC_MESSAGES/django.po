@@ -1753,3 +1753,6 @@ msgstr "Venster sluiten"
 
 msgid "Cookie settings"
 msgstr "Cookie instellingen"
+
+msgid "Thanks - your diagnosis:"
+msgstr "Hartelijk dank - uw diagnose:"

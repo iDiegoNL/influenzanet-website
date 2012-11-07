@@ -1429,3 +1429,6 @@ msgstr ""
 
 msgid "Cookie settings"
 msgstr ""
+
+msgid "Thanks - your diagnosis:"
+msgstr ""
