@@ -240,12 +240,8 @@ def index(request):
 
 @login_required
 def profile_index(request):
-    # this appears to be ready-for-cleanup; but at this moment I (KvS) cannot be absolutely
-    # sure and don't have the time to check, so I'll leave it.
-
-    # what does this do? if no "gid" parameter is presented in the GET, 'select_user' is
-    # called to select the user.
-    # if one is present, 
+    # this renders an 'intake' survey
+    # it expects gid to be part of the request.
 
     try:
         survey_user = get_active_survey_user(request)
