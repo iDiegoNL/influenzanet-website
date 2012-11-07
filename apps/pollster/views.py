@@ -204,8 +204,12 @@ def survey_run(request, shortname, next=None, clean_template=False):
                 next_url_parts[4] = urllib.urlencode(query)
                 next_url = urlparse.urlunparse(next_url_parts)
 
-            __, diagnosis = _get_person_health_status(request, survey, global_id)
-            messages.info(request, _("Thanks - your diagnosis:") + u" " + u"%s" % diagnosis)
+            if survey.shortname == 'weekly':
+                __, diagnosis = _get_person_health_status(request, survey, global_id)
+                messages.info(request, _("Thanks - your diagnosis:") + u" " + u"%s" % diagnosis)
+            else:
+                messages.info(request, _("Thanks for taking the time to fill out this survey."))
+
             return HttpResponseRedirect(next_url)
         else:
             survey.set_form(form)
