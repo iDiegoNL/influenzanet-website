@@ -1470,3 +1470,8 @@ div#page {
  font-size: 12pt !important;
 }
 
+img.center { 
+ display: block; 
+ margin-left: auto; 
+ margin-right: auto; 
+}

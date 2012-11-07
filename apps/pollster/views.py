@@ -200,7 +200,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
                 # add or override the 'gid' query parameter
                 next_url_parts = list(urlparse.urlparse(next_url))
                 query = dict(urlparse.parse_qsl(next_url_parts[4]))
-                query.update({'gid': global_id, 'survey': survey.shortname})
+                query.update({'gid': global_id})
                 next_url_parts[4] = urllib.urlencode(query)
                 next_url = urlparse.urlunparse(next_url_parts)
 
