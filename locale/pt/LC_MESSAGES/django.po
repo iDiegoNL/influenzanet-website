@@ -1100,11 +1100,7 @@ msgstr ""
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
-"The flu status of each participant is based on the symptoms you reported. "
-"<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
-"indicative of influenza-like illness, common colds, gastric flu. If you have "
-"other symptoms, or you are at all worried, we recommend that you contact "
-"your doctor or telephone NHS Direct / NHS 24."
+"The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
 "O estado de cada participante é baseado nos sintomas do questionário "
 "semanal, de acordo com as definições que pode encontrar <a href='http://www."
