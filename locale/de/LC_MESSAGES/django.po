@@ -1129,11 +1129,7 @@ msgstr "Löschen"
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
-"The flu status of each participant is based on the symptoms you reported. "
-"<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
-"indicative of influenza-like illness, common colds, gastric flu. If you have "
-"other symptoms, or you are at all worried, we recommend that you contact "
-"your doctor or telephone NHS Direct / NHS 24."
+"The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
 "Der Grippe-Status wird aufgrund der Symptome ermittelt, die Sie angegeben "
 "haben. <strong>Dies ist keine medizinische Diagnose</strong>. Wir fragen nur "
@@ -1419,4 +1415,7 @@ msgid "Close window"
 msgstr ""
 
 msgid "Cookie settings"
+msgstr ""
+
+msgid "Thanks - your diagnosis:"
 msgstr ""

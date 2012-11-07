@@ -157,6 +157,8 @@ def survey_test(request, id, language=None):
     })
 
 def survey_run(request, shortname, next=None, clean_template=False):
+    from apps.survey.views import _get_person_health_status
+
     if 'login_key' in request.GET:
         user = authenticate(key=request.GET['login_key'])
         if user is not None:
@@ -201,7 +203,13 @@ def survey_run(request, shortname, next=None, clean_template=False):
                 query.update({'gid': global_id, 'survey': survey.shortname})
                 next_url_parts[4] = urllib.urlencode(query)
                 next_url = urlparse.urlunparse(next_url_parts)
-            messages.info(request, _("Thanks for taking the time to fill out this survey."))
+
+            if survey.shortname == 'weekly':
+                __, diagnosis = _get_person_health_status(request, survey, global_id)
+                messages.info(request, _("Thanks - your diagnosis:") + u" " + u"%s" % diagnosis)
+            else:
+                messages.info(request, _("Thanks for taking the time to fill out this survey."))
+
             return HttpResponseRedirect(next_url)
         else:
             survey.set_form(form)
