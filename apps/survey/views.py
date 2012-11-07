@@ -101,19 +101,19 @@ def _get_health_history(request, survey):
               FROM pollster_health_status S, pollster_results_weekly W
              WHERE S.pollster_results_weekly_id = W.id
                AND W.user = :user_id
-             ORDER BY W.timestamp""",
+             ORDER BY W.timestamp DESC""",
         'mysql':"""
             SELECT W.timestamp, W.global_id, S.status
               FROM pollster_health_status S, pollster_results_weekly W
              WHERE S.pollster_results_weekly_id = W.id
                AND W.user = :user_id
-             ORDER BY W.timestamp""",
+             ORDER BY W.timestamp DESC""",
         'postgresql':"""
             SELECT W.timestamp, W.global_id, S.status
               FROM pollster_health_status S, pollster_results_weekly W
              WHERE S.pollster_results_weekly_id = W.id
                AND W.user = %(user_id)s
-             ORDER BY W.timestamp""",
+             ORDER BY W.timestamp DESC""",
     }
     cursor.execute(queries[utils.get_db_type(connection)], params)
 
