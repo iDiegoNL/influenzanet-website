@@ -634,7 +634,7 @@ msgstr ""
 #: templates/accounts/partials/usermenu.html:18
 #: templates/survey/group_management.html:4
 #: templates/survey/group_management.html:11
-msgid "Group management"
+msgid "Your results"
 msgstr ""
 
 #: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
@@ -645,7 +645,7 @@ msgstr ""
 #: templates/accounts/partials/usermenu.html:25
 msgid ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Group management\". Each account can only have one <a href=\"/"
+"through \"Your results\". Each account can only have one <a href=\"/"
 "accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
 "address</a>. To leave feedback or get support,"
 msgstr ""
@@ -1077,11 +1077,7 @@ msgstr ""
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
-"The flu status of each participant is based on the symptoms you reported. "
-"<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
-"indicative of influenza-like illness, common colds, gastric flu. If you have "
-"other symptoms, or you are at all worried, we recommend that you contact "
-"your doctor or telephone NHS Direct / NHS 24."
+"The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
 
 #: templates/survey/index.html:16
