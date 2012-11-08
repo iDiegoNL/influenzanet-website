@@ -7,8 +7,23 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 
-from .models import UserReminderInfo, get_upcoming_dates, get_prev_reminder, get_settings, get_default_for_reminder
+from .models import UserReminderInfo, get_upcoming_dates, get_prev_reminder, get_settings, get_default_for_reminder, NewsLetter
 from .send import create_message, send
+
+
+@login_required
+def latest_newsletter(request):
+    now = datetime.now()
+    newsletter_queryset = NewsLetter.objects.filter(date__lte=now, published=True).order_by("-date")
+    if newsletter_queryset.count():
+        latest_newsletter = newsletter_queryset.all()[0]
+
+        info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True, 'last_reminder': request.user.date_joined})
+        language = info.get_language()
+        message, outer_message = create_message(request.user, latest_newsletter, language)
+        #inner, message = create_message(request.user, latest_newsletter, language)
+
+    return render_to_response('reminder/latest_newsletter.html', locals(), context_instance=RequestContext(request))
 
 @login_required
 def unsubscribe(request):

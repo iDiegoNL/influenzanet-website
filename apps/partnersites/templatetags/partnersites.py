@@ -2,6 +2,9 @@ from __future__ import absolute_import
 
 from django.template import Library, Node
 from django.conf import settings
+from django.contrib.sites.models import Site
+
+from ..models import SiteSettings
 
 register = Library()
 
@@ -15,8 +18,11 @@ class GoogleAnalyticsNode(Node):
         if not hasattr(settings, 'GOOGLE_ANALYTICS_ACCOUNT') or settings.GOOGLE_ANALYTICS_ACCOUNT is None:
             return ""
 
-        return """<script type="text/javascript">
-  var _gaq = _gaq || [];
+        site = Site.objects.get_current()
+        site_settings = SiteSettings.get(site)
+
+        return ("""<script type="text/plain" class="cc-onconsent-analytics">""" if site_settings.show_cookie_warning else """<script type="text/javascript">""") + \
+"""  var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '%s']);
   _gaq.push(['_setDomainName', 'none']);
   _gaq.push(['_setAllowLinker', true]);

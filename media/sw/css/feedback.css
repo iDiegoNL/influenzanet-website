@@ -1,0 +1,16 @@
+#feedback {
+font-size: .7em;
+margin: .5em .3em;
+padding: .3em;
+border:1px solid #DDD;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+border-radius:3px;
+padding: .3em;
+background-color: #FFF;
+}
+
+#feedback a {
+text-decoration:none;
+color: #007AB8;	
+}

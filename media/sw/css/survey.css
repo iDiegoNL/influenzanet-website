@@ -1,0 +1,84 @@
+
+/**
+ * Survey
+ */
+.codeselect-button {
+border: 1px solid #DDD;
+background-color: #FFF;
+font-size: .8em;
+font-weight: bold;
+padding: .4em;
+-webkit-border-radius: .3em;
+-moz-border-radius: .3em;
+border-radius: .3em;
+cursor: pointer;
+}
+
+.codeselect-button:hover {
+background-color: #DDD;
+color: white;
+}
+
+.codeselect-title {
+padding: .3em;
+padding-left: 18px;
+-webkit-border-radius: .3em;
+-moz-border-radius: .3em;
+border-radius: .3em;
+border: 1px solid #DDD;
+margin: auto .2em;
+font-size: .9em;
+background: #FFF url(../home.png) left center no-repeat;
+}
+
+#zip_codelist li {
+ padding-top: 5px;
+ padding-left: 20px;
+ background: #FFF url(../home.png) left center no-repeat;
+ font-size: 1em;
+ cursor: pointer;
+}
+
+#zip_codelist li:hover {
+ color: #6D84B4;
+}
+
+#zip_warning {
+	font-size: .8em;
+}
+
+input[type="submit"] {
+padding: .4em;
+-webkit-border-radius: .3em;
+-moz-border-radius: .3em;
+border-radius: .3em;
+}
+
+.survey label {
+cursor: pointer;
+}
+
+.survey label:hover {
+color: #007AB8;
+}
+
+
+#survey-title {
+text-align: center;
+margin: 1em;
+font-weight: bold;
+color: #007AB8;		
+}
+
+#col1 .question { /* Hack to make priority higher*/
+width: 80%;
+}
+
+#col1 .survey-message {
+width: 512px;
+}
+
+#col1 table.matrix th {
+font-size: 11px;
+padding: .3em;
+}

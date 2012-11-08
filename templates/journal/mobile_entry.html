@@ -1,0 +1,17 @@
+{% extends "base/mobile.html" %}
+
+{% block content %}
+<h1>{{ entry.title }}</h1>
+
+<div class="content">
+	{% if entry.image %}<img src="{% url journal_image slug=entry.slug %}" {% if entry.alignment %}align="{{ entry.alignment }}"{% endif %} alt="{{ entry.title }}" class="journalimg" />{% endif %}
+	{{ entry_content }}
+	<p class="date">{% filter capfirst %}{{ entry.pub_date }}{% endfilter %}</p>
+</div>
+
+<div>
+    {% comment %}(( Or just throw this away )) {% endcomment %}
+    {% include "journal/categories.html" %}
+</div>
+
+{% endblock content %}

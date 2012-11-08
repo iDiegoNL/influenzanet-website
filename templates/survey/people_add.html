@@ -1,14 +1,13 @@
-{% extends "survey/base.html" %}
+{% extends "base/twocol.html" %}
 {% load i18n %}
 
 {% block col1 %}
 <h1>{% trans "Add Person" %}</h1>
-
+<p class="info">{% trans "This form allow you to customize the way this participant is named. In order to preserve privacy we ought you to avoid family name or email. Use surname or given name." %}</p>
 <form method="post">
 {% csrf_token %}
 {{ form.as_p }}
-<p><input type="submit" value="{% trans "Add Person" %}"/></p>
+<input type="submit" id="commentsubmit" value="{% trans "Add Person" %}"/>
 </form>
 
 {% endblock %}
-

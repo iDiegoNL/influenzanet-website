@@ -1,0 +1,47 @@
+{% extends "survey/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }} {% trans "My profile" %}{% endblock %}
+
+{% block add_js %}
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
+{% endblock add_js %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="/+media/css/ui-lightness/jquery-ui-1.8.5.custom.css"/>
+<link rel="stylesheet" type="text/css" href="/+media/survey/style.css"/>
+<script type="text/javascript" src="/+media/jquery.js"></script>
+<script type="text/javascript" src="/+media/jquery.form.js"></script>
+<script type="text/javascript" src="/+media/js/jquery-ui-1.8.5.custom.min.js"></script>
+<script type="text/javascript" src="/+media/survey/survey.js"></script>
+{% endblock %}
+
+{% block col1 %}
+<div id="survey">
+
+<h1>{% trans "My Profile" %}</h1>
+
+{% include "survey/form.html" %}
+
+</div>
+
+{% endblock %}
+
+{% block col2 %}
+
+{% include "accounts/partials/usermenu.html" %}
+{% include "accounts/partials/usermap.html" %}
+
+{% endblock %}
+
+

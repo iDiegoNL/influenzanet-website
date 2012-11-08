@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-19 14:29+0200\n"
+"POT-Creation-Date: 2012-10-29 11:52+0100\n"
 "PO-Revision-Date: 2011-10-23 14:45+0100\n"
 "Last-Translator: AnnaSara <annasara.carnahan@smi.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,39 +15,100 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: apps/ew_contact_form/forms.py:12
-#: apps/survey/forms/__init__.py:16
-#: templates/survey/people.html:8
-msgid "Name"
-msgstr "Namn"
+#: apps/accounts/forms.py:16 apps/accounts/forms.py:20
+#: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
+#, fuzzy
+msgid "Username"
+msgstr "Avsändares Namn"
 
-#: apps/ew_contact_form/forms.py:13
+#: apps/accounts/forms.py:17
+#, fuzzy
+msgid "This value must contain only letters, numbers and underscores."
+msgstr ""
+"Fyll i ett giltigt värde bestående av bokstäver, siffor eller underscore "
+"(_). För mer information om vad som är tillåtet, klicka på <a href='http://"
+"www.influensakoll.se/sv/jag-vill-vara-med/'>instruktionerna</a>."
+
+#: apps/accounts/forms.py:21 apps/accounts/forms.py:26
+msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+
+#: apps/accounts/forms.py:22 apps/accounts/forms.py:27
+msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
+msgstr ""
+
+#: apps/accounts/forms.py:31 apps/ew_contact_form/forms.py:13
 msgid "Email"
 msgstr "E-post"
 
-#: apps/ew_contact_form/forms.py:14
+#: apps/accounts/forms.py:32 apps/reminder/models.py:36
+msgid "Send reminders"
+msgstr "Skicka påminnelser"
+
+#: apps/accounts/forms.py:32
+msgid ""
+"Check this box if you wish to receive weekly reminders throughout the flu "
+"season"
+msgstr ""
+
+#: apps/accounts/forms.py:33
+#, fuzzy
+msgid "Language"
+msgstr "Hantera "
+
+#: apps/accounts/forms.py:53
+msgid "This email is already in use"
+msgstr ""
+
+#: apps/accounts/forms.py:79
+msgid "A user with this username already exists"
+msgstr ""
+
+#: apps/captcha/fields.py:54
+msgid "Play captcha as audio file"
+msgstr ""
+
+#: apps/captcha/fields.py:72 apps/captcha/fields.py:97
+#: apps/captcha/tests/__init__.py:70
+msgid "Invalid CAPTCHA"
+msgstr ""
+
+#: apps/captcha/tests/__init__.py:97
+msgid "This field is required."
+msgstr ""
+
+#: apps/contest/cms_plugins.py:14
+#, fuzzy
+msgid "Contest"
+msgstr "Innehåll"
+
+#: apps/ew_contact_form/forms.py:12 apps/survey/forms/__init__.py:16
+msgid "Name"
+msgstr "Namn"
+
+#: apps/ew_contact_form/forms.py:14 apps/tellafriend/forms.py:16
 msgid "Message"
 msgstr "Meddelande"
 
-#: apps/journal/admin.py:43
+#: apps/journal/admin.py:38
 #, python-format
 msgid "%(count)d newsitem was published"
 msgid_plural "%(count)d newsitems where published"
 msgstr[0] "%(count)d nyheten publicerades"
 msgstr[1] "%(count)d nyheter publicerades"
- 
-#: apps/journal/admin.py:46
+
+#: apps/journal/admin.py:41
 msgid "Publish selected news"
 msgstr "Publicera valda nyheter"
 
-#: apps/journal/admin.py:53
+#: apps/journal/admin.py:48
 #, python-format
 msgid "%(count)d newsitem was unpublished"
 msgid_plural "%(count)d newsitems where unpublished"
 msgstr[0] "%(count)d nyheten av-publicerades"
 msgstr[1] "%(count)d nyheter av-publicerades"
 
-#: apps/journal/admin.py:56
+#: apps/journal/admin.py:51
 msgid "Unpublish selected news"
 msgstr "Avpublicera valda nyheter"
 
@@ -59,98 +120,88 @@ msgstr "Journal"
 msgid "Journal entries"
 msgstr "Journal inlägg"
 
-#: apps/journal/models.py:9
-#: apps/journal/models.py:35
-#: apps/journal/models.py:81
-msgid "Title"
-msgstr "Titel"
-
-#: apps/journal/models.py:10
-#: apps/journal/models.py:36
+#: apps/journal/models.py:11 apps/journal/models.py:35
 msgid "Slug"
 msgstr "Slug"
 
-#: apps/journal/models.py:11
+#: apps/journal/models.py:12
 msgid "A slug is a short name which uniquely identifies the category"
 msgstr "En slug är ett kort namn som unikt identifierar kategorin"
 
-#: apps/journal/models.py:14
+#: apps/journal/models.py:15 apps/journal/models.py:39
+#: apps/journal/models.py:82
+msgid "Title"
+msgstr "Titel"
+
+#: apps/journal/models.py:19
 msgid "Category"
 msgstr "Kategori"
 
-#: apps/journal/models.py:15
+#: apps/journal/models.py:20
 msgid "Categories"
 msgstr "Kategorier"
 
-#: apps/journal/models.py:37
-msgid "A slug is a short name which uniquely identifies the news item for this day"
-msgstr "En slug är ett kort namn som unikt identifierar nyheterna för denna dag"
+#: apps/journal/models.py:36
+msgid ""
+"A slug is a short name which uniquely identifies the news item for this day"
+msgstr ""
+"En slug är ett kort namn som unikt identifierar nyheterna för denna dag"
 
-#: apps/journal/models.py:38
+#: apps/journal/models.py:40
 msgid "Excerpt"
 msgstr "Utdrag"
 
-#: apps/journal/models.py:39
+#: apps/journal/models.py:41
 msgid "Content"
 msgstr "Innehåll"
 
-#: apps/journal/models.py:40
+#: apps/journal/models.py:44
 msgid "Image"
 msgstr "Bild"
 
-#: apps/journal/models.py:41
+#: apps/journal/models.py:45
 msgid "Alignment"
 msgstr "Alignment"
 
-#: apps/journal/models.py:41
+#: apps/journal/models.py:45
 msgid "Alignment of the image"
 msgstr "Figursättning"
 
-#: apps/journal/models.py:41
+#: apps/journal/models.py:45
 msgid "Left"
 msgstr "Vänster"
 
-#: apps/journal/models.py:41
+#: apps/journal/models.py:45
 msgid "Right"
 msgstr "Höger"
 
-#: apps/journal/models.py:43
+#: apps/journal/models.py:47
 msgid "Published"
 msgstr "Publicerad"
 
-#: apps/journal/models.py:44
+#: apps/journal/models.py:48
 msgid "Publication date"
 msgstr "Publiceringsdatum"
 
-#: apps/journal/models.py:55
+#: apps/journal/models.py:56
 msgid "Entry"
 msgstr "Ett inlägg"
 
-#: apps/journal/models.py:56
+#: apps/journal/models.py:57
 msgid "Entries"
 msgstr "Inlägg"
 
-#: apps/journal/models.py:82
+#: apps/journal/models.py:83
 msgid "Number of entries to show"
 msgstr "Antal inlägg att visa"
 
-#: apps/journal/models.py:83
+#: apps/journal/models.py:84
 msgid "Limits the number of entries that will be displayed"
 msgstr "Begränsar antalet inlägg som visas"
 
-#: apps/journal/models.py:84
+#: apps/journal/models.py:85
 msgid "Leave this field blank to match all categories"
 msgstr "Lämna fältet tomt för att matcha alla kategorier"
-
-#: apps/journal/templates/journal/latest.html:2
-#: templates/journal/latest.html:3
-msgid "Latest news"
-msgstr "Senastes nyheter"
-
-#: apps/journal/templates/journal/latest.html:7
-#: templates/journal/latest.html:17
-msgid "No news yet"
-msgstr "Inga nyheter ännu"
 
 #: apps/partnersites/cms_plugins.py:10
 msgid "External link"
@@ -161,8 +212,11 @@ msgid "Light color"
 msgstr "Ljus färg"
 
 #: apps/partnersites/forms.py:9
-msgid "Hexidecimal value w/o preceding '#'; The dark color is calculated from this."
-msgstr "Hexidecimalt värde utan föregående '#'; Den mörka färgen är beräknas från detta värde."
+msgid ""
+"Hexidecimal value w/o preceding '#'; The dark color is calculated from this."
+msgstr ""
+"Hexidecimalt värde utan föregående '#'; Den mörka färgen är beräknas från "
+"detta värde."
 
 #: apps/partnersites/forms.py:9
 msgid "Use a hexidecimal value (length: 6) without the preceding #"
@@ -184,9 +238,12 @@ msgstr "Fotsida"
 msgid "The footer will be displayed at the bottom of each page"
 msgstr "Fotsidan visas längst ner på varje sida"
 
-#: apps/partnersites/models.py:19
-#: apps/partnersites/models.py:22
-#: apps/partnersites/models.py:23
+#: apps/partnersites/models.py:12
+msgid "Show cookie warning"
+msgstr ""
+
+#: apps/partnersites/models.py:20 apps/partnersites/models.py:23
+#: apps/partnersites/models.py:24
 msgid "Site settings"
 msgstr "Sajtens Inställningar"
 
@@ -194,105 +251,169 @@ msgstr "Sajtens Inställningar"
 msgid "Survey Chart"
 msgstr "Enkätdiagram"
 
-#: apps/pollster/fields.py:17
+#: apps/pollster/fields.py:34
 msgid "Enter a valid year and month."
 msgstr "Kontrollera att du fyllt i giltig månad och giltigt år (MM/ÅÅÅÅ)."
 
-#: apps/pollster/fields.py:46
+#: apps/pollster/fields.py:63
+#, fuzzy
+msgid "Enter a valid date."
+msgstr "Kontrollera att du fyllt i ett giltigt postnummer."
+
+#: apps/pollster/fields.py:92
 msgid "Enter a valid postal code."
 msgstr "Kontrollera att du fyllt i ett giltigt postnummer."
 
-#: apps/pollster/forms.py:16
+#: apps/pollster/forms.py:17
 msgid "Enter a valid value consisting of letters, numbers or underscores"
-msgstr "Fyll i ett giltigt värde bestående av bokstäver, siffor eller underscore (_). För mer information om vad som är tillåtet, klicka på <a href='http://www.influensakoll.se/sv/jag-vill-vara-med/'>instruktionerna</a>."
+msgstr ""
+"Fyll i ett giltigt värde bestående av bokstäver, siffor eller underscore "
+"(_). För mer information om vad som är tillåtet, klicka på <a href='http://"
+"www.influensakoll.se/sv/jag-vill-vara-med/'>instruktionerna</a>."
 
-#: apps/pollster/db/models/fields.py:9
+#: apps/pollster/db/models/fields.py:10
 msgid "Year and month (in YYYY-MM format)"
 msgstr "År och månad (ÅÅÅÅ-MM format)"
 
-#: apps/pollster/db/models/fields.py:24
+#: apps/pollster/db/models/fields.py:25
+#, fuzzy
+msgid "Date (in YYYY-MM-DD format)"
+msgstr "År och månad (ÅÅÅÅ-MM format)"
+
+#: apps/pollster/db/models/fields.py:33
 msgid "Postal code"
 msgstr "Postnummer"
 
-#: apps/reminder/forms.py:16
-msgid "If 'send_reminders' is checked the other fields pertaining to reminders are required"
-msgstr "Om 'skicka_påminnelser' är ikryssad så är fälten som handlar om påminnelser obligatoriska"
+#: apps/reminder/forms.py:17
+msgid ""
+"If 'send_reminders' is checked the other fields pertaining to reminders are "
+"required"
+msgstr ""
+"Om 'skicka_påminnelser' är ikryssad så är fälten som handlar om påminnelser "
+"obligatoriska"
 
-#: apps/reminder/forms.py:30
+#: apps/reminder/forms.py:31
 msgid "If no dates are shown here, check your site settings"
 msgstr "Om inga datum visas här, kolla dina sajtinställningar"
 
-#: apps/reminder/models.py:31
-msgid "Send reminders"
-msgstr "Skicka påminnelser"
-
-#: apps/reminder/models.py:31
+#: apps/reminder/models.py:36
 msgid "Check this box to send reminders"
 msgstr "Kryssa i den här boxen för att skicka påminnelser"
 
-#: apps/reminder/models.py:32
-msgid "Begin date"
-msgstr "Startdatum"
-
-#: apps/reminder/models.py:32
-msgid "Date & time of the first reminder and point of reference for subsequent reminders; (Time zone: MET)"
-msgstr "Datum och tid för första påminnelsen och referenspunkt för efterföljande påminnelser; (tidszon: MET)"
-
-#: apps/reminder/models.py:33
+#: apps/reminder/models.py:37
 msgid "Interval"
 msgstr "Interval"
 
-#: apps/reminder/models.py:33
+#: apps/reminder/models.py:37
 msgid "Weekly"
 msgstr "Veckovis"
 
-#: apps/reminder/models.py:33
+#: apps/reminder/models.py:37
 msgid "Bi-weekly"
 msgstr "Varannan vecka"
 
-#: apps/reminder/models.py:36
+#: apps/reminder/models.py:37
+msgid "Don't send reminders at a fixed interval"
+msgstr ""
+
+#: apps/reminder/models.py:38
+msgid "Begin date"
+msgstr "Startdatum"
+
+#: apps/reminder/models.py:44
 msgid "Reminder settings"
 msgstr "Påminnelse inställningar"
 
-#: apps/reminder/models.py:39
+#: apps/reminder/models.py:52
 msgid "Is default reminder"
 msgstr "Är standard påminnelse"
 
-#: apps/reminder/models.py:39
-msgid "If this option is checked this template is the standard template for reminder emails."
-msgstr "Om detta alternativ är markerat denna mall är den standard mallen för påminnelse e-post."
+#: apps/reminder/models.py:52
+msgid ""
+"If this option is checked this template is the standard template for "
+"reminder emails."
+msgstr ""
+"Om detta alternativ är markerat denna mall är den standard mallen för "
+"påminnelse e-post."
 
-#: apps/reminder/models.py:40
+#: apps/reminder/models.py:53
 msgid "Is default newsitem"
 msgstr "Är standard nyhet"
 
-#: apps/reminder/models.py:40
-msgid "If this option is checked this template is the standard template for new news items."
-msgstr "Om detta alternativ är markerat denna mall är den standardmall för nya nyheter."
+#: apps/reminder/models.py:53
+msgid ""
+"If this option is checked this template is the standard template for new "
+"news items."
+msgstr ""
+"Om detta alternativ är markerat denna mall är den standardmall för nya "
+"nyheter."
 
-#: apps/reminder/models.py:41
-#: apps/reminder/models.py:55
+#: apps/reminder/models.py:54 apps/reminder/models.py:68
 msgid "Sender email"
 msgstr "Avsändarens E-post"
 
-#: apps/reminder/models.py:42
-#: apps/reminder/models.py:56
+#: apps/reminder/models.py:55 apps/reminder/models.py:69
 msgid "Sender name"
 msgstr "Avsändares Namn"
 
-#: apps/reminder/models.py:53
+#: apps/reminder/models.py:66
 msgid "Date"
 msgstr "Datum"
 
-#: apps/reminder/models.py:106
+#: apps/reminder/models.py:127
 #, python-format
 msgid "%(current)s (in %(days)s days)"
 msgstr "%(current)s (in %(days)s days)"
 
-#: apps/reminder/models.py:108
+#: apps/reminder/models.py:129
 #, python-format
 msgid "%(current)s (in %(weeks)s weeks)"
 msgstr "%(current)s (in %(weeks)s weeks)"
+
+#: apps/reminder/models.py:132
+#, fuzzy, python-format
+msgid "%(current)s (%(days)s days ago)"
+msgstr "%(current)s (in %(days)s days)"
+
+#: apps/reminder/models.py:134
+#, fuzzy, python-format
+msgid "%(current)s (%(weeks)s weeks ago)"
+msgstr "%(current)s (in %(weeks)s weeks)"
+
+#: apps/reminder/templates/reminder/latest_newsletter.html:4
+#, fuzzy
+msgid "Logged in"
+msgstr "Inloggad som"
+
+#: apps/reminder/templates/reminder/latest_newsletter.html:7
+msgid "You are logged in"
+msgstr ""
+
+#: apps/reminder/templates/reminder/latest_newsletter.html:10
+#: templates/survey/group_management.html:14
+msgid "The last survey was submitted for"
+msgstr ""
+
+#: apps/reminder/templates/reminder/latest_newsletter.html:10
+msgid "on"
+msgstr ""
+
+#: apps/reminder/templates/reminder/latest_newsletter.html:15
+msgid "Last newsletter from"
+msgstr ""
+
+#: apps/reminder/templates/reminder/message.html:66
+#, fuzzy, python-format
+msgid ""
+"You have received this email because you are registered with %(site_name)s. "
+"Your contribution helps us track the spread of flu. If you do not wish to "
+"receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s"
+"\">unsubscribe</a> from our mailings."
+msgstr ""
+"Du har fått detta meddelande för att du är registrerade som deltagare i "
+"Influensakoll. Tack för att du är med. Du bidrar till att hålla koll på "
+"influensan i Sverige. Om du har frågor eller synpunkter är du välkommen att "
+"höra av dig till influensakoll@smi.se."
 
 #: apps/reminder/templates/reminder/unsubscribe.html:6
 #: apps/reminder/templates/reminder/unsubscribe.html:10
@@ -301,60 +422,151 @@ msgid "Unsubscribe"
 msgstr "Avbeställ påminnelser"
 
 #: apps/reminder/templates/reminder/unsubscribe.html:7
-msgid "You may unsubscribe from the Influenzanet reminder/newsletter by pressing the button below."
-msgstr "Du kan avregistrera dig från Influensakolls påminnelser genom att klicka på knappen nedan."
+msgid ""
+"You may unsubscribe from the Influenzanet reminder/newsletter by pressing "
+"the button below."
+msgstr ""
+"Du kan avregistrera dig från Influensakolls påminnelser genom att klicka på "
+"knappen nedan."
 
 #: apps/reminder/templates/reminder/unsubscribe_successful.html:7
 msgid "You have been successfully unsubscribed from the mailing list"
 msgstr "Du har tagits bort från påminnelselistan."
 
-#: apps/survey/views.py:50
+#: apps/survey/views.py:43
 msgid "No symptoms"
 msgstr "Inga symptom"
 
-#: apps/survey/views.py:52
+#: apps/survey/views.py:45
 msgid "Flu symptoms"
 msgstr "Influensaliknande symptom"
 
-#: apps/survey/views.py:54
+#: apps/survey/views.py:47
 msgid "Cold / allergy"
 msgstr "Förkylning / allergi"
 
-#: apps/survey/views.py:56
+msgid "Common cold"
+msgstr "Symptomen die passen bij verkoudheid"
+
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr ""
+
+msgid "Allergy / hay fever"
+msgstr ""
+
+msgid "Common cold and gastrointestinal symptoms"
+msgstr ""
+
+#: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
 msgstr "symptom på magsjuka"
 
-#: apps/survey/views.py:58
+#: apps/survey/views.py:51
 msgid "Other non-influenza symptons"
 msgstr "Andra icke-influensaliknande symptom"
 
-#: apps/survey/views.py:60
-msgid "Next status"
-msgstr "<saknas>"
+#: apps/survey/views.py:53
+msgid "Unknown"
+msgstr "Okänd"
 
-#: apps/survey/views.py:104
-msgid "You have to fill your profile data first."
-msgstr "Var vänlig fyll i bakgrundsenkäten för den här profilen. Bakgrundsenkäten måste vara komplett innan du kan rapportera för den här profilen."
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr ""
 
-#: apps/survey/views.py:179
-msgid "One or more questions have empty or invalid answer. Please fix it first."
-msgstr "Kontrollera dina svar. Det verkar finnas ett eller flera tomma eller ogiltiga svar."
+msgid "Allergy / hay fever"
+msgstr ""
 
-#: apps/survey/views.py:263
+msgid "Common cold and gastrointestinal symptoms"
+msgstr ""
+
+#: apps/survey/views.py:222
+msgid ""
+"Before we take you to the symptoms questionnaire, please complete the short "
+"background questionnaire below. You will only have to complete this once."
+msgstr ""
+"Innan du kan rapportera för den här profilen ber vi dig fylla i "
+"bakgrundsenkäten nedan. Bakgrundsenkäten måste fyllas i för varje ny profil "
+"(men bara en gång för varje)."
+
+#: apps/survey/views.py:348
 msgid "A new person has been added."
 msgstr "En ny profil har lagts till."
+
+#: apps/tellafriend/forms.py:13
+msgid "URL"
+msgstr ""
+
+#: apps/tellafriend/forms.py:14
+#, fuzzy
+msgid "Sender"
+msgstr "Skicka"
+
+#: apps/tellafriend/forms.py:15
+msgid "Recipient"
+msgstr ""
+
+#: apps/tellafriend/forms.py:17
+msgid "Please enter the characters shown in the image in the field next to it."
+msgstr ""
+
+#: apps/tellafriend/forms.py:17
+msgid "Captcha"
+msgstr ""
+
+#: apps/tellafriend/views.py:34
+#, python-format
+msgid "Recommendation by %s"
+msgstr ""
+
+#: apps/tellafriend/templates/tellafriend/email.html:2
+#: templates/tellafriend/email.html:2
+msgid "Recommendation"
+msgstr ""
+
+#: apps/tellafriend/templates/tellafriend/email.html:3
+#: templates/tellafriend/email.html:3
+#, python-format
+msgid "%(email_sender)s recommends this page to you:"
+msgstr ""
+
+#: apps/tellafriend/templates/tellafriend/success.html:5
+#: apps/tellafriend/templates/tellafriend/tellafriend.html:5
+#: templates/tellafriend/success.html:5
+#: templates/tellafriend/tellafriend.html:5
+msgid "Recommend"
+msgstr ""
+
+#: apps/tellafriend/templates/tellafriend/success.html:6
+#: templates/tellafriend/success.html:6
+msgid "Your recommendation was sent out successfully."
+msgstr ""
+
+#: apps/tellafriend/templates/tellafriend/tellafriend.html:6
+#: templates/tellafriend/tellafriend.html:6
+msgid ""
+"Please enter your and the recipient's e-mail address, and an optional "
+"message."
+msgstr ""
+
+#: apps/tellafriend/templates/tellafriend/tellafriend.html:35
+#: templates/contact_form/contact_form.html:10
+#: templates/tellafriend/tellafriend.html:35
+msgid "Send"
+msgstr "Skicka"
 
 #: templates/404.html:4
 msgid "Page not found"
 msgstr "Sidan finns inte"
 
 #: templates/404.html:8
-msgid "The page you requested could not be found. We apologize for the inconvenience. Go to "
-msgstr "Sidan du ville se kunde inte visas. Vi ber om ursäkt för detta. Klicka vidare till "
+msgid ""
+"The page you requested could not be found. We apologize for the "
+"inconvenience. Go to "
+msgstr ""
+"Sidan du ville se kunde inte visas. Vi ber om ursäkt för detta. Klicka "
+"vidare till "
 
-#: templates/404.html:8
-#: templates/500.html:8
-#: templates/registration/logout.html:8
+#: templates/404.html:8 templates/500.html:8
+#: templates/accounts/logged_out.html:8 templates/registration/logout.html:8
 msgid "home"
 msgstr "startsidan"
 
@@ -363,93 +575,193 @@ msgid "Error"
 msgstr "Fel"
 
 #: templates/500.html:8
-msgid "An unexpected system error has occured. We apologize for the inconvenience. Go to "
-msgstr "Ett oväntat systemfel har inträffat. Vi ber om ursäkt för detta. Klicka vidare till "
+#, fuzzy
+msgid ""
+"An unexpected system error has occured. We apologize for the inconvenience. "
+"Go to"
+msgstr ""
+"Ett oväntat systemfel har inträffat. Vi ber om ursäkt för detta. Klicka "
+"vidare till "
+
+#: templates/accounts/logged_out.html:4 templates/registration/logout.html:4
+msgid "Logged out"
+msgstr "Du är utloggad"
+
+#: templates/accounts/logged_out.html:8 templates/registration/logout.html:8
+msgid "You have been logged out. Go to "
+msgstr "Du är utloggad. Gå till "
+
+#: templates/accounts/my_profile.html:4
+#: templates/accounts/partials/usermenu.html:16
+#, fuzzy
+msgid "My profile"
+msgstr "Profil"
+
+#: templates/accounts/my_profile.html:18
+#, fuzzy
+msgid "My Profile"
+msgstr "Profil"
+
+#: templates/accounts/my_settings.html:4 templates/accounts/my_settings.html:7
+#: templates/accounts/partials/usermenu.html:19
+#, fuzzy
+msgid "Account settings"
+msgstr "Kontoaktivering"
+
+#: templates/accounts/my_settings.html:10
+msgid "Your settings have been updated"
+msgstr ""
+
+#: templates/accounts/my_settings.html:18
+#, fuzzy
+msgid "Email settings"
+msgstr "Sajtens Inställningar"
+
+#: templates/accounts/my_settings.html:21
+#: templates/accounts/my_settings.html:28
+#: templates/accounts/my_settings.html:35
+#: templates/survey/group_management.html:53
+#: templates/survey/people_edit.html:10
+msgid "Save"
+msgstr "Spara"
+
+#: templates/accounts/my_settings.html:25
+#, fuzzy
+msgid "Password"
+msgstr "Glömt lösenord"
+
+#: templates/accounts/partials/usermap.html:3
+msgid "Your neighbourhood"
+msgstr ""
+
+#: templates/accounts/partials/usermap.html:9
+msgid ""
+"Regions in which we currently have reports of influenza-like illness are "
+"<strong class=\"flu\">▸ red</strong>, and ones in which none of our "
+"participants currently report influenza-like illness are <strong class="
+"\"nosymptoms\">▸ gray</strong>. Reports of gastrointestinal infections are "
+"<strong class=\"gastro\">▸ yellow</strong> and common cold reports are "
+"displayed in <strong class=\"cold\">▸ blue</strong>."
+msgstr ""
+
+# translations should reflect however often maps are updated
+#: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
+msgid "Map updated hourly."
+msgstr ""
+
+#: templates/accounts/partials/usermenu.html:3
+#, fuzzy
+msgid "Your account"
+msgstr "Mitt konto"
+
+#: templates/accounts/partials/usermenu.html:12
+msgid "Newsletter"
+msgstr ""
+
+#: templates/accounts/partials/usermenu.html:15
+msgid "Weekly survey"
+msgstr "Symptomenkäten"
+
+#: templates/accounts/partials/usermenu.html:18
+#: templates/survey/group_management.html:4
+#: templates/survey/group_management.html:11
+#, fuzzy
+msgid "Your results"
+msgstr "Profilnamn"
+
+#: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
+#: templates/base/sitebase.html:82
+msgid "Log out"
+msgstr "Logga ut"
+
+#: templates/accounts/partials/usermenu.html:25
+msgid ""
+"You can add multiple people (i.e. from your household, class or company) "
+"through \"Your results\". Each account can only have one <a href=\"/"
+"accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
+"address</a>. To leave feedback or get support,"
+msgstr ""
+
+#: templates/accounts/partials/usermenu.html:25
+#: templates/registration/activate.html:9
+#: templates/registration/registration_complete.html:10
+msgid "contact us"
+msgstr "Kontakta oss"
 
 #: templates/admin/pollster/survey/change_form.html:6
+#: templates/admin/pollster/translationsurvey/change_form.html:6
 msgid "History"
 msgstr "Historia"
 
 #: templates/admin/pollster/survey/change_form.html:9
+#: templates/admin/pollster/survey/change_list.html:10
+#: templates/admin/pollster/translationsurvey/change_form.html:9
+#: templates/admin/pollster/translationsurvey/change_list.html:7
 msgid "Full Editor"
 msgstr "Full Editor"
 
-#: templates/base/sitebase.html:68
+#: templates/admin/pollster/survey/change_list.html:7
+#, fuzzy
+msgid "Add Survey"
+msgstr "Rapportera"
+
+#: templates/base/forum.html:78 templates/base/sitebase.html:81
 msgid "My account"
 msgstr "Mitt konto"
 
-#: templates/base/sitebase.html:69
-msgid "Log out"
-msgstr "Logga ut"
-
-#: templates/base/sitebase.html:71
+#: templates/base/forum.html:81 templates/base/sitebase.html:84
 msgid "Logged in as"
 msgstr "Inloggad som"
 
-#: templates/base/sitebase.html:74
-#: templates/registration/boxbase.html:11
-#: templates/registration/password_reset_complete.html:12
+#: templates/base/forum.html:84 templates/base/sitebase.html:87
+#: templates/registration/boxbase.html:11 templates/registration/login.html:13
+#: templates/registration/password_reset_complete.html:10
 msgid "Log in"
 msgstr "Logga in"
 
-#: templates/base/sitebase.html:75
+#: templates/base/forum.html:85 templates/base/sitebase.html:88
+#: templates/registration/registration_explanation.html:4
+#: templates/registration/registration_explanation.html:13
 #: templates/registration/registration_form.html:4
-#: templates/registration/registration_form.html:9
+#: templates/registration/registration_form.html:13
 msgid "Register"
 msgstr "Gå med"
 
-#: templates/base/sitebase.html:77
+#: templates/base/forum.html:87 templates/base/sitebase.html:90
 msgid "Forgot password?"
 msgstr "Glömt lösenord?"
 
-#: templates/base/sitebase.html:88
+#: templates/base/forum.html:98 templates/base/sitebase.html:101
 #: templates/search/search.html:9
 msgid "Search"
 msgstr "Sök"
 
-#: templates/base/sitebase.html:122
+#: templates/base/forum.html:160 templates/base/sitebase.html:136
 msgid "Contact us"
 msgstr "Kontakta oss"
 
-#: templates/base/sitebase.html:122
+#: templates/base/forum.html:160 templates/base/sitebase.html:136
 msgid "Contact"
 msgstr "Kontakt"
 
-#: templates/contact_form/contact_form.html:10
-msgid "Send"
-msgstr "Skicka"
-
-#: templates/journal/archive.html:3
+#: templates/journal/archive.html:6
 msgid "Latest Entries"
 msgstr "Senaste Inlägg"
 
-#: templates/journal/archive.html:8
-#: templates/journal/archive_day.html:8
-#: templates/journal/archive_month.html:8
-#: templates/journal/archive_year.html:8
-#: templates/journal/latest.html:14
-msgid "Read more..."
-msgstr "Läs mer..."
-
-#: templates/journal/archive.html:14
-#: templates/journal/archive_day.html:14
-#: templates/journal/archive_month.html:14
-#: templates/journal/archive_year.html:14
-#: templates/search/search.html:25
+#: templates/journal/archive.html:18 templates/journal/archive_day.html:18
+#: templates/journal/archive_month.html:18
+#: templates/journal/archive_year.html:18 templates/search/search.html:25
 msgid "Previous"
 msgstr "Föregående"
 
-#: templates/journal/archive.html:17
-#: templates/journal/archive_day.html:17
-#: templates/journal/archive_month.html:17
-#: templates/journal/archive_year.html:17
-#: templates/search/search.html:27
+#: templates/journal/archive.html:21 templates/journal/archive_day.html:21
+#: templates/journal/archive_month.html:21
+#: templates/journal/archive_year.html:21 templates/search/search.html:27
 msgid "Next"
 msgstr "Nästa"
 
-#: templates/journal/archive_day.html:3
-#: templates/journal/archive_month.html:3
-#: templates/journal/archive_year.html:3
+#: templates/journal/archive_day.html:6 templates/journal/archive_month.html:6
+#: templates/journal/archive_year.html:6
 msgid "Entries for"
 msgstr "Rapporter för"
 
@@ -457,24 +769,97 @@ msgstr "Rapporter för"
 msgid "Archive"
 msgstr "Arkiv"
 
+#: templates/journal/latest.html:3
+msgid "Latest news"
+msgstr "Senastes nyheter"
+
+#: templates/journal/latest.html:9
+msgid "Read more..."
+msgstr "Läs mer..."
+
+#: templates/journal/latest.html:12
+msgid "No news yet"
+msgstr "Inga nyheter ännu"
+
+#: templates/pollster/questions_run.html:5
+msgid "Questionnaire for participant"
+msgstr "Enkäten gäller"
+
+#: templates/pollster/questions_run.html:9
+msgid "Please check the answers for the highlighted questions."
+msgstr ""
+"Det verkar som du har missat några obligatoriska frågor eller fyllt i svar "
+"som inte har rätt format. Kolla de markerade frågorna."
+
+#: templates/pollster/questions_run.html:202 templates/survey/form.html:21
+msgid "Submit"
+msgstr "Skicka in"
+
 #: templates/registration/activate.html:4
-#: templates/registration/activate.html:6
 #: templates/registration/activation_complete.html:4
-#: templates/registration/activation_complete.html:6
 msgid "Account Activation"
 msgstr "Kontoaktivering"
 
-#: templates/registration/activate.html:7
+#: templates/registration/activate.html:8
 msgid "User activation failed."
 msgstr "Aktivering av ditt konto misslyckades."
 
 #: templates/registration/activate.html:9
+msgid ""
+"Please try to copy and paste the link from the activation email, making sure "
+"you've got all letters copied. If this fails, please try to"
+msgstr ""
+
+#: templates/registration/activate.html:9
+msgid "log in"
+msgstr ""
+
+#: templates/registration/activate.html:9
+msgid ""
+"using the username and password you provided during registration. If this "
+"still fails, please try to"
+msgstr ""
+
+#: templates/registration/activate.html:9
+msgid ""
+"with a different username. If everything else fails, please do not hesitate "
+"to"
+msgstr ""
+
+#: templates/registration/activate.html:15
+#: templates/registration/activation_complete.html:16
+#: templates/registration/password_change_done.html:15
+#: templates/registration/password_change_form.html:27
+#: templates/registration/password_reset_complete.html:16
+#: templates/registration/password_reset_confirm.html:35
+#: templates/registration/password_reset_done.html:15
+#: templates/registration/password_reset_form.html:23
+#: templates/registration/registration_complete.html:16
+#, fuzzy
+msgid "Influenza virus"
+msgstr "Hälsostatus"
+
+#: templates/registration/activate.html:17
+#: templates/registration/activation_complete.html:18
+#: templates/registration/registration_complete.html:18
+msgid ""
+"Be part of a Europe-wide project to improve our understanding of how flu "
+"spreads."
+msgstr ""
+
+#: templates/registration/activate.html:18
 #: templates/registration/activation_complete.html:9
-#: templates/registration/registration_complete.html:9
+#: templates/registration/password_change_done.html:17
+#: templates/registration/password_change_form.html:29
+#: templates/registration/password_reset_complete.html:18
+#: templates/registration/password_reset_confirm.html:37
+#: templates/registration/password_reset_done.html:17
+#: templates/registration/password_reset_form.html:25
+#: templates/registration/registration_complete.html:19
 msgid "Back to the home page"
 msgstr "Tillbaka till startsidan"
 
-#: templates/registration/activation_complete.html:7
+#: templates/registration/activation_complete.html:8
 msgid "Activation is complete."
 msgstr "Aktiveringen är klar."
 
@@ -482,12 +867,12 @@ msgstr "Aktiveringen är klar."
 msgid "or"
 msgstr "eller"
 
-#: templates/registration/activation_complete.html:9
+#: templates/registration/activation_complete.html:10
 msgid "proceed to the login page"
 msgstr "gå vidare till inloggningssidan"
 
-#: templates/registration/boxbase.html:4
-#: templates/registration/boxbase.html:9
+#: templates/registration/boxbase.html:4 templates/registration/boxbase.html:9
+#: templates/registration/login.html:4 templates/registration/login.html:8
 msgid "Login"
 msgstr "Inloggning"
 
@@ -507,20 +892,16 @@ msgstr "Ändra lösenord"
 msgid "Update Profile"
 msgstr "Uppdatera profil"
 
-#: templates/registration/logout.html:4
-msgid "Logged out"
-msgstr "Du är utloggad"
-
-#: templates/registration/logout.html:8
-msgid "You have been logged out. Go to "
-msgstr "Du är utloggad. Gå till "
+#: templates/registration/login.html:21
+msgid "Please login to continue"
+msgstr ""
 
 #: templates/registration/password_change_done.html:4
 #: templates/registration/password_change_done.html:8
 msgid "Password change successful"
 msgstr "Ändring av lösenord lyckades"
 
-#: templates/registration/password_change_done.html:10
+#: templates/registration/password_change_done.html:9
 msgid "Your password was changed."
 msgstr "Ditt lösenord har ändrats."
 
@@ -529,25 +910,29 @@ msgstr "Ditt lösenord har ändrats."
 msgid "Password change"
 msgstr "Ändring av lösenord"
 
-#: templates/registration/password_change_form.html:10
-msgid "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
-msgstr "Skriv in ditt gamla lösenord och skriv sedan in ditt nya lösenord två gånger så vi kan kontrollera att du skrivit det rätt."
+#: templates/registration/password_change_form.html:9
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+"Skriv in ditt gamla lösenord och skriv sedan in ditt nya lösenord två gånger "
+"så vi kan kontrollera att du skrivit det rätt."
 
-#: templates/registration/password_change_form.html:15
+#: templates/registration/password_change_form.html:14
 msgid "Old password:"
 msgstr "Gamalt lösenord:"
 
-#: templates/registration/password_change_form.html:17
+#: templates/registration/password_change_form.html:16
 #: templates/registration/password_reset_confirm.html:16
 msgid "New password:"
 msgstr "Nytt lösenord:"
 
-#: templates/registration/password_change_form.html:19
+#: templates/registration/password_change_form.html:18
 #: templates/registration/password_reset_confirm.html:18
 msgid "Confirm password:"
 msgstr "Bekräfta lösenordet:"
 
-#: templates/registration/password_change_form.html:21
+#: templates/registration/password_change_form.html:19
 #: templates/registration/password_reset_confirm.html:19
 msgid "Change my password"
 msgstr "Ändra mitt lösenord"
@@ -557,7 +942,7 @@ msgstr "Ändra mitt lösenord"
 msgid "Password reset complete"
 msgstr "Återställningen fungerade"
 
-#: templates/registration/password_reset_complete.html:10
+#: templates/registration/password_reset_complete.html:9
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr "Ditt lösenord har ändrats. Du kan gå vidare och logga in nu."
 
@@ -571,30 +956,44 @@ msgstr "Glömt lösenord"
 msgid "Enter new password"
 msgstr "Skriv nytt lösenord"
 
-#: templates/registration/password_reset_confirm.html:12
-msgid "Please enter your new password twice so we can verify you typed it in correctly."
-msgstr "Ange ditt nya lösenord två gånger så vi kan kontrollera att du skrivit det rätt."
+#: templates/registration/password_reset_confirm.html:11
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Ange ditt nya lösenord två gånger så vi kan kontrollera att du skrivit det "
+"rätt."
 
-#: templates/registration/password_reset_confirm.html:24
+#: templates/registration/password_reset_confirm.html:25
 msgid "Password reset unsuccessful"
 msgstr "Återställning av lösenord misslyckades"
 
-#: templates/registration/password_reset_confirm.html:26
-msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
-msgstr "Länken för återställning av lösenordet är ogiltigt, möjligen eftersom den redan har använts. Försök igen genom att klicka på Glömt lösenord."
+#: templates/registration/password_reset_confirm.html:27
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"Länken för återställning av lösenordet är ogiltigt, möjligen eftersom den "
+"redan har använts. Försök igen genom att klicka på Glömt lösenord."
 
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
 msgid "Password reset successful"
 msgstr "Tack!"
 
-#: templates/registration/password_reset_done.html:10
-msgid "We've e-mailed you instructions for setting your password to the e-mail address you submitted. You should be receiving it shortly."
-msgstr "Vi har skickat en e-post med instruktioner för hur du byter ditt lösenord till din e-postadress. Du bör få den inom kort."
+#: templates/registration/password_reset_done.html:9
+msgid ""
+"We've e-mailed you instructions for setting your password to the e-mail "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+"Vi har skickat en e-post med instruktioner för hur du byter ditt lösenord "
+"till din e-postadress. Du bör få den inom kort."
 
 #: templates/registration/password_reset_email.html:3
 msgid "You're receiving this e-mail because you requested a password reset"
-msgstr "Du har fått denna e-post eftersom du begärt en återställning av ditt lösenord för ditt användarkonto på Influensakoll"
+msgstr ""
+"Du har fått denna e-post eftersom du begärt en återställning av ditt "
+"lösenord för ditt användarkonto på Influensakoll"
 
 #: templates/registration/password_reset_email.html:4
 #, python-format
@@ -618,9 +1017,13 @@ msgstr "Tack för att du är med i Influensakoll."
 msgid "The %(site_name)s team"
 msgstr "%(site_name)s"
 
-#: templates/registration/password_reset_form.html:10
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Glömt ditt lösenord? Fyll i din e-postadress nedan så skickar vi en e-post med instruktioner för hur du får ett nytt lösenord."
+#: templates/registration/password_reset_form.html:9
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
+"instructions for setting a new one."
+msgstr ""
+"Glömt ditt lösenord? Fyll i din e-postadress nedan så skickar vi en e-post "
+"med instruktioner för hur du får ett nytt lösenord."
 
 #: templates/registration/password_reset_form.html:14
 msgid "E-mail address:"
@@ -634,17 +1037,34 @@ msgstr "Jag vill återställa mitt lösenord"
 msgid "Registration complete"
 msgstr "Registreringen genomförd"
 
-#: templates/registration/registration_complete.html:6
+#: templates/registration/registration_complete.html:8
 msgid "Registration complete."
 msgstr "Registreringen genomförd."
 
-#: templates/registration/registration_complete.html:7
-msgid "An e-mail containing information about how to activate your account has been sent to your e-mail address."
-msgstr "Ett e-postmeddelande med instruktioner för hur du aktiverar ditt konto har skickats till din e-postadress."
+#: templates/registration/registration_complete.html:9
+msgid ""
+"An e-mail containing information about how to activate your account has been "
+"sent to your e-mail address."
+msgstr ""
+"Ett e-postmeddelande med instruktioner för hur du aktiverar ditt konto har "
+"skickats till din e-postadress."
 
+#: templates/registration/registration_complete.html:10
+msgid ""
+"Please check your spam folder in case you do not get this email in your "
+"Inbox. If you have any problems activating your account, please"
+msgstr ""
+"Kolla dina spam filter om du inte får e-posten.Om du har tekniska problem "
+"med aktiveringen, vänligen"
+
+#: templates/registration/registration_explanation.html:9
 #: templates/registration/registration_form.html:8
 msgid "Registration Form"
 msgstr "Anmälan"
+
+#: templates/registration/registration_form.html:21
+msgid "Join the survey"
+msgstr ""
 
 #: templates/search/search.html:5
 msgid "Search result"
@@ -658,51 +1078,68 @@ msgstr "Resultat"
 msgid "No results found"
 msgstr "Inga resultat funna"
 
-#: templates/survey/form.html:21
-msgid "Submit"
-msgstr "Skicka in"
+#: templates/survey/group_management.html:14
+msgid "on "
+msgstr ""
+
+#: templates/survey/group_management.html:22
+msgid "Select/deselect all"
+msgstr ""
+
+#: templates/survey/group_management.html:22
+#, fuzzy
+msgid "Add person"
+msgstr "Lägg till profilen"
+
+#: templates/survey/group_management.html:22
+#, fuzzy
+msgid "Survey date"
+msgstr "Enkätdiagram"
+
+#: templates/survey/group_management.html:22
+#, fuzzy
+msgid "Condition"
+msgstr "Innehåll"
+
+#: templates/survey/group_management.html:30
+msgid "Report"
+msgstr ""
+
+#: templates/survey/group_management.html:30 templates/survey/thanks.html:43
+msgid "Change profile"
+msgstr "Bakgrundsenkäten"
+
+#: templates/survey/group_management.html:50
+msgid "Mark as healthy"
+msgstr ""
+
+#: templates/survey/group_management.html:51
+msgid "Delete member(s)"
+msgstr ""
+
+#: templates/survey/group_management.html:58 templates/survey/thanks.html:62
+msgid ""
+"The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
+msgstr ""
+"Influensakoll ger ingen diagnostisk information om deltagarnas hälsostatus. "
+"Kontakta din vårdcentral eller sjukvårdsrådgivningen om du behöver råd eller "
+"vård."
 
 #: templates/survey/index.html:16
 msgid "Survey Form"
 msgstr "Rapportera"
 
-#: templates/survey/people.html:5
-msgid "People"
-msgstr "Profiler"
+#: templates/survey/mobile_success.html:6
+msgid "Put your success message here"
+msgstr ""
 
-#: templates/survey/people.html:13
-msgid "Edit"
-msgstr "Redigera profilnamn"
-
-#: templates/survey/people.html:14
-msgid "Profile"
-msgstr "Profil"
-
-#: templates/survey/people.html:15
-msgid "Survey"
-msgstr "Rapportera"
-
-#: templates/survey/people.html:16
-#: templates/survey/thanks.html:19
-msgid "Remove"
-msgstr "Ta bort"
-
-#: templates/survey/people.html:21
-msgid "Add new person"
-msgstr "Lägg till en ny profil"
-
-#: templates/survey/people_add.html:5
-#: templates/survey/people_add.html:10
+#: templates/survey/people_add.html:5 templates/survey/people_add.html:10
 msgid "Add Person"
 msgstr "Lägg till profilen"
 
 #: templates/survey/people_edit.html:5
 msgid "Edit Person"
 msgstr "Redigera profilen"
-
-#: templates/survey/people_edit.html:10
-msgid "Save"
-msgstr "Spara"
 
 #: templates/survey/people_remove.html:5
 msgid "Confirm removal"
@@ -728,74 +1165,169 @@ msgstr "Redigera profilen"
 msgid "Select User"
 msgstr "Välj användare"
 
-#: templates/survey/thanks.html:6
+#: templates/survey/thanks.html:22
 msgid "Thanks for taking the time to fill out this survey."
 msgstr "Tack för att du är med i Influensakoll."
 
-#: templates/survey/thanks.html:6
-msgid "Here is a summary of the information you entered for you and the members of your group or family:"
-msgstr "Här är en sammanfattning av de uppgifter som du angett för dina profiler:"
+#: templates/survey/thanks.html:25
+msgid ""
+"Here is a summary of the information you entered for you and the members of "
+"your group or family:"
+msgstr ""
+"Här är en sammanfattning av de uppgifter som du angett för dina profiler:"
 
-#: templates/survey/thanks.html:11
+#: templates/survey/thanks.html:30
 msgid "Group members"
 msgstr "Profilnamn"
 
-#: templates/survey/thanks.html:11
+#: templates/survey/thanks.html:31 templates/survey/thanks.html.py:106
 msgid "Health status"
 msgstr "Hälsostatus"
 
-#: templates/survey/thanks.html:11
+#: templates/survey/thanks.html:33 templates/survey/thanks.html.py:35
 msgid "Manage "
 msgstr "Hantera "
 
-#: templates/survey/thanks.html:16
+#: templates/survey/thanks.html:42
 msgid "Change name"
 msgstr "Byt profilnamn"
 
-#: templates/survey/thanks.html:17
-msgid "Change profile"
-msgstr "Bakgrundsenkäten"
-
-#: templates/survey/thanks.html:18
+#: templates/survey/thanks.html:44
 msgid "Enter symptoms"
 msgstr "Rapportera"
+
+#: templates/survey/thanks.html:46
+msgid "Remove"
+msgstr "Ta bort"
+
+# translations should reflect whatever can be seen on the map of the thanks page
+#: templates/survey/thanks.html:95
+msgid ""
+"Regions in which we currently have reports of influenza-like illness are "
+"red, and ones in which none of our participants currently report influenza-"
+"like illness are blue."
+msgstr ""
+
+#: templates/survey/thanks.html:104
+msgid "Fill out date"
+msgstr "Datum för rapportering"
+
+#: templates/survey/thanks.html:105
+msgid "Member"
+msgstr "Profil"
 
 #: templates/survey/thanks_profile.html:5
 msgid "Thanks for changing your profile,"
 msgstr "Tack för att du ändrat din profil,"
 
-#: templates/survey/thanks_profile.html:6
+#: templates/survey/thanks_profile.html:12
 msgid "Please, if you have not already done so, fill in"
 msgstr "Om du inte redan gjort det, var vänlig fyll i"
 
-#: templates/survey/thanks_profile.html:6
+#: templates/survey/thanks_profile.html:18
 msgid "the symptoms questionaire"
 msgstr "symptomenkäten"
 
-msgid "This account is inactive."
-msgstr "Detta konto har inte aktiverats. Klicka på länken i det e-postmeddelande du fått angående aktivering av ditt konto. Om du inte fått någon e-post, kolla dina spam filter. Skriv annars till oss på influensakoll@smi.se."
+msgid ""
+"Date & time of the first reminder and point of reference for subsequent "
+"reminders; (Time zone: MET)"
+msgstr ""
+"Datum och tid för första påminnelsen och referenspunkt för efterföljande "
+"påminnelser; (tidszon: MET)"
 
-msgid "Activate your account:\n\nClick the following URL or copy and paste it to the browser's address bar.\n\nhttp://%(site)s/accounts/activate/%(activation_key)s/\n\nThis activation URL will expire in %(expiration_days)s days."
-msgstr "Aktivera ditt konto:\n\n\n\nTack för att du vill gå med i Influensakoll!\n\nFör att aktivera ditt konto enkelklicka på länken nedan eller kopiera och klistra in den i din webbläsare.\n\n\n\nhttp://%(site)s/accounts/activate/%(activation_key)s/\n\n\n\nDen här länken för aktivering är giltig i %(expiration_days)s dagar.\n\n\n\nNär du har aktiverat ditt konto kan du logga in.\n\nFörsta gången du loggar in på ditt användarkonto behöver du skapa din profil och fylla i en enkät om din bakgrund. Först när du fyllt i bakgrundsenkäten kan du rapportera sjukdom.\n\n\n\nBästa hälsningar\n\n\n\nInfluensakoll"
+msgid "Next status"
+msgstr "<saknas>"
+
+msgid "You have to fill your profile data first."
+msgstr ""
+"Var vänlig fyll i bakgrundsenkäten för den här profilen. Bakgrundsenkäten "
+"måste vara komplett innan du kan rapportera för den här profilen."
+
+msgid ""
+"One or more questions have empty or invalid answer. Please fix it first."
+msgstr ""
+"Kontrollera dina svar. Det verkar finnas ett eller flera tomma eller "
+"ogiltiga svar."
+
+msgid "People"
+msgstr "Profiler"
+
+msgid "Edit"
+msgstr "Redigera profilnamn"
+
+msgid "Add new person"
+msgstr "Lägg till en ny profil"
+
+msgid "This account is inactive."
+msgstr ""
+"Detta konto har inte aktiverats. Klicka på länken i det e-postmeddelande "
+"du fått angående aktivering av ditt konto. Om du inte fått någon e-post, "
+"kolla dina spam filter. Skriv annars till oss på influensakoll@smi.se."
+
+msgid ""
+"Activate your account:\n"
+"\n"
+"Click the following URL or copy and paste it to the browser's address "
+"bar.\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"This activation URL will expire in %(expiration_days)s days."
+msgstr ""
+"Aktivera ditt konto:\n"
+"\n"
+"\n"
+"\n"
+"Tack för att du vill gå med i Influensakoll!\n"
+"\n"
+"För att aktivera ditt konto enkelklicka på länken nedan eller kopiera och "
+"klistra in den i din webbläsare.\n"
+"\n"
+"\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"\n"
+"\n"
+"Den här länken för aktivering är giltig i %(expiration_days)s dagar.\n"
+"\n"
+"\n"
+"\n"
+"När du har aktiverat ditt konto kan du logga in.\n"
+"\n"
+"Första gången du loggar in på ditt användarkonto behöver du skapa din "
+"profil och fylla i en enkät om din bakgrund. Först när du fyllt i "
+"bakgrundsenkäten kan du rapportera sjukdom.\n"
+"\n"
+"\n"
+"\n"
+"Bästa hälsningar\n"
+"\n"
+"\n"
+"\n"
+"Influensakoll"
 
 msgid "Activate your account! %(site)s"
 msgstr "Aktivera ditt konto! %(site)s"
 
-
-msgid "Please check the answers for the highlighted questions."
-msgstr "Det verkar som du har missat några obligatoriska frågor eller fyllt i svar som inte har rätt format. Kolla de markerade frågorna."
-
-msgid "Weekly survey"
-msgstr "Symptomenkäten"
-
 msgid "Manage household"
 msgstr "Hantera profiler"
 
-msgid "You have received this email because you are registered with %(site_name)s. Your contribution helps us track the spread of flu. If you do not wish to receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s\">unsubscribe</a> from our mailings."
-msgstr "Du har fått detta meddelande för att du är registrerade som deltagare i Influensakoll. Tack för att du är med. Du bidrar till att hålla koll på influensan i Sverige. Om du har frågor eller synpunkter är du välkommen att höra av dig till influensakoll@smi.se."
-
-msgid "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."
-msgstr "På den här sidan kan du se alla profiler som du redan skapat under ditt användarkonto, uppdatera bakgrundsinformation för varje profil, och välja vilket profilnamn du vill rapportera för. Du kan även lägga till nya profiler. <a href='http://www.influensakoll.se/sv/flera-profiler/'>Här</a> kan du läsa mer om att hantera fler profiler.\n\nNär du har skapat en profil och fyllt i bakgrundsinformationen kan du rapportera direkt för den profilen. Vi hoppas att du kan rapportera varje vecka, oavsett om du är frisk eller sjuk. Samma sak gäller alla profiler - all information hjälper oss att få koll på influensaläget i Sverige!"
+msgid ""
+"Below is the list of participants currently managed by you. Click the "
+"corresponding option next to the participant to complete the background "
+"or symptoms questionnaire for that person, or to remove a participant."
+msgstr ""
+"På den här sidan kan du se alla profiler som du redan skapat under ditt "
+"användarkonto, uppdatera bakgrundsinformation för varje profil, och välja "
+"vilket profilnamn du vill rapportera för. Du kan även lägga till nya "
+"profiler. <a href='http://www.influensakoll.se/sv/flera-profiler/'>Här</"
+"a> kan du läsa mer om att hantera fler profiler.\n"
+"\n"
+"När du har skapat en profil och fyllt i bakgrundsinformationen kan du "
+"rapportera direkt för den profilen. Vi hoppas att du kan rapportera varje "
+"vecka, oavsett om du är frisk eller sjuk. Samma sak gäller alla profiler "
+"- all information hjälper oss att få koll på influensaläget i Sverige!"
 
 msgid "Background"
 msgstr "Bakgrund"
@@ -803,73 +1335,97 @@ msgstr "Bakgrund"
 msgid "Symptoms"
 msgstr "Symptom"
 
-msgid "Fill out date"
-msgstr "Datum för rapportering"
-
-msgid "Member"
-msgstr "Profil"
-
-msgid "Influweb result"
-msgstr "Hälsostatus"
-
-msgid "Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once."
-msgstr "Innan du kan rapportera för den här profilen ber vi dig fylla i bakgrundsenkäten nedan. Bakgrundsenkäten måste fyllas i för varje ny profil (men bara en gång för varje)."
-
 msgid "Completing for participant"
 msgstr "Enkäten gäller profilnamnet"
 
 msgid "Symptoms survey"
 msgstr "Symptomenkäten"
 
-msgid "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
-msgstr "Influensakoll ger ingen diagnostisk information om deltagarnas hälsostatus. Kontakta din vårdcentral eller sjukvårdsrådgivningen om du behöver råd eller vård."
+# ##########################
+# Login and Register helptexts translationbelow #
+# ##########################
 
-msgid "Unknown"
-msgstr "Okänd"
-
-msgid "Questionnaire for participant"
-msgstr "Enkäten gäller"
-
-msgid "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please"
-msgstr "Kolla dina spam filter om du inte får e-posten.Om du har tekniska problem med aktiveringen, vänligen"
-
-msgid "contact us"
-msgstr "Kontakta oss"
-
-# translations should reflect whatever can be seen on the map of the thanks page
-msgid "Regions in which we currently have reports of influenza-like illness are red, and ones in which none of our participants currently report influenza-like illness are blue."
+msgid "If you have forgotten your password or username, you can"
 msgstr ""
 
-# translations should reflect however often maps are updated
-msgid "Map updated hourly."
+msgid "request a new password"
 msgstr ""
 
-msgid "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to"
+msgid "and find out your username."
 msgstr ""
 
-msgid "log in"
+msgid ""
+"You will need a working email address in order to register for the flusurvey."
 msgstr ""
 
-msgid "using the username and password you provided during registration. If this still fails, please try to"
+msgid ""
+"Choose a username consisting of numbers, letters and/or underscores (no "
+"spaces) and a password.<br />If you have forgotten your password or "
+"username, you can"
 msgstr ""
 
-msgid "register"
+# ##########################
+# Cookie Consent translation below #
+# ##########################
+
+msgid "Your experience on this site will be improved by allowing cookies"
 msgstr ""
 
-msgid "with a different username. If everything else fails, please do not hesitate to"
+msgid "Allow cookies"
 msgstr ""
 
-msgid "Check this box if you wish to receive weekly reminders throughout the flu season"
+msgid "Save preference"
 msgstr ""
 
-msgid "This email is already in use"
+msgid "see details"
 msgstr ""
 
-msgid "My settings"
+msgid "hide details"
 msgstr ""
 
-msgid "Your settings have been updated"
+msgid "Strictly necessary"
 msgstr ""
 
-msgid "Change password"
+msgid ""
+"Some cookies on this website are strictly necessary and can not be disabled."
+msgstr ""
+
+msgid "Social media"
+msgstr ""
+
+msgid ""
+"Facebook, Twitter and other social websites need to know who you are to work "
+"properly."
+msgstr ""
+
+msgid "Analytics"
+msgstr ""
+
+msgid ""
+"We anonymously measure your use of this website to improve your experience."
+msgstr ""
+
+msgid "Privacy settings"
+msgstr ""
+
+msgid "for this website"
+msgstr ""
+
+msgid ""
+"Some features of this website need your consent to remember who you are."
+msgstr ""
+
+msgid "I consent"
+msgstr ""
+
+msgid "I decline"
+msgstr ""
+
+msgid "Close window"
+msgstr ""
+
+msgid "Cookie settings"
+msgstr ""
+
+msgid "Thanks - your diagnosis:"
 msgstr ""

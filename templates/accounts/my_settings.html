@@ -1,45 +1,62 @@
 {% extends "base/threecol.html" %}
-{% load i18n %}
+{% load i18n cms_tags %}
+
+{% block title %}{{ block.super }} {% trans "Account settings" %}{% endblock %}
+
+{% block add_js %}
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
+{% endblock add_js %}
 
 {% block col1 %}
-<h1>{% trans "My settings" %}</h1>
+<h1>{% trans "Account settings" %}</h1>
 
 {% if success %}
-<p>
-{% trans "Your settings have been updated" %}
-</p>
+<div class="usermessage">{% trans "Your settings have been updated" %}</div>
 {% endif %}
 
-<h1>{% trans "Email" %}</h1>
-<table>
-<form action="{% url apps.accounts.views.my_settings %}email/" method="post">{% csrf_token %}
-{{ email_form.as_table }}
-<tr><td>
-<input type="submit" value="{% trans "Save" %}">
-</td></tr>
-</form>
-</table>
+{% placeholder "Main content" %}
 
+<div class="formwrap">
 
-<h1>{% trans "Password" %}</h1>
-<table>
-<form action="{% url apps.accounts.views.my_settings %}password/" method="post">{% csrf_token %}
-{{ password_form.as_table }}
-<tr><td>
-<input type="submit" value="{% trans "Save" %}">
-</td></tr>
-</form>
-</table>
+    <hr />
+    <h2>{% trans "Email settings" %}</h1>
+    <form action="{% url apps.accounts.views.my_settings %}email/" method="post">{% csrf_token %}
+    {{ email_form.as_p }}
+    <p><input type="submit" class="submitbutton" value="{% trans "Save" %}"></p>
+    </form>
+    <br /><hr />
 
+    <h2>{% trans "Password" %}</h2>
+    <form action="{% url apps.accounts.views.my_settings %}password/" method="post">{% csrf_token %}
+    {{ password_form.as_p }}
+    <p><input type="submit" class="submitbutton" value="{% trans "Save" %}"></p>
+    </form>
+    <br /><hr />
 
-<h1>{% trans "Username" %}</h1>
-<table>
-<form action="{% url apps.accounts.views.my_settings %}username/" method="post">{% csrf_token %}
-{{ username_form.as_table }}
-<tr><td>
-<input type="submit" value="{% trans "Save" %}">
-</td></tr>
-</form>
-</table>
+    <h2>{% trans "Username" %}</h2>
+    <form action="{% url apps.accounts.views.my_settings %}username/" method="post">{% csrf_token %}
+    {{ username_form.as_p }}
+    <p><input type="submit" class="submitbutton" value="{% trans "Save" %}"></p>
+    </form>
+    <br /><hr />
+    
+</div>
+
+{% endblock %}
+
+{% block col2 %}
+
+{% include "accounts/partials/usermenu.html" %}
+{% include "accounts/partials/usermap.html" %}
 
 {% endblock %}

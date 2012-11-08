@@ -17,12 +17,12 @@ class CMSContestPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         already_done = Prediction.objects.filter(user=context['request'].user).count()
         if not already_done:
-            filename = "prijs_grafiek2011"
+            filename = "prijs_grafiek2012"
         else:
-            filename = "prijs_grafiek_weergave2011"
+            filename = "prijs_grafiek_weergave2012"
 
-        if date.today() > date(2012, 1, 25):
-            filename = "prijs_grafiek_weergave2011" # no longer possible to enter results
+        if date.today() > date(2012, 11, 15):
+            filename = "prijs_grafiek_weergave2012" # no longer possible to enter results
 
         context.update({
             'filename': filename,

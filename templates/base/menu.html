@@ -12,13 +12,3 @@
 </ul>
 {% endif %}
 
-{% for child in children %}
-    {% if child.selected %}
-        {% include "base/submenu.html" %}
-    {% endif %}
-    {% for subchild in child.children %}
-        {% if subchild.selected %}
-            {% include "base/submenu.html" %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}

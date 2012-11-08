@@ -1,0 +1,98 @@
+{% extends "survey/base.html" %}
+{% load i18n %}
+
+{%block add_js%}
+<script src="{{ MEDIA_URL }}/sw/story.js" type="text/javascript"></script>
+{% endblock %}
+{% block col1 %}
+<h1>{% trans "People" %}</h1>
+
+<p>{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}<br><br>
+
+{% if last_survey %}
+<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>
+<br />
+{% endif %}
+<form action="" method="POST" id="users_form">{% csrf_token %}
+<table border="0" id="people-table">
+<tr>
+	<th>{% trans "Name" %}</th>
+	<th colspan="2" style="width:200px">{% trans "Fill a questionnaire" %}</th>
+</tr>
+{% for person in persons %}
+<tr id="person-{{ person.pk }}">
+	<td class="person-name"><input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }} <a rel="facebox" href="{{ person.get_edit_url }}" class="button button-mini edit-user" data-facebox-height="360px">{% trans "Edit" %}</a></td>
+    <td><a href="{{ person.get_profile_url }}" class="icon icon-survey">{% trans "Background" %}</a></td>
+    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey">{% trans "Symptoms" %}</a></td>
+</tr>
+{% endfor %}
+<tr>
+	<td colspan="5">
+	<input type="hidden" name="action" value="" id="input_action"/>
+	{% trans "For the checked users" %} :
+    <button type="button" onclick="submit_users('healthy')" class="button">{% trans "Mark as healthy" %}</button><span class="tip icon icon-tip" title="{%trans "mark as healthy help text"%}">&nbsp;</span>
+	<button type="button" onclick="submit_users('delete')" class="button">{% trans "Delete member(s)" %}</button>
+	</td>
+
+</tr>
+<tr>
+	<td colspan="5" class="people-actions">
+	<ul >
+		<li><a href="{% url survey_people_add %}" class="action-add-people">{% trans "Add new person" %}</a></li>
+		<li><a href="{% url cohort_form %}" class="action-cohort">{% trans "Register a participant in a Cohort" %}</a></li>
+	</ul>
+	</td>
+</tr>
+</table>
+</form>
+{% comment %}
+<div id="history">
+<dl>
+	{% for person in persons %}
+	<dt>{{person.name}}</dt>
+	<dd>
+	<ul>
+	{% for health_line in person.health_history %}
+      <li>{{ health_line.timestamp|date:"d/m" }}<img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" /></li>
+    {% endfor %}
+	</ul>
+	</dd>
+    {% endfor %}
+</dl>            
+</div>	
+{%endcomment%}
+<h2>{%trans "Household diagnosis history" %}</h2>
+<div id="story"></div>
+<p class="alert alert-info">{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+<script type="text/javascript">
+var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
+var history = [	
+ {% for h in history %}
+ { date: new Date({{h.timestamp|date:"Y,m,d"}}), diag:'{{ h.diag }}','status':'{{h.status}}', user: '{{h.survey_user.name }}' }{%if not forloop.last%},{%endif%}     
+ {%endfor%}
+];	
+
+Story.media = '{{MEDIA_URL}}';
+
+$(function() {
+	Story.render('#story');
+});
+
+function edit_user() {
+	var e = $(this);
+	document.location = e.attr('rel');
+}
+
+function submit_users(action) {
+	if(action == 'delete') {
+		if( !confirm('{% trans "Delete selected users ?" %}') ) {
+			return;
+		}		
+	}
+	$('#input_action').val(action);
+	$('#users_form').submit();
+}
+
+</script>
+{% endblock %}
+

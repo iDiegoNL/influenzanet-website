@@ -9,7 +9,6 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.db import connection
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse, NoReverseMatch
 
 from apps.journal.models import Entry
 from apps.survey.models import SurveyUser
@@ -92,11 +91,11 @@ class LatestEntriesFeed(Feed):
     def item_title(self, item):
         return item.title
 
+    def item_pubdate(self, item):
+        return item.pub_date
+
     def item_description(self, item):
         return item.excerpt
 
     def item_link(self, item):
-        try:
-            return reverse("news") + "/" + item.get_relative_url()
-        except:
-            return "/"
+        return '/mobile/' + item.get_relative_url()

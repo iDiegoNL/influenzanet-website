@@ -1,0 +1,11 @@
+{% extends "sw_cohort/base.html" %}{% load i18n %}
+
+{% block col1 %}
+{% include "base/messages.html" %}
+{% if cohort %}
+ {% trans "The participant have been registred in the cohort :" %}{{ cohort.title }}
+ <p>{{ cohort.description }}</p>
+{% else %}
+ <p>{% trans "Problem occured during registration, try later or contact us" %}</p>
+{% endif %}
+{% endblock %}

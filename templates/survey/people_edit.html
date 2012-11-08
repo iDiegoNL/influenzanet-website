@@ -1,14 +1,12 @@
-{% extends "survey/base.html" %}
 {% load i18n %}
 
 {% block col1 %}
-<h1>{% trans "Edit Person" %}</h1>
-
-<form method="post">
+<h2>{% trans "Edit Person" %}</h2>
+<p class="info">{% trans "This form allow you to customize the way this participant is named. In order to preserve privacy we ought you to avoid family name or email. Use surname or given name." %}</p>
+<form method="post" class="contact_form" action="{%url survey_people_edit%}?gid={{survey_user.global_id}}">
 {% csrf_token %}
 {{ form.as_p }}
-<p><input type="submit" value="{% trans "Save" %}"/></p>
+<input type="submit" id="commentsubmit" value="{% trans "Save" %}"/>
 </form>
 
 {% endblock %}
-
