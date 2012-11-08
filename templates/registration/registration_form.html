@@ -1,14 +1,26 @@
-{% extends "registration/boxbase.html" %}
+{% extends "base/threecol.html" %}
 {% load i18n %}
 
-{% block title %}{{ block.super }}: {% trans "Register" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Register" %}{% endblock %}
 
-{% comment %}
-{% block add_js %}<script type="text/javascript" src="{{ MEDIA_URL }}base/js/influenzanet.js"></script>{% endblock add_js %}
+{% block col1 %}
 
-{% block add_body %} onload="document.getElementsByTagName('input') [1].focus(); forcefancy();"{% endblock add_body %}
-{% endcomment %}
+<h1>{% trans "Registration Form" %}</h1>
 
-{% block content %}<h1>{% trans "Registration Form" %}</h1>
-                {% spaceless %}<form method="post" id="registration">{% csrf_token %}{{ form.as_p }}<p><input type="submit" id="boxsubmit" value="{% trans "Register" %}"/></p></form>{% endspaceless %}{% endblock content %}
+<div class="formwrap">
+    <form method="post" id="registration">{% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" class="submitbutton" value="{% trans "Register" %}" /></p>
+    </form>
+</div>
 
+{% endblock %}
+
+{% block col2 %}
+
+<p class="title">{% trans "Join the survey" %}</p>
+
+<p><strong>{% trans "You will need a working email address in order to register for the flusurvey." %}</strong></p>
+<p>{% trans "Choose a username consisting of numbers, letters and/or underscores (no spaces) and a password.<br />If you have forgotten your password or username, you can" %}<a href="{% url django.contrib.auth.views.password_reset %}">{% trans "request a new password" %}</a> {% trans "and find out your username." %}</p>
+
+{% endblock %}

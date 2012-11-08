@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<p class="title">{% trans "Your account" %}</p>
+<div id="userdisplay">
+	<a href="/accounts/settings/"><img class="useravatar" src="{{ MEDIA_URL }}base/img/account/anonymous.png" alt="Avatar" /></a>
+    	<span class="username">{{ user.username }}</span><br />
+    <span class="usermail"><a href="mailto:{{ user.email }}">{{ user.email }}</a>
+</div>
+
+<div id="usermenu">
+    <ul class="icons">
+        <li><i class="icon-envelope-alt"></i> <a href="{% url apps.reminder.views.latest_newsletter %}">{% trans "Newsletter" %}</a></li>
+
+        {% if surveyuser_count == 1%}
+        <li><i class="icon-list-ul"></i> <a href="{% url apps.survey.views.index %}?gid={{ surveyuser_gid }}">{% trans "Weekly survey" %}</a></li>
+        <li><i class="icon-edit"></i> <a href="{% url apps.survey.views.profile_index %}">{% trans "My profile" %}</a></li>
+        {% endif %}
+        <li><i class="icon-user"></i> <a href="{% url apps.survey.views.group_management %}">{% trans "Your results" %}</a></li>
+        <li><i class="icon-cog"></i> <a href="{% url apps.accounts.views.my_settings %}">{% trans "Account settings" %}</a></li>
+        <li><i class="icon-off"></i> <a href="{% url django.contrib.auth.views.logout %}">{% trans "Log out" %}</a></li>
+    </ul>
+</div>
+
+<div id="usertext">
+    <p>{% trans 'You can add multiple people (i.e. from your household, class or company) through "Your results". Each account can only have one <a href="/accounts/settings/">username</a> and <a href="/accounts/settings/">email address</a>. To leave feedback or get support,' %} <a href="{% url contact_form %}">{% trans "contact us" %}</a>.
+</div>

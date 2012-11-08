@@ -251,6 +251,11 @@ def get_reminders_for_users(now, users):
             if not last_action_long_ago_enough:
                 continue
 
+            if last_action > 30: # assumed to be: at start of season, since no reminder were sent for a month
+                if not last_action % 7 == 0:
+                    continue # start up respecting a full-week difference with the last action (or reminder)
+                    # this way the same partioning as used in the last season is maintained
+
         if info.last_reminder < reminder.date:
             yield user, reminder, language
             yielded += 1

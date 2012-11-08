@@ -1,0 +1,46 @@
+{% extends "base/threecol.html" %}
+{% load i18n cms_tags %}
+
+{% block title %}{{ block.super }} {% trans "Logged in" %}{% endblock %}
+
+{% block add_js %}
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
+{% endblock add_js %}
+
+{% block col1 %}
+<h1>{% trans "You are logged in" %}</h1>
+
+{% if last_survey %}
+<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }} {% trans "on" %} {{ last_survey.timestamp }}</div>
+{% endif %}
+{% placeholder "Main content" %}
+
+{% if latest_newsletter %}
+<h3>{% trans "Last newsletter from" %} {{ latest_newsletter.date.date }}:</h3>
+
+<div class="latestnewsletter">
+<span class="title">{{ latest_newsletter.subject }}</span>
+<hr />
+
+{{ message|safe }}
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block col2 %}
+
+{% include "accounts/partials/usermenu.html" %}
+{% include "accounts/partials/usermap.html" %}
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base/threecol.html" %}
+{% load i18n sekizai_tags cms_tags %}
+
+{% block title %}{{ block.super }} {% trans "Your results" %}{% endblock %}
+
+{% block add_css %}<link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endblock add_css %}
+
+{% block add_js %}
+<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/js/qtip.js"></script>
+
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
+{% endblock add_js %}
+
+{% block col1 %}
+<h1>{% trans "Your results" %}</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="usermessage"><span class="boldgreen">{{ message }}</span><br/>
+        </div>
+        <br />
+    {% endfor %}
+{% endif %}
+
+{% if last_survey %}
+<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>
+<br />
+{% endif %}
+
+{% placeholder "Main content" %}
+
+<form action="" method="POST">{% csrf_token %}
+    <div id="groupwrapper">
+        <div id="groupheader">
+            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; {% trans "Name" %} <a href="{% url survey_people_add %}"><i class="icon-plus right" title="{% trans "Add person" %}"></i></a></p><p>{% trans "Survey date" %}</p><p>{% trans "Condition" %}</p>
+        </div>
+        <div id="groupmembers">
+
+
+
+        	{% for person in persons %}
+            <div class="accordionButton" {% if person.global_id == gid %}id="open"{% endif %}>
+                <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="{{ person.get_edit_url }}" class="noslide">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{% url survey_profile %}?gid={{ person.global_id }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
+            </div>
+            
+            <div class="accordionContent">
+            {% for health_line in person.health_history %}
+                <div>
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
+                </div>
+            {% endfor %}
+            </div>
+            {% endfor %}
+
+
+
+
+        </div>
+    </div>
+    <br class="source"/>
+    <p class="groupsave">
+        <select name="action">
+            <option value="healthy">{% trans "Mark as healthy" %}</option>
+            <option value="delete">{% trans "Delete member(s)" %}</option>
+        </select>
+        <input type="submit" class="submitbutton" value="{% trans "Save" %}">
+    </p>
+</form>
+
+
+<p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+
+{% endblock %}
+
+{% block col2 %}
+
+{% include "accounts/partials/usermenu.html" %}
+{% include "accounts/partials/usermap.html" %}
+
+{% endblock %}

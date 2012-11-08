@@ -1,9 +1,9 @@
-{% extends "sw_auth/boxbase.html" %}
+{% extends "sw_auth/base.html" %}
 {% load i18n %}
 
 {% block title %}{{ block.super }}: {% trans "Account Activation" %}{% endblock %}
 
-{% block content %}
+{% block boxcontents %}
 <h1>{% trans "Account Activation" %}</h1>
 <p>{% trans "Activation is complete." %}</p>
 
@@ -12,7 +12,4 @@
 <p class="warning">{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin." %}</p>
 <p class="launch-date">{%trans "The project will be launched from the" %} <b>{{ launch_date|date:"DATE_FORMAT" }}</b></p>
 {% endif %}
-
-<p>&nbsp;</p>
-<p><a href="/">{% trans "Back to the home page" %}</a> {% trans "or" %} <a href="/accounts/login/">{% trans "proceed to the login page" %}</a>.</p>
-{% endblock content %}
+{% endblock boxcontents %}

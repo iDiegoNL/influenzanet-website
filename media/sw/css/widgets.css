@@ -1,0 +1,38 @@
+/**
+ * Externals
+ */
+
+#sentiweb-widget ul {
+ margin-left: 0px;
+ padding-left: 0px;
+}
+
+#sentiweb-widget li {
+ margin-top: .5em;
+ font-size: .7em;
+}
+
+.icon-sentiweb, .icon-invs, .icon-grog, .icon-qmark {
+ padding-left: 40px;
+ line-height: 35px;
+ background: #FFF url() left center no-repeat;
+}
+.icon-sentiweb { background-image: url(../logos/sentiweb-xs.gif) }
+.icon-invs { background-image: url(../logos/invs-xs.gif) }
+.icon-grog { background-image: url(../logos/grog-xs.gif) }
+.icon-qmark { background-image: url(../logos/grippenet-qmark.png) }
+
+#social-widgets {
+margin: .5em 0;
+padding:0; 
+max-width: 300px;
+}
+
+.widget-disabled {
+color: #666;
+border: 1px solid #EEE;
+border-radius: .4em;
+padding: .4em;
+font-size: .6em;
+text-align: justify;
+}

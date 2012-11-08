@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<p class="title">{% trans "Your neighbourhood" %}</p>
+
+<div id="usermap" class="survey-chart">
+
+<div id="userchart" data-chart-url="{% url pollster_chart_data "weekly" "neighbourhood"  %}" data-chart-type="google-map-centered" class="chart"></div>
+
+<p>{% trans 'Regions in which we currently have reports of influenza-like illness are <strong class="flu">▸ red</strong>, and ones in which none of our participants currently report influenza-like illness are <strong class="nosymptoms">▸ gray</strong>. Reports of gastrointestinal infections are <strong class="gastro">▸ yellow</strong> and common cold reports are displayed in <strong class="cold">▸ blue</strong>.' %}<br />
+<strong>{% trans "Map updated hourly."%}</strong></p>
+
+</div>

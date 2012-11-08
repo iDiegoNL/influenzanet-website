@@ -56,7 +56,7 @@ LANGUAGES = (
    ('nl', u'Nederlands'),
    ('it', u'Italiano'),
    ('sv', u'Svenska'),
-   ('pt', u'Português'),
+   ('pt', u'Portugues'),
    ('es', u'Español'),
 )
 
@@ -119,6 +119,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "apps.partnersites.context_processors.customizations",
 #   "pybb.context_processors.processor",
 #   "django.core.context_processors.static",
+    "apps.pollster.context_processors.last_survey",
+    "apps.pollster.context_processors.surveyuser_count",
 )
 
 CMS_TEMPLATES = (
@@ -180,6 +182,7 @@ INSTALLED_APPS = (
     'apps.municipal',
     'apps.sw_feedback',
     'apps.sw_auth',
+    'apps.sw_cohort',
 #    'apps.contest',
     #'apps.captcha',
     #'apps.tellafriend',
@@ -251,6 +254,14 @@ SESSION_COOKIE_AGE = 60 * 60 * 2
 
 LOCAL_APPS = ()
 LOCAL_MIDDLEWARE = ()
+LOGIN_REDIRECT_URL = '/survey/main/'
+
+# PyBB settings
+#AUTH_PROFILE_MODULE = 'pybb.Profile'
+#PYBB_TEMPLATE = 'base/forum.html'
+#PYBB_ENABLE_ANONYMOUS_POST = True
+#PYBB_ANONYMOUS_USERNAME = 'Gast'
+
 try:
     from local_settings import *
 except ImportError:
@@ -259,11 +270,3 @@ except ImportError:
 INSTALLED_APPS += LOCAL_APPS
 MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    
 
-
-LOGIN_REDIRECT_URL = '/survey/'
-
-# PyBB settings
-#AUTH_PROFILE_MODULE = 'pybb.Profile'
-#PYBB_TEMPLATE = 'base/forum.html'
-#PYBB_ENABLE_ANONYMOUS_POST = True
-#PYBB_ANONYMOUS_USERNAME = 'Gast'

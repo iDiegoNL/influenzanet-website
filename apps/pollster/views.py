@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.utils.safestring import mark_safe
-from django.utils.translation import to_locale, get_language
+from django.utils.translation import to_locale, get_language, ugettext as _
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
@@ -157,6 +157,8 @@ def survey_test(request, id, language=None):
     })
 
 def survey_run(request, shortname, next=None, clean_template=False):
+    from apps.survey.views import _get_person_health_status
+
     if 'login_key' in request.GET:
         user = authenticate(key=request.GET['login_key'])
         if user is not None:
@@ -193,7 +195,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
         form = survey.as_form()(data)
         if form.is_valid():
             form.save()
-            next_url = next or _get_next_url(request, reverse(survey_run, kwargs={'shortname': shortname}))
+            next_url = next or _get_next_url(request, reverse("survey_run", kwargs={'shortname': shortname}))
             if global_id:
                 # add or override the 'gid' query parameter
                 next_url_parts = list(urlparse.urlparse(next_url))
@@ -201,6 +203,13 @@ def survey_run(request, shortname, next=None, clean_template=False):
                 query.update({'gid': global_id})
                 next_url_parts[4] = urllib.urlencode(query)
                 next_url = urlparse.urlunparse(next_url_parts)
+
+            if survey.shortname == 'weekly':
+                __, diagnosis = _get_person_health_status(request, survey, global_id)
+                messages.info(request, _("Thanks - your diagnosis:") + u" " + u"%s" % diagnosis)
+            else:
+                messages.info(request, _("Thanks for taking the time to fill out this survey."))
+
             return HttpResponseRedirect(next_url)
         else:
             survey.set_form(form)

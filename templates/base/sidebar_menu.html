@@ -1,0 +1,29 @@
+{% load menu_tags %}
+
+{% comment %}
+We cannot obtain references to the parent if we would simply render
+{% show_menu 1 2 100 100 "base/sidebar_menu.html" %}
+
+So we manually do this by rendering 
+{% show_menu 0 2 100 100 "base/sidebar_menu.html" %} and simply not showing anything for level 0
+
+The below double loop is necessary to find out which menu item is selected. Unfortunately either
+the subchild or the parent can be selected, in either case only a single node is marked as such.
+
+In the template 'base/submenu.html' the child is item to display, and it will have a parent
+
+TL;DR: the real implementation of sidebar menus can be found in base/submenu; this template is
+simply a workaround for django-cms's inflexibilities. (or our misunderstanding of its possibilities)
+{% endcomment %}
+
+{% for child in children %}
+    {% if child.selected %}
+        {% include "base/submenu.html" %}
+    {% endif %}
+    {% for subchild in child.children %}
+        {% if subchild.selected %}
+            {% include "base/submenu.html" %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
