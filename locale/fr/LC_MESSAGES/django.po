@@ -1592,19 +1592,12 @@ msgstr ""
 "prochainement un email vous informant du lancement de la saison et vous "
 "invitant à remplir votre questionnaire préliminaire et votre premier "
 "questionnaire hebdomadaire. Pour toute question, n'hésitez pas à nous "
-"contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</"
-"a>. Le lancement de la prochaine saison est prévu le"
+"contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>."
 
 #: .\templates\survey\wait_launch.html.py:7
 #: .\templates\sw_auth\activation_complete.html.py:13
 msgid "The project will be launched from the"
-msgstr ""
-"Le suivi de GrippeNet.fr n'a pas encore débuté cette saison. Vous recevrez "
-"prochainement un email vous informant du lancement de la saison et vous "
-"invitant à remplir votre questionnaire préliminaire et votre premier "
-"questionnaire hebdomadaire. Pour toute question, n'hésitez pas à nous "
-"contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>. "
-"Le lancement de la prochaine saison est prévu le"
+msgstr "Le lancement de la prochaine saison est prévu le"
 
 #: .\templates\sw_auth\password_reset_email.html.py:7
 msgid ""
