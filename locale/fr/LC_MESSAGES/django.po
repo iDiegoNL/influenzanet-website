@@ -20,12 +20,10 @@ msgstr ""
 #: .\apps\accounts\forms.py:17 .\apps\accounts\forms.py:21
 #: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:25
 #: .\templates\accounts\my_settings.html.py:46
-#, fuzzy
 msgid "Username"
-msgstr "Nom de l'expéditeur"
+msgstr "Nom d'utilisateur"
 
 #: .\apps\accounts\forms.py:18 .\apps\sw_auth\forms.py:26
-#, fuzzy
 msgid "This value must contain only letters, numbers and underscores."
 msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
@@ -55,9 +53,8 @@ msgstr ""
 "Cochez cette case si vous souhaitez recevoir un email hebdomadaire de rappel"
 
 #: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:116
-#, fuzzy
 msgid "Language"
-msgstr "Modification des informations"
+msgstr "Langue"
 
 #: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:141
 msgid "This email is already in use"
@@ -81,7 +78,6 @@ msgid "This field is required."
 msgstr "Ce champs est requis."
 
 #: .\apps\contest\cms_plugins.py:14
-#, fuzzy
 msgid "Contest"
 msgstr "Contenu"
 
@@ -263,9 +259,8 @@ msgid "Enter a valid year and month."
 msgstr "Saisir une année et un mois valides."
 
 #: .\apps\pollster\fields.py:63
-#, fuzzy
 msgid "Enter a valid date."
-msgstr "Saisir un code postal valide."
+msgstr "Saisir une date valide."
 
 #: .\apps\pollster\fields.py:92
 msgid "Enter a valid postal code."
@@ -276,7 +271,6 @@ msgid "Enter a valid value consisting of letters, numbers or underscores"
 msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
 #: .\apps\pollster\views.py:209
-#, fuzzy
 msgid "Thanks - your diagnosis:"
 msgstr "Votre état de santé"
 
@@ -289,9 +283,8 @@ msgid "Year and month (in YYYY-MM format)"
 msgstr "Année et mois (au format AAAA-MM)"
 
 #: .\apps\pollster\db\models\fields.py:25
-#, fuzzy
 msgid "Date (in YYYY-MM-DD format)"
-msgstr "Année et mois (au format AAAA-MM)"
+msgstr "Date au format AAAA-MM-JJ"
 
 #: .\apps\pollster\db\models\fields.py:33
 msgid "Postal code"
@@ -388,17 +381,16 @@ msgid "%(current)s (in %(weeks)s weeks)"
 msgstr "%(current)s (in %(weeks)s semaines)"
 
 #: .\apps\reminder\models.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "%(current)s (%(days)s days ago)"
 msgstr "%(current)s (in %(days)s jours)"
 
 #: .\apps\reminder\models.py:134
-#, fuzzy, python-format
+#, python-format
 msgid "%(current)s (%(weeks)s weeks ago)"
 msgstr "%(current)s (in %(weeks)s semaines)"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:4
-#, fuzzy
 msgid "Logged in"
 msgstr "Vous êtes connecté sous le nom de"
 
@@ -423,7 +415,7 @@ msgid "Last newsletter from"
 msgstr "La dernière lettre"
 
 #: .\apps\reminder\templates\reminder\message.html.py:66
-#, fuzzy, python-format
+#, fuzzy,python-format
 msgid ""
 "You have received this email because you are registered with %(site_name)s. "
 "Your contribution helps us track the spread of flu. If you do not wish to "
@@ -478,7 +470,6 @@ msgid "Gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux"
 
 #: .\apps\survey\views.py:46
-#, fuzzy
 msgid "Allergy / hay fever and gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux"
 
@@ -520,7 +511,6 @@ msgid "Password"
 msgstr "Réinitialisation du mot de passe"
 
 #: .\apps\sw_auth\forms.py:33
-#, fuzzy
 msgid "Password (again)"
 msgstr "Changement du mot de passe (confirmation)"
 
@@ -727,7 +717,6 @@ msgid "Your settings have been updated"
 msgstr "Vos paramètres ont été mis à jour"
 
 #: .\templates\accounts\my_settings.html.py:32
-#, fuzzy
 msgid "Email settings"
 msgstr "Paramètres du site"
 
@@ -761,7 +750,6 @@ msgid "Map updated hourly."
 msgstr "Carte mise à jour toutes les heures."
 
 #: .\templates\accounts\partials\usermenu.html.py:3
-#, fuzzy
 msgid "Your account"
 msgstr "Mon espace"
 
@@ -776,9 +764,8 @@ msgstr "Questionnaire hebdomadaire"
 #: .\templates\accounts\partials\usermenu.html.py:18
 #: .\templates\survey\group_management.html.py:4
 #: .\templates\survey\group_management.html.py:27
-#, fuzzy
 msgid "Your results"
-msgstr "Aucun résultat trouvé"
+msgstr "Votre foyer"
 
 #: .\templates\accounts\partials\usermenu.html.py:20
 #: .\templates\base\forum.html.py:79 .\templates\base\sw_col_right.html.py:25
@@ -814,9 +801,8 @@ msgid "Full Editor"
 msgstr "Edition complète"
 
 #: .\templates\admin\pollster\survey\change_list.html.py:7
-#, fuzzy
 msgid "Add Survey"
-msgstr "Sondage"
+msgstr "Ajouter un questionnaire"
 
 #: .\templates\base\forum.html.py:78
 msgid "My account"
@@ -1099,7 +1085,6 @@ msgstr ""
 
 #: .\templates\registration\login.html.py:23
 #: .\templates\registration\registration_form.html.py:24
-#, fuzzy
 msgid "request a new password"
 msgstr "Entrer un nouveau mot de passe"
 
@@ -1354,19 +1339,16 @@ msgid "Select/deselect all"
 msgstr "Sélectionnez/désélectionnez tous les choix"
 
 #: .\templates\survey\group_management.html.py:47
-#, fuzzy
 msgid "Add person"
 msgstr "Ajouter un participant"
 
 #: .\templates\survey\group_management.html.py:47
-#, fuzzy
 msgid "Survey date"
-msgstr "Graphique de l'étude"
+msgstr "Date du questionnaire"
 
 #: .\templates\survey\group_management.html.py:47
-#, fuzzy
 msgid "Condition"
-msgstr "Contenu"
+msgstr "Etat de santé"
 
 #: .\templates\survey\group_management.html.py:55
 msgid "Report"
@@ -1388,7 +1370,6 @@ msgid "Delete member(s)"
 msgstr "Supprimer le(s) participant(s)"
 
 #: .\templates\survey\group_management.html.py:83
-#, fuzzy
 msgid ""
 "The health status of each participant is based on the symptoms you reported. "
 "<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "

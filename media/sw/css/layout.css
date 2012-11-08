@@ -162,6 +162,10 @@ font-weight: normal;
 padding-top: .3em;
 }
 
+#box {
+	font-size: 1em;
+}
+
 #box input#boxsubmit {
 background: #DDD0C1;
 color: #333;
