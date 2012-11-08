@@ -1,8 +1,14 @@
 {%load i18n %}
 {%if not user.is_authenticated %}
+<form action="/accounts/login/?next=/survey/" id="login-form" method="post">{% csrf_token %}
+	{%trans "Username" %}<input type="text" name="username" size="30" maxlength="70"/>
+	{%trans "Password" %}<input type="password" name="password" size="30" maxlength="30"/>
+	<div>
+	<button type="submit">Se connecter</button>
+	</div>
+</form>	
 <div id="user-buttons">
 	<a href="/accounts/register" id="register-button">S'inscrire</a>
-	<a href="/accounts/login" id="login-button">Se connecter</a>
 	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
 </div>
 <p id="passwd-reset"><a href="/accounts/password/reset/" rel="facebox" data-facebox-width="450" data-facebox-height="450">{% trans "Forgot password?" %}</a></p>

@@ -1,5 +1,5 @@
 /*
- * user
+ * Menu user buttons
  */
 #user-buttons a {
 	display: block;
@@ -24,6 +24,28 @@
 	background-color: #7AB800;
 }
 
+#login-form {
+	padding: .2em;
+	border: 1px solid #EEE;
+	border-radius: .4em;
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+	font-size: .7em;
+}
+#login-form div { text-align: center }
+#login-form input {
+	font-size: 1.1em;
+	padding: .2em;
+	border: 1px solid #EEE;
+	border-radius: .4em;
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+	width: 12em;
+}
+
+/**
+ * Logged user box
+ */
 #user-box {
 	padding: .5em;
 	border: 1px solid #EEE;
