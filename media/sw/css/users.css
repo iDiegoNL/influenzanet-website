@@ -43,6 +43,14 @@
 	width: 12em;
 }
 
+#registration {
+	padding: 1em;
+	border: 1px solid #EEE;
+	border-radius: .4em;
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+}
+
 /**
  * Logged user box
  */

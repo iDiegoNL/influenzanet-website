@@ -11,7 +11,7 @@
 	<a href="/accounts/register" id="register-button">S'inscrire</a>
 	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
 </div>
-<p id="passwd-reset"><a href="/accounts/password/reset/" rel="facebox" data-facebox-width="450" data-facebox-height="450">{% trans "Forgot password?" %}</a></p>
+<p id="passwd-reset"><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>
 {% else %}	
 <div id="user-box">
 	<table>
@@ -23,8 +23,10 @@
 		</tr>
 	</table>
 <ul>
+	{% if surveyuser_count == 1%}
 	<li class="icon icon-survey"><a href="/survey/">{% trans "Symptoms survey" %}</a></li>
 	<li class="icon icon-survey"><a href="/survey/profile/"> Questionnaire préliminaire </a></li>
+	{%endif%}
 	<li class="icon icon-users"><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
 	<li class="icon icon-settings"><a href="/accounts/settings/">{% trans "My settings" %}</a></li>
 	<li class="icon icon-password"><a href="/accounts/password/change">{% trans "Change password" %}</a></li>

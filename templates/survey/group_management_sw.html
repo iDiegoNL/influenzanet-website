@@ -9,10 +9,6 @@
 
 <p>{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}<br><br>
 
-{% if last_survey %}
-<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>
-<br />
-{% endif %}
 <form action="" method="POST" id="users_form">{% csrf_token %}
 <table border="0" id="people-table">
 <tr>
@@ -22,8 +18,15 @@
 {% for person in persons %}
 <tr id="person-{{ person.pk }}">
 	<td class="person-name"><input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }} <a rel="facebox" href="{{ person.get_edit_url }}" class="button button-mini edit-user" data-facebox-height="360px">{% trans "Edit" %}</a></td>
-    <td><a href="{{ person.get_profile_url }}" class="icon icon-survey">{% trans "Background" %}</a></td>
-    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey">{% trans "Symptoms" %}</a></td>
+    <td><a href="{{ person.get_profile_url }}" class="icon icon-survey">{% trans "Background" %}</a>
+	</td>
+    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey">{% trans "Symptoms" %}</a>
+		{% if person.health_history|length > 0 %}
+	{% with f=person.health_history|first %} 
+	<span class="last" title="{%trans "last survey date"%}">{{ f.timestamp|date:"d M Y H:i"}}</span>
+	{%endwith%}
+	{%endif%}
+	</td>
 </tr>
 {% endfor %}
 <tr>
@@ -68,7 +71,7 @@
 var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
 var history = [	
  {% for h in history %}
- { date: new Date({{h.timestamp|date:"Y,m,d"}}), diag:'{{ h.diag }}','status':'{{h.status}}', user: '{{h.survey_user.name }}' }{%if not forloop.last%},{%endif%}     
+ { date: new Date({{h.timestamp|date:"Y"}},{{h.timestamp|date:"m"}}-1,{{h.timestamp|date:"d"}}), diag:'{{ h.diag }}','status':'{{h.status}}', user: '{{h.survey_user.name }}' }{%if not forloop.last%},{%endif%}     
  {%endfor%}
 ];	
 

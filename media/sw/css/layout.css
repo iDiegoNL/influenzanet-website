@@ -163,7 +163,12 @@ padding-top: .3em;
 }
 
 #box {
-	font-size: 1em;
+ position: relative;
+ left: auto;
+ margin: 1em;
+ padding: 1em 3em;
+ width: auto;
+ font-size: 1em;
 }
 
 #box input#boxsubmit {
