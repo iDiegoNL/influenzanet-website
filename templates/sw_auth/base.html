@@ -1,14 +1,9 @@
 {% extends "base/twocol.html" %}
 {% load i18n %}
-
-{% block add_body %}  onload="document.getElementsByTagName('input') [1].focus();"{% endblock add_body %}
-
-
 {%block col1%}
- <div id="boxwrapper">
-  <div id="box">
- {% block boxcontents %}{% endblock boxcontents %}       
- <div id="footer">GrippeNet.fr</div>
+<div id="boxwrapper">
+<div id="box">
+{% block boxcontents %}{% endblock boxcontents %}       
 </div>
 </div>
 {%endblock%}
