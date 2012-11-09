@@ -142,6 +142,12 @@
 	padding: .4em;
 }
 
+#people-table .last {
+	display: block;
+	font-size: .7em;
+	
+}
+
 #people-table td.person-name {
 	 text-align: left;
 	 white-space: nowrap;

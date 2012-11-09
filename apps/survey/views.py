@@ -123,6 +123,20 @@ def _get_health_history(request, survey):
         survey_user = models.SurveyUser.objects.get(global_id=global_id)
         yield {'global_id': global_id, 'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status), 'survey_user': survey_user}
 
+def _get_group_last_survey(request, survey):
+    results = []
+    cursor = connection.cursor()
+    params = { 'user_id': request.user.id }
+    queries = {
+        'sqlite':"SELECT MAX(W.timestamp), W.global_id FROM pollster_results_" + survey + " W WHERE W.user = :user_id GROUP BY W.global_id",
+        'mysql': "SELECT MAX(W.timestamp), W.global_id FROM pollster_results_" + survey + " W WHERE W.user = :user_id GROUP BY W.global_id",
+        'postgresql':"SELECT MAX(W.timestamp), W.global_id FROM pollster_results_" + survey + " W WHERE W.user =  %(user_id)s GROUP BY W.global_id", 
+    }
+    cursor.execute(queries[utils.get_db_type(connection)], params)
+    results = cursor.fetchall()
+    for ret in results:
+        timestamp, global_id = ret
+        yield (global_id, timestamp)
 
 @login_required
 def group_management(request):
@@ -152,6 +166,8 @@ def group_management(request):
                 survey_user.save()
 
     history = list(_get_health_history(request, survey))
+    last_intakes = list(_get_group_last_survey(request, 'intake'))
+    last_intakes = dict((i[0], i[1]) for i in last_intakes)
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     persons_dict = dict([(p.global_id, p) for p in persons])
     for item in history:
@@ -159,9 +175,10 @@ def group_management(request):
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
+        person.last_intake = last_intakes.get(person.global_id)
         person.is_female = _get_person_is_female(person.global_id)
-
-    return render_to_response('survey/group_management_sw.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
+    template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
+    return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
                               context_instance=RequestContext(request))
 
 
