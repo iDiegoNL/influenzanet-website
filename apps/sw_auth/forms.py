@@ -19,7 +19,7 @@ class RegistrationForm(forms.Form):
     registration backend.
     
     """
-    username = forms.RegexField(regex=r'^\w+$',
+    username = forms.RegexField(regex=r'(?u)^[\w.@+-_]+$',
                                 max_length=255,
                                 widget=forms.TextInput(attrs=attrs_dict),
                                 label=_("Username"),

@@ -1,6 +1,10 @@
 {% extends "sw_auth/base.html" %}
 {% load i18n %}
 
+{%block add_css%}
+<style>#instructions { font-size: .8em }</style>
+{%endblock%}
+
 {% block title %}{{ block.super }} {% trans "Register" %}{% endblock %}
 
 {% block boxcontents %}
@@ -13,7 +17,7 @@
 	<button type="submit">{% trans "Register" %}</button>
 	</p>
 </form>
-<div class="alert alert-info">
+<div class="alert alert-info" id="instructions">
 {%trans "Registration instructions" %}
 </div>
 {% endspaceless %}
