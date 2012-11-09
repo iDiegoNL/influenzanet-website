@@ -1622,10 +1622,10 @@ msgstr ""
 #: .\templates\sw_auth\registration_form.html.py:17
 msgid "Registration instructions"
 msgstr ""
-"Pour vous inscrire vous devez fournir un nom d'utilisateur (qui peut être "
-"votre adresse email), votre adresse email et un mot de passe. Vous pouvez "
-"utilisez les lettres, chiffres et caractères \"@\",\"+\",\"-\",\".\" et \"_\" "
-"dans le nom d'utilisateur."
+"Pour vous inscrire vous devez fournir <br/>*un nom d'utilisateur (qui peut "
+"être votre adresse email),<br/>* votre adresse email<br/>* et un mot de "
+"passe.<br/><br/>Vous pouvez utiliser les lettres, chiffres et caractères "
+"\"@\",\"+\",\"-\",\".\" et \"_\" dans le nom d'utilisateur."
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"
