@@ -671,7 +671,7 @@ msgstr "Wöchentlicher Fragebogen"
 #: templates/survey/group_management.html:4
 #: templates/survey/group_management.html:11
 #, fuzzy
-msgid "Group management"
+msgid "Your results"
 msgstr "Gruppenmitglieder"
 
 #: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
@@ -682,7 +682,7 @@ msgstr "Abmelden"
 #: templates/accounts/partials/usermenu.html:25
 msgid ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Group management\". Each account can only have one <a href=\"/"
+"through \"Your results\". Each account can only have one <a href=\"/"
 "accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
 "address</a>. To leave feedback or get support,"
 msgstr ""

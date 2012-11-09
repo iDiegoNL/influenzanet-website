@@ -1,7 +1,7 @@
 {% extends "base/threecol.html" %}
 {% load i18n sekizai_tags cms_tags %}
 
-{% block title %}{{ block.super }} {% trans "Group management" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Your results" %}{% endblock %}
 
 {% block add_css %}<link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endblock add_css %}
 
@@ -80,7 +80,7 @@
 </form>
 
 
-<p>{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+<p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
 
 {% endblock %}
 
