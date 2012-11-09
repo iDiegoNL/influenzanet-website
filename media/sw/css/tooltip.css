@@ -5,12 +5,12 @@
 }
 
 .tooltip {
-	font-size: .8em;
-	padding: .5em;
-	color: #111;
-	background-color: white;
+	font-size: .7em;
+	padding: .6em;
+	color: #000;
+	background-color: #F6F6F6;
 	opacity: .95;
-	border: 2px solid #EEE;
+	border: 2px solid #3A87AD;
 	border-radius: 3px;
 	max-width: 400px;
 	-moz-border-radius: 3px;
