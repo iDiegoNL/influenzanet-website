@@ -425,8 +425,9 @@ msgid ""
 msgstr ""
 "Vous recevez cet email car vous êtes inscrit sur GrippeNet.fr. Votre "
 "participation nous aide à suivre les tendances de la grippe. Si vous ne "
-"souhaitez plus recevoir cet email hebdomadaire de rappel, vous pouvez vous "
-"<a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste de diffusion."
+"souhaitez plus recevoir la lettre hebdomadaire d'information de GrippeNet.fr, "
+"vous pouvez vous <a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste "
+"de diffusion."
 
 #: .\apps\reminder\templates\reminder\unsubscribe.html.py:6
 #: .\apps\reminder\templates\reminder\unsubscribe.html.py:10
@@ -1413,9 +1414,8 @@ msgid "Symptoms"
 msgstr "Hebdomadaire"
 
 #: .\templates\survey\group_management_sw.html.py:26
-#, fuzzy
 msgid "last survey date"
-msgstr "Date du questionnaire"
+msgstr "Date du dernier questionnaire complété pour ce participant"
 
 #: .\templates\survey\group_management_sw.html.py:35
 msgid "For the checked users"
@@ -1425,10 +1425,10 @@ msgstr "Pour les participants cochés"
 msgid "mark as healthy help text"
 msgstr ""
 "Ce bouton vous permet de remplir automatiquement le questionnaire "
-"hebdomadaire en indiquant que ces participants n'ont présentés <b>aucun "
-"symptome</b> depuis leur dernier questionnaire.\n"
-"Si un des participants a présenté au moins un symptome, merci de remplir un "
-"questionnaire pour ce participant."
+"hebdomadaire en indiquant que ces participants n'ont présenté <b>aucun "
+"symptôme</b> depuis leur dernier questionnaire.\nSi un des participants a "
+"présenté au moins un symptôme, merci de remplir un questionnaire pour ce ou "
+"ces participants."
 
 #: .\templates\survey\group_management_sw.html.py:44
 msgid "Add new person"
@@ -1570,7 +1570,7 @@ msgstr "Membre du groupe"
 
 #: .\templates\survey\thanks_profile.html.py:5
 msgid "Thanks for changing your profile,"
-msgstr "Merci pour ces modifications, "
+msgstr "Merci d'avoir rempli ce questionnaire,"
 
 #: .\templates\survey\thanks_profile.html.py:12
 msgid "Please, if you have not already done so, fill in"
@@ -1625,7 +1625,7 @@ msgstr ""
 #: .\templates\sw_auth\registration_form.html.py:17
 msgid "Registration instructions"
 msgstr ""
-"Pour vous inscrire vous devez fournir :<br/>*Un nom d'utilisateur (qui peut "
+"Pour vous inscrire vous devez fournir :<br/>* Un nom d'utilisateur (qui peut "
 "être votre adresse email).<br/>* Votre adresse email.<br/>* Un mot de "
 "passe.<br/><br/>Vous pouvez utiliser les lettres, chiffres et caractères "
 "\"@\",\"+\",\"-\",\".\" et \"_\" dans le nom d'utilisateur."
