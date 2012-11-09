@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-08 17:14+0100\n"
+"POT-Creation-Date: 2012-11-09 09:54+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,7 @@ msgstr ""
 #: .\apps\accounts\forms.py:17 .\apps\accounts\forms.py:21
 #: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:25
 #: .\templates\accounts\my_settings.html.py:46
+#: .\templates\base\sw_col_right.html.py:4
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -83,7 +84,7 @@ msgstr "Contenu"
 
 #: .\apps\ew_contact_form\forms.py:12 .\apps\survey\forms\__init__.py:16
 #: .\templates\survey\group_management.html.py:47
-#: .\templates\survey\group_management_sw.html.py:19
+#: .\templates\survey\group_management_sw.html.py:15
 msgid "Name"
 msgstr "Nom"
 
@@ -400,14 +401,12 @@ msgstr "Vous êtes connecté"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:24
 #: .\templates\survey\group_management.html.py:38
-#: .\templates\survey\group_management_sw.html.py:13
 msgid "The last survey was submitted for"
 msgstr ""
 "Le dernier questionnaire hebdomadaire à été soumis rempli pour l'utilisateur"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:24
 #: .\templates\survey\group_management.html.py:38
-#: .\templates\survey\group_management_sw.html.py:13
 msgid "on"
 msgstr "le"
 
@@ -446,11 +445,11 @@ msgstr ""
 msgid "You have been successfully unsubscribed from the mailing list"
 msgstr "Vous vous êtes désinscrit de la liste de diffusion avec succès"
 
-#: .\apps\survey\menu.py:22 .\templates\base\sw_col_right.html.py:20
+#: .\apps\survey\menu.py:22 .\templates\base\sw_col_right.html.py:27
 msgid "Symptoms survey"
 msgstr "Questionnaire hebdomadaire"
 
-#: .\apps\survey\menu.py:27 .\templates\base\sw_col_right.html.py:22
+#: .\apps\survey\menu.py:27 .\templates\base\sw_col_right.html.py:30
 msgid "Manage household"
 msgstr "Gérer mon foyer"
 
@@ -508,6 +507,7 @@ msgid "Email address"
 msgstr "Adresse email :"
 
 #: .\apps\sw_auth\forms.py:31 .\templates\accounts\my_settings.html.py:39
+#: .\templates\base\sw_col_right.html.py:5
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -769,7 +769,7 @@ msgid "Your results"
 msgstr "Votre foyer"
 
 #: .\templates\accounts\partials\usermenu.html.py:20
-#: .\templates\base\forum.html.py:79 .\templates\base\sw_col_right.html.py:25
+#: .\templates\base\forum.html.py:79 .\templates\base\sw_col_right.html.py:33
 msgid "Log out"
 msgstr "Se déconnecter"
 
@@ -785,7 +785,7 @@ msgstr ""
 #: .\templates\registration\activate.html.py:9
 #: .\templates\registration\registration_complete.html.py:10
 #: .\templates\sw_auth\activate.html.py:10
-#: .\templates\sw_auth\registration_complete.html.py:9
+#: .\templates\sw_auth\registration_complete.html.py:10
 msgid "contact us"
 msgstr "nous contacter"
 
@@ -817,7 +817,7 @@ msgstr "Vous êtes connecté sous le nom de"
 #: .\templates\registration\boxbase.html.py:11
 #: .\templates\registration\login.html.py:13
 #: .\templates\registration\password_reset_complete.html.py:10
-#: .\templates\sw_auth\boxbase.html.py:13
+#: .\templates\sw_auth\boxbase.html.py:13 .\templates\sw_auth\login.html.py:10
 #: .\templates\sw_auth\password_reset_complete.html.py:12
 msgid "Log in"
 msgstr "Se connecter"
@@ -834,7 +834,7 @@ msgstr "Se connecter"
 msgid "Register"
 msgstr "S'inscrire"
 
-#: .\templates\base\forum.html.py:87 .\templates\base\sw_col_right.html.py:8
+#: .\templates\base\forum.html.py:87 .\templates\base\sw_col_right.html.py:14
 msgid "Forgot password?"
 msgstr "Mot de passe oublié ?"
 
@@ -850,12 +850,12 @@ msgstr "Contactez-nous"
 msgid "Contact"
 msgstr "Contact"
 
-#: .\templates\base\sw_col_right.html.py:23
+#: .\templates\base\sw_col_right.html.py:31
 #: .\templates\sw_auth\my_settings.html.py:5
 msgid "My settings"
 msgstr "Mes paramètres"
 
-#: .\templates\base\sw_col_right.html.py:24
+#: .\templates\base\sw_col_right.html.py:32
 msgid "Change password"
 msgstr "Changer mon mot de passe"
 
@@ -921,14 +921,14 @@ msgstr "Valider"
 #: .\templates\registration\activate.html.py:4
 #: .\templates\registration\activation_complete.html.py:4
 #: .\templates\sw_auth\activate.html.py:4
-#: .\templates\sw_auth\activate.html.py:6
+#: .\templates\sw_auth\activate.html.py:7
 #: .\templates\sw_auth\activation_complete.html.py:4
 #: .\templates\sw_auth\activation_complete.html.py:7
 msgid "Account Activation"
 msgstr "Activation du compte"
 
 #: .\templates\registration\activate.html.py:8
-#: .\templates\sw_auth\activate.html.py:7
+#: .\templates\sw_auth\activate.html.py:8
 msgid "User activation failed."
 msgstr "L'activation de votre compte a échoué."
 
@@ -998,9 +998,6 @@ msgstr ""
 #: .\templates\registration\password_reset_confirm.html.py:37
 #: .\templates\registration\password_reset_done.html.py:17
 #: .\templates\registration\registration_complete.html.py:19
-#: .\templates\sw_auth\activate.html.py:14
-#: .\templates\sw_auth\activation_complete.html.py:17
-#: .\templates\sw_auth\registration_complete.html.py:11
 msgid "Back to the home page"
 msgstr "Retourner à la page d'accueil"
 
@@ -1010,12 +1007,10 @@ msgid "Activation is complete."
 msgstr "Votre compte a été activé."
 
 #: .\templates\registration\activation_complete.html.py:9
-#: .\templates\sw_auth\activation_complete.html.py:17
 msgid "or"
 msgstr "ou"
 
 #: .\templates\registration\activation_complete.html.py:10
-#: .\templates\sw_auth\activation_complete.html.py:17
 msgid "proceed to the login page"
 msgstr "se connecter."
 
@@ -1051,28 +1046,26 @@ msgstr "Activer votre compte %(site)s"
 #: .\templates\registration\login.html.py:4
 #: .\templates\registration\login.html.py:8
 #: .\templates\sw_auth\boxbase.html.py:4
-#: .\templates\sw_auth\boxbase.html.py:10
+#: .\templates\sw_auth\boxbase.html.py:10 .\templates\sw_auth\login.html.py:4
 msgid "Login"
 msgstr "Se connecter"
 
 #: .\templates\registration\boxbase.html.py:10
-#: .\templates\sw_auth\boxbase.html.py:11
+#: .\templates\sw_auth\boxbase.html.py:11 .\templates\sw_auth\login.html.py:5
 msgid "Enter your username and password to log in."
 msgstr ""
 "Entrez votre nom d'utilisateur et votre mot de passe pour vous connecter."
 
 #: .\templates\registration\boxbase.html.py:10
-#: .\templates\sw_auth\boxbase.html.py:11
+#: .\templates\sw_auth\boxbase.html.py:11 .\templates\sw_auth\login.html.py:14
 msgid "Forgot your password?"
 msgstr "Vous avez oublié votre mot de passe ?"
 
 #: .\templates\registration\index.html.py:8
-#: .\templates\sw_auth\index.html.py:8
 msgid "Change Password"
 msgstr "Changer mon mot de passe"
 
 #: .\templates\registration\index.html.py:9
-#: .\templates\sw_auth\index.html.py:9
 msgid "Update Profile"
 msgstr "Mettre à jour mon profil"
 
@@ -1277,12 +1270,12 @@ msgid "Registration complete"
 msgstr "Votre inscription à GrippeNet.fr est terminée."
 
 #: .\templates\registration\registration_complete.html.py:8
-#: .\templates\sw_auth\registration_complete.html.py:6
+#: .\templates\sw_auth\registration_complete.html.py:7
 msgid "Registration complete."
 msgstr "Votre inscription à GrippeNet.fr est terminée."
 
 #: .\templates\registration\registration_complete.html.py:9
-#: .\templates\sw_auth\registration_complete.html.py:7
+#: .\templates\sw_auth\registration_complete.html.py:8
 msgid ""
 "An e-mail containing information about how to activate your account has been "
 "sent to your e-mail address."
@@ -1291,7 +1284,7 @@ msgstr ""
 "adresse email."
 
 #: .\templates\registration\registration_complete.html.py:10
-#: .\templates\sw_auth\registration_complete.html.py:9
+#: .\templates\sw_auth\registration_complete.html.py:10
 msgid ""
 "Please check your spam folder in case you do not get this email in your "
 "Inbox. If you have any problems activating your account, please"
@@ -1303,7 +1296,7 @@ msgstr ""
 #: .\templates\registration\registration_explanation.html.py:9
 #: .\templates\registration\registration_form.html.py:8
 #: .\templates\sw_auth\registration_explanation.html.py:9
-#: .\templates\sw_auth\registration_form.html.py:12
+#: .\templates\sw_auth\registration_form.html.py:7
 msgid "Registration Form"
 msgstr "Rejoindre GrippeNet.fr"
 
@@ -1361,12 +1354,12 @@ msgid "Change profile"
 msgstr "Changer le profil"
 
 #: .\templates\survey\group_management.html.py:75
-#: .\templates\survey\group_management_sw.html.py:33
+#: .\templates\survey\group_management_sw.html.py:36
 msgid "Mark as healthy"
 msgstr "Marquer en bonne santé"
 
 #: .\templates\survey\group_management.html.py:76
-#: .\templates\survey\group_management_sw.html.py:34
+#: .\templates\survey\group_management_sw.html.py:37
 msgid "Delete member(s)"
 msgstr "Supprimer le(s) participant(s)"
 
@@ -1400,27 +1393,32 @@ msgstr ""
 "questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, "
 "ou pour désinscrire un participant."
 
-#: .\templates\survey\group_management_sw.html.py:20
+#: .\templates\survey\group_management_sw.html.py:16
 msgid "Fill a questionnaire"
 msgstr "Remplissez un questionnaire"
 
-#: .\templates\survey\group_management_sw.html.py:24
+#: .\templates\survey\group_management_sw.html.py:20
 msgid "Edit"
 msgstr "Modifier"
 
-#: .\templates\survey\group_management_sw.html.py:25
+#: .\templates\survey\group_management_sw.html.py:21
 msgid "Background"
 msgstr "Préliminaire"
 
-#: .\templates\survey\group_management_sw.html.py:26
+#: .\templates\survey\group_management_sw.html.py:23
 msgid "Symptoms"
 msgstr "Hebdomadaire"
 
-#: .\templates\survey\group_management_sw.html.py:32
+#: .\templates\survey\group_management_sw.html.py:26
+#, fuzzy
+msgid "last survey date"
+msgstr "Date du questionnaire"
+
+#: .\templates\survey\group_management_sw.html.py:35
 msgid "For the checked users"
 msgstr "Pour les participants cochés"
 
-#: .\templates\survey\group_management_sw.html.py:33
+#: .\templates\survey\group_management_sw.html.py:36
 msgid "mark as healthy help text"
 msgstr ""
 "Ce bouton vous permet de remplir automatiquement le questionnaire "
@@ -1429,19 +1427,19 @@ msgstr ""
 "Si un des participants a présenté au moins un symptome, merci de remplir un "
 "questionnaire pour ce participant."
 
-#: .\templates\survey\group_management_sw.html.py:41
+#: .\templates\survey\group_management_sw.html.py:44
 msgid "Add new person"
 msgstr "Ajouter un nouveau participant"
 
-#: .\templates\survey\group_management_sw.html.py:42
+#: .\templates\survey\group_management_sw.html.py:45
 msgid "Register a participant in a Cohort"
 msgstr "Inscrivez un participant à un sous-projet de GrippeNet.fr"
 
-#: .\templates\survey\group_management_sw.html.py:64
+#: .\templates\survey\group_management_sw.html.py:67
 msgid "Household diagnosis history"
 msgstr "Historique des états de santé"
 
-#: .\templates\survey\group_management_sw.html.py:66
+#: .\templates\survey\group_management_sw.html.py:69
 #: .\templates\survey\thanks.html.py:62
 msgid ""
 "The flu status of each participant is based on the symptoms you reported. "
@@ -1457,7 +1455,7 @@ msgstr ""
 "symptômes, ou que vous êtes inquiet, nous vous recommandons de contacter "
 "votre médecin généraliste."
 
-#: .\templates\survey\group_management_sw.html.py:88
+#: .\templates\survey\group_management_sw.html.py:91
 msgid "Delete selected users ?"
 msgstr "Supprimer les participants selectionnés ?"
 
@@ -1614,13 +1612,20 @@ msgid "Password reset error"
 msgstr "Problème lors de la réinitialisation du mot de passe"
 
 #: .\templates\sw_auth\password_reset_error.html.py:10
-msgid ""
-"This password reset request is not valid or is expired. Please restart the "
+msgid "This password reset request is not valid or is expired. Please restart the "
 "password reset."
 msgstr ""
 "Le lien pour réinitialiser votre mot de passe n'est pas valide, peut-être a-"
 "t-il déjà été utilisé. Demandez s'il-vous-plaît une nouvelle "
 "réinitialisation de votre mot de passe."
+
+#: .\templates\sw_auth\registration_form.html.py:17
+msgid "Registration instructions"
+msgstr ""
+"Pour vous inscrire vous devez fournir un nom d'utilisateur (qui peut être "
+"votre adresse email), votre adresse email et un mot de passe. Vous pouvez "
+"utilisez les lettres, chiffres et caractères \"@\",\"+\",\"-\",\".\" et \"_\" "
+"dans le nom d'utilisateur."
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"
