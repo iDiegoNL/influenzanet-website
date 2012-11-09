@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet href="survey.xsl" type="text/xsl"?> 
 <survey id="survey-7" xmlns="http://dndg.it/ns/pollster-1.0">
     <title>Intake Questionnaire</title>
     <shortname>intake</shortname>

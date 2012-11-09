@@ -402,20 +402,21 @@ msgstr "Vous êtes connecté"
 #: .\templates\survey\group_management.html.py:38
 #: .\templates\survey\group_management_sw.html.py:13
 msgid "The last survey was submitted for"
-msgstr "Le dernier questionnaire à été soumis le"
+msgstr ""
+"Le dernier questionnaire hebdomadaire à été soumis rempli pour l'utilisateur"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:24
 #: .\templates\survey\group_management.html.py:38
 #: .\templates\survey\group_management_sw.html.py:13
 msgid "on"
-msgstr ""
+msgstr "le"
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:29
 msgid "Last newsletter from"
 msgstr "La dernière lettre"
 
 #: .\apps\reminder\templates\reminder\message.html.py:66
-#, fuzzy,python-format
+#, python-format
 msgid ""
 "You have received this email because you are registered with %(site_name)s. "
 "Your contribution helps us track the spread of flu. If you do not wish to "
@@ -508,7 +509,7 @@ msgstr "Adresse email :"
 
 #: .\apps\sw_auth\forms.py:31 .\templates\accounts\my_settings.html.py:39
 msgid "Password"
-msgstr "Réinitialisation du mot de passe"
+msgstr "Mot de passe"
 
 #: .\apps\sw_auth\forms.py:33
 msgid "Password (again)"
@@ -1273,12 +1274,12 @@ msgstr "Réinitialiser mon mot de passe"
 #: .\templates\registration\registration_complete.html.py:4
 #: .\templates\sw_auth\registration_complete.html.py:4
 msgid "Registration complete"
-msgstr "Inscription terminée"
+msgstr "Votre inscription à GrippeNet.fr est terminée."
 
 #: .\templates\registration\registration_complete.html.py:8
 #: .\templates\sw_auth\registration_complete.html.py:6
 msgid "Registration complete."
-msgstr "Inscription terminée."
+msgstr "Votre inscription à GrippeNet.fr est terminée."
 
 #: .\templates\registration\registration_complete.html.py:9
 #: .\templates\sw_auth\registration_complete.html.py:7
@@ -1304,7 +1305,7 @@ msgstr ""
 #: .\templates\sw_auth\registration_explanation.html.py:9
 #: .\templates\sw_auth\registration_form.html.py:12
 msgid "Registration Form"
-msgstr "Formulaire d'inscription"
+msgstr "Rejoindre GrippeNet.fr"
 
 #: .\templates\registration\registration_form.html.py:21
 msgid "Join the survey"

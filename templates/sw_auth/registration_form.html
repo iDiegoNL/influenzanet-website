@@ -1,12 +1,21 @@
 {% extends "sw_auth/base.html" %}
 {% load i18n %}
 
+{% block title %}{{ block.super }} {% trans "Register" %}{% endblock %}
+
 {% block boxcontents %}
 <h1>{% trans "Registration Form" %}</h1>
 {% spaceless %}
-<form method="post" id="registration">{% csrf_token %}{{ form.as_p }}<p>
-	<input type="submit" id="boxsubmit" value="{% trans "Register" %}"/></p>
+<form method="post" id="registration">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<p>
+	<button type="submit">{% trans "Register" %}</button>
+	</p>
 </form>
+<div class="alert alert-info">
+{%trans "Registration instructions" %}
+</div>
 {% endspaceless %}
 {% endblock  %}
 
