@@ -50,9 +50,8 @@ class RegistrationForm(forms.Form):
         site.
         
         """
-        try:
-            user = EpiworkUser.objects.get(email__iexact=self.cleaned_data['email'])
-        except EpiworkUser.DoesNotExist:
+        user = EpiworkUser.objects.filter(email__iexact=self.cleaned_data['email'])
+        if(len(user) == 0):
             return self.cleaned_data['email']
         raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
 
