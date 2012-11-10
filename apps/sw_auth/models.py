@@ -31,6 +31,10 @@ def login_handler(sender,**kwargs):
 user_logged_in.connect(login_handler)
     
 def get_random_user_id():
+    """
+    Try to set a random id for a user
+    To limit collision, can try several times
+    """
     # get a random int 
     id = random.randint(1, sys.maxint)
     i = 10 # try a maximum of 10 times
@@ -72,7 +76,6 @@ class EpiworkUserManager(models.Manager):
             raise 
         return user
                    
-
 class EpiworkUser(models.Model):
     id = models.BigIntegerField(primary_key=True)
     user = models.CharField(_('username'),max_length=255) # encrypted user name in auth_user
@@ -144,6 +147,11 @@ class EpiworkUser(models.Model):
         user.username = self.login
         user.email = self.email
 
+
+"""
+Fake user to replace User django
+This proxy class protect the user object from a save action
+"""
 class FakedUser(User):
     class Meta:
         proxy = True

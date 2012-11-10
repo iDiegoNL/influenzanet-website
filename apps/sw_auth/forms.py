@@ -82,6 +82,22 @@ class PasswordResetForm(forms.Form):
         except EpiworkUser.DoesNotExist:
             raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
         return email
+
+
+class UserEmailForm(forms.Form):
+    email = forms.EmailField(label=_("E-mail"), max_length=80)
+
+    def clean_email(self):
+        """
+        Validates that an active user exists with the given e-mail address.
+        """
+        email = self.cleaned_data["email"]
+        try:
+            self.users_cache = EpiworkUser.objects.filter(email__iexact=email, is_active=True) 
+        except EpiworkUser.DoesNotExist:
+            raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
+        return email
+
             
 class SetPasswordForm(forms.Form):
     """

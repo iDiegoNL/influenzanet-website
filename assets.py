@@ -34,19 +34,20 @@ bundles_css = {
      'sw/css/feedback.css',
      'sw/css/users.css',
      'sw/css/tooltip.css',
+     'sw/css/messages.css',
   )           
 }
 
 BUNDLE_PATH = settings.MEDIA_ROOT + '/'
 
 def change_path(m, path_to ):
- p = m.group(1)
- if(p == ''):
-     return ''
- path = os.path.normpath(os.path.realpath(p))
- path = os.path.relpath(path, path_to)
- path = path.replace("\\",'/')
- return "url(%s)" % path
+    p = m.group(1)
+    if(p == ''):
+        return ''
+    path = os.path.normpath(os.path.realpath(p))
+    path = os.path.relpath(path, path_to)
+    path = path.replace("\\",'/')
+    return "url(%s)" % path
  
 def process_file(filename, type, path_to, context=None):
     f = file(filename)

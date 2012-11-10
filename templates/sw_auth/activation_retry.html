@@ -1,0 +1,10 @@
+{% extends "sw_auth/base.html" %}
+{% load i18n %}
+{% block boxcontents %}
+{% include "base/messages.html" %}
+{%if sended %}
+<p>{% trans "An e-mail containing information about how to activate your account has been sent to your e-mail address." %}</p>
+<br>
+<p>{% trans "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please" %} <a href="/contact/">{% trans "contact us" %}</a>.</p>
+{%endif%}
+{% endblock %}

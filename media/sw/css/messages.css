@@ -1,0 +1,8 @@
+.messages {
+	font-size: .9em;
+	
+}
+
+.messages .error {
+	color: red;
+}
