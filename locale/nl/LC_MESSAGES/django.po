@@ -439,8 +439,8 @@ msgid "Flu symptoms"
 msgstr "Symptomen die passen bij griep"
 
 #: apps/survey/views.py:47
-msgid "Cold / allergy"
-msgstr "Symptomen die passen bij verkoudheid of allergie"
+msgid "Common cold"
+msgstr "Symptomen die passen bij verkoudheid"
 
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
@@ -662,9 +662,9 @@ msgstr "Log uit"
 #: templates/accounts/partials/usermenu.html:25
 msgid ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Your results\". Each account can only have one <a href=\"/"
-"accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
-"address</a>. To leave feedback or get support,"
+"through \"Your results\". Each account can only have one <a href=\"/accounts/"
+"settings/\">username</a> and <a href=\"/accounts/settings/\">email address</"
+"a>. To leave feedback or get support,"
 msgstr ""
 "U kunt meerdere personen (bijvoorbeeld uit uw gezin, klas of bedrijf) "
 "toevoegen via \"Meetresultaten\". Elk account kan maar één gebruikersnaam en "
