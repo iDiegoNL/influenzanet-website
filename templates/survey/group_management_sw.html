@@ -7,6 +7,8 @@
 {% block col1 %}
 <h1>{% trans "People" %}</h1>
 
+{% include "base/messages.html" %}
+
 <p>{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}<br><br>
 
 <form action="" method="POST" id="users_form">{% csrf_token %}
