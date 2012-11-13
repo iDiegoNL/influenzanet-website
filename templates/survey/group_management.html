@@ -1,7 +1,7 @@
 {% extends "base/threecol.html" %}
 {% load i18n sekizai_tags cms_tags %}
 
-{% block title %}{{ block.super }} {% trans "Group management" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Your results" %}{% endblock %}
 
 {% block add_css %}<link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endblock add_css %}
 
@@ -29,7 +29,7 @@
 {% if messages %}
     {% for message in messages %}
         <div class="usermessage"><span class="boldgreen">{{ message }}</span><br/>
-        <span class="disable"><br/>{% trans "Your diagnosis:" %} {{ health_line.diag }}</span></div>
+        </div>
         <br />
     {% endfor %}
 {% endif %}
@@ -51,8 +51,8 @@
 
 
         	{% for person in persons %}
-            <div class="accordionButton">
-                <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="#show">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
+            <div class="accordionButton" {% if person.global_id == gid %}id="open"{% endif %}>
+                <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="{{ person.get_edit_url }}" class="noslide">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{% url survey_profile %}?gid={{ person.global_id }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
             </div>
             
             <div class="accordionContent">
@@ -80,7 +80,7 @@
 </form>
 
 
-<p>{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+<p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
 
 {% endblock %}
 

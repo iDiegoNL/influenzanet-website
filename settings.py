@@ -57,7 +57,11 @@ LANGUAGES = (
    ('it', u'Italiano'),
    ('sv', u'Svenska'),
    ('pt', u'Portugues'),
+<<<<<<< HEAD
    ('es', u'Espanol'),
+=======
+   ('es', u'Español'),
+>>>>>>> d611ccdb4aa259131fa2156a6e94424554c66a77
 )
 
 # Absolute path to the directory that holds media.
@@ -118,6 +122,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "pybb.context_processors.processor",
     "django.core.context_processors.static",
     "apps.pollster.context_processors.last_survey",
+    "apps.pollster.context_processors.surveyuser_count",
 )
 
 CMS_TEMPLATES = (

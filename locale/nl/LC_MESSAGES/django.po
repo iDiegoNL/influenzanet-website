@@ -439,8 +439,8 @@ msgid "Flu symptoms"
 msgstr "Symptomen die passen bij griep"
 
 #: apps/survey/views.py:47
-msgid "Cold / allergy"
-msgstr "Symptomen die passen bij verkoudheid of allergie"
+msgid "Common cold"
+msgstr "Symptomen die passen bij verkoudheid"
 
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
@@ -662,9 +662,9 @@ msgstr "Log uit"
 #: templates/accounts/partials/usermenu.html:25
 msgid ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Group management\". Each account can only have one <a href=\"/"
-"accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
-"address</a>. To leave feedback or get support,"
+"through \"Your results\". Each account can only have one <a href=\"/accounts/"
+"settings/\">username</a> and <a href=\"/accounts/settings/\">email address</"
+"a>. To leave feedback or get support,"
 msgstr ""
 "U kunt meerdere personen (bijvoorbeeld uit uw gezin, klas of bedrijf) "
 "toevoegen via \"Meetresultaten\". Elk account kan maar één gebruikersnaam en "
@@ -1106,17 +1106,17 @@ msgstr "Participanten verwijderen"
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
-"The flu status of each participant is based on the symptoms you reported. "
+"The health status of each participant is based on the symptoms you reported. "
 "<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
-"indicative of influenza-like illness, common colds, gastric flu. If you have "
-"other symptoms, or you are at all worried, we recommend that you contact "
-"your doctor or telephone NHS Direct / NHS 24."
+"indicative of influenza-like illness, common colds, allergies and gastric "
+"flu. If you have other symptoms, or you are at all worried, we recommend "
+"that you contact your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
-"De griepstatus van iedere persoon is gebaseerd op de gegevens die u aan ons "
-"doorgeeft. <strong>Dit is geen medische diagnose</strong>. We vragen alleen "
-"naar symptomen die duiden op griep, verkoudheid en buikgriep. Indien u "
-"andere symptomen hebt of om wat voor reden dan ook bezorgd bent, raden we u "
-"aan contact op te nemen met uw huisarts."
+"De gezondheids-status van iedere persoon is gebaseerd op de gegevens die u "
+"aan ons doorgeeft. <strong>Dit is geen medische diagnose</strong>. We vragen "
+"alleen naar symptomen die duiden op griep, verkoudheid, allergie en "
+"buikgriep. Indien u andere symptomen hebt of om wat voor reden dan ook "
+"bezorgd bent, raden we u aan contact op te nemen met uw huisarts."
 
 #: templates/survey/index.html:16
 msgid "Survey Form"
@@ -1753,3 +1753,6 @@ msgstr "Venster sluiten"
 
 msgid "Cookie settings"
 msgstr "Cookie instellingen"
+
+msgid "Thanks - your diagnosis:"
+msgstr "Hartelijk dank - uw diagnose:"
