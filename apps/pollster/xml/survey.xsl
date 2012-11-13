@@ -88,7 +88,8 @@
 	 <xsl:variable select="@ref" name="opt"/>
 	  "<xsl:value-of select="//s:option[@id=$opt]/s:value"/>",
 	</xsl:for-each>
-	apply <span class="rule-name"><xsl:value-of select="substring(s:type,20)"/></span> to <xsl:value-of select="s:object_question/@ref"/>
+	<xsl:variable select="s:object_question/@ref" name="object"/>
+	apply <span class="rule-name"><xsl:value-of select="substring(s:type,20)"/></span> to <xsl:value-of select="//s:question[@id=$object]/s:data_name"/>
  </li>
 </xsl:template>
 
