@@ -331,18 +331,20 @@
 			}
             for (var k in sufficient_ok) {
                 if (sufficient_ok[k][0] === true) {
-					sufficient_ok[k][1].apply($survey, target);
+					var r = sufficient_ok[k][1];
+					r.apply($survey, target);
 					if(debug) {
-						debug_rule(required_fail[k][1], target);					
+						debug_rule(r], target);					
 					}
 				}
             }
 
             for (var k in required_fail) {
                 if (required_fail[k][0] === false) {
-					required_fail[k][1].apply($survey, target);
+					var r = required_fail[k][1];
+					r.apply($survey, target);
 					if(debug) {
-						debug_rule(required_fail[k][1], target);					
+						debug_rule(r, target);					
 					}
 				}
             }
