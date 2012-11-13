@@ -1413,9 +1413,8 @@ msgid "Symptoms"
 msgstr "Hebdomadaire"
 
 #: .\templates\survey\group_management_sw.html.py:26
-#, fuzzy
 msgid "last survey date"
-msgstr "Date du questionnaire"
+msgstr "Date du dernier questionnaire rempli"
 
 #: .\templates\survey\group_management_sw.html.py:35
 msgid "For the checked users"
@@ -1425,10 +1424,10 @@ msgstr "Pour les participants cochés"
 msgid "mark as healthy help text"
 msgstr ""
 "Ce bouton vous permet de remplir automatiquement le questionnaire "
-"hebdomadaire en indiquant que ces participants n'ont présentés <b>aucun "
-"symptome</b> depuis leur dernier questionnaire.\n"
-"Si un des participants a présenté au moins un symptome, merci de remplir un "
-"questionnaire pour ce participant."
+"hebdomadaire en indiquant que ce ou ces participants n'ont présenté <b>aucun "
+"symptôme</b> depuis leur dernier questionnaire.\nSi un des participants a "
+"présenté au moins un symptôme, merci de remplir un questionnaire pour ce "
+"participant."
 
 #: .\templates\survey\group_management_sw.html.py:44
 msgid "Add new person"
