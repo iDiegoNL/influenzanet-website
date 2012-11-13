@@ -1,10 +1,10 @@
 
-.tip {
+.tooltip {
 	border-bottom: 1px dotted #999;
 	cursor: help;
 }
 
-.tooltip {
+.hovertip {
 	font-size: .7em;
 	padding: .6em;
 	color: #000;
