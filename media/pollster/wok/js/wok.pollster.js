@@ -334,7 +334,7 @@
 					var r = sufficient_ok[k][1];
 					r.apply($survey, target);
 					if(debug) {
-						debug_rule(r], target);					
+						debug_rule(r, target);					
 					}
 				}
             }
