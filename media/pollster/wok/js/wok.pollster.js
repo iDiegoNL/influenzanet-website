@@ -35,7 +35,11 @@
             questionClass: "question"
         }
     };
-
+	
+	function debug_rule(rule, target) {
+		console.log(rule);
+	}
+	
     // POLLSTER SURVEY
 
     function PollsterRuntime(context, options) {
@@ -45,6 +49,8 @@
         var self = this;
         var $survey = $('.'+options.templateClass, context);
         var questionSelector = '.'+options.questionClass;
+
+		var debug = options.debug || false;
 
         // Useful methods.
 
@@ -232,8 +238,12 @@
                                 apply = false;
                         }
                     }
-                    if (apply)
-                        rule.apply($survey, target);
+                    if (apply) {
+						rule.apply($survey, target);
+						if(debug) {
+							debug_rule(rule, target);
+						}
+					}
                 }
 
                 // If the current rule was switched to inactive we do as above
@@ -247,8 +257,12 @@
                                 apply = false;
                         }
                     }
-                    if (apply)
-                        rule.apply($survey, target);
+                    if (apply) {
+						rule.apply($survey, target);
+						if(debug) {
+							debug_rule(rule, target);
+						}
+					}
                 }
             }
 
@@ -312,18 +326,31 @@
             }
 
             // Execute sufficient and required rules.
-
+			if(debug) {
+				console.log('Future rules');
+			}
             for (var k in sufficient_ok) {
-                if (sufficient_ok[k][0] === true)
-                    sufficient_ok[k][1].apply($survey, target);
+                if (sufficient_ok[k][0] === true) {
+					sufficient_ok[k][1].apply($survey, target);
+					if(debug) {
+						debug_rule(required_fail[k][1], target);					
+					}
+				}
             }
 
             for (var k in required_fail) {
-                if (required_fail[k][0] === false)
-                    required_fail[k][1].apply($survey, target);
+                if (required_fail[k][0] === false) {
+					required_fail[k][1].apply($survey, target);
+					if(debug) {
+						debug_rule(required_fail[k][1], target);					
+					}
+				}
             }
 
         }
+		if(debug) {
+			console.log('Future rules done');
+		}
 
         // Ensure that the initial status is consistent with rules and whatnot.
 

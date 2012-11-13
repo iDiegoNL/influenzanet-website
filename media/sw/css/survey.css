@@ -82,3 +82,7 @@ width: 512px;
 font-size: 11px;
 padding: .3em;
 }
+
+.question-tip {
+	text-align: right;
+}
