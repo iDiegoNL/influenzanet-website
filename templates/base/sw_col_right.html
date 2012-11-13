@@ -24,8 +24,8 @@
 	</table>
 <ul>
 	{% if surveyuser_count == 1%}
-	<li class="icon icon-survey"><a href="/survey/">{% trans "Symptoms survey" %}</a></li>
-	<li class="icon icon-survey"><a href="/survey/profile/"> Questionnaire préliminaire </a></li>
+	<li class="icon icon-survey"><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">{% trans "Symptoms survey" %}</a></li>
+	<li class="icon icon-survey"><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Questionnaire préliminaire </a></li>
 	{%endif%}
 	<li class="icon icon-users"><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
 	<li class="icon icon-settings"><a href="/accounts/settings/">{% trans "My settings" %}</a></li>
