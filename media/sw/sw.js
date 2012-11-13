@@ -56,7 +56,9 @@ $(function() {
 		return false;
 	});
 	
-	$('.tip').tooltip();
+	$.tools.tooltip.conf.tipClass = "hovertip";
+	
+	$('.tooltip').tooltip();
 	
 	var from = escape(document.location.pathname);
 	$('#feedback-link').attr('href', '/feedback?from='+from);
