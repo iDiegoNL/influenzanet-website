@@ -1102,14 +1102,12 @@ msgid "Add person"
 msgstr "Teilnehmer hinzufügen"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Survey date"
-msgstr "Erhebungsdiagramm"
+msgid "Survey"
+msgstr ""
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Condition"
-msgstr "Inhalt"
+msgid "Status"
+msgstr ""
 
 #: templates/survey/group_management.html:30
 msgid "Report"

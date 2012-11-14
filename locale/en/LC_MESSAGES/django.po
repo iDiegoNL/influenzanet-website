@@ -1052,11 +1052,11 @@ msgid "Add person"
 msgstr ""
 
 #: templates/survey/group_management.html:22
-msgid "Survey date"
+msgid "Survey"
 msgstr ""
 
 #: templates/survey/group_management.html:22
-msgid "Condition"
+msgid "Status"
 msgstr ""
 
 #: templates/survey/group_management.html:30

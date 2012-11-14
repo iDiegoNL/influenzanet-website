@@ -1,11 +1,13 @@
 {% extends "base/threecol.html" %}
-{% load i18n %}
+{% load i18n cms_tags %}
 
 {% block title %}{{ block.super }} {% trans "Login" %}{% endblock %}
 
 {% block col1 %}
 
 <h1>{% trans "Login" %}</h1>
+
+{% placeholder "Main content" %}
 
 <div class="formwrap">
     <form method="post" action="" id="login">{% csrf_token %}
@@ -21,5 +23,7 @@
 <p class="title">{% trans "Please login to continue" %}</p>
 
 <p>{% trans "If you have forgotten your password or username, you can" %} <a href="{% url django.contrib.auth.views.password_reset %}">{% trans "request a new password" %}</a> {% trans "and find out your username." %}</p>
+
+{% placeholder "Left bar" %}
 
 {% endblock %}

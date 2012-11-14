@@ -1073,14 +1073,13 @@ msgid "Add person"
 msgstr "Adicionar pessoa"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Survey date"
-msgstr "Gráfico do inquérito"
+msgid "Survey"
+msgstr ""
 
 #: templates/survey/group_management.html:22
 #, fuzzy
-msgid "Condition"
-msgstr "Conteúdo"
+msgid "Status"
+msgstr ""
 
 #: templates/survey/group_management.html:30
 msgid "Report"
