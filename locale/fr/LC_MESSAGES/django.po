@@ -566,7 +566,7 @@ msgstr "Nouveau mot de passe :"
 #: .\apps\sw_auth\views.py:88
 #, python-format
 msgid "Password reset on %s"
-msgstr "Réinitialisation du mot de passe le"
+msgstr "Réinitialisation du mot de passe %s"
 
 #: .\apps\sw_cohort\models.py:36
 msgid "No usage left for this token"
