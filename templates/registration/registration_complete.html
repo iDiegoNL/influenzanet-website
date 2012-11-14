@@ -1,5 +1,5 @@
 {% extends "base/threecol.html" %}
-{% load i18n %}
+{% load i18n cms_tags %}
 
 {% block title %}{{ block.super }} {% trans "Registration complete" %}{% endblock %}
 
@@ -9,6 +9,8 @@
 <p>{% trans "An e-mail containing information about how to activate your account has been sent to your e-mail address." %}</p>
 <p>{% trans "Please check your spam folder in case you do not get this email in your Inbox. If you have any problems activating your account, please" %} <a href="/contact/">{% trans "contact us" %}</a>.</p>
 
+{% placeholder "Main content" %}
+
 {% endblock %}
 
 {% block col2 %}
@@ -17,5 +19,7 @@
 <img src="{{ MEDIA_URL }}base/img/main/virus.jpg" alt="EM of influenza virus" title="Influenza virus" class="topspace" />
 <p>{% trans "Be part of a Europe-wide project to improve our understanding of how flu spreads." %}<br />
 <a href="/">{% trans "Back to the home page" %}</a>.</p>
+
+{% placeholder "Left bar" %}
 
 {% endblock %}
