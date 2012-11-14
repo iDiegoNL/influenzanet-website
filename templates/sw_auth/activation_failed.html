@@ -1,0 +1,27 @@
+{% extends "sw_auth/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}: {% trans "Account Activation" %}{% endblock %}
+
+{% block boxcontents %}
+<h1>{% trans "Account Activation" %}</h1>
+<p>{% trans "User activation failed." %}</p>
+<p>
+{% trans "Please try to copy and paste the link from the activation email, making sure you've got all letters copied. If this fails, please try to" %} 
+<a href="/accounts/login">{% trans "log in" %}</a> 
+{% trans "using the username and password you provided during registration. If this still fails, please try to" %} 
+<a href="/accounts/register">{%trans "register" %}</a> 
+{% trans "with a different username. If everything else fails, please do not hesitate to" %} 
+<a href="/contact">{% trans "contact us" %}</a>.
+</p>
+
+<form action="{% url registration_activation_retry %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<p>
+ <button type="submit">{% trans "Recommencez l'activation"%}</button>
+</p>
+</form>
+
+<p>&nbsp;</p>
+{% endblock boxcontents %}

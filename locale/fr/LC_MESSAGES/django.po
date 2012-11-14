@@ -51,8 +51,7 @@ msgid ""
 "Check this box if you wish to receive weekly reminders throughout the flu "
 "season"
 msgstr ""
-"Cochez cette case si vous souhaitez recevoir la lettre d'information "
-"hebdomadaire de GrippeNet.fr"
+"Cochez cette case si vous souhaitez recevoir un email hebdomadaire de rappel"
 
 #: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:116
 msgid "Language"
@@ -514,7 +513,7 @@ msgstr "Mot de passe"
 
 #: .\apps\sw_auth\forms.py:33
 msgid "Password (again)"
-msgstr "Confirmation du mot de passe "
+msgstr "Changement du mot de passe (confirmation)"
 
 #: .\apps\sw_auth\forms.py:45
 msgid "A user with that username already exists."
@@ -567,7 +566,7 @@ msgstr "Nouveau mot de passe :"
 #: .\apps\sw_auth\views.py:88
 #, python-format
 msgid "Password reset on %s"
-msgstr "Réinitialisation du mot de passe de %s"
+msgstr "Réinitialisation du mot de passe le"
 
 #: .\apps\sw_cohort\models.py:36
 msgid "No usage left for this token"
@@ -1251,8 +1250,9 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Entrez votre adresse email ci-dessous, nous vous enverrons par email des "
-"instructions pour mettre en place un nouveau mot de passe."
+"Mot de passe oublié ? Entrez votre adresse email ci-dessous, nous vous "
+"enverrons par email des instructions pour mettre en place un nouveau mot de "
+"passe."
 
 #: .\templates\registration\password_reset_form.html.py:14
 #: .\templates\sw_auth\password_reset_form.html.py:14
@@ -1356,7 +1356,7 @@ msgstr "Changer le profil"
 #: .\templates\survey\group_management.html.py:75
 #: .\templates\survey\group_management_sw.html.py:36
 msgid "Mark as healthy"
-msgstr "Déclarer \"aucun symptôme\""
+msgstr "Marquer en bonne santé"
 
 #: .\templates\survey\group_management.html.py:76
 #: .\templates\survey\group_management_sw.html.py:37
@@ -1390,11 +1390,8 @@ msgid ""
 msgstr ""
 "La liste des participants inscrits sur votre compte figure ci-dessous. "
 "Cliquez sur le lien situé à côté de chaque participant pour remplir le "
-"questionnaire préliminaire ou hebdomadaire de cette personne.<br/>Si vous "
-"souhaitez remplir un questionnaire hebdomadaire signalant l'absence de "
-"symptôme d'un participant depuis son dernier questionnaire, il vous suffit de "
-"cocher la case à coté du nom du participant puis de cliquer sur le bouton "
-"\"Déclarer aucun symptôme\"."
+"questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, "
+"ou pour désinscrire un participant."
 
 #: .\templates\survey\group_management_sw.html.py:16
 msgid "Fill a questionnaire"
@@ -1414,7 +1411,7 @@ msgstr "Hebdomadaire"
 
 #: .\templates\survey\group_management_sw.html.py:26
 msgid "last survey date"
-msgstr "Date du dernier questionnaire rempli"
+msgstr "Date du dernier questionnaire"
 
 #: .\templates\survey\group_management_sw.html.py:35
 msgid "For the checked users"
@@ -1425,7 +1422,7 @@ msgid "mark as healthy help text"
 msgstr ""
 "Ce bouton vous permet de remplir automatiquement le questionnaire "
 "hebdomadaire en indiquant que ce ou ces participants n'ont présenté <b>aucun "
-"symptôme</b> depuis leur dernier questionnaire.\nSi un des participants a "
+"symptôme</b> depuis leur dernier questionnaire.<br/>Si un des participants a "
 "présenté au moins un symptôme, merci de remplir un questionnaire pour ce "
 "participant."
 
@@ -1481,11 +1478,11 @@ msgid ""
 "to preserve privacy we ought you to avoid family name or email. Use surname "
 "or given name."
 msgstr ""
-"Ce formulaire vous permet de définir le nom attribué à un utilisateur. Afin "
-"de préserver l'anonymat des participants de GrippeNet.fr, nous vous "
-"conseillons fortement de n'utiliser que des surnoms et des prénoms et "
-"d'éviter tout nom de famille ou adresse email. Ces informations ne sont pas "
-"utilisées lors des analyses."
+"Ce formulaire vous permet de modifier le nom attribué à un utilisateur. Afin "
+"de préserver l'anonymat des utilisateur de GrippeNet.fr, nous vous "
+"conseillons fortement à n'utiliser que des surnoms et des prénom et à éviter "
+"tout nom de famille ou mail. Ces informations ne sont pas utilisées lors des "
+"analyses."
 
 #: .\templates\survey\people_edit.html.py:4
 msgid "Edit Person"
@@ -1614,7 +1611,8 @@ msgid "Password reset error"
 msgstr "Problème lors de la réinitialisation du mot de passe"
 
 #: .\templates\sw_auth\password_reset_error.html.py:10
-msgid "This password reset request is not valid or is expired. Please restart the "
+msgid ""
+"This password reset request is not valid or is expired. Please restart the "
 "password reset."
 msgstr ""
 "Le lien pour réinitialiser votre mot de passe n'est pas valide, peut-être a-"
@@ -1624,21 +1622,21 @@ msgstr ""
 #: .\templates\sw_auth\registration_form.html.py:17
 msgid "Registration instructions"
 msgstr ""
-"Pour vous inscrire vous devez fournir :<br/>*Un nom d'utilisateur (qui peut "
-"être votre adresse email).<br/>* Votre adresse email.<br/>* Un mot de "
-"passe.<br/><br/>Vous pouvez utiliser les lettres, chiffres et caractères "
-"\"@\",\"+\",\"-\",\".\" et \"_\" dans le nom d'utilisateur."
+"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous pouvez "
+"utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe (vous pourrez "
+"le changer, nous n'y avons pas accès)"
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"
-msgstr "Inscrivez un participant à un sous-projet de GrippeNet.fr"
+msgstr "Inscrire un participant à un Sous-projet GrippeNet"
 
 #: .\templates\sw_cohort\form.html.py:15
 msgid "cohort register help text"
 msgstr ""
 "Cette page vous permet d'enregistrer un participant à un sous-projet réalisé "
-"par GrippeNet.fr.\nPour inscrire un participant vous devez vous munir du code "
-"d'inscription qui vous a été fourni par l'équipe de GrippeNet.fr."
+"par GrippeNet.\n"
+"Pour inscrire un participant vous devez vous munir du code d'inscription qui "
+"vous a été fourni par l'équipe de GrippeNet."
 
 #: .\templates\sw_cohort\form.html.py:17
 msgid "Select the participant to register"

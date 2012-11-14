@@ -8,6 +8,9 @@ from django.core.mail import send_mail
 
 from crypto import AES256
              
+class TokenException(Exception):
+    pass             
+             
 def get_timestamp():
     tm = date.today() - date(2001, 1, 1)
     return tm.days
@@ -21,8 +24,23 @@ def create_token():
     token = ts36 + '-' + random_string(32)
     return token
 
+def validate_token(token, delay):
+    """
+    Validate a token
+    delay : number of days
+    """
+    age = get_token_age(token)
+    if age is None:
+        raise TokenException('Invalid token')
+    if age > delay:
+        raise TokenException('Token too old')
+    return True 
+
 def get_token_age(token):
-    ts36, r = token.split("-")
+    try:
+        ts36, r = token.split("-")
+    except ValueError:
+        return None
     timestamp = base36_to_int(ts36)
     now = get_timestamp()
     return now - timestamp

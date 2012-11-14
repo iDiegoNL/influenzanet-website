@@ -10,11 +10,14 @@ from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm, MySetti
 from django.http import HttpResponseRedirect
 from apps.sw_auth.models import EpiworkUser
 from django.conf import settings
-from apps.sw_auth.utils import get_token_age, send_activation_email
+from apps.sw_auth.utils import validate_token, send_activation_email
 from apps.sw_auth.logger import auth_notify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from datetime import date, datetime
+from django.contrib import messages
+from apps.sw_auth.forms import UserEmailForm
+
 
 def render_template(name, request, context=None):
     return render_to_response('sw_auth/'+name+'.html',
@@ -26,7 +29,6 @@ def send_email_user(user, subject, template, context):
     t = get_template(template)
     send_mail(subject, t.render(Context(context)), None, [user.email])
     
-
 @csrf_protect
 def register_user(request):
     form = None
@@ -46,14 +48,42 @@ def register_user(request):
 
 def activate_user(request, activation_key):
     try:
-        age = get_token_age(activation_key)
-        if(age < settings.ACCOUNT_ACTIVATION_DAYS):
+        if validate_token(activation_key, settings.ACCOUNT_ACTIVATION_DAYS):
             user = EpiworkUser.objects.get(token_activate=activation_key, is_active=False)
             user.activate()
             return HttpResponseRedirect(reverse('registration_activation_complete'))
-    except EpiworkUser.DoesNotExist:
-        user = None
-    return render_template('activate', request)
+    except:
+        pass
+    # Nothing found, so it is a fail
+    form = UserEmailForm()
+    return render_template('activation_failed', request, {'form': form})
+
+@csrf_protect
+def activate_retry(request):
+    """
+    Try another activation
+    """
+    form = None
+    sended = False
+    if(request.method == "POST"):
+        form = UserEmailForm(request.POST)
+        if form.is_valid():
+            users = form.users_cache
+            if len(users) > 1:
+                messages.add_message(request, messages.ERROR,_('This email is associated with several accounts. Please contact us to regularize'))
+            else:
+                user = users[0]
+                try:
+                    site = get_current_site(request)
+                    send_activation_email(user, site)
+                    sended = True
+                except:
+                    messages.add_message(request, messages.ERROR, _('Problem occured during activation email generation'))
+        else:
+            messages.add_message(request, messages.ERROR,_('This email is not associated with any account'))
+    return render_template('activation_retry', request, {'sended': sended, 'form':form})
+            
+            
 
 def activate_complete(request):
     if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
@@ -100,8 +130,7 @@ def password_confirm(request, token=None):
     assert token is not None
     form = None
     try:
-        age = get_token_age(token)
-        if(age < settings.ACCOUNT_ACTIVATION_DAYS):
+        if validate_token(token, settings.ACCOUNT_ACTIVATION_DAYS):
             user = EpiworkUser.objects.get(token_password=token)
             form = None
             if request.method == 'POST':
@@ -113,7 +142,7 @@ def password_confirm(request, token=None):
                 form = SetPasswordForm(user)   
                 print form 
             return render_template('password_reset_confirm', request, {'form': form})
-    except EpiworkUser.DoesNotExist:
+    except:
         pass
     return render_template('password_reset_error', request)
     
