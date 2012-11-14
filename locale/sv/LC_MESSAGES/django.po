@@ -1092,14 +1092,12 @@ msgid "Add person"
 msgstr "Lägg till profilen"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Survey date"
-msgstr "Enkätdiagram"
+msgid "Survey"
+msgstr ""
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Condition"
-msgstr "Innehåll"
+msgid "Status"
+msgstr ""
 
 #: templates/survey/group_management.html:30
 msgid "Report"

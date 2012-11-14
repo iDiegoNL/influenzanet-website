@@ -1081,12 +1081,12 @@ msgid "Add person"
 msgstr "Voeg Griepmeter toe"
 
 #: templates/survey/group_management.html:22
-msgid "Survey date"
-msgstr "Datum"
+msgid "Survey"
+msgstr "Meting"
 
 #: templates/survey/group_management.html:22
-msgid "Condition"
-msgstr "Meetresultaat"
+msgid "Status"
+msgstr "Status"
 
 #: templates/survey/group_management.html:30
 msgid "Report"
