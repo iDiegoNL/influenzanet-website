@@ -1104,6 +1104,10 @@ msgstr "Als gezond aanmerken"
 msgid "Delete member(s)"
 msgstr "Participanten verwijderen"
 
+msgid "Are you absolutely sure you want to delete this user/these users?"
+msgstr ""
+"Bent u er absoluut zeker van dat u deze participant(en) wilt verwijderen?"
+
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
 "The health status of each participant is based on the symptoms you reported. "

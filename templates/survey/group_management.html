@@ -41,7 +41,7 @@
 
 {% placeholder "Main content" %}
 
-<form action="" method="POST">{% csrf_token %}
+<form action="" method="POST" name="groupmanage">{% csrf_token %}
     <div id="groupwrapper">
         <div id="groupheader">
             <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; {% trans "Name" %} <a href="{% url survey_people_add %}"><i class="icon-plus right" title="{% trans "Add person" %}"></i></a></p><p>{% trans "Survey" %}</p><p>{% trans "Status" %}</p>
@@ -79,6 +79,25 @@
     </p>
 </form>
 
+<script>
+var setLastSelected = function(element) {
+   $(element).data('lastSelected', $(element).find("option:selected"));
+};
+        
+$("select").each(function () {
+   setLastSelected(this);
+});
+
+$("select").change(function(){        
+      if(confirm("{% trans 'Are you absolutely sure you want to delete this user/these users?' %}")) {
+          document.forms["groupmanage"].submit();
+      }
+      else {
+         $(this).data('lastSelected').attr("selected", true);
+         return false;
+      }
+});
+</script>
 
 <p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
 
