@@ -33,7 +33,7 @@
         <div id="question-{{ question.id }}" class="{{ question.css_classes|join:' ' }}"
              data-question-type="{{ question.type }}" data-data-type="{{ question.data_type.id }}" data-tags="{{ question.tags }}"
              data-regex="{{ question.regex|default:'' }}">
-	        <div class="question-tip">{% if question.translated_description %}<span class="tooltip icon icon-tip" title="{{ question.translated_description }}" alt="" />{% endif %}</div>
+	        {% if question.translated_description %}<div class="question-tip"><span class="tooltip icon icon-tip" title="{{ question.translated_description }}" alt="">&nbsp;</span></div>{% endif %}
             <p class="data">
                 {% if question.is_mandatory %}<span class="star">*</span>{% endif %}
                 <span class="title">{{ question.translated_title }}</span>
