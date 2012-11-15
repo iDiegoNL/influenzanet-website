@@ -84,7 +84,7 @@ var history = [
  { date: new Date({{h.timestamp|date:"Y"}},{{h.timestamp|date:"m"}}-1,{{h.timestamp|date:"d"}}), diag:'{{ h.diag }}','status':'{{h.status}}', user: '{{h.survey_user.name }}' }{%if not forloop.last%},{%endif%}     
  {%endfor%}
 ];	
-	var story = new StoryTable(users, history);
+	var story = new StoryTable(history, users);
 	story.render('story');
 });
 
