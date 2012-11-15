@@ -279,6 +279,7 @@ def profile_index(request):
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
+@login_required
 def main_index(request):
     # the generalness of the name of this method reflects the mess that the various
     # indexes have become. 

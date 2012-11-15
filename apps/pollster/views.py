@@ -41,7 +41,6 @@ def retry(f, *args, **kwargs):
             if tries == 0:
                 raise
 
-    
 @staff_member_required
 def survey_list(request):
     surveys = models.Survey.objects.all()
