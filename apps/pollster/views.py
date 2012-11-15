@@ -191,7 +191,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
     global_id = survey_user and survey_user.global_id
     last_participation_data = survey.get_last_participation_data(user_id, global_id)
     
-    if survey.shortname == 'intake' and last_participation_data is not None:
+    if survey.shortname == 'intake' and last_participation_data is None:
         last_participation_data = get_previous_year_data(user_id, global_id,'intake')
     
     if request.method == 'POST':
