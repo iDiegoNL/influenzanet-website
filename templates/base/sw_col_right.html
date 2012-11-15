@@ -1,6 +1,6 @@
 {%load i18n %}
 {%if not user.is_authenticated %}
-<form action="/accounts/login/?next=/survey/" id="login-form" method="post">{% csrf_token %}
+<form action="/accounts/login/?next=/survey/main/" id="login-form" method="post">{% csrf_token %}
 	{%trans "Username" %}<input type="text" name="username" size="30" maxlength="70"/>
 	{%trans "Password" %}<input type="password" name="password" size="30" maxlength="30"/>
 	<div>
