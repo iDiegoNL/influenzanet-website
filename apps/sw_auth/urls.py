@@ -11,6 +11,10 @@ urlpatterns = patterns('',
         views.activate_complete,
         name='registration_activation_complete'),
     
+    url(r'^activate/retry/$',
+        views.activate_retry,
+        name='registration_activation_retry'),
+                       
     # Activation keys get matched by \w+ instead of the more specific
     # [a-fA-F0-9]{40} because a bad activation key should still get to the view;
     # that way it can return a sensible "invalid key" message instead of a
