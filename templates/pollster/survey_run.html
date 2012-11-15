@@ -10,6 +10,7 @@
     <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.rules.js"></script>
     <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.virtualoptions.js"></script>
     <script type="text/javascript">$(function() { wok.pollster.createPollsterRuntime(null, {}); })</script>
+	<script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.lastyear.js"></script>
 {% endblock %}
 
 {% block col1 %}
@@ -22,7 +23,7 @@
     {% endfor %}
 </ul>
 {% endif %}
-
+<p class="alert alert-info" style="display:none" id="last_year_warning">{%trans "Some answers from your last survey of the previous season are have been used to pre-fill this survey. Please check this survey, some questions may have been added" %}</p>
 {% include "pollster/questions_run.html" %}
 </div>
 {% endblock %}

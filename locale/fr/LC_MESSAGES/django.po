@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-09 09:54+0100\n"
+"POT-Creation-Date: 2012-11-15 12:49+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,27 +37,27 @@ msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
 
 #: .\apps\accounts\forms.py:32 .\apps\ew_contact_form\forms.py:13
-#: .\apps\sw_auth\forms.py:114
+#: .\apps\sw_auth\forms.py:129
 msgid "Email"
 msgstr "Email"
 
 #: .\apps\accounts\forms.py:33 .\apps\reminder\models.py:36
-#: .\apps\sw_auth\forms.py:115
+#: .\apps\sw_auth\forms.py:130
 msgid "Send reminders"
 msgstr "Envoyer des emails de rappel"
 
-#: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:115
+#: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:130
 msgid ""
 "Check this box if you wish to receive weekly reminders throughout the flu "
 "season"
 msgstr ""
 "Cochez cette case si vous souhaitez recevoir un email hebdomadaire de rappel"
 
-#: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:116
+#: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:131
 msgid "Language"
 msgstr "Langue"
 
-#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:141
+#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:156
 msgid "This email is already in use"
 msgstr "Cet adresse email est déjà utilisée"
 
@@ -84,7 +84,7 @@ msgstr "Contenu"
 
 #: .\apps\ew_contact_form\forms.py:12 .\apps\survey\forms\__init__.py:16
 #: .\templates\survey\group_management.html.py:47
-#: .\templates\survey\group_management_sw.html.py:15
+#: .\templates\survey\group_management_sw.html.py:17
 msgid "Name"
 msgstr "Nom"
 
@@ -271,11 +271,11 @@ msgstr "Saisir un code postal valide."
 msgid "Enter a valid value consisting of letters, numbers or underscores"
 msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
-#: .\apps\pollster\views.py:209
+#: .\apps\pollster\views.py:216
 msgid "Thanks - your diagnosis:"
 msgstr "Votre état de santé"
 
-#: .\apps\pollster\views.py:211 .\templates\survey\thanks.html.py:22
+#: .\apps\pollster\views.py:218 .\templates\survey\thanks.html.py:22
 msgid "Thanks for taking the time to fill out this survey."
 msgstr "Merci d'avoir pris le temps de remplir ce questionnaire."
 
@@ -489,7 +489,7 @@ msgstr "Autres symptômes non grippaux"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: .\apps\survey\views.py:224
+#: .\apps\survey\views.py:241
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
@@ -498,7 +498,7 @@ msgstr ""
 "questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une "
 "seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
-#: .\apps\survey\views.py:390
+#: .\apps\survey\views.py:407
 msgid "A new person has been added."
 msgstr "Une nouvelle personne a été ajoutée."
 
@@ -519,7 +519,7 @@ msgstr "Changement du mot de passe (confirmation)"
 msgid "A user with that username already exists."
 msgstr "Ce nom d'utilisateur existe déjà."
 
-#: .\apps\sw_auth\forms.py:57
+#: .\apps\sw_auth\forms.py:56
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
@@ -527,15 +527,15 @@ msgstr ""
 "Cette adresse est déjà en cours d'utilisation. Utilisez une autre adresse ou "
 "la procédure de récupération de mot de passe pour utiliser ce compte."
 
-#: .\apps\sw_auth\forms.py:69 .\apps\sw_auth\forms.py:104
+#: .\apps\sw_auth\forms.py:68 .\apps\sw_auth\forms.py:119
 msgid "The two password fields didn't match."
 msgstr "Le mot de passe saisi et sa confirmation ne correspondent pas."
 
-#: .\apps\sw_auth\forms.py:73
+#: .\apps\sw_auth\forms.py:72 .\apps\sw_auth\forms.py:88
 msgid "E-mail"
 msgstr "Email"
 
-#: .\apps\sw_auth\forms.py:84
+#: .\apps\sw_auth\forms.py:83 .\apps\sw_auth\forms.py:98
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
@@ -543,27 +543,45 @@ msgstr ""
 "Cette adresse email n'est pas associée à un compte connu. Etes vous certain "
 "d'être inscrit avec cette adresse ?"
 
-#: .\apps\sw_auth\forms.py:92
+#: .\apps\sw_auth\forms.py:107
 msgid "New password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\forms.py:93
+#: .\apps\sw_auth\forms.py:108
 msgid "New password confirmation"
 msgstr "Confirmation du nouveau mot de passe :"
 
-#: .\apps\sw_auth\models.py:78 .\apps\sw_auth\models.py:80
+#: .\apps\sw_auth\models.py:81 .\apps\sw_auth\models.py:83
 msgid "username"
 msgstr "Nom de l'utilisateur"
 
-#: .\apps\sw_auth\models.py:79
+#: .\apps\sw_auth\models.py:82
 msgid "e-mail address"
 msgstr "Adresse email :"
 
-#: .\apps\sw_auth\models.py:81
+#: .\apps\sw_auth\models.py:84
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\views.py:88
+#: .\apps\sw_auth\views.py:73
+msgid ""
+"This email is associated with several accounts. Please contact us to "
+"regularize"
+msgstr ""
+"Cette adresse email est associée à plusieurs compte GrippeNet. Contactez nous "
+"pour régulariser cette situation."
+
+#: .\apps\sw_auth\views.py:81
+msgid "Problem occured during activation email generation"
+msgstr ""
+"Un problème est survenu durant l'enregistrement. Veuillez réessayer plus "
+"tard ou nous contacter."
+
+#: .\apps\sw_auth\views.py:83
+msgid "This email is not associated with any account"
+msgstr "Cet adresse email n'est associée à aucun compte GrippeNet.fr"
+
+#: .\apps\sw_auth\views.py:118
 #, python-format
 msgid "Password reset on %s"
 msgstr "Réinitialisation du mot de passe %s"
@@ -653,6 +671,42 @@ msgstr ""
 #: .\templates\tellafriend\tellafriend.html.py:35
 msgid "Send"
 msgstr "Envoi"
+
+#: .\src\django-nani\nani\admin.py:175
+msgid "all translations"
+msgstr ""
+
+#: .\src\django-nani\nani\admin.py:334 .\src\django-nani\nani\admin.py:569
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+msgstr ""
+
+#: .\src\django-nani\nani\admin.py:347 .\src\django-nani\nani\admin.py:582
+#, python-format
+msgid "Cannot delete %(name)s"
+msgstr ""
+
+#: .\src\django-nani\nani\admin.py:349 .\src\django-nani\nani\admin.py:584
+msgid "Are you sure?"
+msgstr ""
+
+#: .\src\django-nani\nani\templates\admin\nani\change_form.html.py:37
+#: .\src\django-nani\nani\templates\admin\nani\change_form.html.py:39
+#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:10
+msgid "Delete Translation"
+msgstr ""
+
+#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:6
+msgid "Home"
+msgstr "accueil"
+
+#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:15
+#, python-format
+msgid ""
+"Deletion of the the %(language_name)s translation of %(object_name)s '%"
+"(escaped_object)s' is not allowed, because it is the last available "
+"translation of this instance."
+msgstr ""
 
 #: .\templates\404.html.py:4
 msgid "Page not found"
@@ -784,7 +838,8 @@ msgstr ""
 #: .\templates\accounts\partials\usermenu.html.py:25
 #: .\templates\registration\activate.html.py:9
 #: .\templates\registration\registration_complete.html.py:10
-#: .\templates\sw_auth\activate.html.py:10
+#: .\templates\sw_auth\activation_failed.html.py:15
+#: .\templates\sw_auth\activation_retry.html.py:8
 #: .\templates\sw_auth\registration_complete.html.py:10
 msgid "contact us"
 msgstr "nous contacter"
@@ -829,12 +884,12 @@ msgstr "Se connecter"
 #: .\templates\registration\registration_form.html.py:13
 #: .\templates\sw_auth\registration_explanation.html.py:4
 #: .\templates\sw_auth\registration_explanation.html.py:13
-#: .\templates\sw_auth\registration_form.html.py:4
-#: .\templates\sw_auth\registration_form.html.py:13
+#: .\templates\sw_auth\registration_form.html.py:8
+#: .\templates\sw_auth\registration_form.html.py:17
 msgid "Register"
 msgstr "S'inscrire"
 
-#: .\templates\base\forum.html.py:87 .\templates\base\sw_col_right.html.py:14
+#: .\templates\base\forum.html.py:87 .\templates\base\sw_col_right.html.py:9
 msgid "Forgot password?"
 msgstr "Mot de passe oublié ?"
 
@@ -918,22 +973,35 @@ msgstr ""
 msgid "Submit"
 msgstr "Valider"
 
+#: .\templates\pollster\survey_run.html.py:26
+msgid ""
+"Some answers from your last survey of the previous season are have been used "
+"to pre-fill this survey. Please check this survey, some questions may have "
+"been added"
+msgstr ""
+"Le questionnaire préliminaire a été légèrement modifié par rapport à la "
+"saison dernière. Il est nécessaire de le mettre à jour.<br/>Certaines "
+"réponses que vous nous avez fournies durant la saison précédente ont été "
+"utilisées pour pré-remplir ce questionnaire. <b>Merci de bien revérifier les "
+"réponses à ce questionnaire<b> et de compléter celles-qui manquent puis de "
+"sauvegarder ce questionnaire pour cette saison."
+
 #: .\templates\registration\activate.html.py:4
 #: .\templates\registration\activation_complete.html.py:4
-#: .\templates\sw_auth\activate.html.py:4
-#: .\templates\sw_auth\activate.html.py:7
 #: .\templates\sw_auth\activation_complete.html.py:4
 #: .\templates\sw_auth\activation_complete.html.py:7
+#: .\templates\sw_auth\activation_failed.html.py:4
+#: .\templates\sw_auth\activation_failed.html.py:7
 msgid "Account Activation"
 msgstr "Activation du compte"
 
 #: .\templates\registration\activate.html.py:8
-#: .\templates\sw_auth\activate.html.py:8
+#: .\templates\sw_auth\activation_failed.html.py:8
 msgid "User activation failed."
 msgstr "L'activation de votre compte a échoué."
 
 #: .\templates\registration\activate.html.py:9
-#: .\templates\sw_auth\activate.html.py:10
+#: .\templates\sw_auth\activation_failed.html.py:10
 msgid ""
 "Please try to copy and paste the link from the activation email, making sure "
 "you've got all letters copied. If this fails, please try to"
@@ -945,12 +1013,12 @@ msgstr ""
 "Si cela échoue, essayez"
 
 #: .\templates\registration\activate.html.py:9
-#: .\templates\sw_auth\activate.html.py:10
+#: .\templates\sw_auth\activation_failed.html.py:11
 msgid "log in"
 msgstr "de vous connecter"
 
 #: .\templates\registration\activate.html.py:9
-#: .\templates\sw_auth\activate.html.py:10
+#: .\templates\sw_auth\activation_failed.html.py:12
 msgid ""
 "using the username and password you provided during registration. If this "
 "still fails, please try to"
@@ -961,7 +1029,7 @@ msgstr ""
 "Si cela échoue, essayez s-il-vous-plaît de"
 
 #: .\templates\registration\activate.html.py:9
-#: .\templates\sw_auth\activate.html.py:10
+#: .\templates\sw_auth\activation_failed.html.py:14
 msgid ""
 "with a different username. If everything else fails, please do not hesitate "
 "to"
@@ -1160,6 +1228,7 @@ msgstr ""
 #: .\templates\registration\password_reset_form.html.py:4
 #: .\templates\registration\password_reset_form.html.py:8
 #: .\templates\sw_auth\password_reset_confirm.html.py:4
+#: .\templates\sw_auth\password_reset_error.html.py:11
 #: .\templates\sw_auth\password_reset_form.html.py:4
 #: .\templates\sw_auth\password_reset_form.html.py:8
 msgid "Password reset"
@@ -1275,6 +1344,7 @@ msgid "Registration complete."
 msgstr "Votre inscription à GrippeNet.fr est terminée."
 
 #: .\templates\registration\registration_complete.html.py:9
+#: .\templates\sw_auth\activation_retry.html.py:6
 #: .\templates\sw_auth\registration_complete.html.py:8
 msgid ""
 "An e-mail containing information about how to activate your account has been "
@@ -1284,6 +1354,7 @@ msgstr ""
 "adresse email."
 
 #: .\templates\registration\registration_complete.html.py:10
+#: .\templates\sw_auth\activation_retry.html.py:8
 #: .\templates\sw_auth\registration_complete.html.py:10
 msgid ""
 "Please check your spam folder in case you do not get this email in your "
@@ -1296,7 +1367,7 @@ msgstr ""
 #: .\templates\registration\registration_explanation.html.py:9
 #: .\templates\registration\registration_form.html.py:8
 #: .\templates\sw_auth\registration_explanation.html.py:9
-#: .\templates\sw_auth\registration_form.html.py:7
+#: .\templates\sw_auth\registration_form.html.py:11
 msgid "Registration Form"
 msgstr "Rejoindre GrippeNet.fr"
 
@@ -1354,12 +1425,12 @@ msgid "Change profile"
 msgstr "Changer le profil"
 
 #: .\templates\survey\group_management.html.py:75
-#: .\templates\survey\group_management_sw.html.py:36
+#: .\templates\survey\group_management_sw.html.py:41
 msgid "Mark as healthy"
 msgstr "Marquer en bonne santé"
 
 #: .\templates\survey\group_management.html.py:76
-#: .\templates\survey\group_management_sw.html.py:37
+#: .\templates\survey\group_management_sw.html.py:42
 msgid "Delete member(s)"
 msgstr "Supprimer le(s) participant(s)"
 
@@ -1382,7 +1453,7 @@ msgstr ""
 msgid "People"
 msgstr "Participants"
 
-#: .\templates\survey\group_management_sw.html.py:10
+#: .\templates\survey\group_management_sw.html.py:12
 msgid ""
 "Below is the list of participants currently managed by you. Click the "
 "corresponding option next to the participant to complete the background or "
@@ -1393,31 +1464,37 @@ msgstr ""
 "questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, "
 "ou pour désinscrire un participant."
 
-#: .\templates\survey\group_management_sw.html.py:16
+#: .\templates\survey\group_management_sw.html.py:18
 msgid "Fill a questionnaire"
 msgstr "Remplissez un questionnaire"
 
-#: .\templates\survey\group_management_sw.html.py:20
+#: .\templates\survey\group_management_sw.html.py:22
+#: .\templates\survey\people_edit.html.py:4
+msgid "Edit Person"
+msgstr "Editer la fiche de ce participant"
+
+#: .\templates\survey\group_management_sw.html.py:22
 msgid "Edit"
 msgstr "Modifier"
 
-#: .\templates\survey\group_management_sw.html.py:21
+#: .\templates\survey\group_management_sw.html.py:23
 msgid "Background"
 msgstr "Préliminaire"
 
-#: .\templates\survey\group_management_sw.html.py:23
-msgid "Symptoms"
-msgstr "Hebdomadaire"
-
-#: .\templates\survey\group_management_sw.html.py:26
+#: .\templates\survey\group_management_sw.html.py:25
+#: .\templates\survey\group_management_sw.html.py:31
 msgid "last survey date"
 msgstr "Date du dernier questionnaire"
 
-#: .\templates\survey\group_management_sw.html.py:35
+#: .\templates\survey\group_management_sw.html.py:28
+msgid "Symptoms"
+msgstr "Hebdomadaire"
+
+#: .\templates\survey\group_management_sw.html.py:40
 msgid "For the checked users"
 msgstr "Pour les participants cochés"
 
-#: .\templates\survey\group_management_sw.html.py:36
+#: .\templates\survey\group_management_sw.html.py:41
 msgid "mark as healthy help text"
 msgstr ""
 "Ce bouton vous permet de remplir automatiquement le questionnaire "
@@ -1426,19 +1503,19 @@ msgstr ""
 "présenté au moins un symptôme, merci de remplir un questionnaire pour ce "
 "participant."
 
-#: .\templates\survey\group_management_sw.html.py:44
+#: .\templates\survey\group_management_sw.html.py:49
 msgid "Add new person"
 msgstr "Ajouter un nouveau participant"
 
-#: .\templates\survey\group_management_sw.html.py:45
+#: .\templates\survey\group_management_sw.html.py:50
 msgid "Register a participant in a Cohort"
 msgstr "Inscrivez un participant à un sous-projet de GrippeNet.fr"
 
-#: .\templates\survey\group_management_sw.html.py:67
+#: .\templates\survey\group_management_sw.html.py:72
 msgid "Household diagnosis history"
 msgstr "Historique des états de santé"
 
-#: .\templates\survey\group_management_sw.html.py:69
+#: .\templates\survey\group_management_sw.html.py:74
 #: .\templates\survey\thanks.html.py:62
 msgid ""
 "The flu status of each participant is based on the symptoms you reported. "
@@ -1454,7 +1531,7 @@ msgstr ""
 "symptômes, ou que vous êtes inquiet, nous vous recommandons de contacter "
 "votre médecin généraliste."
 
-#: .\templates\survey\group_management_sw.html.py:91
+#: .\templates\survey\group_management_sw.html.py:96
 msgid "Delete selected users ?"
 msgstr "Supprimer les participants selectionnés ?"
 
@@ -1483,10 +1560,6 @@ msgstr ""
 "conseillons fortement à n'utiliser que des surnoms et des prénom et à éviter "
 "tout nom de famille ou mail. Ces informations ne sont pas utilisées lors des "
 "analyses."
-
-#: .\templates\survey\people_edit.html.py:4
-msgid "Edit Person"
-msgstr "Editer la fiche de ce participant"
 
 #: .\templates\survey\people_remove.html.py:5
 msgid "Confirm removal"
@@ -1597,6 +1670,15 @@ msgstr ""
 msgid "The project will be launched from the"
 msgstr "Le lancement de la prochaine saison est prévu le"
 
+#: .\templates\sw_auth\activation_failed.html.py:13
+msgid "register"
+msgstr "vous inscrire"
+
+#: .\templates\sw_auth\activation_failed.html.py:22
+#, fuzzy
+msgid "Recommencez l'activation"
+msgstr "Recommencez l'activation"
+
 #: .\templates\sw_auth\password_reset_email.html.py:7
 msgid ""
 "This e-mail is associated with several active accounts. You will recieve an "
@@ -1619,12 +1701,12 @@ msgstr ""
 "t-il déjà été utilisé. Demandez s'il-vous-plaît une nouvelle "
 "réinitialisation de votre mot de passe."
 
-#: .\templates\sw_auth\registration_form.html.py:17
+#: .\templates\sw_auth\registration_form.html.py:21
 msgid "Registration instructions"
 msgstr ""
-"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous pouvez "
-"utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe (vous pourrez "
-"le changer, nous n'y avons pas accès)"
+"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous "
+"pouvez utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe "
+"(vous pourrez le changer, nous n'y avons pas accès)"
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"
@@ -1691,6 +1773,3 @@ msgstr ""
 
 #~ msgid "Completing for participant"
 #~ msgstr "Compléter pour le participant"
-
-#~ msgid "register"
-#~ msgstr "vous inscrire"
