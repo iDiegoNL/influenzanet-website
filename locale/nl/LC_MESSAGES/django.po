@@ -1081,12 +1081,12 @@ msgid "Add person"
 msgstr "Voeg Griepmeter toe"
 
 #: templates/survey/group_management.html:22
-msgid "Survey date"
-msgstr "Datum"
+msgid "Survey"
+msgstr "Meting"
 
 #: templates/survey/group_management.html:22
-msgid "Condition"
-msgstr "Meetresultaat"
+msgid "Status"
+msgstr "Status"
 
 #: templates/survey/group_management.html:30
 msgid "Report"
@@ -1103,6 +1103,10 @@ msgstr "Als gezond aanmerken"
 #: templates/survey/group_management.html:51
 msgid "Delete member(s)"
 msgstr "Participanten verwijderen"
+
+msgid "Are you absolutely sure you want to delete this user/these users?"
+msgstr ""
+"Bent u er absoluut zeker van dat u deze participant(en) wilt verwijderen?"
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
