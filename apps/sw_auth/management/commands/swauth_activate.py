@@ -19,7 +19,7 @@ class Command(BaseCommand):
         if options['user'] is None:
             users = EpiworkUser.objects.all()
         else:
-            users = EpiworkUser.objects.get(id=options['user'])
+            users = [EpiworkUser.objects.get(id=options['user'])]
     
         self.resend_activation(users)
     
