@@ -67,22 +67,26 @@ def activate_retry(request):
     sended = False
     if(request.method == "POST"):
         form = UserEmailForm(request.POST)
+        user_found = False
         if form.is_valid():
             users = form.users_cache
             if len(users) > 1:
+                user_found = True
                 messages.add_message(request, messages.ERROR,_('This email is associated with several accounts. Please contact us to regularize'))
             else:
-                user = users[0]
-                if user.is_active == True:
-                    messages.add_message(request, messages.INFO,_('The user associated with this email is already activated'))
-                else:
-                    try:
-                        site = get_current_site(request)
-                        send_activation_email(user, site)
-                        sended = True
-                    except:
-                        messages.add_message(request, messages.ERROR, _('Problem occured during activation email generation'))
-        else:
+                if len(users) > 0 :
+                    user_found = True
+                    user = users[0]
+                    if user.is_active == True:
+                        messages.add_message(request, messages.INFO,_('The user associated with this email is already activated'))
+                    else:
+                        try:
+                            site = get_current_site(request)
+                            send_activation_email(user, site)
+                            sended = True
+                        except:
+                            messages.add_message(request, messages.ERROR, _('Problem occured during activation email generation'))
+        if not user_found:
             messages.add_message(request, messages.ERROR,_('This email is not associated with any account'))
     return render_template('activation_retry', request, {'sended': sended, 'form':form})
             
