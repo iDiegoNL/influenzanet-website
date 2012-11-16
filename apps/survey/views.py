@@ -306,6 +306,12 @@ def run_index(request, shortname):
     except ValueError:
         raise Http404()
 
+    if shortname == 'intake' or shortname == 'weekly':
+        if shortname == 'intake':
+            url = reverse(profile_index)
+        else:
+            url = reverse(index)
+        return HttpResponseRedirect(url)
     if survey_user is None:
         url = '%s?next=%s' % (reverse(select_user), reverse(run_index,kwargs={'shortname':shortname}))
         return HttpResponseRedirect(url)
