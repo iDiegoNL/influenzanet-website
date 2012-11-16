@@ -73,12 +73,15 @@ def activate_retry(request):
                 messages.add_message(request, messages.ERROR,_('This email is associated with several accounts. Please contact us to regularize'))
             else:
                 user = users[0]
-                try:
-                    site = get_current_site(request)
-                    send_activation_email(user, site)
-                    sended = True
-                except:
-                    messages.add_message(request, messages.ERROR, _('Problem occured during activation email generation'))
+                if user.is_active == True:
+                    messages.add_message(request, messages.INFO,_('The user associated with this email is already activated'))
+                else:
+                    try:
+                        site = get_current_site(request)
+                        send_activation_email(user, site)
+                        sended = True
+                    except:
+                        messages.add_message(request, messages.ERROR, _('Problem occured during activation email generation'))
         else:
             messages.add_message(request, messages.ERROR,_('This email is not associated with any account'))
     return render_template('activation_retry', request, {'sended': sended, 'form':form})
