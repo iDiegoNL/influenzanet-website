@@ -93,7 +93,7 @@ class UserEmailForm(forms.Form):
         """
         email = self.cleaned_data["email"]
         try:
-            self.users_cache = EpiworkUser.objects.filter(email__iexact=email, is_active=True) 
+            self.users_cache = EpiworkUser.objects.filter(email__iexact=email) 
         except EpiworkUser.DoesNotExist:
             raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
         return email
