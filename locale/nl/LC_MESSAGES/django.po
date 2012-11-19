@@ -1760,3 +1760,7 @@ msgstr "Cookie instellingen"
 
 msgid "Thanks - your diagnosis:"
 msgstr "Hartelijk dank - uw diagnose:"
+
+msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
+msgstr "Gelieve eerst de achtergrondvragenlijst (\"Verander profiel\") te beantwoorden voor de deelnemer \"%(user_name)s\" voor deze als gezond aan te merken."
+

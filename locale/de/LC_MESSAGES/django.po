@@ -1420,3 +1420,6 @@ msgstr ""
 
 msgid "Thanks - your diagnosis:"
 msgstr ""
+
+msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
+msgstr ""
