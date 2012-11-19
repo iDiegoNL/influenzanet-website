@@ -1102,14 +1102,12 @@ msgid "Add person"
 msgstr "Teilnehmer hinzufügen"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Survey date"
-msgstr "Erhebungsdiagramm"
+msgid "Survey"
+msgstr ""
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Condition"
-msgstr "Inhalt"
+msgid "Status"
+msgstr ""
 
 #: templates/survey/group_management.html:30
 msgid "Report"
@@ -1126,6 +1124,9 @@ msgstr "Markieren wie gesund"
 #: templates/survey/group_management.html:51
 msgid "Delete member(s)"
 msgstr "Löschen"
+
+msgid "Are you absolutely sure you want to delete this user/these users?"
+msgstr ""
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
