@@ -540,12 +540,14 @@ msgstr ""
 msgid ""
 "The page you requested could not be found. We apologize for the "
 "inconvenience. Go to "
-msgstr ""
+msgstr 
+"The page you requested could not be found. We apologize for the "
+"inconvenience. Please proceed to "
 
 #: templates/404.html:8 templates/500.html:8
 #: templates/accounts/logged_out.html:8 templates/registration/logout.html:8
 msgid "home"
-msgstr ""
+msgstr "the main site"
 
 #: templates/500.html:4
 msgid "Error"
@@ -563,7 +565,7 @@ msgstr ""
 
 #: templates/accounts/logged_out.html:8 templates/registration/logout.html:8
 msgid "You have been logged out. Go to "
-msgstr ""
+msgstr "Thank you for taking part in the Flusurvey. To find out more about the project, go back to "
 
 #: templates/accounts/my_profile.html:4
 #: templates/accounts/partials/usermenu.html:16
@@ -1061,11 +1063,12 @@ msgstr ""
 
 #: templates/survey/group_management.html:30
 msgid "Report"
-msgstr ""
+msgstr "Weekly survey"
 
 #: templates/survey/group_management.html:30 templates/survey/thanks.html:43
 msgid "Change profile"
-msgstr "Change background information"
+msgstr ""
+#msgstr "Change background information"
 
 #: templates/survey/group_management.html:50
 msgid "Mark as healthy"
@@ -1123,9 +1126,6 @@ msgstr ""
 #: templates/survey/thanks.html:22
 msgid "Thanks for taking the time to fill out this survey."
 msgstr ""
-"Thanks for taking the time to fill out this survey.</p><p>Had your flu jab "
-"recently? Click on <strong>Change background information</strong> below to "
-"let us know."
 
 #: templates/survey/thanks.html:25
 msgid ""
@@ -1179,7 +1179,7 @@ msgstr ""
 
 #: templates/survey/thanks_profile.html:12
 msgid "Please, if you have not already done so, fill in"
-msgstr ""
+msgstr "If you have not already done so, please fill in"
 
 #: templates/survey/thanks_profile.html:18
 msgid "the symptoms questionaire"
@@ -1201,6 +1201,8 @@ msgid ""
 "\n"
 "This activation URL will expire in %(expiration_days)s days."
 msgstr ""
+"Dear flusurvey participant,\n"
+"\n"
 "Thank you for registering for the Flusurvey.\n"
 "\n"
 "To activate your account, please click on the following link or copy and "
