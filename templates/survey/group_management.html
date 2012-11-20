@@ -33,7 +33,7 @@
 {% endfor %}
 
 {% if last_survey %}
-<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>
+<div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp|date:"d/m" }}</div>
 <br />
 {% endif %}
 
