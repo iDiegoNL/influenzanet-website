@@ -15,6 +15,28 @@ class UnicodeRegistrationForm(RegistrationForm):
                                 widget=forms.TextInput(attrs=attrs_dict),
                                 label=_("Username"),
                                 error_messages={'invalid': _("This value must contain only letters, numbers and underscores.")})
+    email2 = forms.EmailField(label=_("E-mail (again)"))
+    def clean(self):
+        """
+        Verifiy that the values entered into the two password fields
+        match. Note that an error here will end up in
+        ``non_field_errors()`` because it doesn't apply to a single
+        field.
+        
+        """
+        if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
+            if self.cleaned_data['password1'] != self.cleaned_data['password2']:
+                raise forms.ValidationError(_("The two password fields didn't match."))
+        if 'email' in self.cleaned_data and 'email2' in self.cleaned_data:
+            if self.cleaned_data['email'] != self.cleaned_data['email2']:
+                raise forms.ValidationError(_("The two email fields didn't match."))
+        return self.cleaned_data
+    def __init__(self, *args, **kwargs):
+        # reorder the fields
+        # see discussion at http://stackoverflow.com/questions/913589/django-forms-inheritance-and-order-of-form-fields
+        
+        super(UnicodeRegistrationForm, self).__init__(*args, **kwargs)
+        self.fields.keyOrder = ['username', 'email', 'email2', 'password1', 'password2']
     
 class UnicodeUserChangeForm(UserChangeForm):
     username = forms.RegexField(label=_("Username"), max_length=30, regex=r'(?u)^[\w.@+-]+$',
