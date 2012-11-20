@@ -1085,6 +1085,7 @@ msgstr ""
 msgid ""
 "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
+"<strong>Help:</strong><br>To update your background questionnaire (e.g., if you have been vaccinated), click on <strong>Change profile</strong>.<br>To add a member of your household, click on the <strong>+</strong> sign next to <strong>Name</strong> in the header row.<br>If you have no symptoms to report for yourself or any other participant listed, select the user(s) using the checkbox left of the username, make sure <strong>Mark as healthy</strong> is selected below the table and click on <strong>Save</strong>.<br><br><strong>Note:</strong><br>The health status shown for each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
 
 #: templates/survey/index.html:16
 msgid "Survey Form"

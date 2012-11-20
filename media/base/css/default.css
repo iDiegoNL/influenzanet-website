@@ -953,7 +953,7 @@ hr {
 #col1 li {
  margin: 0;
  padding: 0;
- font-weight: bold;
+/* font-weight: bold;*/
  line-height: 1.5em; 
 }
 
