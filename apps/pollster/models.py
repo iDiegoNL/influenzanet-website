@@ -81,7 +81,7 @@ SURVEY_EXTRA_SQL = {
                                 (not "Q1_1") and (not "Q1_2") 
                                 and (("Q6d" = 0) or ("Q6d" is null)) 
                                 and ("Q1_3" or "Q1_4" or "Q1_14")
-                                and ("Q11" = 2)
+                                and ("Q11_2")
                             ) and (
                                 case true when "Q1_17" then 1 else 0 end + 
                                 case true when "Q1_15" then 1 else 0 end + 
@@ -92,7 +92,7 @@ SURVEY_EXTRA_SQL = {
                           when (not "Q1_1") and (not "Q1_2") 
                            and (("Q6d" = 0) or ("Q6d" is null)) 
                            and ("Q1_3" or "Q1_4" or "Q1_14")
-                           and ("Q11" = 2)
+                           and ("Q11_2")
                               then 'ALLERGY-or-HAY-FEVER' 
 
                           when
@@ -148,7 +148,7 @@ SURVEY_EXTRA_SQL = {
                                 (not Q1_1) and (not Q1_2) 
                                 and ((Q6d = 0) or (Q6d is null)) 
                                 and (Q1_3 or Q1_4 or Q1_14)
-                                and (Q11 = 2)
+                                and (Q11_2)
                             ) and (
                                 case true when Q1_17 then 1 else 0 end + 
                                 case true when Q1_15 then 1 else 0 end + 
@@ -159,7 +159,7 @@ SURVEY_EXTRA_SQL = {
                           when (not Q1_1) and (not Q1_2) 
                            and ((Q6d = 0) or (Q6d is null)) 
                            and (Q1_3 or Q1_4 or Q1_14)
-                           and (Q11 = 2)
+                           and (Q11_2)
                               then 'ALLERGY-or-HAY-FEVER' 
 
                           when
