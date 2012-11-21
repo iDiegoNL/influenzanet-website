@@ -44,7 +44,7 @@ msgstr "Email"
 #: .\apps\accounts\forms.py:33 .\apps\reminder\models.py:36
 #: .\apps\sw_auth\forms.py:130
 msgid "Send reminders"
-msgstr "Envoyer des emails de rappel"
+msgstr "Recevoir la lettre hebdomadaire d'information :"
 
 #: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:130
 msgid ""
@@ -273,7 +273,9 @@ msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
 #: .\apps\pollster\views.py:216
 msgid "Thanks - your diagnosis:"
-msgstr "Votre état de santé"
+msgstr ""
+"Merci d'avoir rempli ce questionnaire. D'après les informations fournies, "
+"votre état de santé est classé comme : "
 
 #: .\apps\pollster\views.py:218 .\templates\survey\thanks.html.py:22
 msgid "Thanks for taking the time to fill out this survey."
@@ -309,7 +311,7 @@ msgstr "S'il n'y a pas de date qui s'affiche, vérifier les paramètres du site"
 
 #: .\apps\reminder\models.py:36
 msgid "Check this box to send reminders"
-msgstr "Cocher cette case pour envoyer des emails de rappel"
+msgstr "Cocher cette case pour recevoir la lettre hebdomadaire"
 
 #: .\apps\reminder\models.py:37
 msgid "Interval"
@@ -1319,9 +1321,8 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Mot de passe oublié ? Entrez votre adresse email ci-dessous, nous vous "
-"enverrons par email des instructions pour mettre en place un nouveau mot de "
-"passe."
+"Entrez votre adresse email ci-dessous, nous vous enverrons par email des "
+"instructions pour mettre en place un nouveau mot de passe."
 
 #: .\templates\registration\password_reset_form.html.py:14
 #: .\templates\sw_auth\password_reset_form.html.py:14
@@ -1462,7 +1463,10 @@ msgstr ""
 "La liste des participants inscrits sur votre compte figure ci-dessous. "
 "Cliquez sur le lien situé à côté de chaque participant pour remplir le "
 "questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, "
-"ou pour désinscrire un participant."
+"ou pour la désinscrire. Si l'un des participants n'a présenté aucun symptôme "
+"depuis son dernier questionnaire hebdomadaire, vous pouvez sélectionner ce "
+"participant puis cliquer sur \"Marquer en bonne santé\" afin de remplir en un "
+"clic son questionnaire hebdomadaire."
 
 #: .\templates\survey\group_management_sw.html.py:18
 msgid "Fill a questionnaire"
@@ -1555,7 +1559,7 @@ msgid ""
 "to preserve privacy we ought you to avoid family name or email. Use surname "
 "or given name."
 msgstr ""
-"Ce formulaire vous permet de modifier le nom attribué à un utilisateur. Afin "
+"Ce formulaire vous permet de définir le nom attribué à un utilisateur. Afin "
 "de préserver l'anonymat des utilisateurs de GrippeNet.fr, nous vous "
 "conseillons fortement de n'utiliser que <b>des surnoms et des prénoms et "
 "d'éviter tout nom de famille ou email</b>. Ces informations ne sont pas "
@@ -1709,7 +1713,7 @@ msgstr ""
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"
-msgstr "Inscrire un participant à un Sous-projet GrippeNet"
+msgstr "Inscrire un participant à un sous-projet GrippeNet.fr."
 
 #: .\templates\sw_cohort\form.html.py:15
 msgid "cohort register help text"
