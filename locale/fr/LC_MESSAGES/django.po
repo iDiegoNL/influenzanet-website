@@ -513,7 +513,7 @@ msgstr "Mot de passe"
 
 #: .\apps\sw_auth\forms.py:33
 msgid "Password (again)"
-msgstr "Changement du mot de passe (confirmation)"
+msgstr "Confirmation du mot de passe"
 
 #: .\apps\sw_auth\forms.py:45
 msgid "A user with that username already exists."
@@ -1509,7 +1509,7 @@ msgstr "Ajouter un nouveau participant"
 
 #: .\templates\survey\group_management_sw.html.py:50
 msgid "Register a participant in a Cohort"
-msgstr "Inscrivez un participant à un sous-projet de GrippeNet.fr"
+msgstr "Cliquez ici si vous disposez d'un code pour un sous-projet GrippeNet.fr"
 
 #: .\templates\survey\group_management_sw.html.py:72
 msgid "Household diagnosis history"
@@ -1556,10 +1556,10 @@ msgid ""
 "or given name."
 msgstr ""
 "Ce formulaire vous permet de modifier le nom attribué à un utilisateur. Afin "
-"de préserver l'anonymat des utilisateur de GrippeNet.fr, nous vous "
-"conseillons fortement à n'utiliser que des surnoms et des prénom et à éviter "
-"tout nom de famille ou mail. Ces informations ne sont pas utilisées lors des "
-"analyses."
+"de préserver l'anonymat des utilisateurs de GrippeNet.fr, nous vous "
+"conseillons fortement de n'utiliser que <b>des surnoms et des prénoms et "
+"d'éviter tout nom de famille ou email</b>. Ces informations ne sont pas "
+"utilisées lors des analyses."
 
 #: .\templates\survey\people_remove.html.py:5
 msgid "Confirm removal"
@@ -1675,7 +1675,6 @@ msgid "register"
 msgstr "vous inscrire"
 
 #: .\templates\sw_auth\activation_failed.html.py:22
-#, fuzzy
 msgid "Recommencez l'activation"
 msgstr "Recommencez l'activation"
 
@@ -1716,9 +1715,11 @@ msgstr "Inscrire un participant à un Sous-projet GrippeNet"
 msgid "cohort register help text"
 msgstr ""
 "Cette page vous permet d'enregistrer un participant à un sous-projet réalisé "
-"par GrippeNet.\n"
-"Pour inscrire un participant vous devez vous munir du code d'inscription qui "
-"vous a été fourni par l'équipe de GrippeNet."
+"par GrippeNet.fr.\nPour inscrire un participant vous devez vous munir du code "
+"d'inscription qui vous a été fourni par l'équipe de GrippeNet.fr (ces "
+"sous-projets ne concernent que certains utilisateurs, il est normal de ne pas "
+"avoir reçu de code si vous n'avez pas été invité à participer à un "
+"sous-projet)."
 
 #: .\templates\sw_cohort\form.html.py:17
 msgid "Select the participant to register"
