@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.db import connection
 from django.contrib.syndication.views import Feed
 
-from apps.journal.models import Entry
+from apps.journal.models import Entry, published_filter
 from apps.survey.models import SurveyUser
 from loginurl.utils import create as create_login_key
 
@@ -86,7 +86,7 @@ class LatestEntriesFeed(Feed):
     description = "Influenzanet news"
 
     def items(self):
-        return Entry.objects.order_by('-pub_date')[:5]
+        return published_filter(Entry.objects.order_by('-pub_date'))[:5]
 
     def item_title(self, item):
         return item.title
