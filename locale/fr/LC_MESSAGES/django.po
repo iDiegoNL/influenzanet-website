@@ -51,7 +51,8 @@ msgid ""
 "Check this box if you wish to receive weekly reminders throughout the flu "
 "season"
 msgstr ""
-"Cochez cette case si vous souhaitez recevoir un email hebdomadaire de rappel"
+"Cochez cette case si vous souhaitez recevoir la lettre hebdomadaire "
+"d'information"
 
 #: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:131
 msgid "Language"
@@ -1428,7 +1429,7 @@ msgstr "Changer le profil"
 #: .\templates\survey\group_management.html.py:75
 #: .\templates\survey\group_management_sw.html.py:41
 msgid "Mark as healthy"
-msgstr "Marquer en bonne santé"
+msgstr "Déclarer \"Aucun symptôme\""
 
 #: .\templates\survey\group_management.html.py:76
 #: .\templates\survey\group_management_sw.html.py:42
