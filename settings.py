@@ -1,7 +1,7 @@
 # Django settings for epiweb project.
 # -*- coding: utf-8 -*-
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 
@@ -35,7 +35,7 @@ TIME_ZONE = 'Europe/Amsterdam'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'it'
 # LANGUAGE_CODE = 'en'
 
 # For checking postcodes etc.
@@ -193,7 +193,7 @@ HAYSTACK_SITECONF = 'search_sites'
 try:
     import xapian
     HAYSTACK_SEARCH_ENGINE = 'xapian'
-    HAYSTACK_XAPIAN_PATH = '/tmp/xapian'
+    HAYSTACK_XAPIAN_PATH = '/tmp/xapian-influweb.it'
 except:
     HAYSTACK_SEARCH_ENGINE = 'simple'
 
@@ -241,7 +241,7 @@ CACHES = {
 
 # SEO Settings
 
-GOOGLE_ANALYTICS_ACCOUNT = None
+GOOGLE_ANALYTICS_ACCOUNT = 'UA-24124829-7'
 CMS_SEO_FIELDS = True
 
 SESSION_COOKIE_AGE = 60 * 60 * 2

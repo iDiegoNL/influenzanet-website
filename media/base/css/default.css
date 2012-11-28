@@ -1249,6 +1249,11 @@ div.pagination {
 .survey-chart .chart { width: 440px; height: 330px; position: relative; }
 .survey-chart .chart-no-data { background:#EEE; padding:20px; }
 
+#pollster-chart-65 {
+ width: 1024px;
+ height: 768px;
+}
+
 
 /*** PYBBM (Forum) ***/
 
