@@ -8,6 +8,7 @@ from django.conf import settings as app_config
 from ...send import send
 from ...models import get_settings, UserReminderInfo, MockNewsLetter
 from django.db import connection
+from django.conf import settings
 from django.contrib.auth.models import User 
 
 if getattr(app_config, 'SWAUTH_FAKE_USER', 0):
@@ -143,6 +144,11 @@ class Command(BaseCommand):
         conf.currently_sending = True
         conf.last_process_started_date = datetime.now()
         conf.save()
+        
+        if next is None:
+            # force next to LOGIN_REDIRECT_URL because when next is None
+            # send_reminders() set it to survey_index's url.
+            next = settings.LOGIN_REDIRECT_URL
         
         try:
             if mock:
