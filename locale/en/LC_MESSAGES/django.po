@@ -429,7 +429,7 @@ msgid "Cold / allergy"
 msgstr ""
 
 msgid "Common cold"
-msgstr "Symptomen die passen bij verkoudheid"
+msgstr ""
 
 msgid "Allergy / hay fever and gastrointestinal symptoms"
 msgstr ""
@@ -596,7 +596,7 @@ msgstr "Forgotten login details"
 
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
-msgstr ""
+msgstr "Explore the map"
 
 #: templates/accounts/partials/usermap.html:9
 msgid ""
@@ -607,6 +607,12 @@ msgid ""
 "<strong class=\"gastro\">▸ yellow</strong> and common cold reports are "
 "displayed in <strong class=\"cold\">▸ blue</strong>."
 msgstr ""
+"Regions in which we currently have reports of influenza-like illness are "
+"<strong class=\"flu\">▸ red</strong>, and ones in which none of our "
+"participants currently report influenza-like illness are <strong class="
+"\"cold\">▸ blue</strong>. You can move the map around by dragging it, or "
+"zoom in and out by hitting the <strong>+</strong> or <strong>-</strong> "
+"buttons"
 
 #: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
 msgid "Map updated hourly."
