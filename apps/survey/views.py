@@ -142,6 +142,9 @@ def group_management(request):
 
         for survey_user in request.user.surveyuser_set.filter(global_id__in=global_ids):
             if request.POST.get('action') == 'healthy':
+                messages.add_message(request, messages.INFO, 
+                    _(u'The participant "%(user_name)s" has been marked as healthy.') % {'user_name': survey_user.name})
+
                 profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
                 if not profile:
                     messages.add_message(request, messages.INFO, 
@@ -275,7 +278,9 @@ def main_index(request):
     # indexes have become. 
 
     # this is the one that does the required redirection for the button 'my account'
-    # i.e. to group if there is a group, to the main index otherwise
+    # and is also used in the reminder emails.
+
+    # i.e. it redirects to group if there is a group, to the main index otherwise
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))

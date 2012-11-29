@@ -75,7 +75,7 @@ def get_login_url(user, next):
 
 def get_survey_url():
     domain = Site.objects.get_current()
-    path = reverse('apps.survey.views.index')
+    path = reverse('apps.survey.views.main_index')
     return 'http://%s%s' % (domain, path)
 
 def send(now, user, message, language, is_test_message=False):
