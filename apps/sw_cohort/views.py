@@ -1,4 +1,6 @@
 # Create your views here.
+
+from django.utils.translation import ugettext as _
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
@@ -8,8 +10,6 @@ from .models import Token
 from apps.sw_cohort.models import CohortUser
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.utils.translation import ugettext_lazy as _
-
 
 def render_template(name, request, context=None):
     return render_to_response('sw_cohort/'+name+'.html',
@@ -58,7 +58,7 @@ def register(request):
     if token is None:
         messages.error(request, _('token not provided'))
     if gid is None or token is None:
-        messages.error(request, 'User n')
+        messages.error(request, 'User not provided')
         return redirect(reverse('cohort_form'))
     cohort = do_register(request, gid, token)
     return render_template('register', request, {'cohort':cohort })
