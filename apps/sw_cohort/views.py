@@ -38,8 +38,9 @@ def do_register(request, gid, token):
         messages.error(request, _('invalid token'))
     except Token.TokenException as e:
         messages.error(request, str(e))
-    except:
-        pass
+    except Exception as e:
+        transaction.rollback()
+        raise e
     if not cohort or cohort is None:
         transaction.rollback()
     return cohort
