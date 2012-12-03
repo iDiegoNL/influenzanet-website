@@ -17,8 +17,8 @@ class Cohort(models.Model):
 
 # Register a user in a given cohort
 class CohortUser(models.Model):
-    user = models.ForeignKey(SurveyUser, unique=True)
-    cohort = models.ForeignKey(Cohort, unique=True)
+    user = models.ForeignKey(SurveyUser)
+    cohort = models.ForeignKey(Cohort)
     
     class Meta:
         unique_together = (('cohort','user'),)
