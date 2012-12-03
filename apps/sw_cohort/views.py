@@ -20,6 +20,7 @@ def render_template(name, request, context=None):
 
 @transaction.commit_manually()
 def do_register(request, gid, token):
+    subscription = None
     cohort = None
     try:
         user = SurveyUser.objects.get(global_id=gid)
@@ -40,9 +41,9 @@ def do_register(request, gid, token):
     except Exception:
         transaction.rollback()
         raise
-    if not cohort or cohort is None:
+    if not subscription or subscription is None or cohort is None :
         transaction.rollback()
-    return cohort
+    return subscription
 
 @login_required
 def form(request):
@@ -59,5 +60,9 @@ def register(request):
     if gid is None or token is None:
         messages.error(request, 'User not provided')
         return redirect(reverse('cohort_form'))
-    cohort = do_register(request, gid, token)
-    return render_template('register', request, {'cohort':cohort })
+    subscription = do_register(request, gid, token)
+    cohort = getattr(subscription, 'cohort', None)
+    user = getattr(subscription, 'user', None)
+    if user:
+        messages.info(request, _('The participant %s has been registred') % str(user))
+    return render_template('register', request, {'cohort':cohort, 'user': user })

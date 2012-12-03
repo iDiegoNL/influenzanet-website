@@ -3,9 +3,10 @@
 {% block col1 %}
 {% include "base/messages.html" %}
 {% if cohort %}
- {% trans "The participant have been registred in the cohort :" %}{{ cohort.title }}
- <p>{{ cohort.description }}</p>
+ {% trans "The participant have been registred in the cohort :" %} {{ cohort.title }}
+ <p class="info">{{ cohort.description }}</p>
 {% else %}
  <p>{% trans "Problem occured during registration, try later or contact us" %}</p>
 {% endif %}
+<a href="{%url group_management%}">{% trans "Back to group management page"%}</a>
 {% endblock %}
