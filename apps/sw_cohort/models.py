@@ -3,6 +3,7 @@ from datetime import date
 
 from apps.survey.models import SurveyUser
 
+from django.utils.translation import ugettext_lazy as _
 
 # Cohort is a group of user
 
@@ -32,12 +33,15 @@ class Token(models.Model):
          
     # try to consume the token
     def consume(self):
-        if self.usage_left <= 0:
-            raise Token.TokenException(_('No usage left for this token'))
+        if self.usage_left is not None:
+            if self.usage_left <= 0:
+                raise Token.TokenException(_('No usage left for this token'))
+            self.usage_left = self.usage_left - 1
         if self.valid_until:
             if self.valid_until < date.today():
                 raise Token.TokenException(_('this token has expired'))
-        self.usage_left = self.usage_left - 1
+        self.save()
+        
         
     def __unicode__(self):
         return self.token

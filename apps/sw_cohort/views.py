@@ -24,18 +24,17 @@ def do_register(request, gid, token):
     try:
         user = SurveyUser.objects.get(global_id=gid)
         token = Token.objects.get(token=token)
-        token.consume()
         subscription = CohortUser()
         subscription.user = user
         subscription.cohort = token.cohort
         subscription.save()
-        token.save()
+        token.consume()
         transaction.commit() 
         cohort = token.cohort
     except SurveyUser.DoesNotExist:
-        messages.error(request, 'User does not exist')
+        messages.error(request, _('User does not exist'))
     except Token.DoesNotExist:
-        messages.error(request, 'invalid token')
+        messages.error(request, _('invalid token'))
     except Token.TokenException as e:
         messages.error(request, str(e))
     except Exception:
