@@ -8,8 +8,8 @@ from .models import Token
 from apps.sw_cohort.models import CohortUser
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-
 from django.utils.translation import ugettext_lazy as _
+
 
 def render_template(name, request, context=None):
     return render_to_response('sw_cohort/'+name+'.html',
