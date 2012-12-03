@@ -25,11 +25,19 @@ def do_register(request, gid, token):
     try:
         user = SurveyUser.objects.get(global_id=gid)
         token = Token.objects.get(token=token)
-        subscription = CohortUser()
-        subscription.user = user
-        subscription.cohort = token.cohort
-        subscription.save()
-        token.consume()
+        ok = False
+        try:
+            r = CohortUser.objects.get(user=user,cohort=token.cohort)
+            messages.error(request, _('user %s is already registred in this cohort'))
+        except CohortUser.DoesNotExist:
+            ok = True
+            pass
+        if ok:
+            subscription = CohortUser()
+            subscription.user = user
+            subscription.cohort = token.cohort
+            subscription.save()
+            token.consume()
         transaction.commit() 
         cohort = token.cohort
     except SurveyUser.DoesNotExist:
