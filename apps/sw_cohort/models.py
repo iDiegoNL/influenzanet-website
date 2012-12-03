@@ -19,6 +19,9 @@ class Cohort(models.Model):
 class CohortUser(models.Model):
     user = models.ForeignKey(SurveyUser, unique=True)
     cohort = models.ForeignKey(Cohort, unique=True)
+    
+    class Meta:
+        unique_together = (('cohort','user'),)
 
 # A token enables users to register in a given cohort (with a voucher for example).
 # Once used you cannot know which user has used which token 
