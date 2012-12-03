@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cohort, Token
+from .models import Cohort, Token, CohortUser
 from django.http import HttpResponse
 
 class TokenAdmin(admin.ModelAdmin):
@@ -22,3 +22,4 @@ class CohortAdmin(admin.ModelAdmin):
 
 admin.site.register(Cohort, CohortAdmin)
 admin.site.register(Token, TokenAdmin)
+admin.site.register(CohortUser)
