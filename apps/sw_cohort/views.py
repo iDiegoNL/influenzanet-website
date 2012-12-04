@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from apps.survey.models import SurveyUser
 from django.contrib import messages
 from .models import Token
-from apps.sw_cohort.models import CohortUser
+from apps.sw_cohort.models import CohortUser, Cohort
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
@@ -74,3 +74,37 @@ def register(request):
     if user:
         messages.info(request, _('The participant %s has been registred') % str(user))
     return render_template('register', request, {'cohort':cohort, 'user': user })
+
+
+def subscriptions(request):
+    """
+    Subscriptions of participants of a user account
+    """
+    user = request.user
+    # list of participants
+    participants = {} 
+    for p in SurveyUser.objects.filter(user=user):
+        participants[p.id] = p.global_id
+    ids = participants.keys()
+    r = {} # [ global_id=list of subscribed cohorts ]
+    cohorts = [] # list of used cohorts
+    # build list of subscription by participant
+    for s in CohortUser.objects.filter(user__in=ids):
+        i = s.user_id
+        cid = s.cohort_id
+        global_id = participants[i]
+        if not r.has_key(global_id):
+            r[global_id] = []
+        r[global_id].append(cid)
+    if len(cohorts) > 0:
+        cohorts = Cohort.objects.filter(id__in=cohorts)
+        cohorts = dict([(p.id, p) for p in cohorts])
+    from django.utils import simplejson
+    simplejson.dump({'subscibers': r, 'cohorts': cohorts})    
+        
+        
+        
+        
+    
+    
+    
