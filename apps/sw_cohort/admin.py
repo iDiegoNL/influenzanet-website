@@ -19,7 +19,9 @@ export_tokens.short_description = ""
 class CohortAdmin(admin.ModelAdmin):
     actions = [export_tokens]
 
-
+class CohortUserAdmin(admin.ModelAdmin):
+    list_display = ('cohort','user')
+    
 admin.site.register(Cohort, CohortAdmin)
 admin.site.register(Token, TokenAdmin)
-admin.site.register(CohortUser)
+admin.site.register(CohortUser, CohortUserAdmin)
