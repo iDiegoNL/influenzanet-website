@@ -8,3 +8,5 @@ survey.png	fugues icons 3.0
 avatar.gif	
 logout.png	fugues icons 3.0
 help-tip	fugues icons 3.5
+pencil		fugues icons 3.5
+cohort		fugues icons 3.5

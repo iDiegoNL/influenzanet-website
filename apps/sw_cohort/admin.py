@@ -21,6 +21,7 @@ class CohortAdmin(admin.ModelAdmin):
 
 class CohortUserAdmin(admin.ModelAdmin):
     list_display = ('cohort','user')
+    list_filter = (('cohort'),)
     
 admin.site.register(Cohort, CohortAdmin)
 admin.site.register(Token, TokenAdmin)

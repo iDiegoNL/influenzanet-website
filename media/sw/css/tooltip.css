@@ -1,4 +1,8 @@
 
+.ie .tooltip {
+	position: relative;
+}
+
 .tooltip {
 	border-bottom: 1px dotted #999;
 	cursor: help;
