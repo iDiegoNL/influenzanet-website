@@ -105,7 +105,7 @@
 
 .icon {
  padding-left: 20px;
- background: #FFF url() left center no-repeat;
+ background: transparent url() left center no-repeat;
 }
 
 .icon-users { background-image: url(../users.png)}
@@ -115,6 +115,7 @@
 .icon-feeback { background-image:url(../avis.png)}
 .icon-logout { background-image:url(../logout.png)}
 .icon-tip { background-image:url(../help-tip.png) }
+.icon-help-white { background-image:url(../question-white.png) }
 
 
 /* People / Group management pages */

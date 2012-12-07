@@ -35,6 +35,7 @@ bundles_css = {
      'sw/css/users.css',
      'sw/css/tooltip.css',
      'sw/css/messages.css',
+     'sw/css/cohort.css'
   )           
 }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 12:49+0100\n"
+"POT-Creation-Date: 2012-12-06 18:37+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "Contenu"
 
 #: .\apps\ew_contact_form\forms.py:12 .\apps\survey\forms\__init__.py:16
 #: .\templates\survey\group_management.html.py:47
-#: .\templates\survey\group_management_sw.html.py:17
+#: .\templates\survey\group_management_sw.html.py:25
 msgid "Name"
 msgstr "Nom"
 
@@ -272,13 +272,13 @@ msgstr "Saisir un code postal valide."
 msgid "Enter a valid value consisting of letters, numbers or underscores"
 msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
-#: .\apps\pollster\views.py:216
+#: .\apps\pollster\views.py:215
 msgid "Thanks - your diagnosis:"
 msgstr ""
 "Merci d'avoir rempli ce questionnaire. D'après les informations fournies, "
 "votre état de santé est classé comme : "
 
-#: .\apps\pollster\views.py:218 .\templates\survey\thanks.html.py:22
+#: .\apps\pollster\views.py:217 .\templates\survey\thanks.html.py:22
 msgid "Thanks for taking the time to fill out this survey."
 msgstr "Merci d'avoir pris le temps de remplir ce questionnaire."
 
@@ -501,7 +501,7 @@ msgstr ""
 "questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une "
 "seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
-#: .\apps\survey\views.py:407
+#: .\apps\survey\views.py:414
 msgid "A new person has been added."
 msgstr "Une nouvelle personne a été ajoutée."
 
@@ -566,48 +566,68 @@ msgstr "Adresse email :"
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\views.py:73
+#: .\apps\sw_auth\views.py:75
 msgid ""
 "This email is associated with several accounts. Please contact us to "
 "regularize"
 msgstr ""
-"Cette adresse email est associée à plusieurs compte GrippeNet. Contactez nous "
-"pour régulariser cette situation."
+"Cette adresse email est associée à plusieurs compte GrippeNet. Contactez "
+"nous pour régulariser cette situation."
 
 #: .\apps\sw_auth\views.py:81
+msgid "The user associated with this email is already activated"
+msgstr "Le compte associé à cet e-mail est déjà activé."
+
+#: .\apps\sw_auth\views.py:88
 msgid "Problem occured during activation email generation"
 msgstr ""
 "Un problème est survenu durant l'enregistrement. Veuillez réessayer plus "
 "tard ou nous contacter."
 
-#: .\apps\sw_auth\views.py:83
+#: .\apps\sw_auth\views.py:90
 msgid "This email is not associated with any account"
 msgstr "Cet adresse email n'est associée à aucun compte GrippeNet.fr"
 
-#: .\apps\sw_auth\views.py:118
+#: .\apps\sw_auth\views.py:125
 #, python-format
 msgid "Password reset on %s"
 msgstr "Réinitialisation du mot de passe %s"
 
-#: .\apps\sw_cohort\models.py:36
+#: .\apps\sw_cohort\models.py:41
 msgid "No usage left for this token"
 msgstr "Ce ticket d'inscription n'est plus disponible"
 
-#: .\apps\sw_cohort\models.py:39
+#: .\apps\sw_cohort\models.py:45
 msgid "this token has expired"
 msgstr "Ticket d'inscription au groupe expiré"
 
-#: .\apps\sw_cohort\views.py:36
+#: .\apps\sw_cohort\views.py:32
+#, python-format
+msgid "user %s is already registred in this cohort"
+msgstr "Le participant %s est déjà inscrit dans le sous-projet"
+
+#: .\apps\sw_cohort\views.py:45
 msgid "User does not exist"
 msgstr "Cet utilisateur n'existe pas"
 
-#: .\apps\sw_cohort\views.py:38
+#: .\apps\sw_cohort\views.py:47
 msgid "invalid token"
 msgstr "Ticket d'inscription au groupe invalide"
 
-#: .\apps\sw_cohort\views.py:58
+#: .\apps\sw_cohort\views.py:69
 msgid "token not provided"
 msgstr "Ticket d'inscription non fourni"
+
+#: .\apps\sw_cohort\views.py:78
+#, python-format
+msgid "The participant %s has been registred"
+msgstr "Le participant %s a bien été inscrit au sous-projet GrippeNet.fr"
+
+#: .\apps\sw_cohort\views.py:80
+msgid "An error occured during registration to the cohort"
+msgstr ""
+"Un problème est survenu durant l'enregistrement. Veuillez réessayer plus "
+"tard ou nous contacter."
 
 #: .\apps\tellafriend\forms.py:13
 msgid "URL"
@@ -674,42 +694,6 @@ msgstr ""
 #: .\templates\tellafriend\tellafriend.html.py:35
 msgid "Send"
 msgstr "Envoi"
-
-#: .\src\django-nani\nani\admin.py:175
-msgid "all translations"
-msgstr ""
-
-#: .\src\django-nani\nani\admin.py:334 .\src\django-nani\nani\admin.py:569
-#, python-format
-msgid "The %(name)s \"%(obj)s\" was deleted successfully."
-msgstr ""
-
-#: .\src\django-nani\nani\admin.py:347 .\src\django-nani\nani\admin.py:582
-#, python-format
-msgid "Cannot delete %(name)s"
-msgstr ""
-
-#: .\src\django-nani\nani\admin.py:349 .\src\django-nani\nani\admin.py:584
-msgid "Are you sure?"
-msgstr ""
-
-#: .\src\django-nani\nani\templates\admin\nani\change_form.html.py:37
-#: .\src\django-nani\nani\templates\admin\nani\change_form.html.py:39
-#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:10
-msgid "Delete Translation"
-msgstr ""
-
-#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:6
-msgid "Home"
-msgstr "accueil"
-
-#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:15
-#, python-format
-msgid ""
-"Deletion of the the %(language_name)s translation of %(object_name)s '%"
-"(escaped_object)s' is not allowed, because it is the last available "
-"translation of this instance."
-msgstr ""
 
 #: .\templates\404.html.py:4
 msgid "Page not found"
@@ -1427,12 +1411,12 @@ msgid "Change profile"
 msgstr "Changer le profil"
 
 #: .\templates\survey\group_management.html.py:75
-#: .\templates\survey\group_management_sw.html.py:41
+#: .\templates\survey\group_management_sw.html.py:61
 msgid "Mark as healthy"
 msgstr "Déclarer \"Aucun symptôme\""
 
 #: .\templates\survey\group_management.html.py:76
-#: .\templates\survey\group_management_sw.html.py:42
+#: .\templates\survey\group_management_sw.html.py:62
 msgid "Delete member(s)"
 msgstr "Supprimer le(s) participant(s)"
 
@@ -1455,51 +1439,115 @@ msgstr ""
 msgid "People"
 msgstr "Participants"
 
-#: .\templates\survey\group_management_sw.html.py:12
+#: .\templates\survey\group_management_sw.html.py:14
+msgid ""
+"No user is registrer yet in your account, start by adding a user by clicking "
+"on the link 'Add a new person'"
+msgstr ""
+"Aucun participant n'est enregistré sur votre compte. Commencez par ajouter un "
+"participant en cliquant sur le lien \"Ajouter un participant\""
+
+#: .\templates\survey\group_management_sw.html.py:17
 msgid ""
 "Below is the list of participants currently managed by you. Click the "
 "corresponding option next to the participant to complete the background or "
 "symptoms questionnaire for that person, or to remove a participant."
 msgstr ""
-"La liste des participants inscrits sur votre compte figure ci-dessous. "
-"Cliquez sur le lien situé à côté de chaque participant pour remplir le "
-"questionnaire préliminaire ou questionnaire hebdomadaire de cette personne, "
-"ou pour la désinscrire. Si l'un des participants n'a présenté aucun symptôme "
-"depuis son dernier questionnaire hebdomadaire, vous pouvez sélectionner ce "
-"participant puis cliquer sur \"Marquer en bonne santé\" afin de remplir en un "
-"clic son questionnaire hebdomadaire."
+"<h2>Bienvenu sur GrippeNet.fr</h2>\n<p>Vous trouverez sur cette page la liste "
+"des participants inscrits sur votre compte.</p>\n<h3>Les "
+"participants</h3>\n<p>Vous pouvez inscrire plusieurs participants sur votre "
+"compte, par exemple les membres de votre foyer. Si les participants sont "
+"mineurs vous devez être détenteur de l'autorité parentale. Le consentement "
+"des participants est requis.</p>\n<p>Si vous remplissez les questionnaires à "
+"la place d'un des participants, répondez bien à toutes les questions comme si "
+"vous étiez ce participant.</p>\n<h3>Les questionnaires</h3>\n<p>Pour chaque "
+"participant, deux questionnaires sont à remplir.</p>\n<ul>\n<li><b>Préliminair"
+"e</b>: ce questionnaire comprend des questions décrivant le participant (âge, "
+"sexe, localisation, facteur de risques vis à vis de la grippe, situation et "
+"attitude par rapport au vaccin...).</li>\n<li><b>Hebdomadaire</b>: ce "
+"questionnaire permet de nous rapporter vos symptômes. C'est le questionnaire "
+"que nous vous invitons à remplir chaque semaine.\n</li>\n</ul>\n<h3>Déclarer "
+"aucun symptôme</h3>\n<p>Si l'un des participants n'a présenté aucun symptôme "
+"depuis son dernier questionnaire hebdomadaire, vous pouvez le sélectionner "
+"(en cliquant sur la case à cocher à gauche de son surnom), puis cliquer sur "
+"\"Déclarer aucun symptome\" afin de remplir en un clic son questionnaire "
+"hebdomadaire.</p>\n<h3>Mettre à jour sa vaccination</h3>\n<p>Si un "
+"participant a été vacciné après le début de son inscription à GrippeNet.fr, "
+"il est possible de mettre à jour son questionnaire \"préliminaire\" pour "
+"changer ses information. Cliquez sur le lien du questionnaire préliminaire et "
+"mettez à jour la vaccination puis sauvegardez. Nous gardons chaque version du "
+"questionnaire que vous enregistrez. Nous saurons ainsi que le participant "
+"n'était pas vacciné en début de saison, puis vacciné.</p>\n<h3>Les "
+"sous-projets</h3>\n<p>GrippeNet.fr peut mettre en oeuvre des projets ne "
+"concernant qu'un petit groupe de participants. Afin de les identifier de "
+"manière anonyme au sein des autres participants, nous leur fournissons un "
+"code permettant de s'inscrire au sous-projet. Si vous n'appartenez à aucun "
+"sous-projet, il est normal que vous ne disposiez d'aucun code.</p>"
 
 #: .\templates\survey\group_management_sw.html.py:18
+msgid "Help about this page"
+msgstr "Bien commencer avec GrippeNet.fr"
+
+#: .\templates\survey\group_management_sw.html.py:20
+#, python-format
+msgid "Please fill the background intake for the user %(name)s first"
+msgstr ""
+"Veuillez remplir le questionnaire préliminaire pour le participant %(name)s"
+
+#: .\templates\survey\group_management_sw.html.py:26
 msgid "Fill a questionnaire"
 msgstr "Remplissez un questionnaire"
 
-#: .\templates\survey\group_management_sw.html.py:22
+#: .\templates\survey\group_management_sw.html.py:29
+#: .\templates\survey\group_management_sw.html.py:39
+msgid "Background"
+msgstr "Préliminaire"
+
+#: .\templates\survey\group_management_sw.html.py:29
+msgid "Background survey help"
+msgstr ""
+"Le questionnaire préliminaire permet de décrire un participant : âge, sexe, "
+"localisation, etc. Ces informations nous permettent de caractériser la "
+"population des participants de GrippeNet.fr et d'en évaluer la "
+"représentativité vis à vis de la population française. En regard de plusieurs "
+"questions, une petite bulle d'aide vous précisera pourquoi elle est "
+"posée.\nIl est possible de mettre à jour ce questionnaire au cours de la "
+"saison en le modifiant puis en le validant à nouveau (il est pré-rempli avec "
+"vos réponses précédentes)."
+
+#: .\templates\survey\group_management_sw.html.py:30
+#: .\templates\survey\group_management_sw.html.py:46
+msgid "Symptoms"
+msgstr "Hebdomadaire"
+
+#: .\templates\survey\group_management_sw.html.py:30
+msgid "Weekly survey help"
+msgstr ""
+"Le questionnaire hebdomadaire vous permet d'indiquer quels symptômes vous "
+"avez présentés depuis la dernière fois que vous avez rempli ce questionnaire "
+"(c'est-à-dire depuis la semaine précédente si vous le remplissez toutes les "
+"semaines)."
+
+#: .\templates\survey\group_management_sw.html.py:36
 #: .\templates\survey\people_edit.html.py:4
 msgid "Edit Person"
 msgstr "Editer la fiche de ce participant"
 
-#: .\templates\survey\group_management_sw.html.py:22
-msgid "Edit"
-msgstr "Modifier"
-
-#: .\templates\survey\group_management_sw.html.py:23
-msgid "Background"
-msgstr "Préliminaire"
-
-#: .\templates\survey\group_management_sw.html.py:25
-#: .\templates\survey\group_management_sw.html.py:31
+#: .\templates\survey\group_management_sw.html.py:41
+#: .\templates\survey\group_management_sw.html.py:49
 msgid "last survey date"
 msgstr "Date du dernier questionnaire"
 
-#: .\templates\survey\group_management_sw.html.py:28
-msgid "Symptoms"
-msgstr "Hebdomadaire"
+#: .\templates\survey\group_management_sw.html.py:43
+#: .\templates\survey\group_management_sw.html.py:52
+msgid "no previous survey"
+msgstr "Jamais complété"
 
-#: .\templates\survey\group_management_sw.html.py:40
+#: .\templates\survey\group_management_sw.html.py:60
 msgid "For the checked users"
 msgstr "Pour les participants cochés"
 
-#: .\templates\survey\group_management_sw.html.py:41
+#: .\templates\survey\group_management_sw.html.py:61
 msgid "mark as healthy help text"
 msgstr ""
 "Ce bouton vous permet de remplir automatiquement le questionnaire "
@@ -1508,19 +1556,30 @@ msgstr ""
 "présenté au moins un symptôme, merci de remplir un questionnaire pour ce "
 "participant."
 
-#: .\templates\survey\group_management_sw.html.py:49
+#: .\templates\survey\group_management_sw.html.py:68
 msgid "Add new person"
 msgstr "Ajouter un nouveau participant"
 
-#: .\templates\survey\group_management_sw.html.py:50
+#: .\templates\survey\group_management_sw.html.py:69
 msgid "Register a participant in a Cohort"
-msgstr "Cliquez ici si vous disposez d'un code pour un sous-projet GrippeNet.fr"
+msgstr ""
+"Cliquez ici si vous disposez d'un code pour un sous-projet GrippeNet.fr"
 
-#: .\templates\survey\group_management_sw.html.py:72
+#: .\templates\survey\group_management_sw.html.py:69
+msgid "cohort subscription help text"
+msgstr ""
+"Cette page vous permet d'enregistrer un participant à un sous-projet réalisé "
+"par GrippeNet.fr.\n"
+"Pour inscrire un participant vous devez vous munir du code d'inscription qui "
+"vous a été fourni par l'équipe de GrippeNet.fr (ces sous-projets ne "
+"concernent que certains utilisateurs, il est normal de ne pas avoir reçu de "
+"code si vous n'avez pas été invité à participer à un sous-projet)."
+
+#: .\templates\survey\group_management_sw.html.py:91
 msgid "Household diagnosis history"
 msgstr "Historique des états de santé"
 
-#: .\templates\survey\group_management_sw.html.py:74
+#: .\templates\survey\group_management_sw.html.py:93
 #: .\templates\survey\thanks.html.py:62
 msgid ""
 "The flu status of each participant is based on the symptoms you reported. "
@@ -1536,7 +1595,11 @@ msgstr ""
 "symptômes, ou que vous êtes inquiet, nous vous recommandons de contacter "
 "votre médecin généraliste."
 
-#: .\templates\survey\group_management_sw.html.py:96
+#: .\templates\survey\group_management_sw.html.py:118
+msgid "Subscriptions for this user:"
+msgstr "Inscrit aux sous-projets :"
+
+#: .\templates\survey\group_management_sw.html.py:137
 msgid "Delete selected users ?"
 msgstr "Supprimer les participants selectionnés ?"
 
@@ -1720,11 +1783,11 @@ msgstr "Inscrire un participant à un sous-projet GrippeNet.fr."
 msgid "cohort register help text"
 msgstr ""
 "Cette page vous permet d'enregistrer un participant à un sous-projet réalisé "
-"par GrippeNet.fr.\nPour inscrire un participant vous devez vous munir du code "
-"d'inscription qui vous a été fourni par l'équipe de GrippeNet.fr (ces "
-"sous-projets ne concernent que certains utilisateurs, il est normal de ne pas "
-"avoir reçu de code si vous n'avez pas été invité à participer à un "
-"sous-projet)."
+"par GrippeNet.fr.\n"
+"Pour inscrire un participant vous devez vous munir du code d'inscription qui "
+"vous a été fourni par l'équipe de GrippeNet.fr (ces sous-projets ne "
+"concernent que certains utilisateurs, il est normal de ne pas avoir reçu de "
+"code si vous n'avez pas été invité à participer à un sous-projet)."
 
 #: .\templates\sw_cohort\form.html.py:17
 msgid "Select the participant to register"
@@ -1748,9 +1811,15 @@ msgstr ""
 "Un problème est survenu durant l'enregistrement. Veuillez réessayer plus "
 "tard ou nous contacter."
 
-#, fuzzy
-#~ msgid "Group management"
-#~ msgstr "Membre(s) du groupe"
+#: .\templates\sw_cohort\register.html.py:11
+msgid "Back to group management page"
+msgstr "Retourner à la page de gestion de mon foyer"
+
+#~ msgid "Home"
+#~ msgstr "accueil"
+
+#~ msgid "Edit"
+#~ msgstr "Modifier"
 
 #~ msgid "Options"
 #~ msgstr "Options"

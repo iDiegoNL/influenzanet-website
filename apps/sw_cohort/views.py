@@ -10,6 +10,7 @@ from .models import Token
 from apps.sw_cohort.models import CohortUser, Cohort
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.http import HttpResponse
 
 def render_template(name, request, context=None):
     return render_to_response('sw_cohort/'+name+'.html',
@@ -28,7 +29,7 @@ def do_register(request, gid, token):
         ok = False
         try:
             r = CohortUser.objects.get(user=user,cohort=token.cohort)
-            messages.error(request, _('user %s is already registred in this cohort'))
+            messages.error(request, _('user %s is already registred in this cohort') % user)
         except CohortUser.DoesNotExist:
             ok = True
             pass
@@ -45,12 +46,13 @@ def do_register(request, gid, token):
     except Token.DoesNotExist:
         messages.error(request, _('invalid token'))
     except Token.TokenException as e:
-        messages.error(request, str(e))
+        messages.error(request, e)
     except Exception:
         transaction.rollback()
         raise
     if not subscription or subscription is None or cohort is None :
         transaction.rollback()
+        return None
     return subscription
 
 @login_required
@@ -69,10 +71,13 @@ def register(request):
         messages.error(request, 'User not provided')
         return redirect(reverse('cohort_form'))
     subscription = do_register(request, gid, token)
-    cohort = getattr(subscription, 'cohort', None)
-    user = getattr(subscription, 'user', None)
-    if user:
-        messages.info(request, _('The participant %s has been registred') % str(user))
+    if subscription is not None:
+        cohort = getattr(subscription, 'cohort', None)
+        user = getattr(subscription, 'user', None)
+        if user:
+            messages.info(request, _('The participant %s has been registred') % user)
+    else:
+        messages.error(request, _('An error occured during registration to the cohort'))
     return render_template('register', request, {'cohort':cohort, 'user': user })
 
 
@@ -82,25 +87,23 @@ def subscriptions(request):
     """
     user = request.user
     # list of participants
-    participants = {} 
-    for p in SurveyUser.objects.filter(user=user):
-        participants[p.id] = p.global_id
-    ids = participants.keys()
+    ids =  [p.id for p in SurveyUser.objects.filter(user=user)]
     r = {} # [ global_id=list of subscribed cohorts ]
     cohorts = [] # list of used cohorts
     # build list of subscription by participant
     for s in CohortUser.objects.filter(user__in=ids):
-        i = s.user_id
+        uid = s.user_id
         cid = s.cohort_id
-        global_id = participants[i]
-        if not r.has_key(global_id):
-            r[global_id] = []
-        r[global_id].append(cid)
+        if not r.has_key(uid):
+            r[uid] = []
+        r[uid].append(cid)
+        cohorts.append(cid)
     if len(cohorts) > 0:
         cohorts = Cohort.objects.filter(id__in=cohorts)
-        cohorts = dict([(p.id, p) for p in cohorts])
+        cohorts = dict([(p.id, p.title) for p in cohorts])
     from django.utils import simplejson
-    simplejson.dump({'subscibers': r, 'cohorts': cohorts})    
+    return HttpResponse(simplejson.dumps({'subscribers': r, 'cohorts': cohorts}), mimetype="application/json") 
+     
         
         
         

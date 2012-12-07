@@ -34,13 +34,18 @@ $(function() {
 		if(height) {
 			o.height = height;
 		}
-		$.ajax({
-			url: url,
-			success: function(data) {
-				o.contents = data;
-				show_facebox(o);
-			}
-		});
+		if(url.indexOf('#') == 0) {
+			o.contents = $(url).html();
+			show_facebox(o);
+		} else {
+			$.ajax({
+				url: url,
+				success: function(data) {
+					o.contents = data;
+					show_facebox(o);
+				}
+			});	
+		}
 		return false;
 	});
 	$('a[rel=facebox-iframe]').click(function(ev){
