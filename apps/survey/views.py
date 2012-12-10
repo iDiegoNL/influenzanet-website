@@ -168,7 +168,7 @@ def group_management(request):
         item['person'] = persons_dict.get(item['global_id'])
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
-        person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
+        person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.is_female = _get_person_is_female(person.global_id)
 
     return render_to_response('survey/group_management.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
