@@ -206,7 +206,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
 
             if survey.shortname == 'weekly':
                 __, diagnosis = _get_person_health_status(request, survey, global_id)
-                messages.info(request, _("Thanks - your diagnosis:") + u" " + u"%s" % diagnosis)
+                messages.info(request, _("Thanks - your diagnosis:") + u" " + u"%s<br><br>Next, why not do the <em>Contact survey</em> by clicking on the link below." % diagnosis)
             else:
                 messages.info(request, _("Thanks for taking the time to fill out this survey."))
 
