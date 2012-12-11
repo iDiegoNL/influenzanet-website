@@ -71,6 +71,8 @@ def register(request):
         messages.error(request, 'User not provided')
         return redirect(reverse('cohort_form'))
     subscription = do_register(request, gid, token)
+    cohort = None
+    user = None
     if subscription is not None:
         cohort = getattr(subscription, 'cohort', None)
         user = getattr(subscription, 'user', None)
