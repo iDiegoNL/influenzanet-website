@@ -27,8 +27,9 @@ class Command(BaseCommand):
             raise CommandError('new Mail is not provided')
         
         mail = options['mail']
-        if not is_email_valid(mail):
-            raise CommandError('email "%s" invalid' % mail)
+        # Dont check for source email validity (could be invalid=
+        #if not is_email_valid(mail):
+        #    raise CommandError('email "%s" invalid' % mail)
         
         new_mail = options['mail_new']
         if not is_email_valid(new_mail):
