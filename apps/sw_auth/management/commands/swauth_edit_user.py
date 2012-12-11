@@ -35,7 +35,7 @@ class Command(BaseCommand):
         if not is_email_valid(new_mail):
             raise CommandError('email "%s" invalid' % new_mail)
         
-        users = EpiworkUser.objects.filter(email=mail)
+        users = EpiworkUser.objects.filter(email__iexact=mail)
         
         activate = options['activate']
         
