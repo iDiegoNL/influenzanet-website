@@ -13,7 +13,7 @@ class Command(BaseCommand):
     help = 'allow to change some user email'
     option_list = BaseCommand.option_list + (
         make_option('-m', '--mail', action='store', dest='mail', default=None, help='User email'),
-        make_option('-m', '--new', action='store', dest='mail_new', default=None, help='New User email'),
+        make_option('-n', '--new', action='store', dest='mail_new', default=None, help='New User email'),
         make_option('-a', '--activate', action='store_true', dest='activate', default=None, help='Resend activation with new email'),
     )
 
