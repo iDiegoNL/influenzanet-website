@@ -456,15 +456,6 @@ msgstr "Altri sintomi non influenzali"
 msgid "Unknown"
 msgstr "Sintomi sconosciuti"
 
-msgid "Allergy / hay fever and gastrointestinal symptoms"
-msgstr ""
-
-msgid "Allergy / hay fever"
-msgstr ""
-
-msgid "Common cold and gastrointestinal symptoms"
-msgstr ""
-
 #: apps/survey/views.py:222
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
@@ -1070,12 +1061,11 @@ msgid "Add person"
 msgstr "Aggiungi una persona"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Survey date"
+msgid "Survey"
 msgstr "Questionario"
 
 #: templates/survey/group_management.html:22
-msgid "Condition"
+msgid "Status"
 msgstr ""
 
 #: templates/survey/group_management.html:30
@@ -1092,6 +1082,9 @@ msgstr ""
 
 #: templates/survey/group_management.html:51
 msgid "Delete member(s)"
+msgstr ""
+
+msgid "Are you absolutely sure you want to delete this user/these users?"
 msgstr ""
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
@@ -1364,4 +1357,7 @@ msgid "Cookie settings"
 msgstr ""
 
 msgid "Thanks - your diagnosis:"
+msgstr ""
+
+msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
 msgstr ""
