@@ -1476,3 +1476,10 @@ img.center {
  margin-left: auto; 
  margin-right: auto; 
 }
+
+/* For the contact questionnaire */
+#col1 th,
+#col2 th,
+#col3 th {
+ font-size: 0.7em;
+}
