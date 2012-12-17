@@ -1249,7 +1249,7 @@ div.pagination {
   -webkit-transform: rotate(-11deg); -moz-transform: rotate(-11deg); -o-transform: rotate(-11deg); -ms-transform: rotate(-11deg);
   transform: rotate(-11deg); }
 
-.survey-chart .chart { width: 550px; height: 300px; position: relative; display: block; margin-left: auto; margin-right: auto }
+.survey-chart .chart { width: 550px; height: 400px; position: relative; display: block; margin-left: auto; margin-right: auto }
 .survey-chart .chart-no-data { background:#EEE; padding:20px; }
 
 /*
