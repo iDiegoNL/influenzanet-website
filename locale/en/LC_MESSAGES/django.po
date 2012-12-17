@@ -634,7 +634,7 @@ msgstr ""
 #: templates/survey/group_management.html:4
 #: templates/survey/group_management.html:11
 msgid "Your results"
-msgstr "Your household"
+msgstr "My household"
 
 #: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
 #: templates/base/sitebase.html:82
@@ -649,7 +649,7 @@ msgid ""
 "address</a>. To leave feedback or get support,"
 msgstr ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Your household\". Each account can only have one <a href=\"/"
+"through \"My household\". Each account can only have one <a href=\"/"
 "accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
 "address</a>. To leave feedback or get support,"
 
