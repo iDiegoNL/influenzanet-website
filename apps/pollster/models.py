@@ -1195,16 +1195,11 @@ class Chart(models.Model):
         if table_query:
             table = self.get_table_name()
             cursor = connection.cursor()
-            try:
-                cursor.execute("DELETE FROM %s" % (table,))
-                cursor.execute("INSERT INTO %s %s" % (table, table_query))
-                transaction.commit_unless_managed()
-                self.clear_map_tile_cache()
-                return True
-            except IntegrityError:
-                return False
-            except DatabaseError:
-                return False
+            cursor.execute("DELETE FROM %s" % (table,))
+            cursor.execute("INSERT INTO %s %s" % (table, table_query))
+            transaction.commit_unless_managed()
+            self.clear_map_tile_cache()
+            return True
         return False
 
     def load_data(self, user_id, global_id):

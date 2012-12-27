@@ -155,6 +155,15 @@ def group_management(request):
 
         for survey_user in request.user.surveyuser_set.filter(global_id__in=global_ids):
             if request.POST.get('action') == 'healthy':
+                messages.add_message(request, messages.INFO, 
+                    _(u'The participant "%(user_name)s" has been marked as healthy.') % {'user_name': survey_user.name})
+
+                profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
+                if not profile:
+                    messages.add_message(request, messages.INFO, 
+                        _(u'Please complete the background questionnaire for the participant "%(user_name)s" before marking him/her as healthy.') % {'user_name': survey_user.name})
+                    continue
+
                 Weekly.objects.create(
                     user=request.user.id,
                     global_id=survey_user.global_id,
@@ -174,7 +183,7 @@ def group_management(request):
         item['person'] = persons_dict.get(item['global_id'])
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
-        person.health_history = [i for i in history if i['global_id'] == person.global_id][-10:]
+        person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.last_intake = last_intakes.get(person.global_id)
         person.is_female = _get_person_is_female(person.global_id)
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
@@ -285,7 +294,9 @@ def main_index(request):
     # indexes have become. 
 
     # this is the one that does the required redirection for the button 'my account'
-    # i.e. to group if there is a group, to the main index otherwise
+    # and is also used in the reminder emails.
+
+    # i.e. it redirects to group if there is a group, to the main index otherwise
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))

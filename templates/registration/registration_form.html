@@ -1,11 +1,13 @@
 {% extends "base/threecol.html" %}
-{% load i18n %}
+{% load i18n cms_tags %}
 
 {% block title %}{{ block.super }} {% trans "Register" %}{% endblock %}
 
 {% block col1 %}
 
 <h1>{% trans "Registration Form" %}</h1>
+
+{% placeholder "Main content" %}
 
 <div class="formwrap">
     <form method="post" id="registration">{% csrf_token %}
@@ -22,5 +24,7 @@
 
 <p><strong>{% trans "You will need a working email address in order to register for the flusurvey." %}</strong></p>
 <p>{% trans "Choose a username consisting of numbers, letters and/or underscores (no spaces) and a password.<br />If you have forgotten your password or username, you can" %}<a href="{% url django.contrib.auth.views.password_reset %}">{% trans "request a new password" %}</a> {% trans "and find out your username." %}</p>
+
+{% placeholder "Left bar" %}
 
 {% endblock %}

@@ -439,8 +439,8 @@ msgid "Flu symptoms"
 msgstr "Symptomen die passen bij griep"
 
 #: apps/survey/views.py:47
-msgid "Cold / allergy"
-msgstr "Symptomen die passen bij verkoudheid of allergie"
+msgid "Common cold"
+msgstr "Symptomen die passen bij verkoudheid"
 
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
@@ -453,15 +453,6 @@ msgstr "Andere symptomen die niet passen bij griep"
 #: apps/survey/views.py:53
 msgid "Unknown"
 msgstr "Onbekend"
-
-msgid "Allergy / hay fever and gastrointestinal symptoms"
-msgstr "Symptomen die passen bij allergie/hooikoorts en maag-/darmklachten"
-
-msgid "Allergy / hay fever"
-msgstr "Symptomen die passen bij allergie/hooikoorts"
-
-msgid "Common cold and gastrointestinal symptoms"
-msgstr "Symptomen die passen bij verkoudheid en maag-/darmklachten"
 
 #: apps/survey/views.py:222
 msgid ""
@@ -662,9 +653,9 @@ msgstr "Log uit"
 #: templates/accounts/partials/usermenu.html:25
 msgid ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Your results\". Each account can only have one <a href=\"/"
-"accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
-"address</a>. To leave feedback or get support,"
+"through \"Your results\". Each account can only have one <a href=\"/accounts/"
+"settings/\">username</a> and <a href=\"/accounts/settings/\">email address</"
+"a>. To leave feedback or get support,"
 msgstr ""
 "U kunt meerdere personen (bijvoorbeeld uit uw gezin, klas of bedrijf) "
 "toevoegen via \"Meetresultaten\". Elk account kan maar één gebruikersnaam en "
@@ -1081,12 +1072,12 @@ msgid "Add person"
 msgstr "Voeg Griepmeter toe"
 
 #: templates/survey/group_management.html:22
-msgid "Survey date"
-msgstr "Datum"
+msgid "Survey"
+msgstr "Meting"
 
 #: templates/survey/group_management.html:22
-msgid "Condition"
-msgstr "Meetresultaat"
+msgid "Status"
+msgstr "Status"
 
 #: templates/survey/group_management.html:30
 msgid "Report"
@@ -1103,6 +1094,10 @@ msgstr "Als gezond aanmerken"
 #: templates/survey/group_management.html:51
 msgid "Delete member(s)"
 msgstr "Participanten verwijderen"
+
+msgid "Are you absolutely sure you want to delete this user/these users?"
+msgstr ""
+"Bent u er absoluut zeker van dat u deze participant(en) wilt verwijderen?"
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
@@ -1756,3 +1751,9 @@ msgstr "Cookie instellingen"
 
 msgid "Thanks - your diagnosis:"
 msgstr "Hartelijk dank - uw diagnose:"
+
+msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
+msgstr "Gelieve eerst de achtergrondvragenlijst (\"Verander profiel\") te beantwoorden voor de deelnemer \"%(user_name)s\" voor deze als gezond aan te merken."
+
+msgid "The participant \"%(user_name)s\" has been marked as healthy."
+msgstr "De deelnemer \"%(user_name)s\" is als gezond aangemerkt."
