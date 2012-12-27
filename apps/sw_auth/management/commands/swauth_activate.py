@@ -17,7 +17,7 @@ class Command(BaseCommand):
         except ValueError, IndexError:
             raise CommandError('Please enter a subcommand.')
         if options['user'] is None:
-            users = EpiworkUser.objects.all()
+            users = EpiworkUser.objects.filter(is_active=False)
         else:
             users = [EpiworkUser.objects.get(id=options['user'])]
     
@@ -27,4 +27,4 @@ class Command(BaseCommand):
         site = Site.objects.get_current()
         for u in users:
             print "resend activation %s" % u.login
-            send_activation_email(u, site)
+            send_activation_email(u, site, renew=False)
