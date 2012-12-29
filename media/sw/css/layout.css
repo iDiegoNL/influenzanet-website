@@ -139,7 +139,11 @@ padding-left: 1em;
 font-size: .6em;	
 }
 
-#counter {
+#counter-div img {
+	vertical-align: middle;
+}
+
+.counter {
 font-size: 1.4em;
 color: #7AB800;
 font-weight: bold;
