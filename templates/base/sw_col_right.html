@@ -1,4 +1,4 @@
-{%load i18n %}
+{%load i18n user_login %}
 {%if not user.is_authenticated %}
 <form action="/accounts/login/?next=/survey/main/" id="login-form" method="post">{% csrf_token %}
 	{%trans "Username" %}<input type="text" name="username" size="30" maxlength="70"/>
@@ -18,7 +18,7 @@
 		<tr>
 			<td id="user-avatar"><img src="{{MEDIA_URL}}/sw/avatar.gif" width="60" height="60"/></td>
 			<td>
-			<div id="user-login">{{ user.username }}</div>
+			<div id="user-login">{{ user|user_login }}</div>
 			</td>
 		</tr>
 	</table>
