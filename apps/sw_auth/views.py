@@ -10,7 +10,7 @@ from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm, MySetti
 from django.http import HttpResponseRedirect
 from apps.sw_auth.models import EpiworkUser
 from django.conf import settings
-from apps.sw_auth.utils import validate_token, send_activation_email
+from apps.sw_auth.utils import send_activation_email,EpiworkToken
 from apps.sw_auth.logger import auth_notify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
@@ -48,10 +48,18 @@ def register_user(request):
 
 def activate_user(request, activation_key):
     try:
-        if validate_token(activation_key, settings.ACCOUNT_ACTIVATION_DAYS):
+        token = EpiworkToken(activation_key)
+        if token.validate(settings.ACCOUNT_ACTIVATION_DAYS):
             user = EpiworkUser.objects.get(token_activate=activation_key, is_active=False)
             user.activate()
-            return HttpResponseRedirect(reverse('registration_activation_complete'))
+            if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
+                d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
+                d = d.date()
+                if date.today() >= d:
+                    d = None # dont show launch date after the date
+            else:
+                d = None
+            return render_template('activation_complete', request, {'launch_date': d, 'email': user.email, 'login': user.login})
     except:
         pass
     # Nothing found, so it is a fail
@@ -92,6 +100,7 @@ def activate_retry(request):
             
             
 
+#@deprecated: Not necessary
 def activate_complete(request):
     if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
         d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
@@ -108,24 +117,31 @@ def password_reset(request):
     if(request.method == "POST"):
         form = PasswordResetForm(request.POST)
         if( form.is_valid() ):
-            has_several = len(form.users_cache) > 1
-            for user in form.users_cache:
-                current_site = get_current_site(request)
-                site_name = current_site.name
-                c = {
-                    'has_several': has_several,
-                    'username': user.login,
-                    'email': user.email,
-                    'domain': current_site.domain,
-                    'site_name': site_name,
-                    'token': user.create_token_password(),
-                    'protocol': request.is_secure() and 'https' or 'http',
-                }
-                
-                send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
-            
-            post_reset_redirect = reverse('auth_password_reset_done')
-            return HttpResponseRedirect(post_reset_redirect)
+            users = form.users_cache
+            has_several = len(users) > 1
+            if len(users) == 0:
+                messages.error(request,_("sorry no corresponding user info was found"))
+            else:
+                for user in users:
+                    current_site = get_current_site(request)
+                    site_name = current_site.name
+                    c = {
+                        'has_several': has_several,
+                        'username': user.login,
+                        'email': user.email,
+                        'domain': current_site.domain,
+                        'site_name': site_name,
+                        'token': user.create_token_password(),
+                        'protocol': request.is_secure() and 'https' or 'http',
+                    }
+                    
+                    send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
+            c = {
+                'has_several': has_several,
+                'count': len(form.users_cache),
+                'email': form.cleaned_data['email']
+            }
+            return render_template('password_reset_done', request, c)
     if form is None:
         form = PasswordResetForm()
     return render_template('password_reset_form', request, {'form': form})
@@ -137,7 +153,8 @@ def password_confirm(request, token=None):
     assert token is not None
     form = None
     try:
-        if validate_token(token, settings.ACCOUNT_ACTIVATION_DAYS):
+        tok = EpiworkToken(token)
+        if tok.validate(settings.ACCOUNT_ACTIVATION_DAYS):
             user = EpiworkUser.objects.get(token_password=token)
             form = None
             if request.method == 'POST':
@@ -154,6 +171,7 @@ def password_confirm(request, token=None):
     return render_template('password_reset_error', request)
     
 
+# @deprecated
 def password_done(request):
     """
     Nothing to do
@@ -181,9 +199,6 @@ def my_settings(request):
     except KeyError:
         auth_notify('setting', 'No settings')
         return render_to_response('sw_auth/no_settings.html', locals(), RequestContext(request))
-        
-    
-
     
 def index(request):
     """

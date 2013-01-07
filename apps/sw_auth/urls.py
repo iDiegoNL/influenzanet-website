@@ -7,6 +7,7 @@ from . import views
 urlpatterns = patterns('',
     
     # From registration.backends.default.urls
+    # not used
     url(r'^activate/complete/$',
         views.activate_complete,
         name='registration_activation_complete'),
@@ -52,6 +53,7 @@ urlpatterns = patterns('',
         views.password_reset,
         name='auth_password_change'),
     
+    # Not used
     url(r'^password/change/done/$',
         auth_views.password_change_done,
         {'template_name': 'sw_auth/password_change_done.html'},

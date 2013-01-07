@@ -45,7 +45,15 @@ class EpiworkToken:
         return now - self.timestamp
     
     def is_empty(self):
-        return bool(self.random is None)
+        return bool(self.random is None or self.random == '')
+    
+    def validate(self, delay):
+        age = self.get_age()
+        if age is None:
+            raise TokenException('Invalid token')
+        if age > delay:
+            raise TokenException('Token too old')
+        return True 
     
     def renew(self):
         self.timestamp = get_timestamp()
@@ -68,26 +76,6 @@ def create_token():
     token = ts36 + '-' + random_string(32)
     return token
 
-def validate_token(token, delay):
-    """
-    Validate a token
-    delay : number of days
-    """
-    age = get_token_age(token)
-    if age is None:
-        raise TokenException('Invalid token')
-    if age > delay:
-        raise TokenException('Token too old')
-    return True 
-
-def get_token_age(token):
-    try:
-        ts36, r = token.split("-")
-    except ValueError:
-        return None
-    timestamp = base36_to_int(ts36)
-    now = get_timestamp()
-    return now - timestamp
 
 def send_activation_email(user, site, renew=True, skip_younger=None):
     """
