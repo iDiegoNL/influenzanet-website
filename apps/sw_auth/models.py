@@ -5,7 +5,7 @@ from django.contrib.auth.models import get_hexdigest, check_password, User
 import utils
 import random
 import sys
-from .utils import create_token, encrypt_user, decrypt_user
+from .utils import create_token, encrypt_user, decrypt_user, EpiworkToken
 from .logger import auth_notify
 
 # Connect to login_in signal
@@ -46,6 +46,7 @@ def get_random_user_id():
         --i
     return None
 
+        
 
 class EpiworkUserManager(models.Manager):
     
@@ -127,6 +128,13 @@ class EpiworkUser(models.Model):
         self.token_activate = token
         self.save()
         return token
+    
+    def get_token(self, token_type):
+        if token_type == utils.TOKEN_ACTIVATE:
+            return EpiworkToken(self.token_activate)
+        elif token_type == utils.TOKEN_PASSWORD:
+            return EpiworkToken(self.token_password)
+        return None
     
     @transaction.commit_manually()
     def activate(self):

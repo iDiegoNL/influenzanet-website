@@ -6,7 +6,9 @@
 {% block boxcontents %}
 <h1>{% trans "Account Activation" %}</h1>
 <p>{% trans "Activation is complete." %}</p>
-
+<p>{% trans "You can now login using your credentials" %}</p>
+<p>{%trans "Login : " %} {{ login }}</p>
+<p>{%trans "Email : " %} {{ email }}</p>
 {% if launch_date %}
 <p>&nbsp;</p>
 <p class="warning">{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin." %}</p>

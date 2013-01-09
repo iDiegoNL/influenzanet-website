@@ -8,6 +8,58 @@ from django.core.mail import send_mail
 
 from crypto import AES256
              
+TOKEN_ACTIVATE = 1
+TOKEN_PASSWORD = 2
+
+
+class EpiworkToken:
+    """
+    Token management class 
+    """
+    def __init__(self, token=None):
+        if not token is None:
+            self.set_token(token)
+
+    def set_token(self, token):
+        try:
+            ts36, r = token.split("-")
+            self.random = r
+            self.timestamp = base36_to_int(ts36)
+        except ValueError:
+            self.random = token
+            self.timestamp = None
+    
+    def as_token(self):
+        if self.timestamp is None:
+            raise TokenException('Invalid timestamp token')
+        if self.random is None:
+            raise TokenException('Invalid random token')
+        ts36 = int_to_base36(self.timestamp)
+        token = ts36 + '-' + self.random
+        return token
+    
+    def get_age(self):
+        if self.timestamp is None:
+            return None
+        now = get_timestamp()
+        return now - self.timestamp
+    
+    def is_empty(self):
+        return bool(self.random is None or self.random == '')
+    
+    def validate(self, delay):
+        age = self.get_age()
+        if age is None:
+            raise TokenException('Invalid token')
+        if age > delay:
+            raise TokenException('Token too old')
+        return True 
+    
+    def renew(self):
+        self.timestamp = get_timestamp()
+        self.random = random_string(32)
+
+
 class TokenException(Exception):
     pass             
              
@@ -24,32 +76,37 @@ def create_token():
     token = ts36 + '-' + random_string(32)
     return token
 
-def validate_token(token, delay):
-    """
-    Validate a token
-    delay : number of days
-    """
-    age = get_token_age(token)
-    if age is None:
-        raise TokenException('Invalid token')
-    if age > delay:
-        raise TokenException('Token too old')
-    return True 
 
-def get_token_age(token):
-    try:
-        ts36, r = token.split("-")
-    except ValueError:
-        return None
-    timestamp = base36_to_int(ts36)
-    now = get_timestamp()
-    return now - timestamp
-
-def send_activation_email(user, site):
-    token = user.create_token_activate()
+def send_activation_email(user, site, renew=True, skip_younger=None):
+    """
+    Send activation email for a user
+    renew : if False, check if the user already has a token and reuse it if possible
+    skip_younger : Number of days, skip the user if the token is younger than that number
+    """
+    delay = settings.ACCOUNT_ACTIVATION_DAYS
+    if renew:
+        token = user.create_token_activate()
+    else:
+        create = False # should we recreate the token?
+        token = user.get_token(TOKEN_ACTIVATE)
+        if token.is_empty() :
+            create = True
+        else:
+            age = token.get_age()
+            if age >= delay:
+                create = True
+            if skip_younger is not None and age <= skip_younger:
+                return False 
+        if create:
+            # recreate the token
+            token = user.create_token_activate()
+        else:
+            # reuse the old token
+            token = token.as_token()
+            
     ctx_dict = { 
         'activation_key': token,
-        'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
+        'expiration_days': delay,
         'site': site 
     }
     subject = render_to_string('sw_auth/activation_email_subject.txt', ctx_dict)
@@ -58,6 +115,7 @@ def send_activation_email(user, site):
     message = render_to_string('sw_auth/activation_email.txt', ctx_dict)
     
     send_mail(subject, message, None, [user.email])
+    return True
 
 
 """

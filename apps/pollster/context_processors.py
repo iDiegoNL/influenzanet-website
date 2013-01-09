@@ -13,7 +13,7 @@ def last_survey(request):
         return {}
 
     return {
-        'last_survey': history[-1],
+        'last_survey': history[0],
     }
 
 

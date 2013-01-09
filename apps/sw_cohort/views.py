@@ -83,6 +83,7 @@ def register(request):
     return render_template('register', request, {'cohort':cohort, 'user': user })
 
 
+@login_required
 def subscriptions(request):
     """
     Subscriptions of participants of a user account
