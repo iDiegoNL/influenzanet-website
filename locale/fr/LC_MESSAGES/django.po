@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-29 12:15+0100\n"
+"POT-Creation-Date: 2013-01-09 11:55+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -493,14 +493,14 @@ msgid "Unknown"
 msgstr "Inconnu"
 
 #: .\apps\survey\views.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "The participant \"%(user_name)s\" has been marked as healthy."
 msgstr ""
 "Le questionnaire hebdomadaire du participant \"%(user_name)s\" a bien été "
 "enregistré en déclarant \"aucun symptome\"."
 
 #: .\apps\survey\views.py:164
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Please complete the background questionnaire for the participant \"%"
 "(user_name)s\" before marking him/her as healthy."
@@ -582,7 +582,7 @@ msgstr "Adresse email :"
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\views.py:75
+#: .\apps\sw_auth\views.py:83
 msgid ""
 "This email is associated with several accounts. Please contact us to "
 "regularize"
@@ -590,24 +590,32 @@ msgstr ""
 "Cette adresse email est associée à plusieurs compte GrippeNet. Contactez "
 "nous pour régulariser cette situation."
 
-#: .\apps\sw_auth\views.py:81
+#: .\apps\sw_auth\views.py:89
 msgid "The user associated with this email is already activated"
 msgstr "Le compte associé à cet e-mail est déjà activé."
 
-#: .\apps\sw_auth\views.py:88
+#: .\apps\sw_auth\views.py:96
 msgid "Problem occured during activation email generation"
 msgstr ""
 "Un problème est survenu durant l'enregistrement. Veuillez réessayer plus "
 "tard ou nous contacter."
 
-#: .\apps\sw_auth\views.py:90
+#: .\apps\sw_auth\views.py:98
 msgid "This email is not associated with any account"
 msgstr "Cet adresse email n'est associée à aucun compte GrippeNet.fr"
 
-#: .\apps\sw_auth\views.py:125
+#: .\apps\sw_auth\views.py:123
+msgid "sorry no corresponding user info was found"
+msgstr "Aucun utilisateur ne correspond à ces informations."
+
+#: .\apps\sw_auth\views.py:138
 #, python-format
 msgid "Password reset on %s"
 msgstr "Réinitialisation du mot de passe %s"
+
+#: .\apps\sw_auth\templatetags\user_login.py:15
+msgid "Anonymous"
+msgstr "Anonyme"
 
 #: .\apps\sw_cohort\models.py:41
 msgid "No usage left for this token"
@@ -1233,6 +1241,8 @@ msgstr ""
 #: .\templates\registration\password_reset_form.html.py:4
 #: .\templates\registration\password_reset_form.html.py:8
 #: .\templates\sw_auth\password_reset_confirm.html.py:4
+#: .\templates\sw_auth\password_reset_done.html.py:4
+#: .\templates\sw_auth\password_reset_done.html.py:6
 #: .\templates\sw_auth\password_reset_error.html.py:11
 #: .\templates\sw_auth\password_reset_form.html.py:4
 #: .\templates\sw_auth\password_reset_form.html.py:8
@@ -1268,13 +1278,11 @@ msgstr ""
 
 #: .\templates\registration\password_reset_done.html.py:4
 #: .\templates\registration\password_reset_done.html.py:8
-#: .\templates\sw_auth\password_reset_done.html.py:4
-#: .\templates\sw_auth\password_reset_done.html.py:8
 msgid "Password reset successful"
 msgstr "Votre mot de passe a été réinitialisé"
 
 #: .\templates\registration\password_reset_done.html.py:9
-#: .\templates\sw_auth\password_reset_done.html.py:9
+#: .\templates\sw_auth\password_reset_done.html.py:8
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should be receiving it shortly."
@@ -1412,12 +1420,10 @@ msgid "Add person"
 msgstr "Ajouter un participant"
 
 #: .\templates\survey\group_management.html.py:45
-#, fuzzy
 msgid "Survey"
 msgstr "Questionnaire"
 
 #: .\templates\survey\group_management.html.py:45
-#, fuzzy
 msgid "Status"
 msgstr "Etat de santé"
 
@@ -1758,7 +1764,7 @@ msgid "Launch date"
 msgstr "Date de lancement"
 
 #: .\templates\survey\wait_launch.html.py:6
-#: .\templates\sw_auth\activation_complete.html.py:12
+#: .\templates\sw_auth\activation_complete.html.py:14
 msgid ""
 "The project has not started yet for the season. We will contact you as soon "
 "as the follow-up begin."
@@ -1770,9 +1776,23 @@ msgstr ""
 "contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>."
 
 #: .\templates\survey\wait_launch.html.py:7
-#: .\templates\sw_auth\activation_complete.html.py:13
+#: .\templates\sw_auth\activation_complete.html.py:15
 msgid "The project will be launched from the"
 msgstr "Le lancement de la prochaine saison est prévu le"
+
+#: .\templates\sw_auth\activation_complete.html.py:9
+msgid "You can now login using your credentials"
+msgstr ""
+"Vous pouvez maintenant vous connecter en utilisant votre identifiant et mot "
+"de passe."
+
+#: .\templates\sw_auth\activation_complete.html.py:10
+msgid "Login : "
+msgstr "Votre login :"
+
+#: .\templates\sw_auth\activation_complete.html.py:11
+msgid "Email : "
+msgstr "Email :"
 
 #: .\templates\sw_auth\activation_failed.html.py:13
 msgid "register"
@@ -1781,6 +1801,25 @@ msgstr "vous inscrire"
 #: .\templates\sw_auth\activation_failed.html.py:22
 msgid "Recommencez l'activation"
 msgstr "Recommencez l'activation"
+
+#: .\templates\sw_auth\password_reset_done.html.py:10
+#, fuzzy
+msgid ""
+"Several accounts are associated with this email, a email was sent for each "
+"account"
+msgstr ""
+"Plusieurs comptes sont associés à cet email. Un courriel a été adressé pour "
+"chacun de ces comptes."
+
+#: .\templates\sw_auth\password_reset_done.html.py:11
+#, fuzzy
+msgid "Email :"
+msgstr "Email :"
+
+#: .\templates\sw_auth\password_reset_done.html.py:14
+#, fuzzy
+msgid "Unable to reset password"
+msgstr "Impossible de réinitialiser le mot de passe"
 
 #: .\templates\sw_auth\password_reset_email.html.py:7
 msgid ""
