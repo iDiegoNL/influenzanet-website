@@ -79,10 +79,10 @@ class EpiworkUserManager(models.Manager):
                    
 class EpiworkUser(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    user = models.CharField(_('username'),max_length=255) # encrypted user name in auth_user
+    user = models.CharField(_('username'), max_length=255, unique=True) # encrypted user name in auth_user
     email = models.CharField(_('e-mail address'),max_length=255) # encrypted email
-    login = models.CharField(_('username'),max_length=255) # 
-    password = models.CharField(_('password'),max_length=128) # sha1 hash
+    login = models.CharField(_('username'),max_length=255, unique=True) # 
+    password = models.CharField(_('password'), max_length=128) # sha1 hash
     token_password = models.CharField(max_length=40)
     token_activate = models.CharField(max_length=40)
     is_active = models.BooleanField(default=False)
