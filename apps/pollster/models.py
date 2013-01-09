@@ -1091,10 +1091,10 @@ class Chart(models.Model):
                 c = mapnik.Color(str(color))
             except:
                 c = mapnik.Color('#ff0000')
-            line = mapnik.LineSymbolizer(c, 1.5)
+            line = mapnik.LineSymbolizer(c, 0)
             line.stroke.opacity = 0.7
             poly = mapnik.PolygonSymbolizer(c)
-            poly.fill_opacity = 0.5
+            poly.fill_opacity = 0.7
             rule = mapnik.Rule()
             rule.filter = mapnik.Filter(str("[color] = '%s'" % (color,)))
             rule.symbols.extend([poly,line])
