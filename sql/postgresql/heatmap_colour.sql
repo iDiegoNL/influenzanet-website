@@ -1,8 +1,7 @@
-DROP FUNCTION heatmap_colour(float);
+DROP FUNCTION heatmap_colour(float, integer);
 
-CREATE FUNCTION heatmap_colour (f float) RETURNS varchar AS $$
+CREATE FUNCTION heatmap_colour (f float, max integer) RETURNS varchar AS $$
 DECLARE
-  max integer := 30;
   num_colours integer := 2;
   colours integer[2][3] = '{{0,0,255},{255,0,0}}';
 /*  num_colours integer := 3;
