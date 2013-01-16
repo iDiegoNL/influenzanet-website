@@ -5,35 +5,36 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Gripenet PT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 11:52+0100\n"
-"PO-Revision-Date: 2011-09-19 19:48-0000\n"
+"PO-Revision-Date: 2012-11-23 19:30-0000\n"
 "Last-Translator: Rui Francisco <blackmolly@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: PT <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
-#, fuzzy
 msgid "Username"
-msgstr "Nome de envio"
+msgstr "Nome de utilizador"
 
 #: apps/accounts/forms.py:17
-#, fuzzy
 msgid "This value must contain only letters, numbers and underscores."
 msgstr "Introduza um valor composto de letras, números e underscores"
 
 #: apps/accounts/forms.py:21 apps/accounts/forms.py:26
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
+"Obrigatório. 30 carateres ou menos. Apenas letras, dígitos e  @/./+/-/_ "
 
 #: apps/accounts/forms.py:22 apps/accounts/forms.py:27
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
+"Este campo pode conter apenas letras, numeros e os caracteres @/./+/-/_"
 
 #: apps/accounts/forms.py:31 apps/ew_contact_form/forms.py:13
 msgid "Email"
@@ -50,7 +51,6 @@ msgid ""
 msgstr "Assinale esta opção se deseja receber o lembrete semanal"
 
 #: apps/accounts/forms.py:33
-#, fuzzy
 msgid "Language"
 msgstr "Gerir"
 
@@ -60,23 +60,22 @@ msgstr "Este email já está registado"
 
 #: apps/accounts/forms.py:79
 msgid "A user with this username already exists"
-msgstr ""
+msgstr "Um utilizador com este nome já existe"
 
 #: apps/captcha/fields.py:54
 msgid "Play captcha as audio file"
-msgstr ""
+msgstr "Tocar o captch em audio"
 
 #: apps/captcha/fields.py:72 apps/captcha/fields.py:97
 #: apps/captcha/tests/__init__.py:70
 msgid "Invalid CAPTCHA"
-msgstr ""
+msgstr "CAPTCHA inválido"
 
 #: apps/captcha/tests/__init__.py:97
 msgid "This field is required."
-msgstr ""
+msgstr "Campo obrigatório"
 
 #: apps/contest/cms_plugins.py:14
-#, fuzzy
 msgid "Contest"
 msgstr "Conteúdo"
 
@@ -237,7 +236,7 @@ msgstr "O rodapé vai ser mostrado no fim de cada página"
 
 #: apps/partnersites/models.py:12
 msgid "Show cookie warning"
-msgstr ""
+msgstr "Mostrar aviso de cookie"
 
 #: apps/partnersites/models.py:20 apps/partnersites/models.py:23
 #: apps/partnersites/models.py:24
@@ -253,9 +252,8 @@ msgid "Enter a valid year and month."
 msgstr "Introduza um ano e mês válidos"
 
 #: apps/pollster/fields.py:63
-#, fuzzy
 msgid "Enter a valid date."
-msgstr "Introduza um código postal válido"
+msgstr "Introduza uma data válida"
 
 #: apps/pollster/fields.py:92
 msgid "Enter a valid postal code."
@@ -270,7 +268,6 @@ msgid "Year and month (in YYYY-MM format)"
 msgstr "Ano e mês (formato YYYY-MM)"
 
 #: apps/pollster/db/models/fields.py:25
-#, fuzzy
 msgid "Date (in YYYY-MM-DD format)"
 msgstr "Ano e mês (formato YYYY-MM)"
 
@@ -308,7 +305,7 @@ msgstr "Bi-semanal"
 
 #: apps/reminder/models.py:37
 msgid "Don't send reminders at a fixed interval"
-msgstr ""
+msgstr "Não enviar lembretes num intervalo regular"
 
 #: apps/reminder/models.py:38
 msgid "Begin date"
@@ -375,26 +372,25 @@ msgid "%(current)s (%(weeks)s weeks ago)"
 msgstr ""
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:4
-#, fuzzy
 msgid "Logged in"
 msgstr "Sessão iniciada como "
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:7
 msgid "You are logged in"
-msgstr ""
+msgstr "Está ligado"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:10
 #: templates/survey/group_management.html:14
 msgid "The last survey was submitted for"
-msgstr ""
+msgstr "Último inquérito respondido por "
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:10
 msgid "on"
-msgstr ""
+msgstr "em"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:15
 msgid "Last newsletter from"
-msgstr ""
+msgstr "Última newsletter de"
 
 #: apps/reminder/templates/reminder/message.html:66
 #, python-format
@@ -404,6 +400,10 @@ msgid ""
 "receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s"
 "\">unsubscribe</a> from our mailings."
 msgstr ""
+"Recebeu este email por estar registado no site %(site_name)s. A sua "
+"contribuição ajuda-nos a monitorizar a disseminação da gripe. Se não deseja "
+"continuar a receber este lembrete semanal <a href=\"%(unsubscribe_url)s"
+"\">cancele a sua subscrição</a> ."
 
 #: apps/reminder/templates/reminder/unsubscribe.html:6
 #: apps/reminder/templates/reminder/unsubscribe.html:10
@@ -434,17 +434,17 @@ msgstr "Sintomas de Gripe"
 msgid "Cold / allergy"
 msgstr "Constipação / alergia"
 
-msgid "Common cold"
-msgstr "Symptomen die passen bij verkoudheid"
+msgid "Cold"
+msgstr "Constipação"
 
 msgid "Allergy / hay fever and gastrointestinal symptoms"
-msgstr ""
+msgstr "Alergia / Febre dos fenos e Sintomas gastrointestinais"
 
 msgid "Allergy / hay fever"
-msgstr ""
+msgstr "Alergia / Febre dos fenos"
 
 msgid "Common cold and gastrointestinal symptoms"
-msgstr ""
+msgstr "Constipação e Sintomas gastrointestinais"
 
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
@@ -457,15 +457,6 @@ msgstr "Sintomas não específicos"
 #: apps/survey/views.py:53
 msgid "Unknown"
 msgstr "Desconhecido"
-
-msgid "Allergy / hay fever and gastrointestinal symptoms"
-msgstr ""
-
-msgid "Allergy / hay fever"
-msgstr ""
-
-msgid "Common cold and gastrointestinal symptoms"
-msgstr ""
 
 #: apps/survey/views.py:222
 msgid ""
@@ -481,52 +472,51 @@ msgstr "Foi adicionada uma nova pessoa"
 
 #: apps/tellafriend/forms.py:13
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/tellafriend/forms.py:14
-#, fuzzy
 msgid "Sender"
 msgstr "Enviar"
 
 #: apps/tellafriend/forms.py:15
 msgid "Recipient"
-msgstr ""
+msgstr "Destinatário"
 
 #: apps/tellafriend/forms.py:17
 msgid "Please enter the characters shown in the image in the field next to it."
-msgstr ""
+msgstr "Introduza os carateres mostrados na imagem no campo de texto"
 
 #: apps/tellafriend/forms.py:17
 msgid "Captcha"
-msgstr ""
+msgstr "Captcha"
 
 #: apps/tellafriend/views.py:34
 #, python-format
 msgid "Recommendation by %s"
-msgstr ""
+msgstr "Recomendado por %s"
 
 #: apps/tellafriend/templates/tellafriend/email.html:2
 #: templates/tellafriend/email.html:2
 msgid "Recommendation"
-msgstr ""
+msgstr "Recomendação"
 
 #: apps/tellafriend/templates/tellafriend/email.html:3
 #: templates/tellafriend/email.html:3
 #, python-format
 msgid "%(email_sender)s recommends this page to you:"
-msgstr ""
+msgstr "%(email_sender) recomenda-lhe esta página:"
 
 #: apps/tellafriend/templates/tellafriend/success.html:5
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:5
 #: templates/tellafriend/success.html:5
 #: templates/tellafriend/tellafriend.html:5
 msgid "Recommend"
-msgstr ""
+msgstr "Recomendar"
 
 #: apps/tellafriend/templates/tellafriend/success.html:6
 #: templates/tellafriend/success.html:6
 msgid "Your recommendation was sent out successfully."
-msgstr ""
+msgstr "Recomendação enviada com sucesso"
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:6
 #: templates/tellafriend/tellafriend.html:6
@@ -534,6 +524,7 @@ msgid ""
 "Please enter your and the recipient's e-mail address, and an optional "
 "message."
 msgstr ""
+"Por favor introduza o seu email e o do destinatário e uma mensagem opcional"
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:35
 #: templates/contact_form/contact_form.html:10
@@ -563,7 +554,6 @@ msgid "Error"
 msgstr "Erro"
 
 #: templates/500.html:8
-#, fuzzy
 msgid ""
 "An unexpected system error has occured. We apologize for the inconvenience. "
 "Go to"
@@ -579,27 +569,23 @@ msgstr "A sua sessão foi encerrada. Vá para "
 
 #: templates/accounts/my_profile.html:4
 #: templates/accounts/partials/usermenu.html:16
-#, fuzzy
 msgid "My profile"
-msgstr "Perfil"
+msgstr "O meu Perfil"
 
 #: templates/accounts/my_profile.html:18
-#, fuzzy
 msgid "My Profile"
-msgstr "Perfil"
+msgstr "O meu Perfil"
 
 #: templates/accounts/my_settings.html:4 templates/accounts/my_settings.html:7
 #: templates/accounts/partials/usermenu.html:19
-#, fuzzy
 msgid "Account settings"
-msgstr "Ativação de conta"
+msgstr "Definições de conta"
 
 #: templates/accounts/my_settings.html:10
 msgid "Your settings have been updated"
 msgstr "As alterações foram gravadas"
 
 #: templates/accounts/my_settings.html:18
-#, fuzzy
 msgid "Email settings"
 msgstr "Definições do site"
 
@@ -612,13 +598,12 @@ msgid "Save"
 msgstr "Guardar"
 
 #: templates/accounts/my_settings.html:25
-#, fuzzy
 msgid "Password"
 msgstr "Recuperar palavra-passe"
 
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
-msgstr ""
+msgstr "A sua vizinhança"
 
 #: templates/accounts/partials/usermap.html:9
 msgid ""
@@ -629,6 +614,16 @@ msgid ""
 "<strong class=\"gastro\">▸ yellow</strong> and common cold reports are "
 "displayed in <strong class=\"cold\">▸ blue</strong>."
 msgstr ""
+"O mapa mostra a distribuição actual dos sintomas reportados no Gripenet, ao "
+"nível da primeira parte do código postal. Nas regiões a <strong class=\"flu"
+"\">vermelho</strong>, pelo menos um dos nossos participantes está "
+"actualmente com sintomas de gripe; nas regiões a <strong class=\"gastro"
+"\">amarelo</strong>, pelo menos um dos participantes está com sintomas de "
+"infecção gastro-intestinal; nas áreas a <strong class=\"cold\">azul</"
+"strong>, pelo menos um participante reportou sintomas de constipação. Nas "
+"regiões a <strong class=\"nosymptoms\">cinzento</strong> os participantes "
+"estão sem sintomas. Saiba quais são as definições de gripe <a href=\"http://"
+"www.gripenet.pt/pt/resultados/faq-resultados/\">aqui</a>."
 
 # translations should reflect however often maps are updated
 #: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
@@ -636,13 +631,15 @@ msgid "Map updated hourly."
 msgstr "Mapa actualizado a cada hora"
 
 #: templates/accounts/partials/usermenu.html:3
-#, fuzzy
 msgid "Your account"
-msgstr "Minha conta"
+msgstr "A minha conta"
+
+msgid "Your results"
+msgstr "Os meus resultados"
 
 #: templates/accounts/partials/usermenu.html:12
 msgid "Newsletter"
-msgstr ""
+msgstr "Newsletter"
 
 #: templates/accounts/partials/usermenu.html:15
 msgid "Weekly survey"
@@ -651,8 +648,7 @@ msgstr "Questionário semanal"
 #: templates/accounts/partials/usermenu.html:18
 #: templates/survey/group_management.html:4
 #: templates/survey/group_management.html:11
-#, fuzzy
-msgid "Your results"
+msgid "Group management"
 msgstr "Membros do grupo"
 
 #: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
@@ -663,10 +659,18 @@ msgstr "Encerrar sessão"
 #: templates/accounts/partials/usermenu.html:25
 msgid ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Your results\". Each account can only have one <a href=\"/"
+"through \"Group management\". Each account can only have one <a href=\"/"
 "accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
 "address</a>. To leave feedback or get support,"
 msgstr ""
+"Pode adicionar outras pessoas na sua conta (por exemplo, membros do agregado "
+"familiar, colegas de turma ou de empresa), no item ‘Os meus resultados’. E "
+"preencher os respectivos questionários a partir dali. Cada conta só pode ter "
+"um nome de utilizador e um endereço de e-mail. Mesmo que não tenha sintomas, "
+"preencha o Questionário semanal. Não se esqueça de Encerrar Sessão após "
+"preenchimento. Em caso de dúvida,  consulte <a href=\"/projeto/como-"
+"participar/passo-passo/\">‘Como participar’</a> ou <a href=\"/contact/"
+"\">contacte-nos</a>."
 
 #: templates/accounts/partials/usermenu.html:25
 #: templates/registration/activate.html:9
@@ -687,7 +691,6 @@ msgid "Full Editor"
 msgstr "Editor completo"
 
 #: templates/admin/pollster/survey/change_list.html:7
-#, fuzzy
 msgid "Add Survey"
 msgstr "Inquérito"
 
@@ -773,7 +776,7 @@ msgstr "Questionário por participante"
 
 #: templates/pollster/questions_run.html:9
 msgid "Please check the answers for the highlighted questions."
-msgstr "Verifique as respostas às questões assinaladas"
+msgstr "Verifique as respostas às questões assinaladas com rebordo vermelho"
 
 #: templates/pollster/questions_run.html:202 templates/survey/form.html:21
 msgid "Submit"
@@ -793,6 +796,8 @@ msgid ""
 "Please try to copy and paste the link from the activation email, making sure "
 "you've got all letters copied. If this fails, please try to"
 msgstr ""
+"Por favor tente copiar e colar o link do email de ativação, garantindo que "
+"todos os carateres são copiados. Caso falhe, tente por favor"
 
 #: templates/registration/activate.html:9
 msgid "log in"
@@ -803,6 +808,8 @@ msgid ""
 "using the username and password you provided during registration. If this "
 "still fails, please try to"
 msgstr ""
+"utilizando o nome e palavra passe fornecidos durante o registo. Se continuar "
+"a falhar tente por favor"
 
 #: templates/registration/activate.html:9
 msgid ""
@@ -822,7 +829,7 @@ msgstr ""
 #: templates/registration/password_reset_form.html:23
 #: templates/registration/registration_complete.html:16
 msgid "Influenza virus"
-msgstr ""
+msgstr "Virus Influenza"
 
 #: templates/registration/activate.html:17
 #: templates/registration/activation_complete.html:18
@@ -831,6 +838,8 @@ msgid ""
 "Be part of a Europe-wide project to improve our understanding of how flu "
 "spreads."
 msgstr ""
+"Faça parte de um projecto europeu para melhorar a compreensão da "
+"disseminação da gripe"
 
 #: templates/registration/activate.html:18
 #: templates/registration/activation_complete.html:9
@@ -879,7 +888,7 @@ msgstr "Atualizar perfil"
 
 #: templates/registration/login.html:21
 msgid "Please login to continue"
-msgstr ""
+msgstr "Inicie sessão para continuar"
 
 #: templates/registration/password_change_done.html:4
 #: templates/registration/password_change_done.html:8
@@ -1045,7 +1054,7 @@ msgstr "Formulário de registo"
 
 #: templates/registration/registration_form.html:21
 msgid "Join the survey"
-msgstr ""
+msgstr "Aderir ao questionário"
 
 #: templates/search/search.html:5
 msgid "Search result"
@@ -1061,29 +1070,27 @@ msgstr "Não foram encontrados resultados"
 
 #: templates/survey/group_management.html:14
 msgid "on "
-msgstr ""
+msgstr "em"
 
 #: templates/survey/group_management.html:22
 msgid "Select/deselect all"
-msgstr ""
+msgstr "Selecionar/Deselecionar todos"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
 msgid "Add person"
 msgstr "Adicionar pessoa"
 
 #: templates/survey/group_management.html:22
-msgid "Survey"
-msgstr ""
+msgid "Survey date"
+msgstr "Dados do questionário"
 
 #: templates/survey/group_management.html:22
-#, fuzzy
-msgid "Status"
-msgstr ""
+msgid "Condition"
+msgstr "Estado"
 
 #: templates/survey/group_management.html:30
 msgid "Report"
-msgstr ""
+msgstr "Preencher"
 
 #: templates/survey/group_management.html:30 templates/survey/thanks.html:43
 msgid "Change profile"
@@ -1091,18 +1098,19 @@ msgstr "Alterar perfil"
 
 #: templates/survey/group_management.html:50
 msgid "Mark as healthy"
-msgstr ""
+msgstr "Declarar Sem Sintomas"
 
 #: templates/survey/group_management.html:51
 msgid "Delete member(s)"
-msgstr ""
-
-msgid "Are you absolutely sure you want to delete this user/these users?"
-msgstr ""
+msgstr "Apagar membro(s)"
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
-"The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
+"The flu status of each participant is based on the symptoms you reported. "
+"<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
+"indicative of influenza-like illness, common colds, gastric flu. If you have "
+"other symptoms, or you are at all worried, we recommend that you contact "
+"your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
 "O estado de cada participante é baseado nos sintomas do questionário "
 "semanal, de acordo com as definições que pode encontrar <a href='http://www."
@@ -1116,7 +1124,7 @@ msgstr "Formulário de inquérito"
 
 #: templates/survey/mobile_success.html:6
 msgid "Put your success message here"
-msgstr ""
+msgstr "Introduza uma mensagem de sucesso aqui"
 
 #: templates/survey/people_add.html:5 templates/survey/people_add.html:10
 msgid "Add Person"
@@ -1150,11 +1158,7 @@ msgstr "Editar perfil"
 msgid "Select User"
 msgstr "Seleccione o utilizador"
 
-#: templates/survey/thanks.html:22
-msgid "Thanks for taking the time to fill out this survey."
-msgstr "Obrigado por ter preenchido o seu Questionário Semanal de Sintomas"
-
-#: templates/survey/thanks.html:25
+#: templates/survey/thanks.html:22 templates/survey/thanks.html:25
 msgid ""
 "Here is a summary of the information you entered for you and the members of "
 "your group or family:"
@@ -1200,11 +1204,11 @@ msgstr ""
 
 #: templates/survey/thanks.html:104
 msgid "Fill out date"
-msgstr ""
+msgstr "Preencher a data"
 
 #: templates/survey/thanks.html:105
 msgid "Member"
-msgstr ""
+msgstr "Membro"
 
 #: templates/survey/thanks_profile.html:5
 msgid "Thanks for changing your profile,"
@@ -1236,8 +1240,8 @@ msgstr "Primeiro tem de preencher o questionário de adesão"
 msgid ""
 "One or more questions have empty or invalid answer. Please fix it first."
 msgstr ""
-"Uma ou mais perguntas não foram respondidas ou possuem respostas "
-"inválidas. Corrija-as sff"
+"Uma ou mais perguntas não foram respondidas ou possuem respostas inválidas. "
+"Corrija-as sff"
 
 msgid "People"
 msgstr "Pessoas"
@@ -1251,17 +1255,16 @@ msgstr "Adiciona nova pessoa"
 msgid ""
 "Activate your account:\n"
 "\n"
-"Click the following URL or copy and paste it to the browser's address "
-"bar.\n"
+"Click the following URL or copy and paste it to the browser's address bar.\n"
 "\n"
 "http://%(site)s/accounts/activate/%(activation_key)s/\n"
 "\n"
 "This activation URL will expire in %(expiration_days)s days."
 msgstr ""
-"Benvindo(a) à monitorização da gripe através da internet.\n"
+"Bem-vindo(a) à monitorização da gripe através da internet.\n"
 "\n"
-"Ative a sua conta Gripenet, clicando no endereço abaixo ou copiando-o "
-"para o seu browser.\n"
+"Ative a sua conta Gripenet, clicando no endereço abaixo ou copiando-o para o "
+"seu browser.\n"
 "\n"
 "http://%(site)s/accounts/activate/%(activation_key)s/\n"
 "\n"
@@ -1292,27 +1295,26 @@ msgid "terms usage\n"
 msgstr ""
 "Termos de utilização\n"
 "\n"
-"Ao inscrever-se como participante no projeto Gripenet, está a participar "
-"num estudo científico sobre a epidemiologia da gripe, nomeadamente a "
-"monitorização da incidência gripal e fatores de risco associados ao "
-"síndrome gripal. Os participantes podem usar o nome de utilizador que "
-"entenderem e em nenhum momento é solicitado o seu endereço ou contacto "
-"telefónico.Todos os dados que fornecer serão tratados de forma "
-"confidencial e anónima. A informação que fornecer será guardada em bases "
-"de dados protegidas por acesso com chaves criptográficas e o seu e-mail "
-"estará separado da informação do seu estado de saúde, garantindo a "
-"anonimização dos dados. Ao concordar em participar neste estudo, "
-"permitirá que a equipa de projeto o contacte por e-mail, para envio de "
-"informação (newsletter). Poderá sempre cancelar essa subscrição, através "
-"da ligação que aparece no final do corpo da newsletter. Para além de "
-"informação, a newsletter terá também uma ligação de acesso automático que "
-"direciona o participante para o seu questionário de sintomas sem ser "
-"necessário iniciar a sessão.\n"
+"Ao inscrever-se como participante no projeto Gripenet, está a participar num "
+"estudo científico sobre a epidemiologia da gripe, nomeadamente a "
+"monitorização da incidência gripal e fatores de risco associados ao síndrome "
+"gripal. Os participantes podem usar o nome de utilizador que entenderem e em "
+"nenhum momento é solicitado o seu endereço ou contacto telefónico.Todos os "
+"dados que fornecer serão tratados de forma confidencial e anónima. A "
+"informação que fornecer será guardada em bases de dados protegidas por "
+"acesso com chaves criptográficas e o seu e-mail estará separado da "
+"informação do seu estado de saúde, garantindo a anonimização dos dados. Ao "
+"concordar em participar neste estudo, permitirá que a equipa de projeto o "
+"contacte por e-mail, para envio de informação (newsletter). Poderá sempre "
+"cancelar essa subscrição, através da ligação que aparece no final do corpo "
+"da newsletter. Para além de informação, a newsletter terá também uma ligação "
+"de acesso automático que direciona o participante para o seu questionário de "
+"sintomas sem ser necessário iniciar a sessão.\n"
 "\n"
 "\n"
 "Ao activar a sua conta, clicando no link inserido no mail de confirmação, "
-"estará a dar o seu consentimento em participar no estudo, indicando que "
-"leu (e concordou com) todos os termos deste Consentimento\n"
+"estará a dar o seu consentimento em participar no estudo, indicando que leu "
+"(e concordou com) todos os termos deste Consentimento\n"
 
 msgid "register"
 msgstr "registar"
@@ -1330,91 +1332,132 @@ msgstr ""
 "O seu nome de utilizador apenas poderá conter letras (maiúsculas e "
 "minúsculas), números, hífen (-) e underscore (_). Não usar espaços. "
 
+msgid ""
+"The health status of each participant is based on the symptoms you reported. "
+"<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
+"indicative of influenza-like illness, common colds, allergies and gastric "
+"flu. If you have other symptoms, or you are at all worried, we recommend "
+"that you contact your doctor or telephone NHS Direct / NHS 24."
+msgstr ""
+"O Estado de saúde indicado para cada participante é baseado nos sintomas que "
+"descreveu (ou não) no Questionário Semanal. <strong>Não é um diagnóstico "
+"médico. </strong>Apenas extraímos as definições de caso que se referem a "
+"gripe, constipação, alergias e gastrenterites.  Se tem outros sintomas que o/"
+"a preocupam, aconselhamos que contacte o seu médico ou telefone para a Linha "
+"Saúde 24.<br/><br/><br/>Consulte<br/> <a href=\"http://www.gripenet.pt/pt/"
+"projeto/como-participar/passo-passo/\">http://www.gripenet.pt/pt/projeto/"
+"como-participar/passo-passo/</a>"
+
 # ##########################
 # Login and Register helptexts translationbelow #
 # ##########################
-
 msgid "If you have forgotten your password or username, you can"
-msgstr ""
+msgstr "Se esqueceu a palavra passe ou o nome, pode "
 
 msgid "request a new password"
-msgstr ""
+msgstr "recuperar palavra passe"
 
 msgid "and find out your username."
-msgstr ""
+msgstr "e descobrir o nome de inicio de sessão"
 
 msgid ""
 "You will need a working email address in order to register for the flusurvey."
-msgstr ""
+msgstr "Necessita de um endereço de email válido para efectuar o registo"
 
 msgid ""
 "Choose a username consisting of numbers, letters and/or underscores (no "
 "spaces) and a password.<br />If you have forgotten your password or "
 "username, you can"
 msgstr ""
+"Escolha um nome composto de números, letras e/ou underscores (sem espaços) e "
+"a palavra passe .<br />Se esqueceu a palavra passe ou o nome, pode "
 
 # ##########################
 # Cookie Consent translation below #
 # ##########################
-
 msgid "Your experience on this site will be improved by allowing cookies"
 msgstr ""
+"A sua experiência neste site será melhorada se permitir a utilização de "
+"cookies"
 
 msgid "Allow cookies"
-msgstr ""
+msgstr "Permitir cookies"
 
 msgid "Save preference"
-msgstr ""
+msgstr "Guardar preferências"
 
 msgid "see details"
-msgstr ""
+msgstr "ve detalhes"
 
 msgid "hide details"
-msgstr ""
+msgstr "esconder detalhes"
 
 msgid "Strictly necessary"
-msgstr ""
+msgstr "Obrigatório"
 
 msgid ""
 "Some cookies on this website are strictly necessary and can not be disabled."
-msgstr ""
+msgstr "Alguns cookies neste site são necessários e não podem ser desligados"
 
 msgid "Social media"
-msgstr ""
+msgstr "Media sociais"
 
 msgid ""
 "Facebook, Twitter and other social websites need to know who you are to work "
 "properly."
 msgstr ""
+"Facebook, Twitter e outras redes sociais necessitam de saber quem é para "
+"funcionarem correctamente"
 
 msgid "Analytics"
-msgstr ""
+msgstr "Analytics"
 
 msgid ""
 "We anonymously measure your use of this website to improve your experience."
 msgstr ""
+"Medimos de forma anónima a utilização deste site para melhorar a sua "
+"experiência"
 
 msgid "Privacy settings"
-msgstr ""
+msgstr "Privacidade"
 
 msgid "for this website"
-msgstr ""
+msgstr "para este site"
 
 msgid ""
 "Some features of this website need your consent to remember who you are."
 msgstr ""
+"Algumas funcionalidades deste site necessitam da sua concordância para "
+"lembrar quem é "
 
 msgid "I consent"
-msgstr ""
+msgstr "Concordo"
 
 msgid "I decline"
-msgstr ""
+msgstr "Rejeito"
 
 msgid "Close window"
-msgstr ""
+msgstr "Fechar janela"
 
 msgid "Cookie settings"
-msgstr ""
+msgstr "Definições de cookies"
 
 msgid "Thanks - your diagnosis:"
+msgstr "Obrigado - o seu diagnóstico"
+
+msgid "Thanks for taking the time to fill out this survey."
+msgstr "Obrigado por participar neste questionário"
+
+msgid "comentario_pt1"
 msgstr ""
+"Nesta área pode acrescentar (e posteriormente suprimir) outros participantes "
+"(p.ex., filhos, idosos a cargo, colegas de escola ou trabalho). Para cada um "
+"deles deverá preencher um Questionário de Perfil e, semanalmente, o de "
+"Sintomas.<br/>Depois de preenchido, o Perfil pode ser alterado quando achar "
+"necessário (p.ex., mudança de código postal, de profissão ou outra). Deverá  "
+"preencher o Questionário Semanal de Sintomas se tiver algum sintoma, mesmo "
+"que não seja de gripe; se estiver saudável, basta clicar em ‘Declarar sem "
+"sintomas’. Não se esqueça de seleccionar o participante, clicando na caixa "
+"que antecede o nome. E já está.<br/>Após o preenchimento do Questionário "
+"Semanal de Sintomas, o Gripenet irá mostrar-lhe como interpretou as suas "
+"respostas e criar um histórico de estado de saúde.<br/>"

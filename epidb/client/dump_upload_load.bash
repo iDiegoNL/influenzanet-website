@@ -4,14 +4,16 @@ set -e
 #cat /home/ggm/scripts/dump_intake_2_countries.sql | psql > /dev/null
 #cat /home/ggm/scripts/dump_weekly_2_countries.sql | psql > /dev/null
 
-cat /home/ggm/scripts/dump_intake.sql | psql > /dev/null
-cat /home/ggm/scripts/dump_weekly.sql | psql > /dev/null
+psql -f /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/dump_weekly.sql -d influweb_it_2012 > /dev/null
+psql -f /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/dump_intake.sql -d influweb_it_2012 > /dev/null
 
-pg_dump -t epidb_results_intake -t epidb_results_weekly --clean > /home/ggm/data/epidb_results.sql
-grep -v 'ALTER TABLE public.*OWNER TO' /home/ggm/data/epidb_results.sql > /home/ggm/data/epidb_results.sql.tmp
-mv /home/ggm/data/epidb_results.sql.tmp /home/ggm/data/epidb_results.sql
 
-scp /home/ggm/data/epidb_results.sql ggm@85.90.70.27: >/dev/null
+pg_dump influweb_it_2012 -t epidb_results_intake -t epidb_results_weekly --clean > /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/epidb_results.sql
 
-ssh ggm@85.90.70.27 'cat epidb_results.sql | psql' > /dev/null
+grep -v 'ALTER TABLE public.*OWNER TO' /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/epidb_results.sql > /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/epidb_results.sql.tmp
+mv /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/epidb_results.sql.tmp /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/epidb_results.sql
 
+scp /var/www/influweb.it/httpdocs/epiwork-website/epidb/client/epidb_results.sql influweb@85.90.70.27: > /dev/null
+
+ssh influweb@85.90.70.27 'psql -f epidb_results.sql' > /dev/null
+ssh influweb@85.90.70.27 'echo "GRANT SELECT ON epidb_results_intake, epidb_results_weekly TO epidb" | psql' > /dev/null

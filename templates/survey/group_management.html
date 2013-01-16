@@ -26,13 +26,11 @@
 {% block col1 %}
 <h1>{% trans "Your results" %}</h1>
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="usermessage"><span class="boldgreen">{{ message }}</span><br/>
-        </div>
-        <br />
-    {% endfor %}
-{% endif %}
+{% for message in messages %}
+    <div class="usermessage"><span class="boldgreen">{{ message }}</span><br/>
+    </div>
+    <br />
+{% endfor %}
 
 {% if last_survey %}
 <div class="usermessage">{% trans "The last survey was submitted for" %} {{ last_survey.survey_user }}<br />{% trans "on" %} {{ last_survey.timestamp }}</div>

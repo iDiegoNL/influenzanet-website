@@ -7,7 +7,7 @@ output_png_dir = './output/'
 
 data_incidence = []
 count = 0
-f = open('daily_active_ILI_44-47.csv', 'r')
+f = open(sys.argv[1])
 for line in f.readlines():
    fields = string.split(line[:-1], ',')
    if len(fields) < 2:

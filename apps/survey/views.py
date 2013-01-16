@@ -47,7 +47,7 @@ def _decode_person_health_status(status):
         "ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL":    _('Allergy / hay fever and gastrointestinal symptoms'),
         "ALLERGY-or-HAY-FEVER":                         _('Allergy / hay fever'), 
         "COMMON-COLD-and-GASTROINTESTINAL":             _('Common cold and gastrointestinal symptoms'),
-        "NON-SPECIFIC-SYMPTOMS":                        _('Other non-influenza symptons'),
+        "NON-SPECIFIC-SYMPTOMS":                        _('Other non-influenza symptoms'),
     }
     if status in d:
         return d[status]
@@ -142,6 +142,12 @@ def group_management(request):
 
         for survey_user in request.user.surveyuser_set.filter(global_id__in=global_ids):
             if request.POST.get('action') == 'healthy':
+                profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
+                if not profile:
+                    messages.add_message(request, messages.INFO, 
+                        _(u'Please complete the background questionnaire for the participant "%(user_name)s" before marking him/her as healthy.') % {'user_name': survey_user.name})
+                    continue
+
                 Weekly.objects.create(
                     user=request.user.id,
                     global_id=survey_user.global_id,

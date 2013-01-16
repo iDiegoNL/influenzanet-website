@@ -105,7 +105,7 @@ CREATE TABLE epidb_results_intake (
     CONSTRAINT "pollster_results_intake_Q12b_check6" CHECK (("Q12b" >= 0)),
     CONSTRAINT "pollster_results_intake_Q13_check6" CHECK (("Q13" >= 0)),
     CONSTRAINT "pollster_results_intake_Q1_check6" CHECK (("Q1" >= 0)),
-    CONSTRAINT "pollster_results_intake_Q4_8_open_check1" CHECK (("Q4_8_open" >= 0)),
+   -- CONSTRAINT "pollster_results_intake_Q4_8_open_check1" CHECK (("Q4_8_open" >= 0)),
     CONSTRAINT "pollster_results_intake_Q4_check6" CHECK (("Q4" >= 0)),
     CONSTRAINT "pollster_results_intake_Q4b_check6" CHECK (("Q4b" >= 0)),
     CONSTRAINT "pollster_results_intake_Q4c_check6" CHECK (("Q4c" >= 0)),
@@ -122,6 +122,6 @@ CREATE TABLE epidb_results_intake (
 );
 
 INSERT INTO epidb_results_intake
-SELECT 'YOUR-COUNTRY-HERE',
-    global_id, "timestamp", "Q0", "NOTE", "Q1", "Q2", "Q3", "Q4", "Q4b", "Q4b_0_open", "Q4c", "Q4d_0", "Q4d_1", "Q4d_2", "Q4d_3", "Q4d_4", "Q4d_5", "Q5_0", "Q5_1", "Q5_2", "Q5_3", "Q5_4", "Q6_0", "Q6_0_open", "Q6_1", "Q6_1_open", "Q6_2", "Q6_2_open", "Q6_3", "Q6_3_open", "Q6_4", "Q6_4_open", "Q6b", "Q7", "Q7b", "Q8", "Q9", "Q10", "Q10b", "Q10b_1_open", "Q10c_0", "Q10c_1", "Q10c_2", "Q10c_3", "Q10c_4", "Q10c_5", "Q10c_6", "Q10c_7", "Q10c_8", "Q10c_9", "Q10d_0", "Q10d_1", "Q10d_2", "Q10d_3", "Q10d_4", "Q10d_5", "Q10d_6", "Q10d_7", "Q10d_8", "Q10d_9", "Q10d_10", "Q10d_11", "Q10d_12", "Q10d_13", "Q10d_14", "Q11_0", "Q11_1", "Q11_2", "Q11_3", "Q11_4", "Q11_5", "Q11_6", "Q12", "Q12b", "Q13", "Q14_1", "Q14_2", "Q14_3", "Q14_4", "Q14_5", "Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", "Q16_0", "Q16_1", "Q16_2", "Q16_3", "Q16_4", "Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5" FROM pollster_results_intake;
+SELECT 'IT',
+global_id, "timestamp", "Q0", "NOTE", "Q1", "Q2", "Q3", "Q4", "Q4b", "Q4b_0_open", "Q4c", "Q4d_0", "Q4d_1", "Q4d_2", "Q4d_3", "Q4d_4", "Q4d_5", "Q5_0", "Q5_1", "Q5_2", "Q5_3", "Q5_4", "Q6_0", "Q6_0_open", "Q6_1", "Q6_1_open", "Q6_2", "Q6_2_open", "Q6_3", "Q6_3_open", "Q6_4", "Q6_4_open", "Q6b", "Q7", "Q7b", "Q8", "Q9", "Q10", "Q10b", "Q10b_1_open", "Q10c_0", "Q10c_1", "Q10c_2", "Q10c_3", "Q10c_4", "Q10c_5", "Q10c_6", "Q10c_7", "Q10c_8", "Q10c_9", "Q10d_0", "Q10d_1", "Q10d_2", "Q10d_3", "Q10d_4", "Q10d_5", "Q10d_6", "Q10d_7", "Q10d_8", "Q10d_9", "Q10d_10", "Q10d_11", "Q10d_12", "Q10d_13", "Q10d_14", "Q11_0", "Q11_1", "Q11_2", "Q11_3", "Q11_4", "Q11_5", "Q11_6", "Q12", "Q12b", "Q13", "Q14_1", "Q14_2", "Q14_3", "Q14_4", "Q14_5", "Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", "Q16_0", "Q16_1", "Q16_2", "Q16_3", "Q16_4", "Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5" FROM pollster_results_intake;
 

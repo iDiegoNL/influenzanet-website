@@ -604,7 +604,7 @@ msgstr "Salva"
 
 #: templates/accounts/my_settings.html:25
 msgid "Password"
-msgstr "Reimposta la password"
+msgstr "Password"
 
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
@@ -960,7 +960,7 @@ msgstr ""
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
 msgid "Password reset successful"
-msgstr "Password reimpostata correttamente"
+msgstr "Istruzioni inviate correttamente"
 
 #: templates/registration/password_reset_done.html:9
 msgid ""
@@ -1010,7 +1010,7 @@ msgstr "Indirizzo email:"
 
 #: templates/registration/password_reset_form.html:15
 msgid "Reset my password"
-msgstr "Reimposta la mia password"
+msgstr "Invia nuova password"
 
 #: templates/registration/registration_complete.html:4
 msgid "Registration complete"
@@ -1032,7 +1032,8 @@ msgstr ""
 msgid ""
 "Please check your spam folder in case you do not get this email in your "
 "Inbox. If you have any problems activating your account, please"
-msgstr ""
+msgstr "Se non ricevi la mail di attivazione, controlla nella tua casella"
+"di spam. Se riscontri qualunque problema nell'attivazione del tuo account, per favore"
 
 #: templates/registration/registration_explanation.html:9
 #: templates/registration/registration_form.html:8
@@ -1300,8 +1301,10 @@ msgid ""
 "spaces) and a password.<br />If you have forgotten your password or "
 "username, you can"
 msgstr ""
-"Puoi scegliere uno username costituito da numeri, lettere e/o trattini bassi (non "
-"usare spazi) e una password.<br />Se hai dimenticato la tua password o "
+"Puoi scegliere un nome utente e una password. Il nome utente puòessere"
+"costituito solo da numeri, lettere e/o trattini bassi, ad esempio <i>mariorossi</i>"
+" o <i>mario_rossi</i>. Non puoi usare spazi."
+"<br />Se hai dimenticato la tua password o "
 "il tuo username, puoi "
 
 # ##########################
@@ -1369,3 +1372,6 @@ msgstr "Impostazione cookie"
 
 msgid "Thanks - your diagnosis:"
 msgstr "Grazie! Il tuo responso:"
+
+msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
+msgstr "Ti preghiamo di compilare il questionario di adesione per il partecipante \"%(user_name)s\" prima di segnalarlo/a come senza sintomi."
