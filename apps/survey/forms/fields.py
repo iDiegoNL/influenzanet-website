@@ -15,6 +15,14 @@ from django.contrib.localflavor.be.forms import BEPostalCodeField
 from django.contrib.localflavor.pt.forms import PTZipCodeField
 from django.contrib.localflavor.se.forms import SEPostalCodeField
 
+# note: no Irish ZipCodeField is available.
+# For Denmark (dk) no localflavor is available at all.
+# However, this is not strictly required, as we simply run those installations without
+# that kind of form validation.
+
+# further note: in the future localflavor will have to be installed
+# as a bunch of separate apps
+
 from .widgets import ( AdviseWidget, MonthYearWidget,
                        DatePickerWidget, DateOrOptionPickerWidget,
                        TableOptionsSingleWidget, TableOfSelectsWidget, )

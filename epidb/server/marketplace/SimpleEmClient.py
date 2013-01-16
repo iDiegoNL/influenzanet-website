@@ -325,7 +325,6 @@ def postToURL(user, url, content):
     
     #csantos code
     result = ""
-    print "csantos: url: " + url + "\ncontent: "+content
     try:
       request = urllib2.Request(url, content)
       pagehandle = urllib2.urlopen(request)
@@ -336,7 +335,70 @@ def postToURL(user, url, content):
       result = result + 'We failed to reach a server.\n'
       result = result + 'Reason: ', str(e.reason) + '\n'
     else: 
-      print "Everything went better than expected"
+      result = pagehandle.read()
+    #end csantos code
+    #previous code
+    ##request = urllib2.Request(url, content)
+    ##pagehandle = urllib2.urlopen(request)
+    ##print pagehandle.read()
+    ##return pagehandle.read()
+    #end of previous code
+
+    # authentication is now handled automatically for us
+    return result
+
+#
+# PUT to URL
+#
+#
+
+def putToURL(user, url, content):
+
+    username = user.username
+    password = user.password
+    # a great password
+    
+    #csantos code
+    import socket
+    # timeout in seconds
+    timeout = 20
+    socket.setdefaulttimeout(timeout)
+    #end of csantos code
+
+    passman = urllib2.HTTPPasswordMgrWithDefaultRealm()
+    # this creates a password manager
+    passman.add_password(None, url, username, password)
+    # because we have put None at the start it will always
+    # use this username/password combination for  urls
+    # for which `url` is a super-url
+
+    authhandler = urllib2.HTTPBasicAuthHandler(passman)
+    # create the AuthHandler
+
+    opener = urllib2.build_opener(authhandler)
+
+    urllib2.install_opener(opener)
+
+
+    # All calls to urllib2.urlopen will now use our handler
+    # Make sure not to include the protocol in with the URL, or
+    # HTTPPasswordMgrWithDefaultRealm will be very confused.
+    # You must (of course) use it when fetching the page though.
+
+    
+    #csantos code
+    result = ""
+    try:
+      request = urllib2.Request(url, content)
+      request.get_method = lambda: 'PUT'
+      pagehandle = urllib2.urlopen(request)
+    except HTTPError, e:
+      result = result + 'The server couldn\'t fulfill the request.\n'
+      result = result + 'Error code: ' + str(e.code) + '\n'
+    except URLError, e:
+      result = result + 'We failed to reach a server.\n'
+      result = result + 'Reason: ', str(e.reason) + '\n'
+    else: 
       result = pagehandle.read()
     #end csantos code
     #previous code
@@ -351,9 +413,8 @@ def postToURL(user, url, content):
 
 #Upload
 def upload(FILE, collection, metadataPath, uploadURL):
-    print "Entrei no upload"
     data = None
-
+    '''
     if FILE != "" :
 
       dataFile = FILE
@@ -367,7 +428,7 @@ def upload(FILE, collection, metadataPath, uploadURL):
     else:
 
       data = ""
-     
+    '''
     collectionPID = collection
 
     #open EM metadata
@@ -391,7 +452,7 @@ def upload(FILE, collection, metadataPath, uploadURL):
 
     em = xml.dom.minidom.parseString(newMetadata)
 
-
+    '''
     if data != "":
       emTop = em.documentElement
 
@@ -406,7 +467,7 @@ def upload(FILE, collection, metadataPath, uploadURL):
       emGD.appendChild(emDesc)
 
       emTop.appendChild(emGD)
-    
+    '''
     
 
     #create RSS
@@ -462,10 +523,29 @@ def upload(FILE, collection, metadataPath, uploadURL):
     xmlData = doc.toxml()
 
     #print xmlData
-
+    print 'Uploading Metadata...\n'
     upload = postToURL(user, uploadURL, xmlData)
-    print "csantos: depois do upload"
-    print "upload result:\n" + upload
+
+    print str(upload)
+    import re
+    m = re.search('(?<=<empid>)\w+:[0-9]*', upload)
+    if m is 'NoneType':
+       return False
+
+    pid = m.group(0)
+
+    if FILE != "" :
+       print 'Uploading File...\n'
+       fileuploadURL = uploadURL + '/pid/' + pid + '/' + FILE
+
+       dataFile = FILE
+
+       #Open datafile
+       dataContent = open(dataFile, "r")
+
+       uploadb = putToURL(user, fileuploadURL, dataContent.read())
+
+    print str(uploadb)
     return True
 
 
@@ -825,7 +905,7 @@ class Run:
                 
                 #run login:
                 self.login()
-                print "uploading in progress..."
+                
                 uploadResource(False, args[0], args[1], args[2])
 
         elif False:
@@ -1199,8 +1279,6 @@ class uploadResource:
         collection = raw_input("Collection Name: ")
         metadataPath = raw_input("EM Metadata Path: ")
 
-        print "Uploading..."
-
         uploading = upload(filepath, collection, metadataPath, uploadURL)
 
         print "Done.\n"
@@ -1209,8 +1287,6 @@ class uploadResource:
       else:
         filepath = filePath
         collection = collectionName
-
-        print "Uploading..."
 
         uploading = upload(filepath, collection, metadataPath, uploadURL)
 

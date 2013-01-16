@@ -5,23 +5,22 @@ from django.shortcuts import render_to_response
 from django.db import connection, transaction
 
 def counter(request):
-    def q_count(country):
+    def country_count(country):
         cursor = connection.cursor()
-        cursor.execute("SELECT COUNT(*) FROM pollster_results_intake WHERE \"Qcountry\" = %s", [country])
+        cursor.execute("SELECT COUNT(*) FROM (SELECT global_id FROM pollster_results_intake WHERE \"Qcountry\" = %s GROUP BY global_id) AS x", [country])
         row = cursor.fetchone()
         return row[0]
 
-    count = User.objects.count()
+    def global_count():
+        cursor = connection.cursor()
+        cursor.execute("SELECT COUNT(*) FROM (SELECT global_id FROM pollster_results_intake GROUP BY global_id) AS x", [])
+        row = cursor.fetchone()
+        return row[0]
 
-    if request.GET.get('country'):
-        surely_nl = q_count("NL")
-        surely_be = q_count("BE")
+    try:
+        if request.GET.get('country'):
+            return HttpResponse(str(country_count(request.GET.get('country'))))
 
-        rest = count - surely_nl - surely_be
-
-        if request.GET.get('country') == "NL":
-            return HttpResponse(str(surely_nl + int(2/3.0 * rest)))
-        if request.GET.get('country') == "BE":
-            return HttpResponse(str(surely_be + int(1/3.0 * rest)))
-
-    return HttpResponse(str(count))
+        return HttpResponse(str(global_count()))
+    except:
+        return HttpResponse('-')

@@ -76,7 +76,7 @@ img {
 }
 
 .disable {
- display: none;
+ display: none !important;
 }
 
 
@@ -278,6 +278,7 @@ a:link.close {
 .pt { background: url(../img/influbar/map/marker_pt.png) no-repeat; }
 .es { background: url(../img/influbar/map/marker_es.png) no-repeat; }
 .it { background: url(../img/influbar/map/marker_it.png) no-repeat; }
+.ie { background: url(../img/influbar/map/marker_ie.png) no-repeat; }
 
 .bubble {
  margin: -106px 0 0 0;

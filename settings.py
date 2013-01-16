@@ -58,6 +58,7 @@ LANGUAGES = (
    ('sv', u'Svenska'),
    ('pt', u'Portugues'),
    ('es', u'Español'),
+   ('da', u'Dansk'),
 )
 
 # Absolute path to the directory that holds media.
