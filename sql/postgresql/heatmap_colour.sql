@@ -1,6 +1,6 @@
-DROP FUNCTION heatmap_colour(float, integer);
+DROP FUNCTION heatmap_colour(float, float, float);
 
-CREATE FUNCTION heatmap_colour (f float, max integer) RETURNS varchar AS $$
+CREATE FUNCTION heatmap_colour (f float, min float, max float) RETURNS varchar AS $$
 DECLARE
   num_colours integer := 2;
   colours integer[2][3] = '{{0,0,255},{255,0,0}}';
@@ -16,7 +16,7 @@ DECLARE
   blue integer;
   green integer;
 BEGIN 
-  IF f <= 0
+  IF f <= min
   THEN
     idx1 = 1;
     idx2 = 1;
@@ -27,9 +27,9 @@ BEGIN
       idx2 = num_colours;
     ELSE
       f = f * (num_colours - 1);
-      idx1 = ceil(f/max);
+      idx1 = ceil((f - (num_colours - 1)*min)/(max-min));
       idx2 = idx1 + 1;
-      fraction_between = f/max::float + 1 - idx1;
+      fraction_between = (f - (num_colours-1)*min)/(max-min)::float + 1 - idx1;
     END IF;
   END IF;
 
