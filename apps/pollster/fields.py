@@ -25,6 +25,7 @@ POSTALCODE_INPUT_FORMATS = {
     'ch': r'\d{4}',
     'se': r'\d{5}',
     'fr': r'\d{5}',
+    'es': r'\d{5}',
 }
 
 logger = logging.getLogger(__name__)

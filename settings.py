@@ -61,7 +61,11 @@ LANGUAGES = (
    ('es', u'Espanol'),
 =======
    ('es', u'Español'),
+<<<<<<< HEAD
 >>>>>>> d611ccdb4aa259131fa2156a6e94424554c66a77
+=======
+   ('da', u'Dansk'),
+>>>>>>> baebfa44ee77d9e37157ab9e1a9052ee6009d7a1
 )
 
 # Absolute path to the directory that holds media.
