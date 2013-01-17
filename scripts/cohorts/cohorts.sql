@@ -21,15 +21,17 @@ SELECT extract(year from age(to_timestamp(I."Q2",'YYYY-MM'))) AS a,
        "Q11_0" AS riskfree,
        "Q6_0", "Q6_1",
        I."Q10",
-       NULLIF(S.status = 'ILI', false) AS ili,
-       NULLIF(S.status != 'ILI', false) AS non_ili,
-       extract(week FROM W.timestamp) AS week,
-       extract(year FROM date_trunc('week', W.timestamp)) AS year
+       NULLIF(S.status = 'ILI' AND (W."Q2" IS NULL OR W."Q2" != 0),
+            false) AS ili,     
+       NULLIF(NOT (S.status = 'ILI') OR NOT (W."Q2" IS NULL OR W."Q2"
+            != 0), false) AS non_ili, 
+       to_char(W.timestamp, 'IW') as week,
+       to_char(W.timestamp, 'IYYY') as year
   FROM pollster_results_intake AS I,
        pollster_health_status AS S,
-        pollster_results_weekly AS W
+       pollster_results_weekly AS W
  WHERE I."Q10"<2
-   AND S.pollster_results_weekly_id = W.id  AND (W."Q2" IS NULL OR W."Q2" != 0)
+   AND S.pollster_results_weekly_id = W.id AND (W."Q2" IS NULL OR W."Q2" != 0)
    AND W.global_id = I.global_id AND extract(year from age(to_timestamp(I."Q2",'YYYY-MM'))) > 0
        ) AS statuses
  GROUP BY year,week,agegroup,risk,children,vaccinated
