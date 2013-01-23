@@ -492,6 +492,9 @@ def _get_some_survey_user(request):
     # I've now only actually used this function in a single location, but we
     # might change that as well.
 
+    if not request.user.is_authenticated():
+        return None
+
     survey_users = SurveyUser.objects.filter(user=request.user, deleted=False)
     total = len(survey_users)
         
