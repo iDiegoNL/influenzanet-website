@@ -43,7 +43,7 @@ sub min {
 }
 
 my $motionchart = 0; # motion chart format
-my $variable_file = "variables"; # file containing all the variables
+my $variable_file = "/home/flusurvey/changesets/production/scripts/cohorts/variables"; # file containing all the variables
 my $measure = "vaccinated"; # measurement variable
 my $timestring = "year,week"; # time variable(s)
 my $controlstring = "agegroup,risk,children"; # matched control variable(s)
@@ -362,7 +362,7 @@ if ($motionchart) {
     print "            \$(document).ready(function() {\n";
     print "                    chart = new Highcharts.Chart({\n";
     print "                            chart: {\n";
-    print "                                    renderTo: 'container',\n";
+    print "                                    renderTo: 'container-$measure',\n";
     print "                                    defaultSeriesType: 'line',\n";
     print "                                    marginRight: 0,\n";
     print "                                    marginBottom: 70\n";
@@ -411,7 +411,7 @@ if ($motionchart) {
 	} else {
 	    $first = 0;
 	}
-	print "                                    name: '".$outcomes{$measure}{$_}."',\n";
+	print "                                    name: ".$outcomes{$measure}{$_}.",\n";
 	print "                                    data: [".join(",", @{$data{$_}})."]\n";
     }
     print "                            }]\n";
@@ -420,7 +420,7 @@ if ($motionchart) {
     print "    </script>\n";
     print "  </head>\n";
     print "  <body>\n";
-    print "    <div id=\"container\" style=\"width: 550px; height: 300px; margin: 0 auto\"></div>\n";
+    print "    <div id=\"container-$measure\" style=\"width: 550px; height: 300px; margin: 0 auto\"></div>\n";
     print "  </body>\n";
     print "</html>\n";
 } else {
