@@ -34,6 +34,31 @@ else:
         def next(self): 
             return next(self.iter)    
 
+class UserChecker:
+    
+    def __init__(self, message):
+        if message.userlist:
+            self.user_list = self.get_userlist(message.userlist)
+        else:
+            self.user_list = None
+        print self.user_list
+    
+    def get_userlist(self, table):
+        query = "SELECT user_id FROM " + table
+        cursor = connection.cursor()
+        cursor.execute(query)
+        userlist = [ row[0] for row in cursor.fetchall()]
+        return userlist
+    
+    def check(self, user):
+        if not self.user_list is None:
+            try:
+                i = self.user_list.index(user.id)
+            except Exception as e:
+                return False
+        return True
+            
+
 class Command(BaseCommand):
     help = "Send reminders."
 
@@ -53,7 +78,7 @@ class Command(BaseCommand):
         self.fake = False
 
     def get_reminder(self):
-        query = "SELECT n.id, subject, message, sender_email, sender_name, date FROM reminder_newslettertranslation t left join reminder_newsletter n on n.id=t.master_id where t.language_code='fr' and published=True order by date desc"
+        query = "SELECT n.id, subject, message, sender_email, sender_name, date, n.userlist FROM reminder_newslettertranslation t left join reminder_newsletter n on n.id=t.master_id where t.language_code='fr' and published=True order by date desc"
         cursor = connection.cursor()
         cursor.execute(query)
         res = cursor.fetchone()
@@ -63,6 +88,7 @@ class Command(BaseCommand):
         reminder.sender_email = res[3]
         reminder.sender_name = res[4]
         reminder.date = res[5]
+        reminder.userlist = res[6]
         return reminder
            
     def get_mock_reminder(self):
@@ -72,6 +98,7 @@ class Command(BaseCommand):
         reminder.sender_email = "mock@localhost"
         reminder.sender_name = "mock"
         reminder.date = datetime.now()
+        reminder.userlist = None
         return reminder
         
     def send_reminders(self, message, target, next, batch_size):
@@ -85,29 +112,42 @@ class Command(BaseCommand):
         
         if(target is not None):
             print "> target user=%s" % (target)
-            users = [ users.get_by_login(target) ]
-            print users
+            try:
+                users = [ users.get_by_login(target) ]
+                print users
+            except Exception:
+                print "Unable to find user %s" % str(target)
+                return
 
+        checker = UserChecker(message)    
+        
         i = -1
         language = 'fr'
         print "next=%s" % (next)
         try:
             for user in users :
+                print user
                 if batch_size and i >= batch_size:
                     raise StopIteration 
                 
                 to_send = False
                 
+
                 info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
     
                 if not info.active:
                     continue
                 
+                print info.last_reminder
                 if info.last_reminder is None:
                     to_send = True
-    
-                if info.last_reminder < message.date:
+                elif info.last_reminder < message.date:
                     to_send = True    
+            
+                if to_send:
+                    if not checker.check(user):
+                        print "skipping user %s" % str(user)
+                        to_send = False
             
                 if to_send:
                     i += 1
@@ -131,7 +171,10 @@ class Command(BaseCommand):
         next = options.get('next', None)
         mock = options.get('mock', False)
         
-        conf = get_settings()
+        try:
+            conf = get_settings()
+        except:
+            return u"0 Unable to load reminder configuration"
         
         if conf is None:
             return u"0 reminders sent - not configured"
@@ -163,8 +206,10 @@ class Command(BaseCommand):
                 file(counter,'w').write(str(count))
             return u'%d reminders sent.\n' % count 
        
+        except Exception as e:
+            print e
         finally:
-            conf = get_settings()
+            # conf = get_settings()
             conf.currently_sending = False
             conf.save()
             

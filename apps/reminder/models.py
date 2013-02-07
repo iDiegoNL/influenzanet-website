@@ -70,6 +70,8 @@ class NewsLetter(TranslatableModel):
 
     published = models.BooleanField("Is published", help_text="Uncheck this box to postpone sending of this newsletter until the box is checked.", default=True)
 
+    userlist = models.CharField(_("Table or view name used to get the user list"), max_length=255, blank=True, null=True)
+
     translations = TranslatedFields(
         subject = models.CharField(max_length=255),
         message = models.TextField(help_text="The strings {{ url }} and {{ unsubscribe_url }} may be used to refer to the profile url and unsubscribe url."),
