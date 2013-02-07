@@ -10,7 +10,7 @@ from crypto import AES256
              
 TOKEN_ACTIVATE = 1
 TOKEN_PASSWORD = 2
-
+TOKEN_LOGIN    = 3
 
 class EpiworkToken:
     """

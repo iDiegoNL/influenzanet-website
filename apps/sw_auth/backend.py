@@ -3,6 +3,7 @@ from django.contrib.auth.backends import ModelBackend
 from .models import EpiworkUser, FakedUser
 from django.contrib.auth.models import User as DjangoUser
 from .logger import auth_notify
+from apps.sw_auth.models import LoginToken
 
 """
  Customize Backend
@@ -32,6 +33,41 @@ class EpiworkAuthBackend(ModelBackend):
               
         except EpiworkUser.DoesNotExist:
             auth_notify('auth_unknown',"user '%s' not found " % username)
+            return None
+
+    def get_user(self, user_id):
+        """
+         user_id is here the user if stored by django and refer to User of Django Model
+        """
+        try:
+            return FakedUser.objects.get(pk=user_id)
+        except FakedUser.DoesNotExist:
+            return None
+
+class EpiworkTokenBackend(ModelBackend):
+    
+    supports_object_permissions = False
+    supports_anonymous_user = False
+
+    def authenticate(self, key=None):
+        try:
+            auth_notify('authenticate', "check for %s" % key)
+            token = LoginToken.objects.filter(key=key)
+            if len(token) == 0:
+                return None
+    
+            token = token[0]
+            user = token.user
+            if not token.is_valid():
+                auth_notify('auth_failure',"expired token for '%s'" % user.login)
+                return None
+            
+            u = user.get_django_user()
+            auth_notify('auth_success',"success login '%s" % user.login )
+            u._epiwork_user = user # temporary store it in user
+            u._login_token = token
+            return u
+        except DjangoUser.DoesNotExist:
             return None
 
     def get_user(self, user_id):

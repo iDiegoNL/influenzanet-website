@@ -1,21 +1,22 @@
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.cache import never_cache
+from datetime import date, datetime
+from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
+from django.contrib.sites.models import get_current_site
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib import auth
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
 from django.template.loader import get_template
-from django.core.mail import send_mail
-from django.contrib.sites.models import get_current_site
+from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.cache import never_cache
 from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm, MySettingsForm
-from django.http import HttpResponseRedirect
 from apps.sw_auth.models import EpiworkUser
-from django.conf import settings
 from apps.sw_auth.utils import send_activation_email,EpiworkToken
 from apps.sw_auth.logger import auth_notify
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.decorators import login_required
-from datetime import date, datetime
-from django.contrib import messages
 from apps.sw_auth.forms import UserEmailForm
 
 
@@ -180,6 +181,37 @@ def password_done(request):
 def password_complete(request):
     """
     """
+
+def login_token(request, key):
+    """ 
+    Login using a random key 
+    """ 
+    next = request.GET.get('next', None)
+    if next is None:
+        next = settings.LOGIN_REDIRECT_URL
+
+    # Validate the key through the standard Django's authentication mechanism.
+    # It also means that the authentication backend of this django-loginurl
+    # application has to be added to the authentication backends configuration.
+    user = auth.authenticate(key=key)
+    if user is None:
+        url = settings.LOGIN_URL
+        if next is not None:
+            url = '%s?next=%s' % (url, next)
+        return HttpResponseRedirect(url)
+    
+    # get the token
+    token = user._login_token
+    del user._login_token # avoid token to propagate
+    # The key is valid, then now log the user in.
+    auth.login(request, user)
+    
+    token.update_usage()    
+
+    if token.next is not None:
+        next = token.next
+    
+    return HttpResponseRedirect(next)
     
 @login_required    
 def my_settings(request):

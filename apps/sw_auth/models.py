@@ -2,6 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.db import transaction
 from django.contrib.auth.models import get_hexdigest, check_password, User
+from datetime import datetime
 import utils
 import random
 import sys
@@ -136,6 +137,15 @@ class EpiworkUser(models.Model):
             return EpiworkToken(self.token_password)
         return None
     
+    def create_login_token(self, usage_left=1, expires=None, next=None):
+        login = LoginToken()
+        login.key = create_token()
+        login.user = self
+        login.expires = expires
+        login.next = next
+        login.save()
+        return login
+    
     @transaction.commit_manually()
     def activate(self):
         self.is_active = True
@@ -154,6 +164,43 @@ class EpiworkUser(models.Model):
     def personalize(self, user):
         user.username = self.login
         user.email = self.email
+
+
+class LoginToken(models.Model):
+    user = models.ForeignKey(EpiworkUser)
+    key = models.CharField(max_length=40, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    usage_left = models.IntegerField(null=True, default=1)
+    expires = models.DateTimeField(null=True)
+    next = models.CharField(null=True, max_length=200)
+
+    def __unicode__(self):
+        return '%s (%s)' % (self.key, self.user.username)
+
+    def is_valid(self):
+        """
+        Check if the key is valid.
+
+        Key validation checks the value of ``usage_left`` and ``expires``
+        properties of the key. If both are ``None`` then the key is always
+        valid.
+        """
+        if self.usage_left is not None and self.usage_left <= 0:
+            return False
+        if self.expires is not None and self.expires < datetime.now():
+            return False
+        return True
+
+    def update_usage(self):
+        """
+        Update key usage counter.
+
+        This only relevant if the ``usage_left`` property is used.
+        """
+        if self.usage_left is not None and self.usage_left > 0:
+            self.usage_left -= 1
+            self.save()
+
 
 
 """
