@@ -91,6 +91,11 @@ CREATE TABLE epidb_results_weekly (
     CONSTRAINT "pollster_results_weekly_Q9b_check5" CHECK (("Q9b" >= 0))
 );
 
+GRANT ALL ON TABLE epidb_results_weekly TO postgres;
+GRANT ALL ON TABLE epidb_results_weekly TO epiwork;
+GRANT ALL ON TABLE epidb_results_weekly TO "DBA";
+GRANT ALL ON TABLE epidb_results_weekly TO "Statistician";
+
 DROP TABLE IF EXISTS epidb_results_intake;
 
 CREATE TABLE epidb_results_intake (
@@ -212,3 +217,8 @@ CREATE TABLE epidb_results_intake (
     CONSTRAINT "pollster_results_intake_Q8_check6" CHECK (("Q8" >= 0)),
     CONSTRAINT "pollster_results_intake_Q9_check6" CHECK (("Q9" >= 0))
 );
+
+GRANT ALL ON TABLE epidb_results_intake TO postgres;
+GRANT ALL ON TABLE epidb_results_intake TO epiwork;
+GRANT ALL ON TABLE epidb_results_intake TO "DBA";
+GRANT ALL ON TABLE epidb_results_intake TO "Statistician";
