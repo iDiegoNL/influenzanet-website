@@ -239,7 +239,7 @@ def get_reminders_for_users(now, users):
             survey_users = SurveyUser.objects.filter(user=user, deleted=False)
             if not survey_users.count():
                 survey_user = SurveyUser.objects.create(user=user, name=user.username)
-                survey_users = SurveyUser.objects.filter(user=user)
+                survey_users = SurveyUser.objects.filter(user=user, deleted=False)
 
             last_action_date = max(su.get_last_weekly_survey_date() for su in survey_users)
             if info.last_reminder and info.last_reminder > last_action_date:
