@@ -1678,7 +1678,7 @@ msgid ""
 "spaces) and a password.<br />If you have forgotten your password or "
 "username, you can"
 msgstr ""
-"Kies een gebruikersnaam bestaande uit letters en/of cijfers (geen spaties) "
+"Kies een <b>gebruikersnaam</b> bestaande uit letters en/of cijfers (<b>geen spaties</b>) "
 "en een wachtwoord.<br />Als u uw wachtwoord of gebruikersnaam bent vergeten, "
 "kunt u"
 
