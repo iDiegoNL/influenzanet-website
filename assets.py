@@ -10,6 +10,27 @@ try:
 except:
     CSS_MINIFIER = False
 
+class BundleItem:
+    
+    def get_contents(self):
+        """ Nothing to do
+        """
+
+class Text(BundleItem):
+    def __init__(self, text):
+        self.text = text
+    
+    def get_contents(self):
+        return self.text
+
+class File(BundleItem):
+    def __init__(self, file, **kwargs):
+        self.file = file
+        
+    def get_contents(self):
+        os.path.exists(self.file) 
+        
+
 # bundle file definifions
 # key = file relative path and name
 # value = list of files to include
@@ -19,6 +40,20 @@ bundles_js = {
      'base/js/influenzanet.js',
      'pollster/jquery/js/jquery.tools.min.js',
      'sw/sw.js',    
+  ),
+ 'assets/pollster_run':(
+    'pollster/wok/js/wok.pollster.js',
+    'pollster/wok/js/wok.pollster.datatypes.js',
+    'pollster/wok/js/wok.pollster.codeselect.js',
+    'pollster/wok/js/wok.pollster.timeelapsed.js',
+    'pollster/wok/js/wok.pollster.rules.js',
+    'pollster/wok/js/wok.pollster.virtualoptions.js',
+    Text('$(function() { wok.pollster.createPollsterRuntime(null, {}); });'),
+    'pollster/wok/js/wok.pollster.lastyear.js',
+  ),
+
+  'assets/mailchecker':(
+     'sw/js/mailcheck.min.js',                   
   )           
            
 }
@@ -74,17 +109,20 @@ def compile_bundle(bundle, ext):
     else:
         comment = "/* %s  */\n"
         
-    for name,list in bundle.items():
+    for name, list in bundle.items():
         print 'Bundle %s' % name
         contents = ''
         filename = BUNDLE_PATH + name + '.' + ext
         path_to = os.path.dirname(filename)
         for b in list:
-            print ' + '+ b
-            contents += "\n"
-            contents += comment % b 
-            b = settings.MEDIA_ROOT + '/' + b
-            contents += process_file(b, ext, path_to)
+            if isinstance(b, Text):
+                contents += b.get_contents()
+            else:    
+                print ' + '+ b
+                contents += "\n"
+                contents += comment % b 
+                b = settings.MEDIA_ROOT + '/' + b
+                contents += process_file(b, ext, path_to)
             contents += "\n"
         f = file(filename,'w')
         f.write(contents)

@@ -15,7 +15,7 @@ class Command(BaseCommand):
         domains = {}
         threshold = int(options['min'])
         verbose = options['verbosity'] > 0
-        for user in EpiworkUser.objects.all():
+        for user in EpiworkUser.objects.filter(is_active=True):
             email = user.email
             u, d = email.split('@')
             if domains.has_key(d):

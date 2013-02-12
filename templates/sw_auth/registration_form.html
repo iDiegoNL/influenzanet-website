@@ -1,9 +1,12 @@
 {% extends "sw_auth/base.html" %}
 {% load i18n %}
 
-{%block add_css%}
-<style>#instructions { font-size: .8em }</style>
-{%endblock%}
+{% block add_css %}
+<style>#instructions { font-size: .8em }
+#suggest { font-size:.9em} #suggestion { font-weight: bold }
+.error { font-weight: bold; color: red; font-size: 1.1em}
+</style>
+{% endblock %}
 
 {% block title %}{{ block.super }} {% trans "Register" %}{% endblock %}
 
@@ -13,13 +16,73 @@
 <form method="post" id="registration">
 	{% csrf_token %}
 	{{ form.as_p }}
-	<p>
-	<button type="submit" class="button">{% trans "Register" %}</button>
+	<p style="text-align:center">
+	<span class="button" onclick="checkForm()">{% trans "Register" %}</span>
 	</p>
 </form>
 <div class="alert alert-info" id="instructions">
 {%trans "Registration instructions" %}
 </div>
 {% endspaceless %}
+<script type="text/javascript">
+
+$(function() {
+	$.getJSON('/media/sw/js/domains.json', function(data) {
+		console.log(data);
+		window.my_domains = data;
+	});
+});
+
+function use_suggestion() {
+	var email = $('#suggestion').text();
+	$('#id_email').val(email).focus();
+	$('#suggest').remove();
+}
+
+$('#id_email').blur(function(){
+	if(typeof(my_domains) == 'undefined') {
+		my_domains = Kicksend.mailcheck.defaultDomains;
+	}
+	$(this).mailcheck({
+		topLevelDomains:['fr','org','net','com'],
+		domains: my_domains,
+		suggested:function(el, suggestion) {
+			console.log(suggestion);
+			$('#suggest').empty();
+			var $e = $('#id_email');
+			var h = '<div id="suggest">Etes vous sur de votre email ? Vouliez vous dire <a href="javascript:void(0)" id="suggestion" onclick="use_suggestion()">'+suggestion.full+'</a> ?</div>';
+			$e.after(h);
+		},
+		empty: function(el) {
+			
+		}
+	});
+});
+
+function form_error(e, txt) {
+	$e = $(e);
+	$e.after('<p class="error">'+txt+'</p>');
+}
+
+function checkForm() {
+	$('.error').remove();
+	var ok = true;
+	$('.required').each(function() {
+		var $e = $(this);
+		if($e.val() == '') {
+			form_error($e, 'Valeur obligatoire');
+			ok = false;
+		}
+	});
+	
+	p1 = $('#id_password1').val();
+	p2 = $('#id_password2').val();
+	if(p1 != p2) {
+		form_error('#id_password2','Les 2 mots de passe ne correspondent pas');
+		ok = false;
+	}
+}
+</script>
+<script type="text/javascript" src="/media/assets/mailchecker.js"></script>
 {% endblock  %}
 
