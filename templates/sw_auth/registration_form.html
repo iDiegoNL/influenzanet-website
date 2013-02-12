@@ -81,6 +81,9 @@ function checkForm() {
 		form_error('#id_password2','Les 2 mots de passe ne correspondent pas');
 		ok = false;
 	}
+	if(ok) {
+		$('#registration').submit();
+	}
 }
 </script>
 <script type="text/javascript" src="/media/assets/mailchecker.js"></script>
