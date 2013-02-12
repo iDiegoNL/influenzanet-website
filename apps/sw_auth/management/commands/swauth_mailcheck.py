@@ -31,9 +31,9 @@ class Command(BaseCommand):
                 dd.append(d)  
         domains = dd
         if len(domains) > 0:
-            fn = settings.MEDIA_ROOT + '/assets/domains.json';
+            fn = settings.MEDIA_ROOT + '/assets/domains.js';
             f = file(fn,'w')
-            s = simplejson.dumps(domains)
+            s = 'my_domains = ' + simplejson.dumps(domains)+';'
             f.write(s)
             f.close()
             print "%s updated" % fn
