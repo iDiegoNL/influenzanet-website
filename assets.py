@@ -26,9 +26,26 @@ class Text(BundleItem):
 class File(BundleItem):
     def __init__(self, file, **kwargs):
         self.file = file
+        self.optional = getattr(kwargs, 'optional', False)
+    
+    def get_path(self):
+        return settings.MEDIA_ROOT + '/' + self.file;
+    
+    def get_filename(self):
+        return self.file
         
     def get_contents(self):
-        os.path.exists(self.file) 
+        path = self.get_path()
+        contents = None
+        if os.path.exists(path):
+            f = file(path)
+            contents = f.read()
+            f.close()
+        elif self.optional:
+            contents = ''
+        if contents is not None:
+            return contents    
+        raise Exception("file %s does not exists" % self.file)
         
 
 # bundle file definifions
@@ -53,7 +70,8 @@ bundles_js = {
   ),
 
   'assets/mailchecker':(
-     'sw/js/mailcheck.min.js',                   
+     'sw/js/mailcheck.min.js',
+     File('assets/domains.js', optional=True),                   
   )           
            
 }
@@ -85,12 +103,11 @@ def change_path(m, path_to ):
     path = path.replace("\\",'/')
     return "url(%s)" % path
  
-def process_file(filename, type, path_to, context=None):
-    f = file(filename)
-    contents = f.read()
-    f.close()
+def process_file(f, type, path_to, context=None):
+    path = f.get_path()
+    contents = f.get_contents()
     if type == 'css':
-        fd = os.path.dirname(filename)
+        fd = os.path.dirname(path)
         old_cwd = os.getcwd()
         os.chdir(fd)
         path_to = os.path.normpath(path_to)
@@ -118,10 +135,12 @@ def compile_bundle(bundle, ext):
             if isinstance(b, Text):
                 contents += b.get_contents()
             else:    
-                print ' + '+ b
+                if not isinstance(b, File):
+                    b = File(b)
+                fn = b.get_filename()
+                print ' + '+ fn
                 contents += "\n"
-                contents += comment % b 
-                b = settings.MEDIA_ROOT + '/' + b
+                contents += comment % fn 
                 contents += process_file(b, ext, path_to)
             contents += "\n"
         f = file(filename,'w')

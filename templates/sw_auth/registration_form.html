@@ -26,13 +26,6 @@
 {% endspaceless %}
 <script type="text/javascript">
 
-$(function() {
-	$.getJSON('/media/sw/js/domains.json', function(data) {
-		console.log(data);
-		window.my_domains = data;
-	});
-});
-
 function use_suggestion() {
 	var email = $('#suggestion').text();
 	$('#id_email').val(email).focus();
