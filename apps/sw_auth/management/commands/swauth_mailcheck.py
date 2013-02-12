@@ -33,7 +33,7 @@ class Command(BaseCommand):
         if len(domains) > 0:
             fn = settings.MEDIA_ROOT + '/assets/domains.js';
             f = file(fn,'w')
-            s = 'my_domains = ' + simplejson.dumps(domains)+';'
+            s = 'var my_domains = ' + simplejson.dumps(domains)+';'
             f.write(s)
             f.close()
             print "%s updated" % fn
