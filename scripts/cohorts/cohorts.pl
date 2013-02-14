@@ -23,6 +23,8 @@
 #                  default is "vaccinated"
 #   -i, --time: the time variables, e.g. "year,week" or "year" or "none" (for aggregate figures)
 #               default is "year,week"
+#   -n, --condition: additial conditions on the select queries
+#               default is no conditions
 #   -o, --control: the control variables, that is what is matched in cohorts
 #                  default is "agegroup,risk,children"
 #   -f, --variable-file: the file defining the different measurement, time and control variables
@@ -52,6 +54,7 @@ my $definition = ""; # ILI definition to use
 my $tables = "pollster";
 my $include_first = 0;
 my $title = "incidence";
+my $conditions = "";
 
 # get command line options
 GetOptions(
@@ -64,7 +67,8 @@ GetOptions(
     "db|b=s" => \$dbname,
     "tables|t=s" => \$tables,
     "include-first|1" => \$include_first,
-    "title|e=s" => \$title
+    "title|e=s" => \$title,
+    "conditions|n=s" => \$conditions
 );
 
 # extract control and measurement variables
@@ -217,8 +221,11 @@ $fromstring .= " AS S, $tables\_results_weekly AS W";
 $fromstring .= " WHERE I.\"Q10\"<2".
     " AND S.$tables\_results_weekly_id = W.id".
     " AND (W.\"Q2\" IS NULL OR W.\"Q2\" != 0)".
-    " AND W.global_id = I.global_id".
-    ") AS statuses";
+    " AND W.global_id = I.global_id";
+if ($conditions ne "") {
+    $fromstring .= " AND ".$conditions;
+}
+$fromstring .= ") AS statuses";
 
 my $sqlstring = "$selectstring $fromstring".
     " GROUP BY $timestring,$controlstring,$measure".
