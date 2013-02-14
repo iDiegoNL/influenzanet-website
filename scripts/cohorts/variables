@@ -30,8 +30,8 @@ select=to_char(W.timestamp, 'IW')
 select=to_char(W.timestamp, 'IYYY')
 
 [transport]
-0,1,'using public transport'
-else,0,'not using public transport'
+0,1,'not using public transport'
+else,0,'using public transport'
 select=Q7b
 db=I
 

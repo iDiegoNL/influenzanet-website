@@ -61,8 +61,8 @@ GetOptions(
     "time|i=s" => \$timestring,
     "control|o=s" => \$controlstring,
     "variable-file|f=s" => \$variable_file,
-    "db|b" => \$dbname,
-    "tables|t" => \$tables,
+    "db|b=s" => \$dbname,
+    "tables|t=s" => \$tables,
     "include-first|1" => \$include_first,
     "title|e=s" => \$title
 );
@@ -329,7 +329,7 @@ if ($motionchart) {
     }
     my @dates;
     foreach my $time (sort {$measure_times{$a} <=> $measure_times{$b}}
-				@categories) {
+		      @categories) {
 	my @date = split(/,/, $time);
 	my $datestr = "'" . pop(@date);
 	foreach (reverse @date) {
@@ -339,17 +339,18 @@ if ($motionchart) {
 	push @dates, $datestr;
 	foreach (keys %measure_range) {
 	    push @ {$data{$_}}, 
-		sprintf("%.1f", ($ili{$time}{$_} * 100 /
- 				     ($ili{$time}{$_} +
- 					  $nonili{$time}{$_} + .0)));
+	    sprintf("%.1f", ($ili{$time}{$_} * 100 /
+			     ($ili{$time}{$_} +
+			      $nonili{$time}{$_} + .0)));
 	}
     }
     if (!$include_first) {
-        shift(@dates);
-        foreach (keys %measure_range) {
-	  shift @{$data{$_}};
-        }
+	shift(@dates);
+	foreach (keys %measure_range) {
+	    shift @{$data{$_}};
+	}
     }
+
     print "<html>\n";
     print "  <head>\n";
     print "    <script type=\"text/javascript\" ".
@@ -424,17 +425,36 @@ if ($motionchart) {
     print "  </body>\n";
     print "</html>\n";
 } else {
-    print join(",", @time_vars).",variable,value\n";
+    print "Date";
+    foreach (keys %measure_range) {
+	print ",$outcomes{$measure}{$_},";
+    }
+    print "\n";
+    my $first = 1;
     foreach my $time (sort {$measure_times{$a} <=> $measure_times{$b}}
-				@categories) {
-	foreach (keys %measure_range) {
-	    my $fraction = $ili{$time}{$_} * 100 /
-		($ili{$time}{$_} +
-		     $nonili{$time}{$_} + .0);
-	    if (scalar @time_vars > 0) {
-		print "$time,";
-	    }
-	    print "$outcomes{$measure}{$_},$fraction\n";
+		      @categories) {
+	if ($first == 1 && !$include_first) {
+	    $first = 0;
+	    next;
 	}
+
+	my @date = split(/,/, $time);
+	my $datestr = "'" . pop(@date);
+	foreach (reverse @date) {
+	    $datestr .= "/$_";
+	}
+	$datestr .= "'";
+
+	print "$datestr";
+	foreach (keys %measure_range) {
+	    my $n = $ili{$time}{$_} + $nonili{$time}{$_};
+	    my $fraction =  sprintf("%.1f", ($ili{$time}{$_} * 100 / ($n + .0)));
+	    my $ntilde = $n + 1.96**2;
+	    my $ptilde = ($ili{$time}{$_} + (1.96**2)/2.)/$ntilde;
+#	    my $err = 1.96 * sqrt($data{$_}[$i]/100.*(1-$data{$_}[$i]/100.)/2500);
+	    my $err = sprintf("%.2f", 1.96 * sqrt($ptilde*(1-$ptilde)/$ntilde));
+	    print ",$fraction,$err";
+	}
+	print "\n";
     }
 }
