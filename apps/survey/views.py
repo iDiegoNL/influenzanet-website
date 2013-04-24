@@ -145,7 +145,7 @@ def _get_group_vaccination(request):
     try:
         cursor = connection.cursor()
         #params = { 'user_id':  }
-        query = "SELECT s.global_id from vaccination_surveyuser v left join survey_surveyuser s on v.surveyuser_id=s.id where s.user_id=3" 
+        query = "SELECT s.global_id from vaccination_surveyuser v left join survey_surveyuser s on v.surveyuser_id=s.id where s.user_id= %d" % request.user.id 
         cursor.execute(query)
         results = cursor.fetchall()
         return [r[0] for r in results]
