@@ -1,0 +1,52 @@
+{% extends "survey/base.html" %}
+{% load i18n %}
+
+{% block col1 %}
+<h1>{% trans "People" %}</h1>
+
+{% include "base/messages.html" %}
+
+<p class="alert alert-warning">
+	La saison 2012-2013 de GrippeNet.fr est terminée. Seul le questionnaire de statut vaccinal reste accessible aux participants qui n'étaient pas vacciné (pour confirmer leur absence de vaccination ou mettre à jour leur information). 
+</p>
+
+{%if persons|length == 0 %}
+<p class="alert alert-warning">
+	{%trans "No user is registrer yet in your account, start by adding a user by clicking on the link 'Add a new person'"%}
+</p>
+{%else%}
+<div id="page-help" style="display:none">{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}</div>
+<a class="button button-mini " rel="facebox" href="#page-help" data-facebox-height="450" data-facebox-width="550"><span class="icon icon-help-white">{% trans "Help about this page"%}</span></a>
+{%endif%}
+<form action="" method="POST" id="users_form">{% csrf_token %}
+<table border="0" id="people-table">
+<tr>
+	<th rowspan="2">{% trans "Name" %}</th>
+	<th colspan="2">{% trans "Fill a questionnaire" %}</th>
+</tr>
+<tr>
+	<th>Vaccination<span class="tooltip icon icon-tip" title="Ce questionnaire permet de confirmer le statut vaccinal anti-grippal du participant à l'issue de la saison 2012-2013. Si le lien n'est pas disponible c'est que le participant a été vacciné."></span></th>	
+</tr>	
+{% for person in persons %}
+<tr id="person-{{ person.pk }}" rel="{{person.global_id}}">
+	<td class="person-name">
+		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }} 
+		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-height="360px" title="{%trans "Edit Person"%}"><img src="{{MEDIA_URL}}sw/edit.png" width="16" height="16" class="icon" title="{%trans "Edit Person"%}"/></a>
+		<span id="cohort-{{person.pk}}"></span>
+	</td>
+    <td>
+	{% if person.last_intake %}
+    	{% if person.vaccination %}
+		<a href="{{person.vaccination_url}}" class="icon icon-survey survey-vacc" id="person-{{person.pk}}-vacc">Vaccination anti-Grippale</a>	
+		{% else %}
+		Participant vacciné. Aucune information complémentaire n'est nécessaire.
+		{% endif %}
+	{% else %}
+		Pas de données cette saison<span class="tooltip icon icon-tip" title="Ce participant n'avait pas rempli son questionnaire préliminaire. Aucune information n'est disponible pour celui-ci"></span>
+	{% endif %}
+	</td>	
+</tr>
+{% endfor %}
+</table>
+</form>
+{% endblock %}
