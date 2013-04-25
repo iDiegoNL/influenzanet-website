@@ -1750,7 +1750,7 @@ msgid "Cookie settings"
 msgstr "Cookie instellingen"
 
 msgid "Thanks - your diagnosis:"
-msgstr "Hartelijk dank - uw diagnose:"
+msgstr "Hartelijk dank - uw ingevulde antwoorden komen het meest overeen met:"
 
 msgid ""
 "Please complete the background questionnaire for the participant "
