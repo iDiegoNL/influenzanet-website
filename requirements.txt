@@ -5,7 +5,7 @@ south
 django-sekizai
 django-appmedia
 django-contact-form
-django-haystack
+django-haystack==1.2
 xapian-haystack
 django==1.3.3
 PIL
