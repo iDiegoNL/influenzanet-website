@@ -49,10 +49,16 @@ class EpiworkTokenBackend(ModelBackend):
     supports_object_permissions = False
     supports_anonymous_user = False
 
-    def authenticate(self, key=None):
+    def authenticate(self, login_token=None):
+        """
+        Authenticate
+        use "login_token" name to be different from loginurl module
+        """
+        if login_token is None:
+            return None
         try:
-            auth_notify('authenticate', "check for %s" % key)
-            token = LoginToken.objects.filter(key=key)
+            auth_notify('authenticate', "check for %s" % login_token)
+            token = LoginToken.objects.filter(key=login_token)
             if len(token) == 0:
                 return None
     

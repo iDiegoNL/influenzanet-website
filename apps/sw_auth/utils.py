@@ -14,7 +14,8 @@ TOKEN_LOGIN    = 3
 
 class EpiworkToken:
     """
-    Token management class 
+    Token management class
+    A token is a key allowing a given action, during a validity period 
     """
     def __init__(self, token=None):
         if not token is None:
@@ -117,6 +118,14 @@ def send_activation_email(user, site, renew=True, skip_younger=None):
     send_mail(subject, message, None, [user.email])
     return True
 
+def send_user_email(template, email, data=None):
+    subject = render_to_string('sw_auth/'+ template +'_subject.txt', dictionary=data)
+    # Email subject *must not* contain newlines
+    subject = ''.join(subject.splitlines())
+    message = render_to_string('sw_auth/'+ template +'.txt', dictionary=data)
+    
+    send_mail(subject, message, None, [email])
+    return True
 
 """
 Cipher Config
