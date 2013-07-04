@@ -32,7 +32,9 @@
 #                        an example
 #                        default is "variables"
 #   -1, --include-first: include first week (default is not to include the first week)
+#   -r, --include-first-report: include first report of every user (default is not to include it)
 #   -e, --title: title of the graph
+#   -g, --debug: debug mode
 
 use strict;
 use warnings;
@@ -53,8 +55,10 @@ my $dbname = "flusurvey"; # database name
 my $definition = ""; # ILI definition to use
 my $tables = "pollster";
 my $include_first = 0;
+my $include_first_report = 0;
 my $title = "incidence";
 my $conditions = "";
+my $debug = 0;
 
 # get command line options
 GetOptions(
@@ -67,8 +71,10 @@ GetOptions(
     "db|b=s" => \$dbname,
     "tables|t=s" => \$tables,
     "include-first|1" => \$include_first,
+    "include-first-report|r" => \$include_first_report,
     "title|e=s" => \$title,
-    "conditions|n=s" => \$conditions
+    "conditions|n=s" => \$conditions,
+    "debug|g" => \$debug
 );
 
 # extract control and measurement variables
@@ -83,6 +89,7 @@ my $selectstring = "SELECT count(ili) AS ili, ".
     "count(non_ili) AS non_ili";
 my $fromstring = "FROM (SELECT NULLIF(S.status = 'ILI' AND (W.\"Q2\" IS NULL OR W.\"Q2\" != 0), false) AS ili, ".
     "NULLIF(NOT (S.status = 'ILI') OR NOT (W.\"Q2\" IS NULL OR W.\"Q2\" != 0), false) AS non_ili";
+my $conditionstring = "";
 
 my %sections;
 my $section = "";
@@ -163,6 +170,12 @@ foreach my $section ((@time_vars,@control_vars,$measure)) {
 		    " THEN '$splits[$nsplits]+'";
 		$outcomes{$section}{"$splits[$nsplits]+"} =
 		    "$splits[$nsplits]+";
+                if ($conditionstring eq "") {
+                    $conditionstring .= "WHERE ";
+                } else {
+                    $conditionstring .= " AND ";
+                }
+                $conditionstring .= "$variable_names[$index] >= $splits[0]";
 	    } else {
 		my @line = split(/,/);
 		my $logical = $line[0];
@@ -222,14 +235,21 @@ $fromstring .= " WHERE I.\"Q10\"<2".
     " AND S.$tables\_results_weekly_id = W.id".
     " AND (W.\"Q2\" IS NULL OR W.\"Q2\" != 0)".
     " AND W.global_id = I.global_id";
+if (!$include_first_report) {
+    $fromstring .= " AND W.id NOT IN (SELECT DISTINCT ON (global_id) id FROM $tables\_results_weekly ORDER BY global_id, timestamp)"
+}
 if ($conditions ne "") {
     $fromstring .= " AND ".$conditions;
 }
 $fromstring .= ") AS statuses";
 
-my $sqlstring = "$selectstring $fromstring".
+my $sqlstring = "$selectstring $fromstring  $conditionstring".
     " GROUP BY $timestring,$controlstring,$measure".
     " ORDER BY $timestring,$controlstring,$measure";
+
+if ($debug) {
+  print STDERR "$sqlstring\n";
+}
 
 # connect to database
 my $dbh = DBI->connect ( "dbi:Pg:dbname=$dbname", "", "");
@@ -336,7 +356,7 @@ if ($motionchart) {
     }
     my @dates;
     foreach my $time (sort {$measure_times{$a} <=> $measure_times{$b}}
-		      @categories) {
+				@categories) {
 	my @date = split(/,/, $time);
 	my $datestr = "'" . pop(@date);
 	foreach (reverse @date) {
@@ -346,18 +366,17 @@ if ($motionchart) {
 	push @dates, $datestr;
 	foreach (keys %measure_range) {
 	    push @ {$data{$_}}, 
-	    sprintf("%.1f", ($ili{$time}{$_} * 100 /
-			     ($ili{$time}{$_} +
-			      $nonili{$time}{$_} + .0)));
+		sprintf("%.1f", ($ili{$time}{$_} * 100 /
+ 				     ($ili{$time}{$_} +
+ 					  $nonili{$time}{$_} + .0)));
 	}
     }
     if (!$include_first) {
-	shift(@dates);
-	foreach (keys %measure_range) {
-	    shift @{$data{$_}};
-	}
+        shift(@dates);
+        foreach (keys %measure_range) {
+	  shift @{$data{$_}};
+        }
     }
-
     print "<html>\n";
     print "  <head>\n";
     print "    <script type=\"text/javascript\" ".
@@ -432,36 +451,17 @@ if ($motionchart) {
     print "  </body>\n";
     print "</html>\n";
 } else {
-    print "Date";
-    foreach (keys %measure_range) {
-	print ",$outcomes{$measure}{$_},";
-    }
-    print "\n";
-    my $first = 1;
+    print join(",", @time_vars).",variable,value,ili,total\n";
     foreach my $time (sort {$measure_times{$a} <=> $measure_times{$b}}
-		      @categories) {
-	if ($first == 1 && !$include_first) {
-	    $first = 0;
-	    next;
-	}
-
-	my @date = split(/,/, $time);
-	my $datestr = "'" . pop(@date);
-	foreach (reverse @date) {
-	    $datestr .= "/$_";
-	}
-	$datestr .= "'";
-
-	print "$datestr";
+				@categories) {
 	foreach (keys %measure_range) {
-	    my $n = $ili{$time}{$_} + $nonili{$time}{$_};
-	    my $fraction =  sprintf("%.1f", ($ili{$time}{$_} * 100 / ($n + .0)));
-	    my $ntilde = $n + 1.96**2;
-	    my $ptilde = ($ili{$time}{$_} + (1.96**2)/2.)/$ntilde;
-#	    my $err = 1.96 * sqrt($data{$_}[$i]/100.*(1-$data{$_}[$i]/100.)/2500);
-	    my $err = sprintf("%.2f", 1.96 * sqrt($ptilde*(1-$ptilde)/$ntilde));
-	    print ",$fraction,$err";
+            my $ili = $ili{$time}{$_};
+            my $total = $ili{$time}{$_} + $nonili{$time}{$_};
+	    my $fraction = $ili / ($total + .0);
+	    if (scalar @time_vars > 0) {
+		print "$time,";
+	    }
+	    print "$outcomes{$measure}{$_},$fraction,$ili,$total\n";
 	}
-	print "\n";
     }
 }
