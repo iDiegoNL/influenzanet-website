@@ -11,14 +11,16 @@
 
 {%if persons|length == 0 %}
 <p class="alert alert-warning">
-	{%trans "No user is registrer yet in your account, start by adding a user by clicking on the link 'Add a new person'"%}
+	<span class="icon icon-warning">&nbsp;</span>{%trans "No user is registrer yet in your account, start by adding a user by clicking on the link 'Add a new person'"%}
 </p>
 {%else%}
 <div id="page-help" style="display:none">{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}</div>
 <a class="button button-mini " rel="facebox" href="#page-help" data-facebox-height="450" data-facebox-width="550"><span class="icon icon-help-white">{% trans "Help about this page"%}</span></a>
 {%endif%}
-{%for p in persons%}{%if not p.last_intake%}<p class="alert alert-warning">{% blocktrans with name=p.name %}Please fill the background intake for the user {{name}} first{%endblocktrans%}</p>{%endif%}
+{%if not wait_launch%} {# Do not check in wait launch context #}
+	{%for p in persons%}{%if not p.last_intake%}<p class="alert alert-warning"><span class="icon icon-warning">&nbsp;</span>{% blocktrans with name=p.name %}Please fill the background intake for the user {{name}} first{%endblocktrans%}</p>{%endif%}
 {%endfor%}
+{%endif%}
 <form action="" method="POST" id="users_form">{% csrf_token %}
 <table border="0" id="people-table">
 <tr>
@@ -36,21 +38,27 @@
 		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-height="360px" title="{%trans "Edit Person"%}"><img src="{{MEDIA_URL}}sw/edit.png" width="16" height="16" class="icon" title="{%trans "Edit Person"%}"/></a>
 		<span id="cohort-{{person.pk}}"></span>
 	</td>
-    <td><a href="{{ person.get_profile_url }}" class="icon icon-survey survey-intake" id="person-{{person.pk}}-intake">{% trans "Background" %}</a>
-	{% if person.last_intake %}
-	<span class="last" title="{%trans "last survey date"%}">{{ person.last_intake|date:"d M Y H:i"}}</span>
+    {%if wait_launch %}
+	<td colspan="2">
+		{% trans "The project is not started yet for this season" %}
 	{%else%}
-	<span class="last">{%trans "no previous survey"%}</span>
-	{%endif%}
-	</td>
-    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey survey-weekly" id="person-{{person.pk}}-weekly">{% trans "Symptoms" %}</a>
-	{% if person.health_history|length > 0 %}
-	{% with f=person.health_history|first %} 
-	<span class="last" title="{%trans "last survey date"%}">{{ f.timestamp|date:"d M Y H:i"}}</span>
-	{%endwith%}
-	{%else%}
-	<span class="last">{%trans "no previous survey"%}</span>
-	{%endif%}
+	<td>
+		<a href="{{ person.get_profile_url }}" class="icon icon-survey survey-intake" id="person-{{person.pk}}-intake">{% trans "Background" %}</a>
+		{% if person.last_intake %}
+		<span class="last" title="{%trans "last survey date"%}">{{ person.last_intake|date:"d M Y H:i"}}</span>
+		{%else%}
+		<span class="last">{%trans "no previous survey"%}</span>
+		{%endif%}
+		</td>
+	    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey survey-weekly" id="person-{{person.pk}}-weekly">{% trans "Symptoms" %}</a>
+		{% if person.health_history|length > 0 %}
+		{% with f=person.health_history|first %} 
+		<span class="last" title="{%trans "last survey date"%}">{{ f.timestamp|date:"d M Y H:i"}}</span>
+		{%endwith%}
+		{%else%}
+		<span class="last">{%trans "no previous survey"%}</span>
+		{%endif%}
+	{%endif%}	
 	</td>
 </tr>
 {% endfor %}
@@ -58,7 +66,11 @@
 	<td colspan="5" nowrap="nowrap" style="font-size:.9em">
 	<input type="hidden" name="action" value="" id="input_action"/>
 	{% trans "For the checked users" %} :
-    <button type="button" onclick="submit_users('healthy')" class="button">{% trans "Mark as healthy" %}</button><span class="tooltip icon icon-tip" title="{%trans "mark as healthy help text"%}">&nbsp;</span>
+    {%if wait_launch %}
+		&nbsp;
+	{%else%}
+	<button type="button" onclick="submit_users('healthy')" class="button">{% trans "Mark as healthy" %}</button><span class="tooltip icon icon-tip" title="{%trans "mark as healthy help text"%}">&nbsp;</span>
+	{%endif%}
 	<button type="button" onclick="submit_users('delete')" class="button">{% trans "Delete member(s)" %}</button>
 	</td>
 </tr>
@@ -66,7 +78,7 @@
 	<td colspan="5" class="people-actions">
 	<ul >
 		<li><a href="{% url survey_people_add %}" class="action-add-people">{% trans "Add new person" %}</a></li>
-		<li><a href="{% url cohort_form %}" class="action-cohort">{% trans "Register a participant in a Cohort" %}</a> <span class="tooltip icon icon-tip" title="{%trans "cohort subscription help text"%}"></li>
+		<li><a href="{% url cohort_form %}" class="action-cohort"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span class="tooltip icon icon-tip" title="{%trans "cohort subscription help text"%}"></li>
 	</ul>
 	</td>
 </tr>
@@ -96,7 +108,6 @@
 StoryTable.media = '{{MEDIA_URL}}';
 
 $(function() {
-
 	
 	var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
 

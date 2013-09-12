@@ -26,6 +26,19 @@ import apps.pollster as pollster
 survey_form_helper = None
 profile_form_helper = None
 
+WAIT_LAUNCH = getattr(settings,'SURVEY_WAIT_LAUNCH', False)
+
+# Check is request need to be restricted in case of WAIT_LAUNCH context
+def is_wait_launch(request):
+    if WAIT_LAUNCH:
+        return True
+    return False
+
+def get_wait_launch_context(request):
+    if is_wait_launch(request):
+        return {'date':  getattr(settings,'SWAUTH_LAUNCH_DATE', False) }
+    return None
+
 def get_active_survey_user(request):
     gid = request.GET.get('gid', None)
     if gid is None:
@@ -205,7 +218,8 @@ def group_management(request):
         #vacc = _get_person_is_vaccinated(person.global_id)
         #person.vaccination = vacc is not None and not vacc
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
-    return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
+    wait_launch = get_wait_launch_context(request) # is request restricted by wait_launch context
+    return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch},
                               context_instance=RequestContext(request))
 
 
@@ -226,7 +240,7 @@ def select_user(request, template='survey/select_user.html'):
 
     next = request.GET.get('next', None)
     if next is None:
-        next = reverse(index)
+        next = reverse('survey_index')
 
     users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     total = len(users)
@@ -250,6 +264,8 @@ def select_user(request, template='survey/select_user.html'):
 
 @login_required
 def index(request):
+    if is_wait_launch(request):
+        return wait_launch(request)
     # this is the index for a actual survey-taking
     # it falls back to 'group management' if no 'gid' is provided.
     # i.e. it expects gid to be part of the request!
@@ -259,15 +275,15 @@ def index(request):
     except ValueError:
         raise Http404()
     if survey_user is None:
-        return HttpResponseRedirect(reverse(group_management))
+        return HttpResponseRedirect(reverse('group_management'))
 
     # Check if the user has filled user profile
     profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
     if profile is None:
         messages.add_message(request, messages.INFO, 
             _(u'Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once.'))
-        url = reverse('apps.survey.views.profile_index')
-        url_next = reverse('apps.survey.views.index')
+        url = reverse('survey_profile')
+        url_next = reverse('survey_index')
         url = '%s?gid=%s&next=%s' % (url, survey_user.global_id, url_next)
         return HttpResponseRedirect(url)
 
@@ -278,7 +294,7 @@ def index(request):
 
     next = None
     if 'next' not in request.GET:
-        next = reverse(group_management) # is this necessary? Or would it be the default?
+        next = reverse('group_management') # is this necessary? Or would it be the default?
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
@@ -286,13 +302,15 @@ def index(request):
 def profile_index(request):
     # this renders an 'intake' survey
     # it expects gid to be part of the request.
-
+    if is_wait_launch(request):
+        return wait_launch(request)
+    
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
         raise Http404()
     if survey_user is None:
-        url = '%s?next=%s' % (reverse(select_user), reverse(profile_index))
+        url = '%s?next=%s' % (reverse('survey_select_user'), reverse('survey_profile'))
         return HttpResponseRedirect(url)
 
     try:
@@ -326,10 +344,13 @@ def main_index(request):
         )
 
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
-    return HttpResponseRedirect(reverse(index) + '?gid=' + gid)
+    return HttpResponseRedirect(reverse('survey_index') + '?gid=' + gid)
 
 @login_required
 def run_index(request, shortname):
+    if is_wait_launch(request):
+        return wait_launch(request)
+
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
@@ -342,13 +363,13 @@ def run_index(request, shortname):
             url = reverse(index)
         return HttpResponseRedirect(url)
     if survey_user is None:
-        url = '%s?next=%s' % (reverse(select_user), reverse(run_index,kwargs={'shortname':shortname}))
+        url = '%s?next=%s' % (reverse(select_user), reverse(run_index, kwargs={'shortname':shortname}))
         return HttpResponseRedirect(url)
 
     try:
         survey = pollster.models.Survey.get_by_shortname(shortname)
     except:
-        raise Exception("The survey application requires a published survey with the shortname 'intake'")
+        raise Exception("The survey application requires a published survey with the shortname '%s'" % shortname)
 
     next = None
     if 'next' not in request.GET:
