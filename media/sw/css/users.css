@@ -54,13 +54,9 @@
 /**
  * Logged user box
  */
-#user-box {
-	padding: .5em;
-	border: 1px solid #EEE;
-	border-radius: .4em;
-	-webkit-border-radius: .4em;
-	-moz-border-radius: .4em;
-}
+
+
+#user-box {}
 
 #user-buttons > p {
  text-align: center;
@@ -89,19 +85,6 @@
 	display: block;
 	font-size: .8em;
 }
-
-#user-box{}
-
-#user-box ul {
-	margin: 0; padding: 0;	
-}
-
-#user-box li {
-	list-style-type: none;
-	font-size: .7em;
-	margin: .8em .2em .5em .4em;
-	line-height: 1.4em;
-} 
 
 .icon {
  padding-left: 20px;

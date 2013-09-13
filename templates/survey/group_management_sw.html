@@ -1,9 +1,12 @@
 {% extends "survey/base.html" %}
 {% load i18n %}
 
+{%if not wait_launch%}
 {%block add_js%}
 <script src="{{ MEDIA_URL }}/sw/story.js" type="text/javascript"></script>
 {% endblock %}
+{% endif %}
+
 {% block col1 %}
 <h1>{% trans "People" %}</h1>
 
@@ -77,32 +80,28 @@
 <tr>
 	<td colspan="5" class="people-actions">
 	<ul >
-		<li><a href="{% url survey_people_add %}" class="action-add-people">{% trans "Add new person" %}</a></li>
+		<li><a href="{% url survey_people_add %}" class="action-add-people" data-facebox-height="360px" data-facebox-width="460px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
 		<li><a href="{% url cohort_form %}" class="action-cohort"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span class="tooltip icon icon-tip" title="{%trans "cohort subscription help text"%}"></li>
 	</ul>
 	</td>
 </tr>
 </table>
 </form>
-{% comment %}
-<div id="history">
-<dl>
-	{% for person in persons %}
-	<dt>{{person.name}}</dt>
-	<dd>
-	<ul>
-	{% for health_line in person.health_history %}
-      <li>{{ health_line.timestamp|date:"d/m" }}<img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" /></li>
-    {% endfor %}
-	</ul>
-	</dd>
-    {% endfor %}
-</dl>            
-</div>	
-{%endcomment%}
+
+{%if not wait_launch %}
+
 <h2>{%trans "Household diagnosis history" %}</h2>
 <div id="story"></div>
 <p class="alert alert-info">{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+
+{%else%}
+
+<div class="alert alert-warning">
+	<p>{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin." %}</p>
+	<h4>{%trans "The project will be launched from the" %} <b>{{ wait_launch.date|date:"DATE_FORMAT" }}</b></h4>
+</div>
+
+{% endif %}
 <script type="text/javascript">
 
 StoryTable.media = '{{MEDIA_URL}}';
@@ -111,6 +110,7 @@ $(function() {
 	
 	var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
 
+{%if not wait_launch %}
 var history = [	
  {% for h in history %}
  { date: new Date({{h.timestamp|date:"Y"}},{{h.timestamp|date:"m"}}-1,{{h.timestamp|date:"d"}}), diag:'{{ h.diag }}','status':'{{h.status}}', user: '{{h.survey_user.name }}' }{%if not forloop.last%},{%endif%}     
@@ -118,6 +118,7 @@ var history = [
 ];	
 	var story = new StoryTable(history, users);
 	story.render('story');
+{% endif %}	
 	
 	$.getJSON('/cohort/subscriptions', function(data) {
 		var subscribers = data.subscribers;
