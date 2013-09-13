@@ -1,0 +1,100 @@
+[country]
+db=I
+
+[agegroup]
+ranges=0,20,45,65
+select=extract(year from age(to_timestamp(I."Q2",'YYYY-MM')))
+
+[agegroup2]
+ranges=0,10,20,30,40,50,60,70
+select=extract(year from age(to_timestamp(I."Q2",'YYYY-MM')))
+
+[agegroup3]
+ranges=0,17,26,36,46,65
+select=extract(year from age(to_timestamp(I."Q2",'YYYY-MM')))
+
+[risk]
+'t',0,'not in a risk group'
+'f',1,'in a risk group'
+select=Q11_0
+db=I
+
+[children]
+'t'|'t',1,'living with children'
+else,0,'not living with children'
+select=Q6_0,Q6_1
+db=I
+
+[vaccinated]
+0,1,'vaccinated'
+1,0,'unvaccinated'
+select=Q10
+db=I
+
+[week]
+select=to_char(W.timestamp, 'IW')
+
+[year]
+select=to_char(W.timestamp, 'IYYY')
+
+[transport]
+0,1,'not using public transport'
+else,0,'using public transport'
+select=Q7b
+db=I
+
+[transport2]
+0,1,'not using public transport'
+3|4,0,'using public transport 1.5hrs+'
+select=Q7b
+db=I
+
+[employment]
+0|1|2,0,'employed'
+3,1,'in education'
+else,2,'not employed'
+select=Q4
+db=I
+
+[occupation]
+0|1,0,'office work'
+2,1,'service work'
+3|4,2,'manual work'
+select=Q4c
+db=I
+
+[mass_contact]
+'t',0,'no contact with large groups of people'
+else,1,'contact with large groups of people'
+select=Q5_4
+db=I
+
+[mass_contact_children]
+'t',1,'contact with large groups of children'
+else,0,'no contact with large groups of children'
+select=Q5_0
+db=I
+
+[kids_daycare]
+0,0,'no children in daycare'
+else,1,'children in daycare'
+select=Q6b
+db=I
+
+[smoking]
+0,0,'non-smoker'
+1|2|3,1,'smoker'
+select=Q13
+db=I
+
+[london]
+'E1'|'E2'|'E3'|'E4'|'E5'|'E6'|'E7'|'E8'|'E9'|'E10'|'E11'|'E12'|'E13'|'E14'|'E15'|'E16'|'E17'|'E18'|'EC1'|'EC2'|'EC3'|'EC4'|'N1'|'N2'|'N3'|'N4'|'N5'|'N6'|'N7'|'N8'|'N9'|'N10'|'N11'|'N12'|'N13'|'N14'|'N15'|'N16'|'N17'|'N18'|'N19'|'N20'|'N21'|'N22'|'NW1'|'NW2'|'NW3'|'NW4'|'NW5'|'NW6'|'NW7'|'NW8'|'NW9'|'NW10'|'NW11'|'SE1'|'SE2'|'SE3'|'SE4'|'SE5'|'SE6'|'SE7'|'SE8'|'SE9'|'SE10'|'SE11'|'SE12'|'SE13'|'SE14'|'SE15'|'SE16'|'SE17'|'SE18'|'SE19'|'SE20'|'SE21'|'SE22'|'SE23'|'SE24'|'SE25'|'SE26'|'SE27'|'SE28'|'SW1'|'SW2'|'SW3'|'SW4'|'SW5'|'SW6'|'SW7'|'SW8'|'SW9'|'SW10'|'SW11'|'SW12'|'SW13'|'SW14'|'SW15'|'SW16'|'SW17'|'SW18'|'SW19'|'SW20'|'W1'|'W2'|'W3'|'W4'|'W5'|'W6'|'W7'|'W8'|'W9'|'W10'|'W11'|'W12'|'W13'|'W14'|'WC1'|'WC2',0,'living in London'
+else,1,'not living in London'
+select=upper(I."Q3")
+db=I
+
+[gender]
+0,0,'male'
+1,1,'female'
+select=Q0
+db=I

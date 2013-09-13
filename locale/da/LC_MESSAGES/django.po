@@ -15,24 +15,19 @@ msgstr ""
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
 msgid "Username"
-msgstr "Gebruiker"
+msgstr "Brugernavn"
 
 #: apps/accounts/forms.py:17
 msgid "This value must contain only letters, numbers and underscores."
-msgstr ""
-"Vul een geldige waarde in bestaande uit letters, cijfers of underscores"
+msgstr "Må kun indeholde bogstaver, tal og underscore streg"
 
 #: apps/accounts/forms.py:21 apps/accounts/forms.py:26
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
-msgstr ""
-"Gebruik maximaal 30 tekens. De volgende karakters zijn toegestaan: letters, "
-"cijfers, @ . + - en _"
+msgstr "Max. 30 tegn, og kun bogstaver, tal, @ . + - og _ kan anvendes"
 
 #: apps/accounts/forms.py:22 apps/accounts/forms.py:27
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
-msgstr ""
-"Hier kunt u alleen letters, cijfers en de volgende karakters invullen: @ . + "
-"- en _"
+msgstr "Kun bogstaver, tal og @ . + - og _ kan anvendes"
 
 #: apps/accounts/forms.py:31 apps/ew_contact_form/forms.py:13
 msgid "Email"
@@ -40,82 +35,80 @@ msgstr "E-mail"
 
 #: apps/accounts/forms.py:32 apps/reminder/models.py:36
 msgid "Send reminders"
-msgstr "Verstuur herinneringen"
+msgstr "Send påmindelse"
 
 #: apps/accounts/forms.py:32
 msgid ""
 "Check this box if you wish to receive weekly reminders throughout the flu "
 "season"
-msgstr ""
-"Vink dit vakje aan indien u wekelijkse herinneringen per email wenst te "
-"ontvangen gedurende het griepseizoen"
+msgstr "Ja tak, jeg ønsker ugentlige påmindelser "
 
 #: apps/accounts/forms.py:33
 msgid "Language"
-msgstr "Taal"
+msgstr "Sprog"
 
 #: apps/accounts/forms.py:53
 msgid "This email is already in use"
-msgstr "Dit email adres is al in gebruik"
+msgstr "Denne e-mailadresse er allerede i brug"
 
 #: apps/accounts/forms.py:79
 msgid "A user with this username already exists"
-msgstr "Deze gebruikersnaam bestaat al"
+msgstr "Dette brugernavn er allerede i brug"
 
 #: apps/captcha/fields.py:54
 msgid "Play captcha as audio file"
-msgstr "Speel chaptcha af als audio-file"
+msgstr "Afspil sikkerhedstest som audio-fil"
 
 #: apps/captcha/fields.py:72 apps/captcha/fields.py:97
 #: apps/captcha/tests/__init__.py:70
 msgid "Invalid CAPTCHA"
-msgstr "Ongeldige captcha"
+msgstr "Ugyldig sikkerhedstest"
 
 #: apps/captcha/tests/__init__.py:97
 msgid "This field is required."
-msgstr "Dit is een verplicht veld"
+msgstr "Skal udfyldes"
 
 #: apps/contest/cms_plugins.py:14
 msgid "Contest"
-msgstr "Prijsvraag"
+msgstr "Konkurrence"
 
 #: apps/ew_contact_form/forms.py:12 apps/survey/forms/__init__.py:16
 msgid "Name"
-msgstr "Naam"
+msgstr "Navn"
 
 #: apps/ew_contact_form/forms.py:14 apps/tellafriend/forms.py:16
 msgid "Message"
-msgstr "Bericht"
+msgstr "Besked"
 
 #: apps/journal/admin.py:38
 #, python-format
 msgid "%(count)d newsitem was published"
 msgid_plural "%(count)d newsitems where published"
-msgstr[0] "%(count)d nieuwsbericht is gepubliceerd"
+msgstr[0] "%(count)d nyheder er offentliggjort"
 msgstr[1] "%(count)d nieuwsberichten zijn gepubliceerd"
 
 #: apps/journal/admin.py:41
 msgid "Publish selected news"
-msgstr "Publiceer het geselecteerde nieuwsbericht"
+msgstr "Offentliggør valgte nyhed"
 
 #: apps/journal/admin.py:48
 #, python-format
 msgid "%(count)d newsitem was unpublished"
 msgid_plural "%(count)d newsitems where unpublished"
-msgstr[0] "%(count)d nieuwsbericht is niet langer gepubliceerd"
+msgstr[0] "%(count)d nyheder er ikke offentliggjort"
 msgstr[1] "%(count)d nieuwsberichten zijn niet langer gepubliceerd"
 
 #: apps/journal/admin.py:51
 msgid "Unpublish selected news"
-msgstr "Zet het geselecteerde nieuwsbericht terug op ongepubliceerd"
+msgstr "Fortryd offentligørelse af valgte nyhed"
 
 #: apps/journal/cms_app.py:7
 msgid "Journal"
-msgstr "Nieuws"
+msgstr "Nyhed"
 
 #: apps/journal/cms_plugins.py:15
 msgid "Journal entries"
-msgstr "Laatste nieuws"
+msgstr "Seneste nyheder"
 
 #: apps/journal/models.py:11 apps/journal/models.py:35
 msgid "Slug"
@@ -123,8 +116,7 @@ msgstr "Slug"
 
 #: apps/journal/models.py:12
 msgid "A slug is a short name which uniquely identifies the category"
-msgstr ""
-"Een slug is een korte, unieke naam om een categorie mee te identificeren."
+msgstr "En slug er et kort idenfikationsnavn for en bestemt kategori"
 
 #: apps/journal/models.py:15 apps/journal/models.py:39
 #: apps/journal/models.py:82
@@ -133,92 +125,91 @@ msgstr "Titel"
 
 #: apps/journal/models.py:19
 msgid "Category"
-msgstr "Categorie"
+msgstr "Kategori"
 
 #: apps/journal/models.py:20
 msgid "Categories"
-msgstr "Categorieën"
+msgstr "Kategorier"
 
 #: apps/journal/models.py:36
 msgid ""
 "A slug is a short name which uniquely identifies the news item for this day"
-msgstr ""
-"Een slug is een korte, unieke naam om een nieuwsbericht mee te identificeren."
+msgstr "En slug er et kort unikt identifikationsnavn for dagens nyhed"
 
 #: apps/journal/models.py:40
 msgid "Excerpt"
-msgstr "Uittreksel"
+msgstr "Udtræk"
 
 #: apps/journal/models.py:41
 msgid "Content"
-msgstr "Inhoud"
+msgstr "Indhold"
 
 #: apps/journal/models.py:44
 msgid "Image"
-msgstr "Afbeelding"
+msgstr "Billede"
 
 #: apps/journal/models.py:45
 msgid "Alignment"
-msgstr "Uitlijning"
+msgstr "Tilpasning"
 
 #: apps/journal/models.py:45
 msgid "Alignment of the image"
-msgstr "Afbeelding uitlijnen"
+msgstr "Billedtilpasning"
 
 #: apps/journal/models.py:45
 msgid "Left"
-msgstr "Links"
+msgstr "Venstre"
 
 #: apps/journal/models.py:45
 msgid "Right"
-msgstr "Rechts"
+msgstr "Højre"
 
 #: apps/journal/models.py:47
 msgid "Published"
-msgstr "Gepubliceerd"
+msgstr "Publiceret"
 
 #: apps/journal/models.py:48
 msgid "Publication date"
-msgstr "Publicatie datum"
+msgstr "Publikations dato"
 
 #: apps/journal/models.py:56
 msgid "Entry"
-msgstr "Item"
+msgstr "Post"
 
 #: apps/journal/models.py:57
 msgid "Entries"
-msgstr "Items"
+msgstr "Poster"
 
 #: apps/journal/models.py:83
 msgid "Number of entries to show"
-msgstr "Aantal items dat getoond wordt"
+msgstr "Antal poster"
 
 #: apps/journal/models.py:84
 msgid "Limits the number of entries that will be displayed"
-msgstr "Beperkt het aantal items dat getoond wordt"
+msgstr "Begrænser antal viste poster"
 
 #: apps/journal/models.py:85
 msgid "Leave this field blank to match all categories"
-msgstr "Laat dit veld leeg om alle categoriën te tonen"
+msgstr "Udfyld ikke hvis alle emner skal vises"
 
 #: apps/partnersites/cms_plugins.py:10
 msgid "External link"
-msgstr "Externe link"
+msgstr "Eksternt link"
 
 #: apps/partnersites/forms.py:9
 msgid "Light color"
-msgstr "Lichte kleur"
+msgstr "Lys farve"
 
 #: apps/partnersites/forms.py:9
 msgid ""
 "Hexidecimal value w/o preceding '#'; The dark color is calculated from this."
 msgstr ""
-"Hexidecimale waarde zonder #; de donkere kleur wordt automatisch berekend."
+"Anvend hexidecimal værdi og foranstillet #; de mørkere farver genereres "
+"automatisk"
 
 #: apps/partnersites/forms.py:9
 msgid "Use a hexidecimal value (length: 6) without the preceding #"
-msgstr ""
-"Gebruik een hexidecimale waarde (6 karakters) zonder het voorafgaande #"
+msgstr "Anvend hexidecimal værdi (6 karakters) uden foranstillet #"
 
 #: apps/partnersites/models.py:8
 msgid "Logo"
@@ -226,76 +217,71 @@ msgstr "Logo"
 
 #: apps/partnersites/models.py:8
 msgid "Preferred height: 70px, maximum width: 756px"
-msgstr "Voorkeurshoogte: 70px, maximale breedte 756px"
+msgstr "Foretrukken højde: 70px, maximal bredde 756px"
 
 #: apps/partnersites/models.py:10
 msgid "Footer"
-msgstr "Voetnoot"
+msgstr "Fodnote"
 
 #: apps/partnersites/models.py:10
 msgid "The footer will be displayed at the bottom of each page"
-msgstr "De voetnoot is zichtbaar aan de onderkant van iedere pagina"
+msgstr "Fodnote vises nederst på siden"
 
 #: apps/partnersites/models.py:12
 msgid "Show cookie warning"
-msgstr "Laat cookie waarschuwingen zien"
+msgstr "Vis cookie advarsel"
 
 #: apps/partnersites/models.py:20 apps/partnersites/models.py:23
 #: apps/partnersites/models.py:24
 msgid "Site settings"
-msgstr "Website instellingen"
+msgstr "Webside indstilling"
 
 #: apps/pollster/cms_plugins.py:9
 msgid "Survey Chart"
-msgstr "Griepkaart"
+msgstr "Influenza kort"
 
 #: apps/pollster/fields.py:34
 msgid "Enter a valid year and month."
-msgstr "Voer een geldig jaartal en een geldige maand in"
+msgstr "Indsæt gyldigt årstal og måned"
 
 #: apps/pollster/fields.py:63
-#, fuzzy
 msgid "Enter a valid date."
-msgstr "Voer een geldige postcode in"
+msgstr "Indsæt en gyldig dato"
 
 #: apps/pollster/fields.py:92
 msgid "Enter a valid postal code."
-msgstr "Voer een geldige postcode in"
+msgstr "Indsæt gyldigt postnummer"
 
 #: apps/pollster/forms.py:17
 msgid "Enter a valid value consisting of letters, numbers or underscores"
-msgstr ""
-"Vul een geldige waarde in bestaande uit letters, cijfers of underscores"
+msgstr "Indsæt gyldig værdi, kun bostaver, tal og understregning"
 
 #: apps/pollster/db/models/fields.py:10
 msgid "Year and month (in YYYY-MM format)"
-msgstr "Geboortejaar en -maand (jjjj-mm)"
+msgstr "År og måned (ÅÅÅÅ-MM format)"
 
 #: apps/pollster/db/models/fields.py:25
-#, fuzzy
 msgid "Date (in YYYY-MM-DD format)"
-msgstr "Geboortejaar en -maand (jjjj-mm)"
+msgstr "Fødselsdato (åååå-mm-dd)"
 
 #: apps/pollster/db/models/fields.py:33
 msgid "Postal code"
-msgstr "Postcode"
+msgstr "Postnummer"
 
 #: apps/reminder/forms.py:17
 msgid ""
 "If 'send_reminders' is checked the other fields pertaining to reminders are "
 "required"
 msgstr ""
-"Als 'verstuur herinneringen' is aangevinkt moeten ook de andere velden die "
-"behoren bij herinneringen worden ingevuld"
+"Hvis 'send påmindelse' er valgt kræves alle felter vedrørende påmindelse"
 
 #: apps/reminder/forms.py:31
 msgid "If no dates are shown here, check your site settings"
-msgstr ""
-"Als er geen data zichtbaar zijn, controleer dan de website instellingen"
+msgstr "Hvis dato ikke vises, kontroller indstillinger for webstedet "
 
 #: apps/reminder/models.py:36
 msgid "Check this box to send reminders"
-msgstr "Vink dit hokje aan om herinneringen te versturen"
+msgstr "Afkryds for at sende påmindelse"
 
 #: apps/reminder/models.py:37
 msgid "Interval"
@@ -303,59 +289,56 @@ msgstr "Interval"
 
 #: apps/reminder/models.py:37
 msgid "Weekly"
-msgstr "Wekelijks"
+msgstr "Ugentlig"
 
 #: apps/reminder/models.py:37
 msgid "Bi-weekly"
-msgstr "Om de week"
+msgstr "To gange ugentlig"
 
 #: apps/reminder/models.py:37
 msgid "Don't send reminders at a fixed interval"
-msgstr "Stuur mij geen wekelijkse herinneringen"
+msgstr "Ingen påmindelser med fast interval"
 
 #: apps/reminder/models.py:38
 msgid "Begin date"
-msgstr "Begin datum"
+msgstr "Start dato"
 
 #: apps/reminder/models.py:44
 msgid "Reminder settings"
-msgstr "Instellingen voor herinneringen"
+msgstr "Indstillinger for påmindelser"
 
 #: apps/reminder/models.py:52
 msgid "Is default reminder"
-msgstr "Is standaard herrinering"
+msgstr "Er standard påmindelse"
 
 #: apps/reminder/models.py:52
 msgid ""
 "If this option is checked this template is the standard template for "
 "reminder emails."
 msgstr ""
-"Vink dit hokje aan om de opmaak van deze herinnering in te stellen als "
-"standaard opmaak voor de herinnerings e-mail."
+"Hvis denne mulighed er valgt bruges denne skabelon til mail påmindelser"
 
 #: apps/reminder/models.py:53
 msgid "Is default newsitem"
-msgstr "Is standaard nieuwsbericht"
+msgstr "Er standard nyhed"
 
 #: apps/reminder/models.py:53
 msgid ""
 "If this option is checked this template is the standard template for new "
 "news items."
-msgstr ""
-"Vink dit hokje aan om de opmaak van dit nieuwsbericht in te stellen als "
-"standaard opmaak voor nieuwsberichten."
+msgstr "Hvis denne mulighed er valgt bruges denne skabelon til nyheder"
 
 #: apps/reminder/models.py:54 apps/reminder/models.py:68
 msgid "Sender email"
-msgstr "E-mail adres van de verzender"
+msgstr "Afsender E-mail"
 
 #: apps/reminder/models.py:55 apps/reminder/models.py:69
 msgid "Sender name"
-msgstr "Naam van de verzender"
+msgstr "Afsender navn"
 
 #: apps/reminder/models.py:66
 msgid "Date"
-msgstr "Datum"
+msgstr "Dato"
 
 #: apps/reminder/models.py:127
 #, python-format
@@ -378,26 +361,25 @@ msgid "%(current)s (%(weeks)s weeks ago)"
 msgstr ""
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:4
-#, fuzzy
 msgid "Logged in"
-msgstr "Ingelogd als"
+msgstr "Logget på som "
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:7
 msgid "You are logged in"
-msgstr "U bent ingelogd"
+msgstr "Du er logget på"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:10
 #: templates/survey/group_management.html:14
 msgid "The last survey was submitted for"
-msgstr "De laatste vragenlijst is ingevuld voor"
+msgstr "Den sidste undersøgelse blev sendt til"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:10
 msgid "on"
-msgstr "op"
+msgstr "på"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:15
 msgid "Last newsletter from"
-msgstr "Laatste nieuwsbrief van"
+msgstr "Sidste nyhedsbrev fra"
 
 #: apps/reminder/templates/reminder/message.html:66
 msgid ""
@@ -406,97 +388,93 @@ msgid ""
 "receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s"
 "\">unsubscribe</a> from our mailings."
 msgstr ""
-"U ontvangt deze mail omdat u staat geregistreerd als griepmeter bij De Grote "
-"GriepMeting (GGM). Uw meting helpt ons om de verspreiding van griep en "
-"verkoudheid in kaart te brengen. Al u niet langer wenst deel te nemen aan "
-"ons onderzoek <a href=\"%(unsubscribe_url)s\">meldt u zich dan af</a> voor "
-"onze wekelijkse nieuwsbrieven."
+"Du modtager denne e-mail fordi du har tilmeldt dig Influmeter, som er en del "
+"af influenzaovervågningen i Danmark. Tryk <a href=\"%(unsubscribe_url)s"
+"\">unsubscribe</a> hvis du ikke længere ønsker ugentlig påmindelse."
 
 #: apps/reminder/templates/reminder/unsubscribe.html:6
 #: apps/reminder/templates/reminder/unsubscribe.html:10
 #: apps/reminder/templates/reminder/unsubscribe_successful.html:6
 msgid "Unsubscribe"
-msgstr "Afmelden"
+msgstr "Afmeld"
 
 #: apps/reminder/templates/reminder/unsubscribe.html:7
 msgid ""
 "You may unsubscribe from the Influenzanet reminder/newsletter by pressing "
 "the button below."
 msgstr ""
-"U kunt zich afmelden voor de Influenzanet herinneringsmails/nieuwsbrief door "
-"op de knop hieronder te drukken."
+"Du kan afmelde Influmeter påmindelser og nyhedsbrev ved at trykke nedenunder"
 
 #: apps/reminder/templates/reminder/unsubscribe_successful.html:7
 msgid "You have been successfully unsubscribed from the mailing list"
-msgstr "U bent succesvol afgemeld voor de Influenzanet mailinglijst."
+msgstr "Du er nu afmeldt Influmeter"
 
 #: apps/survey/views.py:43
 msgid "No symptoms"
-msgstr "Geen symptomen"
+msgstr "Ingen symptomer"
 
 #: apps/survey/views.py:45
 msgid "Flu symptoms"
-msgstr "Symptomen die passen bij griep"
+msgstr "Influenza lignende symptomer"
 
 #: apps/survey/views.py:47
 msgid "Common cold"
-msgstr "Symptomen die passen bij verkoudheid"
+msgstr "Forkølelses symptomer"
 
 #: apps/survey/views.py:49
 msgid "Gastrointestinal symptoms"
-msgstr "Symptomen die passen bij maag-/darmklachten"
+msgstr "Mave-tarm symptomer"
 
 #: apps/survey/views.py:51
 msgid "Other non-influenza symptons"
-msgstr "Andere symptomen die niet passen bij griep"
+msgstr "Andre ikke-influenza lignende symptomer"
 
 #: apps/survey/views.py:53
 msgid "Unknown"
-msgstr "Onbekend"
+msgstr "Uvist"
 
 #: apps/survey/views.py:222
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
 msgstr ""
-"Voordat we u naar de daadwerkelijke meting doorsturen, zouden we het op "
-"prijs stellen als u onderstaande vragen eenmalig beantwoordt:"
+"Du bedes venligst udfylde det korte oplysnings skema nedenfor inden du går "
+"videre til spørgsmålene vedrørende dine symptomer. Oplysningsskemaet "
+"nedenfor skal kun udfyldes denne ene gang "
 
 #: apps/survey/views.py:348
 msgid "A new person has been added."
-msgstr "Een nieuw persoon is toegevoegd"
+msgstr "Der er tilføjet en ny person"
 
 #: apps/tellafriend/forms.py:13
 msgid "URL"
 msgstr "URL"
 
 #: apps/tellafriend/forms.py:14
-#, fuzzy
 msgid "Sender"
-msgstr "Verzenden"
+msgstr "Afsender"
 
 #: apps/tellafriend/forms.py:15
-#, fuzzy
 msgid "Recipient"
-msgstr "Beschrijving"
+msgstr "Modtager"
 
 #: apps/tellafriend/forms.py:17
 msgid "Please enter the characters shown in the image in the field next to it."
-msgstr "Type de karakters uit de afbeelding over in het invulveld"
+msgstr "Venligst skriv de ord eller tal du ser i kassen ved siden af"
 
 #: apps/tellafriend/forms.py:17
 msgid "Captcha"
-msgstr "Captcha"
+msgstr "Sikkerhedstest"
 
 #: apps/tellafriend/views.py:34
 #, python-format
 msgid "Recommendation by %s"
-msgstr "Aanbevelingen door %s"
+msgstr "Anbefalet af %s"
 
 #: apps/tellafriend/templates/tellafriend/email.html:2
 #: templates/tellafriend/email.html:2
 msgid "Recommendation"
-msgstr "Aanbeveling"
+msgstr "Anbefaling"
 
 #: apps/tellafriend/templates/tellafriend/email.html:3
 #: templates/tellafriend/email.html:3
@@ -509,12 +487,12 @@ msgstr ""
 #: templates/tellafriend/success.html:5
 #: templates/tellafriend/tellafriend.html:5
 msgid "Recommend"
-msgstr "Aanbevelen"
+msgstr "Anbefal"
 
 #: apps/tellafriend/templates/tellafriend/success.html:6
 #: templates/tellafriend/success.html:6
 msgid "Your recommendation was sent out successfully."
-msgstr "Uw aanbeveling is met succes verzonden"
+msgstr "Din anbefaling er sendt"
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:6
 #: templates/tellafriend/tellafriend.html:6
@@ -522,72 +500,69 @@ msgid ""
 "Please enter your and the recipient's e-mail address, and an optional "
 "message."
 msgstr ""
-"Vul hier uw e-mailadres en het e-mailadres vang de ontvanger in en voeg een "
-"persoonlijk bericht toe (optioneel)"
+"Venligst skriv din egen og modtagerens e-mail adresse samt en valgfri "
+"meddelelse"
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:35
 #: templates/contact_form/contact_form.html:10
 #: templates/tellafriend/tellafriend.html:35
 msgid "Send"
-msgstr "Verzenden"
+msgstr "Send"
 
 #: templates/404.html:4
 msgid "Page not found"
-msgstr "Pagina niet gevonden"
+msgstr "Siden er ikke fundet"
 
 #: templates/404.html:8
 msgid ""
 "The page you requested could not be found. We apologize for the "
 "inconvenience. Go to "
-msgstr "De pagina die u zoekt is niet gevonden. Excuses voor het ongemak."
+msgstr "Siden kan ikke findes. Vi beklager ulejligheden. Gå i stedet til"
 
 #: templates/404.html:8 templates/500.html:8
 #: templates/accounts/logged_out.html:8 templates/registration/logout.html:8
 msgid "home"
-msgstr "Startpagina"
+msgstr "startside"
 
 #: templates/500.html:4
 msgid "Error"
-msgstr "Fout"
+msgstr "Fejl"
 
 #: templates/500.html:8
-#, fuzzy
 msgid ""
 "An unexpected system error has occured. We apologize for the inconvenience. "
 "Go to"
-msgstr ""
-"Er is een onverwachte systeemfout opgetreden. Excuses voor het ongemak."
+msgstr "Der er desværre opstået en fejl. Gå til"
 
 #: templates/accounts/logged_out.html:4 templates/registration/logout.html:4
 msgid "Logged out"
-msgstr "Uitgelogd"
+msgstr "Logget ud"
 
 #: templates/accounts/logged_out.html:8 templates/registration/logout.html:8
 msgid "You have been logged out. Go to "
-msgstr "U bent succesvol uitgelogd."
+msgstr "Du er logget ud. Gå til"
 
 #: templates/accounts/my_profile.html:4
 #: templates/accounts/partials/usermenu.html:16
 msgid "My profile"
-msgstr "Mijn profiel"
+msgstr "Min profil"
 
 #: templates/accounts/my_profile.html:18
-#, fuzzy
 msgid "My Profile"
-msgstr "Mijn profiel"
+msgstr "Min profil"
 
 #: templates/accounts/my_settings.html:4 templates/accounts/my_settings.html:7
 #: templates/accounts/partials/usermenu.html:19
 msgid "Account settings"
-msgstr "Account instellingen"
+msgstr "Konto indstilling"
 
 #: templates/accounts/my_settings.html:10
 msgid "Your settings have been updated"
-msgstr "Uw instellingen zijn gewijzigd"
+msgstr "Dine indstillinger er opdateret"
 
 #: templates/accounts/my_settings.html:18
 msgid "Email settings"
-msgstr "E-mail instellingen"
+msgstr "E-mail indstilling"
 
 #: templates/accounts/my_settings.html:21
 #: templates/accounts/my_settings.html:28
@@ -595,15 +570,15 @@ msgstr "E-mail instellingen"
 #: templates/survey/group_management.html:53
 #: templates/survey/people_edit.html:10
 msgid "Save"
-msgstr "Opslaan"
+msgstr "Gem"
 
 #: templates/accounts/my_settings.html:25
 msgid "Password"
-msgstr "Wachtwoord"
+msgstr "Kodeord"
 
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
-msgstr "Mijn omgeving"
+msgstr "Dit nabolag"
 
 #: templates/accounts/partials/usermap.html:9
 msgid ""
@@ -614,41 +589,40 @@ msgid ""
 "<strong class=\"gastro\">▸ yellow</strong> and common cold reports are "
 "displayed in <strong class=\"cold\">▸ blue</strong>."
 msgstr ""
-"Regio's waar momenteel griepachtige verschijnselen zijn gemeld zijn "
-"<nobr><strong class=\"flu\">▸ rood</strong></nobr>, regio's waar geen van de "
-"deelnemers griepachtige verschijnselen heeft gemeld zijn <nobr><strong class="
-"\"nosymptoms\">▸ grijs</strong></nobr>. Regio's waar maag- en darmklachten "
-"zijn gemeld zijn <nobr><strong class=\"gastro\">▸ geel</strong></nobr> van "
-"kleur en regio's waar verkoudheidsverschijnselen zijn gerapporteerd worden "
-"<nobr><strong class=\"cold\">▸ blauw</strong></nobr> weergegeven."
+"Områder med oplysninger om influenza-lignende sygdom er vist med <strong "
+"class=\"flu\">▸ rood</strong>, og områder uden oplysninger om influenza-"
+"lignende sygdom er vist med <strong class=\"nosymptoms\">▸ grijs</strong>. "
+"Områder med oplysninger om mave-tarm sygdom er vist med <strong class="
+"\"gastro\">▸ geel</strong>og forkølelse er vist med <strong class=\"cold\">▸ "
+"blauw</strong>"
 
 # translations should reflect however often maps are updated
 #: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
 msgid "Map updated hourly."
-msgstr "De kaart wordt ieder uur ververst."
+msgstr "Kortet opdateres en gang i timen"
 
 #: templates/accounts/partials/usermenu.html:3
 msgid "Your account"
-msgstr "Mijn account"
+msgstr "Min konto"
 
 #: templates/accounts/partials/usermenu.html:12
 msgid "Newsletter"
-msgstr "Nieuwsbrief"
+msgstr "Nyhedsbrev"
 
 #: templates/accounts/partials/usermenu.html:15
 msgid "Weekly survey"
-msgstr "Wekelijkse vragenlijst"
+msgstr "Ugentlige tal"
 
 #: templates/accounts/partials/usermenu.html:18
 #: templates/survey/group_management.html:4
 #: templates/survey/group_management.html:11
 msgid "Your results"
-msgstr "Meetresultaten"
+msgstr "Mine resultater"
 
 #: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
 #: templates/base/sitebase.html:82
 msgid "Log out"
-msgstr "Log uit"
+msgstr "Log ud"
 
 #: templates/accounts/partials/usermenu.html:25
 msgid ""
@@ -657,47 +631,46 @@ msgid ""
 "settings/\">username</a> and <a href=\"/accounts/settings/\">email address</"
 "a>. To leave feedback or get support,"
 msgstr ""
-"U kunt meerdere personen (bijvoorbeeld uit uw gezin, klas of bedrijf) "
-"toevoegen via \"Meetresultaten\". Elk account kan maar één gebruikersnaam en "
-"één e-mailadres hebben. Om een bericht achter te laten of een vraag te "
-"stellen, vragen wij u"
+"Du kan tilføje personer fra din husstand, arbejdsplads, eller lignenede via "
+"\"Mine resultater\". Hver konto har kun et brugernavn og en e-mail adresse "
+"<a href=\"/accounts/settings/\">username</a> and <a href=\"/accounts/"
+"settings/\">email address</a>. For kommentarer eller spørgsmål,"
 
 #: templates/accounts/partials/usermenu.html:25
 #: templates/registration/activate.html:9
 #: templates/registration/registration_complete.html:10
 msgid "contact us"
-msgstr "contact op te nemen"
+msgstr "Kontakt os"
 
 #: templates/admin/pollster/survey/change_form.html:6
 #: templates/admin/pollster/translationsurvey/change_form.html:6
 msgid "History"
-msgstr "Geschiedenis"
+msgstr "Historie"
 
 #: templates/admin/pollster/survey/change_form.html:9
 #: templates/admin/pollster/survey/change_list.html:10
 #: templates/admin/pollster/translationsurvey/change_form.html:9
 #: templates/admin/pollster/translationsurvey/change_list.html:7
 msgid "Full Editor"
-msgstr "Volledige editor"
+msgstr "Rediger alt"
 
 #: templates/admin/pollster/survey/change_list.html:7
-#, fuzzy
 msgid "Add Survey"
-msgstr "Vragenlijst"
+msgstr "Tilføj spørgeskema"
 
 #: templates/base/forum.html:78 templates/base/sitebase.html:81
 msgid "My account"
-msgstr "Mijn account"
+msgstr "Min konto"
 
 #: templates/base/forum.html:81 templates/base/sitebase.html:84
 msgid "Logged in as"
-msgstr "Ingelogd als"
+msgstr "Logget på som"
 
 #: templates/base/forum.html:84 templates/base/sitebase.html:87
 #: templates/registration/boxbase.html:11 templates/registration/login.html:13
 #: templates/registration/password_reset_complete.html:10
 msgid "Log in"
-msgstr "Log in"
+msgstr "Log på"
 
 #: templates/base/forum.html:85 templates/base/sitebase.html:88
 #: templates/registration/registration_explanation.html:4
@@ -705,109 +678,108 @@ msgstr "Log in"
 #: templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:13
 msgid "Register"
-msgstr "Doe mee!"
+msgstr "Tilmeld"
 
 #: templates/base/forum.html:87 templates/base/sitebase.html:90
 msgid "Forgot password?"
-msgstr "Wachtwoord vergeten?"
+msgstr "Glemt kodeord?"
 
 #: templates/base/forum.html:98 templates/base/sitebase.html:101
 #: templates/search/search.html:9
 msgid "Search"
-msgstr "Zoeken"
+msgstr "Søg"
 
 #: templates/base/forum.html:160 templates/base/sitebase.html:136
 msgid "Contact us"
-msgstr "Neem contact met ons op"
+msgstr "Kontakt os"
 
 #: templates/base/forum.html:160 templates/base/sitebase.html:136
 msgid "Contact"
-msgstr "Contact"
+msgstr "Kontakt"
 
 #: templates/journal/archive.html:6
 msgid "Latest Entries"
-msgstr "Laatste nieuwsberichten"
+msgstr "Senest tilføjede"
 
 #: templates/journal/archive.html:18 templates/journal/archive_day.html:18
 #: templates/journal/archive_month.html:18
 #: templates/journal/archive_year.html:18 templates/search/search.html:25
 msgid "Previous"
-msgstr "Vorige"
+msgstr "Forrige"
 
 #: templates/journal/archive.html:21 templates/journal/archive_day.html:21
 #: templates/journal/archive_month.html:21
 #: templates/journal/archive_year.html:21 templates/search/search.html:27
 msgid "Next"
-msgstr "Volgende"
+msgstr "Følgende"
 
 #: templates/journal/archive_day.html:6 templates/journal/archive_month.html:6
 #: templates/journal/archive_year.html:6
 msgid "Entries for"
-msgstr "Nieuwsberichten voor"
+msgstr "Tilføj"
 
 #: templates/journal/categories.html:3
 msgid "Archive"
-msgstr "Archief"
+msgstr "Arkiv"
 
 #: templates/journal/latest.html:3
 msgid "Latest news"
-msgstr "Laatste nieuws"
+msgstr "Seneste nyt"
 
 #: templates/journal/latest.html:9
 msgid "Read more..."
-msgstr "Lees meer"
+msgstr "Læs mere"
 
 #: templates/journal/latest.html:12
 msgid "No news yet"
-msgstr "Nog geen nieuws ingevoerd"
+msgstr "Ingen nyheder endnu"
 
 #: templates/pollster/questions_run.html:5
 msgid "Questionnaire for participant"
-msgstr "Vragenlijst voor"
+msgstr "Deltager spørgeskema"
 
 #: templates/pollster/questions_run.html:9
 msgid "Please check the answers for the highlighted questions."
-msgstr "Controleer aub de antwoorden voor de aangemerkte vragen"
+msgstr "Kontroller dine svar på de fremhævede spørgsmål"
 
 #: templates/pollster/questions_run.html:202 templates/survey/form.html:21
 msgid "Submit"
-msgstr "Stuur in"
+msgstr "Send"
 
 #: templates/registration/activate.html:4
 #: templates/registration/activation_complete.html:4
 msgid "Account Activation"
-msgstr "Account activatie"
+msgstr "Aktiver konto"
 
 #: templates/registration/activate.html:8
 msgid "User activation failed."
-msgstr "Activatie mislukt"
+msgstr "Konto aktivering mislykkedes"
 
 #: templates/registration/activate.html:9
 msgid ""
 "Please try to copy and paste the link from the activation email, making sure "
 "you've got all letters copied. If this fails, please try to"
 msgstr ""
-"U kunt proberen de link uit uw activatie-e-mail te kopiëren, waarna u hem "
-"nogmaals in uw browservenster plakt. Let u er a.u.b. dat u alle letters en "
-"cijfers kopieert. Als dit niet lukt kunt u proberen "
+"Venligst prøv at indsætte linket, fra den e-mail du modtog ved tilmelding, i "
+"din browser. Hvis det ikke virker så"
 
 #: templates/registration/activate.html:9
 msgid "log in"
-msgstr "in te loggen"
+msgstr "log på"
 
 #: templates/registration/activate.html:9
 msgid ""
 "using the username and password you provided during registration. If this "
 "still fails, please try to"
 msgstr ""
-"met de gebruikersnaam en het wachtwoord dat u hebt ingevuld tijdens de "
-"registratie. Als u hiermee niet verder komt willen wij u vragen opnieuw te"
+"anvende brugernavn og kodeord fra din tilmelding, Hvis det ikke lykkes prøv "
+"at"
 
 #: templates/registration/activate.html:9
 msgid ""
 "with a different username. If everything else fails, please do not hesitate "
 "to"
-msgstr "met een andere gebruikersnaam. Mocht u er niet uitkomen vragen wij u "
+msgstr "med et andet brugernavn. Hvis intet lykkes så må du endelig "
 
 #: templates/registration/activate.html:15
 #: templates/registration/activation_complete.html:16
@@ -819,7 +791,7 @@ msgstr "met een andere gebruikersnaam. Mocht u er niet uitkomen vragen wij u "
 #: templates/registration/password_reset_form.html:23
 #: templates/registration/registration_complete.html:16
 msgid "Influenza virus"
-msgstr "griepvirus"
+msgstr "Influenza virius"
 
 #: templates/registration/activate.html:17
 #: templates/registration/activation_complete.html:18
@@ -828,8 +800,8 @@ msgid ""
 "Be part of a Europe-wide project to improve our understanding of how flu "
 "spreads."
 msgstr ""
-"Wees onderdeel van een Europees project om ons begrip van hoe griep zich "
-"verpreid te verbeteren."
+"Vær med i et Europæisk project med henblik på at forbedre forståelsen af "
+"hvordan influenza smitter og spredes"
 
 #: templates/registration/activate.html:18
 #: templates/registration/activation_complete.html:9
@@ -841,239 +813,234 @@ msgstr ""
 #: templates/registration/password_reset_form.html:25
 #: templates/registration/registration_complete.html:19
 msgid "Back to the home page"
-msgstr "Ga terug naar de startpagina"
+msgstr "Tilbage til startsiden"
 
 #: templates/registration/activation_complete.html:8
 msgid "Activation is complete."
-msgstr "Activatie geslaagd"
+msgstr "Kontoen er aktiveret"
 
 #: templates/registration/activation_complete.html:9
 msgid "or"
-msgstr "of"
+msgstr "eller"
 
 #: templates/registration/activation_complete.html:10
 msgid "proceed to the login page"
-msgstr "Ga door naar de log in pagina"
+msgstr "fortsæt til log ind"
 
 #: templates/registration/boxbase.html:4 templates/registration/boxbase.html:9
 #: templates/registration/login.html:4 templates/registration/login.html:8
 msgid "Login"
-msgstr "Log in"
+msgstr "Log på"
 
 #: templates/registration/boxbase.html:10
 msgid "Enter your username and password to log in."
-msgstr "Voer uw gebruikersnaam en wachtwoord in om in te loggen"
+msgstr "Tilføj brugernavn og kodeord for at logge ind"
 
 #: templates/registration/boxbase.html:10
 msgid "Forgot your password?"
-msgstr "Wachtwoord vergeten?"
+msgstr "Glemt kodeord?"
 
 #: templates/registration/index.html:8
 msgid "Change Password"
-msgstr "Wachtwoord veranderen"
+msgstr "Skift kodeord"
 
 #: templates/registration/index.html:9
 msgid "Update Profile"
-msgstr "Profiel aanpassen"
+msgstr "Opdater profil"
 
 #: templates/registration/login.html:21
 msgid "Please login to continue"
-msgstr "Log in om door te gaan"
+msgstr "Log på for at fortsætte"
 
 #: templates/registration/password_change_done.html:4
 #: templates/registration/password_change_done.html:8
 msgid "Password change successful"
-msgstr "Wachtwoord succesvol aangepast"
+msgstr "Kodeord er ændret"
 
 #: templates/registration/password_change_done.html:9
 msgid "Your password was changed."
-msgstr "Uw wachtwoord is gewijzigd."
+msgstr "Dit kodeord er ændret"
 
 #: templates/registration/password_change_form.html:4
 #: templates/registration/password_change_form.html:8
 msgid "Password change"
-msgstr "Wachtwoord veranderen"
+msgstr "Kodeord ændring"
 
 #: templates/registration/password_change_form.html:9
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
-"Vul eerst uw oude wachtwoord in en vervolgens twee keer uw nieuwe wachtwoord"
+"Indsæt først dit gamle kodeord, og gentag derefter dit nye kodeord to gange"
 
 #: templates/registration/password_change_form.html:14
 msgid "Old password:"
-msgstr "Oud wachtwoord:"
+msgstr "Gamle kodeord:"
 
 #: templates/registration/password_change_form.html:16
 #: templates/registration/password_reset_confirm.html:16
 msgid "New password:"
-msgstr "Nieuw wachtwoord:"
+msgstr "Nye kodeord:"
 
 #: templates/registration/password_change_form.html:18
 #: templates/registration/password_reset_confirm.html:18
 msgid "Confirm password:"
-msgstr "Bevestig uw nieuwe wachtwoord:"
+msgstr "Bekræft kodeord:"
 
 #: templates/registration/password_change_form.html:19
 #: templates/registration/password_reset_confirm.html:19
 msgid "Change my password"
-msgstr "Verander mijn wachtwoord"
+msgstr "Skift kodeord"
 
 #: templates/registration/password_reset_complete.html:4
 #: templates/registration/password_reset_complete.html:8
 msgid "Password reset complete"
-msgstr "Wachtwoord resetten geslaagd"
+msgstr "Dit kodeord er ændret"
 
 #: templates/registration/password_reset_complete.html:9
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Uw wachtwoord is ingesteld. U kunt nu doorgaan en inloggen"
+msgstr "Dit kodeord er ændret. Du kan nu logge på "
 
 #: templates/registration/password_reset_confirm.html:4
 #: templates/registration/password_reset_form.html:4
 #: templates/registration/password_reset_form.html:8
 msgid "Password reset"
-msgstr "Reset wachtwoord"
+msgstr "Ændring af kodeord"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter new password"
-msgstr "Voer een nieuw wachtwoord in"
+msgstr "Indsæt nyt kodeord"
 
 #: templates/registration/password_reset_confirm.html:11
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
-"Vul uw nieuwe wachtwoord twee keer in zodat wij kunnen nagaan of u het goed "
-"heeft getypt"
+msgstr "Venligst gentag dit nye kodeord to gange "
 
 #: templates/registration/password_reset_confirm.html:25
 msgid "Password reset unsuccessful"
-msgstr "Wachtwoord resetten niet geslaagd"
+msgstr "Kodeord ændring lykkedes ikke"
 
 #: templates/registration/password_reset_confirm.html:27
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
-"De wachtwoord reset link is ongeldig, mogelijk omdat deze al eerder is "
-"gebruikt. Vraag een nieuwe wachtwoord reset aan."
+"Vi beklager, dette link, til at ændre dit kodeord, har allerede været brugt. "
+"Venligst anmod om et nyt link til ændring af kodeord."
 
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
 msgid "Password reset successful"
-msgstr "Wachtwoord resetten geslaagd"
+msgstr "Dit kodeord er ændret"
 
 #: templates/registration/password_reset_done.html:9
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should be receiving it shortly."
 msgstr ""
-"U ontvangt zodadelijk een e-mail met instructies over het instellen van een "
-"wachtwoord op het e-mailadres dat u bij ons heeft doorgegeven."
+"Du modtager snart en e-mail med instruktion i hvordan du vælger kodeord"
 
 #: templates/registration/password_reset_email.html:3
 msgid "You're receiving this e-mail because you requested a password reset"
-msgstr "U ontvangt deze e-mail omdat u een wachtwoord reset heeft aangevraagd"
+msgstr "Du modtager denne e-mail fordi du har bedt om at ændre dit kodeord"
 
 #: templates/registration/password_reset_email.html:4
 #, python-format
 msgid "for your user account at %(site_name)s"
-msgstr "voor uw gebruikersaccount op %(site_name)s"
+msgstr "til din brugerkonto på %(site_name)s"
 
 #: templates/registration/password_reset_email.html:6
 msgid "Please go to the following page and choose a new password:"
-msgstr "Ga naar de volgende pagina en kies een nieuw wachtwoord:"
+msgstr "Venligst gå til næste side for at vælge et nyt kodeord:"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Your username, in case you've forgotten:"
-msgstr "Uw gebruikersnaam:"
+msgstr "Dit brugernavn, hvis du skulle have glemt det:"
 
 #: templates/registration/password_reset_email.html:12
 msgid "Thanks for using our site!"
-msgstr "Dank u voor het gebruik van deze website"
+msgstr "Tak fordi du bruger vores hjemmeside!"
 
 #: templates/registration/password_reset_email.html:14
 #, python-format
 msgid "The %(site_name)s team"
-msgstr "Het team van %(site_name)s"
+msgstr "Kontaktpersoner %(site_name)s"
 
 #: templates/registration/password_reset_form.html:9
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Bent u uw wachtwoord vergeten? Vul hieronder uw e-mailadres in en wij sturen "
-"u een e-mail met instructies om een nieuw wachtwoord in te stellen"
+"Glemt kodeord? Skriv din e-mail nedenfor og du vil modtage instruktion i at "
+"lave et nyt"
 
 #: templates/registration/password_reset_form.html:14
 msgid "E-mail address:"
-msgstr "E-mail adres:"
+msgstr "E-mail adresse:"
 
 #: templates/registration/password_reset_form.html:15
 msgid "Reset my password"
-msgstr "Reset mijn wachtwoord"
+msgstr "Skift kodeord"
 
 #: templates/registration/registration_complete.html:4
 msgid "Registration complete"
-msgstr "Registratie geslaagd"
+msgstr "Du er nu tilmeldt"
 
 #: templates/registration/registration_complete.html:8
 msgid "Registration complete."
-msgstr "Registratie geslaagd."
+msgstr "Du er nu tilmeldt"
 
 #: templates/registration/registration_complete.html:9
 msgid ""
 "An e-mail containing information about how to activate your account has been "
 "sent to your e-mail address."
-msgstr ""
-"Een e-mail met informatie hoe u uw account kunt activeren is naar uw e-"
-"mailadres verstuurd"
+msgstr "Der er sendt en e-mail til dig vedrørende aktivering af din konto"
 
 #: templates/registration/registration_complete.html:10
 msgid ""
 "Please check your spam folder in case you do not get this email in your "
 "Inbox. If you have any problems activating your account, please"
 msgstr ""
-"Indien u deze mail niet ontvangt, raden wij u aan in uw spam-map te kijken. "
-"Als u problemen hebt met het activeren van uw registratie, kunt u altijd"
+"Venligst check dit spam filter hvis du ikke modtager e-mailen i din inbox. "
+"Hvis du har problemer med tilmeldingen, er du velkommen til at  "
 
 #: templates/registration/registration_explanation.html:9
 #: templates/registration/registration_form.html:8
 msgid "Registration Form"
-msgstr "Registratie formulier"
+msgstr "Tilmelding"
 
 #: templates/registration/registration_form.html:21
 msgid "Join the survey"
-msgstr "Doe mee"
+msgstr "Tilmeld dig"
 
 #: templates/search/search.html:5
 msgid "Search result"
-msgstr "Zoekresultaat"
+msgstr "Søgeresultat"
 
 #: templates/search/search.html:12
 msgid "Results"
-msgstr "Resultaten"
+msgstr "Resultater"
 
 #: templates/search/search.html:20
 msgid "No results found"
-msgstr "Geen resultaten gevonden"
+msgstr "Der er ikke fundet nogen resultater"
 
 #: templates/survey/group_management.html:14
 msgid "on "
-msgstr "op"
+msgstr "på"
 
 #: templates/survey/group_management.html:22
 msgid "Select/deselect all"
-msgstr "Alles (de)selecteren"
+msgstr "Vælg/fravælg alt"
 
 #: templates/survey/group_management.html:22
 msgid "Add person"
-msgstr "Voeg Griepmeter toe"
+msgstr "Tilføj en person"
 
 #: templates/survey/group_management.html:22
 msgid "Survey"
-msgstr "Meting"
+msgstr "Undersøgelse"
 
 #: templates/survey/group_management.html:22
 msgid "Status"
@@ -1081,23 +1048,22 @@ msgstr "Status"
 
 #: templates/survey/group_management.html:30
 msgid "Report"
-msgstr "Doe meting"
+msgstr "Raport"
 
 #: templates/survey/group_management.html:30 templates/survey/thanks.html:43
 msgid "Change profile"
-msgstr "Verander profiel"
+msgstr "Skift profil"
 
 #: templates/survey/group_management.html:50
 msgid "Mark as healthy"
-msgstr "Als gezond aanmerken"
+msgstr "Marker som rask"
 
 #: templates/survey/group_management.html:51
 msgid "Delete member(s)"
-msgstr "Participanten verwijderen"
+msgstr "Slet tilmeldte"
 
 msgid "Are you absolutely sure you want to delete this user/these users?"
-msgstr ""
-"Bent u er absoluut zeker van dat u deze participant(en) wilt verwijderen?"
+msgstr "Er du sikker på at brugeren/brugerne skal slettes?"
 
 #: templates/survey/group_management.html:58 templates/survey/thanks.html:62
 msgid ""
@@ -1107,35 +1073,36 @@ msgid ""
 "flu. If you have other symptoms, or you are at all worried, we recommend "
 "that you contact your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
-"De gezondheids-status van iedere persoon is gebaseerd op de gegevens die u "
-"aan ons doorgeeft. <strong>Dit is geen medische diagnose</strong>. We vragen "
-"alleen naar symptomen die duiden op griep, verkoudheid, allergie en "
-"buikgriep. Indien u andere symptomen hebt of om wat voor reden dan ook "
-"bezorgd bent, raden we u aan contact op te nemen met uw huisarts."
+"Helbreddet vurderes udelukkende på baggrund af selv rapporterede symptomer. "
+"<strong>Vurderingen må ikke betragtes som en lægefaglig vurdering </strong>. "
+"Der bliver kun spurgt om symptomer som kan hænge sammen med "
+"influenzalignende sygdom, forkølelse, allergi og maveforkølelese. Og hvis du "
+"har bekymringer vedrørende dit helbred eller andre/alvorlige symptomer skal "
+"du henvende dig til læge, vagtlæge eller skadestue."
 
 #: templates/survey/index.html:16
 msgid "Survey Form"
-msgstr "Vragenlijst"
+msgstr "Spørgeskema"
 
 #: templates/survey/mobile_success.html:6
 msgid "Put your success message here"
-msgstr "Laat hier uw bericht achter"
+msgstr "Skriv en succes historie her"
 
 #: templates/survey/people_add.html:5 templates/survey/people_add.html:10
 msgid "Add Person"
-msgstr "Voeg Griepmeter toe"
+msgstr "Tilføj en person"
 
 #: templates/survey/people_edit.html:5
 msgid "Edit Person"
-msgstr "Bewerk Griepmeter"
+msgstr "Rediger personoplysninger"
 
 #: templates/survey/people_remove.html:5
 msgid "Confirm removal"
-msgstr "Bevestig verwijderen"
+msgstr "Bekræft framelding"
 
 #: templates/survey/people_remove.html:8
 msgid "Confirm the removal of the person:"
-msgstr "Bevestig het verwijderen van deze Griepmeter:"
+msgstr "Bekræft framelding af personen:"
 
 #: templates/survey/people_remove.html:16
 msgid "Yes"
@@ -1143,51 +1110,51 @@ msgstr "Ja"
 
 #: templates/survey/people_remove.html:22
 msgid "No"
-msgstr "Nee"
+msgstr "Nej"
 
 #: templates/survey/profile_index.html:16
 msgid "Edit Profile"
-msgstr "Profiel bewerken"
+msgstr "Ret profil "
 
 #: templates/survey/select_user.html:5
 msgid "Select User"
-msgstr "Selecteer gebruiker"
+msgstr "Vælg bruger "
 
 #: templates/survey/thanks.html:22
 msgid "Thanks for taking the time to fill out this survey."
-msgstr "Hartelijk dank voor het invullen van deze vragenlijst"
+msgstr "Tak fordi du tager dig tid til at deltage i undersøgelsen."
 
 #: templates/survey/thanks.html:25
 msgid ""
 "Here is a summary of the information you entered for you and the members of "
 "your group or family:"
 msgstr ""
-"Hieronder vindt u een samenvatting van de informatie die u heeft ingevuld "
-"voor uzelf en eventueel de leden van uw groep of familie:"
+"Her er et sammendrag af de oplysninger du har givet om dig og dem der er "
+"tilmeldt af dig:"
 
 #: templates/survey/thanks.html:30
 msgid "Group members"
-msgstr "Groepsleden"
+msgstr "Gruppemedlemmer"
 
 #: templates/survey/thanks.html:31 templates/survey/thanks.html.py:106
 msgid "Health status"
-msgstr "Gezondheidsstatus"
+msgstr "Helbredsstatus"
 
 #: templates/survey/thanks.html:33 templates/survey/thanks.html.py:35
 msgid "Manage "
-msgstr "Beheer"
+msgstr "Administrer"
 
 #: templates/survey/thanks.html:42
 msgid "Change name"
-msgstr "Verander naam"
+msgstr "Skift navn"
 
 #: templates/survey/thanks.html:44
 msgid "Enter symptoms"
-msgstr "Voer symptomen in"
+msgstr "Tilføj symptomer"
 
 #: templates/survey/thanks.html:46
 msgid "Remove"
-msgstr "Verwijder"
+msgstr "Fjern"
 
 # translations should reflect whatever can be seen on the map of the thanks page
 #: templates/survey/thanks.html:95
@@ -1196,65 +1163,60 @@ msgid ""
 "red, and ones in which none of our participants currently report influenza-"
 "like illness are blue."
 msgstr ""
-"In de <strong style=\"color: #0037ff;\">&#x25B8; blauw</strong> gekleurde "
-"postcodegebieden doen zich gevallen voor die op verkoudheid wijzen. In de "
-"<strong style=\"color: #f2b40e;\">&#x25B8; geel</strong> gekleurde gebieden "
-"doen zich (ook) verschijnselen van buikgriep voor. In de <strong style="
-"\"color: #ff2300;\">&#x25B8; rood</strong> gekleurde postcodegebieden "
-"heersen (ook) griepachtige verschijnselen. In de <strong style=\"color: "
-"#707070;\">&#x25B8; grijze</strong> gebieden zijn wel metingen verricht, "
-"maar geen symptomen van bovengenoemde ziekten gevonden."
+"De røde områder viser hvor der i øjeblikket rapporteres om influenzalignende "
+"sygdom. I de blå område er der i øjeblikket ikke rapporteret om "
+"influenzalignende sygdom"
 
 #: templates/survey/thanks.html:104
 msgid "Fill out date"
-msgstr "Laatste meting"
+msgstr "Dato for besvarelse"
 
 #: templates/survey/thanks.html:105
 msgid "Member"
-msgstr "Griepmeter"
+msgstr "Tilmeldt"
 
 #: templates/survey/thanks_profile.html:5
 msgid "Thanks for changing your profile,"
-msgstr "Dank voor het aanpassen van uw profiel"
+msgstr "Tak fordi du ændrede din profil"
 
 #: templates/survey/thanks_profile.html:12
 msgid "Please, if you have not already done so, fill in"
-msgstr "Als u wilt, kunt u nu een meting doen met<br />"
+msgstr "Venligst udfyld, hvis du ikke allerede har gjort det"
 
 #: templates/survey/thanks_profile.html:18
 msgid "the symptoms questionaire"
-msgstr "De wekelijkse vragenlijst"
+msgstr "symptom spørgeskemaet"
 
 msgid ""
 "Date & time of the first reminder and point of reference for subsequent "
 "reminders; (Time zone: MET)"
 msgstr ""
-"Datum en tijdstip van de eerste herinnering en tegelijktertijd referentie "
-"voor volgende herrineringen (tijdzone: MET)"
+"Dato og tidspunkt for første påmindelse og udgangspunkt for de følgende "
+"påmindelser; (tidszone: MET)"
 
 msgid "Next status"
-msgstr "Volgende status"
+msgstr "Næste status"
 
 msgid "You have to fill your profile data first."
-msgstr "U moet eerst uw profielgegevens invullen"
+msgstr "Du bedes udfylde din profil først"
 
 msgid ""
 "One or more questions have empty or invalid answer. Please fix it first."
 msgstr ""
-"Een of meer vragen zijn onbeantwoord of hebben een ongeldig antwoord. "
-"Controleer dit voordat u verder gaat."
+"Et eller flere spørgsmål mangler korrekt svar. Kontroller dette før du går "
+"videre."
 
 msgid "People"
-msgstr "Mensen"
+msgstr "Folk"
 
 msgid "Edit"
-msgstr "Bewerk"
+msgstr "Ret"
 
 msgid "Profile"
-msgstr "Profiel"
+msgstr "Profil"
 
 msgid "Add new person"
-msgstr "Voeg een nieuwe Griepmeter toe"
+msgstr "Tilføj ny person"
 
 msgid ""
 "Activate your account:\n"
@@ -1265,138 +1227,138 @@ msgid ""
 "\n"
 "This activation URL will expire in %(expiration_days)s days."
 msgstr ""
-"Activeer uw account:\n"
+"Aktiver ny konto:\n"
 "\n"
-"Klik op de volgende URL of kopieer deze naar de adresbalk van uw browser:\n"
+"Klik på linket eller kopier og indsæt det i din browser:\n"
 "http://%(site)s/accounts/activate/%(activation_key)s/\n"
 "\n"
-"Deze activatie-url blijft %(expiration_days)s dagen geldig."
+"Aktiveringen af linket vil udløbe om %(expiration_days)s dage."
 
 msgid "Activate your account! %(site)s"
-msgstr "Activeer uw account! %(site)s"
+msgstr "Aktiver din konto! %(site)s"
 
 msgid "Manage household"
-msgstr "Beheer huishouden"
+msgstr "Administrer husstand"
 
 msgid ""
 "Below is the list of participants currently managed by you. Click the "
 "corresponding option next to the participant to complete the background or "
 "symptoms questionnaire for that person, or to remove a participant."
 msgstr ""
-"Hier vindt u de lijst van personen die u beheert. Kies de gewenste optie "
-"naast de betreffende persoon om de aanmelding of meting te voltooien, of om "
-"die persoon te verwijderen."
+"Nedenfor ser du de deltagere som du har tilmeldt. Tryk udfor hver enkelt "
+"hvis du vil fjerne dem, udfylde baggrundsoplysninger eller besvare symtom "
+"spørgeskemaet."
 
 msgid "Background"
-msgstr "Aanmelding"
+msgstr "baggrundsoplysninger"
 
 msgid "Symptoms"
-msgstr "Meting"
+msgstr "Symptomer"
 
 msgid "Completing for participant"
-msgstr "Wordt ingevuld voor "
+msgstr "Udfyldt for tilmeldte deltager "
 
 msgid "Symptoms survey"
-msgstr "Meting"
+msgstr "Symptom spørgeskema"
 
 msgid "register"
-msgstr "Doe mee!"
+msgstr "Tilmeld mig!"
 
 msgid "My settings"
-msgstr "Mijn instellingen"
+msgstr "Mine indstillinger"
 
 msgid "Change password"
-msgstr "Wijzig wachtwoord"
+msgstr "Skift kodeord"
 
 # ##########################
 # PyBBM translation below #
 # ##########################
 msgid "Additional options"
-msgstr "Aanvullende opties"
+msgstr "Øvrige muligheder"
 
 msgid "IM"
 msgstr "IM"
 
 msgid "Ban options"
-msgstr "Ban opties"
+msgstr "Restriktioner"
 
 msgid "Latest posts on forum"
-msgstr "Laatste berichten op het forum"
+msgstr "Sidste indlæg i gruppen"
 
 msgid "Latest topics on forum"
-msgstr "Laatste onderwerpen op het forum"
+msgstr "Seneste gruppe emne"
 
 msgid "Subject"
-msgstr "Onderwerp"
+msgstr "Emne"
 
 msgid "Attachment"
-msgstr "Bijlage"
+msgstr "Vedhæftet bilag"
 
 msgid "Attachment is too big"
-msgstr "Bijlage is te groot"
+msgstr "Bilaget er for stort"
 
 msgid "Moderators"
 msgstr "Moderator"
 
 msgid "Updated"
-msgstr "Geactualiseerd"
+msgstr "Opdateret"
 
 msgid "Post count"
-msgstr "Aantal berichten"
+msgstr "Antal poster"
 
 msgid "Forum"
-msgstr "Forum"
+msgstr "Gruppe"
 
 msgid "Forums"
-msgstr "Forums"
+msgstr "Grupper"
 
 msgid "Created"
-msgstr "Aangemaakt"
+msgstr "Oprettet"
 
 msgid "Views count"
-msgstr "Aantal keer bekeken"
+msgstr "Antal visninger"
 
 msgid "Sticky"
 msgstr "Permanent"
 
 msgid "Closed"
-msgstr "Gesloten"
+msgstr "Lukket"
 
 msgid "Subscribers"
-msgstr "Abonnees"
+msgstr "Abonnenter"
 
 msgid "Topic"
-msgstr "Onderwerp"
+msgstr "Emne"
 
 msgid "Topics"
-msgstr "Onderwerpen"
+msgstr "Emner"
 
 msgid "Markup"
-msgstr "Opmaak"
+msgstr "Markeringskode "
 
 msgid "HTML version"
-msgstr "HTML versie"
+msgstr "HTML version"
 
 msgid "Text version"
-msgstr "Tekst versie"
+msgstr "Tekst version"
 
 msgid "User IP"
-msgstr "Gebruiker IP"
+msgstr "Bruger IP"
 
 msgid "Post"
-msgstr "Bericht"
+msgstr "Post"
 
 msgid "Posts"
-msgstr "Berichten"
+msgstr "Poster"
 
 msgid "Caution"
-msgstr "Waarschuwing"
+msgstr "Advarsel"
 
 msgid "Ban"
-msgstr "Ban"
+msgstr "Forbud"
 
 msgid "Site"
-msgstr "Site"
+msgstr "Side"
 
 msgid "Jabber"
 msgstr "Jabber"
@@ -1414,52 +1376,52 @@ msgid "Yahoo"
 msgstr "Yahoo"
 
 msgid "Location"
-msgstr "Plaats"
+msgstr "Sted"
 
 msgid "Signature"
-msgstr "Signature"
+msgstr "Signatur"
 
 msgid "Signature HTML Version"
-msgstr "Signature HTML versie"
+msgstr "Signatur HTML version"
 
 msgid "Time zone"
-msgstr "Tijdzone"
+msgstr "Tids zone"
 
 msgid "Avatar"
 msgstr "Avatar"
 
 msgid "Show signatures"
-msgstr "Laat signatures zien"
+msgstr "Vis signaturer"
 
 msgid "Default markup"
-msgstr "Standaard layout"
+msgstr "Standard udseende"
 
 msgid "Ban status"
-msgstr "Ban status"
+msgstr "Begrænsninger status"
 
 msgid "Ban till"
-msgstr "Ban actief tot"
+msgstr "Begrænsninger slås til "
 
 msgid "Profiles"
-msgstr "Profielen"
+msgstr "Profiler"
 
 msgid "Time"
-msgstr "Tijd"
+msgstr "Tidspunkt"
 
 msgid "Read"
-msgstr "Gelezen"
+msgstr "Læs"
 
 msgid "Reads"
-msgstr "maal gelezen"
+msgstr "Antal læninger"
 
 msgid "Size"
-msgstr "grootte"
+msgstr "Størrelse"
 
 msgid "Content type"
-msgstr "Type content"
+msgstr "Indholdsart"
 
 msgid "Path"
-msgstr "Pad"
+msgstr "Sti"
 
 msgid "Hash"
 msgstr "Hash"
@@ -1472,293 +1434,289 @@ msgid ""
 "See topic: %(post_url)s\n"
 "Unsubscribe %(unsubscribe_url)s"
 msgstr ""
-"Nieuwe reactie van %(username)s op een bericht waarop je bent geabonneerd.\n"
+"Ny meddelelse fra %(username)s vedrørende et emne du har tilmeldt dig.\n"
 "---\n"
 "%(message)s\n"
 "---\n"
-"Bekijk bericht: %(post_url)s\n"
-"Afmelden van bericht %(unsubscribe_url)s"
+"Se emne: %(post_url)s\n"
+"Afmeld emne %(unsubscribe_url)s"
 
 msgid "Added after %s minute"
 msgid_plural "Added after %s minutes"
-msgstr[0] "Toegevoegd na %s minuut"
+msgstr[0] "Tilføjet efter %s minutter"
 msgstr[1] "Toegevoegd na %s minuten"
 
 msgid "You banned"
-msgstr "Ban actief"
+msgstr "Du har aktiveret begrænsninger"
 
 msgid "New topic"
-msgstr "Nieuw onderwerp"
+msgstr "Nyt emne"
 
 msgid "New reply"
-msgstr "Nieuwe reactie"
+msgstr "Nyt svar"
 
 msgid "Preview"
-msgstr "Voorvertoning"
+msgstr "Forhåndsvisning"
 
 msgid "New private message"
-msgstr "Nieuw privé bericht"
+msgstr "Ny personlig besked"
 
 msgid "Are you sure you want to delete this message?"
-msgstr "Weet je zeker dat je dit bericht wilt verwijderen?"
+msgstr "Er du sikker på at du vil slette beskedden?"
 
 msgid "Yes, I am sure."
-msgstr "Ja, verwijder."
+msgstr "Ja, jeg er sikker."
 
 msgid "Editing the post"
-msgstr "Bericht veranderen"
+msgstr "Rediger post"
 
 msgid "Profile editing"
-msgstr "Profiel veranderen"
+msgstr "Ret profil"
 
 msgid "Change the password"
-msgstr "Wachtwoord veranderen"
+msgstr "Skift kodeord"
 
 msgid "Subscriptions on topics"
-msgstr "Abonnementen op onderwerpen"
+msgstr "Abonnerer på emner"
 
 msgid "PYBB - django forum engine"
 msgstr "PYBB - django forum engine"
 
 msgid "Important"
-msgstr "Belangrijk"
+msgstr "Vigtigt"
 
 msgid "Users"
-msgstr "Gebruikers"
+msgstr "Brugere"
 
 msgid "Admincp"
 msgstr "Admincp"
 
 msgid "Logged in as "
-msgstr "Ingelogd als"
+msgstr "Logget på som"
 
 msgid "Sign up"
-msgstr "Registreren"
+msgstr "Tilmeld"
 
 msgid "Search powered by Google"
-msgstr "Zoekfunctie door Google"
+msgstr "Søg med Google"
 
 msgid "Enter topic id for add to merged topics"
-msgstr "Geef onderwerp-id in voor het toevoegen aan samengevoegde onderwerpen"
+msgstr "Indsæt emne-id for at føje til allerede eksisterende emner"
 
 msgid "Add"
-msgstr "Toevoegen"
+msgstr "Tilføj"
 
 msgid "Choose main topic to merge"
-msgstr "Kies hoofd-onderwerp om samen te voegen"
+msgstr "Vælg hovedemnet som ønskes tilføjet"
 
 msgid "Merge"
-msgstr "Samenvoegen"
+msgstr "Tilføj"
 
 msgid "Posts from changed topics"
-msgstr "Berichten van gewijzigde onderwerpen"
+msgstr "Indlæg fra ændrede emner"
 
 msgid "Number of posts"
-msgstr "Aantal berichten"
+msgstr "Antal poster"
 
 msgid "Enter page number"
-msgstr "Vul het pagina-nummer in"
+msgstr "Indsæt side nummer"
 
 msgid "of"
-msgstr "van"
+msgstr "fra"
 
 msgid "Go to page..."
-msgstr "Ga naar pagina..."
+msgstr "Gå til side..."
 
 msgid "Page"
-msgstr "Pagina"
+msgstr "Side"
 
 msgid "Expire"
-msgstr "Verloopt"
+msgstr "Udløb"
 
 msgid "Delete post?"
-msgstr "Bericht wissen?"
+msgstr "Slet indlæg?"
 
 msgid "Delete"
-msgstr "Wissen"
+msgstr "Slet"
 
 msgid "Edited"
-msgstr "Gewijzigd"
+msgstr "Redigeret"
 
 msgid "quote"
-msgstr "quote"
+msgstr "citat"
 
 msgid "Last topics"
-msgstr "Laatste onderwerpen"
+msgstr "Seneste emner"
 
 msgid "Last posts"
-msgstr "Laatste berichten"
+msgstr "Sidste post"
 
 msgid "Views"
-msgstr "Keer bekeken"
+msgstr "Visninger"
 
 msgid "Last post"
-msgstr "Laatste bericht"
+msgstr "Sidste post"
 
 msgid "Statistics"
-msgstr "Statistieken"
+msgstr "Statistik"
 
 msgid "Unstick topic"
-msgstr "Verwijder hoofdbericht-status"
+msgstr "Frameld emne"
 
 msgid "Stick topic"
-msgstr "Markeer bericht als hoofdbericht"
+msgstr "Gør til fast emne"
 
 msgid "Open topic"
-msgstr "Maak onderwerp"
+msgstr "Start emne"
 
 msgid "Close topic"
-msgstr "Sluit onderwerp"
+msgstr "Afslut emne"
 
 msgid "Merge topics"
-msgstr "Onderwerpen samenvoegen"
+msgstr "Sammenlæg emner"
 
 msgid "Subscribe"
-msgstr "Abonneer"
+msgstr "Abonner"
 
 msgid "Find all posts"
-msgstr "Vind alle berichten"
+msgstr "Find alle poster"
 
 msgid "Number of topics"
-msgstr "Aantal onderwerpen"
+msgstr "Antal emner"
 
 msgid "Find all topics"
-msgstr "Alle onderwerpen vinden"
+msgstr "Find alle emner"
 
 msgid "Date of registration"
-msgstr "Registreerdatum"
+msgstr "Dato for tilmelding"
 
 msgid "Contacts"
-msgstr "Contacten"
+msgstr "Kontakter"
 
 msgid "All topics created by"
-msgstr "Alle onderwerpen geschreven door"
+msgstr "Alle emner oprttet af"
 
 msgid "seconds ago,seconds ago,seconds ago"
-msgstr "seconden geleden,seconden geleden,seconden geleden"
+msgstr "sekunder siden,sekunder siden,sekunder siden"
 
 msgid "seconds ago"
-msgstr "seconden geleden"
+msgstr "sekunder siden"
 
 msgid "minutes ago,minutes ago,minutes ago"
-msgstr "minuten geleden,minuten geleden,minuten geleden"
+msgstr "minutter siden,minutter siden,minutter siden"
 
 msgid "minutes ago"
-msgstr "minuten geleden"
+msgstr "minutter siden"
 
 msgid "today, %s"
-msgstr "vandaag, %s"
+msgstr "idag, %s"
 
 msgid "yesterday, %s"
-msgstr "gisteren, %s"
+msgstr "igår, %s"
 
 msgid "Mark all forums as read"
-msgstr "Alle berichten als gelezen markeren"
+msgstr "Marker alle grupper som læst"
 
 # ##########################
 # Login and Register helptexts translationbelow #
 # ##########################
 msgid "If you have forgotten your password or username, you can"
-msgstr "Als u uw wachtwoord of gebruikersnaam bent vergeten, kunt u"
+msgstr "Hvis du har glemt dit kodeord, kan du"
 
 msgid "request a new password"
-msgstr "een nieuw wachtwoord aanvragen"
+msgstr "anmod om nyt kodeord"
 
 msgid "and find out your username."
-msgstr "en op die manier ook uw gebruikersnaam te weten komen."
+msgstr "find dit brugernavn."
 
 msgid ""
 "You will need a working email address in order to register for the flusurvey."
-msgstr ""
-"U hebt een geldig e-mailadres nodig om aan de Grote Griepmeting mee te "
-"kunnen doen."
+msgstr "Du skal angive en arbejds e-mail for at tilmelde dig Influmeter."
 
 msgid ""
 "Choose a username consisting of numbers, letters and/or underscores (no "
 "spaces) and a password.<br />If you have forgotten your password or "
 "username, you can"
 msgstr ""
-"Kies een <b>gebruikersnaam</b> bestaande uit letters en/of cijfers (<b>geen "
-"spaties</b>) en een wachtwoord.<br />Als u uw wachtwoord of gebruikersnaam "
-"bent vergeten, kunt u"
+"Vælg et brugernavn og kodeord bestående af tal, bogstaver og/eller "
+"understregning (uden mellemrum). <b/>Hvis du har glemt dit brugernavn, så"
 
 # ##########################
 # Cookie Consent translation below #
 # ##########################
 msgid "Your experience on this site will be improved by allowing cookies"
-msgstr "Deze website maakt gebruik van cookies"
+msgstr "Du kan forbedre sidens udseende ved at tillade cookies"
 
 msgid "Allow cookies"
-msgstr "Cookies toestaan"
+msgstr "Tillad cookies "
 
 msgid "Save preference"
-msgstr "Instellingen opslaan"
+msgstr "Gem indstillinger"
 
 msgid "see details"
-msgstr "Uw cookie instellingen"
+msgstr "Se oplysninger"
 
 msgid "hide details"
-msgstr "Minder details"
+msgstr "Skjul oplysninger"
 
 msgid "Strictly necessary"
-msgstr "Strikt noodzakelijk"
+msgstr "Absolut nødvendig"
 
 msgid ""
 "Some cookies on this website are strictly necessary and can not be disabled."
 msgstr ""
-"Sommige cookies op deze website zijn strikt noodzakelijk en kunnen niet "
-"worden uitgezet."
+"Nogle cookies på denne hjemmeside er absolut nødvendige og kan ikke slås fra."
 
 msgid "Social media"
-msgstr "Sociale media"
+msgstr "Sociale medier"
 
 msgid ""
 "Facebook, Twitter and other social websites need to know who you are to work "
 "properly."
 msgstr ""
-"Facebook, Twitter en andere social-media-websites maken gebruik van cookies. "
-"Als u geen toestemming geeft, worden onderdelen van deze website niet "
-"getoond."
+"Facebook, Twitter eg andre sociale medier har brug for personlige "
+"oplysninger for at virke efter hensigten.  "
 
 msgid "Analytics"
-msgstr "Statistieken"
+msgstr "Analyser"
 
 msgid ""
 "We anonymously measure your use of this website to improve your experience."
-msgstr "We meten (anonieme) bezoekgegevens om de site te kunnen verbeteren."
+msgstr ""
+"For at forbedre hjemmesiden foretager vi anonyme vurderinger af dit brug af "
+"den."
 
 msgid "Privacy settings"
-msgstr "Cookie instellingen"
+msgstr "Cookie indstillinger"
 
 msgid "for this website"
-msgstr "voor deze website"
+msgstr "for denne hjemmeside"
 
 msgid ""
 "Some features of this website need your consent to remember who you are."
-msgstr "Uw instellingen met betrekking tot het plaatsen van cookies:"
+msgstr "Nogen af hjemmesidens funktioner kræver at du tillader cookies."
 
 msgid "I consent"
-msgstr "Ik geef toestemming"
+msgstr "Jeg tillader"
 
 msgid "I decline"
-msgstr "Ik geef geen toestemming"
+msgstr "jeg tillader ikke"
 
 msgid "Close window"
-msgstr "Venster sluiten"
+msgstr "Luk vinduet"
 
 msgid "Cookie settings"
-msgstr "Cookie instellingen"
+msgstr "Cookie indstillinger"
 
 msgid "Thanks - your diagnosis:"
-msgstr "Hartelijk dank - uw ingevulde antwoorden komen het meest overeen met:"
+msgstr "Mange tak - du har sandsynligvis:"
 
 msgid ""
 "Please complete the background questionnaire for the participant "
 "\"%(user_name)s\" before marking him/her as healthy."
 msgstr ""
-"Gelieve eerst de achtergrondvragenlijst (\"Verander profiel\") te "
-"beantwoorden voor de deelnemer \"%(user_name)s\" voor deze als gezond aan te "
-"merken."
+"Veligst udfyld baggrundsoplysninger for \"%(user_name)s\" førend du "
+"registerer ham/hende som rask."
 
 msgid "The participant \"%(user_name)s\" has been marked as healthy."
-msgstr "De deelnemer \"%(user_name)s\" is als gezond aangemerkt."
+msgstr "Tilmeldte \"%(user_name)s\" er nu registreret som rask."
