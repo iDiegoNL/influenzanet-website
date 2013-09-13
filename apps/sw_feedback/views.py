@@ -11,7 +11,12 @@ from apps.pollster.models import Chart
 
 def feedback(request):
     page = request.GET.get('from', '')
-    r = feeback_token('FB-OJ74GAJD-85')
+    try:
+        site_token = settings.SW_FEEDBACK_SITE
+    except:
+        raise Exception('Feedback application not configured')
+    
+    r = feeback_token(site_token)
     try:
         token = r['token']
     except:
