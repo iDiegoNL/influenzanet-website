@@ -36,7 +36,10 @@ def is_wait_launch(request):
 
 def get_wait_launch_context(request):
     if is_wait_launch(request):
-        return {'date':  getattr(settings,'SWAUTH_LAUNCH_DATE', False) }
+        if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
+            d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
+            d = d.date()
+        return {'date':  d }
     return None
 
 def get_active_survey_user(request):
@@ -203,7 +206,7 @@ def group_management(request):
 
     history = list(_get_health_history(request, survey))
     last_intakes = _get_group_last_survey(request, 'intake')
-    vaccinations = list(_get_group_vaccination(request)) 
+    # vaccinations = list(_get_group_vaccination(request)) 
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     persons_dict = dict([(p.global_id, p) for p in persons])
     for item in history:
@@ -213,10 +216,10 @@ def group_management(request):
         person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.last_intake = last_intakes.get(person.global_id)
         #person.is_female = _get_person_is_female(person.global_id)
-        person.vaccination = vaccinations.count(person.global_id) > 0
-        person.vaccination_url = '%s?gid=%s' % (reverse('survey_run',kwargs={'shortname':'vaccination'}), person.global_id)
-        #vacc = _get_person_is_vaccinated(person.global_id)
-        #person.vaccination = vacc is not None and not vacc
+        # person.vaccination = vaccinations.count(person.global_id) > 0
+        # person.vaccination_url = '%s?gid=%s' % (reverse('survey_run',kwargs={'shortname':'vaccination'}), person.global_id)
+        # vacc = _get_person_is_vaccinated(person.global_id)
+        # person.vaccination = vacc is not None and not vacc
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
     wait_launch = get_wait_launch_context(request) # is request restricted by wait_launch context
     return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch},
