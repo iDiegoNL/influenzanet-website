@@ -26,7 +26,7 @@ def server_error(request, template_name='500.html'):
     Django's standard 500 error handler does not serve MEDIA_URL correctly; this one does
     """
     t = loader.get_template(template_name)
-    return http.HttpResponseServerError(t.render(Context({
+    return http.HttpResponseServerError(t.render(RequestContext(request,{
         'MEDIA_URL': settings.MEDIA_URL
     })))
 
