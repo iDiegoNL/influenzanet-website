@@ -65,7 +65,9 @@ LANGUAGES = (
 # Example: "/home/media/media.lawrence.com/"
 import os
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+
 LOCALE_PATHS = (
     os.path.join(PROJECT_PATH, 'locale'),
 )

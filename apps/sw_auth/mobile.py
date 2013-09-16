@@ -21,7 +21,7 @@ def mobile_login(request):
     if user is None:
         r = {'error': True, 'error_code': 2, 'error_msg': 'invalid login'}
         return response(r) 
-
+	print user
     survey_users = SurveyUser.objects.filter(user=user)
     users = []
     for survey_user in survey_users:

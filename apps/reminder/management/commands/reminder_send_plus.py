@@ -51,12 +51,13 @@ class UserChecker:
         return userlist
     
     def check(self, user):
-        if not self.user_list is None:
-            try:
-                i = self.user_list.index(user.id)
-            except Exception as e:
-                return False
-        return True
+        if self.user_list is None:
+            return True
+        try:
+            i = self.user_list.index(user.id)
+            return True
+        except Exception as e:
+            return False
             
 
 class Command(BaseCommand):

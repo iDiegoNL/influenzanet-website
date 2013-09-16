@@ -6,7 +6,7 @@ from django.views.generic.simple import redirect_to
 #from haystack.forms import SearchForm
 
 #from apps.ew_contact_form.forms import ContactForm
-#from views import LatestEntriesFeed
+from views import LatestEntriesFeed
 
 from django.contrib import admin
 admin.autodiscover()
@@ -33,7 +33,7 @@ urlpatterns = patterns('',
 #    (r'^mobile/login/$', 'views.mobile_login'),
     (r'^mobile/(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$', 'apps.journal.views.entry', {'template_name': 'mobile'}),
 
-#    (r'^rss/$', LatestEntriesFeed()),
+    (r'^rss/$', LatestEntriesFeed()),
 
     #url(r'^captcha/', include('captcha.urls')),
     #(r'^tellafriend/', include('tellafriend.urls')),
