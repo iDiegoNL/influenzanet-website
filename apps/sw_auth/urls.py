@@ -43,6 +43,12 @@ urlpatterns = patterns('',
         auth_views.login,
         {'template_name': 'sw_auth/login.html'},
         name='auth_login'),
+
+    url(r'^login/(?P<login_token>.+)/$',
+        views.login_token,
+        name='auth_login_token',       
+        ),
+    
     
     url(r'^logout/$',
         auth_views.logout,
@@ -80,6 +86,9 @@ urlpatterns = patterns('',
 
     url(r'^settings/$', views.my_settings),
 
+    url(r'^deactivate/planned/$', views.deactivate_planned, name="deactivate_planned"),
+
+    url(r'^deactivate/request/$', views.deactivate_request, name="deactivate_request"),
     # Additional URLs
     url(r'^$', views.index),
 )

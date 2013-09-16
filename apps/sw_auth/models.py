@@ -1,13 +1,16 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.db import transaction
-from django.contrib.auth.models import get_hexdigest, check_password, User
+from django.contrib.auth.models import get_hexdigest, check_password, User, UNUSABLE_PASSWORD
+from django.core.urlresolvers import reverse
 from datetime import datetime
 import utils
 import random
 import sys
 from .utils import create_token, encrypt_user, decrypt_user, EpiworkToken
 from .logger import auth_notify
+from apps.survey.models import SurveyUser
+from apps.partnersites.models import Site
 
 # Connect to login_in signal
 # This allow us to set the real user id in session
@@ -50,7 +53,7 @@ def get_random_user_id():
         
 
 class EpiworkUserManager(models.Manager):
-    
+
     @transaction.commit_manually()
     def create_user(self, login, email, password):
         user = EpiworkUser()
@@ -79,6 +82,11 @@ class EpiworkUserManager(models.Manager):
         return user
                    
 class EpiworkUser(models.Model):
+    """"
+    Handle the identity of a user account
+    It is linked to a "fake" django user account in the "user" field
+    """
+    
     id = models.BigIntegerField(primary_key=True)
     user = models.CharField(_('username'), max_length=255, unique=True) # encrypted user name in auth_user
     email = models.CharField(_('e-mail address'),max_length=255) # encrypted email
@@ -88,6 +96,8 @@ class EpiworkUser(models.Model):
     token_activate = models.CharField(max_length=40)
     is_active = models.BooleanField(default=False)
     
+    anonymize_warn = models.DateField(null=True) # Date of warning if account should be anonymized
+
     objects = EpiworkUserManager()
     
     # Get the user login
@@ -164,7 +174,48 @@ class EpiworkUser(models.Model):
     def personalize(self, user):
         user.username = self.login
         user.email = self.email
-
+        
+    def anonymize(self):
+        # create a unique user name (not used)
+        name = 'user'+str(self.id)+'-'+ utils.random_string(6)
+        self.login = name
+        self.email = name+'@'+'localhost'
+        self.password = UNUSABLE_PASSWORD 
+        self.is_active = False
+        
+        # get the django user
+        user = self.get_django_user()
+        # user = django user
+        try:
+            # remove participant info
+            susers = SurveyUser.objects.filter(user=user)
+            for su in susers:
+                print " > anonymizing participant %d" % su.id
+                su.name = 'part' + str(su.id) +'_'+ utils.random_string(4) # random tail to expect uniqueness
+                su.save() 
+            
+            user.first_name = 'nobody'
+            user.last_name = 'nobody'
+            user.password = UNUSABLE_PASSWORD
+            user.is_active = False
+            user.save()
+            self.save()
+            transaction.commit()
+            return True
+        except Exception:
+            transaction.rollback()
+            raise
+        
+class AnonymizeLog(models.Model):
+    
+    EVENT_WARNING   = 1 # Anonymize Warning sent
+    EVENT_DONE      = 2 # Account anonymized
+    EVENT_MANUALLY  = 3 # Account anonymized by administrator
+    EVENT_CANCELLED = 4 # Account anonymization cancelled by user login
+    
+    user = models.ForeignKey(EpiworkUser)
+    date = models.DateTimeField(auto_now_add=True)
+    event = models.IntegerField(null=False)
 
 class LoginToken(models.Model):
     user = models.ForeignKey(EpiworkUser)
@@ -200,14 +251,21 @@ class LoginToken(models.Model):
         if self.usage_left is not None and self.usage_left > 0:
             self.usage_left -= 1
             self.save()
+    
+    def get_url(self):
+        """
+        Get the absolute url to use the token
+        """
+        domain = Site.objects.get_current()
+        path = reverse('auth_login_token', kwargs={'login_token': self.key}).strip('/')
+        return 'http://%s/%s' % (domain, path)
 
-
-
-"""
-Fake user to replace User django
-This proxy class protect the user object from a save action
-"""
 class FakedUser(User):
+    """
+    Fake user to replace User django
+    This proxy class protect the user object from a save action
+    """
+
     class Meta:
         proxy = True
         """"

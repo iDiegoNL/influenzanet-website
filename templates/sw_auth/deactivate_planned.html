@@ -1,0 +1,13 @@
+{% extends "base/twocol.html" %}
+{% load i18n %}
+
+{% block col1 %}
+<h1>{% trans "Reactivation of your account" %}</h1>
+
+<p>{%trans "Your account was planned to be deactivated because of its lack of activity"%}</p>
+
+<p class="warning">{%trans "If your want to deactivate your account click on the button below"%}
+
+<a href="{% url deactivate_request %}">
+
+{% endblock %}

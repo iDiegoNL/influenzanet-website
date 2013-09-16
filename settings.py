@@ -58,6 +58,7 @@ LANGUAGES = (
    ('sv', u'Svenska'),
    ('pt', u'Portugues'),
    ('es', u'Español'),
+   ('da', u'Dansk'),
 )
 
 # Absolute path to the directory that holds media.
@@ -207,6 +208,7 @@ except:
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'apps.sw_auth.backend.EpiworkAuthBackend',
+    'apps.sw_auth.backend.EpiworkTokenBackend',
     'loginurl.backends.LoginUrlBackend',
 )
 

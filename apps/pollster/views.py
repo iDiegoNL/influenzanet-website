@@ -406,13 +406,18 @@ def survey_import(request):
 
 def chart_data(request, survey_shortname, chart_shortname):
     chart = None
+
     if request.user.is_active and request.user.is_staff:
         survey = get_object_or_404(models.Survey, shortname=survey_shortname)
         chart = get_object_or_404(models.Chart, survey=survey, shortname=chart_shortname)
     else:
         survey = get_object_or_404(models.Survey, shortname=survey_shortname, status='PUBLISHED')
         chart = get_object_or_404(models.Chart, survey=survey, shortname=chart_shortname, status='PUBLISHED')
+
     survey_user = _get_active_survey_user(request)
+    if survey_user is None:
+        survey_user = _get_some_survey_user(request)
+
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
     return HttpResponse(chart.to_json(user_id, global_id), mimetype='application/json')
@@ -484,6 +489,25 @@ def _get_active_survey_user(request):
         return None
     else:
         return get_object_or_404(SurveyUser, global_id=gid, user=request.user)
+
+def _get_some_survey_user(request):
+    # as remarked in other locations, the passing of the gid is not a robust
+    # way of doing things. This helper method is used if no gid is available
+    # to get at least some survey user if there is any available survey user.
+
+    # I've now only actually used this function in a single location, but we
+    # might change that as well.
+
+    if not request.user.is_authenticated():
+        return None
+
+    survey_users = SurveyUser.objects.filter(user=request.user, deleted=False)
+    total = len(survey_users)
+        
+    if total >= 1:
+        return survey_users[0]
+
+    return None
 
 def _get_next_url(request, default):
     url = request.GET.get('next', default)

@@ -13,7 +13,7 @@
 	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
 </div>
 {% else %}	
-<div id="user-box">
+<div id="user-box" class="widget-box">
 	<table>
 		<tr>
 			<td id="user-avatar"><img src="{{MEDIA_URL}}/sw/avatar.gif" width="60" height="60"/></td>
@@ -23,10 +23,6 @@
 		</tr>
 	</table>
 <ul>
-	{% if surveyuser_count == 1%}
-	<li class="icon icon-survey"><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">{% trans "Symptoms survey" %}</a></li>
-	<li class="icon icon-survey"><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Questionnaire préliminaire </a></li>
-	{%endif%}
 	<li class="icon icon-users"><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
 	<li class="icon icon-settings"><a href="/accounts/settings/">{% trans "My settings" %}</a></li>
 	<li class="icon icon-password"><a href="/accounts/password/change">{% trans "Change password" %}</a></li>
@@ -34,8 +30,17 @@
 </li>
 </ul>
 </div>
+
+{% if surveyuser_count == 1%}
+Questionnaires
+<div class="widget-box">
+	<li class="icon icon-survey"><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">{% trans "Symptoms survey" %}</a></li>
+	<li class="icon icon-survey"><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Questionnaire préliminaire </a></li>
+</div>
+{%endif%}
+
 {% endif %}
-<div id="social-widgets">
+<div id="social-widgets" class="widget-box">
 {% if not user.is_authenticated %}
 <iframe src="//platform.twitter.com/widgets/follow_button.html?screen_name=grippenet&lang=fr&show_count=false" allowtransparency="true" frameborder="0" scrolling="no" style="width:169px; height:21px;"></iframe>
 <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FGrippeNet%2F307427382625293&amp;send=false&amp;layout=button_count&amp;width=169&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:169px; height:21px;" allowTransparency="true"></iframe>

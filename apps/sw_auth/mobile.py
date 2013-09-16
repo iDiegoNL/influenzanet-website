@@ -10,7 +10,7 @@ from loginurl.utils import create as create_login_key
 def response(o):
     return HttpResponse(simplejson.dumps(o),mimetype="application/json")
 
-@csrf_exempt
+#@csrf_exempt
 def mobile_login(request):
     
     if request.method != "POST":

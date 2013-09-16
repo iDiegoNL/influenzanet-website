@@ -1,11 +1,11 @@
-#-e hg+https://hg@bitbucket.org/ubernostrum/django-registration#egg=django-registration
+#-e hg+https://hg@bitbucket.org/vanschelven/django-registration#egg=django-registration
 django-cms==2.1.4
 #-e hg+https://bitbucket.org/jespern/django-piston@adeef486579b#egg=django-piston
 south
 django-sekizai
 django-appmedia
 django-contact-form
-django-haystack
+django-haystack==1.2
 xapian-haystack
 django==1.3.3
 PIL

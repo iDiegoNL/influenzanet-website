@@ -59,7 +59,7 @@ def mobile_login(request):
     if user is None:
         return HttpResponse(simplejson.dumps({'error': True, 'error_code': 2, 'error_msg': 'invalid login'}), mimetype="application/json") 
 
-    survey_users = SurveyUser.objects.filter(user=user)
+    survey_users = SurveyUser.objects.filter(user=user, deleted=False)
     users = []
     for survey_user in survey_users:
         cursor = connection.cursor()

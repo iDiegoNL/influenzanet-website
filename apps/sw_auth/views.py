@@ -18,6 +18,8 @@ from apps.sw_auth.models import EpiworkUser
 from apps.sw_auth.utils import send_activation_email,EpiworkToken
 from apps.sw_auth.logger import auth_notify
 from apps.sw_auth.forms import UserEmailForm
+from apps.sw_auth import anonymize
+from apps.sw_auth.anonymize import Anonymizer
 
 
 def render_template(name, request, context=None):
@@ -41,7 +43,7 @@ def register_user(request):
             user = EpiworkUser.objects.create_user(d['username'], d['email'], d['password1'])
             site = get_current_site(request)
             send_activation_email(user, site)
-            return HttpResponseRedirect(reverse('registration_complete'))
+            return render_template('registration_complete', request, { 'user': user}) 
     if form is None:
         form = RegistrationForm()
     return render_template('registration_form', request, { 'form': form}) 
@@ -182,7 +184,7 @@ def password_complete(request):
     """
     """
 
-def login_token(request, key):
+def login_token(request, login_token):
     """ 
     Login using a random key 
     """ 
@@ -193,7 +195,7 @@ def login_token(request, key):
     # Validate the key through the standard Django's authentication mechanism.
     # It also means that the authentication backend of this django-loginurl
     # application has to be added to the authentication backends configuration.
-    user = auth.authenticate(key=key)
+    user = auth.authenticate(login_token=login_token)
     if user is None:
         url = settings.LOGIN_URL
         if next is not None:
@@ -231,6 +233,20 @@ def my_settings(request):
     except KeyError:
         auth_notify('setting', 'No settings')
         return render_to_response('sw_auth/no_settings.html', locals(), RequestContext(request))
+
+def deactivate_planned(request):
+    return render_template('deactivate_planned', request)
+
+def deactivate_request(request):
+    try:
+        epiwork_user = request.session['epiwork_user']
+        anonymizer = Anonymizer()
+        anonymizer.warn(epiwork_user, 1) # Warning of deactivation will be tomoroww
+        return render_template('password_reset_error', request)
+    except KeyError:
+        return render_template('no_settings', request)
+    
+  
     
 def index(request):
     """
