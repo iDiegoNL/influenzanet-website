@@ -1762,3 +1762,9 @@ msgstr ""
 
 msgid "The participant \"%(user_name)s\" has been marked as healthy."
 msgstr "De deelnemer \"%(user_name)s\" is als gezond aangemerkt."
+
+msgid "Your result archive"
+msgstr "Uw resultatenarchief"
+
+msgid "No data available for this season" 
+msgstr "Geen gegevens beschikbaar voor dit seizoen"
