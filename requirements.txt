@@ -14,5 +14,4 @@ wsgiref==0.1.2
 -e git://github.com/ojii/django-nani.git@bb47153e05b46b775658887f214a486412fe25a5#egg=django-nani
 simplejson
 mock
-pybbm==0.8.0
 html5lib==0.95 # for our ancient version of django-cms
