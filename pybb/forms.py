@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 
 import defaults
 from django.conf import settings
+from captcha.fields import CaptchaField
 
 MEDIA_ROOT = settings.MEDIA_ROOT
 
@@ -49,7 +50,8 @@ class PostForm(forms.ModelForm):
 
         super(PostForm, self).__init__(**kwargs)
 
-        self.fields.keyOrder = ['name', 'body']
+        self.fields.keyOrder.remove('name')
+        self.fields.keyOrder = ['name'] + self.fields.keyOrder
 
         if not (self.forum or (self.instance.pk and (self.instance.topic.head == self.instance))):
             self.fields['name'].widget = forms.HiddenInput()
@@ -98,6 +100,9 @@ class PostForm(forms.ModelForm):
             post.on_moderation = True
         post.save()
         return post
+
+class AnonymousPostForm(PostForm):
+    captcha = CaptchaField(help_text=_("Please enter the characters shown in the image in the field next to it."), label=_("Captcha"))
 
 class AdminPostForm(PostForm):
     """

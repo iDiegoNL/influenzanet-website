@@ -11,12 +11,14 @@
     {% endif %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
        <fieldset>
-            {{ form.as_p }}
+            {{ form.name.errors }} {{ form.name }} {{ form.name.help_text }}
+            {{ form.body.errors }} {{ form.body }} {{ form.body.help_text }}
             <div id='emoticons'>
                 {% for smile, url in form.available_smiles.items %}
                     <a href='#' title='{{ smile|safe }}'><img src='{{ STATIC_URL }}{{ form.smiles_prefix }}{{ url }}'></a>
                 {% endfor %}
             </div>
+            {{ form.captcha.errors }} {{ form.captcha }} {{ form.captcha.help_text }}
             {% include "pybb/attachments_formset.html" %}
             <p class="submit">
                 {% if PYBB_BUTTONS.submit %}

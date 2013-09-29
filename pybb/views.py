@@ -26,7 +26,7 @@ except ImportError:
 from django.views.decorators.csrf import csrf_protect
 
 from pybb.models import Category, Forum, Topic, Post, TopicReadTracker, ForumReadTracker, Attachment
-from pybb.forms import  PostForm, AdminPostForm, EditProfileForm, AttachmentForm
+from pybb.forms import  PostForm, AdminPostForm, AnonymousPostForm, EditProfileForm, AttachmentForm
 from pybb.templatetags.pybb_tags import pybb_editable_by
 from pybb.templatetags.pybb_tags import pybb_topic_moderated_by
 
@@ -129,11 +129,11 @@ class TopicView(generic.ListView):
             self.request.user.is_subscribed = self.request.user in self.topic.subscribers.all()
             if self.request.user.is_staff:
                 ctx['form'] = AdminPostForm(initial={'login': self.request.user.username}, topic=self.topic)
-            else:
+            elif self.request.user.is_authenticated():
                 ctx['form'] = PostForm(topic=self.topic)
             self.mark_read(self.request, self.topic)
         elif defaults.PYBB_ENABLE_ANONYMOUS_POST:
-            ctx['form'] = PostForm(topic=self.topic)
+            ctx['form'] = AnonymousPostForm(topic=self.topic)
         else:
             ctx['form'] = None
         if defaults.PYBB_ATTACHMENT_ENABLE:
@@ -183,8 +183,9 @@ class FormChoiceMixin(object):
     def get_form_class(self):
         if self.request.user.is_staff:
             return AdminPostForm
-        else:
+        if self.request.user.is_authenticated():
             return PostForm
+        return AnonymousPostForm
 
 
 class AddPostView(FormChoiceMixin, generic.CreateView):

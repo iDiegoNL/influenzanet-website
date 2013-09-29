@@ -180,7 +180,7 @@ INSTALLED_APPS = (
     'haystack',
     'apps.pollster',
     'apps.contest',
-    #'apps.captcha',
+    'captcha',
     #'apps.tellafriend',
 
     'pybb',
