@@ -10,11 +10,18 @@ from nani.forms import TranslatableModelForm
 from .models import NO_INTERVAL, ReminderSettings, NewsLetterTemplate, NewsLetter, get_default_for_newsitem, get_upcoming_dates, get_settings
 
 class ReminderSettingsForm(forms.ModelForm):
+    resubscribe_email_message = forms.CharField(widget=WYMEditor(), required=False)
+
     def clean(self):
         cleaned_data = super(ReminderSettingsForm, self).clean()
         if cleaned_data.get('send_reminders'):
             if cleaned_data.get('interval') != NO_INTERVAL and not (cleaned_data.get('begin_date') and cleaned_data.get('interval')):
                 raise forms.ValidationError(_("If 'send_reminders' is checked the other fields pertaining to reminders are required"))
+
+        if cleaned_data.get('send_resubscribe_email'):
+            if not (cleaned_data.get('resubscribe_email_subject') and cleaned_data.get('resubscribe_email_message')):
+                raise forms.ValidationError(_("If 'send_resubscribe_email' is checked the other fields pertaining to resubscription are required"))
+
         return cleaned_data
 
     class Meta:
