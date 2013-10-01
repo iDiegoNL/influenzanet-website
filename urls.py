@@ -35,7 +35,7 @@ urlpatterns = patterns('',
 
     (r'^rss/$', LatestEntriesFeed()),
 
-    #url(r'^captcha/', include('captcha.urls')),
+    url(r'^captcha/', include('captcha.urls')),
     #(r'^tellafriend/', include('tellafriend.urls')),
 
     url(r'^search/$', search_view_factory(
