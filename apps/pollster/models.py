@@ -15,6 +15,8 @@ from django.conf import settings
 DEG_TO_RAD = pi/180
 RAD_TO_DEG = 180/pi
 
+import mapnik2
+
 try:
     import mapnik2 as mapnik
     mapnik_version = 2
@@ -1344,3 +1346,8 @@ class GoogleProjection:
 
 class SurveyChartPlugin(CMSPlugin):
     chart = models.ForeignKey(Chart)
+
+class SurveyPlugin(CMSPlugin):
+    survey = models.ForeignKey(Survey, verbose_name="Survey")
+    redirect_path = models.CharField(max_length=4096, blank=True, default='', verbose_name="Redirect to path")
+
