@@ -14,13 +14,15 @@
 
 .widget-box {
 	padding: .5em;
+	margin: .2em 0;
 	border: 1px solid #EEE;
 	border-radius: .4em;
 	-webkit-border-radius: .4em;
 	-moz-border-radius: .4em;
 }
 .widget-box ul {
-	margin: 0; padding: 0;	
+	margin: 0; 
+	padding: 0;	
 }
 
 .widget-box  li {
@@ -48,6 +50,7 @@ max-width: 300px;
 
 .widget-disabled {
 color: #666;
+padding: .5em;
 font-size: .6em;
 text-align: justify;
 }

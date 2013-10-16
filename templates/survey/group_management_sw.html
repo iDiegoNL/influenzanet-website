@@ -18,7 +18,7 @@
 </p>
 {%else%}
 <div id="page-help" style="display:none">{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}</div>
-<a class="button button-mini " rel="facebox" href="#page-help" data-facebox-height="450" data-facebox-width="550"><span class="icon icon-help-white">{% trans "Help about this page"%}</span></a>
+<a class="button button-mini " rel="facebox" href="#page-help" data-facebox-height="450" data-facebox-width="650"><span class="icon icon-help-white">{% trans "Help about this page"%}</span></a>
 {%endif%}
 {%if not wait_launch%} {# Do not check in wait launch context #}
 	{%for p in persons%}{%if not p.last_intake%}<p class="alert alert-warning"><span class="icon icon-warning">&nbsp;</span>{% blocktrans with name=p.name %}Please fill the background intake for the user {{name}} first{%endblocktrans%}</p>{%endif%}
@@ -82,6 +82,7 @@
 	<ul >
 		<li><a href="{% url survey_people_add %}" class="action-add-people" data-facebox-height="360px" data-facebox-width="460px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
 		<li><a href="{% url cohort_form %}" class="action-cohort"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span class="tooltip icon icon-tip" title="{%trans "cohort subscription help text"%}"></li>
+		<li><span class="tooltip icon icon-tip" title="{%trans "Update vaccination help"%}">{%trans "How to update my vaccination status"%}</span></li>
 	</ul>
 	</td>
 </tr>
