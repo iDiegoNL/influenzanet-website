@@ -7,9 +7,9 @@ from django.conf import settings
 class Command(BaseCommand):
     help = 'Transfert account to Test environnment'
 
-    option_list = BaseCommand.option_list + (
-        make_option('-u', '--user', action='store', dest='user', default=None, help='User id'),
-    )
+#    option_list = BaseCommand.option_list + (
+#        make_option('-u', '--user', action='store', dest='user', default=None, help='User id'),
+#    )
 
     def handle(self, *args, **options):
         if not getattr('SWAUTH_TEST_ENV', settings, False):
@@ -24,7 +24,7 @@ class Command(BaseCommand):
         # Create Epiworkusers based on
         for user in User.objects.all():
             login = 'user'+user.id
-            # Epiworkuser
+            
             ew = EpiworkUser()
             ew.set_password(raw_password)
             ew.set_user(user.username)

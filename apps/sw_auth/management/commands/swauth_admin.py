@@ -30,9 +30,11 @@ class Command(BaseCommand):
         root = authenticate(username="root", password=pwd)
         
         if root is None:
+            print "uh oh, wrong try"
             return
     
         # del args[0]
+        print "Access granted"
         
         user = self.get_user(options)
         
@@ -74,7 +76,10 @@ class Command(BaseCommand):
     @transaction.commit_on_success
     def make_user_admin(self, user):
         u = user.get_django_user()
-        u.is_staff = True
+        if(u.is_staff):
+            print "user %s is already admin, updating account"
+        else:
+            u.is_staff = True
         u.password = user.password
         u.email = user.email
         u.username = user.login

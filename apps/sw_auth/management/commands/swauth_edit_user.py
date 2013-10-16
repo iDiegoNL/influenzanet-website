@@ -17,8 +17,6 @@ class Command(BaseCommand):
         make_option('-a', '--activate', action='store_true', dest='activate', default=None, help='Resend activation with new email'),
     )
 
-    
-
     def handle(self, *args, **options):
         
         if options['mail'] is None:

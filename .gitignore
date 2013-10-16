@@ -18,6 +18,7 @@ build/
 dist/
 media/uploads/
 media/journal_images/
+media/.webassets-cache/
 _pollster_tile_cache/
 .project
 epidb/client/epidb_results.sql*
