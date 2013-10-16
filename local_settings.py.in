@@ -44,3 +44,13 @@ POLLSTER_USER_ZIP_CODE_DATA_NAME = 'Q3'
 # used to match the zip code for the right country
 # in the pollster_zip_codes table
 POLLSTER_USER_COUNTRY_DATA_NAME = None
+
+## Group Management Template
+SURVEY_GROUP_TEMPLATE = 'group_management_sw'
+
+## Wait for a date
+SURVEY_WAIT_LAUNCH = False
+
+## 
+SWAUTH_LAUNCH_DATE = True
+
