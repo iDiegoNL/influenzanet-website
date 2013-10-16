@@ -276,6 +276,8 @@ a:link.close {
 .pt { background: url(../img/influbar/map/marker_pt.png) no-repeat; }
 .es { background: url(../img/influbar/map/marker_es.png) no-repeat; }
 .it { background: url(../img/influbar/map/marker_it.png) no-repeat; }
+.ie { background: url(../img/influbar/map/marker_ie.png) no-repeat; }
+.dk { background: url(../img/influbar/map/marker_dk.png) no-repeat; }
 
 .bubble {
  margin: -106px 0 0 0;
@@ -1269,7 +1271,11 @@ div#page {
 }
 
 .forum h1 {
- color: #0A0A0A; font-size: 1.2em; line-height: 1.1em; margin: 6px 0 12px; padding: 0;
+ color: #0A0A0A;
+ font-size: 1.2em;
+ line-height: 1.1em;
+ margin: 6px 0 12px;
+ padding: 0;
 }
 
 .forum #header {
@@ -1290,13 +1296,18 @@ div#page {
 }
 
 .forum input,
-.forum textarea { -moz-transition: none; box-shadow: none;}
+.forum textarea {
+ -moz-transition: none;
+ box-shadow: none;
+}
 
 .forum a:focus,
 .forum input:focus, 
 .forum textarea:focus {
  outline: none;
- border-color: transparent; box-shadow: none;}
+ border-color: transparent;
+ box-shadow: none;
+}
 
 .forum #searchbar input#searchfield,
 .forum #searchbar input#searchsubmit {
@@ -1323,7 +1334,12 @@ div#page {
 
 .forum a.close {
  color: #B2B2B2;
- float: none; font-size: inherit; font-weight: inherit; line-height: inherit; opacity: 1; text-shadow: none;
+ float: none;
+ font-size: inherit;
+ font-weight: inherit;
+ line-height: inherit;
+ opacity: 1;
+ text-shadow: none;
  text-decoration: underline;
 }
 
@@ -1359,11 +1375,21 @@ div#page {
 .forum input#id_email,
 .forum textarea#id_body {
  float: none;
- clear: both; border: 1px solid #CCCCCC; font-size: 1em; height: 1.6em; line-height: 1.6em; margin: 0 0 10px; padding: 0 4px; width: 940px;}
+ clear: both;
+ border: 1px solid #CCCCCC;
+ font-size: 1em;
+ height: 1.6em;
+ line-height: 1.6em;
+ margin: 0 0 10px;
+ padding: 0 4px;
+ width: 940px;
+}
 
-.forum textarea#id_body { height: 10em;
+.forum textarea#id_body {
+ height: 10em;
  line-height: 1em;
- padding-top: 4px;}
+ padding-top: 4px;
+}
 
 .forum div#emoticons {
  margin-bottom: 16px;
