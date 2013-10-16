@@ -28,10 +28,12 @@ urlpatterns = patterns('',
     
     (r'^mobile/login/$', 'apps.sw_auth.mobile.mobile_login'),
     (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True, 'next': '/mobile/success/'}),
+#    (r'^mobile/surveys/(?P<shortname>.+)/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
     (r'^mobile/success/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
     (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
 #    (r'^mobile/login/$', 'views.mobile_login'),
     (r'^mobile/(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$', 'apps.journal.views.entry', {'template_name': 'mobile'}),
+    (r'^mobile/rss/$', LatestEntriesFeed()),
 
     (r'^rss/$', LatestEntriesFeed()),
 

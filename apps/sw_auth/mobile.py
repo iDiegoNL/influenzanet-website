@@ -10,7 +10,7 @@ from loginurl.utils import create as create_login_key
 def response(o):
     return HttpResponse(simplejson.dumps(o),mimetype="application/json")
 
-#@csrf_exempt
+@csrf_exempt
 def mobile_login(request):
     
     if request.method != "POST":
@@ -19,6 +19,7 @@ def mobile_login(request):
 
     user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
     if user is None:
+        print 'invalid login'
         r = {'error': True, 'error_code': 2, 'error_msg': 'invalid login'}
         return response(r) 
 	print user
