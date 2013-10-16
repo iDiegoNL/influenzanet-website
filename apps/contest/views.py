@@ -43,7 +43,7 @@ def prijs_weergave(request):
 @login_required
 @csrf_exempt
 def relay2(request):
-    if date.today() > date(2013, 12, 18):
+    if date.today() > date(2013, 12, 31):
         raise Exception("The contest is closed")
 
     if request.method == "GET":
@@ -105,8 +105,8 @@ def winners(request):
     return HttpResponse(result_str)
 
 def ili_percentages():
-    begin = date(2012, 11, 18)
-    end = date(2013, 5, 5)
+    begin = date(2013, 11, 1)
+    end = date(2014, 4, 30)
     weeknr = 1
 
     cursor = connection.cursor()

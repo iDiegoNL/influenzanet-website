@@ -1461,3 +1461,12 @@ msgstr ""
 "que antecede o nome. E já está.<br/>Após o preenchimento do Questionário "
 "Semanal de Sintomas, o Gripenet irá mostrar-lhe como interpretou as suas "
 "respostas e criar um histórico de estado de saúde.<br/>"
+
+
+
+msgid "Your result archive"
+msgstr ""
+
+msgid "No data available for this season" 
+msgstr ""
+

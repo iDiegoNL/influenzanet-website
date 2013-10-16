@@ -1720,3 +1720,9 @@ msgstr ""
 
 msgid "The participant \"%(user_name)s\" has been marked as healthy."
 msgstr "Tilmeldte \"%(user_name)s\" er nu registreret som rask."
+
+msgid "Your result archive"
+msgstr ""
+
+msgid "No data available for this season" 
+msgstr ""

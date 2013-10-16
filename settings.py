@@ -189,7 +189,6 @@ INSTALLED_APPS = (
 #    'apps.contest',
     #'apps.captcha',
     #'apps.tellafriend',
-
 #   'pybb',
 #   'pytils',
 #   'sorl.thumbnail',

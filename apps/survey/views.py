@@ -94,39 +94,39 @@ def _get_person_health_status(request, survey, global_id):
         status = result[0] if result else None
     return (status, _decode_person_health_status(status))
 
-def _get_person_is_female(global_id):
+def _get_person_is_female(global_id, table="pollster_results_intake"):
     try:
         cursor = connection.cursor()
         queries = {
-            'sqlite':"""SELECT Q1 FROM pollster_results_intake WHERE global_id = %s""",
-            'mysql':"""SELECT `Q1` FROM pollster_results_intake WHERE `global_id` = %s""",
-            'postgresql':"""SELECT "Q1" FROM pollster_results_intake WHERE "global_id" = %s""",
+            'sqlite':"""SELECT Q1 FROM """ + table + """ WHERE global_id = %s""",
+            'mysql':"""SELECT `Q1` FROM """ + table + """ WHERE `global_id` = %s""",
+            'postgresql':"""SELECT "Q1" FROM """ + table + """ WHERE "global_id" = %s""",
         }
         cursor.execute(queries[utils.get_db_type(connection)], [global_id,])
         return cursor.fetchone()[0] == 1 # 0 for male, 1 for female
     except:
         return None
 
-def _get_health_history(request, survey):
+def _get_health_history(request, survey, table="pollster_results_weekly"):
     results = []
     cursor = connection.cursor()
     params = { 'user_id': request.user.id }
     queries = {
         'sqlite':"""
             SELECT W.timestamp, W.global_id, S.status
-              FROM pollster_health_status S, pollster_results_weekly W
+              FROM pollster_health_status S, """ + table + """ W
              WHERE S.pollster_results_weekly_id = W.id
                AND W.user = :user_id
              ORDER BY W.timestamp DESC""",
         'mysql':"""
             SELECT W.timestamp, W.global_id, S.status
-              FROM pollster_health_status S, pollster_results_weekly W
+              FROM pollster_health_status S, """ + table + """ W
              WHERE S.pollster_results_weekly_id = W.id
                AND W.user = :user_id
              ORDER BY W.timestamp DESC""",
         'postgresql':"""
             SELECT W.timestamp, W.global_id, S.status
-              FROM pollster_health_status S, pollster_results_weekly W
+              FROM pollster_health_status S, """ + table + """ W
              WHERE S.pollster_results_weekly_id = W.id
                AND W.user = %(user_id)s
              ORDER BY W.timestamp DESC""",
@@ -225,6 +225,46 @@ def group_management(request):
     return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch},
                               context_instance=RequestContext(request))
 
+
+@login_required
+def group_archive(request, year=None):
+    try:
+        survey = pollster.models.Survey.get_by_shortname('weekly')
+    except:
+        raise Exception("The survey application requires a published survey with the shortname 'weekly'")
+
+    if not getattr(settings, 'POLLSTER_HISTORICAL_WEEKLIES') or not getattr(settings, 'POLLSTER_HISTORICAL_INTAKES'):
+        # unchecked assumptions:
+        # these are both lists of tuples (year, existing-table-name) and they the LHS of each of the tuples is identical
+        # across both lists.
+
+        # also: the most recent (current) year/season is on top
+        raise Exception("Configuration error: please configure POLLSTER_HISTORICAL_WEEKLIES and POLLSTER_HISTORICAL_INTAKES")
+
+    if year:
+        year = int(year)
+    else:
+        year = settings.POLLSTER_HISTORICAL_WEEKLIES[0][0]
+    season = "%s - %s" % (year, year + 1)
+
+    weekly_table = dict(settings.POLLSTER_HISTORICAL_WEEKLIES)[year]
+    intake_table = dict(settings.POLLSTER_HISTORICAL_INTAKES)[year]
+
+    seasons = reversed(
+        [(year, "%s - %s" % (year, year + 1)) for (year, _) in settings.POLLSTER_HISTORICAL_WEEKLIES]
+    )
+
+    history = list(_get_health_history(request, survey, table=weekly_table))
+    persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
+    persons_dict = dict([(p.global_id, p) for p in persons])
+    for item in history:
+        item['person'] = persons_dict.get(item['global_id'])
+    for person in persons:
+        person.health_history = [i for i in history if i['global_id'] == person.global_id]
+        person.is_female = _get_person_is_female(person.global_id, table=intake_table)
+
+    return render_to_response('survey/group_archive.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'seasons': seasons, 'season': season},
+                              context_instance=RequestContext(request))
 
 @login_required
 def thanks_profile(request):
