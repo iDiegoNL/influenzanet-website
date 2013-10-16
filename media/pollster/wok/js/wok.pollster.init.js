@@ -1,0 +1,1 @@
+$(function() { wok.pollster.createPollsterRuntime(null, {}); });
