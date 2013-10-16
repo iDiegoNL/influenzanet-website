@@ -18,5 +18,6 @@ build/
 dist/
 media/uploads/
 media/journal_images/
+media/cms_page_media/
 _pollster_tile_cache/
 epidb/client/epidb_results.sql*

@@ -1,0 +1,59 @@
+{% extends "base/threecol.html" %}
+{% load i18n sekizai_tags cms_tags %}
+
+{% block title %}{{ block.super }} {% trans "Your results" %}{% endblock %}
+
+{% block add_css %}<link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endblock add_css %}
+
+{% block add_js %}
+<script type="text/javascript" src="{{ MEDIA_URL }}base/js/accordion.js"></script>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/js/qtip.js"></script>
+
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
+{% endblock add_js %}
+
+{% block col1 %}
+<h1>{% trans "Your results" %} {{ season }}</h1>
+
+{% placeholder "Main content" %}
+
+{% for d in seasons %}
+<a href="{% url group_archive year=d.0 %}">{{ d.1 }}</a>{% if not forloop.last %}, {% endif %}
+{% endfor %}
+
+{% for person in persons %}
+<p><h2>{{ person.name }}</h2>
+{% for health_line in person.health_history %}
+        <img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.timestamp|date:"d-m-y" }}: {{ health_line.diag }}" alt="{{ health_line.timestamp|date:"d-m-y" }}: {{ health_line.diag }}" />
+{% empty %}
+    {% trans "No data available for this season" %}
+{% endfor %}
+</p>
+{% endfor %}
+
+
+
+
+<p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+
+{% endblock %}
+
+{% block col2 %}
+
+{% include "accounts/partials/usermenu.html" %}
+{% include "accounts/partials/usermap.html" %}
+
+{% placeholder "Left bar" %}
+
+{% endblock %}

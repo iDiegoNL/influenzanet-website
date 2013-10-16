@@ -8,7 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 
 from .models import UserReminderInfo, get_upcoming_dates, get_prev_reminder, get_settings, get_default_for_reminder, NewsLetter
-from .send import create_message, send
+from .send import create_message, send, send_unsubscribe_email
 
 
 @login_required
@@ -31,8 +31,21 @@ def unsubscribe(request):
         info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True, 'last_reminder': request.user.date_joined})
         info.active = False
         info.save()
+
+        if get_settings() and get_settings().send_resubscribe_email:
+            send_unsubscribe_email(request.user)
+
         return render_to_response('reminder/unsubscribe_successful.html', locals(), context_instance=RequestContext(request))
     return render_to_response('reminder/unsubscribe.html', locals(), context_instance=RequestContext(request))
+
+@login_required
+def resubscribe(request):
+    if request.method == "POST":
+        info, _ = UserReminderInfo.objects.get_or_create(user=request.user, defaults={'active': True, 'last_reminder': request.user.date_joined})
+        info.active = True
+        info.save()
+        return render_to_response('reminder/resubscribe_successful.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('reminder/resubscribe.html', locals(), context_instance=RequestContext(request))
     
 @staff_member_required
 def overview(request):

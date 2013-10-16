@@ -361,7 +361,14 @@ class Survey(models.Model):
     def write_csv(self, writer):
         model = self.as_model()
         fields = model._meta.fields
-        writer.writerow([field.verbose_name or field.name for field in fields])
+        headers = []
+        for field in fields:
+            name = field.verbose_name or field.name
+            if type(name) is unicode:
+                headers.append(name.encode('utf-8'))
+            else:
+                headers.append(str(name))
+        writer.writerow(headers)
         for result in model.objects.all():
             row = []
             for field in fields:

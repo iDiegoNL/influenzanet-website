@@ -1298,3 +1298,9 @@ msgstr ""
 
 msgid "Cookie settings"
 msgstr ""
+
+msgid "Your result archive"
+msgstr ""
+
+msgid "No data available for this season" 
+msgstr ""
