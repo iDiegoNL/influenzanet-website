@@ -26,6 +26,9 @@
 {% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/skin.css" media="all" />{% endaddtoblock %}
 {% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endaddtoblock %}
 
+{% if issuccess %}
+{{ success_content }}
+{% else %}
 <div class="embedded-survey">
     <strong>{{ survey.translated_title }}</strong>
     {% if messages %}
@@ -297,4 +300,5 @@
         </script>
     </form>
 </div>
+{% endif %}
 

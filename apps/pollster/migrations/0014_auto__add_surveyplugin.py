@@ -13,6 +13,7 @@ class Migration(SchemaMigration):
             ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
             ('survey', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pollster.Survey'])),
             ('redirect_path', self.gf('django.db.models.fields.CharField')(default='', max_length=4096, blank=True)),
+            ('success_template', self.gf('django.db.models.fields.TextField')(default='', blank=True)),
         ))
         db.send_create_signal('pollster', ['SurveyPlugin'])
 
@@ -159,6 +160,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'SurveyPlugin', 'db_table': "'cmsplugin_surveyplugin'", '_ormbases': ['cms.CMSPlugin']},
             'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
             'redirect_path': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '4096', 'blank': 'True'}),
+            'success_template': ('django.db.models.fields.TextField', [], {'default': "''", 'blank': 'True'}),
             'survey': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pollster.Survey']"})
         },
         'pollster.translationoption': {

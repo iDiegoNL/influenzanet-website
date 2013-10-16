@@ -4,6 +4,7 @@ from django.db import models, connection, transaction, IntegrityError, DatabaseE
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.core.validators import RegexValidator
+from django.template import Template
 from cms.models import CMSPlugin
 from xml.etree import ElementTree
 from math import pi,cos,sin,log,exp,atan
@@ -1348,6 +1349,13 @@ class SurveyChartPlugin(CMSPlugin):
     chart = models.ForeignKey(Chart)
 
 class SurveyPlugin(CMSPlugin):
-    survey = models.ForeignKey(Survey, verbose_name="Survey")
+    survey = models.ForeignKey(Survey, limit_choices_to={"status":"PUBLISHED"}, verbose_name="Survey")
     redirect_path = models.CharField(max_length=4096, blank=True, default='', verbose_name="Redirect to path")
+    success_template = models.TextField(blank=True, default='', verbose_name="Success template")
+
+    def get_template(self):
+        return Template(self.success_template)
+
+    def render(self, context):
+        return self.get_template().render(context)
 

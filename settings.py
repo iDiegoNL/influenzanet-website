@@ -103,8 +103,9 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
-    'pybb.middleware.PybbMiddleware',
     'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'pybb.middleware.PybbMiddleware',
+    'apps.pollster.middleware.ForceResponseMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
