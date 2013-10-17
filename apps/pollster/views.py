@@ -351,7 +351,10 @@ def survey_chart_edit(request, id, shortname):
             'profile': profile,
             'chart': chart
         })
-        preview = chart.render(context)
+        try:
+            preview = chart.render(context)
+        except Exception, e:
+            preview = "An error occurred during chart preview:\n" + e
     else:
         preview = None
     return request_render_to_response(request, 'pollster/survey_chart_edit.html', {
@@ -513,9 +516,8 @@ def _get_some_survey_user(request):
         return None
 
     survey_users = SurveyUser.objects.filter(user=request.user, deleted=False)
-    total = len(survey_users)
         
-    if total >= 1:
+    if len(survey_users) >= 1:
         return survey_users[0]
 
     return None

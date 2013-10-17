@@ -1008,6 +1008,7 @@ class Chart(models.Model):
     status = models.CharField(max_length=255, default='DRAFT', choices=CHART_STATUS_CHOICES)
     geotable = models.CharField(max_length=255, default='pollster_zip_codes', choices=settings.GEOMETRY_TABLES)
     template = models.TextField(blank=True, default='')
+    realtime = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['survey', 'shortname']
@@ -1229,17 +1230,18 @@ class Chart(models.Model):
             cursor = connection.cursor()
             cursor.execute("DROP VIEW IF EXISTS %s" % (view,))
             cursor.execute("DROP TABLE IF EXISTS %s" % (table,))
-            cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
-            if self.type.shortname[:10] == "google-map":
-                cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
-            transaction.commit_unless_managed()
-            self.clear_map_tile_cache()
+            if not self.realtime:
+                cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
+                if self.type.shortname[:10] == "google-map":
+                    cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
+                transaction.commit_unless_managed()
+                self.clear_map_tile_cache()
             return True
         return False
 
     def update_data(self):
         table_query = self.sqlsource
-        if table_query:
+        if table_query and not self.realtime:
             table = self.get_table_name()
             cursor = connection.cursor()
             cursor.execute("DELETE FROM %s" % (table,))
@@ -1250,8 +1252,12 @@ class Chart(models.Model):
         return False
 
     def load_data(self, user_id, global_id):
-        table = self.get_table_name()
-        query = "SELECT * FROM %s" % (table,)
+        if not self.sqlsource:
+            return ((('Error',),), (("SQL query is missing",),))
+        if self.realtime:
+            query = "SELECT * FROM (%s) A" % (self.sqlsource,)
+        else:
+            query = "SELECT * FROM %s" % (self.get_table_name(),)
         if self.sqlfilter == 'USER' :
             query += """ WHERE "user" = %(user_id)s"""
         elif self.sqlfilter == 'PERSON':
@@ -1266,8 +1272,12 @@ class Chart(models.Model):
             return ((('Error',),), ((str(e),),))
 
     def load_colors(self, user_id, global_id):
-        table = self.get_table_name()
-        query = """SELECT DISTINCT color FROM %s""" % (table,)
+        if not self.sqlsource:
+            return ((('Error',),), (("SQL query is missing",),))
+        if self.realtime:
+            query = "SELECT DISTINCT color FROM (%s) A" % (self.sqlsource,)
+        else:
+            query = "SELECT DISTINCT color FROM %s" % (self.get_table_name(),)
         if self.sqlfilter == 'USER' :
             query += """ WHERE "user" = %(user_id)s"""
         elif self.sqlfilter == 'PERSON':
