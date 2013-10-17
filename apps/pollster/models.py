@@ -1007,7 +1007,8 @@ class Chart(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=255, default='DRAFT', choices=CHART_STATUS_CHOICES)
     geotable = models.CharField(max_length=255, default='pollster_zip_codes', choices=settings.GEOMETRY_TABLES)
-    
+    template = models.TextField(blank=True, default='')
+
     class Meta:
         ordering = ['survey', 'shortname']
         unique_together = ('survey', 'shortname')
@@ -1028,6 +1029,10 @@ class Chart(models.Model):
         return self.status == 'PUBLISHED'
 
     @property
+    def is_template(self):
+        return self.type.shortname == 'template'
+
+    @property
     def has_data(self):
         if not self.sqlsource:
             return False
@@ -1045,7 +1050,7 @@ class Chart(models.Model):
             rows = [{"c": [{"v": v} for v in c]} for c in cells]
             data["dataTable"] = { "cols": cols, "rows": rows }
 
-        else:
+        elif self.type.shortname[:10] == "google-map":
             if self.chartwrapper:
                 data["bounds"] = json.loads(self.chartwrapper)
             try:
@@ -1222,19 +1227,14 @@ class Chart(models.Model):
                                   FROM %s B, (SELECT * FROM %s) A
                                  WHERE upper(A.zip_code_key) = upper(B.zip_code_key)""" % (geo_table, table,)
             cursor = connection.cursor()
-            #try:
             cursor.execute("DROP VIEW IF EXISTS %s" % (view,))
             cursor.execute("DROP TABLE IF EXISTS %s" % (table,))
             cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
-            if self.type.shortname != 'google-charts':
+            if self.type.shortname[:10] == "google-map":
                 cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
             transaction.commit_unless_managed()
             self.clear_map_tile_cache()
             return True
-            #except IntegrityError:
-            #    return False
-            #except DatabaseError:
-            #    return False
         return False
 
     def update_data(self):
@@ -1316,6 +1316,27 @@ class Chart(models.Model):
         except DatabaseError, e:
             return {}
 
+    def get_template(self):
+        if self.template:
+            return Template(self.template)
+
+    def render(self, context):
+        """Adds data to context and use it to render template."""
+        if self.type.shortname == "template":
+            template = self.get_template()
+            if template:
+                user_id = context["user_id"]
+                global_id = context["global_id"]
+                descriptions, cells = self.load_data(user_id, global_id)
+                cols = [desc[0] for desc in descriptions]
+                rows = [dict(zip(cols, cell)) for cell in cells]
+                context.update({"cols": cols, "rows": rows})
+                result = template.render(context)
+                context.pop()
+            else:
+                result = "Template is empty."
+            return result
+
 class GoogleProjection:
     def __init__(self, levels=25):
         self.Bc = []
@@ -1347,6 +1368,7 @@ class GoogleProjection:
 
 class SurveyChartPlugin(CMSPlugin):
     chart = models.ForeignKey(Chart)
+    show_on_success = models.BooleanField(default=False, verbose_name="Show on submit", help_text="Show this chart only on successful submit of its survey.")
 
 class SurveyPlugin(CMSPlugin):
     survey = models.ForeignKey(Survey, limit_choices_to={"status":"PUBLISHED"}, verbose_name="Survey")

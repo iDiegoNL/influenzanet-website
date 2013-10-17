@@ -18,7 +18,7 @@ class SurveyChartEditForm(forms.ModelForm):
     chartwrapper = forms.CharField(widget=forms.HiddenInput, required=False)
     class Meta:
         model = Chart
-        fields = ('type', 'shortname', 'chartwrapper', 'sqlsource', 'sqlfilter', 'status')
+        fields = ('type', 'status', 'shortname', 'chartwrapper', 'template', 'sqlsource', 'sqlfilter')
 
 class SurveyImportForm(forms.Form):
     data = forms.FileField(label="Survey definition", required=True)
