@@ -186,7 +186,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
     form = None
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
-    last_participation_data = survey.get_last_participation_data(user_id, global_id)
+    last_participation_data = survey.get_prefill_data(user_id, global_id)
     if request.method == 'POST':
         data = request.POST.copy()
         data['user'] = user_id
