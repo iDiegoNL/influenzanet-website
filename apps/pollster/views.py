@@ -174,6 +174,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
         return redirect_to_login(request.path)
 
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
+    survey.set_caching(False)
     language = get_language()
     locale_code = locale.locale_alias.get(language)
     if locale_code:

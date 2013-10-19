@@ -6,6 +6,7 @@
 *~
 .installed.cfg
 .DS_Store
+.project
 epiweb.db
 MANIFEST
 local_settings.py
