@@ -40,9 +40,9 @@ def get_random_user_id():
     To limit collision, can try several times
     """
     # get a random int 
-    id = random.randint(1, sys.maxint)
     i = 10 # try a maximum of 10 times
     while i > 0:
+        id = random.randint(1, sys.maxint)
         try:
             u = EpiworkUser.objects.get(id=id)
         except EpiworkUser.DoesNotExist:
@@ -307,8 +307,8 @@ class EpiworkUserProvider(object):
     def get_by_login(self, login):
         return self.fake(EpiworkUser.objects.get(login=login))
     
-    def get_by_id(self, id):
-        return self.fake(EpiworkUser.objects.get(id=id))
+    def get_by_email(self, email):
+        return self.fake(EpiworkUser.objects.get(email__iexact=email))
     
     def next(self): 
         return self.fake(next(self.iter))

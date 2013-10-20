@@ -11,31 +11,27 @@ from django.db import connection
 from django.conf import settings
 from django.contrib.auth.models import User 
 
-if getattr(app_config, 'SWAUTH_FAKE_USER', 0):
-    from apps.sw_auth.models import EpiworkUserProvider as UserProvider
-else:
-    # Default User list provider
-    class UserProvider(object):
-        
-        def __init__(self):
-            self.users = User.objects.filter(is_active=True)  
-            self.iter = None
-        
-        def __iter__(self):
-            self.iter = self.users.__iter__()
-            return self # return self to force use of our next() method
-        
-        def get_by_id(self, id):
-            return User.objects.get(id=id)
 
-        def get_by_login(self, login):
-            return User.objects.get(username=login)
-        
-        def next(self): 
-            return next(self.iter)    
+def get_user_provider():
+    # Get a user provider to iter accross user list
+    # This class allow access to user's data (email) regardless of the User model
+    # @TODO A loader mechanism should be better if other providers should be used
+    if getattr(app_config, 'SWAUTH_FAKE_USER', 0):
+        from apps.sw_auth.models import EpiworkUserProvider
+        provider = EpiworkUserProvider()
+    else:
+        from apps.accounts.models import UserProvider
+        provider = UserProvider()
+    return provider
+ 
 
-class UserChecker:
-    
+# @TODO If more complex user checking is required, a chain-filter model should be implemented
+# To make the check of each user an encapsulated the checking rules
+class UserListChecker:
+    """
+    UserChecker check if a given user should receive a newsletter based on a userlist field
+    which contains the name of a table/view with the target users' id (user_id field)
+    """   
     def __init__(self, message):
         if message.userlist:
             self.user_list = self.get_userlist(message.userlist)
@@ -106,7 +102,7 @@ class Command(BaseCommand):
         
         now = datetime.now()
         
-        users = UserProvider()
+        users = get_user_provider()
         
         if self.verbose:
             print "> User provider class : %s " % str(users.__class__)
@@ -120,7 +116,7 @@ class Command(BaseCommand):
                 print "Unable to find user %s" % str(target)
                 return
 
-        checker = UserChecker(message)    
+        checker = UserListChecker(message)    
         
         i = -1
         language = 'fr'
