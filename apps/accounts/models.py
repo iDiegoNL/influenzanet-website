@@ -13,8 +13,14 @@ class UserProvider(object):
      
     """    
     
-    def __init__(self):
-        self.users = User.objects.filter(is_active=True)  
+    def __init__(self, users=None):
+        """
+        users = an eventual queryset of users to iterate from
+        """
+        if users is None:
+            self.users = User.objects.filter(is_active=True)
+        else:
+            self.users = users  
         self.iter = None
     
     def __iter__(self):

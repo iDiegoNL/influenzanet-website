@@ -291,8 +291,12 @@ class FakedUser(User):
 # Provide a fake user list
 class EpiworkUserProvider(object):
     
-    def __init__(self):
-        self.users = EpiworkUser.objects.filter(is_active=True)  
+    def __init__(self, users=None):
+        if users is None:
+            self.users = EpiworkUser.objects.filter(is_active=True)
+        else:
+            raise NotImplementedError
+          
         self.iter = None
         
     def __iter__(self):
