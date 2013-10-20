@@ -182,6 +182,7 @@ INSTALLED_APPS = (
     'apps.contest',
     'captcha',
     #'apps.tellafriend',
+    'apps.ggm_maps',
 
     'pybb',
     'pytils',
