@@ -205,6 +205,24 @@ def _get_or_default(queryset, default=None):
         return r[0]
     return default
 
+def prefill_previous_data(survey, user_id, global_id):
+     """
+     fetch data to prefill a user's survey looking first at the current data table and then to another
+     table containing previous data for the user (for example from the last year data table)
+     The only assumption made on this table are the keys global_id and user_id, and the table name 
+     """
+     data = survey.get_last_participation_data(user_id, global_id)
+     if data is not None:
+         return data
+     shortname = survey.shortname
+     cursor = connection.cursor()
+     query = "select * from pollster_results_%s_previousdata where \"global_id\"='%s' and \"user\"='%s'" % (shortname, global_id, str(user_id))
+     cursor.execute(query)
+     res = cursor.fetchone()
+     desc = cursor.description
+     if res is not None:
+         res = dict(zip([col[0] for col in desc], res))
+     return res 
 
 class Survey(models.Model):
     parent = models.ForeignKey('self', db_index=True, blank=True, null=True)
@@ -214,7 +232,8 @@ class Survey(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=255, default='DRAFT', choices=SURVEY_STATUS_CHOICES)
-
+    prefill_method = models.CharField(max_length=255, blank=True, default="LAST")
+    
     form = None
     translation_survey = None
 
@@ -274,6 +293,9 @@ class Survey(models.Model):
         return 'results_'+str(self.shortname)
 
     def get_last_participation_data(self, user_id, global_id):
+        """
+            get the last data available for a given user, in the current data table
+        """
         model = self.as_model()
         participation = model.objects\
             .filter(user=user_id)\
@@ -281,6 +303,25 @@ class Survey(models.Model):
             .order_by('-timestamp')\
             .values()
         return _get_or_default(participation)
+
+    def get_prefill_data(self, user_id, global_id):
+        """
+            get previous data for a user following the survey policy (prefill_method)
+            'LAST' value fetch the last available data (in the current data table)
+            other values should be a function name with the signature func(survey, user_id, global_id)
+        
+        """
+        if self.prefill_method == '':
+            return None
+        if self.prefill_method == 'LAST':
+            return self.get_last_participation_data(user_id, global_id)
+        # Now it is the name of a function
+        # Currently we only handle functions in the current scope, but it could be extended
+        try:
+            func = globals()[self.prefill_method]
+        except KeyError:
+            raise Error("Prefill function %s does not exist" % self.prefill_method)
+        return func(self, user_id, global_id)
 
     def as_model(self):
         fields = []
@@ -361,7 +402,14 @@ class Survey(models.Model):
     def write_csv(self, writer):
         model = self.as_model()
         fields = model._meta.fields
-        writer.writerow([field.verbose_name or field.name for field in fields])
+        headers = []
+        for field in fields:
+            name = field.verbose_name or field.name
+            if type(name) is unicode:
+                headers.append(name.encode('utf-8'))
+            else:
+                headers.append(str(name))
+        writer.writerow(headers)
         for result in model.objects.all():
             row = []
             for field in fields:
