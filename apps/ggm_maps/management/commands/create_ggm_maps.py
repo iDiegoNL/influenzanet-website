@@ -33,7 +33,7 @@ MEASURMENT = (153, 255, 153)
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        for i in range(1): # possibly adapt later to allow for longer ranges (recalc full year)
+        for i in range(356): # possibly adapt later to allow for longer ranges (recalc full year)
             day = date.today() - timedelta(days=i)
             for symptom in SYMPTOM_COLORS.keys():
                 for do_all in [True, False]:
@@ -51,12 +51,22 @@ class Command(BaseCommand):
         results = self._q(query, params)
         self._draw_dots(image, results, SYMPTOM_COLORS[symptom])
 
+
         directory = os.path.join(settings.MEDIA_ROOT, 'ggm_maps', self._format_date(day))
         if not os.path.exists(directory):
             os.makedirs(directory)
 
         filename = os.path.join(directory, symptom + ('-all' if do_all else '') + '.png')
         image.save(filename)
+
+
+        if day == date.today():
+            directory = os.path.join(settings.MEDIA_ROOT, 'ggm_maps', 'today')
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+
+            filename = os.path.join(directory, symptom + ('-all' if do_all else '') + '.png')
+            image.save(filename)
 
     def _draw_dots(self, image, results, color):
         for result in results:
