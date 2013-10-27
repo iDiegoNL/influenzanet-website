@@ -49,8 +49,7 @@ class Command(BaseCommand):
        
         query, params = self._sql(day, symptom)
         results = self._q(query, params)
-        self._draw_dots(image, results, SYMPTOM_COLORS[symptom])
-
+        self._draw_dots(image, results, SYMPTOM_COLORS[symptom], white_border=True)
 
         directory = os.path.join(settings.MEDIA_ROOT, 'ggm_maps', self._format_date(day))
         if not os.path.exists(directory):
@@ -68,7 +67,7 @@ class Command(BaseCommand):
             filename = os.path.join(directory, symptom + ('-all' if do_all else '') + '.png')
             image.save(filename)
 
-    def _draw_dots(self, image, results, color):
+    def _draw_dots(self, image, results, color, white_border=False):
         for result in results:
             pc, country, x, y = result
 
@@ -81,9 +80,14 @@ class Command(BaseCommand):
 
             cx += r
             cy += r2
+            
+            if white_border:
+                bbox = map(int, (cx - SIZE - 1, cy - SIZE - 1, cx + SIZE + 1, cy + SIZE + 1))
+                draw = ImageDraw.Draw(image)
+                draw.rectangle(bbox, fill=(255, 255, 255))
+                del draw
 
             bbox = map(int, (cx - SIZE, cy - SIZE, cx + SIZE, cy + SIZE))
-
             draw = ImageDraw.Draw(image)
             draw.rectangle(bbox, fill=color)
             del draw
