@@ -26,22 +26,6 @@
     <li class="active"><a href="#mappostcode">Postcodekaart</a></li><li><a href="#mapoverview">Overzichtskaart</a></li>
 </ul>
  
-<script>
-$( document ).ready(function() {
-    $("#map-selector").change(function() {
-        $("#ggm-map").attr('src', '/media/ggm_maps/' + $("#map-selector").val() + '/ILI-all.png?nocache=' + Math.random());
-    });
-});
-</script>
-
-<form>
-<select id="map-selector">
-{% for date in past %}
-<option value="{{ date|date:"Y-m-d" }}">{{ date }}</option>
-{% endfor %}
-</select>
-</form>
- 
 <div id="mappostcode" class="maptabcontent">
 	<div class="survey-chart">
     <div id="pollster-chart-14" class="chart chart-weekly-home"
@@ -57,6 +41,23 @@ $( document ).ready(function() {
 
 </div>
 <div id="mapoverview" class="maptabcontent">
+
+    <script>
+    $( document ).ready(function() {
+        $("#map-selector").change(function() {
+            $("#ggm-map").attr('src', '/media/ggm_maps/' + $("#map-selector").val() + '/ILI-all.png?nocache=' + Math.random());
+        });
+    });
+    </script>
+
+    <form>
+    <select id="map-selector">
+    {% for date in past %}
+    <option value="{{ date|date:"Y-m-d" }}">{{ date }}</option>
+    {% endfor %}
+    </select>
+    </form>
+
    <p><div id="mapoverviewimg"><img src="https://www.degrotegriepmeting.nl/media/ggm_maps/today/ILI-all.png" width="440" title="GGM overzichtskaart" alt="GGM overzichtskaart"></div></p>
 	<p style="margin-top: 6px; margin-bottom: 10px; font-weight: bold; color: #8d8d8d; font-size: 0.7em; line-height: 1.7em;">
 	<span style="color:#ffff00;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van verkoudheid<br />
