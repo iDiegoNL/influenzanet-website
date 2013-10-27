@@ -116,7 +116,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         activate(settings.LANGUAGE_CODE)
-        for i in range(356): # possibly adapt later to allow for longer ranges (recalc full year)
+        for i in range(1): # possibly adapt later to allow for longer ranges (recalc full year)
             day = date.today() - timedelta(days=i)
             for symptom in SYMPTOM_COLORS.keys():
                 self.generate(day, symptom)

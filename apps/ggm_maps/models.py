@@ -1,3 +1,8 @@
 from django.db import models
+from django.db import models
+from django.contrib.auth.models import User
+from cms.models import CMSPlugin
 
-# Create your models here.
+class GGMMapsPlugin(CMSPlugin):
+    title = models.CharField(max_length=255)
+
