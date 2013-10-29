@@ -1265,10 +1265,13 @@ class Chart(models.Model):
         params = { 'user_id': user_id, 'global_id': global_id }
         query = convert_query_paramstyle(connection, query, params)
         try:
+            sid = transaction.savepoint()
             cursor = connection.cursor()
             cursor.execute(query, params)
+            transaction.savepoint_commit(sid)
             return (cursor.description, cursor.fetchall())
         except DatabaseError, e:
+            transaction.savepoint_rollback(sid)
             return ((('Error',),), ((str(e),),))
 
     def load_colors(self, user_id, global_id):
@@ -1285,10 +1288,13 @@ class Chart(models.Model):
         params = { 'user_id': user_id, 'global_id': global_id }
         query = convert_query_paramstyle(connection, query, params)
         try:
+            sid = transaction.savepoint()
             cursor = connection.cursor()
             cursor.execute(query, params)
+            transaction.savepoint_commit(sid)
             return [x[0] for x in cursor.fetchall()]
         except DatabaseError, e:
+            transaction.savepoint_rollback(sid)
             # If the SQL query is wrong we just return 'red'. We don't try to pop
             # up a warning because this probably is an async Javascript call: the
             # query error should be shown by the map editor.
@@ -1327,8 +1333,7 @@ class Chart(models.Model):
             return {}
 
     def get_template(self):
-        if self.template:
-            return Template(self.template)
+        return Template(self.template or "{% for row in rows %}{{ row }}<br/>{% endfor %}")
 
     def render(self, context):
         """Adds data to context and use it to render template."""
