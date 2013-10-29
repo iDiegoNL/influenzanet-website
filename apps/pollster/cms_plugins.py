@@ -8,6 +8,7 @@ from .models import TranslationSurvey
 from .utils import get_user_profile
 from .fields import PostalCodeField
 from .middleware import ForceResponse
+from .views import _get_first_survey_user
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.translation import to_locale, get_language, ugettext as _
@@ -141,6 +142,8 @@ class CMSSurveyChartPlugin(CMSPluginBase):
         success_key = request.GET.get('success_key', None)
         if not instance.show_on_success or instance.chart.survey.shortname == success_key:
             survey_user = _get_active_survey_user(request)
+            if survey_user is None:
+                survey_user = _get_first_survey_user(request)            
             user_id = request.user.id
             global_id = survey_user and survey_user.global_id
             profile = None

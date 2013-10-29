@@ -339,7 +339,7 @@ def survey_chart_edit(request, id, shortname):
         # user is enough to render it, that's why we use _get_some_survey_user().
         survey_user = _get_active_survey_user(request)
         if survey_user is None:
-            survey_user = _get_some_survey_user(request)
+            survey_user = _get_first_survey_user(request)
         global_id = survey_user and survey_user.global_id
         user_id = request.user.id
         profile = None
@@ -433,7 +433,7 @@ def chart_data(request, survey_shortname, chart_shortname):
 
     survey_user = _get_active_survey_user(request)
     if survey_user is None:
-        survey_user = _get_some_survey_user(request)
+        survey_user = _get_first_survey_user(request)
 
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
@@ -507,7 +507,7 @@ def _get_active_survey_user(request):
     else:
         return get_object_or_404(SurveyUser, global_id=gid, user=request.user)
 
-def _get_some_survey_user(request):
+def _get_first_survey_user(request):
     # As remarked in other locations, the passing of the gid is not a robust
     # way of doing things. This helper method is used if no gid is available
     # to get at least some survey user if there is any available survey user.
@@ -515,7 +515,7 @@ def _get_some_survey_user(request):
     if not request.user.is_authenticated():
         return None
 
-    survey_users = SurveyUser.objects.filter(user=request.user, deleted=False)
+    survey_users = SurveyUser.objects.filter(user=request.user, deleted=False).order_by("id")
         
     if len(survey_users) >= 1:
         return survey_users[0]
