@@ -54,7 +54,7 @@ SELECT global_id, first, latest, rate
          GROUP BY W.global_id
        ) AS ranges
        -- to be considered active an user needs at least 3 filled survey
- WHERE rate >=1
+ WHERE rate >=2
        -- the first compiled survey should be at least one day old
    --AND date_trunc('day', first) + '1 day' < date_trunc('day', $1)
        -- the last compilation should not be after the current date
@@ -91,7 +91,7 @@ LANGUAGE 'sql';
 DROP FUNCTION IF EXISTS pollster_ili_incidence (date, date);
 
 -- returns the incidence ratio for a time period
-CREATE OR REPLACE FUNCTION pollster_ili_incidence (
+CREATE OR REPLACE FUNCTION pollster_ili_incidence_province (
   date, -- $1 first day
   date -- $2 last day
 ) RETURNS TABLE (
