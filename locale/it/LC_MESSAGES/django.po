@@ -1375,3 +1375,10 @@ msgstr "Grazie! Il tuo responso:"
 
 msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
 msgstr "Ti preghiamo di compilare il questionario di adesione per il partecipante \"%(user_name)s\" prima di segnalarlo/a come senza sintomi."
+
+msgid "Your result archive"
+msgstr ""
+
+msgid "No data available for this season" 
+msgstr ""
+

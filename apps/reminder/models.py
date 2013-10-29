@@ -40,6 +40,10 @@ class ReminderSettings(models.Model):
     currently_sending = models.BooleanField("Currently sending", help_text="This indicates if the reminders are being sent right now. Don't tick this box unless you absolutely know what you're doing", default=False)
     last_process_started_date = models.DateTimeField("Last process started at", help_text="This indicates if the reminders are being sent right now. Don't change this value unless you absolutely know what you're doing")
 
+    send_resubscribe_email = models.BooleanField(default=False, help_text=u"An email will be sent when the user unsubscribes with information on how to resubscribe.") 
+    resubscribe_email_subject = models.CharField(blank=True, max_length=255)
+    resubscribe_email_message = models.TextField(blank=True, help_text=u"The strings {{ resubscribe_url }} and {{ url }} may be used as variables.")
+
     def __unicode__(self):
         return _(u"Reminder settings")
 
@@ -239,7 +243,7 @@ def get_reminders_for_users(now, users):
             survey_users = SurveyUser.objects.filter(user=user, deleted=False)
             if not survey_users.count():
                 survey_user = SurveyUser.objects.create(user=user, name=user.username)
-                survey_users = SurveyUser.objects.filter(user=user)
+                survey_users = SurveyUser.objects.filter(user=user, deleted=False)
 
             last_action_date = max(su.get_last_weekly_survey_date() for su in survey_users)
             if info.last_reminder and info.last_reminder > last_action_date:

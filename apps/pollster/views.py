@@ -186,7 +186,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
     form = None
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
-    last_participation_data = survey.get_last_participation_data(user_id, global_id)
+    last_participation_data = survey.get_prefill_data(user_id, global_id)
     if request.method == 'POST':
         data = request.POST.copy()
         data['user'] = user_id
@@ -263,7 +263,6 @@ def survey_translation_list_or_add(request, id):
                         row.translation_row.save()
                     for column in question.columns:
                         column.translation_column.save()
-
             return redirect(translation)
     return request_render_to_response(request, 'pollster/survey_translation_list.html', {
         "survey": survey,
@@ -335,10 +334,34 @@ def survey_chart_edit(request, id, shortname):
                 else:
                     messages.warning(request, msg)
             return redirect(chart)
+    if chart.is_template:
+        # Note that this is just the rendering of a preview, so _any_ survey
+        # user is enough to render it, that's why we use _get_some_survey_user().
+        survey_user = _get_active_survey_user(request)
+        if survey_user is None:
+            survey_user = _get_first_survey_user(request)
+        global_id = survey_user and survey_user.global_id
+        user_id = request.user.id
+        profile = None
+        if global_id:
+            profile = get_user_profile(user_id, global_id)
+        context = RequestContext(request, {
+            'user_id': user_id,
+            'global_id': global_id,
+            'profile': profile,
+            'chart': chart
+        })
+        try:
+            preview = chart.render(context)
+        except Exception, e:
+            preview = "An error occurred during chart preview:\n" + e
+    else:
+        preview = None
     return request_render_to_response(request, 'pollster/survey_chart_edit.html', {
         "survey": survey,
         "chart": chart,
-        "form_chart": form_chart,
+        "preview": preview,
+        "form_chart": form_chart
     })
 
 @staff_member_required
@@ -400,13 +423,18 @@ def survey_import(request):
 
 def chart_data(request, survey_shortname, chart_shortname):
     chart = None
+
     if request.user.is_active and request.user.is_staff:
         survey = get_object_or_404(models.Survey, shortname=survey_shortname)
         chart = get_object_or_404(models.Chart, survey=survey, shortname=chart_shortname)
     else:
         survey = get_object_or_404(models.Survey, shortname=survey_shortname, status='PUBLISHED')
         chart = get_object_or_404(models.Chart, survey=survey, shortname=chart_shortname, status='PUBLISHED')
+
     survey_user = _get_active_survey_user(request)
+    if survey_user is None:
+        survey_user = _get_first_survey_user(request)
+
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
     return HttpResponse(chart.to_json(user_id, global_id), mimetype='application/json')
@@ -478,6 +506,21 @@ def _get_active_survey_user(request):
         return None
     else:
         return get_object_or_404(SurveyUser, global_id=gid, user=request.user)
+
+def _get_first_survey_user(request):
+    # As remarked in other locations, the passing of the gid is not a robust
+    # way of doing things. This helper method is used if no gid is available
+    # to get at least some survey user if there is any available survey user.
+
+    if not request.user.is_authenticated():
+        return None
+
+    survey_users = SurveyUser.objects.filter(user=request.user, deleted=False).order_by("id")
+        
+    if len(survey_users) >= 1:
+        return survey_users[0]
+
+    return None
 
 def _get_next_url(request, default):
     url = request.GET.get('next', default)

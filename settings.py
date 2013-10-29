@@ -35,8 +35,7 @@ TIME_ZONE = 'Europe/Amsterdam'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'it'
-# LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'en'
 
 # For checking postcodes etc.
 # Use ISO3166 two-letter country code
@@ -104,8 +103,9 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
-    'pybb.middleware.PybbMiddleware',
     'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'pybb.middleware.PybbMiddleware',
+    'apps.pollster.middleware.ForceResponseMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -113,12 +113,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.request",
     "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "cms.context_processors.media",
     "sekizai.context_processors.sekizai",
     "django.contrib.messages.context_processors.messages",
-    "cms.context_processors.media",
     "apps.partnersites.context_processors.customizations",
     "pybb.context_processors.processor",
-    "django.core.context_processors.static",
     "apps.pollster.context_processors.last_survey",
     "apps.pollster.context_processors.surveyuser_count",
 )
@@ -180,7 +180,7 @@ INSTALLED_APPS = (
     'haystack',
     'apps.pollster',
     'apps.contest',
-    #'apps.captcha',
+    'captcha',
     #'apps.tellafriend',
 
     'pybb',

@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
@@ -1678,9 +1678,9 @@ msgid ""
 "spaces) and a password.<br />If you have forgotten your password or "
 "username, you can"
 msgstr ""
-"Kies een gebruikersnaam bestaande uit letters en/of cijfers (geen spaties) "
-"en een wachtwoord.<br />Als u uw wachtwoord of gebruikersnaam bent vergeten, "
-"kunt u"
+"Kies een <b>gebruikersnaam</b> bestaande uit letters en/of cijfers (<b>geen "
+"spaties</b>) en een wachtwoord.<br />Als u uw wachtwoord of gebruikersnaam "
+"bent vergeten, kunt u"
 
 # ##########################
 # Cookie Consent translation below #
@@ -1695,7 +1695,7 @@ msgid "Save preference"
 msgstr "Instellingen opslaan"
 
 msgid "see details"
-msgstr "Meer details"
+msgstr "Uw cookie instellingen"
 
 msgid "hide details"
 msgstr "Minder details"
@@ -1750,10 +1750,32 @@ msgid "Cookie settings"
 msgstr "Cookie instellingen"
 
 msgid "Thanks - your diagnosis:"
-msgstr "Hartelijk dank - uw diagnose:"
+msgstr "Hartelijk dank - uw ingevulde antwoorden komen het meest overeen met:"
 
-msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
-msgstr "Gelieve eerst de achtergrondvragenlijst (\"Verander profiel\") te beantwoorden voor de deelnemer \"%(user_name)s\" voor deze als gezond aan te merken."
+msgid ""
+"Please complete the background questionnaire for the participant "
+"\"%(user_name)s\" before marking him/her as healthy."
+msgstr ""
+"Gelieve eerst de achtergrondvragenlijst (\"Verander profiel\") te "
+"beantwoorden voor de deelnemer \"%(user_name)s\" voor deze als gezond aan te "
+"merken."
 
 msgid "The participant \"%(user_name)s\" has been marked as healthy."
 msgstr "De deelnemer \"%(user_name)s\" is als gezond aangemerkt."
+
+msgid "Your result archive"
+msgstr "Uw resultatenarchief"
+
+msgid "No data available for this season" 
+msgstr "Geen gegevens beschikbaar voor dit seizoen"
+
+msgid "Resubscribe"
+msgstr "Herinschrijven"
+
+msgid "You may resubscribe to the Influenzanet reminder/newsletter by pressing the button below."
+msgstr ""
+"U kunt zich opnieuw aanmelden voor de Influenzanet herinneringsmails/nieuwsbrief door "
+"op de knop hieronder te drukken."
+
+msgid "You have been successfully resubscribed to the mailing list"
+msgstr "U bent opnieuw aangemeld voor de Influenzanet mailinglijst."

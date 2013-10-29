@@ -16,7 +16,7 @@ from django.utils.translation import activate
 import loginurl.utils
 from apps.partnersites.context_processors import site_context
 
-from .models import get_reminders_for_users, UserReminderInfo, ReminderError
+from .models import get_reminders_for_users, UserReminderInfo, ReminderError, get_settings
 
 def create_message(user, message, language):
     if language:
@@ -104,3 +104,37 @@ def send(now, user, message, language, is_test_message=False):
         info = UserReminderInfo.objects.get(user=user)
         info.last_reminder = now
         info.save()
+
+def send_unsubscribe_email(user):
+    reminder_settings = get_settings()
+
+    t = Template(reminder_settings.resubscribe_email_message)
+    c = {
+        'url': get_url(user),
+        'resubscribe_url': get_login_url(user, reverse('apps.reminder.views.resubscribe')),
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'username': user.username,
+    }
+    c.update(site_context())
+    c['site_logo'] = get_site_url() + c['site_logo']
+    inner = t.render(Context(c))
+
+    t = loader.get_template('reminder/message.html')
+    c['inner'] = inner
+    c['MEDIA_URL'] = get_media_url()
+    c['message'] = {'date': {"date": datetime.date.today()}} # this is the only part of message that's used in message.html
+
+    html_content = t.render(Context(c))
+
+    text_content = strip_tags(inner)
+    
+    msg = EmailMultiAlternatives(
+        reminder_settings.resubscribe_email_message,
+        text_content,
+        None,
+        [user.email],
+    )
+
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
