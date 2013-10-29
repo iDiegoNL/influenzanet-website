@@ -99,6 +99,37 @@ $("select").change(function(){
 
 <p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
 
+<p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+
+<hr>
+<h5>NOVITA'! Se nel tuo nucleo familiare o gruppo ci sono ragazzi in eta' scolare, ti invitiamo a compilare un questionario contenente qualche domanda su sintomi legati all'asma, preparato in collaborazione con la Societa' Pediatrica Italiana. Puoi compilare il questionario anche per te stesso/a o per qualunque altro membro del tuo nucleo familiare.</h5>
+<form action="" method="POST" name="groupmanage">{% csrf_token %}
+    <div id="groupwrapper">
+            <p>{% trans "Name" %} </p><p>{% trans "Survey" %}</p>
+        <div id="groupmembers">
+
+
+                {% for person in persons %}
+            <div>
+                        <p>{{ person.name }}</p>
+
+                <p> <a href="/surveys/asma/?gid={{ person.global_id }}" class="noslide"><i class="icon-edit"></i>&nbsp;{% trans "Asma" %}</a> </p>
+
+            </div>
+
+            <div class="accordionContent">
+            {% for health_line in person.health_history %}
+                <div>
+                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
+                </div>
+            {% endfor %}
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
 {% endblock %}
 
 {% block col2 %}
