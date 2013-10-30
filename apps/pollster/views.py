@@ -19,8 +19,6 @@ from .utils import get_user_profile
 from . import models, forms, fields, parser, json
 import re, datetime, locale, csv, urlparse, urllib
 
-from .lastyear import get_previous_year_data
-
 def request_render_to_response(req, *args, **kwargs):
     kwargs['context_instance'] = RequestContext(req)
     return render_to_response(*args, **kwargs)
@@ -188,11 +186,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
     form = None
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
-    last_participation_data = survey.get_last_participation_data(user_id, global_id)
-    
-    if survey.shortname == 'intake' and last_participation_data is None:
-        last_participation_data = get_previous_year_data(user_id, global_id,'intake')
-    
+    last_participation_data = survey.get_prefill_data(user_id, global_id)
     if request.method == 'POST':
         data = request.POST.copy()
         data['user'] = user_id
