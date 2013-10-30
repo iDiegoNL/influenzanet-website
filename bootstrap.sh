@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Bootstraps everything installing Django and all required eggs, configuring
-# the database and making sure a consistent Mono development environment is
+# the database and making sure a consistent development environment is
 # installed.
 
 # Here we customize src/epiweb/settings.py by setting the user preferred
@@ -25,7 +25,7 @@ exe_python="$(which python)"
 if [ -n "$exe_python" ] ; then
     echo "$exe_python"
 else
-    echo "no found; place make sure Python 2.6 is installed"
+    echo "no found; place make sure Python 2.7 is installed"
     echo ""
     exit 1
 fi
@@ -63,23 +63,6 @@ else
     exit 1
 fi
 
-echo -n "Checking for pre-requisites: mysql ...  "
-exe_mysql="$(which mysql)"
-if [ -n "$exe_mysql" ] ; then
-    echo "$exe_mysql"
-else
-    echo "not found; automatic MySQL configuration disabled"
-fi
-
-echo -n "Checking for pre-requisites: mysql_config ...  "
-exe_mysql_config="$(which mysql_config)"
-if [ -n "$exe_mysql_config" ] ; then
-    echo "$exe_mysql_config"
-else
-    unset exe_mysql
-    echo "not found; automatic MySQL configuration disabled (please install the libmysqlclient-dev package)"
-fi
-
 echo -n "Checking for pre-requisites: psql ...  "
 exe_psql="$(which psql)"
 if [ -n "$exe_psql" ] ; then
@@ -90,22 +73,20 @@ fi
 
 # Can we keep access to mapnik module and still use --no-site-packages?
 # virtualenv --no-site-packages .
+
 virtualenv .
 
 source ./bin/activate
 
 pip install -r requirements.txt
 
-if [ -n "$exe_mysql" ] ; then
-    pip install MySQL-python
-fi
 if [ -n "$exe_psql" ] ; then
     pip install psycopg2
 fi
 
 echo ""
 while [ -z "$LANGUAGE" ] ; do
-    echo -n "Please, choose your country and language (be, it, nl, uk, pt, se): "
+    echo -n "Please, choose your country and language (be, it, nl, uk, pt, se, da, es): "
     read line && [ -n "$line" ] && LANGUAGE="$line";
     COUNTRY="$LANGUAGE"
 done
@@ -116,64 +97,7 @@ while [ -z "$TIMEZONE" ] ; do
     read line && [ -n "$line" ] && TIMEZONE="$line";
 done
 
-while [ -z "$DB_ENGINE" ] ; do
-    echo -n "Please, choose a database engine (sqlite3, the default, postgresql or mysql): "
-    read line
-    DB_ENGINE="${line:-sqlite3}"
-    if [ "$DB_ENGINE" != "sqlite3" -a "$DB_ENGINE" != "mysql" -a "$DB_ENGINE" != "postgresql" ] ; then
-        DB_ENGINE=""
-    fi
-done
-
-if [ "$DB_ENGINE" = "sqlite3" ] ; then
-    DB_NAME="ggm.db"
-    DJANGO_ENGINE="sqlite3"
-fi
-
-if [ "$DB_ENGINE" = "mysql" ] ; then
-    echo ""
-    
-    echo -n "Database host (just hit enter if on localhost/same host): "
-    read line && [ -n "$line"] && DB_HOST="$line";
-    
-    echo -n "Database port (just hit enter if using default port): "
-    read line && [ -n "$line"] && DB_PORT="$line";
-    
-    while [ -z "$DB_NAME" ] ; do
-        echo -n "Database name (database will be created if necessary; default is epiwork): "
-        read line && DB_NAME="${line:-epiwork}";
-    done
-
-    while [ -z "$DB_USERNAME" ] ; do
-        echo -n "Database username (user will be created if necessary; default is epiwork): "
-        read line && DB_USERNAME="${line:-epiwork}";
-    done
-
-    while [ -z "$DB_PASSWORD" ] ; do
-        echo -n "Database password: "
-        read line && [ -n "$line" ] && DB_PASSWORD="$line";
-    done    
-
-    DJANGO_ENGINE="mysql"
-    
-    if [ -n "$exe_mysql" ] ; then
-        echo ""
-        echo "Note: the following data will NOT be saved, but it is necessary to create"
-        echo "the database '$DB_NAME' and the user '$DB_USERNAME' that will be used to"
-        echo "connect to database for normal operation."
-        
-        echo ""
-        echo -n "Please, insert MySQL administrator's username (default is root): "
-        read line
-        root_username="${line:-root}"
-    
-        root_password=""
-        while [ -z "$root_password" ] ; do
-            echo -n "Please, insert MySQL administrator's passsword: "
-            read line && [ -n "$line" ] && root_password="$line";
-        done
-    fi
-fi
+DB_ENGINE="postgresql"
 
 if [ "$DB_ENGINE" = "postgresql" ] ; then
     echo ""
@@ -240,27 +164,6 @@ while [ -z "$line" ] ; do
 done
 
 echo ""
-
-if [ "$DB_ENGINE" = "sqlite3" ] ; then
-    echo -n "Creating database $DB_NAME ... "
-    rm -f $DB_NAME
-    echo "done"
-fi
-
-if [ "$DB_ENGINE" = "mysql" -a -n "$exe_mysql" ] ; then
-    echo -n "Creating database $DB_NAME ... "
-    mysql --batch --host=${DB_HOST:-localhost} --port=${DB_PORT:-0} --user=$root_username --password=$root_password mysql <<EOF
-    CREATE DATABASE IF NOT EXISTS $DB_NAME ;
-    INSERT INTO user VALUES ('%', '$DB_USERNAME', PASSWORD('$DB_PASSWORD'),
-        'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y',
-        'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y',
-        '','','','',0,0,0,0)
-           ON DUPLICATE KEY UPDATE User = '$DB_USERNAME' ;
-    FLUSH PRIVILEGES ;
-    GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USERNAME ;
-    echo "done"
-EOF
-fi
 
 if [ "$DB_ENGINE" = "postgresql" -a -n "$exe_psql" ] ; then
     echo "Creating database $DB_NAME ... "
