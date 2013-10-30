@@ -7,7 +7,7 @@ from django.template import RequestContext, Context
 from django.contrib.auth.decorators import login_required
 
 def render_template(name, request, context=None):
-    return render_to_response('sw_invite/'+name+'.html',
+    return render_to_response('sw_invitation/'+name+'.html',
                               context,
                               context_instance=RequestContext(request)
     )
@@ -16,7 +16,8 @@ def render_template(name, request, context=None):
 def invite(request):
     user = request.user
     if request.method == 'POST':
-        email = request.method.POST['email']
+        email = request.POST['email']
+        allow_user_mention = getattr(request.POST, 'allow_user_mention', False)
         if not email_re.search(email):
             messages.add_message(request, messages.ERROR, _(u'Enter a valid e-mail address.'))
         else:

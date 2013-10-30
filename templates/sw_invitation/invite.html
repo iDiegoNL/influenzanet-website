@@ -1,0 +1,31 @@
+{% extends "sw_cohort/base.html" %}{% load i18n %}
+{% block add_css %}
+<style>
+.form-invitation { display: inline; border:1px solid #EEE; padding: .8em }
+</style>
+{%endblock%}
+
+{% block col1 %}
+<h2>{%trans "Invite people to InfluenzaNet" %}</h2>
+<p>{%trans "This page allow to invite people to participate to this project. To invite someone add his email address to the box below"%}</p>
+
+{% include "base/messages.html" %}
+
+<table class="invitations">
+<tr>
+	<td colspan="2">
+	<form action="{%url invite_index %}" class="form-invitation" method="post">
+		{% csrf_token %}
+		<input type="text" name="email" id="email" size="30" maxlength="254" placeholder="{%trans "email" %}"/>
+		<label for="allow_user_mention"><input type="checkbox" name="allow_user_mention" value="1"/>{%trans "Include your email address in the invitation (anonymous if not checked)" %}</label>
+		<button type="submit" class="button">{%trans "invite"%}</button>
+	</form>
+	</td>
+{%for invitation in invitations %}
+<tr>
+	<td>{{ invitation.date }}</td>
+	<td>{{ invitation.email }}</td>
+</tr>
+{%endfor%}
+</table>
+{% endblock %}
