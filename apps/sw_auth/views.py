@@ -251,5 +251,5 @@ def deactivate_request(request):
 def index(request):
     """
     """
-    
+    return HttpResponseRedirect(reverse('registration_register'))
     
