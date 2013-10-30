@@ -7,10 +7,10 @@ A user can invite his friends, by sending them an email with an invitation link 
 Configuration
 -------------
 
- * SW_INVITE_TOKEN_LENGTH : size of the random part of the key generated for each user (default is 5) 
- * SW_INVITE_TOKEN_PREFIX : Add a prefix to each key
- * SW_INVITE_EMAIL_INVITATION : Path (relative to templates directory) of the template files for the email (at leat 2 files are excepted, [template_path].txt, [template_path]_subject.txt. One .html file could be provided to add an html-based part to the invitation email)
- * SW_INVITE_SIGNAL_MODULE : module full qualified name to get the "user_registered" signal, for example "registration.signals"
+ * SW_INVITATION_TOKEN_LENGTH : size of the random part of the key generated for each user (default is 5) 
+ * SW_INVITATION_TOKEN_PREFIX : Add a prefix to each key
+ * SW_INVITATION_EMAIL_INVITATION : Path (relative to templates directory) of the template files for the email (at leat 2 files are excepted, [template_path].txt, [template_path]_subject.txt. One .html file could be provided to add an html-based part to the invitation email)
+ * SW_INVITATION_SIGNAL_MODULE : module full qualified name to get the "user_registered" signal, for example "registration.signals"
  
 Invitation follow-up
 --------------------

@@ -7,7 +7,7 @@ def send_invitation(user, key, email):
     
     data = { 'email': email, 'key': key}
     
-    template = getattr(settings, 'SW_INVITE_EMAIL_INVITATION','sw_invite/invitation_email')
+    template = getattr(settings, 'SW_INVITATION_EMAIL_INVITATION','sw_invite/invitation_email')
     subject = render_to_string(template +'_subject.txt', dictionary=data)
     # Email subject *must not* contain newlines
     subject = ''.join(subject.splitlines())
@@ -30,9 +30,9 @@ def send_invitation(user, key, email):
 
 def get_registration_signal():
     user_registered = None
-    if hasattr(settings, 'SW_INVITE_SIGNAL_MODULE'):
+    if hasattr(settings, 'SW_INVITATION_SIGNAL_MODULE'):
         from django.utils.importlib import import_module
-        module = import_module(settings.SW_INVITE_SIGNAL_MODULE)
+        module = import_module(settings.SW_INVITATION_SIGNAL_MODULE)
         user_registered = getattr(module,'user_registered')
     return user_registered
             

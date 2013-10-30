@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
-
+from django.contrib.auth.decorators import login_required
 
 def render_template(name, request, context=None):
     return render_to_response('sw_invite/'+name+'.html',
@@ -12,7 +12,7 @@ def render_template(name, request, context=None):
                               context_instance=RequestContext(request)
     )
 
-
+@login_required
 def invite(request):
     user = request.user
     if request.method == 'POST':

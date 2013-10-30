@@ -52,46 +52,46 @@ class InvitationManager(models.Manager):
         Try to set a random key for a user
         To limit collision, can try several times
         """
-        length = getattr(settings, 'SW_INVITE_TOKEN_LENGTH', 5)
-        prefix = getattr(settings, 'SW_INVITE_TOKEN_PREFIX', '')
+        length = getattr(settings, 'SW_INVITATION_KEY_LENGTH', 5)
+        prefix = getattr(settings, 'SW_INVITATION_KEY_PREFIX', '')
         # get a random int 
         i = 10 # try a maximum of 10 times
         while i > 0:
             key = prefix + ''.join([choice('ABCDEFGHJKLMNPQRSTUVWXYZ23456789') for i in range(length)])
             key.upper() # be sure all is in uppercase
             try:
-                u = InvitationKey.objects.get(token=key)
+                u = InvitationKey.objects.get(key=key)
             except InvitationKey.DoesNotExist:
-                token = InvitationKey()
-                token.user = user
-                token.key = key
-                token.save()
+                invitation_key = InvitationKey()
+                invitation_key.user = user
+                invitation_key.key = key
+                invitation_key.save()
             --i
         return None
 
     def get_key(self, user):
         try:
-            token = InvitationKey.objects.get(user=user)
+            key = InvitationKey.objects.get(user=user)
         except InvitationKey.DoesNotExist:
-            token = self.create_key(user)
+            key = self.create_key(user)
         
-        return token
+        return key
     
     def invite(self, user, email):
-        token = self.get_key(user)
+        key = self.get_key(user)
         email = email.lower()
         invitation = Invitation()
         invitation.user = user
         invitation.email = email
-        send_invitation(user, token, email)
+        send_invitation(user, key, email)
         invitation.save()
-        return token
+        return key
     
     def use_key(self, key):
         key = key.upper()
         try:
-            token = InvitationKey.objects.get(key=key)
-            user = token.user
+            invitation_key = InvitationKey.objects.get(key=key)
+            user = invitation_key.user
             usage = InvitationUsage()
             usage.user = user
             usage.save()
