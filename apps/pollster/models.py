@@ -313,15 +313,14 @@ class Survey(models.Model):
         """
         if self.prefill_method == '':
             return None
+
         if self.prefill_method == 'LAST':
             return self.get_last_participation_data(user_id, global_id)
-        # Now it is the name of a function
-        # Currently we only handle functions in the current scope, but it could be extended
-        try:
-            func = globals()[self.prefill_method]
-        except KeyError:
-            raise Error("Prefill function %s does not exist" % self.prefill_method)
-        return func(self, user_id, global_id)
+
+        if self.prefill_method == 'prefill_previous_data':
+            return prefill_previous_data(user_id, global_id)
+
+        raise Error("Prefill function %s does not exist" % self.prefill_method)
 
     def as_model(self):
         fields = []
