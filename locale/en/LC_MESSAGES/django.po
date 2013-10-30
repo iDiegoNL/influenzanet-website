@@ -429,7 +429,7 @@ msgid "Cold / allergy"
 msgstr ""
 
 msgid "Common cold"
-msgstr "Symptomen die passen bij verkoudheid"
+msgstr ""
 
 msgid "Allergy / hay fever and gastrointestinal symptoms"
 msgstr ""
