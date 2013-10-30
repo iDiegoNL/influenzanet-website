@@ -1781,3 +1781,6 @@ msgstr ""
 
 msgid "You have been successfully resubscribed to the mailing list"
 msgstr "U bent opnieuw aangemeld voor de Influenzanet mailinglijst."
+
+msgid "At the beginning of the season we ask you to verify last year's information. Please check the information below."
+msgstr "Aan het begin van elk seizoen vragen we u de gegevens van het vorige jaar te controleren. Kijkt u alstublieft of de gegevens correct zijn."
