@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
@@ -579,7 +579,7 @@ msgstr "Mijn profiel"
 #: templates/accounts/my_settings.html:4 templates/accounts/my_settings.html:7
 #: templates/accounts/partials/usermenu.html:19
 msgid "Account settings"
-msgstr "Account instellingen"
+msgstr "Accountinstellingen"
 
 #: templates/accounts/my_settings.html:10
 msgid "Your settings have been updated"
@@ -1766,16 +1766,18 @@ msgstr "De deelnemer \"%(user_name)s\" is als gezond aangemerkt."
 msgid "Your result archive"
 msgstr "Uw resultatenarchief"
 
-msgid "No data available for this season" 
+msgid "No data available for this season"
 msgstr "Geen gegevens beschikbaar voor dit seizoen"
 
 msgid "Resubscribe"
 msgstr "Herinschrijven"
 
-msgid "You may resubscribe to the Influenzanet reminder/newsletter by pressing the button below."
+msgid ""
+"You may resubscribe to the Influenzanet reminder/newsletter by pressing the "
+"button below."
 msgstr ""
-"U kunt zich opnieuw aanmelden voor de Influenzanet herinneringsmails/nieuwsbrief door "
-"op de knop hieronder te drukken."
+"U kunt zich opnieuw aanmelden voor de Influenzanet herinneringsmails/"
+"nieuwsbrief door op de knop hieronder te drukken."
 
 msgid "You have been successfully resubscribed to the mailing list"
 msgstr "U bent opnieuw aangemeld voor de Influenzanet mailinglijst."
