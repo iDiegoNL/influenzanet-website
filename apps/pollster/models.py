@@ -318,7 +318,7 @@ class Survey(models.Model):
             return self.get_last_participation_data(user_id, global_id)
 
         if self.prefill_method == 'prefill_previous_data':
-            return prefill_previous_data(user_id, global_id)
+            return prefill_previous_data(self, user_id, global_id)
 
         raise Error("Prefill function %s does not exist" % self.prefill_method)
 
