@@ -22,14 +22,14 @@
 <script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.virtualoptions.js"></script>
 <script type="text/javascript">$(function() { wok.pollster.createPollsterRuntime(null, {}); })</script>
 {% comment %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/js/qtip.js"></script>{% endcomment %}
-{% endblock add_js %}
+{% endaddtoblock "js" %}
 
 {% addtoblock "css" %}
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/jquery/css/smoothness/jquery-ui-1.8.14.css" media="all" />
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/survey.css" media="all" />
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/skin.css" media="all" />
 {% comment %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endcomment %}
-{% endaddtoblock %}
+{% endaddtoblock "css" %}
 
 {% if issuccess %}
 {{ success_content }}
