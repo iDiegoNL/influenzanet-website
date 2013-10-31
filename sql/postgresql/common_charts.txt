@@ -1,31 +1,36 @@
 SELECT *, user_id AS "user" FROM survey_surveyuser WHERE NOT deleted;
 
 <style type="text/css">
-#group-switch { list-style: none; width: 100%; }
-#group-switch li { float:left; }
+.chart-dashboard-userswitch #group-switch { list-style: none; width: 100%; padding: 0; }
+.chart-dashboard-userswitch #group-switch li { float:left; padding: 5px; background: #eee; border: 1px solid #d2d2d2; margin: 0 2px 10px 0; }
+.chart-dashboard-userswitch #group-switch li.selected { background: #CE2626; }
+.chart-dashboard-userswitch #group-switch li.selected a { color: white; }
+.chart-dashboard-userswitch p { clear: both; }
 </style>
-<ul id="group-switch">
-{% for row in rows %}
-<li class="{% if global_id == row.global_id %}selected{% endif %}">
-<a href="?gid={{ row.global_id }}">{{ row.name }}</a>
-</li>
-{% endfor %}
-</ul>
-<p/>The health status of each participant is based on the symptoms you reported.
-This is not a medical diagnosis. We only ask for symptoms indicative of 
-influenza-like illness, common colds, allergies and gastric flu. If you have 
-other symptoms, or you are at all worried, we recommend that you contact your 
-doctor or telephone NHS Direct / NHS 24.</p>
-{% for row in rows %}
-{% if global_id == row.global_id %}
-<p>
-From the following links you can access the surveys for the 
-<a href="/survey/weekly?gid={{ row.global_id }}">symptoms</a>
-and for your 
-<a href="/survey/intake?gid={{ row.global_id }}">profile</a>.
-</p>
-{% endif %}
-{% endfor %}
+<div class="chart-dashboard-userswitch">
+    <ul id="group-switch">
+        {% for row in rows %}
+        <li class="{% if global_id == row.global_id %}selected{% endif %}">
+        <a href="?gid={{ row.global_id }}">{{ row.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>The health status of each participant is based on the symptoms you reported.
+    This is not a medical diagnosis. We only ask for symptoms indicative of 
+    influenza-like illness, common colds, allergies and gastric flu. If you have 
+    other symptoms, or you are at all worried, we recommend that you contact your 
+    doctor or telephone NHS Direct / NHS 24.</p>
+    {% for row in rows %}
+    {% if global_id == row.global_id %}
+    <p>
+    From the following links you can access the surveys for the 
+    <a href="/survey/?gid={{ row.global_id }}">symptoms</a>
+    and for your 
+    <a href="/survey/profile?gid={{ row.global_id }}">profile</a>.
+    </p>
+    {% endif %}
+    {% endfor %}
+</div>
 
 
 SELECT * FROM pollster_dashboard_history;
