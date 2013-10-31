@@ -26,7 +26,7 @@ SYMPTOM_COLORS = {
     'NO-SYMPTOMS':                                  (  0,   0,   0),
 }
 
-MEASURMENT = (153, 255, 153)
+MEASURMENT = (102, 102, 102)
 
 
 @transaction.commit_on_success
