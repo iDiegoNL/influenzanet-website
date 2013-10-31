@@ -254,8 +254,13 @@ PYBB_TEMPLATE = 'base/forum.html'
 PYBB_ENABLE_ANONYMOUS_POST = True
 PYBB_ANONYMOUS_USERNAME = 'Gast'
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
+
 try:
     from local_settings import *
 except ImportError:
     pass
 
+INSTALLED_APPS += LOCAL_APPS
+MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    
