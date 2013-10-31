@@ -147,14 +147,8 @@ SELECT * FROM pollster_dashboard_badges;
         {% if rows.0.is_senior %}<img src="/media/survey/img/badge_senior_member.png" title="Senior Member badge" />{% endif %}
         {% if rows.0.is_gold %}<img src="/media/survey/img/badge_gold_member.png" title="Gold Member badge" />{% endif %}
         {% if rows.0.is_platinum %}<img src="/media/survey/img/badge_platinum_member.png" title="Platinum Member badge" />{% endif %}
+        {% if rows.0.is_gastro_season %}<img src="/media/survey/img/badge_gastro_season.png" title="Platinum Member badge" />{% endif %}
+        {% if rows.0.is_cold_season %}<img src="/media/survey/img/badge_cold_season.png" title="Platinum Member badge" />{% endif %}
     </div>
 </div>
-
-
-
-
-
-
-
-
 

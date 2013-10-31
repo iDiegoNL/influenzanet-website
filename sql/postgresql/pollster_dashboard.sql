@@ -1,25 +1,3 @@
-DROP VIEW IF EXISTS pollster_dashboard_badges;
-CREATE VIEW pollster_dashboard_badges AS
-SELECT DISTINCT 
-			 global_id,
-			 user_id AS "user",
-			 count(*) OVER (PARTITION BY global_id) >= 1 AS is_novice,
-			 count(*) OVER (PARTITION BY global_id) >= 3 AS is_junior,
-			 count(*) OVER (PARTITION BY global_id) >= 6 AS is_senior,
-			 count(*) OVER (PARTITION BY global_id) >= 10 AS is_gold,
-			 count(*) OVER (PARTITION BY global_id) >= 20 AS is_platinum,
-			 sum(cold) OVER (PARTITION BY global_id) >= 3 AS is_cold_season,
-			 sum(ili) OVER (PARTITION BY global_id)  >= 2 AS is_ili_season,
-			 sum(gastro) OVER (PARTITION BY global_id) >= 2 AS is_gastro_season
-	FROM (
-SELECT DISTINCT global_id,
-			 user_id,			 
-		   to_char(timestamp, 'YYYYWW'),
-		   CASE true WHEN (status ILIKE '%COLD%') THEN 1 ELSE 0 END as cold,
-		   CASE true WHEN (status = 'ILI') THEN 1 ELSE 0 END as ili,
-		   CASE true WHEN (status ILIKE '%GASTRO%') THEN 1 ELSE 0 END as gastro
-  FROM pollster_dashboard_healt_status ) A;
-
 DROP VIEW IF EXISTS pollster_dashboard_healt_status;
 CREATE VIEW pollster_dashboard_healt_status AS 
                SELECT W.user AS user_id,
@@ -182,4 +160,33 @@ CREATE VIEW pollster_dashboard_neighbors AS
 		pollster_dashboard_neighborhood_users_count(O."Q3") AS neighbors_count, 
 		pollster_dashboard_neighborhood_users_avg(O."Q3") AS neighbors_avg
            FROM pollster_dashboard_last_intake O;
+
+DROP VIEW IF EXISTS pollster_dashboard_badges;
+CREATE VIEW pollster_dashboard_badges AS
+SELECT DISTINCT 
+			 global_id,
+			 user_id AS "user",
+			 sum(loyal_candidate) OVER (PARTITION BY global_id) > 0 
+			        AND (SELECT count(*) 
+			        FROM pollster_results_intake AS I 
+			       WHERE (timestamp <= '2013-04-30' AND I.global_id = A.global_id)) > 0
+                         AS is_loyal,
+			 count(*) OVER (PARTITION BY global_id) >= 1 AS is_novice,
+			 count(*) OVER (PARTITION BY global_id) >= 3 AS is_junior,
+			 count(*) OVER (PARTITION BY global_id) >= 6 AS is_senior,
+			 count(*) OVER (PARTITION BY global_id) >= 10 AS is_gold,
+			 count(*) OVER (PARTITION BY global_id) >= 20 AS is_platinum,
+			 sum(cold) OVER (PARTITION BY global_id) >= 3 AS is_cold_season,
+			 sum(ili) OVER (PARTITION BY global_id)  >= 2 AS is_ili_season,
+			 sum(gastro) OVER (PARTITION BY global_id) >= 2 AS is_gastro_season
+	FROM (
+
+SELECT DISTINCT global_id,
+			 user_id,			 
+		   to_char(timestamp, 'YYYYWW'),
+		   CASE true WHEN (timestamp >= '2013-04-30') THEN 1 ELSE 0 END as loyal_candidate,		   
+		   CASE true WHEN (status ILIKE '%COLD%') THEN 1 ELSE 0 END as cold,
+		   CASE true WHEN (status = 'ILI') THEN 1 ELSE 0 END as ili,
+		   CASE true WHEN (status ILIKE '%GASTRO%') THEN 1 ELSE 0 END as gastro
+  FROM pollster_dashboard_healt_status HS) A;
 
