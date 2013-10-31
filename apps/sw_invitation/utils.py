@@ -1,8 +1,11 @@
-from django.template.loader import render_to_string, TemplateDoesNotExist
+from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.sites.models import Site
+from apps.partnersites.context_processors import site_context
 from django.core.urlresolvers import reverse
+from django.utils.html import strip_tags
+
 
 
 def send_invitation(user, key, email, allow_user_mention=False):
@@ -13,38 +16,43 @@ def send_invitation(user, key, email, allow_user_mention=False):
         allow_user_mention: allow to include user email in the invitation
     """
     site = Site.objects.get_current()
+    site_info = site_context()
     
-    url = "https://%s/%s?invitation_key=%s" % (site.domain, reverse('registration_register').strip('/'), key)
+    site_url = "https://%s"
+    
+    url = "%s/%s?invitation_key=%s" % (site_url, reverse('registration_register').strip('/'), key)
+    
+    site_info['site_logo'] = "%s/%s" % (site_url, site_info['site_logo'])
     
     if allow_user_mention:
         sender = " (%s) " % user.email
     else:
-        sender = ''  
+        sender = ' '  # default is a space (nothing to include)
     
-    data = { 'email': email, 'key': key, 'url': url, 'allow_user_mention': allow_user_mention, 'sender':sender}
+    data = { 'email': email, 'key': key, 'url': url, 'allow_user_mention': allow_user_mention, 'sender':sender, 'site': site}
+    data.update(site_info)
     
     template = getattr(settings, 'SW_INVITATION_EMAIL_INVITATION','sw_invitation/invitation_email')
     subject = render_to_string(template +'_subject.txt', dictionary=data)
+    
     # Email subject *must not* contain newlines
     subject = ''.join(subject.splitlines())
-    text_content = render_to_string(template +'.txt', dictionary=data)
-
-    # Try to load an html version
-    try:
-        html_content = render_to_string(template +'.html', dictionary=data)
-    except TemplateDoesNotExist:
-        html_content = None 
     
+    html_content = render_to_string(template +'.html', dictionary=data)
+    text_content = strip_tags(html_content)
+
     msg = EmailMultiAlternatives()
     msg.subject = subject
     msg.body = text_content
-    msg.to = email
-    if html_content is not None:
-        msg.attach_alternative(html_content, "text/html")
+    msg.to = [email]
+    msg.attach_alternative(html_content, "text/html")
     msg.send()
     return True
 
 def get_registration_signal():
+    """
+    
+    """
     user_registered = None
     if hasattr(settings, 'SW_INVITATION_SIGNAL_MODULE'):
         from django.utils.importlib import import_module

@@ -1,31 +1,50 @@
-{% extends "sw_cohort/base.html" %}{% load i18n %}
+{% extends "sw_invitation/base.html" %}{% load i18n %}
 {% block add_css %}
 <style>
-.form-invitation { display: inline; border:1px solid #EEE; padding: .8em }
+.form-invitation table { border:1px solid #EEE; margin: 0; border-collapse: collapse; font-size: .8em}
+.form-invitation td { padding: .2em .4em  }
+.form-invitation td.options { font-size: .9em  }
+#col1 .form-invitation label { font-weight: normal; padding-left: .2em; cursor: pointer }
+.invitations { border-collapse: collapse }
+.invited td { font-size: .8em; border: 1px solid  #EEE; border-width: 1px 0 1px 0; padding: .5em  }
+.invited td.date { font-size: .8em }
 </style>
 {%endblock%}
 
 {% block col1 %}
 <h2>{%trans "Invite people to InfluenzaNet" %}</h2>
-<p>{%trans "This page allow to invite people to participate to this project. To invite someone add his email address to the box below"%}</p>
+<p>{%trans "This page allows you to invite people to register to this website. To invite someone add his email address to the box below"%}</p>
 
 {% include "base/messages.html" %}
+<h4>{%trans "Invite new people"%}</h4>
+<form action="{%url invite_index %}" class="form-invitation" method="post">
+	{% csrf_token %}
+	<table>
+	<tr>
+		<td>
+			<input type="text" name="email" id="email" size="30" maxlength="254" placeholder="{%trans "email" %}"/>
+		<button type="submit" class="button">{%trans "invite this email"%}</button><br/>	
+		</td>
+	</tr>
+	<tr>
+		<td class="options">
+			<input type="checkbox" name="allow_user_mention" value="1" id="allow_user_mention"/><label for="allow_user_mention">{%trans "Include your email address in the invitation (anonymous if not checked)" %}</label>
+		</td>
+	</tr>
+	</table>
+</form>
 
+<h4>{%trans "Invitations already sent"%}</h4>
 <table class="invitations">
-<tr>
-	<td colspan="2">
-	<form action="{%url invite_index %}" class="form-invitation" method="post">
-		{% csrf_token %}
-		<input type="text" name="email" id="email" size="30" maxlength="254" placeholder="{%trans "email" %}"/>
-		<label for="allow_user_mention"><input type="checkbox" name="allow_user_mention" value="1"/>{%trans "Include your email address in the invitation (anonymous if not checked)" %}</label>
-		<button type="submit" class="button">{%trans "invite"%}</button>
-	</form>
-	</td>
 {%for invitation in invitations %}
-<tr>
-	<td>{{ invitation.date }}</td>
-	<td>{{ invitation.email }}</td>
+<tr class="invited">
+	<td class="date">{{ invitation.date }}</td>
+	<td class="email">{{ invitation.email }}</td>
 </tr>
 {%endfor%}
 </table>
+
+<p>{%trans "invitation privacy policy"%}</p>
+
 {% endblock %}
+

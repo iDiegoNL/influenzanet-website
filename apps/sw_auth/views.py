@@ -40,12 +40,15 @@ def register_user(request):
         if form.is_valid():
             auth_notify('register ok','form is valid')
             d = form.cleaned_data
-            user = EpiworkUser.objects.create_user(d['username'], d['email'], d['password1'])
+            user = EpiworkUser.objects.create_user(d['username'], d['email'], d['password1'], d['invitation_key'])
             site = get_current_site(request)
             send_activation_email(user, site)
             return render_template('registration_complete', request, { 'user': user}) 
     if form is None:
-        form = RegistrationForm()
+        data = None
+        if 'invitation_key' in request.GET:
+            data = {'invitation_key': request.GET['invitation_key']}
+        form = RegistrationForm(initial=data)
     return render_template('registration_form', request, { 'form': form}) 
             
 

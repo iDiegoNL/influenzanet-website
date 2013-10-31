@@ -3,38 +3,56 @@ from django.contrib.auth.models import User
 from random import choice
 from .utils import send_invitation, get_registration_signal
 from django.conf import settings
+from django.utils.log import getLogger
+
+
+def get_logger():
+    return getLogger('sw_invitation')
 
 # Handle registration signal if configured
 user_registered = get_registration_signal()
 
 if user_registered is not None:
-    
     def handle_registration(sender, **kwargs):
-        # @TODO
-        key = getattr(kwargs, 'invitation_key', None)
-        if key is None:
+        logger = get_logger()
+        # logger.debug('entering sw_invitation signal handling')
+        key = kwargs.get('invitation_key', None)
+        if not key:
+            # logger.debug("look for invitation key in request ")
             # Try to get the key in the request
-            request = getattr(kwargs, 'request', None)
+            request = kwargs.get('request', None)
             if request is not None:
-                key = getattr(request.POST, "invitation_key", None)
-        
-        if key is not None:
-            # Try to find the key
-            if Invitation.objects.use_key(key):
-                return
-        
-        # Try to find the invitation by the email of the registred user
-        registered_user = kwargs['user']
+                key = request.GET.get("invitation_key", None)
+        # User who made the invitation
+        user_from = None
+        if key:
+            user_from = Invitation.objects.user_from_key(key)
+            if user_from:
+                logger.debug("user found from key '%s'" % key)
+        # Try to find the invitation by the email of the registered user
+        registered_user = kwargs.get('user', None)
+        if registered_user is None:
+            logger.debug('no user')
+            raise Exception('User not provided in signal')
         email = registered_user.email
         email = email.lower()
         try:
-            invitation = Invitation.get(email=email)
-            user = invitation.user
-            usage = InvitationUsage()
-            usage.user = user
-            usage.save()
+            invitation = Invitation.objects.get(email=email)
+            logger.debug("invitation found for email %s" % email)
+            # user_from is first find from the key
+            # if key is not found (or empty), then search from user
+            # if the email correspond to another invitation, we trust key in first place
+            if user_from is None:
+                user_from = invitation.user
+            invitation.used = True
+            invitation.save() # register the invitation is used
         except Invitation.DoesNotExist:
+            logger.debug("invitation not found for email '%s'" % email)
             pass
+        if user_from is not None:
+            usage = InvitationUsage()
+            usage.user = user_from
+            usage.save()
 
     user_registered.connect(handle_registration)    
 
@@ -80,25 +98,25 @@ class InvitationManager(models.Manager):
     def invite(self, user, email, allow_user_mention):
         key = self.get_key(user)
         email = email.lower()
-        invitation = Invitation()
-        invitation.user = user
-        invitation.email = email
-        send_invitation(user, key, email, allow_user_mention)
-        invitation.save()
+        try:
+            i = self.get(email=email)
+            raise Invitation.AlreadyInvited()
+        except Invitation.DoesNotExist:
+            invitation = Invitation()
+            invitation.user = user
+            invitation.email = email
+            send_invitation(user, key.key, email, allow_user_mention)
+            invitation.save()
         return key
     
-    def use_key(self, key):
+    def user_from_key(self, key):
         key = key.upper()
         try:
             invitation_key = InvitationKey.objects.get(key=key)
-            user = invitation_key.user
-            usage = InvitationUsage()
-            usage.user = user
-            usage.save()
-            return True
+            return invitation_key.user
         except InvitationKey.DoesNotExist:
             pass
-        return False
+        return None
 
 class Invitation(models.Model):
 
@@ -110,6 +128,10 @@ class Invitation(models.Model):
     user = models.ForeignKey(User)
     email = models.EmailField(max_length=254)
     date = models.DateField(auto_now_add=True)
+    used = models.BooleanField(default=False)
+    
+    class AlreadyInvited(Exception):
+        pass
     
 class InvitationUsage(models.Model):
     """

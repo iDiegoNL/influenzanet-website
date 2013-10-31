@@ -9,6 +9,7 @@ import random
 import sys
 from .utils import create_token, encrypt_user, decrypt_user, EpiworkToken
 from .logger import auth_notify
+from .signals import user_registered, user_activated
 from apps.survey.models import SurveyUser
 from apps.partnersites.models import Site
 
@@ -55,7 +56,7 @@ def get_random_user_id():
 class EpiworkUserManager(models.Manager):
 
     @transaction.commit_manually()
-    def create_user(self, login, email, password):
+    def create_user(self, login, email, password, invitation_key=None):
         user = EpiworkUser()
         user.id = get_random_user_id()
         if user.id is None:
@@ -75,6 +76,7 @@ class EpiworkUserManager(models.Manager):
             django_user.is_active = False
             django_user.save()
             user.save()
+            user_registered.send_robust(self, user=user, invitation_key=invitation_key)
             transaction.commit()
         except:
             transaction.rollback()

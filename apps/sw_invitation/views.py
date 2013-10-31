@@ -17,12 +17,15 @@ def invite(request):
     user = request.user
     if request.method == 'POST':
         email = request.POST['email']
-        allow_user_mention = getattr(request.POST, 'allow_user_mention', False)
+        allow_user_mention = int(getattr(request.POST, 'allow_user_mention', 0))
         if not email_re.search(email):
             messages.add_message(request, messages.ERROR, _(u'Enter a valid e-mail address.'))
         else:
-            if Invitation.objects.invite(user, email):
+            try:
+                key = Invitation.objects.invite(user, email, allow_user_mention)
                 messages.add_message(request, messages.INFO, _(u'User has been invited'))
+            except Invitation.AlreadyInvited:
+                messages.add_message(request, messages.ERROR, _(u'User has already been invited by someone'))
     
     invitations = Invitation.objects.all().filter(user=user)
     

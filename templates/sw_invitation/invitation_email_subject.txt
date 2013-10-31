@@ -1,1 +1,1 @@
-{%load i18n%}{trans "You have been invited to InfluenzaNet"}
+{%load i18n%}{%trans "You have been invited to InfluenzaNet"%}
