@@ -1764,7 +1764,7 @@ msgid "The participant \"%(user_name)s\" has been marked as healthy."
 msgstr "De deelnemer \"%(user_name)s\" is als gezond aangemerkt."
 
 msgid "Your result archive"
-msgstr "Uw resultatenarchief"
+msgstr "Resultatenarchief"
 
 msgid "No data available for this season"
 msgstr "Geen gegevens beschikbaar voor dit seizoen"
@@ -1781,6 +1781,3 @@ msgstr ""
 
 msgid "You have been successfully resubscribed to the mailing list"
 msgstr "U bent opnieuw aangemeld voor de Influenzanet mailinglijst."
-
-msgid "At the beginning of the season we ask you to verify last year's information. Please check the information below."
-msgstr "Aan het begin van elk seizoen vragen we u de gegevens van het vorige jaar te controleren. Kijkt u alstublieft of de gegevens correct zijn."
