@@ -1,0 +1,155 @@
+SELECT *, user_id AS "user" FROM survey_surveyuser WHERE NOT deleted;
+
+<style type="text/css">
+#group-switch { list-style: none; width: 100%; }
+#group-switch li { float:left; }
+</style>
+<ul id="group-switch">
+{% for row in rows %}
+<li class="{% if global_id == row.global_id %}selected{% endif %}">
+<a href="?gid={{ row.global_id }}">{{ row.name }}</a>
+</li>
+{% endfor %}
+</ul>
+<p/>The health status of each participant is based on the symptoms you reported.
+This is not a medical diagnosis. We only ask for symptoms indicative of 
+influenza-like illness, common colds, allergies and gastric flu. If you have 
+other symptoms, or you are at all worried, we recommend that you contact your 
+doctor or telephone NHS Direct / NHS 24.</p>
+{% for row in rows %}
+{% if global_id == row.global_id %}
+<p>
+From the following links you can access the surveys for the 
+<a href="/survey/weekly?gid={{ row.global_id }}">symptoms</a>
+and for your 
+<a href="/survey/intake?gid={{ row.global_id }}">profile</a>.
+</p>
+{% endif %}
+{% endfor %}
+
+
+SELECT * FROM pollster_dashboard_history;
+
+{% if rows|length > 0 %}
+<style type="text/css">
+.chart-dashboard-history { margin-top: 30px; }
+.chart-dashboard-history table { width: 100%; }
+.chart-dashboard-history td { padding: 5px; }
+.chart-dashboard-history .history div { border: 1px solid black; margin-right: 5px} 
+.chart-dashboard-history td { vertical-align: middle; }
+</style>
+<div class="chart-dashboard-history dashboard">
+    <table>
+        <tr>
+            <th colspan="2">your latest status:</th>
+            <th>your status history:</th>
+        </tr>
+        <tr>
+            <td>
+                <div style="text-align:center">
+                    <span>{{ rows.0.timestamp|date:"d-m-Y" }}</span><br />
+                    <img src="/media/survey/img/chart-{{ rows.0.status }}.png" />
+                </div>                
+            </td>
+            <td>
+                {{ rows.0.status }}
+            </td>
+            <td class="history">
+                {% for row in rows %}
+                {% if forloop.counter0 >= 1 and forloop.counter0 <= 4 %}
+                <div style="text-align:center;float:left">
+                    <span>{{ row.timestamp|date:"d-m-Y" }}</span><br />
+                    <img src="/media/survey/img/chart-{{ row.status }}.png" />
+                </div>
+                {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+</div>
+{% endif %}
+
+
+SELECT * FROM pollster_dashboard_neighbors;
+
+<style type="text/css">
+.chart-dashboard-neighborhood { margin-top: 30px; }
+.chart-dashboard-neighborhood table { width: 100%; }
+.chart-dashboard-neighborhood td { padding: 5px; vertical-align: middle; }
+.chart-dashboard-neighborhood .big { font-size: 40px; }
+</style>
+<div class="chart-dashboard-neighborhood dashboard">
+    <table>
+        <tr>
+            <th colspan="4">in your neighborhood:</th>
+        </tr>
+        <tr>
+            <td class="big">{{ rows.0.same_zip_count }}</td>
+            <td>participants in your zip code</td>
+            <td class="big">{{ rows.0.neighbors_avg|floatformat }}</td>
+            <td>participants, on average, in your neighboring zip codes</td>
+        </tr>
+    </table>
+</div>
+
+
+SELECT zip_code_key,
+       CASE true
+       WHEN (count(ili)::float/count(active)*100 >= 0 AND count(ili)::float/count(active)*100 < 0.5) THEN '#FFCC99'
+       WHEN (count(ili)::float/count(active)*100 >= 0.5 AND count(ili)::float/count(active)*100 <= 1) THEN '#FFCC99'
+       WHEN (count(ili)::float/count(active)*100 > 1 AND count(ili)::float/count(active)*100 <= 4) THEN '#FF9900'
+       WHEN (count(ili)::float/count(active)*100 > 4 AND count(ili)::float/count(active)*100 <= 5) THEN '#FF9900'
+       WHEN (count(ili)::float/count(active)*100 > 5 AND count(ili)::float/count(active)*100 <= 7) THEN '#FF6600'
+       WHEN (count(ili)::float/count(active)*100 > 7 AND count(ili)::float/count(active)*100 <= 10) THEN '#FF3300'
+       ELSE '#FF0000' END AS color,
+       count(ili) AS "Casi di ILI",
+       count(active) AS "Utenti attivi nelle ultime tre settimane",
+       round(CAST(count(ili)::float/count(active)::float*100 AS numeric), 2) as "%%"
+  FROM (
+SELECT P.cap AS zip_code_key,
+       NULLIF(S.status = 'ILI', false) AS ili
+  FROM pollster_health_status AS S,
+       pollster_results_intake AS I,
+       rel_cap_province_new AS P,
+      (SELECT DISTINCT ON (global_id) *
+         FROM pollster_results_weekly
+        WHERE timestamp BETWEEN 'tomorrow'::date-21 AND 'tomorrow'
+        ORDER BY global_id, timestamp DESC) AS W
+     WHERE S.pollster_results_weekly_id = W.id
+       AND W.global_id = I.global_id
+       AND I."Q3" = P.cap
+       ) AS active
+  GROUP BY zip_code_key;
+
+<style type="text/css">
+.survey-chart .chart-intake-dashboard_neighborhood_map  { width: 100%; margin-top: 10px; }
+</style>
+
+
+SELECT * FROM pollster_dashboard_badges;
+
+<style type="text/css">
+.chart-dashboard-badges { margin-top: 30px; }
+.chart-dashboard-badges img { width: 120px; }
+.chart-dashboard-badges .badges { margin-top: 10px; }
+</style>
+<div class="chart-dashboard-badges dashboard">
+    <div><strong>Your badges:</strong></div>
+    <div class="badges">
+        {% if rows.0.is_loyal %}<img src="/media/survey/img/badge_loyal_member.png" title="Loyal Member badge" />{% endif %}
+        {% if rows.0.is_novice %}<img src="/media/survey/img/badge_novice_member.png" title="Novice Member badge" />{% endif %}
+        {% if rows.0.is_junior %}<img src="/media/survey/img/badge_junior_member.png" title="Junior Member badge" />{% endif %}
+        {% if rows.0.is_senior %}<img src="/media/survey/img/badge_senior_member.png" title="Senior Member badge" />{% endif %}
+        {% if rows.0.is_gold %}<img src="/media/survey/img/badge_gold_member.png" title="Gold Member badge" />{% endif %}
+        {% if rows.0.is_platinum %}<img src="/media/survey/img/badge_platinum_member.png" title="Platinum Member badge" />{% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
