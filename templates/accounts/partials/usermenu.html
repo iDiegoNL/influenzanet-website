@@ -8,9 +8,9 @@
 
 <div id="usermenu">
     <ul class="icons">
+        <li><i class="icon-edit"></i> <a href="/dashboard">{% trans "My results" %}</a></li>
+        <li><i class="icon-user"></i> <a href="{% url apps.survey.views.group_management %}">{% trans "My household" %}</a></li>
         <li><i class="icon-envelope-alt"></i> <a href="{% url apps.reminder.views.latest_newsletter %}">{% trans "Newsletter" %}</a></li>
-
-        <li><i class="icon-user"></i> <a href="{% url apps.survey.views.group_management %}">{% trans "Your results" %}</a></li>
         <li><i class="icon-cog"></i> <a href="{% url apps.accounts.views.my_settings %}">{% trans "Account settings" %}</a></li>
         <li><i class="icon-off"></i> <a href="{% url django.contrib.auth.views.logout %}">{% trans "Log out" %}</a></li>
     </ul>
