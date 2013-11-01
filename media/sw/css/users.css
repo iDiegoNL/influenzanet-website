@@ -100,7 +100,8 @@
 .icon-tip { background-image:url(../help-tip.png) }
 .icon-help-white { background-image:url(../question-white.png) }
 .icon-warning { background-image:url(../warning.png) }
-
+.icon-email { background-image:url(../mail.png)}
+.icon-tick { background-image: url(../tick.png) }
 
 /* People / Group management pages */
 .people-actions {

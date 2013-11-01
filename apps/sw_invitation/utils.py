@@ -6,8 +6,6 @@ from apps.partnersites.context_processors import site_context
 from django.core.urlresolvers import reverse
 from django.utils.html import strip_tags
 
-
-
 def send_invitation(user, key, email, allow_user_mention=False):
     """
         user : the user who made the invitation
@@ -51,7 +49,8 @@ def send_invitation(user, key, email, allow_user_mention=False):
 
 def get_registration_signal():
     """
-    
+    get the registration signal from the configured module
+    example registration.signals
     """
     user_registered = None
     if hasattr(settings, 'SW_INVITATION_SIGNAL_MODULE'):

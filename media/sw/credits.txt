@@ -11,3 +11,6 @@ help-tip	fugues icons 3.5
 pencil		fugues icons 3.5
 cohort		fugues icons 3.5
 clock		fugues icons 3.5
+mail		fugues icons 3.6
+tick		fugues icons 3.6
+info		fugues icons 3.6

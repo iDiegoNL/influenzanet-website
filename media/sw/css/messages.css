@@ -1,8 +1,20 @@
-.messages {
+#col1 .messages {
 	font-size: .9em;
-	
 }
 
-.messages .error {
+#col1 .messages .error {
 	color: red;
+	padding-left: 20px;
+	background: transparent url(../warning.png) left center no-repeat;
+}
+
+#col1 .messages .info {
+	padding-left: 20px;
+	background: transparent url(../info.png) left center no-repeat;
+}
+
+#col1 .messages .success {
+	padding-left: 20px;
+	background: transparent url(../tick.png) left center no-repeat;
+	color: green;
 }

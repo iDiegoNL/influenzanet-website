@@ -35,11 +35,15 @@
 </form>
 
 <h4>{%trans "Invitations already sent"%}</h4>
+{% if usages %}
+<p><b>{{usages}}</b> {%trans "invitations you sent has been used" %}</p>
+{% endif %}
 <table class="invitations">
 {%for invitation in invitations %}
 <tr class="invited">
 	<td class="date">{{ invitation.date }}</td>
-	<td class="email">{{ invitation.email }}</td>
+	<td class="email"><span class="icon icon-email"></span>{{ invitation.email }}</td>
+	<td>{%if invitation.used %}<span class="icon icon-tick"></span>{%endif%}</td>
 </tr>
 {%endfor%}
 </table>

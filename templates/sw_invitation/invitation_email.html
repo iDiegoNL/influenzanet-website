@@ -14,8 +14,8 @@ a:link { text-decoration: underline; color: #808080; }
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
 <tr>
 	<td width="5%">&nbsp;</td>
-	<td width="90%">
-		<table>
+	<td width="90%" style="padding: 1em">
+		<table style="border:1px solid #DDD; border-radius: .3em; padding: .3em">
 			<tr>
 				<td><img src="{{site_logo}}"/></td>
 			</tr>
@@ -31,6 +31,11 @@ register with the membership code : <b>{{key}}</b>
 			</td>	
 		</table>
 	</td>
+</tr>
+<tr>
+	<td width="5%">&nbsp;</td>
+	<td width="90%" style="color:#AAAAAA; font-size:9px; text-align:center">{{site_name}} {%if site_footer%}- {{site_footer}}{%endif%}</td>
+	<td width="5%">&nbsp;</td>
 </tr>	
 </table>
 </body>
