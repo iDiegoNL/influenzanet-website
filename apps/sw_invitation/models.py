@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from random import choice
 from .utils import send_invitation, get_registration_signal
-from django.conf import settings
+from . import settings
 from django.utils.log import getLogger
 
 
@@ -70,8 +70,8 @@ class InvitationManager(models.Manager):
         Try to set a random key for a user
         To limit collision, can try several times
         """
-        length = getattr(settings, 'SW_INVITATION_KEY_LENGTH', 5)
-        prefix = getattr(settings, 'SW_INVITATION_KEY_PREFIX', '')
+        length = settings.SW_INVITATION_KEY_LENGTH
+        prefix = settings.SW_INVITATION_KEY_PREFIX
         # get a random int 
         i = 10 # try a maximum of 10 times
         while i > 0:

@@ -1,5 +1,5 @@
 from django.template.loader import render_to_string
-from django.conf import settings
+from . import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.sites.models import Site
 from apps.partnersites.context_processors import site_context
@@ -30,7 +30,7 @@ def send_invitation(user, key, email, allow_user_mention=False):
     data = { 'email': email, 'key': key, 'url': url, 'allow_user_mention': allow_user_mention, 'sender':sender, 'site': site}
     data.update(site_info)
     
-    template = getattr(settings, 'SW_INVITATION_EMAIL_INVITATION','sw_invitation/invitation_email')
+    template = settings.SW_INVITATION_EMAIL_INVITATION
     subject = render_to_string(template +'_subject.txt', dictionary=data)
     
     # Email subject *must not* contain newlines
