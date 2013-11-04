@@ -2,15 +2,12 @@ Invitation management application
 ================================
 
 This app handles a gaming-oriented invitation feature for platform's users 
-A user can invite his friends, by sending them an email with an invitation link to register and a key useable to register without the link
+A user can invite his friends, by sending them an email with an invitation link to register 
+and a key useable to register without the link.
 
 Configuration
 -------------
-
- * SW_INVITATION_TOKEN_LENGTH : size of the random part of the key generated for each user (default is 5) 
- * SW_INVITATION_TOKEN_PREFIX : Add a prefix to each key
- * SW_INVITATION_EMAIL_INVITATION : Path (relative to templates directory) of the template files for the email (at leat 2 files are excepted, [template_path].txt, [template_path]_subject.txt. One .html file could be provided to add an html-based part to the invitation email)
- * SW_INVITATION_SIGNAL_MODULE : module full qualified name to get the "user_registered" signal, for example "registration.signals"
+All config vars are in settings.py in the app, you can config them in global settings.py 
  
 Invitation follow-up
 --------------------
@@ -19,6 +16,17 @@ Invitation follow-up
 
  * an invitation key was used for registration (told to the app using signal feature, see Signal handling)
  * a user registred using a invited email
+
+InvitationUsage log each invitation success (usable for gaming)
+Invitation, also have a field "used", set to True when a user registred with an invited email (indeed, if the invited user
+use a link, and does not register with the same email, this is not catched in this table).
+
+Privacy Choices
+---------------
+It has been chosen to trace the number of success, rather than to trace the invitation itself.
+The success logged is only related to the user who invited people, not on which email registered nor on the account
+of the invited user.
+Invited email could be removed at any time (delay depends on country, regulation authority agreements,...) 
   
 Signal Handling
 -----------------
