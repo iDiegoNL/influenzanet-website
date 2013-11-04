@@ -225,6 +225,8 @@ def prefill_previous_data(survey, user_id, global_id):
      desc = cursor.description
      if res is not None:
          res = dict(zip([col[0] for col in desc], res))
+         # Put a flag in the data 
+         res["_source_"] = "previousdata"
      return res 
 
 class Survey(models.Model):
