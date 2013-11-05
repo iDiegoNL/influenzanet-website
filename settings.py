@@ -103,8 +103,9 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
-    'pybb.middleware.PybbMiddleware',
     'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'pybb.middleware.PybbMiddleware',
+    'apps.pollster.middleware.ForceResponseMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -112,12 +113,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.request",
     "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "cms.context_processors.media",
     "sekizai.context_processors.sekizai",
     "django.contrib.messages.context_processors.messages",
-    "cms.context_processors.media",
     "apps.partnersites.context_processors.customizations",
     "pybb.context_processors.processor",
-    "django.core.context_processors.static",
     "apps.pollster.context_processors.last_survey",
     "apps.pollster.context_processors.surveyuser_count",
 )
@@ -181,6 +182,7 @@ INSTALLED_APPS = (
     'apps.contest',
     'captcha',
     #'apps.tellafriend',
+    'apps.ggm_maps',
 
     'pybb',
     'pytils',
@@ -254,8 +256,13 @@ PYBB_TEMPLATE = 'base/forum.html'
 PYBB_ENABLE_ANONYMOUS_POST = True
 PYBB_ANONYMOUS_USERNAME = 'Gast'
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
+
 try:
     from local_settings import *
 except ImportError:
     pass
 
+INSTALLED_APPS += LOCAL_APPS
+MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    

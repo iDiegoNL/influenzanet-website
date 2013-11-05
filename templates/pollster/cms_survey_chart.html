@@ -14,6 +14,9 @@
 </script>
 {% endaddtoblock %}
 
+{% if chart.is_template %}
+{{ content }}
+{% else %}
 <div class="survey-chart">
     {% if chart.has_data %}
     <div id="pollster-chart-{{ chart.id }}" class="chart chart-{{ chart.survey.shortname }}-{{ chart.shortname }}"
@@ -24,3 +27,5 @@
     <div class="chart chart-{{ chart.survey.shortname }}-{{ chart.shortname }} chart-no-data">No available data</div>
     {% endif %}
 </div>
+{% endif %}
+
