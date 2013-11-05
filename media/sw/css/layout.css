@@ -352,7 +352,7 @@ bottom: -3px;
 padding: .3em 0 .3em 26px;
 }
 
-.flag-nl,.flag-be,.flag-de, .flag-at, .flag-ch, .flag-se, .flag-uk, .flag-fr, .flag-pt, .flag-es, .flag-it {
+.flag-nl,.flag-be,.flag-de, .flag-at, .flag-ch, .flag-se, .flag-uk, .flag-fr, .flag-pt, .flag-es, .flag-it, .flag-ie, .flag-dk {
 background: #FFF url() left center no-repeat;
 }
 
@@ -367,6 +367,8 @@ background: #FFF url() left center no-repeat;
 .flag-pt {background-image: url(../../base/img/influbar/pt.png)}
 .flag-es {background-image: url(../../base/img/influbar/es.png)}
 .flag-it {background-image: url(../../base/img/influbar/it.png)}
+.flag-ie {background-image: url(../../base/img/influbar/ie.png)}
+.flag-dk {background-image: url(../../base/img/influbar/dk.png)}
 
 #feedback_map .chart {
 	width: 750px;
