@@ -24,7 +24,7 @@
 
     function DateType() {
         var self = this;
-
+		
         // Public methods.
 
         $.extend(this, {
@@ -32,13 +32,21 @@
                 return true;
             },
             bind: function($field) {
-                $field
-                    .datepicker({
+                
+				var tags = get_question_tags($field);
+				
+				var opts = {
                         constrainInput: true,
                         dateFormat: 'dd/mm/yy',
                         changeMonth: true,
                         changeYear: true 
-                    })
+                    };
+				if(tags.nofuture) {
+					opts.maxDate = '0';
+				}
+				
+				$field
+                    .datepicker(opts)
                     .change(function(evt){
                         var $this = $(this);
                         var date = Date.parseExact($this.val(), "yyyy-MM-dd");
