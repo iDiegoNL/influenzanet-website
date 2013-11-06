@@ -22,17 +22,48 @@ Installation
 ================
 
 # in urls.py
+```
 urlpatterns += patterns('', 
     url(r'^cohort/', include('apps.sw_cohort.urls')),
 )
+```
 
-# in settings.py
-
-# add in INSTALLED_APPS = ( 
-# ....    
-	'apps.sw_cohort',
-# ... )
+in settings.py
+ add 'apps.sw_cohort' in INSTALLED_APPS 
 
 # Then migrate
+
+```python
 ./python manage.py migrate
+```
+
+App integration with Participant management
+============
+The app provide an ajax service returning cohort registrations for all participants of 
+the current user (django account).
+It returns
+ - subscribers = a list of cohort (id) for each participant (here indexed by their SurveyUser.id, @TODO use global_id instead)
+ - cohorts = list of cohorts title (key is the cohort id, used in subscribers)
+
+```js	
+$.getJSON('/cohort/subscriptions', function(data) {
+	var subscribers = data.subscribers;
+	var cohorts = data.cohorts;
+	if(subscribers) {
+		# console.log(subscribers);
+		for(var uid in subscribers) {
+			var subs = subscribers[uid];
+			title = '{%trans "Subscriptions for this user:"%}<br/>';
+			for(var i=0; i < subs.length; ++i) {
+				var c = subs[i];
+				title += cohorts[c]+'<br/>';
+			}
+			// 
+			$('#cohort-'+uid).attr('title',title).addClass("icon icon-cohort").tooltip();
+		}
+	}
+});
+```	
+	
+ 
 
