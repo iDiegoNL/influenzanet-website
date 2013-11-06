@@ -29,7 +29,7 @@ def send_invitation(user, key, email, include_email=False, from_name=None, is_se
     if from_name:
         sender = from_name
     else:
-        from_name = _("An InfluenzaNet user")
+        sender = _("An InfluenzaNet user")
         
     if include_email:
         sender += " (%s) " % user.email

@@ -24,18 +24,21 @@ def invite(request):
         return render_template('max_invitation', request)
     from_name = ''
     if request.method == 'POST':
-        email = request.POST['email']
+        emails = request.POST['emails']
         from_name = request.POST['name']
         include_email = int(request.POST.get('include_email', 0))
-        if not email_re.search(email):
-            messages.add_message(request, messages.ERROR, _(u'Enter a valid e-mail address.'))
-        else:
-            try:
-                key = Invitation.objects.invite(user, email)
-                send_invitation(user, key.key, email, include_email, from_name, request.is_secure)
-                messages.add_message(request, messages.SUCCESS, _(u'User has been invited'))
-            except Invitation.AlreadyInvited:
-                messages.add_message(request, messages.ERROR, _(u'User has already been invited by someone'))
+        emails = emails.replace(' ', '') 
+        emails = emails.split(',')
+        for email in emails:
+            if not email_re.search(email):
+                messages.add_message(request, messages.ERROR, _(u'"%s" is not a valid email address') % email)
+            else:
+                try:
+                    key = Invitation.objects.invite(user, email)
+                    send_invitation(user, key.key, email, include_email, from_name, request.is_secure)
+                    messages.add_message(request, messages.SUCCESS, _(u'Invitation sent for "%s"') % email)
+                except Invitation.AlreadyInvited:
+                    messages.add_message(request, messages.ERROR, _(u'email "%s" has already been invited by someone') % email)
     
     usages = InvitationUsage.objects.filter(user=user).count()
     return render_template('invite', request, {'user':user,'from_name':from_name, 'invitations':invitations, 'usages': usages})      

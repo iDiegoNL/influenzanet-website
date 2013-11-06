@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-06 19:43+0100\n"
+"POT-Creation-Date: 2013-11-06 22:12+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -688,18 +688,20 @@ msgstr ""
 msgid "An InfluenzaNet user"
 msgstr "Un utilisateur de GrippeNet.fr"
 
-#: .\apps\sw_invitation\views.py:31
-msgid "Enter a valid e-mail address."
-msgstr "Adresse email invalide"
+#: .\apps\sw_invitation\views.py:34
+#, python-format
+msgid "\"%s\" is not a valid email address"
+msgstr "\"%s\" n'est pas une adresse email correcte"
 
-#: .\apps\sw_invitation\views.py:36
-msgid "User has been invited"
-msgstr "Le mail d'invitation a été envoyé"
+#: .\apps\sw_invitation\views.py:39
+#, python-format
+msgid "Invitation sent for \"%s\""
+msgstr "Invitation envoyée pour l'adresse \"%s\""
 
-#: .\apps\sw_invitation\views.py:38
-msgid "User has already been invited by someone"
-msgstr ""
-"Cette adresse email ne peut pas être invitée, elle a déjà été utilisée."
+#: .\apps\sw_invitation\views.py:41
+#, python-format
+msgid "email \"%s\" has already been invited by someone"
+msgstr "l'adresse \"%s\" ne peut pas être invitée car elle est utilisée."
 
 #: .\apps\tellafriend\forms.py:13
 msgid "URL"
@@ -2069,22 +2071,25 @@ msgid ""
 "telling people to\n"
 "register with the membership code : <b>%(key)s</b>\n"
 msgstr ""
-"Bonjour,<br><br>\n%(sender)s souhaite vous inviter à vous inscrire à "
-"GrippeNet.fr<br><br>\n\nSi vous souhaitez vous inscrire cliquez sur le lien "
-"ci-dessous :<br><br>\n<a href=\"%(url)s\">%(url)s</a><br><br>\n\nVous pouvez "
-"également aider la personne qui vous invite à parrainer d'autres personnes en "
-"transférant ce mail ou en leur indiquant d'utiliser le code de parrainage "
-"suivant lors de leur inscription <b>%(key)s</b>.\n"
+"Bonjour,<br><br>\n"
+"%(sender)s souhaite vous inviter à vous inscrire à GrippeNet.fr<br><br>\n"
+"\n"
+"Si vous souhaitez vous inscrire cliquez sur le lien ci-dessous :<br><br>\n"
+"<a href=\"%(url)s\">%(url)s</a><br><br>\n"
+"\n"
+"Vous pouvez également aider la personne qui vous invite à parrainer d'autres "
+"personnes en transférant ce mail ou en leur indiquant d'utiliser le code de "
+"parrainage suivant lors de leur inscription <b>%(key)s</b>.\n"
 
 #: .\templates\sw_invitation\invitation_email_subject.txt.py:1
 msgid "You have been invited to InfluenzaNet"
 msgstr "Vous avez été invité à vous inscrire à GrippeNet.fr"
 
-#: .\templates\sw_invitation\invite.html.py:15
+#: .\templates\sw_invitation\invite.html.py:10
 msgid "Invite people to InfluenzaNet"
 msgstr "Invitez vos contacts à participer à GrippeNet.fr"
 
-#: .\templates\sw_invitation\invite.html.py:16
+#: .\templates\sw_invitation\invite.html.py:11
 msgid ""
 "This page allows you to invite people to register to this website. To invite "
 "someone add his email address to the box below"
@@ -2093,23 +2098,23 @@ msgstr ""
 "formulaire ci dessous. Nous leur enverrons un mail explicatif d'invitation "
 "contenant un lien d'invitation pour s'inscrire."
 
-#: .\templates\sw_invitation\invite.html.py:19
+#: .\templates\sw_invitation\invite.html.py:14
 msgid "Invite new people"
 msgstr "Inviter par email"
 
-#: .\templates\sw_invitation\invite.html.py:25
+#: .\templates\sw_invitation\invite.html.py:20
 msgid "email you want to be invited"
-msgstr "Adresse email que vous souhaitez inviter"
+msgstr "Entrez les adresses email que vous souhaitez ajouter"
 
-#: .\templates\sw_invitation\invite.html.py:30
+#: .\templates\sw_invitation\invite.html.py:26
 msgid "Include your email address in the invitation (anonymous if not checked)"
 msgstr "Mentionner votre adresse email dans le mail envoyé (anonyme sinon)"
 
-#: .\templates\sw_invitation\invite.html.py:35
+#: .\templates\sw_invitation\invite.html.py:31
 msgid "An optional name"
 msgstr "Votre nom (optionnel)"
 
-#: .\templates\sw_invitation\invite.html.py:35
+#: .\templates\sw_invitation\invite.html.py:31
 msgid ""
 "You can also include a name which will be included in the invitation email "
 "(not stored in this website)"
@@ -2117,25 +2122,30 @@ msgstr ""
 "Si vous précisez un nom, il sera inclu dans le mail d'invitation (il ne sera "
 "pas stocké par notre site)."
 
-#: .\templates\sw_invitation\invite.html.py:40
+#: .\templates\sw_invitation\invite.html.py:36
 msgid "invite this email"
 msgstr "Envoyer l'invitation"
 
-#: .\templates\sw_invitation\invite.html.py:46
+#: .\templates\sw_invitation\invite.html.py:42
 msgid "Invitations already sent"
-msgstr "Ce mail a déjà été invité"
+msgstr "Invitations par votre compte GrippeNet.fr"
 
-#: .\templates\sw_invitation\invite.html.py:50
+#: .\templates\sw_invitation\invite.html.py:46
 msgid "invitation you sent has been used"
 msgid_plural "invitations you sent has been used"
 msgstr[0] "invitation envoyée a été utilisée"
 msgstr[1] "invitations envoyées ont été utilisées"
 
-#: .\templates\sw_invitation\invite.html.py:63
+#: .\templates\sw_invitation\invite.html.py:59
 msgid "invitation privacy policy"
 msgstr ""
-"Les adresses email invitées seront conservées durant quelques mois jusqu'a la "
-"fin de la saison en cours. Nous les supprimeront à la fin de chaque saison."
+"Les adresses email invitées seront conservées durant quelques mois jusqu'a "
+"la fin de la saison en cours. Nous les supprimeront à la fin de chaque "
+"saison."
+
+#: .\templates\sw_invitation\invite.html.py:63
+msgid "add a new email"
+msgstr "Ajouter un email"
 
 #: .\templates\sw_invitation\max_invitation.html.py:4
 msgid "Max invitations count reached"
@@ -2148,6 +2158,9 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
+
+#~ msgid "User has been invited"
+#~ msgstr "Le mail d'invitation a été envoyé"
 
 #, fuzzy
 #~ msgid "Edit post"
