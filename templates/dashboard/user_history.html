@@ -1,0 +1,30 @@
+{% load i18n %}
+{% if rows|length > 0 %}
+<div class="chart-dashboard-history dashboard">
+<table>
+<tr>
+    <th colspan="2">{%trans "your latest status"%}:</th>
+    <th>your status history:</th>
+</tr>
+<tr>
+    <td> 
+        <div style="text-align:center">
+        	<span>{{ rows.0.timestamp|timesince }}</span><br />
+            <img src="/media/survey/img/chart-{{ rows.0.status }}.png" />
+        </div>                
+    </td>
+    <td>
+        {{ rows.0.timestamp }}
+    </td>
+    <td class="history">
+        {% for row in rows %}
+        <div class="health-status">
+            <span>{{ row.timestamp|timesince }}</span><br />
+            <img src="/media/survey/img/chart-{{ row.status }}.png" />
+        </div>
+        {% endfor %}
+    </td>
+</tr>
+</table>
+</div>
+{% endif %}

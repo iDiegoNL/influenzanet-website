@@ -1,0 +1,10 @@
+<div id="userswitch">
+    <ul>
+        {% for gid, row in participants.items %}
+        <li class="{% if global_id == gid %}selected{% endif %}">
+        <a href="?gid={{ row.global_id }}">{{ row.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+<br class="clear"/>
+</div>

@@ -424,3 +424,11 @@ background: #FFF url() left center no-repeat;
   margin-top: 5px;
 }
 
+/**
+ Utils
+ */
+
+.clear {
+ display: block;
+ clear:both;	
+}
