@@ -1,0 +1,29 @@
+{% extends "sw_cohort/base.html" %}{% load i18n %}
+
+{% block add_css %}
+<style>
+#cohort { margin: 1em 5%}
+#cohort ul { margin: 1em; text-align: left}
+#cohort li { list-style-type: none}
+#cohort input[type=text] { border: 2px solid #DDD; border-radius: 3px; width: 20em; font-size: 1.3em; letter-spacing: .2em; font-weight: bold }
+</style>
+{%endblock%}
+
+{% block col1 %}
+<h2>{%trans "Register a participant into a cohort" %}</h2>
+<div id="cohort">
+<p>{%trans "cohort register help text" %}</p>	
+<form action="{%url cohort_register%}" method="get">
+	{%trans "Select the participant to register"%}
+	<ul>
+	{% for user in users %}
+	<li><label><input type="radio" name="gid" value="{{user.global_id}}"/> {{ user.name }}</label></li>
+	{% endfor %}
+	</ul>
+	<label for="token">{%trans "Enter the token" %}</label> 
+	<input type="text" name="token"/>
+	<br/>
+	<button type="submit">{%trans "valider" %}</button>
+</form>
+</div>
+{%endblock%}
