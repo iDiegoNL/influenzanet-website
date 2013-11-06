@@ -17,6 +17,16 @@
 {% endif %}
 {% trans "the symptoms questionaire" %}</a>.
 </p>
+<p>
+{% trans "You can also visit your" %}
+{% if person %}
+<a href="/dashboard/?gid={{person.global_id}}">
+{% else %}
+<a href="/dashboard/">
+{% endif %}
+{% trans "profile page" %}
+</a>
+</p>
 {% endblock %}
 
 
@@ -26,3 +36,10 @@
 <img src="{{ MEDIA_URL }}base/img/main/virus.jpg" alt="EM of influenza virus" title="Influenza virus" class="topspace" />
 
 {% endblock %}
+
+{% block col3 %}
+
+{% include "accounts/partials/usermenu.html" %}
+
+{% endblock %}
+

@@ -187,6 +187,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
     user_id = request.user.id
     global_id = survey_user and survey_user.global_id
     last_participation_data = survey.get_prefill_data(user_id, global_id)
+
     if request.method == 'POST':
         data = request.POST.copy()
         data['user'] = user_id
@@ -216,6 +217,9 @@ def survey_run(request, shortname, next=None, clean_template=False):
     encoder = json.JSONEncoder(ensure_ascii=False, indent=2)
     last_participation_data_json = encoder.encode(last_participation_data)
 
+    if survey.get_prefill_data(user_id, global_id) and not survey.get_last_participation_data(user_id, global_id):
+        messages.info(request, _("At the beginning of the season we ask you to verify last year's information. Please check the information below."))
+
     return request_render_to_response(request, "pollster/survey_run_clean.html" if clean_template else 'pollster/survey_run.html', {
         "language": language,
         "locale_code": locale_code,
@@ -223,7 +227,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
         "default_postal_code_format": fields.PostalCodeField.get_default_postal_code_format(),
         "last_participation_data_json": last_participation_data_json,
         "form": form,
-        "person": survey_user
+        "person": survey_user,
     })
 
 def survey_map(request, survey_shortname, chart_shortname):
@@ -354,7 +358,7 @@ def survey_chart_edit(request, id, shortname):
         try:
             preview = chart.render(context)
         except Exception, e:
-            preview = "An error occurred during chart preview:\n" + e
+            preview = "An error occurred during chart preview:\n" + str(e)
     else:
         preview = None
     return request_render_to_response(request, 'pollster/survey_chart_edit.html', {
