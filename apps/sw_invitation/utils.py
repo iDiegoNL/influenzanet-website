@@ -5,29 +5,34 @@ from django.contrib.sites.models import Site
 from apps.partnersites.context_processors import site_context
 from django.core.urlresolvers import reverse
 from django.utils.html import strip_tags
+from django.utils.translation import ugettext_lazy as _
 
-def send_invitation(user, key, email, allow_user_mention=False):
+def send_invitation(user, key, email, include_email=False, from_name=None, is_secure=True):
     """
         user : the user who made the invitation
         key : key of the user
         email : invited email
-        allow_user_mention: allow to include user email in the invitation
+        include_email: allow to include user email in the invitation
+        name
     """
     site = Site.objects.get_current()
     site_info = site_context()
     
-    site_url = "https://%s"
+    site_url = "http%s://%s" % ('s' if is_secure else '', site.domain,)
     
     url = "%s/%s?invitation_key=%s" % (site_url, reverse('registration_register').strip('/'), key)
     
-    site_info['site_logo'] = "%s/%s" % (site_url, site_info['site_logo'])
+    site_info['site_logo'] = "%s/%s" % (site_url, site_info['site_logo'].lstrip('/'))
     
-    if allow_user_mention:
-        sender = " (%s) " % user.email
+    if from_name:
+        sender = from_name
     else:
-        sender = ' '  # default is a space (nothing to include)
+        from_name = _("An InfluenzaNet user")
+        
+    if include_email:
+        sender += " (%s) " % user.email
     
-    data = { 'email': email, 'key': key, 'url': url, 'allow_user_mention': allow_user_mention, 'sender':sender, 'site': site}
+    data = { 'email': email, 'key': key, 'url': url, 'sender':sender, 'site': site}
     data.update(site_info)
     
     template = settings.SW_INVITATION_EMAIL_INVITATION

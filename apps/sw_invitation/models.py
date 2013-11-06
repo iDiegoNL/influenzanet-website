@@ -95,7 +95,7 @@ class InvitationManager(models.Manager):
         
         return key
     
-    def invite(self, user, email, allow_user_mention):
+    def invite(self, user, email):
         key = self.get_key(user)
         email = email.lower()
         try:
@@ -105,7 +105,6 @@ class InvitationManager(models.Manager):
             invitation = Invitation()
             invitation.user = user
             invitation.email = email
-            send_invitation(user, key.key, email, allow_user_mention)
             invitation.save()
         return key
     

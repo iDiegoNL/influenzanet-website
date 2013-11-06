@@ -23,3 +23,8 @@ Path (relative to templates directory) of the template files for the email
 One .html file could be provided to add an html-based part to the invitation email)
 """
 SW_INVITATION_EMAIL_INVITATION = getattr(settings, 'SW_INVITATION_EMAIL_INVITATION','sw_invitation/invitation_email')
+
+"""
+Maximum number of invitation sendable from an account 
+"""
+SW_INVITATION_MAX = getattr(settings, 'SW_INVITATION_MAX', 100)

@@ -2,7 +2,7 @@
 {% block add_css %}
 <style>
 .form-invitation table { border:1px solid #EEE; margin: 0; border-collapse: collapse; font-size: .8em}
-.form-invitation td { padding: .2em .4em  }
+.form-invitation td { padding: .4em .5em  }
 .form-invitation td.options { font-size: .9em  }
 #col1 .form-invitation label { font-weight: normal; padding-left: .2em; cursor: pointer }
 .invitations { border-collapse: collapse }
@@ -22,13 +22,22 @@
 	<table>
 	<tr>
 		<td>
-			<input type="text" name="email" id="email" size="30" maxlength="254" placeholder="{%trans "email" %}"/>
-		<button type="submit" class="button">{%trans "invite this email"%}</button><br/>	
+		<input type="text" name="email" id="email" size="30" maxlength="254" placeholder="{%trans "email you want to be invited" %}"/>
 		</td>
 	</tr>
 	<tr>
 		<td class="options">
-			<input type="checkbox" name="allow_user_mention" value="1" id="allow_user_mention"/><label for="allow_user_mention">{%trans "Include your email address in the invitation (anonymous if not checked)" %}</label>
+			<input type="checkbox" name="include_email" value="1" id="include_email"/><label for="include_email">{%trans "Include your email address in the invitation (anonymous if not checked)" %} ({{user.email}})</label>
+		</td>
+	</tr>
+	<tr>
+		<td class="options">
+			<input type="text" name="name" value="{{from_name}}" id="name" placeholder="{% trans "An optional name"%}"/><label for="name">{%trans "You can also include a name which will be included in the invitation email (not stored in this website)" %}</label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+					<button type="submit" class="button">{%trans "invite this email"%}</button>	
 		</td>
 	</tr>
 	</table>
