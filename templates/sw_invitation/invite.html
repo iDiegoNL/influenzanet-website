@@ -45,7 +45,10 @@
 
 <h4>{%trans "Invitations already sent"%}</h4>
 {% if usages %}
-<p><b>{{usages}}</b> {%trans "invitations you sent has been used" %}</p>
+<p>
+<b>{{usages}}</b>
+{% blocktrans count usages as counter %}invitation you sent has been used{%plural%}invitations you sent has been used{%endblocktrans%}
+</p>
 {% endif %}
 <table class="invitations">
 {%for invitation in invitations %}
@@ -57,7 +60,7 @@
 {%endfor%}
 </table>
 
-<p>{%trans "invitation privacy policy"%}</p>
+<p class="info">{%trans "invitation privacy policy"%}</p>
 
 {% endblock %}
 
