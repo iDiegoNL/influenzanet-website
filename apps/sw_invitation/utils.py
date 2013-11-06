@@ -1,11 +1,13 @@
 from django.template.loader import render_to_string
-from . import settings
+from . import settings as conf
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.sites.models import Site
 from apps.partnersites.context_processors import site_context
 from django.core.urlresolvers import reverse
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
+from django.utils.importlib import import_module
+    
 
 def send_invitation(user, key, email, include_email=False, from_name=None, is_secure=True):
     """
@@ -35,7 +37,7 @@ def send_invitation(user, key, email, include_email=False, from_name=None, is_se
     data = { 'email': email, 'key': key, 'url': url, 'sender':sender, 'site': site}
     data.update(site_info)
     
-    template = settings.SW_INVITATION_EMAIL_INVITATION
+    template = conf.SW_INVITATION_EMAIL_INVITATION
     subject = render_to_string(template +'_subject.txt', dictionary=data)
     
     # Email subject *must not* contain newlines
@@ -58,9 +60,7 @@ def get_registration_signal():
     example registration.signals
     """
     user_registered = None
-    if hasattr(settings, 'SW_INVITATION_SIGNAL_MODULE'):
-        from django.utils.importlib import import_module
-        module = import_module(settings.SW_INVITATION_SIGNAL_MODULE)
+    if hasattr(conf, 'SW_INVITATION_SIGNAL_MODULE'):
+        module = import_module(conf.SW_INVITATION_SIGNAL_MODULE)
         user_registered = getattr(module,'user_registered')
     return user_registered
-            

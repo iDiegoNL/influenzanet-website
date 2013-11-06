@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from random import choice
-from .utils import send_invitation, get_registration_signal
+from .utils import get_registration_signal
 from . import settings
 from django.utils.log import getLogger
 
+from apps.accounts.provider import UserProvider
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 def get_logger():
     return getLogger('sw_invitation')
@@ -98,6 +100,20 @@ class InvitationManager(models.Manager):
     def invite(self, user, email):
         key = self.get_key(user)
         email = email.lower()
+        
+        try:
+            # Check on registred user list
+            provider = UserProvider()
+            e = provider.get_by_email(email)
+            # If user exists we raise already invited
+            # For privacy reason we dont tell any more information
+            raise Invitation.AlreadyInvited()
+        except MultipleObjectsReturned:
+            # get_by_email expect one result
+            raise Invitation.AlreadyInvited()
+        except ObjectDoesNotExist:
+            pass
+        
         try:
             i = self.get(email=email)
             raise Invitation.AlreadyInvited()
