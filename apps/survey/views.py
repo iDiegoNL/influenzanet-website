@@ -31,6 +31,11 @@ WAIT_LAUNCH = getattr(settings,'SURVEY_WAIT_LAUNCH', False)
 # Check is request need to be restricted in case of WAIT_LAUNCH context
 def is_wait_launch(request):
     if WAIT_LAUNCH:
+        test_users = getattr(settings, 'SURVEY_TEST_USERS', None)
+        if test_users:
+            user_id = request.user.id
+            if user_id in test_users:
+                return False
         return True
     return False
 
