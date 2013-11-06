@@ -316,15 +316,14 @@ class Survey(models.Model):
         """
         if self.prefill_method == '':
             return None
+
         if self.prefill_method == 'LAST':
             return self.get_last_participation_data(user_id, global_id)
-        # Now it is the name of a function
-        # Currently we only handle functions in the current scope, but it could be extended
-        try:
-            func = globals()[self.prefill_method]
-        except KeyError:
-            raise Error("Prefill function %s does not exist" % self.prefill_method)
-        return func(self, user_id, global_id)
+
+        if self.prefill_method == 'prefill_previous_data':
+            return prefill_previous_data(self, user_id, global_id)
+
+        raise Error("Prefill function %s does not exist" % self.prefill_method)
 
     def as_model(self):
         fields = []
@@ -1035,6 +1034,10 @@ class Chart(models.Model):
         return self.type.shortname == 'template'
 
     @property
+    def has_template(self):
+        return self.template and True or False
+
+    @property
     def has_data(self):
         if not self.sqlsource:
             return False
@@ -1342,8 +1345,8 @@ class Chart(models.Model):
 
     def render(self, context):
         """Adds data to context and use it to render template."""
-        if self.type.shortname == "template":
-            template = self.get_template()
+        template = self.get_template()
+        if self.type.shortname == "template":            
             if template:
                 user_id = context["user_id"]
                 global_id = context["global_id"]
@@ -1353,9 +1356,10 @@ class Chart(models.Model):
                 context.update({"cols": cols, "rows": rows})
                 result = template.render(context)
                 context.pop()
-            else:
-                result = "Template is empty."
             return result
+        else:
+            if self.has_template:
+                return template.render(context)
 
 class GoogleProjection:
     def __init__(self, levels=25):

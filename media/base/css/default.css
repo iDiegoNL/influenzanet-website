@@ -1043,7 +1043,7 @@ hr {
  font-size: 1em;
 }
 
-#col2 p.title {
+#col2 p.title, #col3 p.title {
  margin: 4px 0 0 0;
  padding: 2px 8px 2px 8px;
  color: #fefefe;

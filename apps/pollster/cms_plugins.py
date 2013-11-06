@@ -156,7 +156,7 @@ class CMSSurveyChartPlugin(CMSPluginBase):
                 'chart': instance.chart,
                 'placeholder': placeholder
             })
-            if instance.chart.is_template:
+            if instance.chart.has_template:
                 context.update({"content": instance.chart.render(context)})
         else:
             context.update({'chart': instance.chart})

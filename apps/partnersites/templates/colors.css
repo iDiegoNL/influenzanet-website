@@ -8,7 +8,7 @@
  background: #{{ settings.dark_color }};
 }
 
-#col2 p.title {
+#col2 p.title, #col3 p.title {
  background: #{{ settings.light_color }};
 }
 

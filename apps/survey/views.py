@@ -22,6 +22,7 @@ from .survey import ( Specification,
                       JavascriptBuilder,
                       get_survey_context, )
 import apps.pollster as pollster
+import pickle
 
 survey_form_helper = None
 profile_form_helper = None
@@ -321,42 +322,11 @@ def thanks_profile(request):
         context_instance=RequestContext(request))
 
 @login_required
-def select_user(request, template='survey/select_user.html'):
-    # select_user is still used in some cases: notably when there are unqualified calls to
-    # 'profile_index'. So we've not yet removed this template & view.
-    # Obviously it's a good candidate for refactoring.
-
-    next = request.GET.get('next', None)
-    if next is None:
-        next = reverse('survey_index')
-
-    users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
-    total = len(users)
-    if total == 0:
-        survey_user = models.SurveyUser.objects.create(
-            user=request.user,
-            name=request.user.username,
-        )
-        url = '%s?gid=%s' % (next, survey_user.global_id)
-        return HttpResponseRedirect(url)
-        
-    elif total == 1:
-        survey_user = users[0]
-        url = '%s?gid=%s' % (next, survey_user.global_id)
-        return HttpResponseRedirect(url)
-
-    return render_to_response(template, {
-        'users': users,
-        'next': next,
-    }, context_instance=RequestContext(request))
-
-@login_required
 def index(request):
     if is_wait_launch(request):
         return wait_launch(request)
-    # this is the index for a actual survey-taking
-    # it falls back to 'group management' if no 'gid' is provided.
-    # i.e. it expects gid to be part of the request!
+    # This is the index for a actual survey-taking.
+    # It falls back to 'group management' if no 'gid' is provided.
 
     try:
         survey_user = get_active_survey_user(request)
@@ -365,7 +335,11 @@ def index(request):
     if survey_user is None:
         return HttpResponseRedirect(reverse('group_management'))
 
-    # Check if the user has filled user profile
+    # Check if the user has filled user profile. If the profile doesn't exists
+    # the user is redirected to the "intake" (profile_index view below) with a
+    # _next parameter set to this view to return here after completing the intake
+    # survey.
+
     profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
     if profile is None:
         messages.add_message(request, messages.INFO, 
@@ -382,14 +356,13 @@ def index(request):
 
     next = None
     if 'next' not in request.GET:
-        next = reverse('group_management') # is this necessary? Or would it be the default?
+        next = "/dashboard"
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
 def profile_index(request):
-    # this renders an 'intake' survey
-    # it expects gid to be part of the request.
+    # Renders an 'intake' survey.
     if is_wait_launch(request):
         return wait_launch(request)
     
@@ -398,8 +371,7 @@ def profile_index(request):
     except ValueError:
         raise Http404()
     if survey_user is None:
-        url = '%s?next=%s' % (reverse('survey_select_user'), reverse('survey_profile'))
-        return HttpResponseRedirect(url)
+        return HttpResponseRedirect(reverse(group_management))
 
     try:
         survey = pollster.models.Survey.get_by_shortname('intake')
@@ -413,14 +385,10 @@ def profile_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
-def main_index(request):
-    # the generalness of the name of this method reflects the mess that the various
-    # indexes have become. 
-
-    # this is the one that does the required redirection for the button 'my account'
-    # and is also used in the reminder emails.
-
-    # i.e. it redirects to group if there is a group, to the main index otherwise
+def create_surveyuser(request):
+    # This view is the target for newly created accounts. If the user doesn't already
+    # have a linked surveyuser one is created. After that the client is redirected to
+    # the group management page.
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))

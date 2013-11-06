@@ -64,8 +64,8 @@ urlpatterns = patterns('',
         'apps.sw_auth.views.register_user',
         name='registration_register_explanation'),
 
-    url(r'invite/$', include('apps.sw_invitation.urls')),
-
+    url(r'^invite/', include('apps.sw_invitation.urls')),
+    url(r'^dashboard/', include('apps.dashboard.urls')),
 #    (r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 

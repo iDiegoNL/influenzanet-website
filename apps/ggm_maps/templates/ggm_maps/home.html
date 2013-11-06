@@ -1,0 +1,91 @@
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.js"></script>
+<script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.charts.js"></script>
+
+<script type="text/javascript">
+    wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+    });
+</script>
+
+<h4 style="margin-bottom: 10px;">Actuele meetresultaten</h4>
+<style type="text/css" media="screen">
+	.maptabmenu { padding: 0 !important; margin: 0 0 2px 0 !important; clear: both; width: 440px; overflow: hidden; }
+	.maptabmenu li { margin: 0; display: inline-block; text-align: center; }
+	.maptabmenu li a { background: #bababa; width: 220px; padding: 4px 0; float:left; text-decoration: none; color: #FFFFFF !important; }
+	.maptabmenu li.active a { background: #72AA72; color: #FFFFFF !important; }
+	.maptabmenu li.active a:hover { text-decoration: none !important; }
+	.maptabcontent { float: left; clear: both; width: 440px; }
+	.endmaptabs { clear: both; }
+</style>
+		
+<ul id="maptabs" class="maptabmenu">
+    <li class="active"><a href="#mappostcode">Postcodekaart</a></li><li><a href="#mapoverview">Overzichtskaart</a></li>
+</ul>
+ 
+<div id="mappostcode" class="maptabcontent">
+	<div class="survey-chart">
+    <div id="pollster-chart-14" class="chart chart-weekly-home"
+        data-chart-url="/surveys/weekly/charts/home.json"
+        data-chart-type="google-map">
+    </div>    
+</div>
+<p style="margin-top: 6px; margin-bottom: 10px; font-weight: bold; color: #8d8d8d; font-size: 0.7em; line-height: 1.7em;">
+<span style="color:#0037ff;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van verkoudheid<br />
+<span style="color:#ff2300;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Griepachtige gevallen<br />
+<span style="color:#f2b40e;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van buikgriep<br />
+<span style="color:#707070;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Wel metingen, geen symptomen</p>
+
+</div>
+<div id="mapoverview" class="maptabcontent">
+
+    <script>
+    $( document ).ready(function() {
+        $("#map-selector").change(function() {
+            $("#ggm-map").attr('src', '/media/ggm_maps/' + $("#map-selector").val() + '/ILI-all.png?nocache=' + Math.random());
+        });
+    });
+    </script>
+
+    <form>
+    <select id="map-selector">
+    {% for date in past %}
+    <option value="{{ date|date:"Y-m-d" }}">{{ date }}</option>
+    {% endfor %}
+    </select>
+    </form>
+
+   <p><div id="mapoverviewimg"><img src="https://www.degrotegriepmeting.nl/media/ggm_maps/today/ILI-all.png" width="440" title="GGM overzichtskaart" alt="GGM overzichtskaart"></div></p>
+	<p style="margin-top: 6px; margin-bottom: 10px; font-weight: bold; color: #8d8d8d; font-size: 0.7em; line-height: 1.7em;">
+	<span style="color:#ffff00;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van verkoudheid<br />
+	<span style="color:#ff0000;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Griepachtige gevallen<br />
+	<span style="color:#00ff00;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van allergie of hooikoorts<br />
+	<span style="color:#008000;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van buikgriep<br />
+	<span style="color:#0033ff;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van verkoudheid en buikgriep<br />
+	<span style="color:#00ffff;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Gevallen van allergie of hooikoorts en buikgriep<br />
+	<span style="color:#000080;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Andere symptomen<br />
+	<span style="color:#000000;font-size:20px;height:20px;line-height:20px;vertical-align:bottom;">&bull;</span> Geen symptomen</p>
+</div>  
+
+<script type="text/javascript">
+(function(a){a.fn.extend({tabify:function(e){function c(b){hash=a(b).find("a").attr("href");return hash=hash.substring(0,hash.length-4)}function f(b){a(b).addClass("active");a(c(b)).show();a(b).siblings("li").each(function(){a(this).removeClass("active");a(c(this)).hide()})}return this.each(function(){function b(){location.hash&&a(d).find("a[href="+location.hash+"]").length>0&&f(a(d).find("a[href="+location.hash+"]").parent())}var d=this,g={ul:a(d)};a(this).find("li a").each(function(){a(this).attr("href", a(this).attr("href")+"-tab")});location.hash&&b();setInterval(b,100);a(this).find("li").each(function(){a(this).hasClass("active")?a(c(this)).show():a(c(this)).hide()});e&&e(g)})}})})(jQuery);
+</script>
+
+<script>
+document.getElementById('mapoverviewimg').innerHTML = '<img id="ggm-map" src="https://www.degrotegriepmeting.nl/media/ggm_maps/today/ILI-all.png?nocache='+Math.random()+'" width="440" title="GGM overzichtskaart" alt="GGM overzichtskaart" onload="onLoad()" />'
+</script>
+
+<script type="text/javascript">
+	// <![CDATA[
+		
+	$(document).ready(function () {
+		$('#maptabs').tabify();
+	});
+			
+	// ]]>
+</script>
+
+<br class="endmaptabs" />
