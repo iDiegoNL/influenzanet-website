@@ -48,7 +48,7 @@
 	<td>
 		<a href="{{ person.get_profile_url }}" class="icon icon-survey survey-intake" id="person-{{person.pk}}-intake">{% trans "Background" %}</a>
 		{% if person.last_intake %}
-		<span class="last" title="{%trans "last survey date"%}">{{ person.last_intake|date:"d M Y H:i"}}</span>
+		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{{ person.last_intake|timesince}}</span>
 		{%else%}
 		<span class="last">{%trans "no previous survey"%}</span>
 		{%endif%}
@@ -56,7 +56,7 @@
 	    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey survey-weekly" id="person-{{person.pk}}-weekly">{% trans "Symptoms" %}</a>
 		{% if person.health_history|length > 0 %}
 		{% with f=person.health_history|first %} 
-		<span class="last" title="{%trans "last survey date"%}">{{ f.timestamp|date:"d M Y H:i"}}</span>
+		<span class="last" title="{%trans "last survey date"%} {{f.timestamp|date:"d M Y H:i"}}">{{ f.timestamp|timesince}}</span>
 		{%endwith%}
 		{%else%}
 		<span class="last">{%trans "no previous survey"%}</span>
