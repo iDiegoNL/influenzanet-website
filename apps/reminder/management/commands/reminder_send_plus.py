@@ -3,8 +3,6 @@ from datetime import datetime, timedelta
 
 from django.core.management.base import BaseCommand
 
-from django.conf import settings as app_config
-
 from ...send import send
 from ...models import get_settings, UserReminderInfo, MockNewsLetter
 from django.db import connection
@@ -15,15 +13,10 @@ from django.contrib.auth.models import User
 def get_user_provider():
     # Get a user provider to iter accross user list
     # This class allow access to user's data (email) regardless of the User model
-    # @TODO A loader mechanism should be better if other providers should be used
-    if getattr(app_config, 'SWAUTH_FAKE_USER', 0):
-        from apps.sw_auth.models import EpiworkUserProvider
-        provider = EpiworkUserProvider()
-    else:
-        from apps.accounts.models import UserProvider
-        provider = UserProvider()
+    from apps.accounts.provider import UserProvider
+    provider = UserProvider()
+    print provider.__class__
     return provider
- 
 
 # @TODO If more complex user checking is required, a chain-filter model should be implemented
 # To make the check of each user an encapsulated the checking rules
