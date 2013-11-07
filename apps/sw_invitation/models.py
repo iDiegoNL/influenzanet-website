@@ -86,6 +86,7 @@ class InvitationManager(models.Manager):
                 invitation_key.user = user
                 invitation_key.key = key
                 invitation_key.save()
+                return invitation_key
             --i
         return None
 
