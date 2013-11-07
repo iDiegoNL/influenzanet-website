@@ -1,8 +1,9 @@
-<div id="userswitch">
+<div id="userswitch">{% load i18n %}
     <ul>
-        {% for gid, row in participants.items %}
-        <li class="{% if global_id == gid %}selected{% endif %}">
-        <a href="?gid={{ row.global_id }}">{{ row.name }}</a>
+    	<li class="nav-item household{% if not gid%} selected{%endif%}"><a href="?household"><span class="avatar">&nbsp;</span>{%trans "Household"%}</a>
+        {% for global_id, row in participants.items %} 
+        <li class="nav-item survey-user {% if global_id == gid %}selected{% endif %}">
+        <a href="?gid={{ row.global_id }}"><span class="avatar">&nbsp;</span>{{ row.name }}</a>
         </li>
         {% endfor %}
     </ul>
