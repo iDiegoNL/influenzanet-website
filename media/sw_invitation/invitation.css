@@ -1,0 +1,29 @@
+/* invitation page */
+.form-invitation table { border:1px solid #EEE; margin: 0; border-collapse: collapse; font-size: .8em}
+.form-invitation td { padding: .4em .5em  }
+.form-invitation td.options { font-size: .9em  }
+#col1 .form-invitation label { font-weight: normal; padding-left: .2em; cursor: pointer }
+.invitations { border-collapse: collapse }
+.invited td { font-size: .8em; border: 1px solid  #EEE; border-width: 1px 0 1px 0; padding: .5em  }
+.invited td.date { font-size: .8em }
+
+ul#email-fields {
+	margin: 0; 
+	padding: 0;
+}
+
+#add-button {
+	font-size: .8em;
+	cursor: pointer;
+}
+
+#email-fields li {
+	margin-left: 0;
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.icon {
+	vertical-align:middle;
+	padding-right: .2em;
+}

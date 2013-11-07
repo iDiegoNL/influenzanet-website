@@ -1,0 +1,90 @@
+{% extends "sw_invitation/base.html" %}{% load i18n %}
+{% block add_css %}
+<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw_invitation/invitation.css" />
+{%endblock%}
+
+{% block col1 %}
+<h2>{%trans "Invite people to InfluenzaNet" %}</h2>
+<p>{%trans "This page allows you to invite people to register to this website. To invite someone add his email address to the box below"%}</p>
+
+{% include "base/messages.html" %}
+<h4>{%trans "Invite new people"%}</h4>
+<form action="{%url invite_index %}" class="form-invitation" method="post" id="form-invitation">
+	{% csrf_token %}
+	<table>
+	<tr>
+		<td>
+		{%trans "emails you want to be invited" %}
+		<ul id="email-fields">
+			<li id="add-row"><span id="add-button"><img src="{{ MEDIA_URL }}sw_invitation/mail-add.png" class="icon"/>{%trans "add a new email" %}</span></li>
+		</ul>
+		<input type="hidden" name="emails" id="emails" value=""/>
+		</td>
+	</tr>
+	<tr>
+		<td class="options">
+			<input type="checkbox" name="include_email" value="1" id="include_email"/><label for="include_email">{%trans "Include your email address in the invitation (anonymous if not checked)" %} ({{user.email}})</label>
+		</td>
+	</tr>
+	<tr>
+		<td class="options">
+			<input type="text" name="name" value="{{from_name}}" id="name" placeholder="{% trans "An optional name"%}"/><label for="name">{%trans "You can also include a name which will be included in the invitation email (not stored in this website)" %}</label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button type="button" class="button" id="send-button">{%trans "Send the invitations"%}</button>	
+		</td>
+	</tr>
+	</table>
+</form>
+
+<h4>{%trans "Invitations already sent"%}</h4>
+{% if usages %}
+<p>
+<b>{{usages}}</b>
+{% blocktrans count usages as counter %}invitation you sent has been used{%plural%}invitations you sent has been used{%endblocktrans%}
+</p>
+{% endif %}
+<table class="invitations">
+{%for invitation in invitations %}
+<tr class="invited">
+	<td class="date">{{ invitation.date }}</td>
+	<td class="email"><span class="icon icon-email"></span>{{ invitation.email }}</td>
+	<td>{%if invitation.used %}<span class="icon icon-tick"></span>{%endif%}</td>
+</tr>
+{%endfor%}
+</table>
+<div id="row-template" style="display:none">
+	<li><input type="text"  name="email" class="email-field" placeholder="{%trans "enter an email"%}" size="50"/></li>
+</div>
+<p class="info">{%trans "invitation privacy policy"%}</p>
+<script>
+$(function() {
+	
+	function add_row() {
+		var row = $('#row-template').html();
+		$('#add-row').before(row);
+	}
+	
+	$('#add-button').click(add_row);
+	$('#send-button').click(function(e){
+		var emails = [];
+		$('#email-fields .email-field').each(function(){
+			var email = $(this).val();
+			if(email != '') {
+				emails.push(email);
+			}
+		})
+		console.log(emails);
+		emails = emails.join(',');
+		$('#emails').val(emails);
+		$('#form-invitation').submit();
+	});
+	
+	// add first row
+	add_row();
+})	
+</script>
+{% endblock %}
+
