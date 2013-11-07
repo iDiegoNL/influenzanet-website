@@ -188,6 +188,7 @@ INSTALLED_APPS = (
     'pytils',
     'sorl.thumbnail',
     'pure_pagination',
+    'apps.sw_invitation',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
