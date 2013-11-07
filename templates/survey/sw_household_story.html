@@ -1,0 +1,25 @@
+{%load i18n%}
+
+{%block add_js%}
+<script src="{{ MEDIA_URL }}/sw/story.js" type="text/javascript"></script>
+{% endblock %}
+
+<h2>{%trans "Household diagnosis history" %}</h2>
+<div id="story"></div>
+<p class="alert alert-info">{% trans "The flu status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
+<script type="text/javascript">
+StoryTable.media = '{{MEDIA_URL}}';
+var story;
+
+var history = [	
+ {% for h in history %}
+ { date: new Date({{h.timestamp|date:"Y"}},{{h.timestamp|date:"m"}}-1,{{h.timestamp|date:"d"}}), diag:'{{ h.diag }}','status':'{{h.status}}', user: '{{h.survey_user.name }}' }{%if not forloop.last%},{%endif%}     
+ {%endfor%}
+];	
+
+init_story = function() {
+ story = new StoryTable(history, users);
+ story.render('story');
+};
+	
+</script>

@@ -52,6 +52,54 @@
 }
 
 /**
+ * Interface modification when user is connected
+ */
+
+.user-connected #header {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.user-connected #searchbar {
+	margin-top: -1em;
+}
+
+#user-zone-header {
+	margin: 1em;
+	font-weight: bold;
+	font-size: 1.4em;
+	color: #007AB8;
+}
+
+.user-login {
+	font-weight: bold;
+}
+
+#header-user {
+ margin-top: .2em;
+ padding:.5em .2em .2em .2em;
+ border-top: 2px solid #007AB8;
+}
+
+.user-connected #colmask {
+ border-top: 1px solid #007AB8;
+}
+
+#user-login ul {
+	display: inline;
+}
+
+#user-login li {
+	list-style-type: none;
+	display: inline;
+	margin-left: .2em; 
+}
+
+#user-login li.icon {
+	padding-left: 18px;
+}
+
+/**
  * Logged user box
  */
 
