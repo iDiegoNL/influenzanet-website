@@ -23,6 +23,8 @@
 #                  default is "vaccinated"
 #   -i, --time: the time variables, e.g. "year,week" or "year" or "none" (for aggregate figures)
 #               default is "year,week"
+#   -n, --condition: additial conditions on the select queries
+#               default is no conditions
 #   -o, --control: the control variables, that is what is matched in cohorts
 #                  default is "agegroup,risk,children"
 #   -f, --variable-file: the file defining the different measurement, time and control variables
@@ -30,7 +32,9 @@
 #                        an example
 #                        default is "variables"
 #   -1, --include-first: include first week (default is not to include the first week)
+#   -r, --include-first-report: include first report of every user (default is not to include it)
 #   -e, --title: title of the graph
+#   -g, --debug: debug mode
 
 use strict;
 use warnings;
@@ -51,7 +55,10 @@ my $dbname = "flusurvey"; # database name
 my $definition = ""; # ILI definition to use
 my $tables = "pollster";
 my $include_first = 0;
+my $include_first_report = 0;
 my $title = "incidence";
+my $conditions = "";
+my $debug = 0;
 
 # get command line options
 GetOptions(
@@ -61,10 +68,13 @@ GetOptions(
     "time|i=s" => \$timestring,
     "control|o=s" => \$controlstring,
     "variable-file|f=s" => \$variable_file,
-    "db|b" => \$dbname,
-    "tables|t" => \$tables,
+    "db|b=s" => \$dbname,
+    "tables|t=s" => \$tables,
     "include-first|1" => \$include_first,
-    "title|e=s" => \$title
+    "include-first-report|r" => \$include_first_report,
+    "title|e=s" => \$title,
+    "conditions|n=s" => \$conditions,
+    "debug|g" => \$debug
 );
 
 # extract control and measurement variables
@@ -79,6 +89,7 @@ my $selectstring = "SELECT count(ili) AS ili, ".
     "count(non_ili) AS non_ili";
 my $fromstring = "FROM (SELECT NULLIF(S.status = 'ILI' AND (W.\"Q2\" IS NULL OR W.\"Q2\" != 0), false) AS ili, ".
     "NULLIF(NOT (S.status = 'ILI') OR NOT (W.\"Q2\" IS NULL OR W.\"Q2\" != 0), false) AS non_ili";
+my $conditionstring = "";
 
 my %sections;
 my $section = "";
@@ -159,6 +170,12 @@ foreach my $section ((@time_vars,@control_vars,$measure)) {
 		    " THEN '$splits[$nsplits]+'";
 		$outcomes{$section}{"$splits[$nsplits]+"} =
 		    "$splits[$nsplits]+";
+                if ($conditionstring eq "") {
+                    $conditionstring .= "WHERE ";
+                } else {
+                    $conditionstring .= " AND ";
+                }
+                $conditionstring .= "$variable_names[$index] >= $splits[0]";
 	    } else {
 		my @line = split(/,/);
 		my $logical = $line[0];
@@ -217,12 +234,22 @@ $fromstring .= " AS S, $tables\_results_weekly AS W";
 $fromstring .= " WHERE I.\"Q10\"<2".
     " AND S.$tables\_results_weekly_id = W.id".
     " AND (W.\"Q2\" IS NULL OR W.\"Q2\" != 0)".
-    " AND W.global_id = I.global_id".
-    ") AS statuses";
+    " AND W.global_id = I.global_id";
+if (!$include_first_report) {
+    $fromstring .= " AND W.id NOT IN (SELECT DISTINCT ON (global_id) id FROM $tables\_results_weekly ORDER BY global_id, timestamp)"
+}
+if ($conditions ne "") {
+    $fromstring .= " AND ".$conditions;
+}
+$fromstring .= ") AS statuses";
 
-my $sqlstring = "$selectstring $fromstring".
+my $sqlstring = "$selectstring $fromstring  $conditionstring".
     " GROUP BY $timestring,$controlstring,$measure".
     " ORDER BY $timestring,$controlstring,$measure";
+
+if ($debug) {
+  print STDERR "$sqlstring\n";
+}
 
 # connect to database
 my $dbh = DBI->connect ( "dbi:Pg:dbname=$dbname", "", "");
@@ -424,17 +451,17 @@ if ($motionchart) {
     print "  </body>\n";
     print "</html>\n";
 } else {
-    print join(",", @time_vars).",variable,value\n";
+    print join(",", @time_vars).",variable,value,ili,total\n";
     foreach my $time (sort {$measure_times{$a} <=> $measure_times{$b}}
 				@categories) {
 	foreach (keys %measure_range) {
-	    my $fraction = $ili{$time}{$_} * 100 /
-		($ili{$time}{$_} +
-		     $nonili{$time}{$_} + .0);
+            my $ili = $ili{$time}{$_};
+            my $total = $ili{$time}{$_} + $nonili{$time}{$_};
+	    my $fraction = $ili / ($total + .0);
 	    if (scalar @time_vars > 0) {
 		print "$time,";
 	    }
-	    print "$outcomes{$measure}{$_},$fraction\n";
+	    print "$outcomes{$measure}{$_},$fraction,$ili,$total\n";
 	}
     }
 }
