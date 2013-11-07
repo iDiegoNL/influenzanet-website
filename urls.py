@@ -68,6 +68,9 @@ urlpatterns = patterns('',
     url(r'^dashboard/', include('apps.dashboard.urls')),
 
 #    (r'^forum/', include('pybb.urls', namespace='pybb')),
+    
+    url(r'^invite/', include('apps.sw_invitation.urls')),
+
 )
 
 if settings.DEBUG:

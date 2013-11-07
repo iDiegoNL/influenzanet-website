@@ -194,6 +194,7 @@ INSTALLED_APPS = (
 #   'pytils',
 #   'sorl.thumbnail',
 #   'pure_pagination',
+    'apps.sw_invitation',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -256,8 +257,6 @@ CMS_SEO_FIELDS = True
 
 SESSION_COOKIE_AGE = 60 * 60 * 2
 
-LOCAL_APPS = ()
-LOCAL_MIDDLEWARE = ()
 LOGIN_REDIRECT_URL = '/survey/main/'
 
 # PyBB settings
@@ -266,6 +265,9 @@ LOGIN_REDIRECT_URL = '/survey/main/'
 #PYBB_ENABLE_ANONYMOUS_POST = True
 #PYBB_ANONYMOUS_USERNAME = 'Gast'
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
+
 try:
     from local_settings import *
 except ImportError:
@@ -273,4 +275,3 @@ except ImportError:
 
 INSTALLED_APPS += LOCAL_APPS
 MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    
-
