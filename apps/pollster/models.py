@@ -16,8 +16,6 @@ from django.conf import settings
 DEG_TO_RAD = pi/180
 RAD_TO_DEG = 180/pi
 
-import mapnik2
-
 try:
     import mapnik2 as mapnik
     mapnik_version = 2
@@ -225,6 +223,8 @@ def prefill_previous_data(survey, user_id, global_id):
      desc = cursor.description
      if res is not None:
          res = dict(zip([col[0] for col in desc], res))
+         # Put a flag in the data 
+         res["_source_"] = "previousdata"
      return res 
 
 class Survey(models.Model):

@@ -8,6 +8,16 @@ and a key useable to register without the link.
 Configuration
 -------------
 All config vars are in settings.py in the app, you can config them in global settings.py 
+
+Installation
+-------------
+Done in the feature branch :
+* add app in settings app list ('apps.sw_invitation')
+* add the route in urls.py
+    url(r'^invite/', include('apps.sw_invitation.urls')),
+ 
+To integrate in the platform :
+ Add a link to the app root page (/invite) where you want (for example in the group_management page)
  
 Invitation follow-up
 --------------------

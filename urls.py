@@ -66,6 +66,9 @@ urlpatterns = patterns('',
 
     url(r'^invite/', include('apps.sw_invitation.urls')),
 #    (r'^forum/', include('pybb.urls', namespace='pybb')),
+    
+    url(r'^invite/', include('apps.sw_invitation.urls')),
+
 )
 
 if settings.DEBUG:
