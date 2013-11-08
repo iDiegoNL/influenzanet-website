@@ -50,7 +50,11 @@
         var $survey = $('.'+options.templateClass, context);
         var questionSelector = '.'+options.questionClass;
 
-		var debug = options.debug || false;
+		this.debug = options.debug || false;
+
+		this.setDebug = function(isDebug) {
+			this.debug = isDebug;
+		}
 
         // Useful methods.
 
@@ -240,7 +244,7 @@
                     }
                     if (apply) {
 						rule.apply($survey, target);
-						if(debug) {
+						if(self.debug) {
 							debug_rule(rule, target);
 						}
 					}
@@ -259,7 +263,7 @@
                     }
                     if (apply) {
 						rule.apply($survey, target);
-						if(debug) {
+						if(self.debug) {
 							debug_rule(rule, target);
 						}
 					}
@@ -326,14 +330,14 @@
             }
 
             // Execute sufficient and required rules.
-			if(debug) {
+			if(this.debug) {
 				console.log('Future rules');
 			}
             for (var k in sufficient_ok) {
                 if (sufficient_ok[k][0] === true) {
 					var r = sufficient_ok[k][1];
 					r.apply($survey, target);
-					if(debug) {
+					if(this.debug) {
 						debug_rule(r, target);					
 					}
 				}
@@ -343,14 +347,14 @@
                 if (required_fail[k][0] === false) {
 					var r = required_fail[k][1];
 					r.apply($survey, target);
-					if(debug) {
+					if(this.debug) {
 						debug_rule(r, target);					
 					}
 				}
             }
 
         }
-		if(debug) {
+		if(this.debug) {
 			console.log('Future rules done');
 		}
 
