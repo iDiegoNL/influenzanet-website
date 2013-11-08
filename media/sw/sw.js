@@ -62,7 +62,8 @@ $(function() {
 	});
 	
 	$.tools.tooltip.conf.tipClass = "hovertip";
-	
+	$.tools.tooltip.conf.layout = '<div><div class="tooltip-arrow"></div></div>';
+	$.tools.tooltip.conf.offset = [-10,0];
 	$('.tooltip').tooltip();
 	
 	var from = escape(document.location.pathname);

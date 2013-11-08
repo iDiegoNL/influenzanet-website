@@ -12,7 +12,7 @@
 </p>
 {%else%}
 <div id="page-help" style="display:none">{% trans "Below is the list of participants currently managed by you. Click the corresponding option next to the participant to complete the background or symptoms questionnaire for that person, or to remove a participant."%}</div>
-<a class="button button-mini " rel="facebox" href="#page-help" data-facebox-height="450" data-facebox-width="650"><span class="icon icon-help-white">{% trans "Help about this page"%}</span></a>
+<a class="button button-mini " rel="facebox" href="#page-help" data-facebox-height="450" data-facebox-width="750"><span class="icon icon-help-white">{% trans "Help about this page"%}</span></a>
 {%endif%}
 {%if not wait_launch%} {# Do not check in wait launch context #}
 	{%for p in persons%}{%if not p.last_intake%}<p class="alert alert-warning"><span class="icon icon-warning">&nbsp;</span>{% blocktrans with name=p.name %}Please fill the background intake for the user {{name}} first{%endblocktrans%}</p>{%endif%}
@@ -25,8 +25,8 @@
 	<th colspan="2">{% trans "Fill a questionnaire" %}</th>
 </tr>
 <tr>
-	<th>{% trans "Background" %}<span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}"></span></th>
-	<th>{% trans "Symptoms" %}<span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>	
+	<th>{% trans "Background" %} <span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}"></span></th>
+	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>	
 </tr>	
 {% for person in persons %}
 <tr id="person-{{ person.pk }}" rel="{{person.global_id}}">
@@ -40,17 +40,17 @@
 		{% trans "The project is not started yet for this season" %}
 	{%else%}
 	<td>
-		<a href="{{ person.get_profile_url }}" class="icon icon-survey survey-intake" id="person-{{person.pk}}-intake">{% trans "Background" %}</a>
+		<a href="{{ person.get_profile_url }}" class="button fill-button survey-intake" id="person-{{person.pk}}-intake"><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
 		{% if person.last_intake %}
-		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{{ person.last_intake|timesince}}</span>
+		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{% blocktrans with last=person.last_intake|timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 		{%else%}
 		<span class="last">{%trans "no previous survey"%}</span>
 		{%endif%}
 		</td>
-	    <td><a href="{{ person.get_survey_url }}" class="icon icon-survey survey-weekly" id="person-{{person.pk}}-weekly">{% trans "Symptoms" %}</a>
+	    <td><a href="{{ person.get_survey_url }}" class="button fill-button survey-weekly" id="person-{{person.pk}}-weekly"><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
 		{% if person.health_history|length > 0 %}
 		{% with f=person.health_history|first %} 
-		<span class="last" title="{%trans "last survey date"%} {{f.timestamp|date:"d M Y H:i"}}">{{ f.timestamp|timesince}}</span>
+		<span class="last" title="{%trans "last survey date"%} {{f.timestamp|date:"d M Y H:i"}}">{% blocktrans with last=f.timestamp|timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 		{%endwith%}
 		{%else%}
 		<span class="last">{%trans "no previous survey"%}</span>
@@ -75,7 +75,7 @@
 	<td colspan="5" class="people-actions">
 	<ul >
 		<li><a href="{% url survey_people_add %}" class="action-add-people" data-facebox-height="360px" data-facebox-width="460px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
-		<li><a href="{% url cohort_form %}" class="action-cohort"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span class="tooltip icon icon-tip" title="{%trans "cohort subscription help text"%}"></li>
+		<li><a href="{% url cohort_form %}" class="action-cohort tooltip" title="{%trans "cohort subscription help text"%}"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span ></span></li>
 		<li><span class="tooltip icon icon-tip" title="{%trans "Update vaccination help"%}">{%trans "How to update my vaccination status"%}</span></li>
 	</ul>
 	</td>

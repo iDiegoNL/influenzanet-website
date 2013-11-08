@@ -64,34 +64,35 @@
 	margin-top: -1em;
 }
 
-#user-zone-header {
-	margin: 1em;
-	font-weight: bold;
-	font-size: 1.4em;
-	color: #007AB8;
+.user-connected #colmask {
+ border-top: 1px solid #007AB8;
 }
 
 .user-login {
 	font-weight: bold;
 }
 
+/*
+ * Logged user box
+ */
 #header-user {
- margin-top: .2em;
- padding:.5em .2em .2em .2em;
- border-top: 2px solid #007AB8;
+ float: right;
+ margin: .2em;
+ padding:.3em;
+ border: 1px solid #007AB8;
+ border-radius: .3em;
+ -moz-border-radius: .3em;
+ -webkit-border-radius: .3em;
 }
 
-.user-connected #colmask {
- border-top: 1px solid #007AB8;
+#user-zone-title {
+	font-size: .9em;
 }
 
 #user-login ul {
-	display: inline;
 }
 
 #user-login li {
-	list-style-type: none;
-	display: inline;
 	margin-left: .2em; 
 }
 
@@ -103,8 +104,19 @@
  * Logged user box
  */
 
+#user-box {
+	margin-top: 1em;
+}
 
-#user-box {}
+#user-box h2 {
+	font-weight: bold;
+	font-size: 1em;
+	border-bottom: 1px solid #EEE;
+}
+
+#user-box h3 {
+	margin-top: .3em;
+}
 
 #user-buttons > p {
  text-align: center;
@@ -137,6 +149,7 @@
 .icon {
  padding-left: 20px;
  background: transparent url() left center no-repeat;
+ vertical-align: middle;
 }
 
 .icon-users { background-image: url(../users.png)}
@@ -151,7 +164,7 @@
 .icon-email { background-image:url(../mail.png)}
 .icon-tick { background-image: url(../tick.png) }
 
-/* People / Group management pages */
+/* People Group management pages */
 .people-actions {
 	text-align: left;
 }

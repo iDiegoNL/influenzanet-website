@@ -13,17 +13,15 @@
 	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
 </div>
 {% else %}	
-<div class="widget-box">
-	<h3>Participer à GrippeNet.fr</h3>
+<div class="widget-box" id="user-box">
+	<h2>Mon espace</h2>
 <ul>
 	<li class="icon icon-users"><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
 	<li class="icon icon-users"><a href="/dashboard/">{% trans "My results" %}</a></li>
 	<li class="icon icon-users"><a href="/invite/">{% trans "Invite people" %}</a></li>
 </li>
 </ul>
-</div>
 {% if surveyuser_count == 1%}
-<div class="widget-box">
 	<h3>Mes Questionnaires</h3>
 <ul>
 	<li class="icon icon-survey"><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Préliminaire </a></li>
@@ -33,8 +31,8 @@
 {%endif%}
 
 {% endif %}
-<div id="social-widgets" class="widget-box">
 {% if not user.is_authenticated %}
+<div id="social-widgets" class="widget-box">
 <iframe src="//platform.twitter.com/widgets/follow_button.html?screen_name=grippenet&lang=fr&show_count=false" allowtransparency="true" frameborder="0" scrolling="no" style="width:169px; height:21px;"></iframe>
 <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FGrippeNet%2F307427382625293&amp;send=false&amp;layout=button_count&amp;width=169&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:169px; height:21px;" allowTransparency="true"></iframe>
 <div class="addthis_toolbox addthis_default_style ">
@@ -46,10 +44,8 @@
 <a class="addthis_counter addthis_bubble_style"></a>
 </div>
 <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f1e7fb169da798d"></script>
-{%else%}
-	<div class="widget-disabled">Vous êtes connecté, pour des raisons de sécurité les réseaux sociaux ont été désactivés</div>
-{% endif %}
 </div>
+{% endif %}
 
 <div id="logos">
  <a href="http://www.inserm.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/inserm.gif" width="150" height="38" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"/></a> 

@@ -72,31 +72,9 @@
 <div id="header">
 	<div id="headerlogo"><a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/grippenet.png" alt="GrippeNet logo" /></a></div>
 	{%if user.is_authenticated %}
-	<div id="user-zone-header">Espace Membre de GrippeNet.fr</div>
-	{%endif%}
-	<div id="searchbar">
-	<div id="feedback">
-		<a href="/feedback" rel="facebox" data-facebox-width="650" data-facebox-height="450" id="feedback-link" class="icon icon-feeback">Un commentaire, un problème ?</a>
-	</div>
-	<span id="counter-div">
-		<span id="counter" title="Nombre de personnes ayant rempli au moins un questionnaire préliminaire" class="counter tooltip"></span> participants,
-		<span id="counter-accounts" title="Nombre de comptes GrippeNet.fr activés" class="tooltip counter">{% active_accounts %}</span> comptes <img src="{{MEDIA_URL}}sw/clock.png" class="tooltip" title="Actualisé toutes les 30 min.">
-	</span> 
-	</div>
-   {% block authentication %}{% endblock authentication %}
-	<div id="navigation">
-		<div id="menubars">
-			{% block menubar %}
-            {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
-			{% endblock menubar %}
-		</div>
-	</div>			
-{% if user.is_authenticated %}
-<div class="clear"></div>
-<div id="header-user">
-	<div id="user-zone-title">Vous êtes connecté à l'Espace membre de GrippeNet.fr</div>
+	<div id="header-user">
+	<div id="user-zone-title">Vous êtes connecté à GrippeNet.fr</div>
 	<div id="user-login">
-		Votre accès à GrippeNet.fr 
 		{% if user|user_login %}
 		<ul>
 		<li>Utilisateur : <span class="user-login">{{ user.username }}</span></li>
@@ -108,8 +86,26 @@
 		{% trans "Anonymous"%}
 		{% endif %}
 		</div>
-</div>			
-{%endif%}
+	</div>			
+	{% else %}
+	<div id="searchbar">
+	<div id="feedback">
+		<a href="/feedback" rel="facebox" data-facebox-width="650" data-facebox-height="450" id="feedback-link" class="icon icon-feeback">Un commentaire, un problème ?</a>
+	</div>
+	<span id="counter-div">
+		<span id="counter" title="Nombre de personnes ayant rempli au moins un questionnaire préliminaire" class="counter tooltip"></span> participants,
+		<span id="counter-accounts" title="Nombre de comptes GrippeNet.fr activés" class="tooltip counter">{% active_accounts %}</span> comptes <img src="{{MEDIA_URL}}sw/clock.png" class="tooltip" title="Actualisé toutes les 30 min.">
+	</span> 
+	</div>
+   {% endif %}
+   {% block authentication %}{% endblock authentication %}
+	<div id="navigation">
+		<div id="menubars">
+			{% block menubar %}
+            {% spaceless %}{% show_menu 0 2 100 100 "base/menu.html" %}{% endspaceless %}
+			{% endblock menubar %}
+		</div>
+	</div>			
 </div> 
 {% block content %}{% endblock content %}
 <div id="footer">{% block footercontent %}
