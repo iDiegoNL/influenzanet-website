@@ -74,13 +74,13 @@
 	{%if user.is_authenticated %}
 	<div id="header-user">
 	<div id="user-zone-title">Vous êtes connecté à GrippeNet.fr</div>
-	<div id="user-login">
+	<div id="user-account">
 		{% if user|user_login %}
 		<ul>
 		<li>Utilisateur : <span class="user-login">{{ user.username }}</span></li>
 		<li><span class="user-email">{{ user.email }}</span></li>
-		<li class="icon icon-settings"><a href="/accounts/settings/">{% trans "My settings" %}</a></li>
-		<li class="icon icon-logout"><a href="/accounts/logout/">{% trans "Log out" %}</a></li>
+		<li><a href="/accounts/settings/"><span class="icon icon-settings">&nbsp;</span>{% trans "My settings" %}</a></li>
+		<li><span class="icon icon-logout">&nbsp;</span><a href="/accounts/logout/">{% trans "Log out" %}</a></li>
 		</ul>
 		{% else %}
 		{% trans "Anonymous"%}
