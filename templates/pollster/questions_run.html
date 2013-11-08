@@ -3,7 +3,11 @@
 <form class="survey {% if survey.form.errors %}error{% endif %}" id="survey-{{ survey.id }}" method="POST">
     {% csrf_token %}
     <div class="survey-message">
-        {% trans "Questionnaire for participant" %} {{ person }}
+        {%if timestamp_last_fill %}
+		<div class="survey-last-fill-time">
+			<span class="icon icon-clock">&nbsp;</span>{%blocktrans with time=timestamp_last_fill|timesince %}previously completed {{time}} ago for this participant{% endblocktrans %}
+		</div>
+		{%endif%}
     </div>
     {% if survey.form.errors %}
     <div class="survey-error-message">

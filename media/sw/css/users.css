@@ -152,6 +152,7 @@ user-account li.icon {
 }
 
 .icon {
+ display: inline-block;
  padding-left: 20px;
  background: transparent url() left center no-repeat;
  vertical-align: middle;
@@ -168,6 +169,7 @@ user-account li.icon {
 .icon-warning { background-image:url(../warning.png) }
 .icon-email { background-image:url(../mail.png)}
 .icon-tick { background-image: url(../tick.png) }
+.icon-clock { background-image: url(../clock.png) }
 
 /* People Group management pages */
 .people-actions {

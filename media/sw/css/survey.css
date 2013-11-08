@@ -64,10 +64,19 @@ color: #007AB8;
 
 
 #survey-title {
-text-align: center;
-margin: 1em;
-font-weight: bold;
-color: #007AB8;		
+ text-align: center;
+ margin: 1em;
+ font-weight: bold;
+ color: #007AB8;		
+}
+
+.survey-user-name {
+	font-weight: bolder;
+}
+
+.survey-last-fill-time {
+	font-size: .8em;
+	font-style: italic;
 }
 
 #col1 .question { /* Hack to make priority higher*/
@@ -81,6 +90,11 @@ width: 512px;
 #col1 table.matrix th {
 font-size: 11px;
 padding: .3em;
+}
+
+.survey .actions {
+	padding: .8em;
+	text-align: center;
 }
 
 /*
