@@ -217,8 +217,11 @@ def survey_run(request, shortname, next=None, clean_template=False):
     encoder = json.JSONEncoder(ensure_ascii=False, indent=2)
     last_participation_data_json = encoder.encode(last_participation_data)
 
-    if survey.get_prefill_data(user_id, global_id) and not survey.get_last_participation_data(user_id, global_id):
-        messages.info(request, _("At the beginning of the season we ask you to verify last year's information. Please check the information below."))
+    if last_participation_data:
+        # check if the data are from previous year
+        data_source = last_participation_data.get('_source_','')
+        if data_source == 'previousdata':
+            messages.info(request, _("At the beginning of the season we ask you to verify last year's information. Please check the information below."))
 
     return request_render_to_response(request, "pollster/survey_run_clean.html" if clean_template else 'pollster/survey_run.html', {
         "language": language,
