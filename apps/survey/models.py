@@ -25,6 +25,8 @@ class SurveyUser(models.Model):
     name = models.CharField(max_length=100)
     deleted = models.BooleanField(default=False)
 
+    avatar = models.IntegerField(default=0)
+
     class Meta:
         verbose_name_plural = 'User'
 

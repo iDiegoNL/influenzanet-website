@@ -7,9 +7,37 @@
 <form method="post" class="contact_form">
 {% csrf_token %}
 {{ form.as_p }}
+{%if avatars %}
+<p>
+	<label for="cur-avatar">{% trans "Avatar icon" %}</label>
+	<div id="cur-avatar"><img src="{{MEDIA_URL}}avatars/{{current_avatar|default:0}}.png"/></div>
+</p>
+<br style="clear:both"/>
+<div class="avatars-box">
+<div class="avatars">
+{% for avatar in avatars %}
+ <div class="{%if current_avatar == avatar%}selected{%endif%}">
+ <img src="{{MEDIA_URL}}avatars/{{avatar}}.png" width="32" heigh="32" rel="{{avatar}}"/>
+ </div>
+{% endfor %}
+</div>
+</div>
+{%endif%}
 <input type="submit" id="commentsubmit" value="{% trans "Save" %}"/>
 </form>
-
+<script type="text/javascript">
+$(function(){
+	var avatars_url = '{{MEDIA_URL}}avatars/';
+	$('.avatars img').click(function(){
+		$('.avatars .selected').removeClass('selected');
+		var $e = $(this);
+		var id = $e.attr('rel');
+		$e.parent().addClass('selected');
+		$('#id_avatar').val(id);
+		$('#cur-avatar').html('<img src="' + avatars_url + id + '.png"/>')
+	});
+});
+</script>
 {% endblock %}
 
 {% block col2 %}

@@ -1251,6 +1251,38 @@ div.pagination {
 .survey-chart .chart { width: 440px; height: 330px; position: relative; }
 .survey-chart .chart-no-data { background:#EEE; padding:20px; }
 
+/** 
+ * User avatar
+*/
+.avatars {
+	padding: .3em;
+	border: 1px solid #EEE;
+	width: 360px;
+	height: 70px;
+	position: relative;
+}
+.avatars div, #cur-avatar {
+	margin: 2px;
+	padding: 2px;
+	border: 2px solid #DDD;
+	float:left;
+}
+
+.avatars div.selected {
+	border-color: red;
+}
+
+.avatars img, #cur-avatar img, .avatar {
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+	display: inline-block;
+} 
+
+.avatar {
+	margin: .2em;
+}	
+
 
 /*** PYBBM (Forum) ***/
 

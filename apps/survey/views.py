@@ -27,6 +27,22 @@ import pickle
 survey_form_helper = None
 profile_form_helper = None
 
+SURVEY_USE_AVATAR = getattr(settings, 'SURVEY_USE_AVATAR', False)
+
+def _get_avatars():
+    """
+    Return list of available avatars (list of the file number in media/avatars/)
+    An avatar is just a 32x32 png image
+    """
+    if not SURVEY_USE_AVATAR:
+        return None
+    try:
+        from .avatars import AVATARS
+    except:
+        AVATARS = None
+    print AVATARS
+    return AVATARS
+    
 def get_active_survey_user(request):
     gid = request.GET.get('gid', None)
     if gid is None:
@@ -171,7 +187,7 @@ def group_management(request):
         person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.is_female = _get_person_is_female(person.global_id)
 
-    return render_to_response('survey/group_management.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
+    return render_to_response('survey/group_management.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"),'show_avatars':SURVEY_USE_AVATAR}, 
                               context_instance=RequestContext(request))
 
 
@@ -346,10 +362,13 @@ def people_edit(request):
     elif survey_user.deleted == True:
         raise Http404()
 
+    avatars = _get_avatars()
+    current_avatar = survey_user.avatar
     if request.method == 'POST':
         form = forms.AddPeople(request.POST)
         if form.is_valid():
             survey_user.name = form.cleaned_data['name']
+            survey_user.avatar = form.cleaned_data['avatar']
             survey_user.save()
 
             return HttpResponseRedirect(reverse(group_management))
@@ -357,7 +376,7 @@ def people_edit(request):
     else:
         form = forms.AddPeople(initial={'name': survey_user.name})
 
-    return render_to_response('survey/people_edit.html', {'form': form},
+    return render_to_response('survey/people_edit.html', {'form': form, 'avatars': avatars, 'current_avatar': current_avatar},
                               context_instance=RequestContext(request))
 
 @login_required
