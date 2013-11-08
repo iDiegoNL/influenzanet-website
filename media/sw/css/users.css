@@ -89,14 +89,18 @@
 	font-size: .9em;
 }
 
-#user-login ul {
+/**
+ * User account box
+ */
+#user-account ul {
 }
 
-#user-login li {
+#user-account li {
 	margin-left: .2em; 
+	font-size: .8em;
 }
 
-#user-login li.icon {
+user-account li.icon {
 	padding-left: 18px;
 }
 
@@ -106,6 +110,7 @@
 
 #user-box {
 	margin-top: 1em;
+	
 }
 
 #user-box h2 {
