@@ -89,9 +89,10 @@
 	font-size: .9em;
 }
 
-/**
- * User account box
- */
+#user-account {
+	font-size: .9em;
+}
+
 #user-account ul {
 }
 
@@ -100,9 +101,15 @@
 	font-size: .8em;
 }
 
-user-account li.icon {
+/*
+ #user-account li.icon {
 	padding-left: 18px;
 }
+*/
+#user-account a {
+	text-decoration: none;
+}
+
 
 /**
  * Logged user box
@@ -110,8 +117,8 @@ user-account li.icon {
 
 #user-box {
 	margin-top: 1em;
-	
 }
+
 
 #user-box h2 {
 	font-weight: bold;
@@ -193,13 +200,12 @@ user-account li.icon {
 }
 
 #people-table td {
-	padding: .4em;
+	padding: .7em;
 }
 
 #people-table .last {
 	display: block;
 	font-size: .7em;
-	
 }
 
 #people-table td.person-name {

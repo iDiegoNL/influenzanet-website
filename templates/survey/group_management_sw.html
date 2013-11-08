@@ -25,15 +25,15 @@
 	<th colspan="2">{% trans "Fill a questionnaire" %}</th>
 </tr>
 <tr>
-	<th>{% trans "Background" %} <span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}"></span></th>
-	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>	
+	<th>{% trans "Background" %} <span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}">&nbsp;</span></th>
+	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}">&nbsp;</span></th>	
 </tr>	
 {% for person in persons %}
 <tr id="person-{{ person.pk }}" rel="{{person.global_id}}">
 	<td class="person-name">
 		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }} 
 		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-height="360px" title="{%trans "Edit Person"%}"><img src="{{MEDIA_URL}}sw/edit.png" width="16" height="16" class="icon" title="{%trans "Edit Person"%}"/></a>
-		<span id="cohort-{{person.pk}}"></span>
+		<span id="cohort-{{person.pk}}">&nbsp;</span>
 	</td>
     {%if wait_launch %}
 	<td colspan="2">
