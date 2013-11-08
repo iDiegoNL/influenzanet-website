@@ -13,8 +13,8 @@
 	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
 </div>
 {% else %}	
-<div id="user-box" class="widget-box">
-	Participer à GrippeNet.fr
+<div class="widget-box">
+	<h3>Participer à GrippeNet.fr</h3>
 <ul>
 	<li class="icon icon-users"><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
 	<li class="icon icon-users"><a href="/dashboard/">{% trans "My results" %}</a></li>
@@ -22,13 +22,12 @@
 </li>
 </ul>
 </div>
-
 {% if surveyuser_count == 1%}
 <div class="widget-box">
-	Mes Questionnaires
+	<h3>Mes Questionnaires</h3>
 <ul>
-	<li class="icon icon-survey"><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">{% trans "Symptoms survey" %}</a></li>
-	<li class="icon icon-survey"><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Questionnaire préliminaire </a></li>
+	<li class="icon icon-survey"><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Préliminaire </a></li>
+	<li class="icon icon-survey"><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">Hebdomadaire</a></li>
 </ul>
 </div>
 {%endif%}
