@@ -181,7 +181,7 @@ INSTALLED_APPS = (
     'apps.pollster',
     'apps.contest',
     'captcha',
-    #'apps.tellafriend',
+    'apps.sw_cohort',
     'apps.ggm_maps',
 
     'pybb',

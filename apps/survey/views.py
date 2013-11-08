@@ -24,6 +24,17 @@ from .survey import ( Specification,
 import apps.pollster as pollster
 import pickle
 
+try:
+    from apps.sw_cohort.models import Cohort, CohortUser
+    def _get_person_cohorts(surveyuser_id):
+        cids = tuple([u.cohort_id for u in CohortUser.objects.filter(user=surveyuser_id)])
+        if len(cids) > 0:
+            return tuple(Cohort.objects.filter(id__in=cids))
+        return ()
+except:
+    def _get_person_cohorts(global_id):
+        return ()
+
 survey_form_helper = None
 profile_form_helper = None
 
@@ -170,7 +181,9 @@ def group_management(request):
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.is_female = _get_person_is_female(person.global_id)
-
+        person.cohorts = _get_person_cohorts(person.id)
+        if person.cohorts:
+            person.cohorts_names = " &#10;".join([str(c.title) for c in person.cohorts])
     return render_to_response('survey/group_management.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
                               context_instance=RequestContext(request))
 
