@@ -16,16 +16,16 @@
 <div class="widget-box" id="user-box">
 	<h2>Mon espace</h2>
 <ul>
-	<li class="icon icon-users"><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
-	<li class="icon icon-users"><a href="/dashboard/">{% trans "My results" %}</a></li>
-	<li class="icon icon-users"><a href="/invite/">{% trans "Invite people" %}</a></li>
+	<li><i class="icon icon-users"></i><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
+	<li><i class="icon icon-users"></i><a href="/dashboard/">{% trans "My results" %}</a></li>
+	<li><i class="icon icon-users"></i><a href="/invite/">{% trans "Invite people" %}</a></li>
 </li>
 </ul>
 {% if surveyuser_count == 1%}
 	<h3>Mes Questionnaires</h3>
 <ul>
-	<li class="icon icon-survey"><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Préliminaire </a></li>
-	<li class="icon icon-survey"><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">Hebdomadaire</a></li>
+	<li><i class="icon icon-survey"></i><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}"> Préliminaire </a></li>
+	<li><i class="icon icon-survey"></i><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">Hebdomadaire</a></li>
 </ul>
 </div>
 {%endif%}

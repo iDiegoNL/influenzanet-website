@@ -160,7 +160,9 @@
 
 .icon {
  display: inline-block;
- padding-left: 20px;
+ width: 16px;
+ height: 16px;
+ margin: 0 .2em;
  background: transparent url() left center no-repeat;
  vertical-align: middle;
 }
@@ -177,6 +179,7 @@
 .icon-email { background-image:url(../mail.png)}
 .icon-tick { background-image: url(../tick.png) }
 .icon-clock { background-image: url(../clock.png) }
+.icon-edit { background-image:url(../edit.png) }
 
 /* People Group management pages */
 .people-actions {
