@@ -1255,10 +1255,12 @@ div.pagination {
  * User avatar
 */
 .avatars {
+	margin: .3em 0;
 	padding: .3em;
 	border: 1px solid #EEE;
 	width: 360px;
-	height: 70px;
+	height: 86px;
+	overflow-y:auto;
 	position: relative;
 }
 .avatars div, #cur-avatar {
@@ -1266,6 +1268,10 @@ div.pagination {
 	padding: 2px;
 	border: 2px solid #DDD;
 	float:left;
+}
+
+.avatars div:hover {
+	border-color: #999;
 }
 
 .avatars div.selected {
