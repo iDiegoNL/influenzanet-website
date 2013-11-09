@@ -434,3 +434,8 @@ background: #FFF url() left center no-repeat;
  display: block;
  clear:both;	
 }
+
+.loading {
+ text-align: center;
+ margin: .2em auto;
+}

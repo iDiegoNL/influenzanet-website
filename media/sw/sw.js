@@ -103,3 +103,7 @@ function show_facebox(options) {
 function close_facebox() {
 	$('#facebox').overlay().close();
 }
+
+jQuery.fn.loading = function() {
+	return $(this).html('<div class="loading"><img src="/media/sw/loader-2.gif" width="54" height="55"/></div>');
+};
