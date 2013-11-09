@@ -34,13 +34,7 @@ class Badge(models.Model):
     # Take the value of the year of the season starting (see SEASON_STARTING_MONTH in badges)
     season = models.IntegerField(null=True, default=None)
     season.help_text = 'If has a value, this badge is specific for a season and wont be recomputed after the next september of (season+1)'
-    
-    def is_for_user(self):
-        return self.attribute_to == ATTRIBUTE_TO_USER
-    
-    def is_for_participant(self):
-        return self.attribute_to == ATTRIBUTE_TO_PARTICIPANT
-        
+           
     def can_compute(self):
         if self.season:
             season = get_current_season()
@@ -49,10 +43,22 @@ class Badge(models.Model):
         return True
     
 class UserBadgeManager(models.Manager):
+    
+    def __init__(self):  
+        super(UserBadgeManager, self).__init__()
+        self._badges = None
         
-    def get_badges(self):
-        badges = list(Badge.objects.all())
-        return badges
+    def get_badges(self, indexed=False):
+        """
+         get the badge list
+         if indexed, return a dictionnary index by id (for lookup)
+        """
+        if self._badges is None:
+            self._badges = list(Badge.objects.all())
+        if indexed:
+            badges = { b.id:b for b in self._badges  }
+            return badges
+        return self._badges
     
     def get_attributed_badges(self, user=None, participant=None):
         """
@@ -64,11 +70,7 @@ class UserBadgeManager(models.Manager):
         if participant is not None:
             user_badges = self.filter(participant=participant)
         
-        # Create a lookup with badge id
-        olds = {}
-        for o in user_badges:
-            olds[o.badge_id] = o
-        return olds
+        return user_badges
         
     def update_badges_for(self, participant=None, user=None, fake=False):
         
@@ -89,25 +91,29 @@ class UserBadgeManager(models.Manager):
             attribute_to = ATTRIBUTE_TO_USER
             who = user
         
+        attributed_badges = [ b.badge_id for b in attributed_badges  ]
+        
         new_badges = []
         for badge in badges:
             if badge.attribute_to != attribute_to:
                 continue
-            if attributed_badges.has_key(badge.id):
+            if badge.id in attributed_badges:
                 # Already attributed, no "update" for a badge
                 continue
             has_badge = provider.update(badge, who)
-            if not fake and has_badge:
-                b = UserBadge()
-                if attribute_to == ATTRIBUTE_TO_USER:
-                    b.user_id = user.id
-                    b.participant = None
-                else:
-                    b.participant = participant.id
-                    b.user_id = participant.user_id
-                b.badge = badge
-                b.save()
-                new_badges += badge
+            if has_badge:
+                new_badges.append(badge.id)
+                if not fake:
+                    b = UserBadge()
+                    if attribute_to == ATTRIBUTE_TO_USER:
+                        b.user_id = user.id
+                        b.participant = None
+                    else:
+                        b.participant = participant
+                        b.user_id = participant.user_id
+                    b.badge = badge
+                    b.save()
+                
         return new_badges    
     
     def update_badges(self, participant, fake=False):
@@ -121,5 +127,8 @@ class UserBadge(models.Model):
     participant = models.ForeignKey(SurveyUser, blank=True, null=True)
     date = models.DateField(auto_now_add=True)
     badge = models.ForeignKey(Badge)
+    
+    class Meta:
+        unique_together = (("user","participant","badge"))
     
     objects = UserBadgeManager()

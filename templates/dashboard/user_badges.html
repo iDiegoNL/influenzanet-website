@@ -1,0 +1,21 @@
+{%load i18n %}
+<div class="chart-dashboard-badges dashboard">
+    <h3>{% trans "Your badges" %}:</h3>
+    <div class="badges">
+      {% for user_badge in badges %}
+	    {% with badge=user_badge.badge_ %}
+	  	<div class="badge{% if badge.id in new_badges.participant %} badge-new{%endif%}">
+		<img src="{{ MEDIA_URL }}badges/{{badge.name}}.png" title="{{ badge.description }}"/>
+		<span>{{ badge.label }}</span>
+		</div>
+	  	{% endwith %}
+	  {% endfor %}
+    </div>
+</div>
+<script type="text/javascript">
+{% if new_badges.participant|length %}
+	
+{% endif %}
+
+$('.badges img').tooltip();
+</script>

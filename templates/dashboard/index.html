@@ -3,6 +3,10 @@
 
 {% block add_css %}
 <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/dashboard.css" />
+<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/css/joyride-2.1.css" />
+{% endblock %}
+{% block add_js %}
+<script type="text/javascript" src="{{ MEDIA_URL }}sw/js/jquery.joyride-2.1.js"></script>
 {% endblock %}
 
 {% block col1 %}
@@ -12,6 +16,15 @@
 
 {% if gid %}
 {% include "dashboard/user_history.html" with rows=history %}
+{% if use_badge %}
+<div id="user-badges"></div>
+<script type="text/javascript">
+$(function(){
+	$('#user-badges').loading().load('/dashboard/badges/?gid={{gid}}');
+});
+</script>
+{% endif %}
+
 {% else %}
 {% include "dashboard/household.html" %}
 {% endif %} 
