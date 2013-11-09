@@ -27,21 +27,33 @@ import pickle
 survey_form_helper = None
 profile_form_helper = None
 
-SURVEY_USE_AVATAR = getattr(settings, 'SURVEY_USE_AVATAR', False)
-
-def _get_avatars():
+def _get_avatars(with_list=True):
+    
     """
-    Return list of available avatars (list of the file number in media/avatars/)
+    Return the avatar configuration if activated, None otherwise 
+    list :list of available avatars (list of the file number in the SURVEY_AVATARS directory (subdirectory of media)
     An avatar is just a 32x32 png image
+    url: url to the avatar dir
     """
-    if not SURVEY_USE_AVATAR:
+    
+    SURVEY_AVATARS = getattr(settings, 'SURVEY_AVATARS', None)
+    
+    ## Path to the avatars files, relative to media directory
+    if not SURVEY_AVATARS:
         return None
-    try:
-        from .avatars import AVATARS
-    except:
-        AVATARS = None
-    print AVATARS
-    return AVATARS
+    url = settings.MEDIA_URL + '/' + SURVEY_AVATARS.strip('/') + '/'
+    if with_list:
+        try:
+            from .avatars import AVATARS
+        except:
+            AVATARS = None
+        conf = None
+        if AVATARS:
+           conf = {'list': AVATARS, 'url': url }
+    else:
+        # list not request, return only url
+        conf = {'url': url} 
+    return conf
     
 def get_active_survey_user(request):
     gid = request.GET.get('gid', None)
@@ -187,7 +199,7 @@ def group_management(request):
         person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.is_female = _get_person_is_female(person.global_id)
 
-    return render_to_response('survey/group_management.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"),'show_avatars':SURVEY_USE_AVATAR}, 
+    return render_to_response('survey/group_management.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"),'avatars':_get_avatars(with_list=False)}, 
                               context_instance=RequestContext(request))
 
 
@@ -268,6 +280,7 @@ def select_user(request, template='survey/select_user.html'):
     return render_to_response(template, {
         'users': users,
         'next': next,
+        'avatars': _get_avatars(with_list=False)
     }, context_instance=RequestContext(request))
 
 @login_required
@@ -362,7 +375,7 @@ def people_edit(request):
     elif survey_user.deleted == True:
         raise Http404()
 
-    avatars = _get_avatars()
+    
     current_avatar = survey_user.avatar
     if request.method == 'POST':
         form = forms.AddPeople(request.POST)
@@ -376,7 +389,7 @@ def people_edit(request):
     else:
         form = forms.AddPeople(initial={'name': survey_user.name})
 
-    return render_to_response('survey/people_edit.html', {'form': form, 'avatars': avatars, 'current_avatar': current_avatar},
+    return render_to_response('survey/people_edit.html', {'form': form, 'avatars': _get_avatars(), 'current_avatar': current_avatar},
                               context_instance=RequestContext(request))
 
 @login_required
@@ -417,6 +430,7 @@ def people_add(request):
             survey_user = models.SurveyUser()
             survey_user.user = request.user
             survey_user.name = form.cleaned_data['name']
+            survey_user.avatar = form.cleaned_data['avatar']
             survey_user.save()
 
             messages.add_message(request, messages.INFO, 
@@ -432,7 +446,7 @@ def people_add(request):
     else:
         form = forms.AddPeople()
 
-    return render_to_response('survey/people_add.html', {'form': form},
+    return render_to_response('survey/people_add.html', {'form': form,'avatars': _get_avatars(), 'current_avatar': 0},
                               context_instance=RequestContext(request))
 
 

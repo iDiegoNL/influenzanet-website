@@ -44,3 +44,7 @@ POLLSTER_USER_ZIP_CODE_DATA_NAME = 'Q3'
 # used to match the zip code for the right country
 # in the pollster_zip_codes table
 POLLSTER_USER_COUNTRY_DATA_NAME = None
+
+# Path to the Avatars, relative to the media directory, for example 'avatars'
+# None disable the feature
+SURVEY_AVATARS = None
