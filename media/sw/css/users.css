@@ -57,15 +57,10 @@
 
 .user-connected #header {
 	padding-top: 0;
-	padding-bottom: 0;
 }
 
 .user-connected #searchbar {
 	margin-top: -1em;
-}
-
-.user-connected #colmask {
- border-top: 1px solid #007AB8;
 }
 
 .user-login {
