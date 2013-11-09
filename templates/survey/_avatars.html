@@ -1,0 +1,30 @@
+{%load i18n %}
+<p>
+	<label for="cur-avatar">{% trans "Avatar icon" %}</label>
+	<div id="cur-avatar"><img src="{{avatars.url}}{{current_avatar|default:0}}.png"/></div>
+</p>
+<br style="clear:both" />
+<p>{% trans "Select an avatar by clicking on one of the following images" %} :</p>
+<div class="avatars-box">
+	<div class="avatars">
+	{% for avatar in avatars.list %}
+	 <div class="{%if current_avatar == avatar%}selected{%endif%}">
+		 <img src="{{avatars.url}}{{avatar}}.png" width="32" heigh="32" rel="{{avatar}}"/>
+	 </div>
+	{% endfor %}
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	var avatars_url = '{{avatars.url}}';
+	$('.avatars img').click(function(){
+		$('.avatars .selected').removeClass('selected');
+		var $e = $(this);
+		var id = $e.attr('rel');
+		$e.parent().addClass('selected');
+		$('#id_avatar').val(id);
+		$('#cur-avatar').html('<img src="' + avatars_url + id + '.png"/>')
+	});
+});
+</script>
