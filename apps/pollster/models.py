@@ -16,8 +16,6 @@ from django.conf import settings
 DEG_TO_RAD = pi/180
 RAD_TO_DEG = 180/pi
 
-import mapnik2
-
 try:
     import mapnik2 as mapnik
     mapnik_version = 2
