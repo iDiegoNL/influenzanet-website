@@ -114,12 +114,13 @@ class UserBadgeManager(models.Manager):
                     b.badge = badge
                     b.save()
                 
-        return new_badges    
+        return {'new': new_badges, 'old': attributed_badges }    
     
     def update_badges(self, participant, fake=False):
         p = self.update_badges_for(participant=participant, fake=fake)
         u = self.update_badges_for(user=participant.user, fake=fake)
-        return {'participant':p, 'user': u }
+        first =  len(p['new']) > 0 and len(p['old']) == 0
+        return {'participant':p['new'], 'user': u['new'], 'first': first}
 
         
 class UserBadge(models.Model):

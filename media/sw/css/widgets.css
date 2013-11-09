@@ -32,8 +32,9 @@
 .widget-box  li {
 	list-style-type: none;
 	font-size: .8em;
-	margin: .4em .1em;
-	line-height: 1.3em;
+	padding: 0;
+	margin: .6em .1em .3em 0;
+	line-height: 1.1em;
 } 
 
 .icon-sentiweb, .icon-invs, .icon-grog, .icon-qmark {
