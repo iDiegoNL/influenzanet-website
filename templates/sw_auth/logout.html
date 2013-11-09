@@ -5,5 +5,9 @@
 
 {% block authentication %}{% endblock authentication %}
 {% block boxcontents %}
-<a href="/">{% trans "You have been logged out. Go to " %}{% trans "home" %}</a>
+<h1>{% trans "Logged out" %}</h1>
+<p>{% trans "You have been logged out. Go to " %}</p>
+<p>
+<a href="/" class="button">{% trans "Return to home" %}</a>
+</p>
 {% endblock %}
