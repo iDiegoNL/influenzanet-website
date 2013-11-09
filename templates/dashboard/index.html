@@ -13,7 +13,7 @@
 {% if gid %}
 {% include "dashboard/user_history.html" with rows=history %}
 {% else %}
-Household
+{% include "dashboard/household.html" %}
 {% endif %} 
 
 {% endblock col1%}

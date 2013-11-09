@@ -17,6 +17,9 @@ def render_template(name, request, context=None):
     )
 
 def _get_participants(user):
+    """
+    Get all registered and active participants in an household
+    """
     data = SurveyUser.objects.filter(user=user, deleted=False)
     participants = {}
     for d in data:
@@ -58,7 +61,6 @@ def _get_participant_health_history(user_id, global_id, limit=None):
     for ret in results:
         timestamp, status = ret
         yield {'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status)}
-
 
 @login_required
 def index(request):

@@ -1,0 +1,74 @@
+[
+    {
+        "pk": null,
+		"model": "dashboard.badge",
+        "fields": {
+            "name": "loyalty",
+            "label": "Loyalty for the season 2012-2013",
+            "description": "You have been participating during the last season. You won a Loyalty badge for the next season",
+			"datasource": "loyalty",
+			"attribute_to": "P",
+			"season": null
+        }
+    },
+    {
+        "pk": null,
+        "model": "dashboard.badge",
+        "fields": {
+            "name": "is_novice",
+            "label": "You are novice",
+            "description": "You just started your participation for the season",
+			"datasource": "participation",
+			"attribute_to": "P",
+			"season": null
+        }
+    },
+    {
+        "pk": null,
+        "model": "dashboard.badge",
+        "fields": {
+            "name": "is_junior",
+            "label": "You are novice",
+            "description": "You starting to have some experience",
+			"datasource": "participation",
+			"attribute_to": "P",
+			"season": null
+        }
+    },
+    {
+        "pk": null,
+        "model": "dashboard.badge",
+        "fields": {
+            "name": "is_senior",
+            "label": "You are senior",
+            "description": "You know how it works now !",
+			"datasource": "participation",
+			"attribute_to": "P",
+			"season": null
+        }
+    },
+   {
+        "pk": null,
+        "model": "dashboard.badge",
+        "fields": {
+            "name": "is_gold",
+            "label": "You are a gold participant.",
+            "description": "Thank for your participation, you are really a loyal participant",
+			"datasource": "participation",
+			"attribute_to": "P",
+			"season": null
+        }
+    },
+   {
+        "pk": null,
+        "model": "dashboard.badge",
+        "fields": {
+            "name": "is_platinum",
+            "label": "You are a plantinum participant. ",
+            "description": "Thank you some much. The project is not possible without you.",
+			"datasource": "participation",
+			"attribute_to": "P",
+			"season": null
+        }
+    }
+]
