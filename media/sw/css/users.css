@@ -117,7 +117,6 @@
  */
 
 #user-box {
-	margin-top: 1em;
 }
 
 
@@ -127,8 +126,16 @@
 	border-bottom: 1px solid #EEE;
 }
 
-#user-box h3 {
-	margin-top: .3em;
+#user-box li {
+	margin-top: .9em;
+}
+
+#page #user-box h3 {
+	margin: .2em 0;
+	margin-top: .7em;
+	font-weight: normal;
+	font-size: .9em;
+	padding: 0;
 }
 
 #user-buttons > p {

@@ -42,6 +42,7 @@ js_mailcheck = Bundle(
 css_base = Bundle(
      'base/css/default.css',                         
      'sw/css/layout.css',
+     'sw/css/menu.css',
      'sw/css/survey.css',
      'sw/css/journal.css',
      'sw/css/widgets.css',

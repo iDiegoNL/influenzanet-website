@@ -17,13 +17,6 @@
 	margin: .1em 0;
 }
 
-#page .widget-box h3 {
-	font-weight: normal;
-	font-size: .9em;
-	padding: 0;
-	margin: .2em 0;
-}
-
 .widget-box ul {
 	margin: 0; 
 	padding: 0;	
@@ -31,9 +24,9 @@
 
 .widget-box  li {
 	list-style-type: none;
-	font-size: .8em;
+	font-size: .74em;
 	padding: 0;
-	margin: .6em .1em .3em 0;
+	margin: .8em .1em .3em 0;
 	line-height: 1.1em;
 } 
 
