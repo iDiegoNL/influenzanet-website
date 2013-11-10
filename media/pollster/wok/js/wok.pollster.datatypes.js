@@ -1,11 +1,30 @@
 (function($) {
     // COMMON UTILITIES
-
+	
+	function get_question_from_field($field) {
+		return $field.parent();
+	}
+	
+	function get_question_tags($field) {
+		// get tags and return them as hash
+		var tags = $field.parent().data('tags');
+		var o = {};
+		if(tags) {
+			tags = tags.replace(' ','');
+			tags = tags.split(',');
+			var i = tags.length;
+			while(i--) {
+				o[ tags[i] ] = 1;
+			}
+		}
+		return o;
+	}
+	
     // BUILTIN DATA TYPES
 
     function DateType() {
         var self = this;
-
+		
         // Public methods.
 
         $.extend(this, {
@@ -13,13 +32,21 @@
                 return true;
             },
             bind: function($field) {
-                $field
-                    .datepicker({
+                
+				var tags = get_question_tags($field);
+				
+				var opts = {
                         constrainInput: true,
                         dateFormat: 'dd/mm/yy',
                         changeMonth: true,
                         changeYear: true 
-                    })
+                    };
+				if(tags.nofuture) {
+					opts.maxDate = '0';
+				}
+				
+				$field
+                    .datepicker(opts)
                     .change(function(evt){
                         var $this = $(this);
                         var date = Date.parseExact($this.val(), "yyyy-MM-dd");
@@ -118,6 +145,15 @@
                 return d.year && d.month;
             },
             bind: function($field) {
+				
+				var tags = get_question_tags($field);
+				if(tags.delay) {
+					$field.data('show-delay', true);
+					var id = $field.attr('id') + '-delay';
+					$field.data('show-delay-id', id);
+					$field.after('<span class="question-date-delay" id="'+ id +'">');
+				}
+				
                 $field
                     .datepicker({
                         constrainInput: true,
@@ -160,8 +196,17 @@
                                 d = { year: d.month, month: d.year }
                             }
                             var date = new Date(d.year, d.month-1, 1);
-                            if (date)
+                            if (date) {
                                 newValue = date.toString('MM/yyyy');
+								if($this.data('show-delay')) {
+									var id = $this.data('show-delay-id');
+									var today = new Date();
+									year = today.getFullYear() - date.getFullYear();
+									//month = (11 - date.getMonth()) + today.getMonth() + 1; 
+									var label = Date.CultureInfo[ (year > 1) ? 'years': 'year'];
+									$('#'+id).text(year + ' ' + label);
+								}
+							}
                         }
                         $this.val(newValue);
                     });

@@ -262,5 +262,10 @@
         function pollster_get_postal_code_format() {
             return '{{ default_postal_code_format|escapejs }}';
         }
+		// Datejs Hack to handle delay names
+		Date.CultureInfo['year'] = '{% trans "year" %}';
+		Date.CultureInfo['years'] = '{% trans "years" %}';
+		Date.CultureInfo['month'] = '{% trans "month" %}';
+		Date.CultureInfo['months'] = '{% trans "months" %}';
     </script>
 </form>
