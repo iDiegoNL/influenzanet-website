@@ -170,7 +170,6 @@ def password_confirm(request, token=None):
                     return HttpResponseRedirect(reverse('auth_password_reset_complete'))
             if form is None:
                 form = SetPasswordForm(user)   
-                print form 
             return render_template('password_reset_confirm', request, {'form': form})
     except:
         pass
