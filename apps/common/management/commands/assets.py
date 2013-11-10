@@ -56,7 +56,7 @@ class Command(BaseCommand):
 
     help = 'Manage assets'
     args = 'subcommand'
-    # requires_model_validation = False
+    requires_model_validation = False
 
     def handle(self, *args, **options):
         

@@ -22,8 +22,12 @@ def optional_file(file):
 
     return Bundle()
 
+###
+# Common application Bundles
+###
+
 js_base = Bundle(
-     'base/js/jquery-1.5.1.min.js',
+     'pollster/jquery/js/jquery-1.5.2.min.js',
      'base/js/influenzanet.js',
      'pollster/jquery/js/jquery.tools.min.js',
      'sw/sw.js',    
