@@ -97,8 +97,10 @@ padding: .3em;
 	text-align: center;
 }
 
-/*
-.question-tip {
-	text-align: right;
+.question-date-delay {
+	vertical-align: middle;
+	font-size: .9em;
+	margin-bottom: 10px; /* align to .question input[type=text] */
+	margin-left: 4px;
+	display: inline-block;
 }
-*/
