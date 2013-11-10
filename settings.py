@@ -156,6 +156,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.messages',
     'sekizai',
+    'apps.common',
 #    'registration',
     'loginurl',
 #   'apps.accounts',
