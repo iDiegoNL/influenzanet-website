@@ -13,12 +13,13 @@ html {
 #header {
  float: left;
  width: 950px;
- padding: 60px 12px 12px 12px;
+ padding: 50px 12px 12px 12px;
  background: #ffffff;	
 }
 
 #headerlogo {
  width: auto;
+ height-bottom: .8em; 
 }
 
 #account ul li {

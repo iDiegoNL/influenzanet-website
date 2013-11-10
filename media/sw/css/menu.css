@@ -1,3 +1,7 @@
+#menubar {
+	width: 800px;
+}
+
 #menubar li {
  background-color: #7AB800;
  border: 1px solid #7AB800;
@@ -10,12 +14,13 @@
 #menubar li.selected, #menubar li.ancestor {
  padding: 0; 
  background-color: #007AB8;
+ border: 1px solid #007AB8;
 }
 
 #menubar li a {
  display: block;
  height: 2em;
- padding: 1px .4em 1px .4em; 
+ padding: .1em .4em; 
  text-decoration: none;
  color: #FFF;
  font-weight: bold;
@@ -23,6 +28,14 @@
  line-height: 2em;
  text-align: center;
  vertical-align: middle;
+ /* Force border radius inside li */ 
+ border-radius: .3em;
+ -moz-border-radius: .3em;
+ -webkit-border-radius: .3em;
+}
+
+#menubar > li:hover {
+ border: 1px solid #7AB800;
 }
 
 #menubar li.selected a, #menubar li.ancestor a {
@@ -36,34 +49,43 @@
 
 #submenu {
  background: 0;
- padding: .5em;
- margin: .3em 0 .2em .3em;
+ width: 850px;
+ padding: 0;
+ margin: .3em 0 .2em .2em;
+}
+
+#submenu li:first-child {
+ margin: .2em;
 }
 
 #submenu li {
- padding: .2em .4em;
- border: 1px solid #999;
+ font-size: .9em;
+ margin: .2em;
+ padding: .2em .3em;
+ border: 1px solid #7AB800;
  border-radius: .3em;
  -moz-border-radius: .3em;
  -webkit-border-radius: .3em;
- background-color: #FFF;
- color: #666;
+ background-color: #7AB800;
 }
-
-#submenu li:hover {
- background: #F8F8F8;
- color: #333;
-}
-
 #submenu li a {
+	color: white;
 	margin: 0;
 }
 
+#submenu li:hover {
+ background-color: #FFF;
+ color: #7AB800;
+}
+
 #submenu li.selected {
- background-color: #616365;
- color: white;
+ background-color: #007AB8;
+ border: 1px solid #007AB8;
 }
 
 #submenu li.selected a {
-color: white;
+	color: white;
+	text-decoration: none;
 }
+
+
