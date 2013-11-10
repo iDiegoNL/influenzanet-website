@@ -14,4 +14,5 @@ from .widgets import ( AdviseWidget,
 
 class AddPeople(forms.Form):
     name = forms.CharField(label=_('Name'), max_length=100)
+    avatar = forms.IntegerField(widget=forms.HiddenInput())
 

@@ -6,7 +6,11 @@
 <form method="post" class="contact_form" action="{%url survey_people_edit%}?gid={{survey_user.global_id}}">
 {% csrf_token %}
 {{ form.as_p }}
+
+{%if avatars %}
+ {%include "survey/_avatars.html" %}
+{%endif%}
+
 <input type="submit" id="commentsubmit" value="{% trans "Save" %}"/>
 </form>
-
 {% endblock %}

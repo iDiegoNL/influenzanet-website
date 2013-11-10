@@ -106,8 +106,8 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
-    'cms.middleware.multilingual.MultilingualURLMiddleware',
 #   'pybb.middleware.PybbMiddleware',
+    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'apps.pollster.middleware.ForceResponseMiddleware',
 )
 

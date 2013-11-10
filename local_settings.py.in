@@ -54,3 +54,7 @@ SURVEY_WAIT_LAUNCH = False
 ## 
 SWAUTH_LAUNCH_DATE = True
 
+
+# Path to the Avatars, relative to the media directory, for example 'avatars'
+# None disable the feature
+SURVEY_AVATARS = None

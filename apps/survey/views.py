@@ -48,6 +48,34 @@ def get_wait_launch_context(request):
         return {'date':  d }
     return None
 
+def _get_avatars(with_list=True):
+    
+    """
+    Return the avatar configuration if activated, None otherwise 
+    list :list of available avatars (list of the file number in the SURVEY_AVATARS directory (subdirectory of media)
+    An avatar is just a 32x32 png image
+    url: url to the avatar dir
+    """
+    
+    SURVEY_AVATARS = getattr(settings, 'SURVEY_AVATARS', None)
+    
+    ## Path to the avatars files, relative to media directory
+    if not SURVEY_AVATARS:
+        return None
+    url = settings.MEDIA_URL + '/' + SURVEY_AVATARS.strip('/') + '/'
+    if with_list:
+        try:
+            from .avatars import AVATARS
+        except:
+            AVATARS = None
+        conf = None
+        if AVATARS:
+           conf = {'list': AVATARS, 'url': url }
+    else:
+        # list not request, return only url
+        conf = {'url': url} 
+    return conf
+    
 def get_active_survey_user(request):
     gid = request.GET.get('gid', None)
     if gid is None:
@@ -322,6 +350,37 @@ def thanks_profile(request):
         context_instance=RequestContext(request))
 
 @login_required
+def select_user(request, template='survey/select_user.html'):
+    # select_user is still used in some cases: notably when there are unqualified calls to
+    # 'profile_index'. So we've not yet removed this template & view.
+    # Obviously it's a good candidate for refactoring.
+
+    next = request.GET.get('next', None)
+    if next is None:
+        next = reverse(index)
+
+    users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
+    total = len(users)
+    if total == 0:
+        survey_user = models.SurveyUser.objects.create(
+            user=request.user,
+            name=request.user.username,
+        )
+        url = '%s?gid=%s' % (next, survey_user.global_id)
+        return HttpResponseRedirect(url)
+        
+    elif total == 1:
+        survey_user = users[0]
+        url = '%s?gid=%s' % (next, survey_user.global_id)
+        return HttpResponseRedirect(url)
+
+    return render_to_response(template, {
+        'users': users,
+        'next': next,
+        'avatars': _get_avatars(with_list=False)
+    }, context_instance=RequestContext(request))
+
+@login_required
 def index(request):
     if is_wait_launch(request):
         return wait_launch(request)
@@ -462,10 +521,13 @@ def people_edit(request):
     elif survey_user.deleted == True:
         raise Http404()
 
+    
+    current_avatar = survey_user.avatar
     if request.method == 'POST':
         form = forms.AddPeople(request.POST)
         if form.is_valid():
             survey_user.name = form.cleaned_data['name']
+            survey_user.avatar = form.cleaned_data['avatar']
             survey_user.save()
 
             return HttpResponseRedirect(reverse(group_management))
@@ -473,7 +535,7 @@ def people_edit(request):
     else:
         form = forms.AddPeople(initial={'name': survey_user.name})
 
-    return render_to_response('survey/people_edit.html', {'form': form,'survey_user':survey_user},
+    return render_to_response('survey/people_edit.html', {'form': form, 'avatars': _get_avatars(), 'current_avatar': current_avatar ,'survey_user':survey_user},
                               context_instance=RequestContext(request))
 
 @login_required
@@ -514,6 +576,7 @@ def people_add(request):
             survey_user = models.SurveyUser()
             survey_user.user = request.user
             survey_user.name = form.cleaned_data['name']
+            survey_user.avatar = form.cleaned_data['avatar']
             survey_user.save()
 
             messages.add_message(request, messages.INFO, 
@@ -529,7 +592,7 @@ def people_add(request):
     else:
         form = forms.AddPeople()
 
-    return render_to_response('survey/people_add.html', {'form': form},
+    return render_to_response('survey/people_add.html', {'form': form,'avatars': _get_avatars(), 'current_avatar': 0},
                               context_instance=RequestContext(request))
 
 

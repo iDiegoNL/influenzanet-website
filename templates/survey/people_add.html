@@ -6,6 +6,11 @@
 <form method="post" class="contact_form" action="{%url survey_people_add%}?gid={{survey_user.global_id}}">
 {% csrf_token %}
 {{ form.as_p }}
+
+{%if avatars %}
+ {%include "survey/_avatars.html" %}
+{%endif%}
+
 <input type="submit" id="commentsubmit" value="{% trans "Add Person" %}"/>
 </form>
 
