@@ -123,7 +123,7 @@ CREATE OR REPLACE FUNCTION pollster_dashboard_neighborhood_users_avg(
 AS  $$
         SELECT  avg(n) FROM (
                 SELECT count(DISTINCT global_id) n, zip_code_key 
-                FROM pollster_dashboard_neighborhood_users('10123') 
+                FROM pollster_dashboard_neighborhood_users($1) 
             GROUP BY 2) A;	
 $$ LANGUAGE SQL;
 
