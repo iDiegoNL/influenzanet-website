@@ -346,7 +346,7 @@ def thanks_profile(request):
         survey_user = get_active_survey_user(request)
     except ValueError:
         pass
-    return render_to_response('survey/thanks_profile.html', {'person': survey_user},
+    return render_to_response('survey/thanks_profile_sw.html', {'person': survey_user},
         context_instance=RequestContext(request))
 
 @login_required

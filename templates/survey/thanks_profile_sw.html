@@ -1,0 +1,30 @@
+{% extends "survey/base.html" %}
+{% load i18n %}
+
+{% block col1 %}
+{% include "base/messages.html" %}
+
+<p>
+{% trans "Thanks for changing your profile," %}
+
+ 
+{% if person %}
+{{ person }}.
+{% else %}
+{{ user }}.
+{% endif %}
+</h1>
+<p>{% trans "Please, if you have not already done so, fill in" %}
+<a href="/survey/{% if person %}?gid={{person.global_id}}{% endif %}" class="button">{% trans "the symptoms questionaire" %}</a>.
+</p>
+<p>
+{% trans "You can also visit your" %}
+{% if person %}
+<a href="/dashboard/?gid={{person.global_id}}">
+{% else %}
+<a href="/dashboard/">
+{% endif %}
+{% trans "profile page" %}
+</a>
+</p>
+{% endblock %}
