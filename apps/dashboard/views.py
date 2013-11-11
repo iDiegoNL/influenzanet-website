@@ -3,13 +3,14 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.db import connection
+from django.core.urlresolvers import reverse
 
 from apps.survey.utils import get_db_type
 from apps.survey.models import SurveyUser
-from apps.survey.views import _decode_person_health_status, get_active_survey_user, _get_avatars
+from apps.survey.views import _decode_person_health_status, get_active_survey_user, _get_avatars, is_wait_launch
 from apps.dashboard.models import UserBadge
 
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 
 
 DASHBOARD_USE_BADGE = getattr(settings, 'DASHBOARD_USE_BADGE', False)
@@ -78,6 +79,9 @@ def get_badges_context(participant, context):
 
 @login_required
 def index(request):
+    if is_wait_launch(request):
+        return HttpResponseRedirect(reverse('survey_wait_launch'))
+    
     user_id = request.user.id
     participants =  _get_participants(request.user)
     global_id = request.GET.get('gid', None)

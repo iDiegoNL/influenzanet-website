@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import url, patterns
 from . import views
 
 urlpatterns = patterns('',
@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^people/add/$', views.people_add, name='survey_people_add'),
     url(r'^people/edit/$', views.people_edit, name='survey_people_edit'),
     url(r'^people/remove/$', views.people_remove, name='survey_people_remove'),
+    url(r'^wait/$', views.wait_launch, name='survey_wait_launch'),
     url(r'^$', views.index, name='survey_index'),
 )
 

@@ -203,7 +203,17 @@ def _get_group_vaccination(request):
         return []   
 
 @login_required
+def wait_launch(request):
+    launch_date = getattr(settings, 'SURVEY_LAUNCH_DATE', None)
+    if launch_date:
+        from datetime import datetime
+        launch_date = datetime.strptime(launch_date,'%Y-%m-%d')
+    return render_to_response('survey/wait_launch.html', {'launch_date': launch_date}, context_instance=RequestContext(request))
+
+@login_required
 def group_management(request):
+    if is_wait_launch(request):
+        return HttpResponseRedirect(reverse('survey_wait_launch'))
     try:
         survey = pollster.models.Survey.get_by_shortname('weekly')
     except:
@@ -302,46 +312,6 @@ def group_archive(request, year=None):
                               context_instance=RequestContext(request))
 
 @login_required
-def group_archive(request, year=None):
-    try:
-        survey = pollster.models.Survey.get_by_shortname('weekly')
-    except:
-        raise Exception("The survey application requires a published survey with the shortname 'weekly'")
-
-    if not getattr(settings, 'POLLSTER_HISTORICAL_WEEKLIES') or not getattr(settings, 'POLLSTER_HISTORICAL_INTAKES'):
-        # unchecked assumptions:
-        # these are both lists of tuples (year, existing-table-name) and they the LHS of each of the tuples is identical
-        # across both lists.
-
-        # also: the most recent (current) year/season is on top
-        raise Exception("Configuration error: please configure POLLSTER_HISTORICAL_WEEKLIES and POLLSTER_HISTORICAL_INTAKES")
-
-    if year:
-        year = int(year)
-    else:
-        year = settings.POLLSTER_HISTORICAL_WEEKLIES[0][0]
-    season = "%s - %s" % (year, year + 1)
-
-    weekly_table = dict(settings.POLLSTER_HISTORICAL_WEEKLIES)[year]
-    intake_table = dict(settings.POLLSTER_HISTORICAL_INTAKES)[year]
-
-    seasons = reversed(
-        [(year, "%s - %s" % (year, year + 1)) for (year, _) in settings.POLLSTER_HISTORICAL_WEEKLIES]
-    )
-
-    history = list(_get_health_history(request, survey, table=weekly_table))
-    persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
-    persons_dict = dict([(p.global_id, p) for p in persons])
-    for item in history:
-        item['person'] = persons_dict.get(item['global_id'])
-    for person in persons:
-        person.health_history = [i for i in history if i['global_id'] == person.global_id]
-        person.is_female = _get_person_is_female(person.global_id, table=intake_table)
-
-    return render_to_response('survey/group_archive.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'seasons': seasons, 'season': season},
-                              context_instance=RequestContext(request))
-
-@login_required
 def thanks_profile(request):
     try:
         survey_user = get_active_survey_user(request)
@@ -384,7 +354,7 @@ def select_user(request, template='survey/select_user.html'):
 @login_required
 def index(request):
     if is_wait_launch(request):
-        return wait_launch(request)
+        return HttpResponseRedirect(reverse('survey_wait_launch'))
     # This is the index for a actual survey-taking.
     # It falls back to 'group management' if no 'gid' is provided.
 
@@ -424,7 +394,7 @@ def index(request):
 def profile_index(request):
     # Renders an 'intake' survey.
     if is_wait_launch(request):
-        return wait_launch(request)
+        return HttpResponseRedirect(reverse('survey_wait_launch'))
     
     try:
         survey_user = get_active_survey_user(request)
@@ -449,6 +419,8 @@ def create_surveyuser(request):
     # This view is the target for newly created accounts. If the user doesn't already
     # have a linked surveyuser one is created. After that the client is redirected to
     # the group management page.
+    if is_wait_launch(request):
+        return HttpResponseRedirect(reverse('survey_wait_launch'))
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))
@@ -465,7 +437,7 @@ def create_surveyuser(request):
 @login_required
 def run_index(request, shortname):
     if is_wait_launch(request):
-        return wait_launch(request)
+        return HttpResponseRedirect(reverse('survey_wait_launch'))
 
     try:
         survey_user = get_active_survey_user(request)
@@ -502,13 +474,6 @@ def thanks_run(request, shortname):
     return render_to_response('survey/thanks_'+shortname+'.html', {'person': survey_user},
         context_instance=RequestContext(request))
 
-@login_required
-def wait_launch(request):
-    launch_date = getattr(settings, 'SURVEY_LAUNCH_DATE', None)
-    if launch_date:
-        from datetime import datetime
-        launch_date = datetime.strptime(launch_date,'%Y-%m-%d')
-    return render_to_response('survey/wait_launch.html', {'launch_date': launch_date}, context_instance=RequestContext(request))
         
 @login_required
 def people_edit(request):
