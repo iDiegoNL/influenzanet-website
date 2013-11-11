@@ -5,14 +5,7 @@
 		</li>
         {% for global_id, row in participants.items %} 
         <li class="nav-item survey-user {% if global_id == gid %}selected{% endif %}">
-        <a href="?gid={{ row.global_id }}">
-        	{% if avatars %}
-			<img src="{{avatars.url}}{{ row.avatar }}.png" class="avatar" width="32" height="32"/>
-			{% else %}
-			<span class="avatar avatar-default">&nbsp;</span>
-			{% endif %}
-			{{ row.name }}
-			</a>
+        <a href="?gid={{ row.global_id }}">{% if avatars %}<img src="{{avatars.url}}{{ row.avatar }}.png" class="avatar" width="32" height="32"/>{% else %}<span class="avatar avatar-default">&nbsp;</span>{% endif %}{{ row.name }}</a>
         </li>
         {% endfor %}
     </ul>
