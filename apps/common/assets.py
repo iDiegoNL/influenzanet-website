@@ -49,6 +49,7 @@ css_base = Bundle(
      'sw/css/facebox.css',
      'sw/css/feedback.css',
      'sw/css/users.css',
+     'sw/css/user-group.css',
      'sw/css/tooltip.css',
      'sw/css/messages.css',
      'sw/css/cohort.css',

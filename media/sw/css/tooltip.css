@@ -1,5 +1,5 @@
 
-.ie .tooltip {
+.ie .tooltip, .ie .tooltip-alert {
 	position: relative;
 }
 
@@ -8,7 +8,7 @@
 	cursor: help;
 }
 
-a.tooltip {
+a.tooltip, a.tooltip-alert {
 	border: 0;
 }
 
@@ -24,6 +24,11 @@ a.tooltip {
 	-webkit-border-radius: .3em; 
 }
 
+.hovertip-alert {
+ border: 1px solid #faa732;
+ background-color: #faa732;
+ color: white;	
+}
 
 .tooltip-arrow {
 	position: absolute;
@@ -31,12 +36,13 @@ a.tooltip {
 	height: 0;
 	border-color: transparent;
 	border-style: solid;
-}
-
-.tooltip-arrow {
 	bottom: -8px;
 	left: 50%;
 	margin-left: -8px;
 	border-width: 8px 8px 0;
 	border-top-color: #3A87AD; 
+}
+
+.hovertip-alert .tooltip-arrow {
+  border-top-color: #faa732;
 }

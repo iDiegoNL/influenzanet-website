@@ -20,12 +20,12 @@ font-size:20px;
 }
 
 #facebox-inner {
-position: relative;
-border:1px solid #3B5998;
-background-color:#fff;
-font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
-padding: 10px;
-overflow: auto;
+	position: relative;
+	border:1px solid #3B5998;
+	background-color:#fff;
+	padding: 10px;
+	font-size: .9em; 
+	overflow: auto;
 }
 
 #facebox-close {

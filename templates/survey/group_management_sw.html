@@ -32,14 +32,14 @@
 <tr id="person-{{ person.pk }}" rel="{{person.global_id}}">
 	<td class="person-name">
 		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }} 
-		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-height="360px" title="{%trans "Edit Person"%}"><span class="icon icon-edit" title="{%trans "Edit Person"%}"></span></a>
+		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-height="460px" title="{%trans "Edit Person"%}"><span class="icon icon-edit" title="{%trans "Edit Person"%}"></span></a>
 		<span id="cohort-{{person.pk}}"></span>
 	</td>
     {%if wait_launch %}
 	<td colspan="2">
 		{% trans "The project is not started yet for this season" %}
 	{%else%}
-	<td>
+	<td {% if not person.last_intake %} class="to-fill-first tooltip-alert" title="{% trans "Fill the intake survey for this participant to start his participation"%}"{% endif %}>
 		<a href="{{ person.get_profile_url }}" class="button fill-button survey-intake" id="person-{{person.pk}}-intake"><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
 		{% if person.last_intake %}
 		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{% blocktrans with last=person.last_intake|timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
