@@ -31,8 +31,12 @@
 {% for person in persons %}
 <tr id="person-{{ person.pk }}" rel="{{person.global_id}}">
 	<td class="person-name">
-		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> {{ person.name }} 
-		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-height="460px" title="{%trans "Edit Person"%}"><span class="icon icon-edit" title="{%trans "Edit Person"%}"></span></a>
+		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> 
+		{% if avatars %}
+		{%if avatars %}<img src="{{avatars.url}}{{ person.avatar }}.png" class="avatar{% if not person.avatar %} tooltip" title="Vous pouvez définir une image associée à ce participant"{% endif %} width="32" height="32" />{%endif%}
+		{% endif %}
+		{{ person.name }} 
+		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="650" data-facebox-height="{% if avatars %}560{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
 		<span id="cohort-{{person.pk}}"></span>
 	</td>
     {%if wait_launch %}
@@ -74,7 +78,7 @@
 <tr>
 	<td colspan="5" class="people-actions">
 	<ul >
-		<li><a href="{% url survey_people_add %}" class="action-add-people" data-facebox-height="360px" data-facebox-width="460px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
+		<li><a href="{% url survey_people_add %}" class="action-add-people" data-facebox-height="{% if avatars %}560{% else %}350{% endif %}px" data-facebox-width="460px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
 		<li><a href="{% url cohort_form %}" class="action-cohort tooltip" title="{%trans "cohort subscription help text"%}"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span ></span></li>
 		<li><span class="tooltip" title="{%trans "Update vaccination help"%}"><i class="icon icon-tip"></i>{%trans "How to update my vaccination status"%}</span></li>
 	</ul>

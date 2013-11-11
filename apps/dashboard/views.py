@@ -6,8 +6,9 @@ from django.db import connection
 
 from apps.survey.utils import get_db_type
 from apps.survey.models import SurveyUser
-from apps.survey.views import _decode_person_health_status, get_active_survey_user
+from apps.survey.views import _decode_person_health_status, get_active_survey_user, _get_avatars
 from apps.dashboard.models import UserBadge
+
 from django.http import Http404
 
 
@@ -94,6 +95,8 @@ def index(request):
         
     else:
         history = None    
+    
+    context['avatars'] = _get_avatars(with_list=False)
     
     context['gid'] = global_id
     context['participants'] = participants

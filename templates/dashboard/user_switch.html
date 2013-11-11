@@ -1,9 +1,18 @@
 <div id="userswitch">{% load i18n %}
     <ul>
-    	<li class="nav-item household{% if not gid%} selected{%endif%}"><a href="?household"><span class="avatar">&nbsp;</span>{%trans "Household"%}</a>
+    	<li class="nav-item household{% if not gid%} selected{%endif%}">
+    		<a href="?household"><span class="avatar avatar-default">&nbsp;</span>{%trans "Household"%}</a>
+		</li>
         {% for global_id, row in participants.items %} 
         <li class="nav-item survey-user {% if global_id == gid %}selected{% endif %}">
-        <a href="?gid={{ row.global_id }}"><span class="avatar">&nbsp;</span>{{ row.name }}</a>
+        <a href="?gid={{ row.global_id }}">
+        	{% if avatars %}
+			<img src="{{avatars.url}}{{ row.avatar }}.png" class="avatar" width="32" height="32"/>
+			{% else %}
+			<span class="avatar avatar-default">&nbsp;</span>
+			{% endif %}
+			{{ row.name }}
+			</a>
         </li>
         {% endfor %}
     </ul>

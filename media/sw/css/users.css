@@ -189,4 +189,11 @@
 .icon-clock { background-image: url(../clock.png) }
 .icon-edit { background-image:url(../edit.png) }
 
-	
+#col1 .avatar {
+  display:inline-block;
+  height: 32px;
+  width: 32px;
+  padding-right: .2em;
+  vertical-align: middle;
+}
+

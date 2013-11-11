@@ -23,24 +23,12 @@
 #userswitch li.survey-user  { 
 }
 
-#col1 .avatar {
-  display:inline-block;
-  height: 32px;
-  padding-left: 32px;
-  padding-right: .2em;
-  vertical-align: middle;
+.household .avatar-default {
+  background: transparent url('i/users.png') left center no-repeat;
 }
 
-.avatar {
-  background: transparent url() left center no-repeat;
-}
-
-.household .avatar {
-	background-image: url('i/users.png');
-}
-
-.survey-user .avatar {
-	background-image: url('i/user-blue.png');
+.survey-user .avatar-default {
+  background: transparent url('i/user-blue.png') left center no-repeat;
 }
 
 #userswicth li.survey-user a {

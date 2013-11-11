@@ -256,7 +256,8 @@ def group_management(request):
         # person.vaccination = vacc is not None and not vacc
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
     wait_launch = get_wait_launch_context(request) # is request restricted by wait_launch context
-    return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch},
+    avatars = _get_avatars(with_list=False)
+    return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch,'avatars': avatars},
                               context_instance=RequestContext(request))
 
 
