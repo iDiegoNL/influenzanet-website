@@ -1,4 +1,5 @@
 {%load i18n %}
+{% if badges|length > 0 %}
 <div class="chart-dashboard-badges dashboard">
     <h3>{% trans "Your badges" %}:</h3>
 	{% if new_badges.first %}
@@ -21,3 +22,4 @@
 <script type="text/javascript">
 $('.badges img').tooltip();
 </script>
+{% endif %}
