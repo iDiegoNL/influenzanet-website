@@ -3,7 +3,7 @@
 <div class="chart-dashboard-badges dashboard">
     <h3>{% trans "Your badges" %}:</h3>
 	{% if new_badges.first %}
-	<div class="first-badges">{%trans "It's your first badge ! This is a new feature of this website. You will win badge during the season." %}</div>
+	<div id="first-badge" style="display:none">{%trans "It's your first badge ! This is a new feature of this website. You will win badge during the season." %}</div>
 	{% endif %}
 	{% if new_badges.participant|length %}
 	<div class="new-badges">{%blocktrans with counter=new_badges.participant|length %}You won {{counter}} new badges{%endblocktrans%}</div>
@@ -21,5 +21,11 @@
 </div>
 <script type="text/javascript">
 $('.badges img').tooltip();
+var $e = $('#first-badge');
+$e.attr('title', $e.html());
+$e.empty();
+$e.tooltip();
+$e.show();
+$e.tooltip().show();
 </script>
 {% endif %}

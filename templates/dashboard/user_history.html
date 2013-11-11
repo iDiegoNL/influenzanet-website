@@ -1,5 +1,5 @@
 {% load i18n %}
-{% if rows|length > 0 %}
+{% if rows|length %}
 <div class="chart-dashboard-history dashboard">
 <table>
 <tr>
@@ -18,4 +18,6 @@
 </tr>
 </table>
 </div>
+{% else %}
+{% trans "No history for this participant yet" %}
 {% endif %}

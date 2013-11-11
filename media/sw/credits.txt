@@ -1,9 +1,10 @@
 home.png	fugues icons 3.0
 top.png		fugues icons 3.0
-user-add.png 	fugues icons 3.0
+user-add.png 	momenticons-matte-basic
 settings.png	fugues icons 3.0
 password.png	fugues icons 3.0
-users.png	fugues icons 3.0
+users.png	momenticons-matte-basic
+user16		momenticons-matte-basic
 survey.png	fugues icons 3.0
 avatar.gif	
 logout.png	fugues icons 3.0
@@ -14,3 +15,7 @@ clock		fugues icons 3.5
 mail		fugues icons 3.6
 tick		fugues icons 3.6
 info		fugues icons 3.6
+mail-air	fugues icons 3.6	
+badge32		fatcow 3.5.0 (shield)
+badge16		fatCow 3.5.0 (shield)
+dashboard	fatCor 3.5.0 (chart_pie)

@@ -86,7 +86,7 @@ def index(request):
     
     if global_id:
         # Fetch participant health status history
-        history = _get_participant_health_history(user_id, global_id, 5)
+        history = list(_get_participant_health_history(user_id, global_id, 5))
         context['history'] = history
         participant = participants[global_id]
         

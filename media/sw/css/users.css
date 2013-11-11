@@ -188,6 +188,8 @@
 .icon-tick { background-image: url(../tick.png) }
 .icon-clock { background-image: url(../clock.png) }
 .icon-edit { background-image:url(../edit.png) }
+.icon-invite {  background-image:url(../mail-air.png) }
+.icon-dashboard { background-image:url(../dashboard.png) }
 
 #col1 .avatar {
   display:inline-block;
