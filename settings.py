@@ -103,8 +103,8 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
-    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'pybb.middleware.PybbMiddleware',
+    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'apps.pollster.middleware.ForceResponseMiddleware',
 )
 
@@ -256,8 +256,13 @@ PYBB_TEMPLATE = 'base/forum.html'
 PYBB_ENABLE_ANONYMOUS_POST = True
 PYBB_ANONYMOUS_USERNAME = 'Gast'
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
+
 try:
     from local_settings import *
 except ImportError:
     pass
 
+INSTALLED_APPS += LOCAL_APPS
+MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    
