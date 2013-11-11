@@ -24,11 +24,11 @@
 }
 
 .household .avatar-default {
-  background: transparent url('i/users.png') left center no-repeat;
+  background: transparent url('users32.png') left center no-repeat;
 }
 
 .survey-user .avatar-default {
-  background: transparent url('i/user-blue.png') left center no-repeat;
+  background: transparent url('user-blue.png') left center no-repeat;
 }
 
 #userswicth li.survey-user a {
@@ -71,4 +71,5 @@
 .badge img { width: 90px; }
 .badge span { font-size: .6em; line-height: .8em }
 .badge:hover { border: 1px solid #007AB8 }
-.badge-new { border: 1px solid red }
+.new-badges { border: 1px solid red; padding: .2em; font-size: .8em; font-style: italic; }
+

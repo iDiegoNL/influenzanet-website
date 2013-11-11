@@ -175,6 +175,11 @@
  vertical-align: middle;
 }
 
+.icon-32 {
+	width: 32px;
+	height: 32px;
+}
+
 .icon-users { background-image: url(../users.png)}
 .icon-survey { background-image: url(../survey.png)}
 .icon-settings { background-image: url(../settings.png)}
@@ -198,4 +203,5 @@
   padding-right: .2em;
   vertical-align: middle;
 }
+
 
