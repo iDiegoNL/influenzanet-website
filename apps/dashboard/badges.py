@@ -113,9 +113,12 @@ class DataSource(object):
     
 class BadgeProvider(object):
     """
-    Provide data access to update badge status
-    This provider is dependent of a given user or participant (uses a cache)
-    A datasource could be used for several badges (query is computed once and could produce several column
+    Badge provider compute the state of a badge, using a named datasource
+    A badge only know : a data source name, and field name in the result from the data source
+    
+    A provider instance is made for given user or participant (data are cached for the curent user)
+    
+    A datasource can be used for several badges (query is computed once and could produce several column
     The column for a badge state should have the name of the column in the query
     """
     
@@ -180,13 +183,18 @@ class BadgeProvider(object):
         return data         
         
     def update(self, badge, attribute_to):
+        """
+         Get a badge state from its data source
+        """
         dsname = badge.datasource
+        # Get the data row from the data source
         if isinstance(attribute_to, User):
             b = self.get_for_user(dsname, attribute_to)
         else:
             b = self.get_for_participant(dsname, attribute_to)
         if b:
             try:
+                # The state of the badge should be in the column named as the badge's name
                 badge_name = badge.name
                 state = b[badge_name]
                 if DEBUG:
