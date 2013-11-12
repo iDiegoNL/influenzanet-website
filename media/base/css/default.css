@@ -85,7 +85,7 @@ img {
 #influenzabar {
  width: 974px;
  margin: 10px auto 0 auto;
- background: #ffffff url(../img/influbar/influbar.gif) top center no-repeat;
+ background: url(../img/influbar/influbar.gif) top center no-repeat, url(../img/influbar/top_bg.gif) repeat-x top center;
 }
 
 p.influenzanet {
@@ -123,7 +123,7 @@ p.toggle a {
 }
 
 div.influenzabarcontent{
- width: 926px;
+ width: 950px;
  overflow: auto;
  padding: 0 12px 16px 12px;
  text-align: left;
@@ -131,8 +131,6 @@ div.influenzabarcontent{
  font-size: 0.75em;
  line-height: 1.3em;
  background: #444444;
- border-left: 12px solid #ffffff;
- border-right: 12px solid #ffffff; 
 }
 
 a.jsclose {
@@ -384,23 +382,23 @@ ul.map_buttons li {
 
 #header {
  float: left;
- width: 950px;
- padding: 10px 12px 12px 12px;
+ width: 974px;
+ padding: 18px 0 12px;
  background: #ffffff;
 }
 
 
 #headerlogo {
  float: left;
- width: 756px;
+ width: 744px;
  overflow: hidden;
  padding: 0;
- margin: 0 0 12px 0;
+ margin: 6px 0 0 12px;
 }
 
 #account {
  float: right;
- margin: 0 0 10px 0;
+ margin: 0 12px 10px 0;
  text-align: center;
  font-size: 0.75em;
 }
@@ -443,42 +441,37 @@ ul.map_buttons li {
 }
 
 .loggedinas {
- width: 183px;
+ width: 150px;
  padding: 4px 0 0 0;
  line-height: 1.3em;
 }
 
 #navigation {
- width: 950px;
+ width: 974px;
  clear: both;
 }
 
 #menubar {
  float: left;
- max-width: 754px;
+ width: 100%;
  overflow: hidden;
  margin: 0 0 4px 0 !important;
+ background: url(../img/influbar/top_bg.gif) repeat top left;
+ font-size: 1.25em;
 }
 
 #menubar li {
  float: left;
- margin: 0 0 0 4px;
- background: #939393;
- border-left: 1px solid #cccccc;   
- border-top: 1px solid #cccccc;   
- border-right: 1px solid #cccccc;
-}
-
-#menubar li:first-child {
- margin: 0;   
+ margin: 0;
+ color: white;
 }
 
 #menubar li a {
  display: block;
  height: 2em;
- padding: 0 8px 0 8px; 
+ padding: 0 10px 0 10px; 
  text-decoration: none;
- color: #ffffff;
+ color: inherit;
  font-weight: bold;
  font-size: 0.7em;
  line-height: 2em;
@@ -488,15 +481,15 @@ ul.map_buttons li {
 
 #menubar li a:hover {
  background: #515151;
- color: #ffffff;
+ color: #fff;
 }
 
 #menubar li.selected,
 #menubar li.ancestor {
  padding: 0 0px 0 0px; 
- background: #2e2e31;
+ background: #b3b3b3;
  font-weight: bold;
- color: #ffffff;
+ color: #000;
 }
 
 #menubar li.error {
