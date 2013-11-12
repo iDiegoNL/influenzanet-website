@@ -1,29 +1,32 @@
 from django.db import connection
 from .utils import get_current_season, historical_table
-from inspect import isfunction
 from django.utils.log import getLogger
 from django.contrib.auth.models import User
 from django.conf import settings
-
+from functools import partial
 logger = getLogger('dashboard')
 
 DEBUG = settings.DEBUG
 
 DATA_SOURCES_CHOICES = (
-  ('loyalty', 'Loyalty from the previous season'),                     
+  ('loyalty1', 'Loyalty for the 2011-2012 season'),                     
+  ('loyalty2', 'Loyalty for the 2012-2013 season'),                     
   ('participation','Participation for the weekly survey'),                      
 ) 
 
-def loyalty_sql_provider():
-    year = get_current_season() - 1
+def loyalty_sql_provider(year, name):
     table = historical_table(year, 'weekly')
-    query = "SELECT COUNT(*) > 0 as loyalty FROM %s " % table
+    query = "SELECT COUNT(*) > 0 as %s FROM %s " % (name, table,)
     return query
 
 DATA_SOURCES_DEFINITIONS = {
-   'loyalty': {
+   'loyalty1': {
        'type': 'sql',
-       'sql': loyalty_sql_provider        
+       'sql': partial(loyalty_sql_provider, year=2011, name='loyalty1')        
+    },
+   'loyalty2': {
+       'type': 'sql',
+       'sql': partial(loyalty_sql_provider, year=2012, name='loyalty2')        
     },
    'participation': {
        'type': 'sql',
@@ -45,8 +48,8 @@ class DataSource(object):
         return res
     
     def _get_sql(self):
-        # Call a function if needed, else assume that string repr produces a SQL quer
-        if isfunction(self.sql):
+        # Call a function if needed, else assume that string repr produces a SQL query
+        if callable(self.sql):
             return self.sql()
         return str(self.sql)
         

@@ -65,14 +65,21 @@ def _get_participant_health_history(user_id, global_id, limit=None):
         yield {'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status)}
 
 def get_badges_context(participant, context):
+    """
+    Add badges information into view context, if needed
+    """
     if DASHBOARD_USE_BADGE:
         manager = UserBadge.objects
         badges = manager.get_badges(indexed=True)
         context['new_badges'] = manager.update_badges(participant)
         user_badges = manager.get_attributed_badges(participant=participant)
+        # Only show badges with a state set to True
+        showed_badges = []
         for u in user_badges:
-            u.badge_ = badges[ u.badge_id ]
-        context['badges'] = user_badges
+            if u.state:
+                u.badge_ = badges[ u.badge_id ]
+                showed_badges.append(u)
+        context['badges'] = showed_badges
     else:
         context['badges'] = None
 

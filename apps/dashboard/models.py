@@ -34,6 +34,9 @@ class Badge(models.Model):
     # Take the value of the year of the season starting (see SEASON_STARTING_MONTH in badges)
     season = models.IntegerField(null=True, default=None)
     season.help_text = 'If has a value, this badge is specific for a season and wont be recomputed after the next september of (season+1)'
+    
+    # Should only be computed once and the result stored, no recomputing needed or possible
+    compute_once = models.BooleanField(default=False)
            
     def can_compute(self):
         if self.season:
@@ -103,8 +106,22 @@ class UserBadgeManager(models.Manager):
                 # Already attributed, no "update" for a badge
                 continue
             has_badge = provider.update(badge, who)
-            if has_badge:
-                new_badges.append(badge.id)
+            if badge.compute_once:
+                # Always attribute the badge to the user
+                attribute_badge = True
+                # Store the computed value (has the badge or not)
+                # in the badge state
+                state = True if has_badge else False # force to be boolean
+            else:
+                # Only attribute badge with a state to True
+                # If attributed, the badge state is always "True" (showed) for this badge
+                # If state is False, the badge is not attributed, and will be recomputed next time
+                state = True
+                attribute_badge = has_badge
+            if attribute_badge:
+                if state:
+                    # Only attribute badge with state true (attributed)
+                    new_badges.append(badge.id)
                 if not fake:
                     b = UserBadge()
                     if attribute_to == ATTRIBUTE_TO_USER:
@@ -113,6 +130,7 @@ class UserBadgeManager(models.Manager):
                     else:
                         b.participant = participant
                         b.user_id = participant.user_id
+                    b.state = state
                     b.badge = badge
                     b.save()
                 
@@ -130,6 +148,13 @@ class UserBadge(models.Model):
     participant = models.ForeignKey(SurveyUser, blank=True, null=True)
     date = models.DateField(auto_now_add=True)
     badge = models.ForeignKey(Badge)
+    
+    ## Badge state 
+    # Badge is won if state is true. 
+    # Some badge could have been attributed with a state set to false, if the value cannot be recomputed
+    # later (or do not need to for perf reason).
+    # In this case, the badge is attributed and remains hidden for the participant.
+    state = models.BooleanField() 
     
     class Meta:
         unique_together = (("user","participant","badge"))
