@@ -64,13 +64,9 @@ urlpatterns = patterns('',
         'apps.sw_auth.views.register_user',
         name='registration_register_explanation'),
 
-    url(r'^invite/', include('apps.sw_invitation.urls')),
-    url(r'^dashboard/', include('apps.dashboard.urls')),
 
 #    (r'^forum/', include('pybb.urls', namespace='pybb')),
     
-    url(r'^invite/', include('apps.sw_invitation.urls')),
-
 )
 
 if settings.DEBUG:
@@ -88,6 +84,8 @@ urlpatterns += patterns('',
     url(r'^feedback/', include('apps.sw_feedback.urls')),
     url(r'^news/', include('apps.journal.urls')),
     url(r'^cohort/', include('apps.sw_cohort.urls')),
+    url(r'^invite/', include('apps.sw_invitation.urls')),
+    url(r'^dashboard/', include('apps.dashboard.urls')),
 )
 
 # Catchall

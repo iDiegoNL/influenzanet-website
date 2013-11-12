@@ -196,6 +196,7 @@ INSTALLED_APPS = (
 #   'sorl.thumbnail',
 #   'pure_pagination',
     'apps.sw_invitation',
+    'apps.dashboard',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
