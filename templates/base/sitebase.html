@@ -58,6 +58,7 @@
 			<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span id="count-fr">{% member_count "fr" %}</span><br />
 			<a href="http://www.gripenet.es/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/es.png" title="Spain" alt="Spain" /></a> {% member_count "es" %}<br />
 			<a href="http://flusurvey.ie/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ie.png" title="Ireland" alt="Ireland" /></a> {% member_count "ie" %}<br />
+			<a href="http://www.influmeter.dk/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/dk.png" title="Danemark" alt="Danemark" /></a>{% member_count "dk" %}<br />
 		</div>
 	    <div id="influenzatext">
 			Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux avec l’aide de volontaires, par internet. Ce syst&egrave;me est op&eacute;rationnel aux Pays-Bas et en Belgique (depuis 2003), au Portugal (depuis 2005) et en Italie (depuis 2008). L’objectif actuel est d’implanter Influenzanet dans d’autres pays europ&eacute;ens.<br /><br />
@@ -74,6 +75,9 @@
 	{%if user.is_authenticated %}
 	<div id="header-user">
 	<h2>Vous êtes connecté à GrippeNet.fr</h2>
+	<div id="feedback">
+		<a href="/feedback" rel="facebox" data-facebox-width="650" data-facebox-height="450" id="feedback-link"><i class="icon icon-feeback"></i>Un commentaire, un problème ?</a>
+	</div>
 	<div id="user-account">
 		{% if user|user_login %}
 		<ul>
