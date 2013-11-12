@@ -51,12 +51,12 @@
             {% for person in persons %}
             <div class="accordionButton">
                 <p title="{% if person.cohorts %}{{ person.name }} is member of: &#10;{{ person.cohorts_names }}{% endif %}">
-                    <input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> 
-                    <a href="/dashboard?gid={{ person.global_id }}">{{ person.name }}</a>
                     <span class="right">
                         <a href="{{ person.get_edit_url }}"><i class="icon-edit"></i> {% trans "Rename" %}</a>
                         <a href="#" class="delete" style="margin-left:10px"><i class="icon-remove"></i> {% trans "Delete" %}</a>                
                     </span>
+                    <input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> 
+                    <a href="/dashboard?gid={{ person.global_id }}">{{ person.name }}</a>
                 </p>
             </div>            
             {% endfor %}
@@ -83,7 +83,7 @@ $("form[name=groupmanage] .delete").click(function() {
 });
 </script>
 
-<p><br /><a href="/cohort/register">{% trans "Enter your code and join a group" %}</a></p>
+<p><br />{% trans "Since this year, school classes have been invited to participate to the project. If you belong to a class and you have received a code, " %} <a href="/cohort/register">{% trans "enter your code and join a group" %}</a></p>
 {% endblock %}
 
 {% block col2 %}

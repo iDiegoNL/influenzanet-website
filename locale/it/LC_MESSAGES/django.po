@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-11 12:28+0100\n"
+"POT-Creation-Date: 2013-11-12 15:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -273,7 +273,7 @@ msgstr "Grazie! Il tuo responso:"
 msgid "Thanks for taking the time to fill out this survey."
 msgstr "Grazie per aver compilato il questionario."
 
-#: apps/pollster/views.py:221
+#: apps/pollster/views.py:224
 msgid ""
 "At the beginning of the season we ask you to verify last year's information. "
 "Please check the information below."
@@ -468,50 +468,50 @@ msgstr "Puoi cancellarti dalla newsletter di Influweb con il seguente tasto."
 msgid "You have been successfully unsubscribed from the mailing list"
 msgstr "Sei stato cancellato dalla nostra newsletter con successo"
 
-#: apps/survey/views.py:43
+#: apps/survey/views.py:54
 msgid "No symptoms"
 msgstr "Nessun sintomo"
 
-#: apps/survey/views.py:44
+#: apps/survey/views.py:55
 msgid "Flu symptoms"
 msgstr "Sintomi influenzali"
 
 # msgid "Cold / allergy"
 # msgstr "Raffreddore / allergia"
-#: apps/survey/views.py:45
+#: apps/survey/views.py:56
 msgid "Common cold"
 msgstr "Raffreddore"
 
-#: apps/survey/views.py:46
+#: apps/survey/views.py:57
 msgid "Gastrointestinal symptoms"
 msgstr "Sintomi gastrointestinali"
 
-#: apps/survey/views.py:47
+#: apps/survey/views.py:58
 msgid "Allergy / hay fever and gastrointestinal symptoms"
 msgstr "Allergia / febbre da fieno e sintomi gastrointestinali"
 
-#: apps/survey/views.py:48
+#: apps/survey/views.py:59
 msgid "Allergy / hay fever"
 msgstr "Allergia / febbre da fieno"
 
-#: apps/survey/views.py:49
+#: apps/survey/views.py:60
 msgid "Common cold and gastrointestinal symptoms"
 msgstr "Raffreddore e sintomi gastrointestinali"
 
-#: apps/survey/views.py:50
+#: apps/survey/views.py:61
 msgid "Other non-influenza symptoms"
 msgstr "Altri sintomi non influenzali"
 
-#: apps/survey/views.py:55
+#: apps/survey/views.py:66
 msgid "Unknown"
 msgstr "Sintomi sconosciuti"
 
-#: apps/survey/views.py:146
+#: apps/survey/views.py:157
 #, python-format
 msgid "Il participante \"%(user_name)s\"  segnalato come sano."
 msgstr ""
 
-#: apps/survey/views.py:151
+#: apps/survey/views.py:162
 #, python-format
 msgid ""
 "Please complete the background questionnaire for the participant "
@@ -520,7 +520,7 @@ msgstr ""
 "Ti preghiamo di compilare il questionario di adesione per il partecipante "
 "\"%(user_name)s\" prima di segnalarlo/a come senza sintomi."
 
-#: apps/survey/views.py:247
+#: apps/survey/views.py:260
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
@@ -529,9 +529,43 @@ msgstr ""
 "questionario di adesione che trovi di seguito. Dovrai compilarlo soltanto "
 "una volta, ma potrai tornare in ogni momento a modificare i tuoi dati."
 
-#: apps/survey/views.py:371
+#: apps/survey/views.py:384
 msgid "A new person has been added."
 msgstr "È stata aggiunta una nuova persona."
+
+#: apps/sw_cohort/models.py:41
+msgid "No usage left for this token"
+msgstr ""
+
+#: apps/sw_cohort/models.py:45
+msgid "this token has expired"
+msgstr ""
+
+#: apps/sw_cohort/views.py:32
+#, python-format
+msgid "user %s is already registred in this cohort"
+msgstr ""
+
+#: apps/sw_cohort/views.py:45
+msgid "User does not exist"
+msgstr ""
+
+#: apps/sw_cohort/views.py:47
+msgid "invalid token"
+msgstr ""
+
+#: apps/sw_cohort/views.py:69
+msgid "token not provided"
+msgstr ""
+
+#: apps/sw_cohort/views.py:80
+#, python-format
+msgid "The participant %s has been registred"
+msgstr ""
+
+#: apps/sw_cohort/views.py:82
+msgid "An error occured during registration to the cohort"
+msgstr ""
 
 #: apps/tellafriend/forms.py:13
 msgid "URL"
@@ -933,6 +967,7 @@ msgstr ""
 #: pybb/templates/pybb/post_form.html:25 pybb/templates/pybb/post_form.html:27
 #: templates/pollster/cms_survey.html:242
 #: templates/pollster/questions_run.html:205 templates/survey/form.html:21
+#: templates/sw_cohort/form.html:26
 msgid "Submit"
 msgstr "Invia"
 
@@ -949,7 +984,7 @@ msgid "Delete post?"
 msgstr ""
 
 #: pybb/templates/pybb/post_template.html:37
-#: templates/survey/group_management.html:58
+#: templates/survey/group_management.html:56
 msgid "Delete"
 msgstr ""
 
@@ -1187,8 +1222,9 @@ msgid "activation key"
 msgstr "chiave di attivazione"
 
 #: src/django-registration/registration/models.py:182
-msgid "profilo di registrazione"
-msgstr "Registrazione completata"
+#, fuzzy
+msgid "registration profile"
+msgstr "profili di registrazione"
 
 #: src/django-registration/registration/models.py:183
 msgid "registration profiles"
@@ -1859,7 +1895,7 @@ msgstr "Aggiungi una persona"
 msgid "Select/deselect all"
 msgstr "Seleziona/deseleziona tutti"
 
-#: templates/survey/group_management.html:57
+#: templates/survey/group_management.html:55
 msgid "Rename"
 msgstr "Rinomina"
 
@@ -1870,6 +1906,16 @@ msgstr "Segnala come sano/sana"
 #: templates/survey/group_management.html:75
 msgid "Are you absolutely sure you want to delete this user?"
 msgstr "Sei sicuro di voler eliminare questo/questi componenti?"
+
+#: templates/survey/group_management.html:86
+msgid ""
+"Since this year, school classes have been invited to participate to the "
+"project. If you belong to a class and you have received a code, "
+msgstr "Da quest'anno, le scuole sono state invitate a partecipare ad Influweb: ciascuno studente puo' partecipare inserendo il proprio codice di classe. Per entrare a far parte del gruppo della tua classe,"
+
+#: templates/survey/group_management.html:86
+msgid "enter your code and join a group"
+msgstr "inserisci il codice che hai ricevuto dal tuo insegnante."
 
 #: templates/survey/group_management_OLD.html:47
 msgid "Status"
@@ -2019,58 +2065,92 @@ msgstr ""
 msgid "profile page"
 msgstr "Profilo"
 
-msgid ""
-"One or more questions have empty or invalid answer. Please fix it first."
+#: templates/sw_cohort/form.html:13
+msgid "Register your class on Flusurvey"
 msgstr ""
-"Non hai risposto o non hai risposto correttamente ad una o più domande. "
-"Per favore verifica la presenza di eventuali errori."
 
-msgid "People"
-msgstr "Persone"
-
-msgid "Add new person"
-msgstr "Aggiungi una nuova persona"
-
+#: templates/sw_cohort/form.html:15
 msgid ""
-"Activate your account:\n"
-"\n"
-"Click the following URL or copy and paste it to the browser's address "
-"bar.\n"
-"\n"
-"http://%(site)s/accounts/activate/%(activation_key)s/\n"
-"\n"
-"This activation URL will expire in %(expiration_days)s days."
+"By adding the code in the field here, you will be adding the selected "
+"student to your Flusurvey class."
 msgstr ""
-"Attiva il tuo account:\n"
-"\n"
-"visita questo indirizzo o copialo nella barra degli indirizzi del tuo "
-"browser.\n"
-"\n"
-"http://%(site)s/accounts/activate/%(activation_key)s/\n"
-"\n"
-"Questo indirizzo resterà valido per %(expiration_days)s giorni."
 
-msgid "Activate your account! %(site)s"
-msgstr "Attiva il tuo account! %(site)s"
-
-msgid ""
-"Below is the list of participants currently managed by you. Click the "
-"corresponding option next to the participant to complete the background "
-"or symptoms questionnaire for that person, or to remove a participant."
+#: templates/sw_cohort/form.html:17
+msgid "Select student to register"
 msgstr ""
-"Qui trovi la lista delle persone appartenenti al tuo gruppo. Clicca sulle "
-"opzioni corrispondenti a fianco del nome di ciascuna persona per accedere "
-"al questionario di adesione, a quello dei sintomi o per modificare o "
-"eliminare la persona stessa."
 
-msgid "Background"
-msgstr "Adesione"
+#: templates/sw_cohort/form.html:23
+msgid "Enter your code"
+msgstr ""
 
-msgid "Symptoms"
-msgstr "Sintomi"
+#: templates/sw_cohort/register.html:6
+msgid "The participant has been registred in the class :"
+msgstr ""
 
-msgid "Completing for participant"
-msgstr "Stai compilando il questionario per"
+#: templates/sw_cohort/register.html:9
+msgid "Problem occured during registration, try later or contact us"
+msgstr ""
 
-msgid "Symptoms survey"
-msgstr "Questionario dei sintomi"
+#: templates/sw_cohort/register.html:11
+#, fuzzy
+msgid "Back to group management page"
+msgstr "Torna alla pagina iniziale"
+
+#~ msgid "profilo di registrazione"
+#~ msgstr "Registrazione completata"
+
+#~ msgid ""
+#~ "One or more questions have empty or invalid answer. Please fix it first."
+#~ msgstr ""
+#~ "Non hai risposto o non hai risposto correttamente ad una o più domande. "
+#~ "Per favore verifica la presenza di eventuali errori."
+
+#~ msgid "People"
+#~ msgstr "Persone"
+
+#~ msgid "Add new person"
+#~ msgstr "Aggiungi una nuova persona"
+
+#~ msgid ""
+#~ "Activate your account:\n"
+#~ "\n"
+#~ "Click the following URL or copy and paste it to the browser's address "
+#~ "bar.\n"
+#~ "\n"
+#~ "http://%(site)s/accounts/activate/%(activation_key)s/\n"
+#~ "\n"
+#~ "This activation URL will expire in %(expiration_days)s days."
+#~ msgstr ""
+#~ "Attiva il tuo account:\n"
+#~ "\n"
+#~ "visita questo indirizzo o copialo nella barra degli indirizzi del tuo "
+#~ "browser.\n"
+#~ "\n"
+#~ "http://%(site)s/accounts/activate/%(activation_key)s/\n"
+#~ "\n"
+#~ "Questo indirizzo resterà valido per %(expiration_days)s giorni."
+
+#~ msgid "Activate your account! %(site)s"
+#~ msgstr "Attiva il tuo account! %(site)s"
+
+#~ msgid ""
+#~ "Below is the list of participants currently managed by you. Click the "
+#~ "corresponding option next to the participant to complete the background "
+#~ "or symptoms questionnaire for that person, or to remove a participant."
+#~ msgstr ""
+#~ "Qui trovi la lista delle persone appartenenti al tuo gruppo. Clicca sulle "
+#~ "opzioni corrispondenti a fianco del nome di ciascuna persona per accedere "
+#~ "al questionario di adesione, a quello dei sintomi o per modificare o "
+#~ "eliminare la persona stessa."
+
+#~ msgid "Background"
+#~ msgstr "Adesione"
+
+#~ msgid "Symptoms"
+#~ msgstr "Sintomi"
+
+#~ msgid "Completing for participant"
+#~ msgstr "Stai compilando il questionario per"
+
+#~ msgid "Symptoms survey"
+#~ msgstr "Questionario dei sintomi"
