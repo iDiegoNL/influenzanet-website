@@ -33,10 +33,12 @@ class Command(BaseCommand):
         for file in glob('*.png'):
             name = file.replace('.png','')
             if name.isdigit():
-                avatars.append(str(name))
+                avatars.append(int(name))
         
         # Create the config variable with list of available numbers
         if len(avatars):
+            avatars.sort()
+            avatars = map(str, avatars)
             avatars = ','.join(avatars)
             code = "\nAVATARS = [%s]\n" % avatars
         else:
