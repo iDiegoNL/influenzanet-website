@@ -68,7 +68,7 @@
 .chart-dashboard-badges { margin-top: 30px; }
 .badge { border: 1px solid #DDD; padding: 5px; width: 100px; float: left;  margin: 5px}
 #page .badge { text-align: center; }
-.badge img { width: 90px; }
+.badge img { width: 64px; }
 .badge span { font-size: .6em; line-height: .8em }
 .badge:hover { border: 1px solid #007AB8 }
 .new-badges { border: 1px solid red; padding: .2em; font-size: .8em; font-style: italic; }
