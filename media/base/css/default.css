@@ -1073,8 +1073,8 @@ div.pagination {
 	margin: .3em 0;
 	padding: .3em;
 	border: 1px solid #EEE;
-	width: 360px;
-	height: 86px;
+	width: 480px;
+	height: 170px;
 	overflow-y:auto;
 	position: relative;
 }
