@@ -113,7 +113,7 @@ class DataSource(object):
     
 class BadgeProvider(object):
     """
-    Badge provider compute the state of a badge, using a named datasource
+    Badge provider computes the state of a badge, using a named datasource
     A badge only know : a data source name, and field name in the result from the data source
     
     A provider instance is made for given user or participant (data are cached for the curent user)
@@ -170,7 +170,8 @@ class BadgeProvider(object):
                 logger.debug('Fetching profile for participant %d' % participant.id)
             profile = self.get_for_participant(DS_HAS_PROFILE, participant)
             if not profile['has_profile']:
-                logger.debug('No profile for this participant, raise NotEvaluableNow')
+                if DEBUG:
+                    logger.debug('No profile for this participant, raise NotEvaluableNow')
                 raise NotEvaluableNow()
         
         if DEBUG:
