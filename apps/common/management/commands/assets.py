@@ -3,9 +3,7 @@ import sys
 from os import path
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.management.base import BaseCommand, CommandError
-from optparse import make_option
 
 from webassets import  Environment, Bundle
 from webassets.loaders import PythonLoader, LoaderError
@@ -55,7 +53,7 @@ def show_bundle(bundle, indent=0):
 class Command(BaseCommand):
 
     help = 'Manage assets'
-    args = 'subcommand'
+    args = 'build|show'
     requires_model_validation = False
 
     def handle(self, *args, **options):
@@ -64,6 +62,12 @@ class Command(BaseCommand):
         log.addHandler(logging.StreamHandler())
         log.setLevel(logging.DEBUG)
         
+        try:
+            command = args[0]
+        except IndexError:
+            print "subcommand build|show must be provided"
+            return
+        
         bundles = {}
         ## Search for app local assets bundles    
         ## If a bundle is defined with the same name as the global one
@@ -71,7 +75,6 @@ class Command(BaseCommand):
         for app in settings.INSTALLED_APPS:
             import_bundles(bundles, app)
         
-        command = args[0]
         
         if command == 'show':
             for name, bundle in bundles.iteritems():
