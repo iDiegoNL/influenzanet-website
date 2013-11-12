@@ -56,7 +56,9 @@ class UserBadgeManager(models.Manager):
         if self._badges is None:
             self._badges = list(Badge.objects.all())
         if indexed:
-            badges = { b.id:b for b in self._badges  }
+            badges = {  }
+            for b in self._badges:
+                badges[ b.id ] = b
             return badges
         return self._badges
     
