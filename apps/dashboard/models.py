@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from apps.survey.models import SurveyUser
 from .badges import BadgeProvider, DATA_SOURCES_CHOICES
 from .utils import get_current_season
+from apps.dashboard.badges import NotEvaluableNow
 
 ATTRIBUTE_TO_USER = 'U'
 ATTRIBUTE_TO_PARTICIPANT = 'P'
@@ -105,7 +106,11 @@ class UserBadgeManager(models.Manager):
             if badge.id in attributed_badges:
                 # Already attributed, no "update" for a badge
                 continue
-            has_badge = provider.update(badge, who)
+            try:
+                has_badge = provider.update(badge, who)
+            except NotEvaluableNow:
+                # Some datasource can raise it if preconditions are not filled up
+                continue
             if badge.compute_once:
                 # Always attribute the badge to the user
                 attribute_badge = True

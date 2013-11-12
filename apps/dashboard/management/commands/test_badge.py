@@ -1,5 +1,5 @@
 from optparse import make_option
-from django.core.management.base import  BaseCommand
+from django.core.management.base import  BaseCommand, CommandError
 from apps.survey.models import SurveyUser
 from apps.dashboard.models import UserBadge
 from django.core.exceptions import ObjectDoesNotExist
@@ -11,17 +11,20 @@ class Command(BaseCommand):
         make_option('-g', '--gid', action='store',
                     dest='global_id', default=None,
                     help='Survey User to test'),
+        make_option('-p', '--participant', action='store',
+                    dest='participant', default=None,
+                    help='Survey User (id) to test'),
     )
     
     def handle(self, *args, **options):
         
         global_id = options['global_id']
         if not global_id:
-            raise Exception("global_id must be provided")
+            raise CommandError("global_id must be provided")
         try :
             u = SurveyUser.objects.get(global_id=global_id)
         except ObjectDoesNotExist:
-            print "'%s' participant does not exist" % global_id
+            raise CommandError("'%s' participant does not exist" % global_id)
         
         self.test_participant(u)
 

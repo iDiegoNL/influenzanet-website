@@ -4,6 +4,7 @@ from django.utils.log import getLogger
 from django.contrib.auth.models import User
 from django.conf import settings
 from functools import partial
+
 logger = getLogger('dashboard')
 
 DEBUG = settings.DEBUG
@@ -11,7 +12,8 @@ DEBUG = settings.DEBUG
 DATA_SOURCES_CHOICES = (
   ('loyalty1', 'Loyalty for the 2011-2012 season'),                     
   ('loyalty2', 'Loyalty for the 2012-2013 season'),                     
-  ('participation','Participation for the weekly survey'),                      
+  ('participation','Participation for the weekly survey'),
+  ('pioneer','First person in town')                      
 ) 
 
 def loyalty_sql_provider(year, name):
@@ -32,16 +34,43 @@ DATA_SOURCES_DEFINITIONS = {
        'type': 'sql',
        'sql': 'select * from pollster_dashboard_badges'        
     },
+    'has_profile': {
+        'type': 'sql',
+        'sql': 'select count(id) > 0 as has_profile from pollster_results_intake'
+    },
+    # -- Is there anyone else in the same town as me
+    #    select sum(case when "global_id"='471fbd68-977f-4f59-a4d1-7b73e666408d' then 0 else 1 end)=0 from pollster_results_intake
+    #    where "Q3"=(select "Q3" from pollster_results_intake where global_id='471fbd68-977f-4f59-a4d1-7b73e666408d' order by timestamp desc limit 1) 
+    'pioneer': {
+        'type': 'sql',
+        'sql': """select 
+            sum(case when "global_id"='%(global_id)s' then 0 else 1 end)=0 as pioneer from pollster_results_intake 
+            where "Q3"=(select "Q3" from pollster_results_intake where global_id='%(global_id)s' order by timestamp desc limit 1)
+            """,
+        'template': True,
+        'need_profile': True,
+    },
 }
 
+DS_HAS_PROFILE = 'has_profile'
+
+
+class NotEvaluableNow(Exception):
+    pass
+
+
 class DataSource(object):
+
     def __init__(self, definition):
         self.sql = definition['sql']
+        self.template = definition.get('template', False)
+        self.need_profile = definition.get('need_profile', False)
     
     def _get_row(self, query):
         cursor = connection.cursor()
         cursor.execute(query)
         res = cursor.fetchone()
+        cursor.close()
         desc = cursor.description
         if res is not None:
             res = dict(zip([col[0] for col in desc], res))
@@ -58,7 +87,12 @@ class DataSource(object):
          get value for a given participant (SurveyUser instance)
         """
         query = self._get_sql()
-        query += """ WHERE "user" = %d AND "global_id" = '%s'""" % (participant.user_id, participant.global_id)
+        # If template, use dict based string formating 
+        if self.template:
+            query = query % { 'user': participant.user_id, 'global_id':participant.global_id }
+        else:
+            # just add where clauses
+            query += """ WHERE "user" = %d AND "global_id" = '%s'""" % (participant.user_id, participant.global_id )
         if DEBUG:
             logger.debug(query)
         return self._get_row(query)
@@ -68,10 +102,14 @@ class DataSource(object):
          get a row for a user account (django User instance)
         """
         query = self._get_sql() 
-        query += """ WHERE "user" = %d""" % (user.user_id)
+        if self.template:
+            query = query % { 'user': user.user_id }
+        else:
+            query += """ WHERE "user" = %d""" % (user.user_id)
         if DEBUG:
             logger.debug(query)
         return self._get_row(query)
+    
     
 class BadgeProvider(object):
     """
@@ -123,6 +161,14 @@ class BadgeProvider(object):
             source = self.sources[name]
         except KeyError:
             raise Exception("Unknown data source %s" % name)
+        
+        if source.need_profile and name != DS_HAS_PROFILE:
+            if DEBUG:
+                logger.debug('Fetching profile for participant %d' % participant.id)
+            profile = self.get_for_participant(DS_HAS_PROFILE, participant)
+            if not profile['has_profile']:
+                logger.debug('No profile for this participant, raise NotEvaluableNow')
+                raise NotEvaluableNow()
         
         if DEBUG:
             logger.debug(u'Fetching %s for participant %d' % (name, participant.id))
