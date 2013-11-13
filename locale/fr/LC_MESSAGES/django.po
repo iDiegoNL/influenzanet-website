@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-11 19:34+0100\n"
+"POT-Creation-Date: 2013-11-13 09:46+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -286,10 +286,10 @@ msgid ""
 "At the beginning of the season we ask you to verify last year's information. "
 "Please check the information below."
 msgstr ""
-"Cette page a été pré-remplie avec certaintes des réponses que vous aviez "
+"Cette page a été pré-remplie avec certaines des réponses que vous aviez "
 "fourni la saison précédente pour ce participant. Certaines réponses n'ont "
-"cependant pas été reprises. Vérifiez bien que ces informations sont "
-"correctes et correspondent bien à la situation du participant !"
+"cependant pas été reprises. Vérifiez bien que ces informations sont correctes "
+"et correspondent bien à la situation du participant !"
 
 #: .\apps\pollster\db\models\fields.py:10
 msgid "Year and month (in YYYY-MM format)"
@@ -497,50 +497,50 @@ msgstr "Questionnaire hebdomadaire"
 msgid "Manage household"
 msgstr "Gérer mon foyer"
 
-#: .\apps\survey\views.py:92
+#: .\apps\survey\views.py:100
 msgid "No symptoms"
 msgstr "Aucun symptôme"
 
-#: .\apps\survey\views.py:93
+#: .\apps\survey\views.py:101
 msgid "Flu symptoms"
 msgstr "Symptômes grippaux"
 
-#: .\apps\survey\views.py:94
+#: .\apps\survey\views.py:102
 msgid "Common cold"
 msgstr "Rhume"
 
-#: .\apps\survey\views.py:95
+#: .\apps\survey\views.py:103
 msgid "Gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux"
 
-#: .\apps\survey\views.py:96
+#: .\apps\survey\views.py:104
 msgid "Allergy / hay fever and gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux"
 
-#: .\apps\survey\views.py:97
+#: .\apps\survey\views.py:105
 msgid "Allergy / hay fever"
 msgstr "Allergies"
 
-#: .\apps\survey\views.py:98
+#: .\apps\survey\views.py:106
 msgid "Common cold and gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux et/ou rhume"
 
-#: .\apps\survey\views.py:99
+#: .\apps\survey\views.py:107
 msgid "Other non-influenza symptons"
 msgstr "Autres symptômes non grippaux"
 
-#: .\apps\survey\views.py:104
+#: .\apps\survey\views.py:112
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: .\apps\survey\views.py:233
+#: .\apps\survey\views.py:238
 #, python-format
 msgid "The participant \"%(user_name)s\" has been marked as healthy."
 msgstr ""
 "Le questionnaire hebdomadaire du participant \"%(user_name)s\" a bien été "
 "enregistré en déclarant \"aucun symptome\"."
 
-#: .\apps\survey\views.py:238
+#: .\apps\survey\views.py:243
 #, python-format
 msgid ""
 "Please complete the background questionnaire for the participant \"%"
@@ -549,7 +549,7 @@ msgstr ""
 "Veuillez au préalable remplir le questionnaire préliminaire pour le "
 "participant \"%(user_name)s\" avant de remplir le questionnaire hebdomadaire."
 
-#: .\apps\survey\views.py:376
+#: .\apps\survey\views.py:381
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
@@ -558,7 +558,7 @@ msgstr ""
 "questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une "
 "seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
-#: .\apps\survey\views.py:549
+#: .\apps\survey\views.py:554
 msgid "A new person has been added."
 msgstr ""
 "Un nouveau participant vient d'être ajouté à votre compte. N'oubliez pas de "
@@ -617,15 +617,15 @@ msgstr "Nouveau mot de passe :"
 msgid "New password confirmation"
 msgstr "Confirmation du nouveau mot de passe :"
 
-#: .\apps\sw_auth\models.py:93 .\apps\sw_auth\models.py:95
+#: .\apps\sw_auth\models.py:122 .\apps\sw_auth\models.py:124
 msgid "username"
 msgstr "Nom de l'utilisateur"
 
-#: .\apps\sw_auth\models.py:94
+#: .\apps\sw_auth\models.py:123
 msgid "e-mail address"
 msgstr "Adresse email :"
 
-#: .\apps\sw_auth\models.py:96
+#: .\apps\sw_auth\models.py:125
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
@@ -894,7 +894,7 @@ msgstr "Mon espace"
 
 #: .\templates\accounts\partials\usermenu.html.py:11
 #: .\templates\base\sw_col_right.html.py:20
-#: .\templates\dashboard\index.html.py:13
+#: .\templates\dashboard\index.html.py:9
 msgid "My results"
 msgstr "Vos résultats"
 
@@ -907,7 +907,7 @@ msgid "Newsletter"
 msgstr "Lettre d'information"
 
 #: .\templates\accounts\partials\usermenu.html.py:15
-#: .\templates\base\forum.html.py:79 .\templates\base\sitebase.html.py:84
+#: .\templates\base\forum.html.py:79 .\templates\base\sitebase.html.py:91
 msgid "Log out"
 msgstr "Se déconnecter"
 
@@ -989,18 +989,14 @@ msgstr "Contactez-nous"
 msgid "Contact"
 msgstr "Contact"
 
-#: .\templates\base\sitebase.html.py:83
+#: .\templates\base\sitebase.html.py:87
 #: .\templates\sw_auth\my_settings.html.py:5
 msgid "My settings"
 msgstr "Mes paramètres"
 
-#: .\templates\base\sitebase.html.py:87
+#: .\templates\base\sitebase.html.py:89
 msgid "Anonymous"
 msgstr "Anonyme"
-
-#: .\templates\base\sw_col_right.html.py:21
-msgid "Invite people"
-msgstr "Inviter vos contacts"
 
 #: .\templates\dashboard\household.html.py:2
 msgid "Here you will find results for your household"
@@ -1017,7 +1013,7 @@ msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
 msgstr ""
-"Vous venez d'obtenir vos premiers badge. Il s'agit d'une nouvelle "
+"<h3>Vous venez d'obtenir vos premiers badges !</h3>\nIl s'agit d'une nouvelle "
 "fonctionnalité de <b>GrippeNet.fr</b>. Vous pourrez obtenir de nouveaux "
 "badges durant la saison."
 
@@ -1026,7 +1022,7 @@ msgstr ""
 msgid "You won a new badge"
 msgid_plural "You won %(counter)s new badges"
 msgstr[0] "Vous avez obtenu un nouveau badge !"
-msgstr[1] "Vous avez gagné %(counter)s de nouveaux badges"
+msgstr[1] "Vous avez gagné %(counter)s nouveaux badges"
 
 #: .\templates\dashboard\user_history.html.py:6
 msgid "your latest status"
@@ -1735,8 +1731,8 @@ msgstr "Le suivi de GrippeNet.fr n'a pas encore débuté cette saison. "
 #: .\templates\survey\group_management_sw.html.py:46
 msgid "Fill the intake survey for this participant to start his participation"
 msgstr ""
-"Remplissez le questionnaire préliminaire pour ce participant pour démarrer sa "
-"participation à GrippeNet.fr"
+"Remplissez le questionnaire préliminaire pour ce participant pour démarrer "
+"sa participation à GrippeNet.fr"
 
 #: .\templates\survey\group_management_sw.html.py:47
 #: .\templates\survey\group_management_sw.html.py:56
@@ -1823,7 +1819,7 @@ msgstr ""
 "contacter à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>."
 
 #: .\templates\survey\group_management_sw.html.py:104
-#: .\templates\survey\wait_launch.html.py:7
+#: .\templates\survey\wait_launch.html.py:8
 #: .\templates\sw_auth\activation_complete.html.py:15
 msgid "The project will be launched from the"
 msgstr "Le lancement de la prochaine saison est prévu le"
@@ -2277,6 +2273,9 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
+
+#~ msgid "Invite people"
+#~ msgstr "Inviter vos contacts"
 
 #~ msgid ""
 #~ "Some answers from your last survey of the previous season are have been "
