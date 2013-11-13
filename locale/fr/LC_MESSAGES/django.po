@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-13 09:46+0100\n"
+"POT-Creation-Date: 2013-11-13 15:50+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,15 +281,15 @@ msgstr ""
 "Votre réponse est bien enregistrée, merci d'avoir pris le temps de remplir "
 "ce questionnaire !"
 
-#: .\apps\pollster\views.py:225
+#: .\apps\pollster\views.py:226
 msgid ""
 "At the beginning of the season we ask you to verify last year's information. "
 "Please check the information below."
 msgstr ""
 "Cette page a été pré-remplie avec certaines des réponses que vous aviez "
 "fourni la saison précédente pour ce participant. Certaines réponses n'ont "
-"cependant pas été reprises. Vérifiez bien que ces informations sont correctes "
-"et correspondent bien à la situation du participant !"
+"cependant pas été reprises. Vérifiez bien que ces informations sont "
+"correctes et correspondent bien à la situation du participant !"
 
 #: .\apps\pollster\db\models\fields.py:10
 msgid "Year and month (in YYYY-MM format)"
@@ -617,15 +617,15 @@ msgstr "Nouveau mot de passe :"
 msgid "New password confirmation"
 msgstr "Confirmation du nouveau mot de passe :"
 
-#: .\apps\sw_auth\models.py:122 .\apps\sw_auth\models.py:124
+#: .\apps\sw_auth\models.py:125 .\apps\sw_auth\models.py:127
 msgid "username"
 msgstr "Nom de l'utilisateur"
 
-#: .\apps\sw_auth\models.py:123
+#: .\apps\sw_auth\models.py:126
 msgid "e-mail address"
 msgstr "Adresse email :"
 
-#: .\apps\sw_auth\models.py:125
+#: .\apps\sw_auth\models.py:128
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
@@ -998,6 +998,10 @@ msgstr "Mes paramètres"
 msgid "Anonymous"
 msgstr "Anonyme"
 
+#: .\templates\base\sw_col_right.html.py:21
+msgid "Invite people"
+msgstr "Inviter vos contacts"
+
 #: .\templates\dashboard\household.html.py:2
 msgid "Here you will find results for your household"
 msgstr ""
@@ -1013,15 +1017,15 @@ msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
 msgstr ""
-"<h3>Vous venez d'obtenir vos premiers badges !</h3>\nLes badges virtuels sont "
-"une nouvelle fonctionnalité de cette saison 2013-2014. Par la mise en place "
-"des badges, nous avons voulu rendre la participation à GrippeNet.fr plus "
-"ludique, afin de cibler de plus jeunes participants et stimuler davantage "
-"l'adhésion d'un plus grand nombre de personnes au projet. Cette "
-"fonctionnalité n'enlève en rien le sérieux du projet GrippeNet.fr et de votre "
-"participation. N'hésitez pas à nous faire part de votre avis sur cette "
-"fonctionnalité (en utilisant par exemple le bouton commentaire en haut de la "
-"page)."
+"<h3>Vous venez d'obtenir vos premiers badges !</h3>\n"
+"Les badges virtuels sont une nouvelle fonctionnalité de cette saison 2013-"
+"2014. Par la mise en place des badges, nous avons voulu rendre la "
+"participation à GrippeNet.fr plus ludique, afin de cibler de plus jeunes "
+"participants et stimuler davantage l'adhésion d'un plus grand nombre de "
+"personnes au projet. Cette fonctionnalité n'enlève en rien le sérieux du "
+"projet GrippeNet.fr et de votre participation. N'hésitez pas à nous faire "
+"part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
+"bouton commentaire en haut de la page)."
 
 #: .\templates\dashboard\user_badges.html.py:9
 #, python-format
@@ -1092,7 +1096,7 @@ msgid "No news yet"
 msgstr "Pas encore d'actualité"
 
 #: .\templates\pollster\cms_survey.html.py:54
-#: .\templates\pollster\survey_run.html.py:17
+#: .\templates\pollster\survey_run.html.py:20
 msgid "Questionnaire for participant"
 msgstr " du participant"
 
@@ -2221,7 +2225,9 @@ msgstr "Inviter par email"
 
 #: .\templates\sw_invitation\invite.html.py:17
 msgid "emails you want to be invited"
-msgstr "Entrez les adresses email que vous souhaitez inviter"
+msgstr ""
+"Entrez les adresses emails que vous souhaitez inviter (cliquez sur \"ajouter "
+"un email\" pour entrer une nouvelle adresse)"
 
 #: .\templates\sw_invitation\invite.html.py:19
 msgid "add a new email"
@@ -2264,9 +2270,8 @@ msgstr "Entrez une adresse email"
 #: .\templates\sw_invitation\invite.html.py:61
 msgid "invitation privacy policy"
 msgstr ""
-"Les adresses email invitées seront conservées durant quelques mois jusqu'a "
-"la fin de la saison en cours. Nous les supprimeront à la fin de chaque "
-"saison."
+"Les adresses email invitées seront conservées durant quelques mois jusqu'a la "
+"fin de la saison en cours. Nous les supprimerons à la fin de chaque saison."
 
 #: .\templates\sw_invitation\max_invitation.html.py:4
 msgid "Max invitations count reached"
@@ -2279,9 +2284,6 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
-
-#~ msgid "Invite people"
-#~ msgstr "Inviter vos contacts"
 
 #~ msgid ""
 #~ "Some answers from your last survey of the previous season are have been "
