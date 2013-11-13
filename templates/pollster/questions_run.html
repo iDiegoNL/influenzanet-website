@@ -2,13 +2,13 @@
 {% load i18n %}
 <form class="survey {% if survey.form.errors %}error{% endif %}" id="survey-{{ survey.id }}" method="POST">
     {% csrf_token %}
-    <div class="survey-message">
-        {%if timestamp_last_fill %}
-		<div class="survey-last-fill-time">
+    {%if timestamp_last_fill %}
+		<div class="survey-message">
+        <div class="survey-last-fill-time">
 			<span class="icon icon-clock">&nbsp;</span>{%blocktrans with time=timestamp_last_fill|timesince %}previously completed {{time}} ago for this participant{% endblocktrans %}
 		</div>
-		{%endif%}
     </div>
+	{%endif%}
     {% if survey.form.errors %}
     <div class="survey-error-message">
         {% trans "Please check the answers for the highlighted questions." %}
