@@ -14,7 +14,7 @@
 	    {% with badge=user_badge.badge_ %}
 	  	<div class="badge{% if badge.id in new_badges.participant %} badge-new{%endif%}">
 		<img src="{{ MEDIA_URL }}badges/64/{{badge.name}}.png" title="{{ badge.description }}"/>
-		<span>{{ badge.label }}</span>
+		<div>{{ badge.label|linebreaksbr }}</div>
 		</div>
 	  	{% endwith %}
 	  {% else %}
