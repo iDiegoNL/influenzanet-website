@@ -22,7 +22,7 @@ class EpiworkAuthBackend(ModelBackend):
             if user.check_password(password):
                 try:
                     u = user.get_django_user()
-                    print u
+                    # print u
                     auth_notify('auth_success',"success login '%s" % username )
                     u._epiwork_user = user # temporary store it in user
                     return u
