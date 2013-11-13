@@ -698,7 +698,7 @@ msgstr ""
 
 #: .\apps\sw_invitation\utils.py:32
 msgid "An InfluenzaNet user"
-msgstr "Un utilisateur de GrippeNet.fr"
+msgstr "Un de vos contacts, utilisateur de GrippeNet.fr"
 
 #: .\apps\sw_invitation\views.py:34
 #, python-format
@@ -834,7 +834,7 @@ msgstr "Vous avez été déconnecté"
 #: .\templates\registration\logout.html.py:10
 #: .\templates\sw_auth\logout.html.py:9
 msgid "You have been logged out. Go to "
-msgstr "Vous avez été déconnecté. Retour à la page d'"
+msgstr "Vous avez été déconnecté de votre compte GrippeNet.fr"
 
 #: .\templates\accounts\my_profile.html.py:4
 msgid "My profile"
@@ -2192,15 +2192,24 @@ msgid ""
 "telling people to\n"
 "register with the membership code : <b>%(key)s</b>\n"
 msgstr ""
-"Bonjour,<br><br>\n"
-"%(sender)s souhaite vous inviter à vous inscrire à GrippeNet.fr<br><br>\n"
-"\n"
-"Si vous souhaitez vous inscrire cliquez sur le lien ci-dessous :<br><br>\n"
-"<a href=\"%(url)s\">%(url)s</a><br><br>\n"
-"\n"
-"Vous pouvez également aider la personne qui vous invite à parrainer d'autres "
-"personnes en transférant ce mail ou en leur indiquant d'utiliser le code de "
-"parrainage suivant lors de leur inscription <b>%(key)s</b>.\n"
+"Bonjour,<br><br>\n%(sender)s est acteur de la surveillance de la grippe en "
+"France par le biais de GrippeNet.fr et souhaite vous inviter à participer à "
+"ce projet.<br><br>\nVoici quelques explications :<br><br>\nGrippeNet.fr  est "
+"un nouveau dispositif de surveillance de la grippe sur Internet. Cette étude "
+"est ouverte à la population générale résidant en France métropolitaine. "
+"Chacun est invité à participer à GrippeNet.fr de façon volontaire, anonyme, "
+"quel que soit son état de santé (peu sensible aux infections hivernales ou "
+"souvent malade en hiver), son âge, son métier, etc. Vous deviendrez vous "
+"aussi acteur de la surveillance de la grippe en France. <br><br>\n\nSi vous "
+"souhaitez vous inscrire cliquez sur le lien ci-dessous :<br><br>\n<a "
+"href=\"%(url)s\">%(url)s</a><br><br>\n\nVous pouvez également aider la "
+"personne qui vous invite à parrainer d'autres personnes en transférant ce "
+"mail ou en leur indiquant d'utiliser le code de parrainage suivant lors de "
+"leur inscription <b>%(key)s</b>.<br><br>\nNous vous remercions d’avance de "
+"l’intérêt que vous porterez à ce projet,<br><br>\nBien "
+"cordialement,<br><br>\nL’équipe GrippeNet.fr.<br>\n<a "
+"href=\"http://www.grippenet.fr/\">visitez GrippeNet.fr</a><br>\nContactez "
+"nous à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>\n\n\n"
 
 #: .\templates\sw_invitation\invitation_email_subject.txt.py:1
 msgid "You have been invited to InfluenzaNet"

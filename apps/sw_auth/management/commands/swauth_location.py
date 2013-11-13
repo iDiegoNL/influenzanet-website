@@ -18,12 +18,14 @@ class Command(BaseCommand):
         command = args[0]
     
         if command == 'create':
-            self.create_table(self)
+            self.create_table()
             return
         if options['table'] is None:
             table = 'pollster_results_intake'
         else:
             table = options['table']
+        
+        print "Infering account location from '%s' table's data" % table
             
         query = """ select "user", string_agg(zip,',') as zip, string_agg(code_reg,',') as reg, string_agg(code_dep,',') as dep from (
     select "user", "global_id", last_value("Q3") OVER (PARTITION BY global_id ORDER BY timestamp) as zip  from """ + table + """ 
@@ -54,6 +56,7 @@ class Command(BaseCommand):
                 return 'NULL'
             
         rows = []
+        users = []
         for d in data:
             user = d[0]
             zip = d[1]
@@ -64,24 +67,30 @@ class Command(BaseCommand):
             reg = as_code(reg, 2)
             q = "(%s,%s,%s,%s)" % (str(user), zip, reg, dep, )
             rows.append(q)
-        self.update_table(rows, output=options['output'])
+            users.append(str(user))
+        self.update_table(users, rows, output=options['output'])
         
     @transaction.commit_on_success
-    def update_table(self, rows, output):    
-        print 'Truncate table'
-        cursor = connection.cursor()
-        cursor.execute("truncate table swauth_location")
-        cursor.close()
-        print 'Insert data'
-        query = "insert into swauth_location (user_id,zip_code_key,code_reg,code_dep) values "
-        query = query + ','.join(rows)
+    def update_table(self, users, rows, output):    
+        qq = []
+        print 'Removing old data'
+        query = 'delete from swauth_location where user_id in(' + ','.join(users)+');'
         cursor = connection.cursor()
         cursor.execute(query)
         cursor.close()
+        qq.append(query)
+        print 'Insert data'
+        query = "insert into swauth_location (user_id,zip_code_key,code_reg,code_dep) values "
+        query = query + ','.join(rows)
+        query += ';'
+        cursor = connection.cursor()
+        cursor.execute(query)
+        cursor.close()
+        qq.append(query)
         if output:
             print 'output query to location.sql'
             out = open('location.sql','w')
-            out.write(query +';')
+            out.write("\n".join(qq))
             out.close()
             
     @transaction.commit_on_success
@@ -100,6 +109,7 @@ class Command(BaseCommand):
         )"""
         cursor = connection.cursor()
         cursor.execute(query)      
+        print "Table swauth_location created, run load subcommand to fill it."
         
     
 
