@@ -169,6 +169,7 @@ table.imagetable td {
 
 #influenzabar {
  background: #ffffff url(../../base/img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
+ z-index: 50;
 }
 
 .ie7 #influenzabar {

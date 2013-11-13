@@ -22,6 +22,7 @@ a.tooltip, a.tooltip-alert {
 	border-radius: .3em;
 	-moz-border-radius: .3em;
 	-webkit-border-radius: .3em; 
+	z-index: 500;
 }
 
 .hovertip-alert {
