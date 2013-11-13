@@ -43,9 +43,17 @@ def is_wait_launch(request):
 def get_wait_launch_context(request):
     if is_wait_launch(request):
         if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
-            d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
-            d = d.date()
-        return {'date':  d }
+            d = settings.SWAUTH_LAUNCH_DATE
+            if d:
+                d = datetime.strptime(d,'%Y-%m-%d')
+                d = d.date()
+        else:
+            d = None
+        if hasattr(settings, 'SURVEY_LAUNCH_MESSAGE'):
+            message = settings.SURVEY_LAUNCH_MESSAGE
+        else:
+            message = False
+        return {'date':  d, 'message': message }
     return None
 
 def _get_avatars(with_list=True):
@@ -204,11 +212,8 @@ def _get_group_vaccination(request):
 
 @login_required
 def wait_launch(request):
-    launch_date = getattr(settings, 'SURVEY_LAUNCH_DATE', None)
-    if launch_date:
-        from datetime import datetime
-        launch_date = datetime.strptime(launch_date,'%Y-%m-%d')
-    return render_to_response('survey/wait_launch.html', {'launch_date': launch_date}, context_instance=RequestContext(request))
+    wait_launch = get_wait_launch_context(request)
+    return render_to_response('survey/wait_launch.html',{'wait': wait_launch}, context_instance=RequestContext(request))
 
 @login_required
 def group_management(request):
