@@ -9,7 +9,10 @@
     <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.timeelapsed.js"></script>
     <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.rules.js"></script>
     <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.virtualoptions.js"></script>
-    <script type="text/javascript">$(function() { wok.pollster.createPollsterRuntime(null, {}); })</script>
+    <script type="text/javascript">
+    	var pollster_runtime = null;
+    	$(function() { pollster_runtime = wok.pollster.createPollsterRuntime(null, {'debug': {%if pollster_debug%}1{%else%}0{%endif%}}); })
+	</script>
 {% endblock %}
 
 {% block col1 %}

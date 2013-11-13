@@ -218,6 +218,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
     last_participation_data_json = encoder.encode(last_participation_data)
 
     timestamp_last_fill = None
+    pollster_debug = request.GET.get('pollster_debug', False)
     if last_participation_data:
         # check if the data are from previous year
         data_source = last_participation_data.get('_source_','')
@@ -236,6 +237,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
         "last_participation_data_json": last_participation_data_json,
         "form": form,
         "person": survey_user,
+        "pollster_debug": pollster_debug,
     })
 
 def survey_map(request, survey_shortname, chart_shortname):

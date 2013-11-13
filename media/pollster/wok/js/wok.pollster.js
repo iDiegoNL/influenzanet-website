@@ -329,10 +329,6 @@
                 }
             }
 
-            // Execute sufficient and required rules.
-			if(this.debug) {
-				console.log('Future rules');
-			}
             for (var k in sufficient_ok) {
                 if (sufficient_ok[k][0] === true) {
 					var r = sufficient_ok[k][1];
