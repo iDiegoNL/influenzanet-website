@@ -1972,7 +1972,7 @@ msgstr "le questionnaire hebdomadaire"
 #: .\templates\survey\thanks_profile.html.py:21
 #: .\templates\survey\thanks_profile_sw.html.py:21
 msgid "You can also visit your"
-msgstr ""
+msgstr "Vous pouvez également visiter"
 
 #: .\templates\survey\thanks_profile.html.py:27
 #: .\templates\survey\thanks_profile_sw.html.py:27
