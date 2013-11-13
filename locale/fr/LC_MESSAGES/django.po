@@ -1013,9 +1013,15 @@ msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
 msgstr ""
-"<h3>Vous venez d'obtenir vos premiers badges !</h3>\nIl s'agit d'une nouvelle "
-"fonctionnalité de <b>GrippeNet.fr</b>. Vous pourrez obtenir de nouveaux "
-"badges durant la saison."
+"<h3>Vous venez d'obtenir vos premiers badges !</h3>\nLes badges virtuels sont "
+"une nouvelle fonctionnalité de cette saison 2013-2014. Par la mise en place "
+"des badges, nous avons voulu rendre la participation à GrippeNet.fr plus "
+"ludique, afin de cibler de plus jeunes participants et stimuler davantage "
+"l'adhésion d'un plus grand nombre de personnes au projet. Cette "
+"fonctionnalité n'enlève en rien le sérieux du projet GrippeNet.fr et de votre "
+"participation. N'hésitez pas à nous faire part de votre avis sur cette "
+"fonctionnalité (en utilisant par exemple le bouton commentaire en haut de la "
+"page)."
 
 #: .\templates\dashboard\user_badges.html.py:9
 #, python-format
