@@ -73,6 +73,10 @@
 	margin: 0;
 }
 
+#submenu li:hover a {
+ color: #7AB800;
+}
+
 #submenu li:hover {
  background-color: #FFF;
  color: #7AB800;
