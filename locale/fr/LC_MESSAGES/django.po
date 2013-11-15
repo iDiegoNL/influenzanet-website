@@ -1015,15 +1015,15 @@ msgid ""
 "please visit <a href=\"%(url_group_management)s\">the group management page</"
 "a>"
 msgstr ""
-"Pour gérer les participants enregitrés sur votre compte rendez vous à la "
-"page <a href=\"%(url_group_management)s\"><i class=\"icon icon-users\"></"
-"i>Gérer mes participants</a>"
+"Pour gérer les participants enregistrés sur votre compte rendez vous à la "
+"page <a href=\"%(url_group_management)s\"><i class=\"icon "
+"icon-users\"></i>Gérer mes participants</a>"
 
 #: .\templates\dashboard\household.html.py:3
 #: .\templates\dashboard\index.html.py:13
 msgid "Do you know the menu"
 msgstr ""
-"Cette page est accessible à tout moment lorsque vous être connecté à votre "
+"Cette page est accessible à tout moment lorsque vous êtes connecté à votre "
 "compte par les liens disponibles dans la colonne de droite de cette page "
 "(sous 'Mon espace')."
 
@@ -1033,7 +1033,7 @@ msgid ""
 "To fill surveys your for this participant or for others , please visit <a "
 "href=\"%(url_group_management)s\">the group management page</a>"
 msgstr ""
-"Pour remplir les questionnaire pour les participants de votre compte, "
+"Pour remplir les questionnaires pour les participants de votre compte, "
 "rendez-vous à la page <a href=\"%(url_group_management)s\"><i class=\"icon "
 "icon-users\"></i>Gérer mes participants</a>"
 

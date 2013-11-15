@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from apps.survey.utils import get_db_type
 from apps.survey.models import SurveyUser
 from apps.survey.views import _decode_person_health_status, get_active_survey_user, _get_avatars, is_wait_launch
-from apps.dashboard.models import UserBadge
+from apps.dashboard.models import UserBadge, Badge
 
 from django.http import Http404, HttpResponseRedirect
 
@@ -111,9 +111,11 @@ def index(request):
     
     context['gid'] = global_id
     context['participants'] = participants
+    context['url_group_management'] = reverse('group_management')
     
     return render_template('index', request, context)
     
+@login_required
 def badges(request):
     user_id = request.user.id
     global_id = request.GET.get('gid', None)
@@ -126,3 +128,20 @@ def badges(request):
     get_badges_context(participant, context)
 
     return render_template('ajax_dashboard', request, context)
+
+@login_required
+def badge_disable(request):
+    
+    user = request.user
+    
+    badge = Badge.objects.get(name='disable')
+    participants = _get_participants(request.user)
+    
+    disable_badges = UserBadge.objects.filter(user=user, badge=badge)
+    
+    context = {
+        'participants':participants,
+        'states': disable_badges,
+    }
+    
+    return render_template('disable_badges', request, context)

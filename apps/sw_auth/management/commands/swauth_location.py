@@ -1,6 +1,7 @@
 from optparse import make_option
 from django.core.management.base import CommandError, BaseCommand
-from django.contrib.sites.models import Site
+
+from django.conf import settings
 
 from django.db import connection, transaction
 
