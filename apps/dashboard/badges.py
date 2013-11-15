@@ -13,7 +13,8 @@ DATA_SOURCES_CHOICES = (
   ('loyalty1', 'Loyalty for the 2011-2012 season'),                     
   ('loyalty2', 'Loyalty for the 2012-2013 season'),                     
   ('participation','Participation for the weekly survey'),
-  ('pioneer','First person in town')                      
+  ('pioneer','First person in town'),
+  ('none','No data source (not computed)')                      
 ) 
 
 def loyalty_sql_provider(year, name):
@@ -110,7 +111,6 @@ class DataSource(object):
             logger.debug(query)
         return self._get_row(query)
     
-    
 class BadgeProvider(object):
     """
     Badge provider computes the state of a badge, using a named datasource
@@ -130,7 +130,10 @@ class BadgeProvider(object):
         # register datasources
         for name in DATA_SOURCES_DEFINITIONS:
             definition = DATA_SOURCES_DEFINITIONS[name]
-            ds = DataSource(definition)
+            type = definition['type']
+            ds = None
+            if type == 'sql':
+                ds = DataSource(definition)
             self.sources[name] = ds
      
     def get_for_user(self, name, user):
@@ -188,6 +191,10 @@ class BadgeProvider(object):
          Get a badge state from its data source
         """
         dsname = badge.datasource
+        if dsname == 'none':
+            # Special datasource used for 'fake' badge
+            # That should not been computed by this way 
+            raise NotEvaluableNow()
         # Get the data row from the data source
         if isinstance(attribute_to, User):
             b = self.get_for_user(dsname, attribute_to)

@@ -149,6 +149,10 @@ class UserBadgeManager(models.Manager):
 
         
 class UserBadge(models.Model):
+    """
+     Badges attributed to account user and participant
+     if participant is not set, this is a user account based badge
+    """
     user = models.ForeignKey(User)
     participant = models.ForeignKey(SurveyUser, blank=True, null=True)
     date = models.DateField(auto_now_add=True)
