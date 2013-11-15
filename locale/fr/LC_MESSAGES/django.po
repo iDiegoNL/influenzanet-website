@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-15 15:39+0100\n"
+"POT-Creation-Date: 2013-11-15 18:03+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -494,6 +494,7 @@ msgid "Symptoms survey"
 msgstr "Questionnaire hebdomadaire"
 
 #: .\apps\survey\menu.py:27 .\templates\base\sw_col_right.html.py:19
+#: .\templates\survey\group_management_sw.html.py:5
 msgid "Manage household"
 msgstr "Gérer mes participants"
 
@@ -700,17 +701,17 @@ msgstr ""
 msgid "An InfluenzaNet user"
 msgstr "Un de vos contacts, utilisateur de GrippeNet.fr"
 
-#: .\apps\sw_invitation\views.py:34
+#: .\apps\sw_invitation\views.py:42
 #, python-format
 msgid "\"%s\" is not a valid email address"
 msgstr "\"%s\" n'est pas une adresse email correcte"
 
-#: .\apps\sw_invitation\views.py:39
+#: .\apps\sw_invitation\views.py:47
 #, python-format
 msgid "Invitation sent for \"%s\""
 msgstr "Invitation envoyée pour l'adresse \"%s\""
 
-#: .\apps\sw_invitation\views.py:41
+#: .\apps\sw_invitation\views.py:49
 #, python-format
 msgid "email \"%s\" has already been invited by someone"
 msgstr "l'adresse \"%s\" ne peut pas être invitée car elle est utilisée."
@@ -1016,8 +1017,8 @@ msgid ""
 "a>"
 msgstr ""
 "Pour gérer les participants enregistrés sur votre compte rendez vous à la "
-"page <a href=\"%(url_group_management)s\"><i class=\"icon "
-"icon-users\"></i>Gérer mes participants</a>"
+"page <a href=\"%(url_group_management)s\"><i class=\"icon icon-users\"></"
+"i>Gérer mes participants</a>"
 
 #: .\templates\dashboard\household.html.py:3
 #: .\templates\dashboard\index.html.py:13
@@ -1040,6 +1041,19 @@ msgstr ""
 #: .\templates\dashboard\user_badges.html.py:4
 msgid "Your badges"
 msgstr "Vos badges"
+
+#: .\templates\dashboard\user_badges.html.py:4
+msgid ""
+"This is a new feature of this website. You will win badge during the season."
+msgstr ""
+"Les badges virtuels sont une nouvelle fonctionnalité de cette saison "
+"2013-2014. Par la mise en place des badges, nous avons voulu rendre la "
+"participation à GrippeNet.fr plus ludique, afin de cibler de plus jeunes "
+"participants et stimuler davantage l'adhésion d'un plus grand nombre de "
+"personnes au projet. Cette fonctionnalité n'enlève en rien le sérieux du "
+"projet GrippeNet.fr et de votre participation. N'hésitez pas à nous faire "
+"part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
+"bouton commentaire en haut de la page)."
 
 #: .\templates\dashboard\user_badges.html.py:6
 msgid ""
@@ -1471,8 +1485,8 @@ msgid ""
 "address you submitted. You should be receiving it shortly."
 msgstr ""
 "Nous vous avons envoyé un email contenant votre login et les instructions "
-"pour réinitialiser votre mot de passe si nécessaire. Vous devriez le recevoir "
-"dans peu de temps."
+"pour réinitialiser votre mot de passe si nécessaire. Vous devriez le "
+"recevoir dans peu de temps."
 
 #: .\templates\registration\password_reset_email.html.py:3
 #: .\templates\sw_auth\password_reset_email.html.py:3
@@ -1518,8 +1532,8 @@ msgid ""
 msgstr ""
 "Entrez l'adresse email utilisée pour votre compte ci-dessous, nous vous "
 "enverrons par email votre login et des instructions pour mettre en place un "
-"nouveau mot de passe (Si vous ne connaissez plus cet email, <a "
-"href=\"contact@grippenet.fr\">Contactez nous</a>)."
+"nouveau mot de passe (Si vous ne connaissez plus cet email, <a href="
+"\"contact@grippenet.fr\">Contactez nous</a>)."
 
 #: .\templates\registration\password_reset_form.html.py:14
 #: .\templates\sw_auth\password_reset_form.html.py:14
@@ -1652,11 +1666,6 @@ msgstr "Supprimer le(s) participant(s)"
 #: .\templates\survey\group_management.html.py:90
 msgid "Are you absolutely sure you want to delete this user/these users?"
 msgstr "Etes vous certain de vouloir supprimer ce ou ces participants ?"
-
-#: .\templates\survey\group_management_sw.html.py:5
-#: .\templates\survey\group_management_sw_vacc.html.py:5
-msgid "People"
-msgstr "Mes Participants"
 
 #: .\templates\survey\group_management_sw.html.py:11
 #: .\templates\survey\group_management_sw_vacc.html.py:15
@@ -1877,6 +1886,10 @@ msgstr "Inscrit aux sous-projets :"
 #: .\templates\survey\group_management_sw.html.py:146
 msgid "Delete selected users ?"
 msgstr "Supprimer les participants selectionnés ?"
+
+#: .\templates\survey\group_management_sw_vacc.html.py:5
+msgid "People"
+msgstr "Mes Participants"
 
 #: .\templates\survey\index.html.py:16
 msgid "Survey Form"
@@ -2287,15 +2300,15 @@ msgstr ""
 msgid "add a new email"
 msgstr "Ajouter un email"
 
-#: .\templates\sw_invitation\invite.html.py:26
+#: .\templates\sw_invitation\invite.html.py:27
 msgid "Include your email address in the invitation (anonymous if not checked)"
 msgstr "Mentionner votre adresse email dans le mail envoyé (anonyme sinon)"
 
-#: .\templates\sw_invitation\invite.html.py:31
+#: .\templates\sw_invitation\invite.html.py:33
 msgid "An optional name"
 msgstr "Votre nom (optionnel)"
 
-#: .\templates\sw_invitation\invite.html.py:31
+#: .\templates\sw_invitation\invite.html.py:33
 msgid ""
 "You can also include a name which will be included in the invitation email "
 "(not stored in this website)"
@@ -2303,25 +2316,25 @@ msgstr ""
 "Si vous précisez un nom, il sera inclu dans le mail d'invitation (il ne sera "
 "pas stocké par notre site)."
 
-#: .\templates\sw_invitation\invite.html.py:36
+#: .\templates\sw_invitation\invite.html.py:38
 msgid "Send the invitations"
 msgstr "Envoyer les emails d'invitation"
 
-#: .\templates\sw_invitation\invite.html.py:42
+#: .\templates\sw_invitation\invite.html.py:44
 msgid "Invitations already sent"
 msgstr "Invitations par votre compte GrippeNet.fr"
 
-#: .\templates\sw_invitation\invite.html.py:46
+#: .\templates\sw_invitation\invite.html.py:48
 msgid "invitation you sent has been used"
 msgid_plural "invitations you sent has been used"
 msgstr[0] "invitation envoyée a été utilisée"
 msgstr[1] "invitations envoyées ont été utilisées"
 
-#: .\templates\sw_invitation\invite.html.py:59
+#: .\templates\sw_invitation\invite.html.py:61
 msgid "enter an email"
 msgstr "Entrez une adresse email"
 
-#: .\templates\sw_invitation\invite.html.py:61
+#: .\templates\sw_invitation\invite.html.py:63
 msgid "invitation privacy policy"
 msgstr ""
 "Les adresses email invitées seront conservées durant quelques mois jusqu'a "
