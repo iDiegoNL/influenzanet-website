@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.importlib import import_module
     
 
-def prepare_message(user, key, email, include_email=False, from_name=None, is_secure=True):
+def prepare_message(user, key, email, include_email=False, from_name=None, personnal_text=None, is_secure=True):
     """
         user : the user who made the invitation
         key : key of the user
@@ -34,7 +34,10 @@ def prepare_message(user, key, email, include_email=False, from_name=None, is_se
     if include_email:
         sender += " (%s) " % user.email
     
-    data = { 'email': email, 'key': key, 'url': url, 'sender':sender, 'site': site}
+    if personnal_text:
+        personnal_text = "\n" + personnal_text + "\n\n"
+    
+    data = { 'email': email, 'key': key, 'url': url, 'sender':sender, 'site': site, 'personnal_text': personnal_text}
     data.update(site_info)
     
     template = conf.SW_INVITATION_EMAIL_INVITATION

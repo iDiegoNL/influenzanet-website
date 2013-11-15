@@ -7,6 +7,8 @@
 .invited td { font-size: .8em; border: 1px solid  #EEE; border-width: 1px 0 1px 0; padding: .5em  }
 .invited td.date { font-size: .8em }
 
+#personnal { width: 40em; height: 3em; line-height:1em }
+
 ul#email-fields {
 	margin: 0; 
 	padding: 0;
