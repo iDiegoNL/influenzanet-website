@@ -1,2 +1,3 @@
 {% load i18n %}
-{% trans "Here you will find results for your household" %}
+<p>{% trans "Here you will find results for your household" %}</p>
+<p>{% blocktrans %}To manage your household, view or modify the participants of your household, please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p>

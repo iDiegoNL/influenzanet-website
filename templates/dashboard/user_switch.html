@@ -1,7 +1,7 @@
 <div id="userswitch">{% load i18n %}
     <ul>
     	<li class="nav-item household{% if not gid%} selected{%endif%}">
-    		<a href="?household"><span class="avatar avatar-default">&nbsp;</span>{%trans "Household"%}</a>
+    		<a href="?household"><span class="avatar avatar-default">&nbsp;</span>{%trans "Everybody"%}</a>
 		</li>
         {% for global_id, row in participants.items %} 
         <li class="nav-item survey-user {% if global_id == gid %}selected{% endif %}">

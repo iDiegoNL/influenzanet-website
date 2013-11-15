@@ -42,6 +42,11 @@
  border: 2px solid #FF8C00;
 }
 
+#colmask .to-fill-first a.fill-button {
+	background-color: #FF8C00;
+	border: 1px solid  #FF8C00;
+}
+
 #story td {
 	font-size: .9em;
 	text-align: center;

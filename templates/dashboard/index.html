@@ -9,8 +9,8 @@
 <h1>{% trans "My results" %}</h1>
 {% include "dashboard/user_switch.html" %}
 {% include "base/messages.html" %}
-
 {% if gid %}
+<p>{% blocktrans %}To fill surveys your for this participant or for others , please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p></p>
 {% include "dashboard/user_history.html" with rows=history %}
 {% if use_badge %}
 <div id="user-badges"></div>

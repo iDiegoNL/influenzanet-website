@@ -43,6 +43,10 @@
 	width: 100%; 
 }
 
+.chart-dashboard-history th {
+	font-size: .8em;
+}
+
 .chart-dashboard-history td { 
 	padding: 5px; 
 	vertical-align: middle; 

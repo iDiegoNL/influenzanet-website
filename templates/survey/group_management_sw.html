@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block col1 %}
-<h1>{% trans "People" %}</h1>
+<h1>{% trans "Manage household" %}</h1>
 
 {% include "base/messages.html" %}
 
@@ -15,8 +15,7 @@
 <a class="button button-mini " rel="facebox" href="#page-help" data-facebox-height="450" data-facebox-width="750" title="{% trans "Help about this page"%}"><span class="icon icon-help-white"></span>{% trans "Help about this page"%}</a>
 {%endif%}
 {%if not wait_launch%} {# Do not check in wait launch context #}
-	{%for p in persons%}{%if not p.last_intake%}<p class="alert alert-warning"><span class="icon icon-warning">&nbsp;</span>{% blocktrans with name=p.name %}Please fill the background intake for the user {{name}} first{%endblocktrans%}</p>{%endif%}
-{%endfor%}
+	<p class="alert alert-warning" id="fill-intake-warning" style="display:none"><span class="icon icon-warning">&nbsp;</span>{%trans "Some users do not have a background questionnaire, please fill this survey for them"%}</p>
 {%endif%}
 <form action="" method="POST" id="users_form">{% csrf_token %}
 <table border="0" id="people-table">
@@ -44,7 +43,7 @@
 		{% trans "The project is not started yet for this season" %}
 	{%else%}
 	<td {% if not person.last_intake %} class="to-fill-first tooltip-alert" title="{% trans "Fill the intake survey for this participant to start his participation"%}"{% endif %}>
-		<a href="{{ person.get_profile_url }}" class="button fill-button survey-intake" id="person-{{person.pk}}-intake"><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
+		<a href="{{ person.get_profile_url }}" class="button fill-button survey-intake" id="person-{{person.pk}}-intake"><span class="icon icon-survey">&nbsp;</span>{% if person.last_intake %}Modifier{%else%}{% trans "Fill this survey" %}{% endif %}</a>
 		{% if person.last_intake %}
 		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{% blocktrans with last=person.last_intake|timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 		{%else%}
@@ -108,7 +107,10 @@
 var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
 	
 $(function() {
-	
+	var fill_intake_warning = $('.to-fill-first');
+	if(fill_intake_warning.length > 0) {
+		$('#fill-intake-warning').show();
+	}
 	
 	$.getJSON('/cohort/subscriptions', function(data) {
 		var subscribers = data.subscribers;
@@ -126,6 +128,7 @@ $(function() {
 			}
 		}
 	});
+
 
 	if(typeof(init_story) != "undefined") {
 		init_story();

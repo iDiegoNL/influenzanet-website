@@ -67,6 +67,18 @@
 	font-weight: bold;
 }
 
+.user-connected #colright {
+	margin-left: -520px;
+}
+
+.user-connected #colleftpad {
+	margin-left: 216px;
+}
+
+.user-connected #col3 {
+	width: 185px;
+}
+
 /*
  * Logged user box
  */
