@@ -22,9 +22,24 @@ $(function() {
 		mask = 0; // disable expose mask on ie
 	}
 	$('#facebox').overlay({ top: '10%', mask: mask, closeOnClick: false});
-	$('a[rel=facebox]').click(function(ev){
+	$.tools.tooltip.conf.tipClass = "hovertip";
+	$.tools.tooltip.conf.layout = '<div><div class="tooltip-arrow"></div></div>';
+	$.tools.tooltip.conf.offset = [-10, 0];
+	initUI();
+	var from = escape(document.location.pathname);
+	$('#feedback-link').attr('href', '/feedback?from='+from);
+});
+
+function initUI(container) {
+	if(container) {
+		container = container + ' ';
+	} else {
+		container = '';
+	}
+	console.log('initUI '+container);
+	$(container + 'a[rel=facebox]').click(function(ev){
 		var url = $(this).attr('href');
-		console.log('facebox');
+		//console.log('facebox');
 		var width = $(this).attr('data-facebox-width');
 		var height = $(this).attr('data-facebox-height');
 		var o = {};
@@ -48,9 +63,9 @@ $(function() {
 		}
 		return false;
 	});
-	$('a[rel=facebox-iframe]').click(function(ev){
+	$(container +'a[rel=facebox-iframe]').click(function(ev){
 		var url = $(this).attr('href');
-		console.log('facebox-iframe');
+		//console.log('facebox-iframe');
 		var width = $(this).attr('data-facebox-width');
 		var style = $(this).attr('data-iframe-style');
 		var opt = {};
@@ -61,16 +76,10 @@ $(function() {
 		return false;
 	});
 	
-	$.tools.tooltip.conf.tipClass = "hovertip";
-	$.tools.tooltip.conf.layout = '<div><div class="tooltip-arrow"></div></div>';
-	$.tools.tooltip.conf.offset = [-10, 0];
-	$('.tooltip').tooltip();
-	$('.tooltip-alert').tooltip({tipClass:'hovertip hovertip-alert'});
-	var from = escape(document.location.pathname);
-	$('#feedback-link').attr('href', '/feedback?from='+from);
-	
-	
-});
+	$(container +'.tooltip').tooltip();
+	$(container +'.tooltip-alert').tooltip({tipClass:'hovertip hovertip-alert'});
+
+}
 
 function show_facebox(options) {
 	options = options || {};
