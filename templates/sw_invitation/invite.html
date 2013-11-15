@@ -19,6 +19,7 @@
 			<li id="add-row"><span id="add-button"><img src="{{ MEDIA_URL }}sw_invitation/mail-add.png" class="icon"/>{%trans "add a new email" %}</span></li>
 		</ul>
 		<input type="hidden" name="emails" id="emails" value=""/>
+		<div id="min-email" class="error" style="display:none">{% trans "Enter at least one email"%}</div>
 		</td>
 	</tr>
 	{% if not anonymous %}
@@ -34,13 +35,24 @@
 		</td>
 	</tr>
 	<tr>
+		<td class="options">
+			<label for="name">{%trans "You can also include a personnal text (not stored in this website)" %}</label>
+			<textarea name="personnal" id="personnal" placeholder="{% trans "An optional personnal text"%}"></textarea>
+		</td>
+	</tr>
+	<tr>
 		<td>
 			<button type="button" class="button" id="send-button">{%trans "Send the invitations"%}</button>	
+			<button type="button" class="button" id="preview-button">{%trans "Preview the invitation email"%}</button>
 		</td>
 	</tr>
 	</table>
 </form>
-
+<div id="preview" style="display: none">
+	<div id="preview-header">{%trans "Email invitation preview" %}</div>
+	<div class="close">{%trans "Close the preview" %}</div>
+	<div id="preview-contents"></div>
+</div>
 <h4>{%trans "Invitations already sent"%}</h4>
 {% if usages %}
 <p>
@@ -63,14 +75,19 @@
 <p class="info">{%trans "invitation privacy policy"%}</p>
 <script>
 $(function() {
-	
 	function add_row() {
 		var row = $('#row-template').html();
 		$('#add-row').before(row);
 	}
 	
 	$('#add-button').click(add_row);
-	$('#send-button').click(function(e){
+	
+	$('#preview .close').click(function(){
+		$('#preview').hide();
+	});
+	
+	function prepare_form_data() {
+		$('#min-email').hide();
 		var emails = [];
 		$('#email-fields .email-field').each(function(){
 			var email = $(this).val();
@@ -78,15 +95,42 @@ $(function() {
 				emails.push(email);
 			}
 		})
-		console.log(emails);
-		emails = emails.join(',');
-		$('#emails').val(emails);
-		$('#form-invitation').submit();
+		var n = emails.length;
+		if(n > 0) {
+			emails = emails.join(',');
+			$('#emails').val(emails);
+		} else {
+			$('#min-email').show();
+		}
+		return n;
+	}
+	
+	$('#send-button').click(function(){
+		if( prepare_form_data() ) {
+			$('#form-invitation').submit();
+		}
+	});
+	
+	$('#preview-button').click(function() {
+		if(!prepare_form_data()) {
+			return false;
+		}
+		var data = $('#form-invitation').serialize();
+		$.ajax({
+			url: '{%url invite_preview%}',
+			type: 'POST',
+			data: data,
+			dataType:'html',
+			success: function(response) {
+				$('#preview-contents').html(response);
+				$('#preview').show();
+			}
+		})
 	});
 	
 	// add first row
 	add_row();
-})	
+});
 </script>
 {% endblock %}
 

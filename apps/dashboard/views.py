@@ -140,6 +140,7 @@ def badge_disable(request):
     disable_badges = UserBadge.objects.filter(user=user, badge=badge)
     
     context = {
+        'avatars' : _get_avatars(with_list=False),
         'participants':participants,
         'states': disable_badges,
     }
