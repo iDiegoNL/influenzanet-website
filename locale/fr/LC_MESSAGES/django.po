@@ -975,7 +975,7 @@ msgstr "S'inscrire"
 
 #: .\templates\base\forum.html.py:87 .\templates\base\sw_col_right.html.py:9
 msgid "Forgot password?"
-msgstr "Mot de passe oublié ?"
+msgstr "Login ou mot de passe oublié ?"
 
 #: .\templates\base\forum.html.py:98 .\templates\search\search.html.py:9
 msgid "Search"
@@ -1323,7 +1323,7 @@ msgstr ""
 #: .\templates\registration\boxbase.html.py:10
 #: .\templates\sw_auth\boxbase.html.py:11 .\templates\sw_auth\login.html.py:14
 msgid "Forgot your password?"
-msgstr "Vous avez oublié votre mot de passe ?"
+msgstr "Vous avez oublié votre login ou votre mot de passe ?"
 
 #: .\templates\registration\index.html.py:8
 msgid "Change Password"
@@ -1470,8 +1470,9 @@ msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should be receiving it shortly."
 msgstr ""
-"Nous vous avons envoyé un email contenant les instructions pour "
-"réinitialiser votre mot de passe. Vous devriez le recevoir dans peu de temps."
+"Nous vous avons envoyé un email contenant votre login et les instructions "
+"pour réinitialiser votre mot de passe si nécessaire. Vous devriez le recevoir "
+"dans peu de temps."
 
 #: .\templates\registration\password_reset_email.html.py:3
 #: .\templates\sw_auth\password_reset_email.html.py:3
@@ -1515,8 +1516,10 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Entrez votre adresse email ci-dessous, nous vous enverrons par email des "
-"instructions pour mettre en place un nouveau mot de passe."
+"Entrez l'adresse email utilisée pour votre compte ci-dessous, nous vous "
+"enverrons par email votre login et des instructions pour mettre en place un "
+"nouveau mot de passe (Si vous ne connaissez plus cet email, <a "
+"href=\"contact@grippenet.fr\">Contactez nous</a>)."
 
 #: .\templates\registration\password_reset_form.html.py:14
 #: .\templates\sw_auth\password_reset_form.html.py:14
@@ -1526,7 +1529,7 @@ msgstr "Adresse email :"
 #: .\templates\registration\password_reset_form.html.py:15
 #: .\templates\sw_auth\password_reset_form.html.py:15
 msgid "Reset my password"
-msgstr "Réinitialiser mon mot de passe"
+msgstr "Recevoir le mail de réinitalisation"
 
 #: .\templates\registration\registration_complete.html.py:4
 #: .\templates\sw_auth\registration_complete.html.py:4
