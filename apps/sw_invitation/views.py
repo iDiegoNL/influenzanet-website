@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from apps.sw_invitation.models import InvitationUsage
 from .utils import send_invitation
 from . import settings as conf
+from apps.sw_auth.models import FakedUser
 
 def render_template(name, request, context=None):
     return render_to_response('sw_invitation/'+name+'.html',
@@ -18,6 +19,10 @@ def render_template(name, request, context=None):
 @login_required
 def invite(request):
     user = request.user
+    if isinstance(user, FakedUser):
+        anonymous = False
+    else:
+        anonymous = True
     # get invitations sent
     invitations = Invitation.objects.all().filter(user=user)
     if invitations.count() > conf.SW_INVITATION_MAX:
@@ -26,7 +31,10 @@ def invite(request):
     if request.method == 'POST':
         emails = request.POST['emails']
         from_name = request.POST['name']
-        include_email = int(request.POST.get('include_email', 0))
+        if not anonymous:
+            include_email = int(request.POST.get('include_email', 0))
+        else:
+            include_email = False
         emails = emails.replace(' ', '') 
         emails = emails.split(',')
         for email in emails:
@@ -41,7 +49,7 @@ def invite(request):
                     messages.add_message(request, messages.ERROR, _(u'email "%s" has already been invited by someone') % email)
     
     usages = InvitationUsage.objects.filter(user=user).count()
-    return render_template('invite', request, {'user':user,'from_name':from_name, 'invitations':invitations, 'usages': usages})      
+    return render_template('invite', request, {'user':user,'from_name':from_name, 'invitations':invitations, 'usages': usages, 'anonymous': anonymous})      
         
         
     

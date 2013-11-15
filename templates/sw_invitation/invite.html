@@ -21,11 +21,13 @@
 		<input type="hidden" name="emails" id="emails" value=""/>
 		</td>
 	</tr>
+	{% if not anonymous %}
 	<tr>
 		<td class="options">
 			<input type="checkbox" name="include_email" value="1" id="include_email"/><label for="include_email">{%trans "Include your email address in the invitation (anonymous if not checked)" %} ({{user.email}})</label>
 		</td>
 	</tr>
+	{% endif %}
 	<tr>
 		<td class="options">
 			<input type="text" name="name" value="{{from_name}}" id="name" placeholder="{% trans "An optional name"%}"/><label for="name">{%trans "You can also include a name which will be included in the invitation email (not stored in this website)" %}</label>
