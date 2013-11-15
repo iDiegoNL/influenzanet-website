@@ -27,3 +27,39 @@ ul#email-fields {
 	vertical-align:middle;
 	padding-right: .2em;
 }
+
+#preview {
+	margin: .5em;
+	padding: .3em;
+	border: 3px solid #EEE;
+	position: relative;
+}
+
+#preview-header {
+	padding: .5em;
+	font-size: 1.1em;
+	border-bottom: 1px solid #EEE;
+}
+
+#preview-contents {
+	font-size: .9em;
+	padding: .5em;
+}
+
+#preview .close {
+	text-align: right;
+	font-size: .8em;
+	position: absolute;
+	top: .2em;
+	right: .2em;
+	cursor: hand;
+}
+
+#preview .close:hover {
+	color: #EE3934;
+}
+
+#min-email {
+	font-size: .9em;
+	color: red;
+}

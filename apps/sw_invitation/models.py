@@ -67,7 +67,7 @@ class InvitationKey(models.Model):
 
 class InvitationManager(models.Manager):
     
-    def create_key(self, user):
+    def create_invitation_key(self, user):
         """
         Try to set a random key for a user
         To limit collision, can try several times
@@ -90,16 +90,16 @@ class InvitationManager(models.Manager):
             --i
         return None
 
-    def get_key(self, user):
+    def get_invitation_key(self, user):
         try:
             key = InvitationKey.objects.get(user=user)
         except InvitationKey.DoesNotExist:
-            key = self.create_key(user)
+            key = self.create_invitation_key(user)
         
         return key
     
     def invite(self, user, email):
-        key = self.get_key(user)
+        key = self.get_invitation_key(user)
         email = email.lower()
         
         try:

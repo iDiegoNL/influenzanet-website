@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.importlib import import_module
     
 
-def send_invitation(user, key, email, include_email=False, from_name=None, is_secure=True):
+def prepare_message(user, key, email, include_email=False, from_name=None, is_secure=True):
     """
         user : the user who made the invitation
         key : key of the user
@@ -46,11 +46,18 @@ def send_invitation(user, key, email, include_email=False, from_name=None, is_se
     html_content = render_to_string(template +'.html', dictionary=data)
     text_content = strip_tags(html_content)
 
+    return {
+        'subject': subject,
+        'html': html_content,
+        'text': text_content,
+    }
+
+def send_message(email, message):
     msg = EmailMultiAlternatives()
-    msg.subject = subject
-    msg.body = text_content
+    msg.subject = message['subject']
+    msg.body = message['text']
     msg.to = [email]
-    msg.attach_alternative(html_content, "text/html")
+    msg.attach_alternative(message['html'], "text/html")
     msg.send()
     return True
 
