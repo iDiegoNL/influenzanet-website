@@ -44,7 +44,7 @@ ul#email-fields {
 }
 
 #preview-contents {
-	font-size: .9em;
+	font-size: 11px;
 	padding: .5em;
 }
 
@@ -55,10 +55,6 @@ ul#email-fields {
 	top: .2em;
 	right: .2em;
 	cursor: hand;
-}
-
-#preview .close:hover {
-	color: #EE3934;
 }
 
 #min-email {

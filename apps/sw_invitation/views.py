@@ -52,8 +52,6 @@ def invite(request):
     from_name = ''
     if request.method == 'POST':
         emails, from_name, include_email, personnal_text = parse_form(request)
-        emails = emails.replace(' ', '') 
-        emails = emails.split(',')
         for email in emails:
                 try:
                     key = Invitation.objects.invite(user, email)

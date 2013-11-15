@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-15 18:03+0100\n"
+"POT-Creation-Date: 2013-11-15 21:31+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -701,17 +701,17 @@ msgstr ""
 msgid "An InfluenzaNet user"
 msgstr "Un de vos contacts, utilisateur de GrippeNet.fr"
 
-#: .\apps\sw_invitation\views.py:42
+#: .\apps\sw_invitation\views.py:40
 #, python-format
 msgid "\"%s\" is not a valid email address"
 msgstr "\"%s\" n'est pas une adresse email correcte"
 
-#: .\apps\sw_invitation\views.py:47
+#: .\apps\sw_invitation\views.py:62
 #, python-format
 msgid "Invitation sent for \"%s\""
 msgstr "Invitation envoyée pour l'adresse \"%s\""
 
-#: .\apps\sw_invitation\views.py:49
+#: .\apps\sw_invitation\views.py:64
 #, python-format
 msgid "email \"%s\" has already been invited by someone"
 msgstr "l'adresse \"%s\" ne peut pas être invitée car elle est utilisée."
@@ -1046,8 +1046,8 @@ msgstr "Vos badges"
 msgid ""
 "This is a new feature of this website. You will win badge during the season."
 msgstr ""
-"Les badges virtuels sont une nouvelle fonctionnalité de cette saison "
-"2013-2014. Par la mise en place des badges, nous avons voulu rendre la "
+"Les badges virtuels sont une nouvelle fonctionnalité de cette saison 2013-"
+"2014. Par la mise en place des badges, nous avons voulu rendre la "
 "participation à GrippeNet.fr plus ludique, afin de cibler de plus jeunes "
 "participants et stimuler davantage l'adhésion d'un plus grand nombre de "
 "personnes au projet. Cette fonctionnalité n'enlève en rien le sérieux du "
@@ -2234,6 +2234,7 @@ msgstr "Retourner à la page de gestion de mon foyer"
 msgid ""
 "Hi,<br><br>\n"
 "%(sender)s wants to invite you to register in our website.<br>\n"
+"%(personnal)s\n"
 "If you are interested, you can register to the website by using the "
 "following adress:<br><br>\n"
 "<a href=\"%(url)s\">%(url)s</a><br><br>\n"
@@ -2241,33 +2242,33 @@ msgid ""
 "telling people to\n"
 "register with the membership code : <b>%(key)s</b>\n"
 msgstr ""
-"Bonjour,<br><br>\n"
-"%(sender)s est acteur de la surveillance de la grippe en France par le biais "
-"de GrippeNet.fr et souhaite vous inviter à participer à ce projet.<br><br>\n"
-"Voici quelques explications :<br><br>\n"
-"GrippeNet.fr  est un nouveau dispositif de surveillance de la grippe sur "
-"Internet. Cette étude est ouverte à la population générale résidant en "
-"France métropolitaine. Chacun est invité à participer à GrippeNet.fr de "
-"façon volontaire, anonyme, quel que soit son état de santé (peu sensible aux "
-"infections hivernales ou souvent malade en hiver), son âge, son métier, etc. "
-"Vous deviendrez vous aussi acteur de la surveillance de la grippe en France. "
-"<br><br>\n"
-"\n"
-"Si vous souhaitez vous inscrire cliquez sur le lien ci-dessous :<br><br>\n"
-"<a href=\"%(url)s\">%(url)s</a><br><br>\n"
-"\n"
-"Vous pouvez également aider la personne qui vous invite à parrainer d'autres "
-"personnes en transférant ce mail ou en leur indiquant d'utiliser le code de "
-"parrainage suivant lors de leur inscription <b>%(key)s</b>.<br><br>\n"
-"Nous vous remercions d’avance de l’intérêt que vous porterez à ce projet,"
-"<br><br>\n"
-"Bien cordialement,<br><br>\n"
-"L’équipe GrippeNet.fr.<br>\n"
-"<a href=\"http://www.grippenet.fr/\">visitez GrippeNet.fr</a><br>\n"
-"Contactez nous à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet."
-"fr</a>\n"
-"\n"
-"\n"
+"Bonjour,<br><br>\n%(sender)s est acteur de la surveillance de la grippe en "
+"France par le biais de <em>GrippeNet.fr</em> et souhaite vous inviter à "
+"participer à ce projet de surveillance et de "
+"recherche.<br>\n%(personnal)s\n<em>GrippeNet.fr</em> est une étude mise en "
+"place par une collaboration d'organismes publiques : l'Institut national de "
+"la santé et de la recherche médicale (Inserm), l'Université Pierre et Marie "
+"Curie (UPMC) et l'Institut de veille sanitaire (InVS). Elle est financée par "
+"fonds publiques provenant de ces institutions et de l'Agence Nationale de la "
+"Recherche.<br><br>\n\n<b>Quelques mots sur <em>GrippeNet.fr</em></b> "
+":<br>\n<em>GrippeNet.fr</em> est un nouveau dispositif de surveillance de la "
+"grippe en population générale sur Internet. Cette étude est ouverte à tous "
+"les résidents de France métropolitaine. Chacun est invité à participer à "
+"<em>GrippeNet.fr</em> de façon volontaire, anonyme, quel que soit son état de "
+"santé (peu sensible aux infections hivernales ou souvent malade en hiver), "
+"son âge, son métier, etc. Vous deviendrez vous aussi acteur de la "
+"surveillance de la grippe en France.<br><br>\n\nSi vous souhaitez vous "
+"inscrire cliquez sur le lien ci-dessous :<br><br>\n<a "
+"href=\"%(url)s\">%(url)s</a><br><br>\n\nN'hésitez pas aussi à consulter notre "
+"site internet <a href=\"https://www.grippenet.fr\">www.grippenet.fr</a> pour "
+"plus d'information.\n\nVous pouvez également aider la personne qui vous "
+"invite à parrainer d'autres personnes en transférant ce mail ou en leur "
+"indiquant d'utiliser le code de parrainage suivant lors de leur inscription "
+"<b>%(key)s</b>.<br><br>\nNous vous remercions d’avance de l’intérêt que vous "
+"porterez à ce projet,<br><br>\nBien cordialement,<br><br>\nL’équipe "
+"<em>GrippeNet.fr</em>.<br>\n<a href=\"https://www.grippenet.fr/\">visitez "
+"GrippeNet.fr</a><br>\nContactez nous à <a "
+"href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>\n"
 
 #: .\templates\sw_invitation\invitation_email_subject.txt.py:1
 msgid "You have been invited to InfluenzaNet"
@@ -2300,15 +2301,19 @@ msgstr ""
 msgid "add a new email"
 msgstr "Ajouter un email"
 
-#: .\templates\sw_invitation\invite.html.py:27
+#: .\templates\sw_invitation\invite.html.py:22
+msgid "Enter at least one email"
+msgstr "Entrez au moins une adresse e-mail"
+
+#: .\templates\sw_invitation\invite.html.py:28
 msgid "Include your email address in the invitation (anonymous if not checked)"
 msgstr "Mentionner votre adresse email dans le mail envoyé (anonyme sinon)"
 
-#: .\templates\sw_invitation\invite.html.py:33
+#: .\templates\sw_invitation\invite.html.py:34
 msgid "An optional name"
 msgstr "Votre nom (optionnel)"
 
-#: .\templates\sw_invitation\invite.html.py:33
+#: .\templates\sw_invitation\invite.html.py:34
 msgid ""
 "You can also include a name which will be included in the invitation email "
 "(not stored in this website)"
@@ -2316,25 +2321,47 @@ msgstr ""
 "Si vous précisez un nom, il sera inclu dans le mail d'invitation (il ne sera "
 "pas stocké par notre site)."
 
-#: .\templates\sw_invitation\invite.html.py:38
+#: .\templates\sw_invitation\invite.html.py:39
+msgid "You can also include a personnal text (not stored in this website)"
+msgstr ""
+"Vous pouvez inclure un texte personnel dans le mail d'invitation (il ne sera "
+"pas stocké par notre site)"
+
+#: .\templates\sw_invitation\invite.html.py:40
+msgid "An optional personnal text"
+msgstr "Un texte optionnel"
+
+#: .\templates\sw_invitation\invite.html.py:45
 msgid "Send the invitations"
 msgstr "Envoyer les emails d'invitation"
 
-#: .\templates\sw_invitation\invite.html.py:44
+#: .\templates\sw_invitation\invite.html.py:46
+msgid "Preview the invitation email"
+msgstr "Voir un aperçu de l'email d'invitation"
+
+#: .\templates\sw_invitation\invite.html.py:52
+msgid "Email invitation preview"
+msgstr "Aperçu de l'email d'invitation"
+
+#: .\templates\sw_invitation\invite.html.py:53
+msgid "Close the preview"
+msgstr "Masquer cet aperçu"
+
+#: .\templates\sw_invitation\invite.html.py:56
 msgid "Invitations already sent"
 msgstr "Invitations par votre compte GrippeNet.fr"
 
-#: .\templates\sw_invitation\invite.html.py:48
+#: .\templates\sw_invitation\invite.html.py:60
 msgid "invitation you sent has been used"
 msgid_plural "invitations you sent has been used"
 msgstr[0] "invitation envoyée a été utilisée"
 msgstr[1] "invitations envoyées ont été utilisées"
 
-#: .\templates\sw_invitation\invite.html.py:61
+#: .\templates\sw_invitation\invite.html.py:73
 msgid "enter an email"
 msgstr "Entrez une adresse email"
 
-#: .\templates\sw_invitation\invite.html.py:63
+#: .\templates\sw_invitation\invite.html.py:75
 msgid "invitation privacy policy"
 msgstr ""
 "Les adresses email invitées seront conservées durant quelques mois jusqu'a "
