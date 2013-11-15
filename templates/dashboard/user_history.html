@@ -12,6 +12,7 @@
         <div class="health-status">
             <span>{{ row.timestamp|timesince }}</span><br />
             <img src="/media/survey/img/chart-{{ row.status }}.png" title="{{ row.diag }}" class="tooltip"/>
+			<span class="diag">{{row.diag}}</span>
         </div>
     </td>
     {% endfor %}

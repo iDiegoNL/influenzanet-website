@@ -1,7 +1,7 @@
 {%load i18n %}
 {% if badges|length > 0 %}
 <div class="chart-dashboard-badges dashboard">
-    <h3>{% trans "Your badges" %}:</h3>
+    <h3>{% trans "Your badges" %}:<span class="tooltip icon icon-tip" title="{%trans "Les badges virtuels sont une nouvelle fonctionnalité de cette saison 2013-2014. Par la mise en place des badges, nous avons voulu rendre la participation à GrippeNet.fr plus ludique, afin de cibler de plus jeunes participants et stimuler davantage l'adhésion d'un plus grand nombre de personnes au projet. Cette fonctionnalité n'enlève en rien le sérieux du projet GrippeNet.fr et de votre participation. N'hésitez pas à nous faire part de votre avis sur cette fonctionnalité (en utilisant par exemple le bouton commentaire en haut de la page)."%}"></span></h3>
 	{% if new_badges.first %}
 	<div id="first-badge" style="display:none"><img src="{{MEDIA_URL}}sw/badge32.png" class="icon icon-32"/>{%trans "It's your first badge ! This is a new feature of this website. You will win badge during the season." %}</div>
 	{% endif %}
@@ -13,7 +13,7 @@
 	  {%if user_badge.state %}
 	    {% with badge=user_badge.badge_ %}
 	  	<div class="badge{% if badge.id in new_badges.participant %} badge-new{%endif%}">
-		<img src="{{ MEDIA_URL }}badges/64/{{badge.name}}.png" title="{{ badge.description }}"/>
+		<img src="{{ MEDIA_URL }}badges/64/{{badge.name}}.png" title="{{ badge.description }}" class="tooltip"/>
 		<div class="badge-label">{{ badge.label|linebreaksbr }}</div>
 		</div>
 	  	{% endwith %}
@@ -24,7 +24,7 @@
     </div>
 </div>
 <script type="text/javascript">
-$('.badges img').tooltip();
+$('.chart-dashboard-badges .tooltip').tooltip();
 var $e = $('#first-badge');
 $e.attr('title', $e.html());
 $e.empty();
