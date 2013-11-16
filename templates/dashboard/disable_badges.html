@@ -1,0 +1,20 @@
+<h2>Désactiver les badges</h2>
+<p>Il vous est possible de désactiver cette fonctionnalité sur les pages de résultats de votre compte pour un ou plusieurs participants</p>
+<h3>Masquer les badges pour :</h3>
+<form method="post" action="{% url dashboard_badges_disable %}">
+{% csrf_token %}
+<ul>
+	<li class="household">
+	<input type="checkbox" name="disable" value="0" id="check-disable-household" {%if 0 in disabled %}checked="checked"{%endif%}>
+	<label for="check-disable-household">{% if avatars %}<span class="avatar avatar-default">&nbsp;</span>{% endif %}La page "Tous"</label>
+	</li>
+	
+{% for gid, participant in participants.items %}
+	<li>
+	 <input type="checkbox" name="disable" value="{{ participant.id }}" id="check-disable-{{participant.id}}" {%if participant.id in disabled %}checked="checked"{%endif%}>
+	 <label for="check-disable-{{participant.id}}">{% if avatars %}<img src="{{avatars.url}}{{participant.avatar}}.png" class="avatar"/>{% endif %}{{participant.name}}</label>
+	</li>
+{% endfor %}
+</ul>
+<button type="submit" class="button">Valider</button>
+</form>

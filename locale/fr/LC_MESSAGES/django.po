@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-15 21:31+0100\n"
+"POT-Creation-Date: 2013-11-16 10:22+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -706,12 +706,12 @@ msgstr "Un de vos contacts, utilisateur de GrippeNet.fr"
 msgid "\"%s\" is not a valid email address"
 msgstr "\"%s\" n'est pas une adresse email correcte"
 
-#: .\apps\sw_invitation\views.py:62
+#: .\apps\sw_invitation\views.py:60
 #, python-format
 msgid "Invitation sent for \"%s\""
 msgstr "Invitation envoyée pour l'adresse \"%s\""
 
-#: .\apps\sw_invitation\views.py:64
+#: .\apps\sw_invitation\views.py:62
 #, python-format
 msgid "email \"%s\" has already been invited by someone"
 msgstr "l'adresse \"%s\" ne peut pas être invitée car elle est utilisée."
@@ -1038,11 +1038,22 @@ msgstr ""
 "rendez-vous à la page <a href=\"%(url_group_management)s\"><i class=\"icon "
 "icon-users\"></i>Gérer mes participants</a>"
 
-#: .\templates\dashboard\user_badges.html.py:4
+#: .\templates\dashboard\user_badges.html.py:3
+#: .\templates\dashboard\user_badges.html.py:8
 msgid "Your badges"
 msgstr "Vos badges"
 
 #: .\templates\dashboard\user_badges.html.py:4
+#, fuzzy
+msgid "Badge feature is disabled for this participant"
+msgstr "Les badges sont désactivés pour ce participant"
+
+#: .\templates\dashboard\user_badges.html.py:4
+#, fuzzy
+msgid "Reactivate this feature"
+msgstr "Réactivez-les en cliquant ici"
+
+#: .\templates\dashboard\user_badges.html.py:8
 msgid ""
 "This is a new feature of this website. You will win badge during the season."
 msgstr ""
@@ -1055,7 +1066,12 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:6
+#: .\templates\dashboard\user_badges.html.py:8
+#, fuzzy
+msgid "Disable this feature"
+msgstr "Désactiver les badges"
+
+#: .\templates\dashboard\user_badges.html.py:10
 msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
@@ -1070,7 +1086,7 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:9
+#: .\templates\dashboard\user_badges.html.py:13
 #, python-format
 msgid "You won a new badge"
 msgid_plural "You won %(counter)s new badges"
@@ -2242,33 +2258,42 @@ msgid ""
 "telling people to\n"
 "register with the membership code : <b>%(key)s</b>\n"
 msgstr ""
-"Bonjour,<br><br>\n%(sender)s est acteur de la surveillance de la grippe en "
-"France par le biais de <em>GrippeNet.fr</em> et souhaite vous inviter à "
-"participer à ce projet de surveillance et de "
-"recherche.<br>\n%(personnal)s\n<em>GrippeNet.fr</em> est une étude mise en "
-"place par une collaboration d'organismes publiques : l'Institut national de "
-"la santé et de la recherche médicale (Inserm), l'Université Pierre et Marie "
-"Curie (UPMC) et l'Institut de veille sanitaire (InVS). Elle est financée par "
-"fonds publiques provenant de ces institutions et de l'Agence Nationale de la "
-"Recherche.<br><br>\n\n<b>Quelques mots sur <em>GrippeNet.fr</em></b> "
-":<br>\n<em>GrippeNet.fr</em> est un nouveau dispositif de surveillance de la "
-"grippe en population générale sur Internet. Cette étude est ouverte à tous "
-"les résidents de France métropolitaine. Chacun est invité à participer à "
-"<em>GrippeNet.fr</em> de façon volontaire, anonyme, quel que soit son état de "
-"santé (peu sensible aux infections hivernales ou souvent malade en hiver), "
-"son âge, son métier, etc. Vous deviendrez vous aussi acteur de la "
-"surveillance de la grippe en France.<br><br>\n\nSi vous souhaitez vous "
-"inscrire cliquez sur le lien ci-dessous :<br><br>\n<a "
-"href=\"%(url)s\">%(url)s</a><br><br>\n\nN'hésitez pas aussi à consulter notre "
-"site internet <a href=\"https://www.grippenet.fr\">www.grippenet.fr</a> pour "
-"plus d'information.\n\nVous pouvez également aider la personne qui vous "
-"invite à parrainer d'autres personnes en transférant ce mail ou en leur "
-"indiquant d'utiliser le code de parrainage suivant lors de leur inscription "
-"<b>%(key)s</b>.<br><br>\nNous vous remercions d’avance de l’intérêt que vous "
-"porterez à ce projet,<br><br>\nBien cordialement,<br><br>\nL’équipe "
-"<em>GrippeNet.fr</em>.<br>\n<a href=\"https://www.grippenet.fr/\">visitez "
-"GrippeNet.fr</a><br>\nContactez nous à <a "
-"href=\"mailto:contact@grippenet.fr\">contact@grippenet.fr</a>\n"
+"Bonjour,<br><br>\n"
+"%(sender)s est acteur de la surveillance de la grippe en France par le biais "
+"de <em>GrippeNet.fr</em> et souhaite vous inviter à participer à ce projet "
+"de surveillance et de recherche.<br>\n"
+"%(personnal)s\n"
+"<em>GrippeNet.fr</em> est une étude mise en place par une collaboration "
+"d'organismes publiques : l'Institut national de la santé et de la recherche "
+"médicale (Inserm), l'Université Pierre et Marie Curie (UPMC) et l'Institut "
+"de veille sanitaire (InVS). Elle est financée par fonds publiques provenant "
+"de ces institutions et de l'Agence Nationale de la Recherche.<br><br>\n"
+"\n"
+"<b>Quelques mots sur <em>GrippeNet.fr</em></b> :<br>\n"
+"<em>GrippeNet.fr</em> est un nouveau dispositif de surveillance de la grippe "
+"en population générale sur Internet. Cette étude est ouverte à tous les "
+"résidents de France métropolitaine. Chacun est invité à participer à "
+"<em>GrippeNet.fr</em> de façon volontaire, anonyme, quel que soit son état "
+"de santé (peu sensible aux infections hivernales ou souvent malade en "
+"hiver), son âge, son métier, etc. Vous deviendrez vous aussi acteur de la "
+"surveillance de la grippe en France.<br><br>\n"
+"\n"
+"Si vous souhaitez vous inscrire cliquez sur le lien ci-dessous :<br><br>\n"
+"<a href=\"%(url)s\">%(url)s</a><br><br>\n"
+"\n"
+"N'hésitez pas aussi à consulter notre site internet <a href=\"https://www."
+"grippenet.fr\">www.grippenet.fr</a> pour plus d'information.\n"
+"\n"
+"Vous pouvez également aider la personne qui vous invite à parrainer d'autres "
+"personnes en transférant ce mail ou en leur indiquant d'utiliser le code de "
+"parrainage suivant lors de leur inscription <b>%(key)s</b>.<br><br>\n"
+"Nous vous remercions d’avance de l’intérêt que vous porterez à ce projet,"
+"<br><br>\n"
+"Bien cordialement,<br><br>\n"
+"L’équipe <em>GrippeNet.fr</em>.<br>\n"
+"<a href=\"https://www.grippenet.fr/\">visitez GrippeNet.fr</a><br>\n"
+"Contactez nous à <a href=\"mailto:contact@grippenet.fr\">contact@grippenet."
+"fr</a>\n"
 
 #: .\templates\sw_invitation\invitation_email_subject.txt.py:1
 msgid "You have been invited to InfluenzaNet"
@@ -2419,9 +2444,6 @@ msgstr ""
 
 #~ msgid "Change password"
 #~ msgstr "Changer mon mot de passe"
-
-#~ msgid "invite this email"
-#~ msgstr "Envoyer l'invitation"
 
 #~ msgid "User has been invited"
 #~ msgstr "Le mail d'invitation a été envoyé"

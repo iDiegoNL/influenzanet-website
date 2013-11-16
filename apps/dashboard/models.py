@@ -11,7 +11,7 @@ ATTRIBUTE_TO_PARTICIPANT = 'P'
 BADGE_ATTRIBUTION_CHOICES = (
  (ATTRIBUTE_TO_USER, 'User'),
  (ATTRIBUTE_TO_PARTICIPANT,'Participant'),                
-)
+)        
 
 class Badge(models.Model):
     """ Badge Definition """
@@ -33,11 +33,14 @@ class Badge(models.Model):
                
     # If defined, depends on one season
     # Take the value of the year of the season starting (see SEASON_STARTING_MONTH in badges)
-    season = models.IntegerField(null=True, default=None)
+    season = models.IntegerField(null=True, blank=True, default=None)
     season.help_text = 'If has a value, this badge is specific for a season and wont be recomputed after the next september of (season+1)'
     
     # Should only be computed once and the result stored, no recomputing needed or possible
     compute_once = models.BooleanField(default=False)
+    
+    # Should show this badge (will be always hidden if false)
+    visible = models.BooleanField(default=True)
            
     def can_compute(self):
         if self.season:
@@ -61,9 +64,11 @@ class UserBadgeManager(models.Manager):
             self._badges = list(Badge.objects.all())
         if indexed:
             badges = {  }
+            names = {}
             for b in self._badges:
                 badges[ b.id ] = b
-            return badges
+                names[ b.name ] = b
+            return (badges, names)
         return self._badges
     
     def get_attributed_badges(self, user=None, participant=None):
