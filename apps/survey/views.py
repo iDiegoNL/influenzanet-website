@@ -38,8 +38,8 @@ def get_active_survey_user(request):
         except models.SurveyUser.DoesNotExist:
             raise ValueError()
 
-def _decode_person_health_status(status):
-    d = {
+def _get_all_health_status():
+    return  {
         "NO-SYMPTOMS":                                  _('No symptoms'),
         "ILI":                                          _('Flu symptoms'),
         "COMMON-COLD":                                  _('Common cold'),
@@ -49,10 +49,12 @@ def _decode_person_health_status(status):
         "COMMON-COLD-and-GASTROINTESTINAL":             _('Common cold and gastrointestinal symptoms'),
         "NON-SPECIFIC-SYMPTOMS":                        _('Other non-influenza symptons'),
     }
-    if status in d:
-        return d[status]
 
-    return _('Unknown')
+def _decode_person_health_status(status):
+   d = _get_all_health_status()
+   if status in d:
+        return d[status]
+   return _('Unknown')
 
 def _get_person_health_status(request, survey, global_id):
     data = survey.get_last_participation_data(request.user.id, global_id)
