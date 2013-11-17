@@ -13,7 +13,7 @@ from webassets.script import (CommandError as AssetCommandError,
 # Common build env is defined in assets module in the package
 from apps.common.assets import env
 
-def import_bundles(bundles, app):
+def import_bundles(bundles, signatures, app):
     try:
         module_uri = app + '.assets'
         # print 'looking for ' + module_uri
@@ -29,6 +29,10 @@ def import_bundles(bundles, app):
         for name, bundle in module_bundles.iteritems():
             if not isinstance(bundle, Bundle):
                 continue
+            signature = name + '@' + module_uri
+            if signatures.has_key(signature):
+                print "Bundle %s already included" % signature
+                continue
             if bundles.has_key(name):
                 print ' * merging ' + name
                 ## merge into an existing module
@@ -37,7 +41,9 @@ def import_bundles(bundles, app):
                 b.contents = b.contents + (bundle,)
             else:
                 print ' + adding ' + name
-                bundles[name] = bundle 
+                bundles[name] = bundle
+            signatures[signature] = 1 
+            
     except LoaderError, e:
         pass
     
@@ -72,9 +78,14 @@ class Command(BaseCommand):
         ## Search for app local assets bundles    
         ## If a bundle is defined with the same name as the global one
         ## Bundles are appened to the existing bundle    
+        apps = []
+        signatures = {}
         for app in settings.INSTALLED_APPS:
-            import_bundles(bundles, app)
-        
+            if app in apps:
+                print "*Caution* app %s is referenced several times" % app
+                continue
+            import_bundles(bundles, signatures, app)
+            apps.append(app)
         
         if command == 'show':
             for name, bundle in bundles.iteritems():
