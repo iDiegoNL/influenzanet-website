@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-16 10:22+0100\n"
+"POT-Creation-Date: 2013-11-17 22:07+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -530,18 +530,18 @@ msgstr "Symptômes gastro-intestinaux et/ou rhume"
 msgid "Other non-influenza symptons"
 msgstr "Autres symptômes non grippaux"
 
-#: .\apps\survey\views.py:112
+#: .\apps\survey\views.py:114
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: .\apps\survey\views.py:238
+#: .\apps\survey\views.py:240
 #, python-format
 msgid "The participant \"%(user_name)s\" has been marked as healthy."
 msgstr ""
 "Le questionnaire hebdomadaire du participant \"%(user_name)s\" a bien été "
 "enregistré en déclarant \"aucun symptome\"."
 
-#: .\apps\survey\views.py:243
+#: .\apps\survey\views.py:245
 #, python-format
 msgid ""
 "Please complete the background questionnaire for the participant \"%"
@@ -550,7 +550,7 @@ msgstr ""
 "Veuillez au préalable remplir le questionnaire préliminaire pour le "
 "participant \"%(user_name)s\" avant de remplir le questionnaire hebdomadaire."
 
-#: .\apps\survey\views.py:381
+#: .\apps\survey\views.py:383
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
@@ -559,7 +559,7 @@ msgstr ""
 "questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une "
 "seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
-#: .\apps\survey\views.py:554
+#: .\apps\survey\views.py:556
 msgid "A new person has been added."
 msgstr ""
 "Un nouveau participant vient d'être ajouté à votre compte. N'oubliez pas de "
@@ -895,7 +895,7 @@ msgstr "Mon espace"
 
 #: .\templates\accounts\partials\usermenu.html.py:11
 #: .\templates\base\sw_col_right.html.py:20
-#: .\templates\dashboard\index.html.py:9
+#: .\templates\dashboard\index.html.py:14
 msgid "My results"
 msgstr "Vos résultats"
 
@@ -1004,12 +1004,6 @@ msgid "Invite people"
 msgstr "Inviter vos contacts"
 
 #: .\templates\dashboard\household.html.py:2
-msgid "Here you will find results for your household"
-msgstr ""
-"Vous retrouverez ici bientot des résultats concernant l'ensemble des "
-"participants de votre compte."
-
-#: .\templates\dashboard\household.html.py:3
 #, python-format
 msgid ""
 "To manage your household, view or modify the participants of your household, "
@@ -1020,15 +1014,15 @@ msgstr ""
 "page <a href=\"%(url_group_management)s\"><i class=\"icon icon-users\"></"
 "i>Gérer mes participants</a>"
 
-#: .\templates\dashboard\household.html.py:3
-#: .\templates\dashboard\index.html.py:13
+#: .\templates\dashboard\household.html.py:2
+#: .\templates\dashboard\index.html.py:18
 msgid "Do you know the menu"
 msgstr ""
 "Cette page est accessible à tout moment lorsque vous êtes connecté à votre "
 "compte par les liens disponibles dans la colonne de droite de cette page "
 "(sous 'Mon espace')."
 
-#: .\templates\dashboard\index.html.py:13
+#: .\templates\dashboard\index.html.py:18
 #, python-format
 msgid ""
 "To fill surveys your for this participant or for others , please visit <a "
@@ -1044,16 +1038,14 @@ msgid "Your badges"
 msgstr "Vos badges"
 
 #: .\templates\dashboard\user_badges.html.py:4
-#, fuzzy
 msgid "Badge feature is disabled for this participant"
 msgstr "Les badges sont désactivés pour ce participant"
 
 #: .\templates\dashboard\user_badges.html.py:4
-#, fuzzy
 msgid "Reactivate this feature"
 msgstr "Réactivez-les en cliquant ici"
 
-#: .\templates\dashboard\user_badges.html.py:8
+#: .\templates\dashboard\user_badges.html.py:9
 msgid ""
 "This is a new feature of this website. You will win badge during the season."
 msgstr ""
@@ -1066,12 +1058,11 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:8
-#, fuzzy
+#: .\templates\dashboard\user_badges.html.py:10
 msgid "Disable this feature"
 msgstr "Désactiver les badges"
 
-#: .\templates\dashboard\user_badges.html.py:10
+#: .\templates\dashboard\user_badges.html.py:12
 msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
@@ -1086,7 +1077,7 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:13
+#: .\templates\dashboard\user_badges.html.py:15
 #, python-format
 msgid "You won a new badge"
 msgid_plural "You won %(counter)s new badges"
@@ -2404,6 +2395,11 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
+
+#~ msgid "Here you will find results for your household"
+#~ msgstr ""
+#~ "Vous retrouverez ici bientot des résultats concernant l'ensemble des "
+#~ "participants de votre compte."
 
 #~ msgid "Household"
 #~ msgstr "Mes participants"
