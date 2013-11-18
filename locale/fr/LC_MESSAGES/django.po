@@ -580,7 +580,7 @@ msgstr "Confirmation du mot de passe"
 
 #: .\apps\sw_auth\forms.py:35
 msgid "Invitation key"
-msgstr "Code d'invitation"
+msgstr "Code d'invitation (non requis)"
 
 #: .\apps\sw_auth\forms.py:47
 msgid "A user with that username already exists."
@@ -2197,9 +2197,10 @@ msgstr "Ce courriel a été adressé à"
 #: .\templates\sw_auth\registration_form.html.py:27
 msgid "Registration instructions"
 msgstr ""
-"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous "
-"pouvez utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe "
-"(vous pourrez le changer, nous n'y avons pas accès)"
+"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous pouvez "
+"utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe (vous "
+"pourrez le changer, nous n'y avons pas accès)<br/><br/>Le code d'invitation "
+"n'est pas obligatoire et ne sert que si vous avez été parrainné par quelqu'un."
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"

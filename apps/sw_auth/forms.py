@@ -32,7 +32,7 @@ class RegistrationForm(forms.Form):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
                                 label=_("Password (again)"))
     
-    invitation_key = forms.CharField(widget=forms.TextInput(),max_length=30, label=_("Invitation key"), required=False)
+    invitation_key = forms.CharField(widget=forms.TextInput(attrs={'placeholder':_("Invitation key")}),max_length=30, label=_("Invitation key"), required=False)
     
     def clean_username(self):
         """
