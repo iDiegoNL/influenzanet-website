@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-17 22:07+0100\n"
+"POT-Creation-Date: 2013-11-18 11:19+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -895,7 +895,7 @@ msgstr "Mon espace"
 
 #: .\templates\accounts\partials\usermenu.html.py:11
 #: .\templates\base\sw_col_right.html.py:20
-#: .\templates\dashboard\index.html.py:14
+#: .\templates\dashboard\index.html.py:9
 msgid "My results"
 msgstr "Vos résultats"
 
@@ -1004,6 +1004,12 @@ msgid "Invite people"
 msgstr "Inviter vos contacts"
 
 #: .\templates\dashboard\household.html.py:2
+msgid "Here you will find results for your household"
+msgstr ""
+"Vous retrouverez ici bientot des résultats concernant l'ensemble des "
+"participants de votre compte."
+
+#: .\templates\dashboard\household.html.py:3
 #, python-format
 msgid ""
 "To manage your household, view or modify the participants of your household, "
@@ -1014,15 +1020,17 @@ msgstr ""
 "page <a href=\"%(url_group_management)s\"><i class=\"icon icon-users\"></"
 "i>Gérer mes participants</a>"
 
-#: .\templates\dashboard\household.html.py:2
-#: .\templates\dashboard\index.html.py:18
+#: .\templates\dashboard\household.html.py:3
+#: .\templates\dashboard\index.html.py:13
+#: .\templates\survey\thanks_profile_sw.html.py:11
 msgid "Do you know the menu"
 msgstr ""
 "Cette page est accessible à tout moment lorsque vous êtes connecté à votre "
 "compte par les liens disponibles dans la colonne de droite de cette page "
 "(sous 'Mon espace')."
 
-#: .\templates\dashboard\index.html.py:18
+#: .\templates\dashboard\index.html.py:13
+#: .\templates\survey\thanks_profile_sw.html.py:11
 #, python-format
 msgid ""
 "To fill surveys your for this participant or for others , please visit <a "
@@ -1045,7 +1053,7 @@ msgstr "Les badges sont désactivés pour ce participant"
 msgid "Reactivate this feature"
 msgstr "Réactivez-les en cliquant ici"
 
-#: .\templates\dashboard\user_badges.html.py:9
+#: .\templates\dashboard\user_badges.html.py:8
 msgid ""
 "This is a new feature of this website. You will win badge during the season."
 msgstr ""
@@ -1058,11 +1066,11 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:10
+#: .\templates\dashboard\user_badges.html.py:8
 msgid "Disable this feature"
 msgstr "Désactiver les badges"
 
-#: .\templates\dashboard\user_badges.html.py:12
+#: .\templates\dashboard\user_badges.html.py:10
 msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
@@ -1077,7 +1085,7 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:15
+#: .\templates\dashboard\user_badges.html.py:13
 #, python-format
 msgid "You won a new badge"
 msgid_plural "You won %(counter)s new badges"
@@ -2021,27 +2029,24 @@ msgid "Member"
 msgstr "Membre du groupe"
 
 #: .\templates\survey\thanks_profile.html.py:5
-#: .\templates\survey\thanks_profile_sw.html.py:8
 msgid "Thanks for changing your profile,"
 msgstr "Merci d'avoir rempli ce questionnaire !"
 
 #: .\templates\survey\thanks_profile.html.py:12
-#: .\templates\survey\thanks_profile_sw.html.py:17
+#: .\templates\survey\thanks_profile_sw.html.py:6
 msgid "Please, if you have not already done so, fill in"
 msgstr "Si vous ne l'avez pas encore fait, merci de remplir"
 
 #: .\templates\survey\thanks_profile.html.py:18
-#: .\templates\survey\thanks_profile_sw.html.py:18
+#: .\templates\survey\thanks_profile_sw.html.py:7
 msgid "the symptoms questionaire"
 msgstr "le questionnaire hebdomadaire"
 
 #: .\templates\survey\thanks_profile.html.py:21
-#: .\templates\survey\thanks_profile_sw.html.py:21
 msgid "You can also visit your"
 msgstr "Vous pouvez également visiter"
 
 #: .\templates\survey\thanks_profile.html.py:27
-#: .\templates\survey\thanks_profile_sw.html.py:27
 msgid "profile page"
 msgstr "Votre page de résultat"
 
@@ -2395,11 +2400,6 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
-
-#~ msgid "Here you will find results for your household"
-#~ msgstr ""
-#~ "Vous retrouverez ici bientot des résultats concernant l'ensemble des "
-#~ "participants de votre compte."
 
 #~ msgid "Household"
 #~ msgstr "Mes participants"
