@@ -1033,6 +1033,10 @@ class Chart(models.Model):
         return self.type.shortname == 'template'
 
     @property
+    def has_template(self):
+        return self.template and True or False
+
+    @property
     def has_data(self):
         if not self.sqlsource:
             return False
@@ -1336,8 +1340,8 @@ class Chart(models.Model):
 
     def render(self, context):
         """Adds data to context and use it to render template."""
-        if self.type.shortname == "template":
-            template = self.get_template()
+        template = self.get_template()
+        if self.type.shortname == "template":            
             if template:
                 user_id = context["user_id"]
                 global_id = context["global_id"]
@@ -1347,9 +1351,10 @@ class Chart(models.Model):
                 context.update({"cols": cols, "rows": rows})
                 result = template.render(context)
                 context.pop()
-            else:
-                result = "Template is empty."
             return result
+        else:
+            if self.has_template:
+                return template.render(context)
 
 class GoogleProjection:
     def __init__(self, levels=25):

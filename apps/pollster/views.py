@@ -361,7 +361,7 @@ def survey_chart_edit(request, id, shortname):
         try:
             preview = chart.render(context)
         except Exception, e:
-            preview = "An error occurred during chart preview:\n" + e
+            preview = "An error occurred during chart preview:\n" + str(e)
     else:
         preview = None
     return request_render_to_response(request, 'pollster/survey_chart_edit.html', {
