@@ -100,7 +100,20 @@ def get_badges_context(participant, context):
             
     else:
         context['badges'] = None
-
+        
+def get_participant_profile(global_id):
+    cursor = connection.cursor()
+    cols = {
+        'Q3':'zip_code',
+    }
+    select = '"' + '","'.join(cols.keys()) + '"'
+    cursor.execute("""select %s from pollster_results_last_intake where global_id='%s'""" % (select, global_id))
+    r = cursor.fetchone()
+    i = 0
+    d = {}
+    for n in cols.itervalues():
+        d[n] = r[i]
+    return d 
 
 @login_required
 def index(request):
@@ -117,14 +130,10 @@ def index(request):
         # Fetch participant health status history
         history = list(_get_participant_health_history(user_id, global_id, 5))
         context['history'] = history
-        participant = participants[global_id]
-        
+        # participant = participants[global_id]
+        # context['profile'] = get_participant_profile(global_id)
         context['use_badge'] = DASHBOARD_USE_BADGE
-        #get_badges_context(participant, context)
-        
-    else:
-        history = None    
-    
+            
     context['avatars'] = _get_avatars(with_list=False)
     
     context['gid'] = global_id
@@ -135,7 +144,7 @@ def index(request):
     
 @login_required
 def badges(request):
-    user_id = request.user.id
+    # user_id = request.user.id
     global_id = request.GET.get('gid', None)
     try:
         participant = get_active_survey_user(request)
