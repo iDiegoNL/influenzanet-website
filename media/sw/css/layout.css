@@ -309,6 +309,19 @@ background: #FFF url() left center no-repeat;
 	height: 750px;
 }
 
+
+/**
+ * Graph
+ */
+
+blockquote {
+	margin: .5em;
+	padding: .2em;
+	font-size: .8em;
+	font-style: italic;
+}
+
+
 /* Alert from bootstrap
  * 
  */
