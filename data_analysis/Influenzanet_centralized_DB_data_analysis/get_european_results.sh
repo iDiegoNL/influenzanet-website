@@ -1,6 +1,6 @@
 #!/bin/sh
 
-scp epidb@85.90.70.27:data/epidb_results.sql .
+scp epidb@epidb.influenzanet.eu:data/epidb_results.sql .
 sed -i 's/ggm/flusurvey/g' epidb_results.sql
 psql -d flusurvey -c "DROP VIEW epidb_health_status;"
 psql -d flusurvey -c "DROP TABLE epidb_results_intake;"

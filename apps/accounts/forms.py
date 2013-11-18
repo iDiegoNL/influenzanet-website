@@ -55,7 +55,7 @@ class EmailSettingsForm(forms.Form):
 
     def save(self):
         if self.instance.email == self.instance.username:
-            self.instance.username = self.cleaned_data['email']
+            self.instance.username = self.cleaned_data['email'][:30]
         self.instance.email = self.cleaned_data['email']
 
         self.reminder_info.active = self.cleaned_data['send_reminders']

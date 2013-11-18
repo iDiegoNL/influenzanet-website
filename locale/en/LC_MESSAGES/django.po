@@ -429,7 +429,7 @@ msgid "Cold / allergy"
 msgstr ""
 
 msgid "Common cold"
-msgstr "Symptomen die passen bij verkoudheid"
+msgstr ""
 
 msgid "Allergy / hay fever and gastrointestinal symptoms"
 msgstr ""
@@ -1297,4 +1297,10 @@ msgid "Close window"
 msgstr ""
 
 msgid "Cookie settings"
+msgstr ""
+
+msgid "Your result archive"
+msgstr ""
+
+msgid "No data available for this season" 
 msgstr ""

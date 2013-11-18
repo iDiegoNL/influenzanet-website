@@ -1,0 +1,304 @@
+{% load cms_tags i18n count sekizai_tags %}
+
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/jquery/js/jquery-1.5.2.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/jquery/js/jquery-ui-1.8.14.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/jquery/js/jquery.tools.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/jquery/js/jquery.form.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/jquery/js/jquery.cookie.js"></script>{% endaddtoblock %}
+{% if locale_code %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/jquery/js/i18n/jquery.ui.datepicker-{{ language }}.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/datejs/js/date-{{ locale_code }}.js"></script>{% endaddtoblock %}
+{% else %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/datejs/js/date.js"></script>{% endaddtoblock %}
+{% endif %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.jquery.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.properties.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.datatypes.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.rules.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.virtualoptions.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript">$(function() { wok.pollster.createPollsterRuntime(null, {}); })</script>{% endaddtoblock %}
+
+{% block add_js %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/js/qtip.js"></script>{% endblock add_js %}
+
+{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/jquery/css/smoothness/jquery-ui-1.8.14.css" media="all" />{% endaddtoblock %}
+{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/survey.css" media="all" />{% endaddtoblock %}
+{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/skin.css" media="all" />{% endaddtoblock %}
+{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}pollster/css/qtip.css" />{% endaddtoblock %}
+
+{% if issuccess %}
+{{ success_content }}
+{% else %}
+<div class="embedded-survey">
+    <strong>{{ survey.translated_title }}</strong>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form class="survey {% if survey.form.errors %}error{% endif %}" id="survey-{{ survey.id }}" method="POST">
+        {% csrf_token %}
+        <div class="survey-message">
+            {% trans "Questionnaire for participant" %} {{ person }}
+        </div>
+        {% if survey.form.errors %}
+        <div class="survey-error-message">
+            {% trans "Please check the answers for the highlighted questions." %}
+        </div>
+        {% endif %}
+        {% for question in survey.questions %}
+        {% if question.is_builtin %}
+        <div class="question-wrapper clearfix" style="display:none">
+            <div id="question-{{ question.id }}" class="{{ question.css_classes|join:' ' }}"
+                 data-question-type="{{ question.type }}" data-data-type="{{ question.data_type.id }}" data-tags="{{ question.tags }}"
+                 data-regex="{{ question.regex|default:'' }}">
+                <input type="hidden" name="{{ question.data_name }}" id="question-{{ question.id }}-field" disabled="disabled" />
+                <ul class="derived-values">
+                    {% for option in question.options %}
+                    <li id="option-{{ option.id }}"
+                        data-type="{{ option.virtual_type.id }}"
+                        data-inf="{{ option.virtual_inf }}" data-sup="{{ option.virtual_sup }}" data-regex="{{ option.virtual_regex }}">
+                        <div class="info"><input class="derived" type="checkbox" disabled="disabled"/></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <div class="question-wrapper clearfix">
+            <div id="question-{{ question.id }}" class="{{ question.css_classes|join:' ' }}"
+                 data-question-type="{{ question.type }}" data-data-type="{{ question.data_type.id }}" data-tags="{{ question.tags }}"
+                 data-regex="{{ question.regex|default:'' }}">
+	            <div id="hoverinfo">{% if question.translated_description %}<img src="{{ MEDIA_URL }}pollster/img/info.gif" class="hoverinfo" title="{{ question.translated_description }}" alt="" />{% endif %}</div>
+                <p class="data">
+                    {% if question.is_mandatory %}<span class="star">*</span>{% endif %}
+                    <span class="title">{{ question.translated_title }}</span>
+                </p>
+                {% if question.is_text %}
+                <input type="text" name="{{ question.data_name }}" id="question-{{ question.id }}-field"
+                       value="{{ question.form_value }}" class="user-field" />
+                <p class="error-message">{{ question.translated_error_message }}</p>
+                <ul class="derived-values">
+                    {% for option in question.options %}
+                    <li id="option-{{ option.id }}"
+                        data-type="{{ option.virtual_type.id }}"
+                        data-inf="{{ option.virtual_inf }}" data-sup="{{ option.virtual_sup }}" data-regex="{{ option.virtual_regex }}">
+                        <div class="info"><input class="derived" type="checkbox" disabled="disabled"/></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% if question.is_single_choice %}
+                    {% if question.is_visual_dropdown %}
+                    <select class="choices user-field" name="{{ question.data_name }}">
+                        {% for option in question.options %}
+                        <option id="option-{{ option.id }}" class="{% if option.starts_hidden %} starts-hidden {% endif %}"
+                             value="{{ option.value }}" {% if option.form_is_checked %}selected="selected"{% endif %}
+                             title="{{ option.translated_description }}">
+                            {{ option.translated_text }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% else %}
+                    <ul class="choices">
+                        {% for option in question.options %}
+                        {% if option.is_open %}
+                        <li id="option-{{ option.id }}" class="{% if option.starts_hidden %} starts-hidden {% endif %} open"
+                            title="{{ option.translated_description }}">
+                            <input type="radio" value="{{ option.value }}" name="{{ option.data_name }}" id="option-{{ option.id }}-field"
+                                {% if option.form_is_checked %}checked="checked"{% endif %} class="user-field" />
+                            <label for="option-{{ option.id }}-field">{{ option.translated_text }}</label>
+                            <input type="text" name="{{ option.open_option_data_name }}" class="user-field open-option-data {{ option.open_option_data_type.css_class }}"
+                                id="option-{{ option.id }}-field-open"
+                                value="{{ option.open_option_data_form_value }}" id="option-{{ option.id }}-field-open" />
+                        </li>
+                        {% else %}
+                        <li id="option-{{ option.id }}" class="{% if option.starts_hidden %} starts-hidden {% endif %}"
+                            title="{{ option.translated_description }}">
+                            <input type="radio" value="{{ option.value }}" name="{{ option.data_name }}" id="option-{{ option.id }}-field"
+                                {% if option.form_is_checked %}checked="checked"{% endif %} class="user-field" />
+                            <label for="option-{{ option.id }}-field">{{ option.translated_text }}</label>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                <p class="error-message">{{ question.translated_error_message }}</p>
+                {% endif %}
+                {% if question.is_multiple_choice %}
+                <ul class="choices">
+                    {% for option in question.options %}
+                    {% if option.is_open %}
+                    <li id="option-{{ option.id }}" class="{% if option.starts_hidden %} starts-hidden {% endif %} open"
+                        title="{{ option.translated_description }}">
+                        <input type="checkbox" value="1" name="{{ option.data_name }}" id="option-{{ option.id }}-field"
+                            {% if option.form_is_checked %}checked="checked"{% endif %} class="user-field" />
+                        <label for="option-{{ option.id }}-field">{{ option.translated_text }}</label>
+                        <input type="text" name="{{ option.open_option_data_name }}" class="user-field open-option-data {{ option.open_option_data_type.css_class }}"
+                            id="option-{{ option.id }}-field-open"
+                            value="{{ option.open_option_data_form_value }}" id="option-{{ option.id }}-field-open" />
+                    </li>
+                    {% else %}
+                    <li id="option-{{ option.id }}" class="{% if option.starts_hidden %} starts-hidden {% endif %}"
+                        title="{{ option.translated_description }}">
+                        <input type="checkbox" value="1" name="{{ option.data_name }}" id="option-{{ option.id }}-field"
+                            {% if option.form_is_checked %}checked="checked"{% endif %} class="user-field" />
+                        <label for="option-{{ option.id }}-field">{{ option.translated_text }}</label>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <p class="error-message">{{ question.translated_error_message }}</p>
+                {% endif %}
+                {% if question.is_matrix_select %}
+                <table class="matrix">
+                <thead>
+                    <tr>
+                        <th class="empty"/>
+                        {% for column in question.columns %}
+                        {% if column.translated_title %}
+                        <th>{{ column.translated_title }}</th>
+                        {% else %}
+                        <th class="empty"/>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row, columns in question.rows_columns %}
+                    <tr>
+                        {% if row.translated_title %}
+                        <th>{{ row.translated_title }}</th>
+                        {% else %}
+                        <th class="empty"/>
+                        {% endif %}
+                        {% for column in columns %}
+                        <td>
+                            <select name="{{ column.data_name }}" class="user-field">
+                                {% for option in column.options %}
+                                <option value="{{ option.value }}" title="{{ option.translated_description }}">{{ option.translated_text }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+                {% endif %}
+                {% if question.is_matrix_entry %}
+                <table class="matrix">
+                <thead>
+                    <tr>
+                        <th class="empty"/>
+                        {% for column in question.columns %}
+                        {% if column.translated_title %}
+                        <th>{{ column.translated_title }}</th>
+                        {% else %}
+                        <th class="empty"/>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row, columns in question.rows_columns %}
+                    <tr>
+                        {% if row.translated_title %}
+                        <th>{{ row.translated_title }}</th>
+                        {% else %}
+                        <th class="empty"/>
+                        {% endif %}
+                        {% for column in columns %}
+                        <td>
+                            <input type="text" name="{{ column.data_name }}" class="user-field" />
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+                {% endif %}
+            </div>
+            <div class="rules">
+                {% for rule in question.subject_of_rules.all %}
+                <div id="rule-{{ rule.id }}"
+                     data-type="{{ rule.rule_type.id }}"
+                     {% if rule.subject_option.id %}
+                     data-subject-option="option-{{ rule.subject_option.id }}"
+                     {% endif %}
+                     data-object-question="question-{{ rule.object_question.id }}"
+                     data-object-options="{% for option in rule.object_options.all %} option-{{ option.id }} {% endfor %}"
+                     class="rule">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="actions">
+		    <input type="submit" id="commentsubmit" value="{% trans "Submit" %}" />
+        </div>
+        <script type="text/javascript" class="pollster-fill">
+            function pollster_last_participation_data() {
+                return {{ last_participation_data_json|safe|default:'{}' }};
+            }
+            function pollster_fill_data_types(d) {
+                {% for question in survey.questions %}
+                d[{{question.id}}] = new {{question.data_type.js_class}}();
+                {% endfor %}
+            }
+            function pollster_fill_open_option_data_types(d) {
+                var t;
+                {% for question in survey.questions %}
+                    t = d[{{question.id}}] = {};
+                    {% for option in question.options %}
+                        {% if option.is_open and question.open_option_data_type %}
+                            t[{{option.id}}] = new {{question.open_option_data_type.js_class}}();
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            }
+            function pollster_fill_derived_values(d) {
+                var t;
+                {% for question in survey.questions %}
+                {% if question.is_text %}
+                t = d[{{question.id}}] = [];
+                {% for option in question.options %}
+                {% if option.virtual_type.js_class %}
+                t.push(new {{option.virtual_type.js_class}}({{ option.id }},
+                                                            '{{ option.virtual_inf|default:''|addslashes }}',
+                                                            '{{ option.virtual_sup|default:''|addslashes }}',
+                                                            '{{ option.virtual_regex|default:''|addslashes }}'));
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+            }
+            function pollster_fill_rules(d) {
+                var t;
+                {% for question in survey.questions %}
+                t = d[{{question.id}}] = [];
+                {% for rule in question.subject_of_rules.all %}
+                t.push(new {{rule.js_class}}(
+                                             {{ rule.subject_question.id }},
+                                             [ {% for option in rule.subject_options.all %}
+                                                {{ option.id }}{% if not forloop.last %},{% endif%}
+                                             {% endfor %} ],
+                                             {{rule.object_question.id}},
+                                             [ {% for option in rule.object_options.all %}
+                                                {{ option.id }}{% if not forloop.last %},{% endif%}
+                                             {% endfor %} ], { isSufficient: {{ rule.is_sufficient|default:'false'|lower }} }));
+                {% endfor %}
+                {% endfor %}
+            }
+            function pollster_get_postal_code_format() {
+                return '{{ default_postal_code_format|escapejs }}';
+            }
+        </script>
+    </form>
+</div>
+{% endif %}
+
