@@ -3,28 +3,11 @@
 
 {% block col1 %}
 {% include "base/messages.html" %}
-
-<p>
-{% trans "Thanks for changing your profile," %}
-
- 
-{% if person %}
-{{ person }}.
-{% else %}
-{{ user }}.
-{% endif %}
-</h1>
 <p>{% trans "Please, if you have not already done so, fill in" %}
 <a href="/survey/{% if person %}?gid={{person.global_id}}{% endif %}" class="button">{% trans "the symptoms questionaire" %}</a>.
 </p>
 <p>
-{% trans "You can also visit your" %}
-{% if person %}
-<a href="/dashboard/?gid={{person.global_id}}">
-{% else %}
-<a href="/dashboard/">
-{% endif %}
-{% trans "profile page" %}
-</a>
+{% url group_management as url_group_management %}
+<p>{% blocktrans %}To fill surveys your for this participant or for others , please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p></p>
 </p>
 {% endblock %}
