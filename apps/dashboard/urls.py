@@ -6,4 +6,5 @@ urlpatterns = patterns('',
     url(r'^badges/$', views.badges, name='dashboard_badges'),
     url(r'^badges/disable/$', views.badge_disable, name='dashboard_badges_disable'),
     url(r'^badges/activate/$', views.badge_activate, name='dashboard_badges_activate'),
+    url(r'^chart/1/$', 'django.views.generic.simple.direct_to_template', {'template': 'dashboard/user_charts.html'}, name='dashboard_badges_activate'),
 )

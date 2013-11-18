@@ -1,3 +1,20 @@
 {% load i18n %}
-<p>{% trans "Here you will find results for your household" %}</p>
 <p>{% blocktrans %}To manage your household, view or modify the participants of your household, please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p>
+<div class="chart-box">
+	<h3>Répartition du nombre de participants dans chaque compte GrippeNet.fr</h3>
+	<div id="houshold-chart" class="chart" style="width:520px;height:200px"></div>
+	<blockquote>
+	Ce graphique représente la répartition du nombre de participants dans chacun des comptes GrippeNet.fr. 
+	Chaque barre correspond à un nombre de participant par compte, la hauteur représente le pourcentage de comptes GrippeNet.fr ayant ce nombre de participants en activité (questionnaires prélimninaire rempli).
+	Votre situation est indiquée en vert.
+	</blockquote>
+</div>
+<script type="text/javascript">
+ $(function() {
+	console.log('charts');
+ 	$.getJSON('{{MEDIA_URL}}results/json/households.json', function(json) {
+		console.log(json);
+		household_chart("houshold-chart", json.data.household, {{participants|length}} );
+	});
+});
+</script>
