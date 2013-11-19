@@ -1,20 +1,25 @@
 {% load i18n %}
 <p>{% blocktrans %}To manage your household, view or modify the participants of your household, please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p>
 <div class="chart-box">
-	<h3>Répartition du nombre de participants dans chaque compte GrippeNet.fr</h3>
-	<div id="houshold-chart" class="chart" style="width:520px;height:200px"></div>
-	<blockquote>
-	Ce graphique représente la répartition du nombre de participants dans chacun des comptes GrippeNet.fr. 
-	Chaque barre correspond à un nombre de participant par compte, la hauteur représente le pourcentage de comptes GrippeNet.fr ayant ce nombre de participants en activité (questionnaires prélimninaire rempli).
-	Votre situation est indiquée en vert.
-	</blockquote>
+<h3>Historique des états de santé des participants enregistrés sur votre compte</h3>
+ <div id="history" style="overflow-x:auto"></div>
+ <blockquote>
+ 	Ce graphique indique pour chaque participants les états de santé rapportés à GrippeNet.fr (selon le classement du site). 
+	L'état de santé de chaque participant est représenté sur une ligne.
+ </blockquote>
 </div>
 <script type="text/javascript">
+ var history = {{ history|safe }};
+ 
+ var users = {};
+ {%for g,p in participants.iteritems %}users['{{g}}'] = '{{p.name}}';{%endfor%} 
+ 
+ var story;
+ 
  $(function() {
 	console.log('charts');
- 	$.getJSON('{{MEDIA_URL}}results/json/households.json', function(json) {
-		console.log(json);
-		household_chart("houshold-chart", json.data.household, {{participants|length}} );
-	});
-});
-</script>
+	story = new StoryRaphael(history, users);	
+	story.render('history');
+ });
+ 
+ </script>

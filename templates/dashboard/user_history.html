@@ -1,5 +1,6 @@
 {% load i18n %}
-{% if rows|length %}
+<p>{% blocktrans %}To fill surveys your for this participant or for others , please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p></p>
+{% if history|length %}
 <div class="chart-dashboard-history dashboard">
 <table>
 <tr>
@@ -7,11 +8,11 @@
     <th colspan="4">{%trans "your status history"%} :</th>
 </tr>
 <tr>
-    {% for row in rows %}
+    {% for row in history %}
     <td class="history">
         <div class="health-status">
             <span>{{ row.timestamp|timesince }}</span><br />
-            <img src="/media/survey/img/chart-{{ row.status }}.png" title="{{ row.diag }}" class="tooltip"/><br/>
+            <img src="/media/syndrom/{{ row.syndrom }}.png" title="{{ row.diag }}" class="tooltip"/><br/>
 			<span class="diag">{{row.diag}}</span>
         </div>
     </td>
@@ -22,3 +23,16 @@
 {% else %}
 <p>{% trans "No history for this participant yet" %}</p>
 {% endif %}
+<div id="user-charts"></div>
+<div id="user-badges"></div>
+<script type="text/javascript">
+var last_health_status = {%if history|length %}'{{history.0.syndrom}}'{%else%}''{%endif%};
+$(function(){
+	{% if use_badge %}
+	$('#user-badges').loading().load('/dashboard/badges/?gid={{gid}}');
+	{% endif %}
+	{%if history|length %}
+	$('#user-charts').loading().load('/dashboard/chart/1/?gid={{gid}}', function() { init_my_charts(); });
+	{% endif %}
+});
+</script>

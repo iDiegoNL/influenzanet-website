@@ -7,7 +7,8 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from apps.survey.utils import get_db_type
 from apps.survey.models import SurveyUser
-from apps.survey.views import _decode_person_health_status, get_active_survey_user, _get_avatars, is_wait_launch, _get_all_health_status
+from django.utils.translation import ugettext_lazy as _
+from apps.survey.views import  get_active_survey_user, _get_avatars, is_wait_launch
 from django.utils import simplejson
 
 from apps.dashboard.models import UserBadge, Badge
@@ -19,8 +20,37 @@ DASHBOARD_USE_BADGE = getattr(settings, 'DASHBOARD_USE_BADGE', False)
 
 BADGE_DISABLE_FEATURE = 'disable'
 
+# Recode InfluenzaNet syndrom to pretty syndrom group
+SYNDROM_ALIASES = {
+        "NO-SYMPTOMS":'no-symptom',
+        "ILI":'ili',     
+        "COMMON-COLD":'cold',
+        "GASTROINTESTINAL":'gastro',
+        "ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL": 'non-specific',
+        "ALLERGY-or-HAY-FEVER":'allergy', 
+        "COMMON-COLD-and-GASTROINTESTINAL": 'non-specific',
+        "NON-SPECIFIC-SYMPTOMS": 'non-specific',
+}
+
+SYNDROM_LABELS = {
+        "no-symptom":   _('No symptoms'),
+        "ili":          _('Flu symptoms'),
+        "cold":         _('Common cold'),
+        "gastro":       _('Gastrointestinal symptoms'),
+        "allergy":      _('Allergy / hay fever'), 
+        "non-specific": _('Other non-influenza symptons'),
+        'unknown': _('Unknown'),
+}
+
 def render_template(name, request, context=None):
     return render_to_response('dashboard/'+name+'.html', context, context_instance=RequestContext(request) )
+
+
+def _get_syndrom(status):
+    if status in SYNDROM_ALIASES:
+        return SYNDROM_ALIASES[status]
+    else:
+        return 'unknown'
 
 def _get_participants(user):
     """
@@ -31,6 +61,28 @@ def _get_participants(user):
     for d in data:
         participants[d.global_id] = d
     return participants
+
+def _get_houshold_history(user_id):
+    """
+     Return one health status by participant and by day (take the last status if several)
+    """
+    query = """SELECT global_id, date_part('epoch',a_day), last_value("status") OVER win
+        FROM (
+        SELECT W.global_id, date_trunc('day', W.timestamp) as a_day, S.status
+          FROM pollster_health_status S left join pollster_results_weekly W on 
+                      S.pollster_results_weekly_id = W.id
+                      WHERE W.user = %d
+                      ORDER BY W.timestamp DESC
+        ) a
+        WINDOW win as (PARTITION BY global_id, a_day)"""
+    cursor = connection.cursor()
+    cursor.execute(query % user_id)
+    results = cursor.fetchall()
+    history = []
+    for r in results:
+        history.append({'gid': r[0], 'time':r[1], 'syndrom': _get_syndrom(r[2])  })
+    return history
+    
 
 def _get_participant_health_history(user_id, global_id, limit=None):
     results = []
@@ -66,7 +118,9 @@ def _get_participant_health_history(user_id, global_id, limit=None):
     results = cursor.fetchall()
     for ret in results:
         timestamp, status = ret
-        yield {'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status)}
+        syndrom = _get_syndrom(status)
+        diag = SYNDROM_LABELS.get(syndrom)
+        yield {'timestamp': timestamp, 'status': status,'syndrom': syndrom, 'diag': diag}
 
 def get_badges_context(participant, context):
     """
@@ -119,21 +173,22 @@ def index(request):
         # Fetch participant health status history
         history = list(_get_participant_health_history(user_id, global_id, 5))
         context['history'] = history
-        participant = participants[global_id]
+        # participant = participants[global_id]
+        # get_badges_context(participant, context)
         
         context['use_badge'] = DASHBOARD_USE_BADGE
-        #get_badges_context(participant, context)
         
     else:
-        history = None    
+        encoder = simplejson.JSONEncoder(ensure_ascii=False)
+        history = _get_houshold_history(user_id)
+        context['history'] = encoder.encode(history)    
     
     context['avatars'] = _get_avatars(with_list=False)
     
     context['gid'] = global_id
     context['participants'] = participants
     context['url_group_management'] = reverse('group_management')
-    encoder = simplejson.JSONEncoder(ensure_ascii=False)
-    context['health_status'] = _get_all_health_status()
+    context['health_status'] = SYNDROM_LABELS
     return render_template('index', request, context)
     
 @login_required
