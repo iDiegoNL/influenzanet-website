@@ -78,7 +78,7 @@ def _get_avatars(with_list=True):
             AVATARS = None
         conf = None
         if AVATARS:
-           conf = {'list': AVATARS, 'url': url }
+            conf = {'list': AVATARS, 'url': url }
     else:
         # list not request, return only url
         conf = {'url': url} 
@@ -108,10 +108,10 @@ def _get_all_health_status():
     }
 
 def _decode_person_health_status(status):
-   d = _get_all_health_status()
-   if status in d:
+    d = _get_all_health_status()
+    if status in d:
         return d[status]
-   return _('Unknown')
+    return _('Unknown')
 
 def _get_person_health_status(request, survey, global_id):
     data = survey.get_last_participation_data(request.user.id, global_id)

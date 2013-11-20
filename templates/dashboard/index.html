@@ -5,22 +5,21 @@
 <link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/dashboard.css" />
 {% endblock %}
 
+{% block add_js %}
+<script type="text/javascript" src="{{MEDIA_URL}}assets/raphael.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="{{MEDIA_URL}}sw/js/graph.js"></script>
+<script type="text/javascript">
+var health_status = {};
+{%for name,label in health_status.iteritems %}health_status['{{name}}']= "{{label}}";{%endfor%}
+</script>
+{% endblock %}
+
 {% block col1 %}
 <h1>{% trans "My results" %}</h1>
 {% include "dashboard/user_switch.html" %}
 {% include "base/messages.html" %}
 {% if gid %}
-<p>{% blocktrans %}To fill surveys your for this participant or for others , please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p></p>
-{% include "dashboard/user_history.html" with rows=history %}
-{% if use_badge %}
-<div id="user-badges"></div>
-<script type="text/javascript">
-$(function(){
-	$('#user-badges').loading().load('/dashboard/badges/?gid={{gid}}');
-});
-</script>
-{% endif %}
-
+{% include "dashboard/user_history.html"  %}
 {% else %}
 {% include "dashboard/household.html" %}
 {% endif %} 

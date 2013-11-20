@@ -77,3 +77,21 @@
 .badge:hover { border: 1px solid #007AB8 }
 .new-badges { border: 1px solid red; padding: .2em; font-size: .8em; font-style: italic; }
 #hide-badge-feature { font-size: .7em }
+
+
+.chart-box {
+	padding: .5em;
+	border: 1px solid #EEE;
+	border-radius: .3em;
+	margin: 1em;
+}
+
+#col1 .chart-box h3 {
+	font-size: .9em;
+}
+.chart-box blockquote {
+	font-size: .7em;
+	font-style: italic;
+	padding: .2em;
+	margin: .2em 2em;
+}

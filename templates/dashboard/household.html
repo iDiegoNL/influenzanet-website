@@ -1,3 +1,25 @@
 {% load i18n %}
-<p>{% trans "Here you will find results for your household" %}</p>
 <p>{% blocktrans %}To manage your household, view or modify the participants of your household, please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p>
+<div class="chart-box">
+<h3>Historique des états de santé des participants enregistrés sur votre compte</h3>
+ <div id="history" style="overflow-x:auto"></div>
+ <blockquote>
+ 	Ce graphique indique pour chaque participants les états de santé rapportés à GrippeNet.fr (selon le classement du site). 
+	L'état de santé de chaque participant est représenté sur une ligne.
+ </blockquote>
+</div>
+<script type="text/javascript">
+ var history = {{ history|safe }};
+ 
+ var users = {};
+ {%for g,p in participants.iteritems %}users['{{g}}'] = '{{p.name}}';{%endfor%} 
+ 
+ var story;
+ 
+ $(function() {
+	console.log('charts');
+	story = new StoryRaphael(history, users);	
+	story.render('history');
+ });
+ 
+ </script>
