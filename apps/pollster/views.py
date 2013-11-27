@@ -123,12 +123,25 @@ def survey_test(request, id, language=None):
         locale_code = locale_code.split('.')[0].replace('_', '-')
         if locale_code == "en-US":
             locale_code = "en-GB"
-    survey_user = _get_active_survey_user(request)
-    user = _get_active_survey_user(request)
+    # survey_user = _get_active_survey_user(request)
+    # user = _get_active_survey_user(request)
     form = None
-    user_id = request.user.id
-    global_id = survey_user and survey_user.global_id
+    # user_id = request.user.id
+    # global_id = survey_user and survey_user.global_id
     last_participation_data = None
+    
+    # In test env, do not get the user_id from global_id
+    # to allow test with real data (for debugging)
+    global_id = request.GET.get('gid')
+    if global_id:
+        try:
+            survey_user = SurveyUser.objects.get(global_id=global_id)
+            user_id = survey_user.user.id
+            last_participation_data = survey.get_prefill_data(user_id, global_id)
+        except SurveyUser.DoesNotExist:
+            pass
+        
+    
     if request.method == 'POST':
         data = request.POST.copy()
         data['user'] = user_id
