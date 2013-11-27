@@ -1,13 +1,14 @@
 (function($) {
     // COMMON UTILITIES
+	var msPerDay = 24 * 60 * 60 * 1000;
 	
 	function get_question_from_field($field) {
-		return $field.parent();
+		return $field.parents('.question');
 	}
 	
 	function get_question_tags($field) {
 		// get tags and return them as hash
-		var tags = $field.parent().data('tags');
+		var tags = $field.parents('.question').data('tags');
 		var o = {};
 		if(tags) {
 			tags = tags.replace(' ','');
@@ -44,20 +45,38 @@
 				if(tags.nofuture) {
 					opts.maxDate = '0';
 				}
+				if(tags.delay) {
+					$field.data('show-delay', true);
+					var id = $field.attr('id') + '-delay';
+					$field.data('show-delay-id', id);
+					$field.after('<span class="question-date-delay" id="'+ id +'">');
+					$field.css({'width': '7em'});
+				}
 				
 				$field
                     .datepicker(opts)
                     .change(function(evt){
                         var $this = $(this);
                         var date = Date.parseExact($this.val(), "yyyy-MM-dd");
-                        if (date)
-                            $this.val(date.toString('dd/MM/yyyy'));
-                        else
-                            date = Date.parseExact($this.val(), "dd/MM/yyyy");
-                            if (date)
-                                $this.val(date.toString('dd/MM/yyyy'));
-                            else
-                                $this.val('');
+                        if (date) {
+							$this.val(date.toString('dd/MM/yyyy'));
+						}
+						else {
+							date = Date.parseExact($this.val(), "dd/MM/yyyy");
+							if (date)  
+								$this.val(date.toString('dd/MM/yyyy'));
+							else 
+								$this.val('');
+						}
+						if($field.data('show-delay') ) {
+							if(date) {
+								var now = new Date();
+								var delay = Math.floor((now.getTime() - date.getTime())/msPerDay);
+								var id = $this.data('show-delay-id');
+								var label = Date.CultureInfo[ (delay > 1) ? 'days': 'day'];
+								$('#'+id).text(delay + ' ' + label);
+							}
+						}
                     });
 
             }
