@@ -141,3 +141,10 @@ div.system-message p.system-message-title {
 }
 
 .tip { background: white; border: 2px solid #709CCC; padding: 1px 5px; max-width: 300px; }
+
+.open .question-date-delay {
+	display: inline-block;
+	float:right;
+	font-size: .8em;
+	vertical-align: middle;
+}

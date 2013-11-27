@@ -263,9 +263,10 @@
             return '{{ default_postal_code_format|escapejs }}';
         }
 		// Datejs Hack to handle delay names
-		Date.CultureInfo['year'] = '{% trans "year" %}';
-		Date.CultureInfo['years'] = '{% trans "years" %}';
-		Date.CultureInfo['month'] = '{% trans "month" %}';
-		Date.CultureInfo['months'] = '{% trans "months" %}';
+		$.extend(Date.CultureInfo, { 
+		'year':'{% trans "year" %}', 'years':'{% trans "years" %}',
+		'month':'{% trans "month" %}','months':'{% trans "months" %}',
+		'day':'{% trans "day" %}','days':'{% trans "days" %}'
+		});
     </script>
 </form>
