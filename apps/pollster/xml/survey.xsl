@@ -15,7 +15,10 @@
 	.option .value { 	}
 	.flags { padding: .4em; }
 	.flags span { padding: .2em; border: 1px solid #DDD; border-radius: .4em; color: white; font-weight: bold; font-size: .8em; background-color: #DDD }
-	.dataname { font-weight: bold; color: #999 }
+	.dataname { font-weight: bold; color: darkred }
+	
+	.question-type { padding: .2em; border: 1px solid green; border-radius: .4em; color: green; font-weight: bold; font-size: .8em; background-color: white}
+	.data-type { padding: .2em; border: 1px solid orange; border-radius: .4em; color: orange; font-weight: bold; font-size: .8em; background-color: white}
 	
 	.flags span.mandatory { background-color: red; font-weight: bold; border-color: red }
 	.flags span.virtual { background-color: green; font-weight: bold; border-color: green }
@@ -26,6 +29,7 @@
 	.value:after { content:"]" }
 	
 	.rule-name { font-weight: bold; }
+	.rule-id { color: #999 }
  ]]></style>
  <div id="survey">
   <h1><xsl:value-of select="s:title"/> [<xsl:value-of select="s:shortname"/>]</h1>
@@ -42,8 +46,8 @@
 	<div class="types">
 		<span class="id"><xsl:value-of select="$id"/></span>
 		<span class="dataname"><xsl:value-of select="s:data_name"/></span>
-		<span class="type"><xsl:value-of select="s:type"/></span>
-		<span class="data_type"><xsl:value-of select="s:data_type"/></span>
+		<span class="question-type"><xsl:value-of select="s:type"/></span>
+		<span class="data-type"><xsl:value-of select="s:data_type"/></span>
 	</div>
 	<div class="flags">
 	<xsl:if test="s:starts_hidden='true'">
@@ -83,14 +87,21 @@
 </xsl:template>
 
 <xsl:template match="s:rule">
- <li>
+ <li><span class="id rule-id"><xsl:value-of select="@id"/></span>
 	when option <xsl:for-each select="s:subject_options/s:subject_option">
 	 <xsl:variable select="@ref" name="opt"/>
 	  "<xsl:value-of select="//s:option[@id=$opt]/s:value"/>",
 	</xsl:for-each>
-	<xsl:variable select="s:object_question/@ref" name="object"/>
-	apply <span class="rule-name"><xsl:value-of select="substring(s:type,20)"/></span> to <xsl:value-of select="//s:question[@id=$object]/s:data_name"/>
+	apply <span class="rule-name"><xsl:value-of select="substring(s:type,20)"/></span> to 
+	<xsl:call-template name="question_name">
+    <xsl:with-param name="id"><xsl:value-of select="s:object_question/@ref"/></xsl:with-param>
+  </xsl:call-template>
  </li>
+</xsl:template>
+
+<xsl:template name="question_name">
+<xsl:param name="id"/>
+<span class="dataname"><xsl:value-of select="/s:survey/s:questions/s:question[@id=$id]/s:data_name"/></span>
 </xsl:template>
 
 </xsl:stylesheet>
