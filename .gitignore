@@ -17,6 +17,7 @@ lib/
 build/
 dist/
 media/uploads/
+media/results/
 media/journal_images/
 media/.webassets-cache/
 media/cms_page_media/
