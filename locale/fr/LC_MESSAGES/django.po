@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-18 11:19+0100\n"
+"POT-Creation-Date: 2013-11-28 13:08+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,34 @@ msgstr "Ce nom d'utilisateur existe déjà."
 #: .\apps\contest\cms_plugins.py:14
 msgid "Contest"
 msgstr "Contenu"
+
+#: .\apps\dashboard\views.py:36 .\apps\survey\views.py:100
+msgid "No symptoms"
+msgstr "Aucun symptôme"
+
+#: .\apps\dashboard\views.py:37 .\apps\survey\views.py:101
+msgid "Flu symptoms"
+msgstr "Symptômes grippaux"
+
+#: .\apps\dashboard\views.py:38 .\apps\survey\views.py:102
+msgid "Common cold"
+msgstr "Rhume"
+
+#: .\apps\dashboard\views.py:39 .\apps\survey\views.py:103
+msgid "Gastrointestinal symptoms"
+msgstr "Symptômes gastro-intestinaux"
+
+#: .\apps\dashboard\views.py:40 .\apps\survey\views.py:105
+msgid "Allergy / hay fever"
+msgstr "Allergies"
+
+#: .\apps\dashboard\views.py:41 .\apps\survey\views.py:107
+msgid "Other non-influenza symptons"
+msgstr "Autres symptômes non grippaux"
+
+#: .\apps\dashboard\views.py:42 .\apps\survey\views.py:114
+msgid "Unknown"
+msgstr "Inconnu"
 
 #: .\apps\ew_contact_form\forms.py:12 .\apps\survey\forms\__init__.py:16
 #: .\templates\survey\group_management.html.py:45
@@ -269,19 +297,19 @@ msgstr "Saisir un code postal valide."
 msgid "Enter a valid value consisting of letters, numbers or underscores"
 msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
-#: .\apps\pollster\views.py:210
+#: .\apps\pollster\views.py:223
 msgid "Thanks - your diagnosis:"
 msgstr ""
 "Merci beaucoup pour votre participation à GrippeNet.fr. D'après les "
 "informations fournies, votre état de santé classé par GrippeNet.fr comme : "
 
-#: .\apps\pollster\views.py:212 .\templates\survey\thanks.html.py:22
+#: .\apps\pollster\views.py:225 .\templates\survey\thanks.html.py:22
 msgid "Thanks for taking the time to fill out this survey."
 msgstr ""
 "Votre réponse est bien enregistrée, merci d'avoir pris le temps de remplir "
 "ce questionnaire !"
 
-#: .\apps\pollster\views.py:226
+#: .\apps\pollster\views.py:239
 msgid ""
 "At the beginning of the season we ask you to verify last year's information. "
 "Please check the information below."
@@ -498,41 +526,13 @@ msgstr "Questionnaire hebdomadaire"
 msgid "Manage household"
 msgstr "Gérer mes participants"
 
-#: .\apps\survey\views.py:100
-msgid "No symptoms"
-msgstr "Aucun symptôme"
-
-#: .\apps\survey\views.py:101
-msgid "Flu symptoms"
-msgstr "Symptômes grippaux"
-
-#: .\apps\survey\views.py:102
-msgid "Common cold"
-msgstr "Rhume"
-
-#: .\apps\survey\views.py:103
-msgid "Gastrointestinal symptoms"
-msgstr "Symptômes gastro-intestinaux"
-
 #: .\apps\survey\views.py:104
 msgid "Allergy / hay fever and gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux"
 
-#: .\apps\survey\views.py:105
-msgid "Allergy / hay fever"
-msgstr "Allergies"
-
 #: .\apps\survey\views.py:106
 msgid "Common cold and gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux et/ou rhume"
-
-#: .\apps\survey\views.py:107
-msgid "Other non-influenza symptons"
-msgstr "Autres symptômes non grippaux"
-
-#: .\apps\survey\views.py:114
-msgid "Unknown"
-msgstr "Inconnu"
 
 #: .\apps\survey\views.py:240
 #, python-format
@@ -895,7 +895,7 @@ msgstr "Mon espace"
 
 #: .\templates\accounts\partials\usermenu.html.py:11
 #: .\templates\base\sw_col_right.html.py:20
-#: .\templates\dashboard\index.html.py:9
+#: .\templates\dashboard\index.html.py:18
 msgid "My results"
 msgstr "Vos résultats"
 
@@ -1004,12 +1004,6 @@ msgid "Invite people"
 msgstr "Inviter vos contacts"
 
 #: .\templates\dashboard\household.html.py:2
-msgid "Here you will find results for your household"
-msgstr ""
-"Vous retrouverez ici bientot des résultats concernant l'ensemble des "
-"participants de votre compte."
-
-#: .\templates\dashboard\household.html.py:3
 #, python-format
 msgid ""
 "To manage your household, view or modify the participants of your household, "
@@ -1020,25 +1014,14 @@ msgstr ""
 "page <a href=\"%(url_group_management)s\"><i class=\"icon icon-users\"></"
 "i>Gérer mes participants</a>"
 
-#: .\templates\dashboard\household.html.py:3
-#: .\templates\dashboard\index.html.py:13
+#: .\templates\dashboard\household.html.py:2
+#: .\templates\dashboard\user_history.html.py:2
 #: .\templates\survey\thanks_profile_sw.html.py:11
 msgid "Do you know the menu"
 msgstr ""
 "Cette page est accessible à tout moment lorsque vous êtes connecté à votre "
 "compte par les liens disponibles dans la colonne de droite de cette page "
 "(sous 'Mon espace')."
-
-#: .\templates\dashboard\index.html.py:13
-#: .\templates\survey\thanks_profile_sw.html.py:11
-#, python-format
-msgid ""
-"To fill surveys your for this participant or for others , please visit <a "
-"href=\"%(url_group_management)s\">the group management page</a>"
-msgstr ""
-"Pour remplir les questionnaires pour les participants de votre compte, "
-"rendez-vous à la page <a href=\"%(url_group_management)s\"><i class=\"icon "
-"icon-users\"></i>Gérer mes participants</a>"
 
 #: .\templates\dashboard\user_badges.html.py:3
 #: .\templates\dashboard\user_badges.html.py:8
@@ -1053,7 +1036,7 @@ msgstr "Les badges sont désactivés pour ce participant"
 msgid "Reactivate this feature"
 msgstr "Réactivez-les en cliquant ici"
 
-#: .\templates\dashboard\user_badges.html.py:8
+#: .\templates\dashboard\user_badges.html.py:9
 msgid ""
 "This is a new feature of this website. You will win badge during the season."
 msgstr ""
@@ -1066,11 +1049,11 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:8
+#: .\templates\dashboard\user_badges.html.py:10
 msgid "Disable this feature"
 msgstr "Désactiver les badges"
 
-#: .\templates\dashboard\user_badges.html.py:10
+#: .\templates\dashboard\user_badges.html.py:12
 msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
@@ -1085,18 +1068,29 @@ msgstr ""
 "part de votre avis sur cette fonctionnalité (en utilisant par exemple le "
 "bouton commentaire en haut de la page)."
 
-#: .\templates\dashboard\user_badges.html.py:13
+#: .\templates\dashboard\user_badges.html.py:15
 #, python-format
 msgid "You won a new badge"
 msgid_plural "You won %(counter)s new badges"
 msgstr[0] "Vous avez obtenu un nouveau badge !"
 msgstr[1] "Vous avez gagné %(counter)s nouveaux badges"
 
-#: .\templates\dashboard\user_history.html.py:6
+#: .\templates\dashboard\user_history.html.py:2
+#: .\templates\survey\thanks_profile_sw.html.py:11
+#, python-format
+msgid ""
+"To fill surveys your for this participant or for others , please visit <a "
+"href=\"%(url_group_management)s\">the group management page</a>"
+msgstr ""
+"Pour remplir les questionnaires pour les participants de votre compte, "
+"rendez-vous à la page <a href=\"%(url_group_management)s\"><i class=\"icon "
+"icon-users\"></i>Gérer mes participants</a>"
+
+#: .\templates\dashboard\user_history.html.py:7
 msgid "your latest status"
 msgstr "Dernier état de santé"
 
-#: .\templates\dashboard\user_history.html.py:6
+#: .\templates\dashboard\user_history.html.py:7
 #: .\templates\survey\group_archive.html.py:48
 #: .\templates\survey\group_management.html.py:100
 msgid ""
@@ -1113,11 +1107,11 @@ msgstr ""
 "symptômes, ou que vous êtes inquiet, nous vous recommandons de contacter "
 "votre médecin généraliste."
 
-#: .\templates\dashboard\user_history.html.py:7
+#: .\templates\dashboard\user_history.html.py:8
 msgid "your status history"
 msgstr "Vos états de santé précédents"
 
-#: .\templates\dashboard\user_history.html.py:23
+#: .\templates\dashboard\user_history.html.py:24
 msgid "No history for this participant yet"
 msgstr "Aucun état de santé n'a été enregistré pour ce participant. "
 
@@ -1194,7 +1188,7 @@ msgstr ""
 "Ce questionnaire a été complété la dernière fois il y a %(time)s pour ce "
 "participant"
 
-#: .\templates\pollster\questions_run.html.py:266
+#: .\templates\pollster\questions_run.html.py:267
 msgid "year"
 msgstr "an"
 
@@ -1206,9 +1200,17 @@ msgstr "ans"
 msgid "month"
 msgstr "mois"
 
-#: .\templates\pollster\questions_run.html.py:269
+#: .\templates\pollster\questions_run.html.py:268
 msgid "months"
 msgstr "mois"
+
+#: .\templates\pollster\questions_run.html.py:269
+msgid "day"
+msgstr "jour"
+
+#: .\templates\pollster\questions_run.html.py:269
+msgid "days"
+msgstr "jours"
 
 #: .\templates\registration\activate.html.py:4
 #: .\templates\registration\activation_complete.html.py:4
@@ -2197,10 +2199,11 @@ msgstr "Ce courriel a été adressé à"
 #: .\templates\sw_auth\registration_form.html.py:27
 msgid "Registration instructions"
 msgstr ""
-"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous pouvez "
-"utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe (vous "
-"pourrez le changer, nous n'y avons pas accès)<br/><br/>Le code d'invitation "
-"n'est pas obligatoire et ne sert que si vous avez été parrainné par quelqu'un."
+"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous "
+"pouvez utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe "
+"(vous pourrez le changer, nous n'y avons pas accès)<br/><br/>Le code "
+"d'invitation n'est pas obligatoire et ne sert que si vous avez été parrainné "
+"par quelqu'un."
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"
@@ -2401,6 +2404,11 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
+
+#~ msgid "Here you will find results for your household"
+#~ msgstr ""
+#~ "Vous retrouverez ici bientot des résultats concernant l'ensemble des "
+#~ "participants de votre compte."
 
 #~ msgid "Household"
 #~ msgstr "Mes participants"
