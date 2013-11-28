@@ -6,6 +6,8 @@ from apps.reminder.models import UserReminderInfo
 
 attrs_dict = { 'class': 'required' }
 
+password_dict = { 'class': 'required','placeholder':_("Enter your password") }
+
 class RegistrationForm(forms.Form):
     """
     Form for registering a new user account.
@@ -21,18 +23,24 @@ class RegistrationForm(forms.Form):
     """
     username = forms.RegexField(regex=r'(?u)^[\w.@+-_]+$',
                                 max_length=255,
-                                widget=forms.TextInput(attrs=attrs_dict),
-                                label=_("Username"),
+                                widget=forms.TextInput(attrs=dict(attrs_dict, placeholder=_("Username or email"))),
+                                label=_("Username"), help_text=_("A Username or an email address with only letters, numbers or @ + - _ chars"),
                                 error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
-                                                               maxlength=75)),
+                                                               maxlength=75,placeholder=_("Email address"))),
                              label=_("Email address"))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
-                                label=_("Password"))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs=password_dict, render_value=False),
+                                label=_("Password"),
+                                help_text=_("password, only letter, numbers and punctution"),
+                                )
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs=password_dict, render_value=False),
                                 label=_("Password (again)"))
     
-    invitation_key = forms.CharField(widget=forms.TextInput(attrs={'placeholder':_("Invitation key")}),max_length=30, label=_("Invitation key"), required=False)
+    invitation_key = forms.CharField(
+                        widget=forms.TextInput(attrs={'placeholder':_("Invitation key")}),
+                        max_length=30, 
+                        label=_("Invitation key"), 
+                        required=False)
     
     def clean_username(self):
         """
@@ -106,8 +114,8 @@ class SetPasswordForm(forms.Form):
     A form that lets a user change set his/her password without
     entering the old password
     """
-    new_password1 = forms.CharField(label=_("New password"), widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label=_("New password confirmation"), widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label=_("New password"), widget=forms.PasswordInput(attrs=password_dict))
+    new_password2 = forms.CharField(label=_("New password confirmation"), widget=forms.PasswordInput(attrs=password_dict))
 
     def __init__(self, user, *args, **kwargs):
         self.user = user

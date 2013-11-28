@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-28 13:08+0100\n"
+"POT-Creation-Date: 2013-11-28 17:05+0100\n"
 "PO-Revision-Date: 2012-09-24 16:04+0100\n"
 "Last-Translator: Marion\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "X-Generator: Poedit 1.5.3\n"
 
 #: .\apps\accounts\forms.py:17 .\apps\accounts\forms.py:21
-#: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:25
+#: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:27
 #: .\templates\accounts\my_settings.html.py:46
 #: .\templates\base\sw_col_right.html.py:4
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\apps\accounts\forms.py:18 .\apps\sw_auth\forms.py:26
+#: .\apps\accounts\forms.py:18 .\apps\sw_auth\forms.py:28
 msgid "This value must contain only letters, numbers and underscores."
 msgstr "Saisir une valeur autorisée (lettres, nombres ou tirets bas)."
 
@@ -37,16 +37,16 @@ msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
 
 #: .\apps\accounts\forms.py:32 .\apps\ew_contact_form\forms.py:13
-#: .\apps\sw_auth\forms.py:131
+#: .\apps\sw_auth\forms.py:139
 msgid "Email"
 msgstr "Email"
 
 #: .\apps\accounts\forms.py:33 .\apps\reminder\models.py:36
-#: .\apps\sw_auth\forms.py:132
+#: .\apps\sw_auth\forms.py:140
 msgid "Send reminders"
 msgstr "Recevoir la lettre hebdomadaire d'information :"
 
-#: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:132
+#: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:140
 msgid ""
 "Check this box if you wish to receive weekly reminders throughout the flu "
 "season"
@@ -54,11 +54,11 @@ msgstr ""
 "Cochez cette case si vous souhaitez recevoir la lettre hebdomadaire "
 "d'information"
 
-#: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:133
+#: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:141
 msgid "Language"
 msgstr "Langue"
 
-#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:158
+#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:166
 msgid "This email is already in use"
 msgstr "Cet adresse email est déjà utilisée"
 
@@ -565,28 +565,50 @@ msgstr ""
 "Un nouveau participant vient d'être ajouté à votre compte. N'oubliez pas de "
 "remplir son questionnaire préliminaire !"
 
-#: .\apps\sw_auth\forms.py:29
-msgid "Email address"
-msgstr "Adresse email :"
+#: .\apps\sw_auth\forms.py:9
+msgid "password, only letter, numbers and punctution"
+msgstr ""
+"Mot de passe (lettres,chiffres ou ponctuation: -_!#+=@&?). Evitez les "
+"caractères accentués."
 
-#: .\apps\sw_auth\forms.py:31 .\templates\accounts\my_settings.html.py:39
+#: .\apps\sw_auth\forms.py:26
+msgid "Username or email"
+msgstr "Nom d'utilisateur ou email"
+
+#: .\apps\sw_auth\forms.py:27
+msgid ""
+"A Username or an email address with only letters, numbers or @ + - _ chars"
+msgstr ""
+"Un nom d'utilisateur (login) ou votre email, ne doit contenir que des "
+"lettres, nombres, ou caractères @, +, -, _. Ne pas utiliser de caractères "
+"avec accents. "
+
+#: .\apps\sw_auth\forms.py:30 .\apps\sw_auth\forms.py:31
+msgid "Email address"
+msgstr "Adresse email"
+
+#: .\apps\sw_auth\forms.py:33 .\templates\accounts\my_settings.html.py:39
 #: .\templates\base\sw_col_right.html.py:5
 msgid "Password"
 msgstr "Mot de passe"
 
-#: .\apps\sw_auth\forms.py:33
+#: .\apps\sw_auth\forms.py:34
+msgid "Enter your password"
+msgstr "Entrer votre mot de passe"
+
+#: .\apps\sw_auth\forms.py:37
 msgid "Password (again)"
 msgstr "Confirmation du mot de passe"
 
-#: .\apps\sw_auth\forms.py:35
+#: .\apps\sw_auth\forms.py:40 .\apps\sw_auth\forms.py:42
 msgid "Invitation key"
 msgstr "Code d'invitation (non requis)"
 
-#: .\apps\sw_auth\forms.py:47
+#: .\apps\sw_auth\forms.py:55
 msgid "A user with that username already exists."
 msgstr "Ce nom d'utilisateur existe déjà."
 
-#: .\apps\sw_auth\forms.py:58
+#: .\apps\sw_auth\forms.py:66
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
@@ -594,15 +616,15 @@ msgstr ""
 "Cette adresse est déjà en cours d'utilisation. Utilisez une autre adresse ou "
 "la procédure de récupération de mot de passe pour utiliser ce compte."
 
-#: .\apps\sw_auth\forms.py:70 .\apps\sw_auth\forms.py:121
+#: .\apps\sw_auth\forms.py:78 .\apps\sw_auth\forms.py:129
 msgid "The two password fields didn't match."
 msgstr "Le mot de passe saisi et sa confirmation ne correspondent pas."
 
-#: .\apps\sw_auth\forms.py:74 .\apps\sw_auth\forms.py:90
+#: .\apps\sw_auth\forms.py:82 .\apps\sw_auth\forms.py:98
 msgid "E-mail"
 msgstr "Email"
 
-#: .\apps\sw_auth\forms.py:85 .\apps\sw_auth\forms.py:100
+#: .\apps\sw_auth\forms.py:93 .\apps\sw_auth\forms.py:108
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
@@ -610,11 +632,11 @@ msgstr ""
 "Cette adresse email n'est pas associée à un compte connu. Etes vous certain "
 "d'être inscrit avec cette adresse ?"
 
-#: .\apps\sw_auth\forms.py:109
+#: .\apps\sw_auth\forms.py:117
 msgid "New password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\forms.py:110
+#: .\apps\sw_auth\forms.py:118
 msgid "New password confirmation"
 msgstr "Confirmation du nouveau mot de passe :"
 
@@ -2199,11 +2221,12 @@ msgstr "Ce courriel a été adressé à"
 #: .\templates\sw_auth\registration_form.html.py:27
 msgid "Registration instructions"
 msgstr ""
-"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur (vous "
-"pouvez utiliser votre email)<br/>* Une adresse email<br/>* Un mot de passe "
-"(vous pourrez le changer, nous n'y avons pas accès)<br/><br/>Le code "
-"d'invitation n'est pas obligatoire et ne sert que si vous avez été parrainné "
-"par quelqu'un."
+"Pour vous inscrire vous devez fournir<br/>* Un nom d'utilisateur ou votre "
+"email. Ne pas utiliser de caractère avec accent.<br/>* Une adresse "
+"email<br/>* Un mot de passe (vous pourrez le changer, nous n'y avons pas "
+"accès), lettres, chiffres ou ponctuaction (évitez les accents !).<br/><br/>Le "
+"code d'invitation n'est pas obligatoire et ne sert que si vous avez été "
+"parrainné par quelqu'un."
 
 #: .\templates\sw_cohort\form.html.py:13
 msgid "Register a participant into a cohort"

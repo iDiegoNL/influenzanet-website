@@ -32,7 +32,11 @@
 	-moz-border-radius: .4em;
 	font-size: .7em;
 }
-#login-form div { text-align: center }
+
+#login-form div { 
+	text-align: center 
+}
+
 #login-form input {
 	font-size: 1.1em;
 	padding: .2em;
@@ -43,6 +47,9 @@
 	width: 12em;
 }
 
+/**
+ * Registration from
+ */
 #registration {
 	padding: 1em;
 	border: 1px solid #EEE;

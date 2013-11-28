@@ -104,10 +104,16 @@ padding-top: .3em;
  font-size: 1em;
 }
 
-
 #box .helptext {
-font-size: .7em;
+font-size: .8em;
+font-style: italic;
+margin: .8em;
+margin-top: 0;
 display: block;
+}
+
+#box input.required {
+	border-right: 3px solid red;
 }
 
 #footer {
