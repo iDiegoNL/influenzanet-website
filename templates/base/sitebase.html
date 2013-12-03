@@ -71,7 +71,10 @@
 </div>
 {% endif %}	
 <div id="header">
-	<div id="headerlogo"><a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/grippenet.png" alt="GrippeNet logo" /></a></div>
+	<div id="headerlogo">
+		<a href="/" title="GrippeNet"><img src="{{MEDIA_URL}}/sw/grippenet.png" alt="GrippeNet logo" /></a><br/>
+		<div id="headersub">Devenez acteur de la surveillance de la grippe</div>
+	</div>
 	{%if user.is_authenticated %}
 	<div id="header-user">
 	<h2>Vous êtes connecté à GrippeNet.fr</h2>

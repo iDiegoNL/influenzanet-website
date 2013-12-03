@@ -22,10 +22,17 @@ html {
  height-bottom: .8em; 
 }
 
+#headersub {
+ font-size: 1.2em;
+ line-height:normal;
+ color: #899F99;
+ font-style: italic;
+}
+
 #account ul li {
-margin-bottom: 2px;
-font-size: 0.85em;
-padding: 0;
+ margin-bottom: 2px;
+ font-size: 0.85em;
+ padding: 0;
 }
 
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
