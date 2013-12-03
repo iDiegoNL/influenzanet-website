@@ -40,6 +40,7 @@ class RegistrationForm(forms.Form):
                         widget=forms.TextInput(attrs={'placeholder':_("Invitation key")}),
                         max_length=30, 
                         label=_("Invitation key"), 
+                        help_text=_("Invitation key is not required to register"),
                         required=False)
     
     def clean_username(self):
