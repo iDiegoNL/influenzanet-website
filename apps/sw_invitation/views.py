@@ -61,7 +61,10 @@ def preview(request):
     user = request.user
     if request.method == 'POST':
         emails, from_name, include_email, personnal_text = parse_form(request)
-        email = emails[0]
+        if len(emails) > 0:
+            email = emails[0]
+        else:
+            email = 'dummy@localhost'
         key = Invitation.objects.get_invitation_key(user)
         m = prepare_message(user, key.key, email, include_email, from_name, personnal_text, request.is_secure)
         return render_template('preview', request, {'user':user,'message':m})        
