@@ -4,8 +4,10 @@
 <div class="chart-dashboard-history dashboard">
 <table>
 <tr>
-    <th>{%trans "your latest status"%} : <span class="tooltip" title="{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24." %}"><i class="icon icon-tip"></i></span></th>
-    <th colspan="4">{%trans "your status history"%} :</th>
+    {% if history_count > 0 %}
+	<th colspan="{{history_count}}">{%trans "your status history"%} :</th>
+	{% endif %}
+	<th>{%trans "your latest status"%} : <span class="tooltip" title="{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24." %}"><i class="icon icon-tip"></i></span></th>
 </tr>
 <tr>
     {% for row in history %}
