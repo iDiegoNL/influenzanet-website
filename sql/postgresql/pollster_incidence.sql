@@ -74,7 +74,7 @@ SELECT DISTINCT A.global_id
        AND W.global_id = A.global_id
        -- consider only user which set the onset date as the current date or
        -- take the submission date as the onset date
-       AND date_trunc('day', COALESCE(to_date(W."Q3_0_open",'YYYY-MM-DD'), W.timestamp)) = date_trunc('day', $1)
+       AND date_trunc('day', COALESCE(W."Q3_0_open", W.timestamp)) = date_trunc('day', $1)
        -- filter only ILI-related symptoms
        AND S.status = 'ILI'
 $body$
