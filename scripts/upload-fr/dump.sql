@@ -23,9 +23,10 @@ SELECT 'fr',
 	"Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", 
 	"Q16_0", "Q16_1", "Q16_2", "Q16_3", "Q16_4", 
 	"Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5" /* "Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5"  */
-	FROM pollster_results_intake_vx_2012111222301352755848;
+	FROM pollster_results_intake_2011;
 
 /*
+2012-2013
 French changes:
 - Q15 not provided
 - Q8 : added proposition 6
@@ -52,7 +53,7 @@ SELECT 'fr',
 	NULL, NULL, NULL, NULL, NULL, /* "Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", */
 	"Q16_0", "Q16_1", "Q16_2", "Q16_3", "Q16_4", 
 	"Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5" /* "Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5"  */
-	FROM pollster_results_intake;
+	FROM pollster_results_intake_2012;
 
 
 TRUNCATE TABLE epidb_results_weekly;
@@ -74,7 +75,7 @@ SELECT
 	"Q9_0", "Q9_1", "Q9_2", "Q9_3", "Q9_4", "Q9_5", "Q9_6", 
 	"Q9b", 
 	"Q10", "Q10b", "Q10c", 
-	"Q11" FROM pollster_results_weekly_vx_2012111220221352748145;
+	"Q11" FROM pollster_results_weekly_2011;
 /*
 French changes :
 - Q2 : value 9 to NULL
@@ -99,4 +100,4 @@ SELECT
 	"Q9_0", "Q9_1", "Q9_2", "Q9_3", "Q9_4", "Q9_7" OR "Q9_5", "Q9_6", 
 	"Q9b", 
 	"Q10", "Q10b", "Q10c", 
-	"Q11" FROM pollster_results_weekly;
+	"Q11" FROM pollster_results_weekly_2012;
