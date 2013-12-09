@@ -9,7 +9,7 @@ def is_email_valid(email):
     return bool(email_re.match(email))
 
 class Command(BaseCommand):
-    help = 'unsubscribe user'
+    help = 'unsubscribe user from the newsletter'
     option_list = BaseCommand.option_list + (
         make_option('-m', '--mail', action='store', dest='mail', default=None, help='User mail'),
         make_option('-f', '--file', action='store', dest='file', default=None, help='User mail in a file (one mail by line)'),
