@@ -49,9 +49,10 @@
 
 
         	{% for person in persons %}
-            <div class="accordionButton">
+<!--            <div class="accordionButton">
                <p>&nbsp;</p><p><a href="{% url survey_contact %}?gid={{ person.global_id }}" class="noslide"><i class="icon-group"></i>{% trans "Contact survey" %}</a></p>
             </div>
+-->
             
             <div class="accordionButton" {% if person.global_id == gid %}id="open"{% endif %}
              title="{% if person.cohorts %}{{ person.name }} is member of: &#10;{{ person.cohorts_names }}{% endif %}">
@@ -102,7 +103,6 @@ $("select").change(function(){
 });
 </script>
 
-<p><br /><a href="/cohort/register">{% trans "Enter your code and join a group" %}</a></p>
 <p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
 
 {% endblock %}
@@ -113,5 +113,13 @@ $("select").change(function(){
 {% include "accounts/partials/usermap.html" %}
 
 {% placeholder "Left bar" %}
+
+{% endblock %}
+
+{% block col3 %}
+
+{% placeholder "Right bar" %}
+
+<p style="font-size:110%"><a href="/cohort/register">{% trans "Enter your code and join a group" %}</a></p>
 
 {% endblock %}
