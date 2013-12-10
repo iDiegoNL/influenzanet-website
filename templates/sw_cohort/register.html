@@ -3,7 +3,7 @@
 {% block col1 %}
 <!-- {% include "base/messages.html" %} -->
 {% if cohort %}
- {% trans "The participant has been registred in the class :" %} {{ cohort.title }}
+ {% trans "The participant has been registered in the class:" %} {{ cohort.title }}
  <p class="info">{{ cohort.description }}</p>
 {% else %}
  <p>{% trans "Problem occured during registration, try later or contact us" %}.</p>
