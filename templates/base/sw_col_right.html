@@ -1,4 +1,4 @@
-{%load i18n user_login %}
+{%load i18n user_login  cms_tags %}
 {%if not user.is_authenticated %}
 <form action="/accounts/login/?next=/survey/main/" id="login-form" method="post">{% csrf_token %}
 	{%trans "Username" %}<input type="text" name="username" size="30" maxlength="70"/>
@@ -14,7 +14,7 @@
 </div>
 {% else %}	
 <div class="widget-box" id="user-box">
-	<h2>Mon espace</h2>
+<h2>Mon espace</h2>
 <ul>
 	<li><i class="icon icon-users"></i><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
 	<li><i class="icon icon-dashboard"></i><a href="/dashboard/">{% trans "My results" %}</a></li>
@@ -27,8 +27,13 @@
 	<li><i class="icon icon-survey"></i><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}">Préliminaire </a></li>
 	<li><i class="icon icon-survey"></i><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">Hebdomadaire</a></li>
 </ul>
-</div>
 {%endif%}
+<h2>Aide</h2>
+<ul>
+	<li><i class="icon icon-help"></i><a href="{% page_url "aide-premiers-pas" %}">Premiers pas avec GrippeNet.fr</a></li>
+	<li><i class="icon icon-help"></i><a href="{% page_url "aide-etats-de-sante" %}">Les états de santé</a></li>
+</ul>
+</div>
 
 {% endif %}
 {% if not user.is_authenticated %}
