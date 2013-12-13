@@ -188,6 +188,11 @@ def index(request):
         history.reverse()
         context['history'] = history
         context['history_count'] = len(history) - 1
+        last_health_status = ''
+        if len(history) > 0:
+            last_health_status = history[ len(history) - 1].get('syndrom');
+            
+        context['last_health_status'] = last_health_status 
         # participant = participants[global_id]
         # context['profile'] = get_participant_profile(global_id)
         context['use_badge'] = DASHBOARD_USE_BADGE

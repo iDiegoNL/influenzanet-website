@@ -28,7 +28,6 @@
 <div id="user-charts"></div>
 <div id="user-badges"></div>
 <script type="text/javascript">
-var last_health_status = {%if history|length %}'{{history.0.syndrom}}'{%else%}''{%endif%};
 $(function(){
 	{% if use_badge %}
 	$('#user-badges').loading().load('/dashboard/badges/?gid={{gid}}');

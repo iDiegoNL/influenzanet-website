@@ -11,6 +11,8 @@
 <script type="text/javascript">
 var health_status = {};
 {%for name,label in health_status.iteritems %}health_status['{{name}}']= "{{label}}";{%endfor%}
+var last_health_status = '{{last_health_status}}';
+
 </script>
 {% endblock %}
 
