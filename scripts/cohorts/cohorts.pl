@@ -380,10 +380,10 @@ if ($motionchart) {
     print "<html>\n";
     print "  <head>\n";
     print "    <script type=\"text/javascript\" ".
-	"src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/".
+	"src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/".
 	    "jquery.min.js\"></script>\n";
     print "    <script type=\"text/javascript\" ".
-	"src=\"/media/highcharts/highcharts.js\"></script>\n";
+	"src=\"https://code.highcharts.com/highcharts.js\"></script>\n";
     print "    <script type=\"text/javascript\">\n";
     print "            var chart;\n";
     print "            \$(document).ready(function() {\n";
@@ -431,15 +431,17 @@ if ($motionchart) {
     print "                                    enabled: false\n";
     print "                            },\n";
     print "                            series: [{\n";
-    my $first = 1;
+    my $counter = 0;
     foreach (keys %measure_range) {
-	if (!($first == 1)) {
+	if ($counter > 0) {
 	    print "                            }, {\n";
-	} else {
-	    $first = 0;
+	}
+        if ($counter == 1) {
+	    print "                                    color: 'red',\n";
 	}
 	print "                                    name: ".$outcomes{$measure}{$_}.",\n";
 	print "                                    data: [".join(",", @{$data{$_}})."]\n";
+        $counter++;
     }
     print "                            }]\n";
     print "                                });\n";
