@@ -176,7 +176,9 @@ class EpiworkUser(models.Model):
     def personalize(self, user):
         user.username = self.login
         user.email = self.email
+        user.epiwork_user = user
         
+    @transaction.commit_manually()
     def anonymize(self):
         # create a unique user name (not used)
         name = 'user'+str(self.id)+'-'+ utils.random_string(6)

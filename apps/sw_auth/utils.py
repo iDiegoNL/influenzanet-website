@@ -1,4 +1,3 @@
-
 from django.utils.http import int_to_base36, base36_to_int
 from datetime import date
 from random import choice
@@ -126,6 +125,9 @@ def send_user_email(template, email, data=None):
     
     send_mail(subject, message, None, [email])
     return True
+
+
+
 
 """
 Cipher Config

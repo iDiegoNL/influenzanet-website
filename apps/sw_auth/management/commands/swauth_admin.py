@@ -6,10 +6,11 @@ from optparse import make_option
 from django.contrib.auth import authenticate
 from django.db import transaction
 from django.db.models import Q
+from apps.sw_auth.models import AnonymizeLog
 
 class Command(BaseCommand):
     help = 'Manage admin actions'
-    args = 'disclose|makeadmin'
+    args = 'disclose|makeadmin|anonymize'
     
     option_list = BaseCommand.option_list  + (
         make_option('-u', '--user', action='store', dest='user', default=None, help='User id'),
@@ -42,6 +43,8 @@ class Command(BaseCommand):
             self.handle_disclose(user, options)
         elif command == 'makeadmin':
             self.handle_makeadmin(user, options)
+        elif command == 'anonymize':
+            self.handle_anonymize(user, options)
     
     def get_user(self, options):
         user = None
@@ -72,6 +75,16 @@ class Command(BaseCommand):
         print "Django auth_user keys :"
         print "id=", u.id
         print "username=",u.username
+    
+    def handle_anonymize(self, user, options):
+        confirm = raw_input("Confirm (y/n) ")
+        confirm = confirm.lower()
+        if confirm == 'y':
+            user.anonymize()
+            log = AnonymizeLog()
+            log.user = user
+            log.event = AnonymizeLog.EVENT_MANUALLY
+            log.save()
     
     @transaction.commit_on_success
     def make_user_admin(self, user):

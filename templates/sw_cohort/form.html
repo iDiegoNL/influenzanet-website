@@ -10,14 +10,17 @@
 {%endblock%}
 
 {% block col1 %}
+{% include "base/messages.html" %}
+
 <h2>{%trans "Register a participant into a cohort" %}</h2>
 <div id="cohort">
 <p>{%trans "cohort register help text" %}</p>	
-<form action="{%url cohort_register%}" method="get">
+<form action="{%url cohort_register%}" method="post">
+	 {% csrf_token %} 
 	{%trans "Select the participant to register"%}
 	<ul>
 	{% for user in users %}
-	<li><label><input type="radio" name="gid" value="{{user.global_id}}"/> {{ user.name }}</label></li>
+	<li><label><input type="checkbox" name="gid" value="{{user.global_id}}"/> {{ user.name }}</label></li>
 	{% endfor %}
 	</ul>
 	<label for="token">{%trans "Enter the token" %}</label> 
