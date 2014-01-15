@@ -5,8 +5,11 @@ from ...models import EpiworkUser
 from optparse import make_option
 from django.contrib.auth import authenticate
 from django.db import transaction
+from django.db import connection
 from django.db.models import Q
 from apps.sw_auth.models import AnonymizeLog
+from apps.survey.models import SurveyUser
+from django.conf import settings
 
 class Command(BaseCommand):
     help = 'Manage admin actions'
@@ -46,6 +49,7 @@ class Command(BaseCommand):
         elif command == 'anonymize':
             self.handle_anonymize(user, options)
     
+    
     def get_user(self, options):
         user = None
         param = None
@@ -63,6 +67,9 @@ class Command(BaseCommand):
         except EpiworkUser.DoesNotExist:
             print "User not found with params %s" % str(param)
             pass
+        except EpiworkUser.MultipleObjectsReturned:
+            print "Multiple user found with this params"
+            pass
         if user is not None:
             print "found user #%s %s" % (str(user.id), str(user.login))
             
@@ -73,13 +80,56 @@ class Command(BaseCommand):
             raise Exception('No user found')
         u = user.get_django_user()
         print "Django auth_user keys :"
-        print "id=", u.id
-        print "username=",u.username
+        print "id=%d  username=%s" % ( u.id, u.username)
+        self.show_user(u)
+        
+    def show_user(self, user):
+        participants = SurveyUser.objects.filter(user=user)
+        print "---------------------------------------"
+        print "%d participants linked to this account" % len(participants)
+        print "---------------------------------------"
+        tables = {'intake':'pollster_results_intake', 'weekly':'pollster_results_weekly'}
+        # handle historical tables data
+        if hasattr(settings, 'HISTORICAL_TABLES'):
+            h = settings.HISTORICAL_TABLES
+            for season in h.keys():
+                tb = h[season]
+                tables[season+'_intake'] = tb['intake']
+                tables[season+'_weekly'] = tb['weekly'] 
+        data = []
+        width = [6, 6]
+        cols = ['id','active']
+        for tb in tables.keys():
+            cols.append(tb)
+            width.append(len(tb))
+            
+        for participant in participants:
+            d = [participant.id, (not participant.deleted)]
+            for tb in tables.keys():
+                cursor = connection.cursor()
+                table = tables.get(tb)
+                cursor.execute("SELECT count(*) from " + table+" where global_id='" + participant.global_id+"'")
+                r = cursor.fetchone()
+                d.append(r[0])
+            data.append(d)
+        
+        i = 0
+        for col in cols:
+            mask = " % " + str(width[i])+"s " 
+            print mask % col,
+            i = i + 1
+        print
+        for d in data:
+            i = 0
+            for v in d:
+                mask = " % " + str(width[i]) + "s " 
+                print mask % str(v),
+            print
     
     def handle_anonymize(self, user, options):
-        confirm = raw_input("Confirm (y/n) ")
+        confirm = raw_input("Confirm (yes/no) ")
         confirm = confirm.lower()
-        if confirm == 'y':
+        if confirm == 'yes':
             user.anonymize()
             log = AnonymizeLog()
             log.user = user
