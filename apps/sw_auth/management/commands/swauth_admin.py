@@ -124,6 +124,7 @@ class Command(BaseCommand):
             for v in d:
                 mask = " % " + str(width[i]) + "s " 
                 print mask % str(v),
+                i = i + 1
             print
     
     def handle_anonymize(self, user, options):
