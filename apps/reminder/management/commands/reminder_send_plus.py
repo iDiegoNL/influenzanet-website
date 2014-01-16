@@ -195,9 +195,6 @@ class Command(BaseCommand):
             if(counter is not None):
                 file(counter,'w').write(str(count))
             return u'%d reminders sent.\n' % count 
-       
-        except Exception as e:
-            print e
         finally:
             # conf = get_settings()
             conf.currently_sending = False
