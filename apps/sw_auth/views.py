@@ -19,7 +19,7 @@ from apps.sw_auth.utils import send_activation_email,EpiworkToken
 from apps.sw_auth.logger import auth_notify
 from apps.sw_auth.forms import UserEmailForm
 #from apps.sw_auth import anonymize
-from apps.sw_auth.anonymize import Anonymizer
+#from apps.sw_auth.anonymize import Anonymizer
 
 
 def render_template(name, request, context=None):
