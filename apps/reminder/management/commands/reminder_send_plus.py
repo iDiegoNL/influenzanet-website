@@ -116,7 +116,8 @@ class Command(BaseCommand):
         print "next=%s" % (next)
         try:
             for user in users :
-                print user
+                if self.verbose:
+                    print user
                 if batch_size and i >= batch_size:
                     raise StopIteration 
                 
@@ -128,7 +129,9 @@ class Command(BaseCommand):
                 if not info.active:
                     continue
                 
-                print info.last_reminder
+                if self.verbose:
+                    print info.last_reminder
+                    
                 if info.last_reminder is None:
                     to_send = True
                 elif info.last_reminder < message.date:
@@ -136,7 +139,7 @@ class Command(BaseCommand):
             
                 if to_send:
                     if not checker.check(user):
-                        print "skipping user %s" % str(user)
+                        print "checker said skip user %s" % str(user)
                         to_send = False
             
                 if to_send:
