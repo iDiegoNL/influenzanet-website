@@ -367,10 +367,11 @@ background: #FFF url() left center no-repeat;
 	border-radius: .4em;
 	-moz-border-radius: .4em;
 	-webkit-border-radius: .4em;
+	text-align: center;
 }
 
 .graph img {
-	margin: 1em auto;
+	margin: 1em ;
 }
 
 .graph blockquote {
@@ -378,10 +379,11 @@ background: #FFF url() left center no-repeat;
 }
 
 blockquote {
-	margin: .5em;
+	margin: .5em auto;
 	padding: .2em;
 	font-size: .7em;
 	font-style: italic;
+	text-align: justify;
 }
 
 /* Alert from bootstrap
