@@ -327,13 +327,29 @@ background: #FFF url() left center no-repeat;
  * Graph
  */
 
+.graph {
+	margin: .5em;
+	padding: .5em;
+	border: 1px solid #EEE;
+	border-radius: .4em;
+	-moz-border-radius: .4em;
+	-webkit-border-radius: .4em;
+}
+
+.graph img {
+	margin: 1em auto;
+}
+
+.graph blockquote {
+	margin: .3em 1em .2em 1em; 	
+}
+
 blockquote {
 	margin: .5em;
 	padding: .2em;
-	font-size: .8em;
+	font-size: .7em;
 	font-style: italic;
 }
-
 
 /* Alert from bootstrap
  * 
