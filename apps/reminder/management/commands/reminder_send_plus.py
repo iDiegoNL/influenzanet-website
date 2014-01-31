@@ -145,7 +145,7 @@ class Command(BaseCommand):
                 if to_send:
                     i += 1
                     if not self.fake:
-                        if(self.verbose):
+                        if self.verbose:
                             print 'sending', user.email 
                         send(now, user, message, language, next=next)
                     else:
