@@ -4,12 +4,21 @@ padding: 0;
 font-size: .7em;
 }
 
+.journal-latest dl {
+	margin: .5em 0;
+}
+
 .journal-latest dt {
-font-weight: bold;
+	font-weight: normal;
+	line-height: 1.2em;
+	font-size: .7em;
+	padding-top: 5px;
 }
 
 .journal-latest dd {
 	border-bottom: 1px solid #EEE;
+	line-height: 1.1em;
+	padding: .2em;
 }
 
 .journal-entry-footer {

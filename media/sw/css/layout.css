@@ -6,6 +6,39 @@ html {
  color: #333;
 }
 
+/**
+ * Column layout
+ */
+
+/**
+ * Try to correct 3 column layout 
+ */
+
+#colmid {
+ left: 215px; /* Distance col2 to left margin = (total width of col1) */
+}
+
+#colmid #colright {
+ margin-left: -410px; /* col3 position */
+}
+
+/*
+ * margin-left = margin of col2
+ */
+#colmid #col1pad {
+margin:0 5px 0 416px;
+}
+
+#colmid #col2 {
+left: 205px;
+width: 200px;
+}
+
+#colmid #col1 {
+ padding: 0;
+ width: 98%;
+}
+
 /*
  * Menu
  */
@@ -413,3 +446,5 @@ blockquote {
  text-align: center;
  margin: .2em auto;
 }
+
+
