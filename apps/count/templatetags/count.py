@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import urllib2
 
 from django.template import Library, Node
-from django.contrib.sites.models import Site
 from django.core.cache import cache 
 from django.conf import settings
 
@@ -15,7 +14,7 @@ SOURCES = {
     'de': 'http://www.aktivgegengrippe.de/count/counter/',
     'at': 'http://www.aktivgegengrippe.at/count/counter/',
     'ch': 'http://www.aktivgegengrippe.ch/count/counter/',
-    'se': 'http://www.influensakoll.se/count/counter/',
+    'se': 'http://www.halsorapport.se/count/counter/',
     'uk': 'http://flusurvey.org.uk/count/counter/',
     'it': 'http://www.influweb.it/count/counter/',
     'pt': 'http://www.gripenet.pt/count/counter/',
