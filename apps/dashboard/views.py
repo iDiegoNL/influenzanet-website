@@ -159,17 +159,22 @@ def get_badges_context(participant, context):
         
 def get_participant_profile(global_id):
     cursor = connection.cursor()
-    cols = {
-        'Q3':'zip_code',
-    }
-    select = '"' + '","'.join(cols.keys()) + '"'
-    cursor.execute("""select %s from pollster_results_last_intake where global_id='%s'""" % (select, global_id))
+    select = [
+        # '"Q3" as zip_code',
+        'CASE WHEN "Q1"=0 THEN \'M\' WHEN "Q1"=1 THEN \'F\' ELSE \'NA\' END as gender',
+        '"Q2" as date_birth'
+    ]
+    select = ','.join(select)
+    cursor.execute( ("""select %s from pollster_results_last_intake where global_id='%s'""" % (select, global_id, ) ))
     r = cursor.fetchone()
-    i = 0
-    d = {}
-    for n in cols.itervalues():
-        d[n] = r[i]
-    return d 
+    if not r:
+        return {}
+    desc = cursor.description
+    columns = []
+    for col in desc:
+        columns.append(col[0])
+    r = dict(zip(columns, r))
+    return r 
 
 @login_required
 def index(request):
@@ -182,6 +187,7 @@ def index(request):
     
     context = {}
     
+    encoder = simplejson.JSONEncoder(ensure_ascii=False)
     if global_id:
         # Fetch participant health status history
         history = list(_get_participant_health_history(user_id, global_id, 5))
@@ -194,11 +200,11 @@ def index(request):
             
         context['last_health_status'] = last_health_status 
         # participant = participants[global_id]
-        # context['profile'] = get_participant_profile(global_id)
+        context['profile'] = encoder.encode(get_participant_profile(global_id))
+        context['current_participant'] = participants.get(global_id);
         context['use_badge'] = DASHBOARD_USE_BADGE
             
     else:
-        encoder = simplejson.JSONEncoder(ensure_ascii=False)
         history = _get_houshold_history(user_id)
         context['history'] = encoder.encode(history)    
     

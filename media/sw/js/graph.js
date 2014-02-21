@@ -1,3 +1,39 @@
+function calc_user_group(profile, age_group) {
+	if(!age_group) {
+		age_group = 20;
+	}
+	if(!$.isPlainObject(profile) ) {
+		return false;
+	}
+	var birth = profile.date_birth;
+	if( !birth ) {
+		return false;
+	}
+	birth = birth.split('-');
+	var date = new Date();
+	date.setFullYear(parseInt(birth[0]));
+	date.setMonth(parseInt(birth[1])-1);
+	var now = new Date();
+	var age = now - date;
+	if(age < 0) {
+		return false;
+	} else {
+		age = Math.floor(age / (1000*60*60*24*365));
+		group = Math.floor(age / age_group);
+	}
+	if(!profile.gender) {
+		return false;
+	}
+	var upper_age = ((group + 1) * age_group) - 1;
+	var lower_age = group * age_group;
+	if(upper_age > 120) {
+		upper_age = 120;
+	}
+	var gender_label = i18n_labels[ profile.gender];
+	var label = lower_age + ' - ' + upper_age + ' ' + i18n_labels['years']+' / ' + gender_label;
+	return {'id': profile.gender + '_' + group, 'label': label};
+}
+
  
 function prepare_data(data, column, my_group, translation) {
 	var values = [], 
@@ -40,7 +76,7 @@ function prepare_data(data, column, my_group, translation) {
 	};
 } 
 
-function create_labels(paper, barchart, horiz, data, chart_margin, label_margin) {
+function create_labels(paper, barchart, horiz, data, chart_margin, label_margin, bar_label, show_avatar) {
 	var set = paper.set(),
 		covers = barchart.covers,
 		bars = barchart.bars,
@@ -53,22 +89,21 @@ function create_labels(paper, barchart, horiz, data, chart_margin, label_margin)
 			bb, base,
 			x, y;
 		
-		if( i == data.my_group ) {
-			label = paper.text(bin.x + bin.width/2, bin.y + bin.height/2, "*");
-		}
 		if(horiz) {
 			x = 0;
 			y = bin.y + (bin.height / 2);
 		} else {
-			x = bin.x + (bin.width/2);
+			x = bin.x + (bin.width / 2);
 			y = bin.y + bin.height - label_margin;
 		}
-		label = paper.text(x, y, data.labels[i]);
-		w =  label.getBBox().width;
-		if(horiz) {
-			label.attr('x', chart_margin - w - label_margin )
-		} 
-		set.push(label);
+		if(bar_label) {
+			label = paper.text(x, y, data.labels[i]);
+			w =  label.getBBox().width;
+			if(horiz) {
+				label.attr('x', chart_margin - w - label_margin )
+			} 
+			set.push(label);
+		}
 		
 		// Value label on the right of the bar
 		bb = bars[i].getBBox();
@@ -88,24 +123,46 @@ function create_labels(paper, barchart, horiz, data, chart_margin, label_margin)
 		var text = data.values[i] + data.units;
 		label = paper.text(x, y, text );
 		set.push(label);
+		
+		if( show_avatar && i == data.my_group ) {
+			bb = label.getBBox();
+			//label = paper.text(bin.x + bin.width/2, bin.y + bin.height/2, "Vous");
+			paper.image(user_avatar, x + bb.width + 4, y - 16, 32, 32);
+		}
 	}
 	set.attr({'text-anchor': ((horiz) ? 'start' : 'middle')});
 }
  
  
-function syndrom_chart(container, data, health_status, last_health_status) {
-	var margin_x = 220,
+function syndrom_chart(container, json, health_status, last_health_status) {
+	var 
+	margin_x = 160,
 	label_margin_x = 5, // Margin between bar & labels
-	paper, // Rapheal canvas 
-	barchart,
-	d;
+	w, paper, // Rapheal canvas 
+	all_hbar, x, group_hbar, label_graph,
+	all_data, group, group_data, graph_data;
 	
-	d = prepare_data(data, 'prop', last_health_status, health_status);
+	all_data = prepare_data(json.data.syndrom, 'prop', last_health_status, health_status);
 	
-	paper = Raphael(container, 520, 210);
-	barchart = paper.hbarchart(margin_x, 0, 250, 200, d.values, { 'colors':d.colors });
-	console.log(barchart);
-	create_labels(paper, barchart, true, d, margin_x, label_margin_x);
+	group = calc_user_group(user_profile, json.params.age_group);
+	if(group) {
+		var group_data = 	json.data.syndrom_group[group.id];
+		group_data = prepare_data(group_data, 'prop', last_health_status, health_status);
+	}
+	w = (group) ? 620 : 520;
+	paper = Raphael(container, w, 240);
+	all_hbar = paper.hbarchart(margin_x, 0, 150, 200, all_data.values, { 'colors':all_data.colors });
+	create_labels(paper, all_hbar, true, all_data, margin_x, label_margin_x, true, (group ? false : true));
+	
+	paper.text(margin_x + 40, 220, i18n_labels['all_participants']);
+	
+	if(group) {
+		var x = margin_x + 150 + 50;
+		group_hbar = paper.hbarchart(x, 0, 150, 200, all_data.values, { 'colors':all_data.colors });
+		create_labels(paper, group_hbar, true, group_data, x, label_margin_x, false, true);
+		paper.text(x + 40, 220, group.label);
+	}
+	
 }
 
 var months = ['Jan','Fev','Mar','Avr','Mai','Jun','Jui','Aou','Sep','Oct','Nov','Dec'];

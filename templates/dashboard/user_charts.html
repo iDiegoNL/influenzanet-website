@@ -1,18 +1,24 @@
+{% load i18n %}
 <div class="chart-box">
 <h4>Etat de santé des participants ces 7 derniers jours <span class="tooltip" title="Répartition des états de santé des participants tels qu'ils sont classés par GrippeNet.fr durant les 7 derniers jours. 
 La taille de la barre correspond au pourcentage de participants dont les symptomes ont été classés par GrippeNet dans l'état de santé à gauche de la barre. 
 La barre correspondant à votre dernière situation est indiquée en vert."><i class="icon icon-tip"></i></span></h4>
-<div id="syndrom-chart" class="chart" style="width:550px; height:220px; overflow:auto"></div>
+<div id="syndrom-chart" class="chart" style="width:650px; height:250px; overflow:auto"></div>
+<blockquote class="legend">Ce graphique représente la répartition des <a href="/aide-etats-de-sante/">états de santé</a> pour l'ensemble des participants de GrippeNet.fr (à gauche) et pour le groupe de la même tranche d'âge et de même sexe du participant (à droite) rapportés durant les 7 derniers jours. Les barres vertes correspondent au dernier état de santé d'après le dernier questionnaire hebdomadaire de ce participant</span>
+<div id="syndrom-chart-update"></div>
 </div>
 <script type="text/javascript" src="{{MEDIA_URL}}sw/js/graph.js"></script>
 <script type="text/javascript">
+var i18n_labels = {'M': '{% trans "Male" %}', 'F':'{% trans "Female"%}', 'years': '{%trans "years"%}', 'all_participants':"{%trans "All participants" %}"};
 function init_my_charts() {
 	initUI('.chart-box');
 	console.log('charts');
  	$.getJSON('{{MEDIA_URL}}results/json/syndrom.json', function(json) {
 		console.log(json);
-		syndrom_chart("syndrom-chart", json.data.syndrom, health_status, last_health_status);
+		syndrom_chart("syndrom-chart", json, health_status, last_health_status);
+		var time = Math.floor(json.time) * 1000;
+		time = new Date(time);
+		$('#syndrom-chart-update').text( time );
 	});
-	
 }
 </script>
