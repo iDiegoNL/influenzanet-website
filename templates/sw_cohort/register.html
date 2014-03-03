@@ -5,8 +5,14 @@
 {% if cohort %}
  {% trans "The participant has been registred in the class :" %} {{ cohort.title }}
  <p class="info">{{ cohort.description }}</p>
+<ul>
+{% for person in persons %}
+<li>{{ person }}</li>
+{% endfor %}
+</ul>
 {% else %}
  <p>{% trans "Problem occured during registration, try later or contact us" %}.</p>
 {% endif %}
-<a href="{%url group_management%}">{% trans "Back to group management page"%}</a>
+<a href="{% url group_management %}">{% trans "Back to group management page"%}</a>
 {% endblock %}
+

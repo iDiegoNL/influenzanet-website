@@ -17,7 +17,7 @@
 	{%trans "Select student to register"%}
 	<ul>
 	{% for user in users %}
-	<li><label><input type="radio" name="gid" value="{{user.global_id}}"/> {{ user.name }}</label></li>
+	<li><label><input type="checkbox" name="gid" value="{{user.global_id}}"/> {{ user.name }}</label></li>
 	{% endfor %}
 	</ul>
 	<label for="token">{%trans "Enter your code" %}</label> 
