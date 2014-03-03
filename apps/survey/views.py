@@ -302,8 +302,8 @@ def create_surveyuser(request):
     # have a linked surveyuser one is created. After that the client is redirected to
     # the group management page.
 
-    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
-        return HttpResponseRedirect(reverse(group_management))
+    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 0:
+        return HttpResponseRedirect(settings.LOGIN_SURVEYUSER_EXISTS_URL)
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
         survey_user = models.SurveyUser.objects.create(
@@ -312,7 +312,7 @@ def create_surveyuser(request):
         )
 
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
-    return HttpResponseRedirect(reverse(index) + '?gid=' + gid)
+    return HttpResponseRedirect(settings.LOGIN_SURVEYUSER_CREATED_URL + '?gid=' + gid)
 
 @login_required
 def people_edit(request):
