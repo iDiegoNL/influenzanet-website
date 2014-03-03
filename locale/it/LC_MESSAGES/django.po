@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:21+0100\n"
+"POT-Creation-Date: 2014-03-03 14:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: apps/accounts/cms_plugins.py:6
+#, fuzzy
+msgid "User Menu"
+msgstr "Nome del mittente"
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 src/django-registration/registration/forms.py:35
@@ -84,6 +89,11 @@ msgstr "Messaggio"
 #: apps/ggm_maps/cms_plugins.py:11
 msgid "GGM Maps"
 msgstr ""
+
+#: apps/italian_extensions/cms_plugins.py:6
+#, fuzzy
+msgid "User registration"
+msgstr "profili di registrazione"
 
 #: apps/journal/admin.py:38
 #, python-format
@@ -502,16 +512,16 @@ msgstr "Raffreddore e sintomi gastrointestinali"
 msgid "Other non-influenza symptoms"
 msgstr "Altri sintomi non influenzali"
 
-#: apps/survey/views.py:66
+#: apps/survey/views.py:68
 msgid "Unknown"
 msgstr "Sintomi sconosciuti"
 
-#: apps/survey/views.py:157
+#: apps/survey/views.py:159
 #, python-format
 msgid "Il participante \"%(user_name)s\"  segnalato come sano."
 msgstr ""
 
-#: apps/survey/views.py:162
+#: apps/survey/views.py:164
 #, python-format
 msgid ""
 "Please complete the background questionnaire for the participant "
@@ -520,7 +530,7 @@ msgstr ""
 "Ti preghiamo di compilare il questionario di adesione per il partecipante "
 "\"%(user_name)s\" prima di segnalarlo/a come senza sintomi."
 
-#: apps/survey/views.py:260
+#: apps/survey/views.py:262
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
@@ -529,7 +539,7 @@ msgstr ""
 "questionario di adesione che trovi di seguito. Dovrai compilarlo soltanto "
 "una volta, ma potrai tornare in ogni momento a modificare i tuoi dati."
 
-#: apps/survey/views.py:384
+#: apps/survey/views.py:386
 msgid "A new person has been added."
 msgstr "È stata aggiunta una nuova persona."
 
@@ -541,30 +551,45 @@ msgstr ""
 msgid "this token has expired"
 msgstr ""
 
-#: apps/sw_cohort/views.py:32
+#: apps/sw_cohort/views.py:31
 #, python-format
 msgid "user %s is already registred in this cohort"
 msgstr ""
 
-#: apps/sw_cohort/views.py:45
+#: apps/sw_cohort/views.py:44
 msgid "User does not exist"
 msgstr ""
 
-#: apps/sw_cohort/views.py:47
-msgid "invalid token"
-msgstr ""
-
-#: apps/sw_cohort/views.py:69
+#: apps/sw_cohort/views.py:66
 msgid "token not provided"
 msgstr ""
 
-#: apps/sw_cohort/views.py:80
-#, python-format
-msgid "The participant %s has been registred"
+#: apps/sw_cohort/views.py:73
+msgid "invalid token"
 msgstr ""
 
-#: apps/sw_cohort/views.py:82
+#: apps/sw_cohort/views.py:84
 msgid "An error occured during registration to the cohort"
+msgstr ""
+
+#: apps/sw_invitation/utils.py:32
+#, fuzzy
+msgid "An InfluenzaNet user"
+msgstr "Virus dell'Influenza"
+
+#: apps/sw_invitation/views.py:32
+#, python-format
+msgid "\"%s\" is not a valid email address"
+msgstr ""
+
+#: apps/sw_invitation/views.py:52
+#, python-format
+msgid "Invitation sent for \"%s\""
+msgstr ""
+
+#: apps/sw_invitation/views.py:54
+#, python-format
+msgid "email \"%s\" has already been invited by someone"
 msgstr ""
 
 #: apps/tellafriend/forms.py:13
@@ -1076,7 +1101,7 @@ msgid "Users"
 msgstr "Utenti"
 
 #: pybb/templates/pybb/users.html:9 templates/base/forum.html:98
-#: templates/base/sitebase.html:146 templates/search/search.html:9
+#: templates/search/search.html:9
 msgid "Search"
 msgstr "Cerca"
 
@@ -1278,6 +1303,7 @@ msgstr "Profilo"
 
 #: templates/accounts/my_settings.html:4
 #: templates/accounts/my_settings.html:21
+#: templates/accounts/partials/cms_usermenu.html:14
 #: templates/accounts/partials/usermenu.html:14
 msgid "Account settings"
 msgstr "Impostazioni account"
@@ -1289,6 +1315,32 @@ msgstr "Le tue impostazioni sono state aggiornate"
 #: templates/accounts/my_settings.html:32
 msgid "Email settings"
 msgstr "Impostazione email"
+
+#: templates/accounts/partials/cms_usermenu.html:3
+#: templates/accounts/partials/usermenu.html:3
+msgid "Your account"
+msgstr "Profilo Utente"
+
+#: templates/accounts/partials/cms_usermenu.html:11
+#: templates/accounts/partials/usermenu.html:11
+msgid "My results"
+msgstr "Risultati"
+
+#: templates/accounts/partials/cms_usermenu.html:12
+#: templates/accounts/partials/usermenu.html:12
+msgid "My household"
+msgstr "Gestisci il tuo gruppo"
+
+#: templates/accounts/partials/cms_usermenu.html:13
+#: templates/accounts/partials/usermenu.html:13
+msgid "Newsletter"
+msgstr ""
+
+#: templates/accounts/partials/cms_usermenu.html:15
+#: templates/accounts/partials/usermenu.html:15 templates/base/forum.html:79
+#: templates/base/sitebase.html:127
+msgid "Log out"
+msgstr "Esci"
 
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
@@ -1311,27 +1363,6 @@ msgstr ""
 #: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
 msgid "Map updated hourly."
 msgstr "Mappa aggiornata ogni ora"
-
-#: templates/accounts/partials/usermenu.html:3
-msgid "Your account"
-msgstr "Profilo Utente"
-
-#: templates/accounts/partials/usermenu.html:11
-msgid "My results"
-msgstr "Risultati"
-
-#: templates/accounts/partials/usermenu.html:12
-msgid "My household"
-msgstr "Gestisci il tuo gruppo"
-
-#: templates/accounts/partials/usermenu.html:13
-msgid "Newsletter"
-msgstr ""
-
-#: templates/accounts/partials/usermenu.html:15 templates/base/forum.html:79
-#: templates/base/sitebase.html:127
-msgid "Log out"
-msgstr "Esci"
 
 #: templates/accounts/partials/usermenu.html:20
 msgid ""
@@ -1386,11 +1417,11 @@ msgstr "Entra"
 msgid "Forgot password?"
 msgstr "Password dimenticata?"
 
-#: templates/base/forum.html:160 templates/base/sitebase.html:183
+#: templates/base/forum.html:160 templates/base/sitebase.html:178
 msgid "Contact us"
 msgstr "Contattaci"
 
-#: templates/base/forum.html:160 templates/base/sitebase.html:183
+#: templates/base/forum.html:160 templates/base/sitebase.html:178
 msgid "Contact"
 msgstr "Contattaci"
 
@@ -1483,7 +1514,7 @@ msgstr "Chiudi finestra"
 msgid "Surveys and Results"
 msgstr "Questionari e Risultati"
 
-#: templates/base/sitebase.html:183
+#: templates/base/sitebase.html:178
 msgid "Cookie settings"
 msgstr "Impostazione cookie"
 
@@ -1581,7 +1612,7 @@ msgstr ""
 #: templates/registration/password_reset_done.html:17
 #: templates/registration/password_reset_form.html:25
 #: templates/registration/registration_complete.html:18
-#: templates/survey/thanks_profile.html:35
+#: templates/survey/thanks_profile.html:25
 msgid "Influenza virus"
 msgstr "Virus dell'Influenza"
 
@@ -1911,7 +1942,10 @@ msgstr "Sei sicuro di voler eliminare questo/questi componenti?"
 msgid ""
 "Since this year, school classes have been invited to participate to the "
 "project. If you belong to a class and you have received a code, "
-msgstr "Da quest'anno, le scuole sono state invitate a partecipare ad Influweb: ciascuno studente puo' partecipare inserendo il proprio codice di classe. Per entrare a far parte del gruppo della tua classe,"
+msgstr ""
+"Da quest'anno, le scuole sono state invitate a partecipare ad Influweb: "
+"ciascuno studente puo' partecipare inserendo il proprio codice di classe. "
+"Per entrare a far parte del gruppo della tua classe,"
 
 #: templates/survey/group_management.html:86
 msgid "enter your code and join a group"
@@ -2057,14 +2091,6 @@ msgstr "Ti invitiamo, se non lo hai ancora fatto, a compilare"
 msgid "the symptoms questionaire"
 msgstr "il questionario dei sintomi"
 
-#: templates/survey/thanks_profile.html:21
-msgid "You can also visit your"
-msgstr ""
-
-#: templates/survey/thanks_profile.html:27
-msgid "profile page"
-msgstr "Profilo"
-
 #: templates/sw_cohort/form.html:13
 msgid "Register your class on Flusurvey"
 msgstr ""
@@ -2087,13 +2113,125 @@ msgstr ""
 msgid "The participant has been registred in the class :"
 msgstr ""
 
-#: templates/sw_cohort/register.html:9
+#: templates/sw_cohort/register.html:14
 msgid "Problem occured during registration, try later or contact us"
 msgstr ""
 
-#: templates/sw_cohort/register.html:11
+#: templates/sw_cohort/register.html:16
 msgid "Back to group management page"
 msgstr "Torna alla pagina iniziale"
+
+#: templates/sw_invitation/invitation_email.html:23
+#, python-format
+msgid ""
+"Hi,<br><br>\n"
+"%(sender)s wants to invite you to register in our website.<br>\n"
+"%(personnal)s\n"
+"If you are interested, you can register to the website by using the "
+"following adress:<br><br>\n"
+"<a href=\"%(url)s\">%(url)s</a><br><br>\n"
+"You can also, help this user to invite new people by sending this address or "
+"telling people to\n"
+"register with the membership code : <b>%(key)s</b>\n"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:7
+msgid "Invite people to InfluenzaNet"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:8
+msgid ""
+"This page allows you to invite people to register to this website. To invite "
+"someone add his email address to the box below"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:11
+msgid "Invite new people"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:17
+msgid "emails you want to be invited"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:19
+msgid "add a new email"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:22
+msgid "Enter at least one email"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:27
+msgid "Include your email address in the invitation (anonymous if not checked)"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:32
+msgid "An optional name"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:32
+msgid ""
+"You can also include a name which will be included in the invitation email "
+"(not stored in this website)"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:37
+msgid "You can also include a personnal text (not stored in this website)"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:38
+msgid "An optional personnal text"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:43
+msgid "Send the invitations"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:44
+#, fuzzy
+msgid "Preview the invitation email"
+msgstr "Reinvia l'email di attivazione."
+
+#: templates/sw_invitation/invite.html:50
+msgid "Email invitation preview"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:51
+#, fuzzy
+msgid "Close the preview"
+msgstr "Chiudi argomento"
+
+#: templates/sw_invitation/invite.html:54
+msgid "Invitations already sent"
+msgstr ""
+
+#: templates/sw_invitation/invite.html:58
+msgid "invitation you sent has been used"
+msgid_plural "invitations you sent has been used"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/sw_invitation/invite.html:71
+#, fuzzy
+msgid "enter an email"
+msgstr "Indirizzo email del mittente"
+
+#: templates/sw_invitation/invite.html:73
+msgid "invitation privacy policy"
+msgstr ""
+
+#: templates/sw_invitation/max_invitation.html:4
+msgid "Max invitations count reached"
+msgstr ""
+
+#: templates/sw_invitation/max_invitation.html:5
+msgid ""
+"Max invitations reached for this account. Please contact our team if you "
+"want to invite more people"
+msgstr ""
+
+#~ msgid "profile page"
+#~ msgstr "Profilo"
 
 #~ msgid "profilo di registrazione"
 #~ msgstr "Registrazione completata"
@@ -2104,52 +2242,52 @@ msgstr "Torna alla pagina iniziale"
 #~ "Non hai risposto o non hai risposto correttamente ad una o più domande. "
 #~ "Per favore verifica la presenza di eventuali errori."
 
-msgid "People"
-msgstr "Persone"
+#~ msgid "People"
+#~ msgstr "Persone"
 
-msgid "Add new person"
-msgstr "Aggiungi una nuova persona"
+#~ msgid "Add new person"
+#~ msgstr "Aggiungi una nuova persona"
 
-msgid ""
-"Activate your account:\n"
-"\n"
-"Click the following URL or copy and paste it to the browser's address "
-"bar.\n"
-"\n"
-"http://%(site)s/accounts/activate/%(activation_key)s/\n"
-"\n"
-"This activation URL will expire in %(expiration_days)s days."
-msgstr ""
-"Attiva il tuo account:\n"
-"\n"
-"visita questo indirizzo o copialo nella barra degli indirizzi del tuo "
-"browser.\n"
-"\n"
-"http://%(site)s/accounts/activate/%(activation_key)s/\n"
-"\n"
-"Questo indirizzo resterà valido per %(expiration_days)s giorni."
+#~ msgid ""
+#~ "Activate your account:\n"
+#~ "\n"
+#~ "Click the following URL or copy and paste it to the browser's address "
+#~ "bar.\n"
+#~ "\n"
+#~ "http://%(site)s/accounts/activate/%(activation_key)s/\n"
+#~ "\n"
+#~ "This activation URL will expire in %(expiration_days)s days."
+#~ msgstr ""
+#~ "Attiva il tuo account:\n"
+#~ "\n"
+#~ "visita questo indirizzo o copialo nella barra degli indirizzi del tuo "
+#~ "browser.\n"
+#~ "\n"
+#~ "http://%(site)s/accounts/activate/%(activation_key)s/\n"
+#~ "\n"
+#~ "Questo indirizzo resterà valido per %(expiration_days)s giorni."
 
 #~ msgid "Activate your account! %(site)s"
 #~ msgstr "Attiva il tuo account! %(site)s"
 
-msgid ""
-"Below is the list of participants currently managed by you. Click the "
-"corresponding option next to the participant to complete the background "
-"or symptoms questionnaire for that person, or to remove a participant."
-msgstr ""
-"Qui trovi la lista delle persone appartenenti al tuo gruppo. Clicca sulle "
-"opzioni corrispondenti a fianco del nome di ciascuna persona per accedere "
-"al questionario di adesione, a quello dei sintomi o per modificare o "
-"eliminare la persona stessa."
+#~ msgid ""
+#~ "Below is the list of participants currently managed by you. Click the "
+#~ "corresponding option next to the participant to complete the background "
+#~ "or symptoms questionnaire for that person, or to remove a participant."
+#~ msgstr ""
+#~ "Qui trovi la lista delle persone appartenenti al tuo gruppo. Clicca sulle "
+#~ "opzioni corrispondenti a fianco del nome di ciascuna persona per accedere "
+#~ "al questionario di adesione, a quello dei sintomi o per modificare o "
+#~ "eliminare la persona stessa."
 
 #~ msgid "Background"
 #~ msgstr "Adesione"
 
-msgid "Symptoms"
-msgstr "Sintomi"
+#~ msgid "Symptoms"
+#~ msgstr "Sintomi"
 
-msgid "Completing for participant"
-msgstr "Stai compilando il questionario per"
+#~ msgid "Completing for participant"
+#~ msgstr "Stai compilando il questionario per"
 
-msgid "Symptoms survey"
-msgstr "Questionario dei sintomi"
+#~ msgid "Symptoms survey"
+#~ msgstr "Questionario dei sintomi"
