@@ -1,0 +1,42 @@
+{%load i18n%}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>{{ site_name }} mail</title>
+</head>
+<body style="padding:0; margin:0; -webkit-text-size-adjust:none;">
+<style type="text/css">
+<!--
+a:link { text-decoration: underline; color: #808080; }
+-->
+</style>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+	<td width="5%">&nbsp;</td>
+	<td width="90%" style="padding: 1em">
+		<table style="border:1px solid #DDD; border-radius: .3em; padding: .3em">
+			<tr>
+				<td><img src="{{site_logo}}" alt="{{site_name}}"/></td>
+			</tr>
+			<td>
+{%blocktrans with personnal=personnal_text|linebreaksbr %}Hi,<br><br>
+{{sender}} wants to invite you to register in our website.<br>
+{{personnal}}
+If you are interested, you can register to the website by using the following adress:<br><br>
+<a href="{{url}}">{{url}}</a><br><br>
+You can also, help this user to invite new people by sending this address or telling people to
+register with the membership code : <b>{{key}}</b>
+{%endblocktrans%}
+			</td>	
+		</table>
+	</td>
+</tr>
+<tr>
+	<td width="5%">&nbsp;</td>
+	<td width="90%" style="color:#AAAAAA; font-size:9px; text-align:center">{{site_name}} {%if site_footer%}- {{site_footer}}{%endif%}</td>
+	<td width="5%">&nbsp;</td>
+</tr>	
+</table>
+</body>
+</html>

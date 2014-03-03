@@ -1,0 +1,2 @@
+Icons
+mail-add.png = fugue-icons-3.5.6-src\icons-shadowless\mail--plus.png
