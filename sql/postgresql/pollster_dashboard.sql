@@ -158,7 +158,7 @@ CREATE VIEW pollster_dashboard_neighbors AS
         SELECT DISTINCT O.global_id, O."user",
 	        pollster_dashboard_users_by_zip_code_count(O."Q3") AS same_zip_count,
 		pollster_dashboard_neighborhood_users_count(O."Q3") AS neighbors_count, 
-		pollster_dashboard_neighborhood_users_avg(O."Q3") AS neighbors_avg
+		coalesce(pollster_dashboard_neighborhood_users_avg(O."Q3"), 0) AS neighbors_avg
            FROM pollster_dashboard_last_intake O;
 
 DROP VIEW IF EXISTS pollster_dashboard_badges;
