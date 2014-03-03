@@ -17,16 +17,6 @@
 {% endif %}
 {% trans "the symptoms questionaire" %}</a>.
 </p>
-<p>
-{% trans "You can also visit your" %}
-{% if person %}
-<a href="/dashboard/?gid={{person.global_id}}">
-{% else %}
-<a href="/dashboard/">
-{% endif %}
-{% trans "profile page" %}
-</a>
-</p>
 {% endblock %}
 
 
