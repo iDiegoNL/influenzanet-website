@@ -20,7 +20,7 @@ msgstr ""
 #: apps/accounts/cms_plugins.py:6
 #, fuzzy
 msgid "User Menu"
-msgstr "Nome del mittente"
+msgstr "Menu Utente"
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
 #: apps/accounts/forms.py:25 src/django-registration/registration/forms.py:35
@@ -93,7 +93,7 @@ msgstr ""
 #: apps/italian_extensions/cms_plugins.py:6
 #, fuzzy
 msgid "User registration"
-msgstr "profili di registrazione"
+msgstr "Registrazione Utente"
 
 #: apps/journal/admin.py:38
 #, python-format
@@ -575,22 +575,22 @@ msgstr ""
 #: apps/sw_invitation/utils.py:32
 #, fuzzy
 msgid "An InfluenzaNet user"
-msgstr "Virus dell'Influenza"
+msgstr "Un utente di InfluenzaNet"
 
 #: apps/sw_invitation/views.py:32
 #, python-format
 msgid "\"%s\" is not a valid email address"
-msgstr ""
+msgstr "\"%s\" non è un indirizzo e-mail valido"
 
 #: apps/sw_invitation/views.py:52
 #, python-format
 msgid "Invitation sent for \"%s\""
-msgstr ""
+msgstr "Invito mandato per \"%s\""
 
 #: apps/sw_invitation/views.py:54
 #, python-format
 msgid "email \"%s\" has already been invited by someone"
-msgstr ""
+msgstr "l'indirizzo \"%s\" è già stato invitato"
 
 #: apps/tellafriend/forms.py:13
 msgid "URL"
@@ -2093,29 +2093,29 @@ msgstr "il questionario dei sintomi"
 
 #: templates/sw_cohort/form.html:13
 msgid "Register your class on Flusurvey"
-msgstr ""
+msgstr "Registra la tua classe su Influweb"
 
 #: templates/sw_cohort/form.html:15
 msgid ""
 "By adding the code in the field here, you will be adding the selected "
 "student to your Flusurvey class."
-msgstr ""
+msgstr "Aggiungendo il codice nel campo sottostante, aggiungerai lo studente selezionato alla tua classe Influweb"
 
 #: templates/sw_cohort/form.html:17
 msgid "Select student to register"
-msgstr ""
+msgstr "Seleziona lo studente da registrare"
 
 #: templates/sw_cohort/form.html:23
 msgid "Enter your code"
-msgstr ""
+msgstr "Inserisci il tuo codice"
 
 #: templates/sw_cohort/register.html:6
 msgid "The participant has been registred in the class :"
-msgstr ""
+msgstr "Il partecipante è stato registrato nella classe"
 
 #: templates/sw_cohort/register.html:14
 msgid "Problem occured during registration, try later or contact us"
-msgstr ""
+msgstr "C'è stato un problema durante la registrazione. Riprova o contattaci."
 
 #: templates/sw_cohort/register.html:16
 msgid "Back to group management page"
@@ -2133,88 +2133,97 @@ msgid ""
 "You can also, help this user to invite new people by sending this address or "
 "telling people to\n"
 "register with the membership code : <b>%(key)s</b>\n"
-msgstr ""
+msgstr "
+Ciao,<br><br>\n"
+"%(sender)s vuole invitarti a partecipare al progetto Influweb.<br>\n"
+"%(personnal)s\n"
+"Se sei interessato, puoi registrarti "
+"al seguente indirizzo:<br><br>\n"
+"<a href=\"%(url)s\">%(url)s</a><br><br>\n"
+"Aiutaci ad invitare nuovi partecipanti inviando loro questo indirizzo o "
+"dicendo ai tuoi amici di \n"
+"registrarsi con il codice : <b>%(key)s</b>\n"
 
 #: templates/sw_invitation/invite.html:7
 msgid "Invite people to InfluenzaNet"
-msgstr ""
+msgstr "Invita i tuoi amici su Influweb"
 
 #: templates/sw_invitation/invite.html:8
 msgid ""
 "This page allows you to invite people to register to this website. To invite "
 "someone add his email address to the box below"
-msgstr ""
+msgstr "Da questa pagina puoi invitare i tuoi amici a registrarsi sul nostro sito. Per invitare qualcuno, inserisci il suo indirizzo email nel campo sottostante"
 
 #: templates/sw_invitation/invite.html:11
 msgid "Invite new people"
-msgstr ""
+msgstr "Invita i tuoi amici"
 
 #: templates/sw_invitation/invite.html:17
 msgid "emails you want to be invited"
-msgstr ""
+msgstr "indirizzo e-mail degli amici che vuoi invitare"
 
 #: templates/sw_invitation/invite.html:19
 msgid "add a new email"
-msgstr ""
+msgstr "aggiungi un nuovo indirizzo e-mail"
 
 #: templates/sw_invitation/invite.html:22
 msgid "Enter at least one email"
-msgstr ""
+msgstr "Inserisci almeno un indirizzo e-mail"
 
 #: templates/sw_invitation/invite.html:27
 msgid "Include your email address in the invitation (anonymous if not checked)"
-msgstr ""
+msgstr "Inserisci il tuo indirizzo e-mail nell'invito (l'invito sarà anonimo se non inserisci il tuo indirizzo)"
 
 #: templates/sw_invitation/invite.html:32
 msgid "An optional name"
-msgstr ""
+msgstr "Nome (opzionale)"
 
 #: templates/sw_invitation/invite.html:32
 msgid ""
 "You can also include a name which will be included in the invitation email "
 "(not stored in this website)"
-msgstr ""
+msgstr "Puoi anche aggiungere un nome che verrà incluso nell'email di invito"
 
 #: templates/sw_invitation/invite.html:37
 msgid "You can also include a personnal text (not stored in this website)"
-msgstr ""
+msgstr "Puoi aggiungere un testo personalizzato"
 
 #: templates/sw_invitation/invite.html:38
 msgid "An optional personnal text"
-msgstr ""
+msgstr "Messaggio personalizzato (opzionale)"
 
 #: templates/sw_invitation/invite.html:43
 msgid "Send the invitations"
-msgstr ""
+msgstr "Manda gli inviti"
 
 #: templates/sw_invitation/invite.html:44
 #, fuzzy
 msgid "Preview the invitation email"
-msgstr "Reinvia l'email di attivazione."
+msgstr "Anteprima dell'email di attivazione."
 
 #: templates/sw_invitation/invite.html:50
 msgid "Email invitation preview"
-msgstr ""
+msgstr "Anteprima dell'email di invito"
 
 #: templates/sw_invitation/invite.html:51
 #, fuzzy
 msgid "Close the preview"
-msgstr "Chiudi argomento"
+msgstr "Chiudi l'anteprima"
 
 #: templates/sw_invitation/invite.html:54
 msgid "Invitations already sent"
-msgstr ""
+msgstr "Inviti già mandati"
 
 #: templates/sw_invitation/invite.html:58
 msgid "invitation you sent has been used"
 msgid_plural "invitations you sent has been used"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "l'invito che hai mandato è stato utilizzato"
+msgstr[1] "gli inviti che hai mandato sono stati utilizzati"
 
 #: templates/sw_invitation/invite.html:71
 #, fuzzy
 msgid "enter an email"
-msgstr "Indirizzo email del mittente"
+msgstr "Inserisci un indirizzo email"
 
 #: templates/sw_invitation/invite.html:73
 msgid "invitation privacy policy"
@@ -2222,13 +2231,13 @@ msgstr ""
 
 #: templates/sw_invitation/max_invitation.html:4
 msgid "Max invitations count reached"
-msgstr ""
+msgstr "Hai raggiunto il massimo numero di inviti disponibili"
 
 #: templates/sw_invitation/max_invitation.html:5
 msgid ""
 "Max invitations reached for this account. Please contact our team if you "
 "want to invite more people"
-msgstr ""
+msgstr "Hai raggiunto il massimo numero di inviti disponibili. Ti preghiamo di contattarci nel caso tu voglia invitare altre persone."
 
 #~ msgid "profile page"
 #~ msgstr "Profilo"
