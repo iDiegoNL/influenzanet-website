@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth import views as auth_views
 from django.views.generic.simple import direct_to_template
-
+from . import forms
 from . import views
 
 urlpatterns = patterns('',
@@ -41,7 +41,7 @@ urlpatterns = patterns('',
     # From registration.auth_urls
     url(r'^login/$',
         auth_views.login,
-        {'template_name': 'sw_auth/login.html'},
+        {'template_name': 'sw_auth/login.html', 'authentication_form': forms.AuthenticationForm },
         name='auth_login'),
 
     url(r'^login/(?P<login_token>.+)/$',
