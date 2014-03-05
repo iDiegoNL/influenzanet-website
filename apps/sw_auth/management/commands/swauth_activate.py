@@ -87,5 +87,16 @@ class Command(BaseCommand):
             if self.fake:
                 print " fake"
             else:
-                send_activation_email(u, site, renew=False)
-                print " sent"
+                if u.email is None:
+					print "No email, skip"
+					continue
+				if u.email.endswith('@localhost'):
+					print "localhost address, anonymized account"
+					continue
+				try:
+					send_activation_email(u, site, renew=False)
+					print " sent"
+				except Exception, e:
+					print e
+					pass
+                
