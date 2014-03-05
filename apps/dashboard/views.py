@@ -185,7 +185,7 @@ def index(request):
     participants =  _get_participants(request.user)
     global_id = request.GET.get('gid', None)
     
-    context = {}
+    context = {'profile': None}
     
     encoder = simplejson.JSONEncoder(ensure_ascii=False)
     if global_id:
