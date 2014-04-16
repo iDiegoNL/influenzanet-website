@@ -4,7 +4,7 @@
 {% block col1 %}
 {% if wait.message %}
 <h1>{{ wait.message.title }}</h1>
-<p>{{ wait.message.content }}</p>
+<p>{{ wait.message.content|safe }}</p>
 {% else %}
 <h1>{% trans "Launch date" %}</h1>
 <p class="warning">{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin." %}</p>
