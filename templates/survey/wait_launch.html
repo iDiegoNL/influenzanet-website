@@ -2,12 +2,14 @@
 {% load i18n %}
 
 {% block col1 %}
+{% if wait.message %}
+<h1>{{ wait.message.title }}</h1>
+<p>{{ wait.message.content }}</p>
+{% else %}
 <h1>{% trans "Launch date" %}</h1>
 <p class="warning">{% trans "The project has not started yet for the season. We will contact you as soon as the follow-up begin." %}</p>
+{% endif %}
 {% if wait.date %}
 <p class="launch-date">{%trans "The project will be launched from the" %} <b>{{ wait.date|date:"DATE_FORMAT" }}</b></p>
-{% endif %}
-{% if wait.message %}
-<p>{{ wait.message }}</p>
 {% endif %}
 {% endblock %}

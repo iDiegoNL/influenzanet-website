@@ -14,6 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import never_cache
 from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm, MySettingsForm
+from apps.common.wait import get_wait_launch_date
 from apps.sw_auth.models import EpiworkUser
 from apps.sw_auth.utils import send_activation_email,EpiworkToken
 from apps.sw_auth.logger import auth_notify
@@ -58,13 +59,7 @@ def activate_user(request, activation_key):
         if token.validate(settings.ACCOUNT_ACTIVATION_DAYS):
             user = EpiworkUser.objects.get(token_activate=activation_key, is_active=False)
             user.activate()
-            if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
-                d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
-                d = d.date()
-                if date.today() >= d:
-                    d = None # dont show launch date after the date
-            else:
-                d = None
+            d = get_wait_launch_date()
             return render_template('activation_complete', request, {'launch_date': d, 'email': user.email, 'login': user.login})
     except:
         pass
@@ -108,13 +103,7 @@ def activate_retry(request):
 
 #@deprecated: Not necessary
 def activate_complete(request):
-    if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
-        d = datetime.strptime(settings.SWAUTH_LAUNCH_DATE,'%Y-%m-%d')
-        d = d.date()
-        if date.today() >= d:
-            d = None # dont show launch date after the date
-    else:
-        d = None
+    d = get_wait_launch_date()
     return render_template('activation_complete', request, {'launch_date': d})
 
 @csrf_protect

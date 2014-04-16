@@ -17,6 +17,9 @@ from django.db import connection
 from apps.survey import utils, models, forms
 from apps.pollster import views as pollster_views
 from apps.pollster import utils as pollster_utils
+
+from apps.common.wait import is_wait_launch, get_wait_launch_context
+
 from .survey import ( Specification,
                       FormBuilder,
                       JavascriptBuilder,
@@ -26,35 +29,6 @@ import pickle
 
 survey_form_helper = None
 profile_form_helper = None
-
-WAIT_LAUNCH = getattr(settings,'SURVEY_WAIT_LAUNCH', False)
-
-# Check is request need to be restricted in case of WAIT_LAUNCH context
-def is_wait_launch(request):
-    if WAIT_LAUNCH:
-        test_users = getattr(settings, 'SURVEY_TEST_USERS', None)
-        if test_users:
-            user_id = request.user.id
-            if user_id in test_users:
-                return False
-        return True
-    return False
-
-def get_wait_launch_context(request):
-    if is_wait_launch(request):
-        if hasattr(settings, 'SWAUTH_LAUNCH_DATE'):
-            d = settings.SWAUTH_LAUNCH_DATE
-            if d:
-                d = datetime.strptime(d,'%Y-%m-%d')
-                d = d.date()
-        else:
-            d = None
-        if hasattr(settings, 'SURVEY_LAUNCH_MESSAGE'):
-            message = settings.SURVEY_LAUNCH_MESSAGE
-        else:
-            message = False
-        return {'date':  d, 'message': message }
-    return None
 
 def _get_avatars(with_list=True):
     
