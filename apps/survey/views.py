@@ -417,7 +417,7 @@ def create_surveyuser(request):
 
 @login_required
 def run_index(request, shortname):
-    if is_wait_launch(request):
+    if is_wait_launch(request, shortname):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
 
     try:

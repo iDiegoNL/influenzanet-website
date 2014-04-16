@@ -17,18 +17,25 @@ from django.conf import settings
 
 WAIT_LAUNCH = getattr(settings,'SURVEY_WAIT_LAUNCH', False)
 
-def is_wait_launch(request):
+def is_wait_launch(request, survey=None):
     """
     Check if request need to be restricted in case of WAIT_LAUNCH context
+    Returns True if platform should show a waiting message
     """
-    if WAIT_LAUNCH:
-        test_users = getattr(settings, 'SURVEY_TEST_USERS', None)
-        if test_users:
-            user_id = request.user.id
-            if user_id in test_users:
+    if not WAIT_LAUNCH:
+        return False
+    # Now check if one condition allow to pass by the waiting message 
+    test_users = getattr(settings, 'SURVEY_TEST_USERS', None)
+    if test_users:
+        user_id = request.user.id
+        if user_id in test_users:
+            return False
+    if survey is not None:
+        allowed_surveys = getattr(settings, 'SURVEY_WAIT_ALLOWED', None)
+        if allowed_surveys:
+            if survey in allowed_surveys:
                 return False
-        return True
-    return False
+    return True
 
 def get_wait_launch_context(request):
     """ 
