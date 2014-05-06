@@ -24,17 +24,17 @@ def is_wait_launch(request, survey=None):
     """
     if not WAIT_LAUNCH:
         return False
+    if survey is not None:
+        allowed_surveys = getattr(settings, 'SURVEY_WAIT_ALLOWED', None)
+        if allowed_surveys:
+            if survey in allowed_surveys:
+                return False
     # Now check if one condition allow to pass by the waiting message 
     test_users = getattr(settings, 'SURVEY_TEST_USERS', None)
     if test_users:
         user_id = request.user.id
         if user_id in test_users:
             return False
-    if survey is not None:
-        allowed_surveys = getattr(settings, 'SURVEY_WAIT_ALLOWED', None)
-        if allowed_surveys:
-            if survey in allowed_surveys:
-                return False
     return True
 
 def get_wait_launch_context(request):
