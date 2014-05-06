@@ -133,6 +133,7 @@ def survey_test(request, id, language=None):
     # In test env, do not get the user_id from global_id
     # to allow test with real data (for debugging)
     global_id = request.GET.get('gid')
+    user_id = None
     if global_id:
         try:
             survey_user = SurveyUser.objects.get(global_id=global_id)
