@@ -427,12 +427,12 @@ def run_index(request, shortname):
 
     if shortname == 'intake' or shortname == 'weekly':
         if shortname == 'intake':
-            url = reverse(profile_index)
+            url = reverse("survey_profile")
         else:
-            url = reverse(index)
+            url = reverse("survey_index")
         return HttpResponseRedirect(url)
     if survey_user is None:
-        url = '%s?next=%s' % (reverse(select_user), reverse(run_index, kwargs={'shortname':shortname}))
+        url = '%s?next=%s' % (reverse("survey_select_user"), reverse("survey_run", kwargs={'shortname':shortname}))
         return HttpResponseRedirect(url)
 
     try:
