@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^people/edit/$', views.people_edit, name='survey_people_edit'),
     url(r'^people/remove/$', views.people_remove, name='survey_people_remove'),
     url(r'^wait/$', views.wait_launch, name='survey_wait_launch'),
+    url(r'^select/$', views.select_user, name='survey_select_user'),
     url(r'^$', views.index, name='survey_index'),
 )
 
