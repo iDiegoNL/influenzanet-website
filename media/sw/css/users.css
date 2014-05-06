@@ -227,4 +227,19 @@
   vertical-align: middle;
 }
 
+/* User pages */
+.select-user li {
+	padding: .5em .3em;
+	list-style-type: none;
+}
 
+.select-user li a {
+	line-height: 48px;
+	padding: 15px .4em;
+	border-radius: .4em;
+	border: 2px solid white;
+}
+
+.select-user li a:hover {
+	border-color: #007AB8;
+}

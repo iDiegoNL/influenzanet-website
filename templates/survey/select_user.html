@@ -4,7 +4,7 @@
 {% block col1 %}
 <h1>{% trans "Select User" %}</h1>
 
-<ul>
+<ul class="select-user">
 {% for user in users %}
 <li><a href="{{ next }}?gid={{ user.global_id }}">{%if avatars %}<img src="{{avatars.url}}{{ user.avatar }}.png" class="avatar" width="32" height="32"/>{%endif%}{{ user }}</a></li>
 {% endfor %}

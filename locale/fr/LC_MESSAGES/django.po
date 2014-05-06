@@ -5,17 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-21 11:55+0100\n"
-"PO-Revision-Date: 2012-09-24 16:04+0100\n"
-"Last-Translator: Marion\n"
+"PO-Revision-Date: 2014-05-06 16:16+0100\n"
+"Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.6.5\n"
+"Language: fr\n"
 
 #: .\apps\accounts\forms.py:17 .\apps\accounts\forms.py:21
 #: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:27
@@ -476,7 +477,7 @@ msgid ""
 "receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s"
 "\">unsubscribe</a> from our mailings."
 msgstr ""
-"Vous recevez cet email car vous êtes inscrit sur GrippeNet.fr. Votre "
+"Vous recevez cet email car vous êtes inscrit sur %(site_name)s. Votre "
 "participation nous aide à suivre les tendances de la grippe. Si vous ne "
 "souhaitez plus recevoir cet email hebdomadaire de rappel, vous pouvez vous "
 "<a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste de diffusion."
@@ -546,8 +547,8 @@ msgstr ""
 #: .\apps\survey\views.py:245
 #, python-format
 msgid ""
-"Please complete the background questionnaire for the participant \"%"
-"(user_name)s\" before marking him/her as healthy."
+"Please complete the background questionnaire for the participant "
+"\"%(user_name)s\" before marking him/her as healthy."
 msgstr ""
 "Veuillez au préalable remplir le questionnaire préliminaire pour le "
 "participant \"%(user_name)s\" avant de remplir le questionnaire hebdomadaire."
@@ -1063,8 +1064,8 @@ msgstr "Réactivez-les en cliquant ici"
 msgid ""
 "This is a new feature of this website. You will win badge during the season."
 msgstr ""
-"Les badges virtuels sont une nouvelle fonctionnalité de cette saison 2013-"
-"2014. Par la mise en place des badges, nous avons voulu rendre la "
+"Les badges virtuels sont une nouvelle fonctionnalité de cette saison "
+"2013-2014. Par la mise en place des badges, nous avons voulu rendre la "
 "participation à GrippeNet.fr plus ludique, afin de cibler de plus jeunes "
 "participants et stimuler davantage l'adhésion d'un plus grand nombre de "
 "personnes au projet. Cette fonctionnalité n'enlève en rien le sérieux du "
@@ -1082,8 +1083,8 @@ msgid ""
 "badge during the season."
 msgstr ""
 "<h3>Vous venez d'obtenir vos premiers badges !</h3>\n"
-"Les badges virtuels sont une nouvelle fonctionnalité de cette saison 2013-"
-"2014. Par la mise en place des badges, nous avons voulu rendre la "
+"Les badges virtuels sont une nouvelle fonctionnalité de cette saison "
+"2013-2014. Par la mise en place des badges, nous avons voulu rendre la "
 "participation à GrippeNet.fr plus ludique, afin de cibler de plus jeunes "
 "participants et stimuler davantage l'adhésion d'un plus grand nombre de "
 "personnes au projet. Cette fonctionnalité n'enlève en rien le sérieux du "
@@ -1991,7 +1992,8 @@ msgstr "Afficher le profil"
 
 #: .\templates\survey\select_user.html.py:5
 msgid "Select User"
-msgstr "Sélectionner un utilisateur"
+msgstr ""
+"Sélectionner un participant de votre compte pour répondre à ce questionnaire"
 
 #: .\templates\survey\sw_household_story.html.py:7
 msgid "Household diagnosis history"
@@ -2268,9 +2270,8 @@ msgid "valider"
 msgstr "Valider"
 
 #: .\templates\sw_cohort\register.html.py:6
-#, fuzzy
 msgid "The following participants have been registred in the cohort :"
-msgstr "Le participant a bien été inscrit au sous-projet GrippeNet.fr"
+msgstr "Les participants ont bien été inscrits au sous-projet GrippeNet.fr"
 
 #: .\templates\sw_cohort\register.html.py:14
 msgid "Problem occured during registration, try later or contact us"
@@ -2441,169 +2442,3 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
-
-#~ msgid "The participant %s has been registred"
-#~ msgstr "Le participant %s a bien été inscrit au sous-projet GrippeNet.fr"
-
-#~ msgid "Here you will find results for your household"
-#~ msgstr ""
-#~ "Vous retrouverez ici bientot des résultats concernant l'ensemble des "
-#~ "participants de votre compte."
-
-#~ msgid "Household"
-#~ msgstr "Mes participants"
-
-#~ msgid "Please fill the background intake for the user %(name)s first"
-#~ msgstr ""
-#~ "Veuillez remplir le questionnaire préliminaire pour le participant %(name)"
-#~ "s"
-
-#~ msgid ""
-#~ "Some answers from your last survey of the previous season are have been "
-#~ "used to pre-fill this survey. Please check this survey, some questions "
-#~ "may have been added"
-#~ msgstr ""
-#~ "Le questionnaire préliminaire a été légèrement modifié par rapport à la "
-#~ "saison dernière. Il est nécessaire de le mettre à jour.<br/>Certaines "
-#~ "réponses que vous nous avez fournies durant la saison précédente ont été "
-#~ "utilisées pour pré-remplir ce questionnaire. <b>Merci de bien revérifier "
-#~ "les réponses à ce questionnaire<b> et de compléter celles-qui manquent "
-#~ "puis de sauvegarder ce questionnaire pour cette saison."
-
-#~ msgid "Group Management"
-#~ msgstr "Mes particpants"
-
-#, fuzzy
-#~ msgid "Rename"
-#~ msgstr "Renommer"
-
-#, fuzzy
-#~ msgid "Delete"
-#~ msgstr "Supprimer"
-
-#~ msgid "Mark selected as healthy"
-#~ msgstr "Déclarer \"Aucun symptôme\""
-
-#~ msgid "Weekly survey"
-#~ msgstr "Questionnaire hebdomadaire"
-
-#~ msgid "Change password"
-#~ msgstr "Changer mon mot de passe"
-
-#~ msgid "User has been invited"
-#~ msgstr "Le mail d'invitation a été envoyé"
-
-#, fuzzy
-#~ msgid "Edit post"
-#~ msgstr "Modifier"
-
-#, fuzzy
-#~ msgid "Subject"
-#~ msgstr "Valider"
-
-#, fuzzy
-#~ msgid "User"
-#~ msgstr "Nom d'utilisateur"
-
-#, fuzzy
-#~ msgid "Position"
-#~ msgstr "Etat de santé"
-
-#, fuzzy
-#~ msgid "Post count"
-#~ msgstr "Code postal"
-
-#, fuzzy
-#~ msgid "Topic count"
-#~ msgstr "Mon espace"
-
-#, fuzzy
-#~ msgid "Subscribers"
-#~ msgstr "Se désinscrire"
-
-#, fuzzy
-#~ msgid "Text version"
-#~ msgstr "Editer la fiche de ce participant"
-
-#, fuzzy
-#~ msgid "Profile"
-#~ msgstr "Profil"
-
-#, fuzzy
-#~ msgid "Profiles"
-#~ msgstr "Profil"
-
-#~ msgid "Home"
-#~ msgstr "accueil"
-
-#, fuzzy
-#~ msgid "Are you sure you want to delete this message?"
-#~ msgstr "Etes vous certain de vouloir supprimer ce ou ces participants ?"
-
-#, fuzzy
-#~ msgid "Change the password"
-#~ msgstr "Changer mon mot de passe"
-
-#, fuzzy
-#~ msgid "Subscriptions on topics"
-#~ msgstr "Inscrit aux sous-projets :"
-
-#, fuzzy
-#~ msgid "Last post"
-#~ msgstr "Les dernières actualités"
-
-#, fuzzy
-#~ msgid "pages"
-#~ msgstr "Image"
-
-#~ msgid "Edit"
-#~ msgstr "Modifier"
-
-#, fuzzy
-#~ msgid "Edited"
-#~ msgstr "Modifier"
-
-#, fuzzy
-#~ msgid "Subscribe"
-#~ msgstr "Se désinscrire"
-
-#, fuzzy
-#~ msgid "login"
-#~ msgstr "de vous connecter"
-
-#, fuzzy
-#~ msgid "Statistics"
-#~ msgstr "Etat de santé"
-
-#, fuzzy
-#~ msgid "Number of posts"
-#~ msgstr "Nombre d'articles à afficher"
-
-#, fuzzy
-#~ msgid "Number of topics"
-#~ msgstr "Nombre d'articles à afficher"
-
-#~ msgid "Survey date"
-#~ msgstr "Date du questionnaire"
-
-#~ msgid "Options"
-#~ msgstr "Options"
-
-#~ msgid "Cold / allergy"
-#~ msgstr "Rhume / allergie"
-
-#~ msgid ""
-#~ "Date & time of the first reminder and point of reference for subsequent "
-#~ "reminders; (Time zone: MET)"
-#~ msgstr ""
-#~ "Date et heure du premier email de rappel et point de référence pour les "
-#~ "rappels suivants (fuseau horaire : MET)"
-
-#~ msgid "You have to fill your profile data first."
-#~ msgstr "Vous devez tout d'abord saisir les données de votre profil."
-
-#~ msgid ""
-#~ "One or more questions have empty or invalid answer. Please fix it first."
-#~ msgstr ""
-#~ "Une ou plusieurs questions ont une réponse absente ou non valide. Merci "
-#~ "de les corriger ou compléter."
