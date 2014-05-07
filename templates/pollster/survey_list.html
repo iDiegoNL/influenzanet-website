@@ -1,54 +1,88 @@
 {% extends "pollster/base_admin.html" %}
+{% block extrahead %}
+<style>
+.survey-list td {
+	padding: .4em;
+	vertical-align: middle;
+}
 
+.survey-list .status-DRAFT td {
+	color: darkgrey;
+}
+
+.survey-list .status-PUBLISHED td {
+	color: green;
+}
+
+.survey-list .status-UNPUBLISHED td {
+	color: grey;
+}
+
+.status-UNPUBLISHED td.title {
+	font-style: italic;
+	text-decoration:line-through;	
+}
+
+
+.survey-list .action {
+	border: 1px solid steelblue;
+	border-radius: .3em;
+	background-color: white;
+	padding: .3em;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 0;
+	color: steelblue;
+}
+
+.survey-list form {
+	margin:0;
+}
+.action:hover {
+	background-color: steelblue;
+	color: white;
+}
+
+
+</style>
+{% endblock %}
 {% block content %}
 <div id="wok-main-panel-content">
     <div id="survey-list">
         <h1>Surveys</h1>
-        <ul>
-            {% for survey in surveys %}
-            {% if survey.is_draft %}
-            <li class="status-{{survey.status}}">
-                {% if survey.title %}
+        <table class="survey-list">
+	        {% for survey in surveys %}
+            <tr class="status-{{survey.status}}">
+                <td class="title">{% if survey.title %}
                 {{ survey.title }}
                 {% else %}
                 No Name
                 {% endif %}
-                (<a href="{% url pollster_survey_test survey.id %}">test</a>
-                | <a href="{% url pollster_survey_edit survey.id %}">edit</a>
-                | <a href="{% url pollster_survey_translation_list survey.id %}">translate</a>
-                | <a href="{% url pollster_survey_chart_list survey.id %}">charts</a>
-                | <a href="{% url pollster_survey_export_xml survey.id %}">export</a>
-                | <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="link">publish</button></form>)
-            </li>
-            {% endif %}
-            {% if survey.is_unpublished %}
-            <li class="status-{{survey.status}}">
-                {% if survey.title %}
-                {{ survey.title }}
-                {% else %}
-                No Name
-                {% endif %}
-                (<a href="{% url pollster_survey_test survey.id %}">test</a>
-                | <a href="{% url pollster_survey_edit survey.id %}">edit</a>
-                | <a href="{% url pollster_survey_translation_list survey.id %}">translate</a>
-                | <a href="{% url pollster_survey_chart_list survey.id %}">charts</a>
-                | <a href="{% url pollster_survey_export_xml survey.id %}">export</a>
-                | <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="link">re-publish</button></form>)
-            </li>
-            {% endif %}
-            {% if survey.is_published %}
-            <li class="status-{{survey.status}}">
-                {{ survey.title }}
-                (<a href="{% url pollster_survey_test survey.id %}">test</a>
-                | <a href="{% url pollster_survey_translation_list survey.id %}">translate</a>
-                | <a href="{% url pollster_survey_chart_list survey.id %}">charts</a>
-                | <a href="{% url pollster_survey_export_xml survey.id %}">export</a>
-                | <a href="{% url pollster_survey_results_csv survey.id %}">results</a>
-                | <form action="{% url pollster_survey_unpublish survey.id %}" method="POST">{% csrf_token %}<button class="link">unpublish</button></form>)
-            </li>
-            {% endif %}
+	            </td>	
+				<td>{{survey.shortname }}</td>
+				<td>{{survey.status }}</td>
+				<td><a class="action" href="{% url pollster_survey_test survey.id %}">test</a></td>
+	            <td><a class="action"  href="{% url pollster_survey_edit survey.id %}">edit</a></td>
+	            <td><a class="action"  href="{% url pollster_survey_translation_list survey.id %}">translate</a></td>
+	            <td><a class="action"  href="{% url pollster_survey_chart_list survey.id %}">charts</a></td>
+	            <td><a class="action"  href="{% url pollster_survey_export_xml survey.id %}">export</a></td>
+	            <td>
+				{% if survey.is_draft %}
+	               <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="action">publish</button></form>
+	            {% endif %}
+				{% if survey.is_unpublished %}
+                   <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="action">re-publish</button></form>
+				{% endif %}
+	            {% if survey.is_published %}
+					<form action="{% url pollster_survey_unpublish survey.id %}" method="POST">{% csrf_token %}<button class="action">unpublish</button></form>
+	                </td>
+					<td> 
+	                <a class="action"  href="{% url pollster_survey_results_csv survey.id %}">results</a>
+	            {% endif %}
+				</td>
+			</tr>				
             {% endfor %}
-        </ul>
+			</table>
         <ul>
             <li>
             <form action="{% url pollster_survey_import %}" enctype="multipart/form-data" method="POST">

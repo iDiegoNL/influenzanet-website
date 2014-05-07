@@ -3,16 +3,7 @@
 {% block title %}{{ survey.translated_title }}{% endblock %}
 
 {% block extrahead %}
-    <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.js"></script>
-    <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.datatypes.js"></script>
-    <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.codeselect.js"></script>
-    <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.timeelapsed.js"></script>
-    <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.rules.js"></script>
-    <script type="text/javascript" src="/media/pollster/wok/js/wok.pollster.virtualoptions.js"></script>
-    <script type="text/javascript">
-    	var pollster_runtime = null;
-    	$(function() { pollster_runtime = wok.pollster.createPollsterRuntime(null, {'debug': {%if pollster_debug%}1{%else%}0{%endif%}}); })
-	</script>
+    <script type="text/javascript" src="/media/assets/pollster_run.js"></script>
 {% endblock %}
 
 {% block col1 %}
