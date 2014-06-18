@@ -5,7 +5,7 @@
 <p>{% trans "Enter your username and password to log in." %}</p>
 
 {% spaceless %}
-<form method="post" action="?next=/survey/main/" id="registration">
+<form method="post" action="?next={%if next%}{{next}}{%else%}/survey/main/{%endif%}" id="registration">
 	{% csrf_token %}{{ form.as_p }}
 	<p><button type="submit" class="button">{% trans "Log in" %}</button></p>
 </form>
