@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from django import forms
 from django.template import Context, loader, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.db import connection, transaction, DatabaseError
@@ -12,18 +11,15 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
-from django.db import connection
 
 from apps.survey import utils, models, forms
 from apps.pollster import views as pollster_views
 from apps.pollster import utils as pollster_utils
 
+
 from apps.common.wait import is_wait_launch, get_wait_launch_context
 
-from .survey import ( Specification,
-                      FormBuilder,
-                      JavascriptBuilder,
-                      get_survey_context, )
+
 import apps.pollster as pollster
 import pickle
 
@@ -298,6 +294,7 @@ def thanks_profile(request):
         survey_user = get_active_survey_user(request)
     except ValueError:
         pass
+
     return render_to_response('survey/thanks_profile_sw.html', {'person': survey_user},
         context_instance=RequestContext(request))
 
@@ -373,6 +370,7 @@ def index(request):
 
 @login_required
 def profile_index(request):
+
     # Renders an 'intake' survey.
     if is_wait_launch(request):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
@@ -382,7 +380,6 @@ def profile_index(request):
     except ValueError:
         raise Http404()
     if survey_user is None:
-        return HttpResponseRedirect(reverse(group_management))
 
     try:
         survey = pollster.models.Survey.get_by_shortname('intake')
@@ -396,12 +393,14 @@ def profile_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
+    # indexes have become. 
 def create_surveyuser(request):
     # This view is the target for newly created accounts. If the user doesn't already
     # have a linked surveyuser one is created. After that the client is redirected to
     # the group management page.
     if is_wait_launch(request):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
+
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))
