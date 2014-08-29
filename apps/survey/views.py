@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from django import forms
 from django.template import Context, loader, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.db import connection, transaction, DatabaseError
@@ -12,15 +11,11 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
-from django.db import connection
 
 from apps.survey import utils, models, forms
 from apps.pollster import views as pollster_views
 from apps.pollster import utils as pollster_utils
-from .survey import ( Specification,
-                      FormBuilder,
-                      JavascriptBuilder,
-                      get_survey_context, )
+
 import apps.pollster as pollster
 import pickle
 
