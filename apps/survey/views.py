@@ -24,6 +24,17 @@ from .survey import ( Specification,
 import apps.pollster as pollster
 import pickle
 
+try:
+    from apps.sw_cohort.models import Cohort, CohortUser
+    def _get_person_cohorts(surveyuser_id):
+        cids = tuple([u.cohort_id for u in CohortUser.objects.filter(user=surveyuser_id)])
+        if len(cids) > 0:
+            return tuple(Cohort.objects.filter(id__in=cids))
+        return ()
+except:
+    def _get_person_cohorts(global_id):
+        return ()
+
 survey_form_helper = None
 profile_form_helper = None
 
@@ -38,8 +49,8 @@ def get_active_survey_user(request):
         except models.SurveyUser.DoesNotExist:
             raise ValueError()
 
-def _decode_person_health_status(status):
-    d = {
+def _get_all_health_status():
+    return  {
         "NO-SYMPTOMS":                                  _('No symptoms'),
         "ILI":                                          _('Flu symptoms'),
         "COMMON-COLD":                                  _('Common cold'),
@@ -47,12 +58,14 @@ def _decode_person_health_status(status):
         "ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL":    _('Allergy / hay fever and gastrointestinal symptoms'),
         "ALLERGY-or-HAY-FEVER":                         _('Allergy / hay fever'), 
         "COMMON-COLD-and-GASTROINTESTINAL":             _('Common cold and gastrointestinal symptoms'),
-        "NON-SPECIFIC-SYMPTOMS":                        _('Other non-influenza symptons'),
+        "NON-SPECIFIC-SYMPTOMS":                        _('Other non-influenza symptoms'),
     }
-    if status in d:
-        return d[status]
 
-    return _('Unknown')
+def _decode_person_health_status(status):
+   d = _get_all_health_status()
+   if status in d:
+        return d[status]
+   return _('Unknown')
 
 def _get_person_health_status(request, survey, global_id):
     data = survey.get_last_participation_data(request.user.id, global_id)
@@ -143,7 +156,7 @@ def group_management(request):
         for survey_user in request.user.surveyuser_set.filter(global_id__in=global_ids):
             if request.POST.get('action') == 'healthy':
                 messages.add_message(request, messages.INFO, 
-                    _(u'The participant "%(user_name)s" has been marked as healthy.') % {'user_name': survey_user.name})
+                    _(u'Il participante "%(user_name)s"  segnalato come sano.') % {'user_name': survey_user.name})
 
                 profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
                 if not profile:
@@ -170,7 +183,9 @@ def group_management(request):
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.is_female = _get_person_is_female(person.global_id)
-
+        person.cohorts = _get_person_cohorts(person.id)
+        if person.cohorts:
+            person.cohorts_names = " &#10;".join([str(c.title) for c in person.cohorts])
     return render_to_response('survey/group_management.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid")},
                               context_instance=RequestContext(request))
 
@@ -225,40 +240,9 @@ def thanks_profile(request):
         context_instance=RequestContext(request))
 
 @login_required
-def select_user(request, template='survey/select_user.html'):
-    # select_user is still used in some cases: notably when there are unqualified calls to
-    # 'profile_index'. So we've not yet removed this template & view.
-    # Obviously it's a good candidate for refactoring.
-
-    next = request.GET.get('next', None)
-    if next is None:
-        next = reverse(index)
-
-    users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
-    total = len(users)
-    if total == 0:
-        survey_user = models.SurveyUser.objects.create(
-            user=request.user,
-            name=request.user.username,
-        )
-        url = '%s?gid=%s' % (next, survey_user.global_id)
-        return HttpResponseRedirect(url)
-        
-    elif total == 1:
-        survey_user = users[0]
-        url = '%s?gid=%s' % (next, survey_user.global_id)
-        return HttpResponseRedirect(url)
-
-    return render_to_response(template, {
-        'users': users,
-        'next': next,
-    }, context_instance=RequestContext(request))
-
-@login_required
 def index(request):
-    # this is the index for a actual survey-taking
-    # it falls back to 'group management' if no 'gid' is provided.
-    # i.e. it expects gid to be part of the request!
+    # This is the index for a actual survey-taking.
+    # It falls back to 'group management' if no 'gid' is provided.
 
     try:
         survey_user = get_active_survey_user(request)
@@ -267,7 +251,11 @@ def index(request):
     if survey_user is None:
         return HttpResponseRedirect(reverse(group_management))
 
-    # Check if the user has filled user profile
+    # Check if the user has filled user profile. If the profile doesn't exists
+    # the user is redirected to the "intake" (profile_index view below) with a
+    # _next parameter set to this view to return here after completing the intake
+    # survey.
+
     profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
     if profile is None:
         messages.add_message(request, messages.INFO, 
@@ -284,22 +272,20 @@ def index(request):
 
     next = None
     if 'next' not in request.GET:
-        next = reverse(group_management) # is this necessary? Or would it be the default?
+        next = "/dashboard"
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
 def profile_index(request):
-    # this renders an 'intake' survey
-    # it expects gid to be part of the request.
+    # Renders an 'intake' survey.
 
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
         raise Http404()
     if survey_user is None:
-        url = '%s?next=%s' % (reverse(select_user), reverse(profile_index))
-        return HttpResponseRedirect(url)
+        return HttpResponseRedirect(reverse(group_management))
 
     try:
         survey = pollster.models.Survey.get_by_shortname('intake')
@@ -313,17 +299,13 @@ def profile_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
-def main_index(request):
-    # the generalness of the name of this method reflects the mess that the various
-    # indexes have become. 
+def create_surveyuser(request):
+    # This view is the target for newly created accounts. If the user doesn't already
+    # have a linked surveyuser one is created. After that the client is redirected to
+    # the group management page.
 
-    # this is the one that does the required redirection for the button 'my account'
-    # and is also used in the reminder emails.
-
-    # i.e. it redirects to group if there is a group, to the main index otherwise
-
-    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
-        return HttpResponseRedirect(reverse(group_management))
+    if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 0:
+        return HttpResponseRedirect(settings.LOGIN_SURVEYUSER_EXISTS_URL)
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
         survey_user = models.SurveyUser.objects.create(
@@ -332,7 +314,7 @@ def main_index(request):
         )
 
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
-    return HttpResponseRedirect(reverse(index) + '?gid=' + gid)
+    return HttpResponseRedirect(settings.LOGIN_SURVEYUSER_CREATED_URL + '?gid=' + gid)
 
 @login_required
 def people_edit(request):

@@ -1,7 +1,7 @@
 # Django settings for epiweb project.
 # -*- coding: utf-8 -*-
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 
@@ -105,6 +105,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.media.PlaceholderMediaMiddleware',
     'pybb.middleware.PybbMiddleware',
     'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'apps.pollster.middleware.ForceResponseMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -112,12 +113,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.request",
     "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "cms.context_processors.media",
     "sekizai.context_processors.sekizai",
     "django.contrib.messages.context_processors.messages",
-    "cms.context_processors.media",
     "apps.partnersites.context_processors.customizations",
     "pybb.context_processors.processor",
-    "django.core.context_processors.static",
     "apps.pollster.context_processors.last_survey",
     "apps.pollster.context_processors.surveyuser_count",
 )
@@ -180,12 +181,14 @@ INSTALLED_APPS = (
     'apps.pollster',
     'apps.contest',
     'captcha',
-    #'apps.tellafriend',
+    'apps.sw_cohort',
+    'apps.ggm_maps',
 
     'pybb',
     'pytils',
     'sorl.thumbnail',
     'pure_pagination',
+    'apps.sw_invitation',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -193,7 +196,7 @@ HAYSTACK_SITECONF = 'search_sites'
 try:
     import xapian
     HAYSTACK_SEARCH_ENGINE = 'xapian'
-    HAYSTACK_XAPIAN_PATH = '/tmp/xapian'
+    HAYSTACK_XAPIAN_PATH = '/tmp/xapian-influweb.it'
 except:
     HAYSTACK_SEARCH_ENGINE = 'simple'
 
@@ -241,7 +244,7 @@ CACHES = {
 
 # SEO Settings
 
-GOOGLE_ANALYTICS_ACCOUNT = None
+GOOGLE_ANALYTICS_ACCOUNT = 'UA-24124829-7'
 CMS_SEO_FIELDS = True
 
 SESSION_COOKIE_AGE = 60 * 60 * 2
@@ -254,8 +257,13 @@ PYBB_TEMPLATE = 'base/forum.html'
 PYBB_ENABLE_ANONYMOUS_POST = True
 PYBB_ANONYMOUS_USERNAME = 'Gast'
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
+
 try:
     from local_settings import *
 except ImportError:
     pass
 
+INSTALLED_APPS += LOCAL_APPS
+MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE    

@@ -1,0 +1,18 @@
+{% extends "sw_cohort/base.html" %}{% load i18n %}
+
+{% block col1 %}
+<!-- {% include "base/messages.html" %} -->
+{% if cohort %}
+ {% trans "The participant has been registred in the class :" %} {{ cohort.title }}
+ <p class="info">{{ cohort.description }}</p>
+<ul>
+{% for person in persons %}
+<li>{{ person }}</li>
+{% endfor %}
+</ul>
+{% else %}
+ <p>{% trans "Problem occured during registration, try later or contact us" %}.</p>
+{% endif %}
+<a href="{% url group_management %}">{% trans "Back to group management page"%}</a>
+{% endblock %}
+

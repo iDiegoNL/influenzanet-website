@@ -6,6 +6,8 @@
 *~
 .installed.cfg
 .DS_Store
+epiwork-website.log
+epiwork-website.pid
 epiweb.db
 MANIFEST
 local_settings.py

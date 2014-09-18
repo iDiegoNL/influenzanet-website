@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% if not user.is_authenticated %}
+<h4><a href="/accounts/register">Registrati anche tu</a></h4>
+<a href="/accounts/register">
+  <img title="Registrati" alt="Registrati" src="/media/cms_page_media/5/malato.png" />
+</a>
+<hr />
+{% endif %}
+

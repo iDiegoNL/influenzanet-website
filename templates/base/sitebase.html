@@ -123,10 +123,10 @@
 			<div id="headerlogo"><a href="/" title="{{ site_name }}"><img src="{{ site_logo }}" alt="{{ site_name }}" /></a></div>
 			{% block authentication %}<div id="account">{% if user.is_authenticated %}
 			    <ul class="member">
-			        <li><a href="/survey/main/">{% trans "My account" %}</a></li>
+			        <li><a href="/dashboard/">{% trans "Surveys and Results" %}</a></li>
 			        <li><a href="/accounts/logout/">{% trans "Log out" %}</a></li>
 			    </ul>
-			    <p class="loggedinas"><a href="/survey/profile/">{% trans "Logged in as" %} {{ user.username }}</a></p>
+			    <p class="loggedinas"><a href="/survey/main/">{% trans "Logged in as" %} {{ user.username }}</a></p>
 			{% else %}
 			    <ul class="anonymous">
 			        <li><a href="/accounts/login/">{% trans "Log in" %}</a></li>
@@ -140,11 +140,6 @@
 					{% block menubar %}
                     {% spaceless %}{% show_menu 0 1 100 100 "base/menu.html" %}{% endspaceless %}
 					{% endblock menubar %}
-				</div>
-				<div id="searchbar">
-                    <form method="get" action="/search/">
-                        <p><input type="text" id="searchfield" name="q"/><input type="submit" id="searchsubmit" value="{% trans "Search" %}" /></p>
-                    </form>
 				</div>
 			</div>			
 		</div> 

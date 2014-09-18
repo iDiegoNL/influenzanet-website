@@ -22,6 +22,7 @@ SOURCES = {
     'fr': 'http://www.grippenet.fr/count/counter/',
     'es': 'http://www.gripenet.es/count/counter/',
     'ie': 'http://flusurvey.ie/count/counter/',
+    'dk': 'http://influmeter.dk/count/counter/',
 }
 
 def do_member_count(parser, token):

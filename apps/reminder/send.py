@@ -59,7 +59,7 @@ def get_media_url():
     return '%s%s' % (get_site_url(), settings.MEDIA_URL)
 
 def get_url(user):
-    return get_login_url(user, get_survey_url())
+    return get_login_url(user, settings.LOGIN_REDIRECT_URL)
 
 def get_login_url(user, next):
     expires = datetime.datetime.now() + datetime.timedelta(days=30)
@@ -75,7 +75,7 @@ def get_login_url(user, next):
 
 def get_survey_url():
     domain = Site.objects.get_current()
-    path = reverse('apps.survey.views.main_index')
+    path = reverse('apps.survey.views.index')
     return 'http://%s%s' % (domain, path)
 
 def send(now, user, message, language, is_test_message=False):

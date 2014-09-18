@@ -24,7 +24,7 @@
 {% endblock add_js %}
 
 {% block col1 %}
-<h1>{% trans "Your results" %}</h1>
+<h1>{% trans "Group Management" %}</h1>
 
 {% for message in messages %}
     <div class="usermessage"><span class="boldgreen">{{ message }}</span><br/>
@@ -41,70 +41,63 @@
 
 <form action="" method="POST" name="groupmanage">{% csrf_token %}
     <div id="groupwrapper">
-        <div id="groupheader">
-            <p><input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; {% trans "Name" %} <a href="{% url survey_people_add %}"><i class="icon-plus right" title="{% trans "Add person" %}"></i></a></p><p>{% trans "Survey" %}</p><p>{% trans "Status" %}</p>
+        <div id="groupheader">            
+            <p>
+                <a href="{% url survey_people_add %}" class="right"><i class="icon-plus"></i> {% trans "Add person" %}</a>
+                <input type="checkbox" id="select_all" title="{% trans "Select/deselect all" %}" />&nbsp; {% trans "Name" %}
+            </p>
         </div>
         <div id="groupmembers">
-
-
-
-        	{% for person in persons %}
-            <div class="accordionButton" {% if person.global_id == gid %}id="open"{% endif %}>
-                <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i></a><a href="#slide">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{% url survey_profile %}?gid={{ person.global_id }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
-            </div>
-            
-            <div class="accordionContent">
-            {% for health_line in person.health_history %}
-                <div>
-                    <p>&nbsp;</p><p><a href="#"><i class="icon-list-ul"></i>{{ health_line.timestamp|date:"d/m" }}</a></p><img src="{{ MEDIA_URL }}/survey/img/diag-{{ health_line.status|default:'UNKNOWN' }}-{% if person.is_female %}female-{% endif %}small.png" title="{{ health_line.diag }}" alt="" />
-                </div>
+            {% for person in persons %}
+            <div class="accordionButton">
+                <p title="{% if person.cohorts %}{{ person.name }} is member of: &#10;{{ person.cohorts_names }}{% endif %}">
+                    <span class="right">
+                        <a href="{{ person.get_edit_url }}"><i class="icon-edit"></i> {% trans "Rename" %}</a>
+                        <a href="#" class="delete" style="margin-left:10px"><i class="icon-remove"></i> {% trans "Delete" %}</a>                
+                    </span>
+                    <input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> 
+                    <a href="/dashboard?gid={{ person.global_id }}">{{ person.name }}</a>
+                </p>
+            </div>            
             {% endfor %}
-            </div>
-            {% endfor %}
-
-
-
-
         </div>
     </div>
     <br class="source"/>
     <p class="groupsave">
-        <select name="action">
-            <option value="delete">{% trans "Delete member(s)" %}</option>
-        </select>
-        <input type="submit" class="submitbutton" value="{% trans "Save" %}">
+        <input type="hidden" name="action" value="healthy"/>
+        <input type="submit" class="submitbutton" value="{% trans "Mark selected as healthy" %}">
     </p>
 </form>
 
 <script>
-var setLastSelected = function(element) {
-   $(element).data('lastSelected', $(element).find("option:selected"));
-};
-        
-$("select").each(function () {
-   setLastSelected(this);
-});
-
-$("select").change(function(){        
-      if(confirm("{% trans 'Are you absolutely sure you want to delete this user/these users?' %}")) {
-          document.forms["groupmanage"].submit();
-      }
-      else {
-         $(this).data('lastSelected').attr("selected", true);
-         return false;
-      }
+$("form[name=groupmanage] .delete").click(function() {
+    var $link = $(this);
+    if(confirm("{% trans 'Are you absolutely sure you want to delete this user?' %}")) {
+        var $form = $('<form method="POST"></form>')
+            .append($('<input name="csrfmiddlewaretoken"/>').val($("form[name=groupmanage] input[name=csrfmiddlewaretoken").val()))
+            .append($('<input name="global_ids"/>').val($link.closest("p").find("input").val()))
+            .append('<input name="action" value="delete"/>')
+            .appendTo("body")
+            .submit();
+    }
 });
 </script>
 
-<p>{% trans "The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."%}</p>
-
+<p><br />{% trans "Since this year, school classes have been invited to participate to the project. If you belong to a class and you have received a code, " %} <a href="/cohort/register">{% trans "enter your code and join a group" %}</a></p>
 {% endblock %}
 
 {% block col2 %}
 
-{% include "accounts/partials/usermenu.html" %}
 {% include "accounts/partials/usermap.html" %}
 
 {% placeholder "Left bar" %}
+
+{% endblock %}
+
+{% block col3 %}
+
+{% include "accounts/partials/usermenu.html" %}
+
+{% placeholder "Right bar" %}
 
 {% endblock %}

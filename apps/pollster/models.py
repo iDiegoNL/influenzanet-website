@@ -4,6 +4,7 @@ from django.db import models, connection, transaction, IntegrityError, DatabaseE
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.core.validators import RegexValidator
+from django.template import Template
 from cms.models import CMSPlugin
 from xml.etree import ElementTree
 from math import pi,cos,sin,log,exp,atan
@@ -205,6 +206,26 @@ def _get_or_default(queryset, default=None):
         return r[0]
     return default
 
+def prefill_previous_data(survey, user_id, global_id):
+     """
+     fetch data to prefill a user's survey looking first at the current data table and then to another
+     table containing previous data for the user (for example from the last year data table)
+     The only assumption made on this table are the keys global_id and user_id, and the table name 
+     """
+     data = survey.get_last_participation_data(user_id, global_id)
+     if data is not None:
+         return data
+     shortname = survey.shortname
+     cursor = connection.cursor()
+     query = "select * from pollster_results_%s_previousdata where \"global_id\"='%s' and \"user\"='%s'" % (shortname, global_id, str(user_id))
+     cursor.execute(query)
+     res = cursor.fetchone()
+     desc = cursor.description
+     if res is not None:
+         res = dict(zip([col[0] for col in desc], res))
+         # Put a flag in the data 
+         res["_source_"] = "previousdata"
+     return res 
 
 class Survey(models.Model):
     parent = models.ForeignKey('self', db_index=True, blank=True, null=True)
@@ -214,7 +235,8 @@ class Survey(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=255, default='DRAFT', choices=SURVEY_STATUS_CHOICES)
-
+    prefill_method = models.CharField(max_length=255, blank=True, default="LAST")
+    
     form = None
     translation_survey = None
 
@@ -274,6 +296,9 @@ class Survey(models.Model):
         return 'results_'+str(self.shortname)
 
     def get_last_participation_data(self, user_id, global_id):
+        """
+            get the last data available for a given user, in the current data table
+        """
         model = self.as_model()
         participation = model.objects\
             .filter(user=user_id)\
@@ -281,6 +306,24 @@ class Survey(models.Model):
             .order_by('-timestamp')\
             .values()
         return _get_or_default(participation)
+
+    def get_prefill_data(self, user_id, global_id):
+        """
+            get previous data for a user following the survey policy (prefill_method)
+            'LAST' value fetch the last available data (in the current data table)
+            other values should be a function name with the signature func(survey, user_id, global_id)
+        
+        """
+        if self.prefill_method == '':
+            return None
+
+        if self.prefill_method == 'LAST':
+            return self.get_last_participation_data(user_id, global_id)
+
+        if self.prefill_method == 'prefill_previous_data':
+            return prefill_previous_data(self, user_id, global_id)
+
+        raise Error("Prefill function %s does not exist" % self.prefill_method)
 
     def as_model(self):
         fields = []
@@ -963,7 +1006,9 @@ class Chart(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=255, default='DRAFT', choices=CHART_STATUS_CHOICES)
     geotable = models.CharField(max_length=255, default='pollster_zip_codes', choices=settings.GEOMETRY_TABLES)
-    
+    template = models.TextField(blank=True, default='')
+    realtime = models.BooleanField(default=False)
+
     class Meta:
         ordering = ['survey', 'shortname']
         unique_together = ('survey', 'shortname')
@@ -984,6 +1029,14 @@ class Chart(models.Model):
         return self.status == 'PUBLISHED'
 
     @property
+    def is_template(self):
+        return self.type.shortname == 'template'
+
+    @property
+    def has_template(self):
+        return self.template and True or False
+
+    @property
     def has_data(self):
         if not self.sqlsource:
             return False
@@ -1001,7 +1054,7 @@ class Chart(models.Model):
             rows = [{"c": [{"v": v} for v in c]} for c in cells]
             data["dataTable"] = { "cols": cols, "rows": rows }
 
-        else:
+        elif self.type.shortname[:10] == "google-map":
             if self.chartwrapper:
                 data["bounds"] = json.loads(self.chartwrapper)
             try:
@@ -1178,24 +1231,20 @@ class Chart(models.Model):
                                   FROM %s B, (SELECT * FROM %s) A
                                  WHERE upper(A.zip_code_key) = upper(B.zip_code_key)""" % (geo_table, table,)
             cursor = connection.cursor()
-            #try:
             cursor.execute("DROP VIEW IF EXISTS %s" % (view,))
             cursor.execute("DROP TABLE IF EXISTS %s" % (table,))
-            cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
-            if self.type.shortname != 'google-charts':
-                cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
-            transaction.commit_unless_managed()
-            self.clear_map_tile_cache()
+            if not self.realtime:
+                cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
+                if self.type.shortname[:10] == "google-map":
+                    cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
+                transaction.commit_unless_managed()
+                self.clear_map_tile_cache()
             return True
-            #except IntegrityError:
-            #    return False
-            #except DatabaseError:
-            #    return False
         return False
 
     def update_data(self):
         table_query = self.sqlsource
-        if table_query:
+        if table_query and not self.realtime:
             table = self.get_table_name()
             cursor = connection.cursor()
             cursor.execute("DELETE FROM %s" % (table,))
@@ -1206,8 +1255,12 @@ class Chart(models.Model):
         return False
 
     def load_data(self, user_id, global_id):
-        table = self.get_table_name()
-        query = "SELECT * FROM %s" % (table,)
+        if not self.sqlsource:
+            return ((('Error',),), (("SQL query is missing",),))
+        if self.realtime:
+            query = "SELECT * FROM (%s) A" % (self.sqlsource,)
+        else:
+            query = "SELECT * FROM %s" % (self.get_table_name(),)
         if self.sqlfilter == 'USER' :
             query += """ WHERE "user" = %(user_id)s"""
         elif self.sqlfilter == 'PERSON':
@@ -1215,15 +1268,22 @@ class Chart(models.Model):
         params = { 'user_id': user_id, 'global_id': global_id }
         query = convert_query_paramstyle(connection, query, params)
         try:
+            sid = transaction.savepoint()
             cursor = connection.cursor()
             cursor.execute(query, params)
+            transaction.savepoint_commit(sid)
             return (cursor.description, cursor.fetchall())
         except DatabaseError, e:
+            transaction.savepoint_rollback(sid)
             return ((('Error',),), ((str(e),),))
 
     def load_colors(self, user_id, global_id):
-        table = self.get_table_name()
-        query = """SELECT DISTINCT color FROM %s""" % (table,)
+        if not self.sqlsource:
+            return ((('Error',),), (("SQL query is missing",),))
+        if self.realtime:
+            query = "SELECT DISTINCT color FROM (%s) A" % (self.sqlsource,)
+        else:
+            query = "SELECT DISTINCT color FROM %s" % (self.get_table_name(),)
         if self.sqlfilter == 'USER' :
             query += """ WHERE "user" = %(user_id)s"""
         elif self.sqlfilter == 'PERSON':
@@ -1231,10 +1291,13 @@ class Chart(models.Model):
         params = { 'user_id': user_id, 'global_id': global_id }
         query = convert_query_paramstyle(connection, query, params)
         try:
+            sid = transaction.savepoint()
             cursor = connection.cursor()
             cursor.execute(query, params)
+            transaction.savepoint_commit(sid)
             return [x[0] for x in cursor.fetchall()]
         except DatabaseError, e:
+            transaction.savepoint_rollback(sid)
             # If the SQL query is wrong we just return 'red'. We don't try to pop
             # up a warning because this probably is an async Javascript call: the
             # query error should be shown by the map editor.
@@ -1272,6 +1335,27 @@ class Chart(models.Model):
         except DatabaseError, e:
             return {}
 
+    def get_template(self):
+        return Template(self.template or "{% for row in rows %}{{ row }}<br/>{% endfor %}")
+
+    def render(self, context):
+        """Adds data to context and use it to render template."""
+        template = self.get_template()
+        if self.type.shortname == "template":            
+            if template:
+                user_id = context["user_id"]
+                global_id = context["global_id"]
+                descriptions, cells = self.load_data(user_id, global_id)
+                cols = [desc[0] for desc in descriptions]
+                rows = [dict(zip(cols, cell)) for cell in cells]
+                context.update({"cols": cols, "rows": rows})
+                result = template.render(context)
+                context.pop()
+            return result
+        else:
+            if self.has_template:
+                return template.render(context)
+
 class GoogleProjection:
     def __init__(self, levels=25):
         self.Bc = []
@@ -1303,3 +1387,16 @@ class GoogleProjection:
 
 class SurveyChartPlugin(CMSPlugin):
     chart = models.ForeignKey(Chart)
+    show_on_success = models.BooleanField(default=False, verbose_name="Show on submit", help_text="Show this chart only on successful submit of its survey.")
+
+class SurveyPlugin(CMSPlugin):
+    survey = models.ForeignKey(Survey, limit_choices_to={"status":"PUBLISHED"}, verbose_name="Survey")
+    redirect_path = models.CharField(max_length=4096, blank=True, default='', verbose_name="Redirect to path")
+    success_template = models.TextField(blank=True, default='', verbose_name="Success template")
+
+    def get_template(self):
+        return Template(self.success_template)
+
+    def render(self, context):
+        return self.get_template().render(context)
+
