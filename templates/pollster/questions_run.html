@@ -10,9 +10,9 @@
       </div>
       <img width=530 src="/media/uploads/timeline.jpg" />
     {% else %}
-      {% if survey.shortname == "swabbing" %}
+      {% if survey.shortname == "exercise" %}
         <div class="survey-message">
-          {% trans "Swabbing question for participant" %} {{ person }}
+          {% trans "Exercise survey for participant" %} {{ person }}
         </div>
       {% else %}
         {% if survey.shortname == "comment" %}

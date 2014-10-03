@@ -5,6 +5,7 @@ from . import views
 urlpatterns = patterns('',
     url(r'^profile/$', views.profile_index, name='survey_profile'),
     url(r'^contact/$', views.contact, name='survey_contact'),
+    url(r'^exercise/$', views.exercise, name='survey_exercise'),
     url(r'^main/$', views.main_index),
     url(r'^group_management/$', views.group_management, name='group_management'),
     url(r'^group_archive/$', views.group_archive, name='group_archive'),

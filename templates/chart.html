@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript">
+            var chart;
+            $(document).ready(function() {
+                    chart = new Highcharts.Chart({
+                            chart: {
+                                    renderTo: 'container-vaccinated',
+                                    defaultSeriesType: 'line',
+                                    marginRight: 0,
+                                    marginBottom: 70
+                            },
+                            title: {
+                                    text: 'Vaccination',
+                                    x: -20 //center
+                            },
+                            xAxis: {
+                                    categories: ['47/2013','48/2013','49/2013','50/2013','51/2013','52/2013','01/2014','02/2014','03/2014','04/2014','05/2014','06/2014','07/2014','08/2014','09/2014','10/2014','11/2014','12/2014','13/2014','14/2014','15/2014','16/2014','18/2014','19/2014','22/2014','24/2014','31/2014'],
+                                    labels: {
+                                            rotation: -45,
+                                            align: 'right'
+                                    }
+                            },
+                            yAxis: {
+                                    title: {
+                                            text: 'Incidence (in %)'
+                                    },
+                                    plotLines: [{
+                                            value: 0,
+                                            width: 1,
+                                            color: '#808080'
+                                    }]
+                            },
+                            tooltip: {
+                                    formatter: function() {
+                                    return '<b>'+ this.series.name +'</b><br/>'+
+                                                    'Incidence in week ' + this.x +': '+ this.y + '%';
+                                    }
+                            },
+                            legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'top',
+                                    x: -10,
+                                    y: 100,
+                                    borderWidth: 0,
+                                    enabled: false
+                            },
+                            series: [{
+                                    name: 'vaccinated',
+                                    data: [1.7,1.4,3.1,3.3,3.4,3.2,4.0,3.3,3.3,2.6,3.3,2.8,3.1,2.9,3.0,2.1,3.3,2.3,2.2,2.5,2.5,11.1,0.0,100.0,0.0,0.0,0.0]
+                            }, {
+                                    color: 'red',
+                                    name: 'unvaccinated',
+                                    data: [3.3,2.2,4.2,4.0,3.9,4.5,4.2,3.7,2.6,3.5,3.7,3.8,3.8,2.8,2.8,2.7,2.8,3.3,3.1,3.1,3.8,6.7,0.0,25.0,0.0,0.0,0.0]
+                            }]
+                                });
+                        });
+    </script>
+  </head>
+  <body>
+    <div id="container-vaccinated" style="width: 550px; height: 300px; margin: 0 auto"></div>
+  </body>
+</html>

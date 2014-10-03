@@ -327,7 +327,7 @@ def profile_index(request):
 
 @login_required
 def contact(request):
-    # this renders an 'intake' survey
+    # this renders an 'contact' survey
     # it expects gid to be part of the request.
 
     try:
@@ -349,6 +349,29 @@ def contact(request):
 
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
+@login_required
+def exercise(request):
+    # this renders an 'exercise' survey
+    # it expects gid to be part of the request.
+
+    try:
+        survey_user = get_active_survey_user(request)
+    except ValueError:
+        raise Http404()
+    if survey_user is None:
+        url = '%s' % (reverse(select_user))
+        return HttpResponseRedirect(url)
+
+    try:
+        survey = pollster.models.Survey.get_by_shortname('exercise')
+    except:
+        raise Exception("The survey application requires a published survey with the shortname 'exercise'")
+
+    next = None
+    if 'next' not in request.GET:
+        next = reverse(group_management) # is this necessary? Or would it be the default?
+
+    return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
 def main_index(request):

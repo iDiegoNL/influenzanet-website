@@ -53,7 +53,11 @@
                <p>&nbsp;</p><p><a href="{% url survey_contact %}?gid={{ person.global_id }}" class="noslide"><i class="icon-group"></i>{% trans "Contact survey" %}</a></p>
             </div>
 -->
-            
+            <div class="accordionButton">
+               <p>&nbsp;</p><p><a href="{% url survey_exercise %}?gid={{ person.global_id }}" class="noslide"><i class="icon-heart"></i>{% trans "Exercise survey" %}</a></p>
+            </div>
+
+          
             <div class="accordionButton" {% if person.global_id == gid %}id="open"{% endif %}
              title="{% if person.cohorts %}{{ person.name }} is member of: &#10;{{ person.cohorts_names }}{% endif %}">
                 <p><input type="checkbox" id="{{ person.pk }}" name="global_ids" value="{{ person.global_id}}"/> <a href="{{ person.get_edit_url }}" class="noslide"><i class="icon-edit"></i></a><a href="#slide">{{ person.name }}</a></p><p><a href="{{ person.get_survey_url }}" class="noslide"><i class="icon-list-ul"></i>{% trans "Report" %}</a></p><p><a href="{% url survey_profile %}?gid={{ person.global_id }}" class="noslide"><i class="icon-edit"></i>{% trans "Change profile" %}</a></p>
