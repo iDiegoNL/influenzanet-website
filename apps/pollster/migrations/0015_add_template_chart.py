@@ -19,14 +19,16 @@ class Migration(SchemaMigration):
                       keep_default=False)
 
         # Add new chart type
-        t, _ = orm.ChartType.objects.all().get_or_create(shortname='template', defaults={'description': 'HTML Template'})
-        t.save()
+	if not db.dry_run:
+	        t, _ = orm.ChartType.objects.all().get_or_create(shortname='template', defaults={'description': 'HTML Template'})
+	        t.save()
 
     def backwards(self, orm):
         # Delete all charts of 'template' type and then type itself.
-        t = orm.ChartType.objects.all().filter(shortname='template')
-        orm.Chart.objects.all().filter(type=t).delete()
-        t.delete()
+	if not db.dry_run:
+	        t = orm.ChartType.objects.all().filter(shortname='template')
+	        orm.Chart.objects.all().filter(type=t).delete()
+	        t.delete()
 
         # Deleting field 'Chart.template'
         db.delete_column('pollster_chart', 'template')

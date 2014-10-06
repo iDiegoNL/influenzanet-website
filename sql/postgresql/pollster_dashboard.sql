@@ -1,4 +1,8 @@
+
+DROP VIEW IF EXISTS pollster_dashboard_badges;
+DROP VIEW IF EXISTS pollster_dashboard_history;
 DROP VIEW IF EXISTS pollster_dashboard_healt_status;
+
 CREATE VIEW pollster_dashboard_healt_status AS 
                SELECT W.user AS user_id,
                       global_id,
@@ -66,7 +70,6 @@ CREATE VIEW pollster_dashboard_healt_status AS
                  FROM pollster_results_weekly W;
                  
                  
-DROP VIEW IF EXISTS pollster_dashboard_history;
 CREATE VIEW pollster_dashboard_history AS
         SELECT  H.user_id AS "user", 
                 H.global_id, 
@@ -80,6 +83,7 @@ CREATE VIEW pollster_dashboard_history AS
        ORDER BY timestamp DESC;
 
 
+DROP VIEW IF EXISTS pollster_dashboard_neighbors;
 DROP VIEW IF EXISTS pollster_dashboard_last_intake;
 CREATE VIEW pollster_dashboard_last_intake AS
     SELECT DISTINCT first_value("Q3") OVER (partition by global_id order by timestamp desc) AS "Q3",
@@ -105,7 +109,7 @@ AS  $$
                 FROM POLLSTER_ZIP_CODES 
                WHERE ST_Touches(geometry, (SELECT geometry FROM POLLSTER_ZIP_CODES WHERE ZIP_CODE_KEY = $1))
               ) A 
-	INNER JOIN pollster_dashboard_last_intake I ON (A.zip_code_key = I."Q3");
+	INNER JOIN pollster_dashboard_last_intake I ON (A.zip_code_key = I."Q3"::text);
 	
 $$ LANGUAGE SQL;
 
@@ -138,10 +142,10 @@ CREATE OR REPLACE FUNCTION pollster_dashboard_users_by_zip_code(
 AS  $$
         SELECT I."user", 
                I.global_id, 
-               I."Q3" AS zip_code_key,
+               I."Q3"::text AS zip_code_key,
                I.timestamp 
         FROM pollster_results_intake I 
-       WHERE (I."Q3" = $1);
+       WHERE (I."Q3"::text = $1);
 	
 $$ LANGUAGE SQL;
 
@@ -153,15 +157,13 @@ AS  $$
           FROM pollster_dashboard_users_by_zip_code($1);	
 $$ LANGUAGE SQL;
 
-DROP VIEW IF EXISTS pollster_dashboard_neighbors;
 CREATE VIEW pollster_dashboard_neighbors AS
         SELECT DISTINCT O.global_id, O."user",
-	        pollster_dashboard_users_by_zip_code_count(O."Q3") AS same_zip_count,
-		pollster_dashboard_neighborhood_users_count(O."Q3") AS neighbors_count, 
-		coalesce(pollster_dashboard_neighborhood_users_avg(O."Q3"), 0) AS neighbors_avg
+	        pollster_dashboard_users_by_zip_code_count(O."Q3"::text) AS same_zip_count,
+		pollster_dashboard_neighborhood_users_count(O."Q3"::text) AS neighbors_count, 
+		coalesce(pollster_dashboard_neighborhood_users_avg(O."Q3"::text), 0) AS neighbors_avg
            FROM pollster_dashboard_last_intake O;
 
-DROP VIEW IF EXISTS pollster_dashboard_badges;
 CREATE VIEW pollster_dashboard_badges AS
 SELECT DISTINCT 
 			 global_id,
