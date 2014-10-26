@@ -245,6 +245,13 @@ class Survey(models.Model):
         ('global_id', models.CharField(max_length=36, null=True, blank=True, verbose_name="Person")),
         ('channel', models.CharField(max_length=36, null=True, blank=True, verbose_name="Channel"))
     ]
+    
+    _use_survey_cache = False
+    _cache_questions = None
+    _cache_model = None
+    
+    def set_caching(self, use_cache):
+        self._use_survey_cache = use_cache
 
     @staticmethod
     def get_by_shortname(shortname):
@@ -274,9 +281,22 @@ class Survey(models.Model):
 
     @property
     def questions(self):
+        if not self._use_survey_cache:
+            return self._get_questions()
+        if self._cache_questions is not None:
+            return self._cache_questions
+        questions = list(self._get_questions())
+        self._cache_questions = questions
+        return questions
+        
+    def _get_questions(self):
+        """
+        get questions list using generator
+        """
         for question in self.question_set.all():
             question.set_form(self.form)
             question.set_translation_survey(self.translation_survey)
+            question.set_caching(self._use_survey_cache)
             yield question
 
     @property
@@ -326,11 +346,15 @@ class Survey(models.Model):
         raise Error("Prefill function %s does not exist" % self.prefill_method)
 
     def as_model(self):
+        if self._use_survey_cache and self._cache_model:
+            return self._cache_model
         fields = []
         fields.extend(Survey._standard_result_fields)
         for question in self.questions:
             fields += question.as_fields()
         model = dynamicmodels.create(self.get_table_name(), fields=dict(fields), app_label='pollster')
+        if self._use_survey_cache:
+            self._cache_model = model
         return model
 
     def as_form(self):
@@ -487,6 +511,12 @@ class Question(models.Model):
     form = None
     translation_survey = None
     translation_question = None
+    
+    _use_survey_cache = True
+    _cache_options = None
+
+    def set_caching(self, use_cache):
+        self._use_survey_cache = use_cache
 
     @property
     def translated_title(self):
@@ -544,6 +574,15 @@ class Question(models.Model):
 
     @property
     def options(self):
+        if not self._use_survey_cache:
+            return self._get_options()
+        if self._cache_options:
+            return self._cache_options
+        options = list(self._get_options())
+        self._cache_options = options
+        return options
+
+    def _get_options(self):
         for option in self.option_set.all():
             option.set_form(self.form)
             option.set_translation_survey(self.translation_survey)
