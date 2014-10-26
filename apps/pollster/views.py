@@ -172,9 +172,11 @@ def survey_run(request, shortname, next=None, clean_template=False):
         if clean_template: # i.e. "if is_mobile"
             return HttpResponse(simplejson.dumps({'error': True, 'error_code': 3, 'error_msg': 'you must be logged in'}), mimetype="application/json")
         return redirect_to_login(request.path)
-
+    
+    use_cache = True
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
-    survey.set_caching(False)
+    if use_cache:
+        survey.set_caching(True)
     language = get_language()
     locale_code = locale.locale_alias.get(language)
     if locale_code:
@@ -182,6 +184,8 @@ def survey_run(request, shortname, next=None, clean_template=False):
         if locale_code == "en-US":
             locale_code = "en-GB"
     translation = get_object_or_none(models.TranslationSurvey, survey=survey, language=language, status="PUBLISHED")
+    if use_cache:
+        translation.prefetch_tranlations()
     survey.set_translation_survey(translation)
     survey_user = _get_active_survey_user(request)
     form = None
