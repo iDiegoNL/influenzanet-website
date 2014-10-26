@@ -58,3 +58,6 @@ SWAUTH_LAUNCH_DATE = True
 # Path to the Avatars, relative to the media directory, for example 'avatars'
 # None disable the feature
 SURVEY_AVATARS = None
+
+# Activate caching feature to run survey
+POLLSTER_USE_CACHE = False
