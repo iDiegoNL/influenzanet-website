@@ -246,6 +246,10 @@ class Survey(models.Model):
         ('channel', models.CharField(max_length=36, null=True, blank=True, verbose_name="Channel"))
     ]
     
+    """
+        Use survey cache allow to prefetch questions & options data for one survey
+        and cache the result to avoid query deluge
+    """
     _use_survey_cache = False
     _cache_questions = None
     _cache_model = None
@@ -253,6 +257,7 @@ class Survey(models.Model):
     def set_caching(self, use_cache):
         self._use_survey_cache = use_cache
 
+    
     @staticmethod
     def get_by_shortname(shortname):
         return Survey.objects.all().get(shortname=shortname, status="PUBLISHED")
@@ -281,24 +286,78 @@ class Survey(models.Model):
 
     @property
     def questions(self):
+        """
+            Get questions of the survey, 
+        """
         if not self._use_survey_cache:
             return self._get_questions()
-        if self._cache_questions is not None:
-            return self._cache_questions
-        questions = list(self._get_questions())
-        self._cache_questions = questions
-        return questions
+        if self._cache_questions is None:
+            self._cache_questions = list(self._get_questions())
+        return self._cache_questions
+        
+    def _prefetch_rules(self, q_dict):    
+        """
+            Prefetch Rules for all the survey and return a dictionnary with all rules for each question (indexed by question_id)
+        """
+        ids = q_dict.keys()
+        rr = Rule.objects.all().filter(subject_question__in=ids).select_related('rule_type')
+        rules = {}
+        for rule in rr:
+            qid = rule.subject_question_id
+            q = q_dict.get(qid)
+            rule.subject_question = q
+            oid = rule.object_question_id
+            q = q_dict.get(oid)
+            rule.object_question = q
+            if not rules.has_key(qid):
+                rules[qid] = []
+            rules[qid].append(rule)
+        return rules
+            
+    def _prefetch_options(self, q_dict):
+        """
+            Prefetch all options used in the Survey
+            Return dictionnary of all options for each question
+        """
+        ids = q_dict.keys()
+        oo = Option.objects.all().filter(question__in=ids).select_related('virtual_type')
+        options = {}
+        for option in oo:
+            qid = option.question_id
+            q = q_dict.get(qid)
+            option.question = q
+            if not options.has_key(qid):
+                options[qid] = []
+            options[qid].append(option)
+        return options
         
     def _get_questions(self):
         """
-        get questions list using generator
+        get questions list for this survey
         """
-        for question in self.question_set.all():
+        questions = self.question_set.all().select_related('data_type', 'open_option_data_type')
+        questions = list(questions) # actually get data
+        if self._use_survey_cache:
+            q_dict = dict( [(q.id,q) for q in questions])
+            rules = self._prefetch_rules(q_dict)
+            options = self._prefetch_options(q_dict)
+        else:
+            rules = None
+            options = None
+        for question in questions:
             question.set_form(self.form)
             question.set_translation_survey(self.translation_survey)
             question.set_caching(self._use_survey_cache)
+            if rules is not None:
+               r = rules.get(question.id)
+               if r is not None:
+                   question.set_rules(r)
+            if options is not None:
+               o = options.get(question.id)
+               if o is not None:
+                   question.set_options(o)        
             yield question
-
+  
     @property
     def translation(self):
         return self.translation_survey
@@ -376,6 +435,8 @@ class Survey(models.Model):
 
     def set_form(self, form):
         self.form = form
+        for question in self.questions:
+            question.set_form(form)
 
     def set_translation_survey(self, translation_survey):
         self.translation_survey = translation_survey
@@ -512,11 +573,19 @@ class Question(models.Model):
     translation_survey = None
     translation_question = None
     
-    _use_survey_cache = True
+    # Define cache fields
+    _use_survey_cache = False
     _cache_options = None
-
+    _cache_rules = None
+    _cache_rows = None 
+    _cache_columns = None
+    
     def set_caching(self, use_cache):
         self._use_survey_cache = use_cache
+        self._cache_rows = None
+        self._cache_options = None
+        self._cache_rules = None
+        self._cache_columns = None
 
     @property
     def translated_title(self):
@@ -548,12 +617,29 @@ class Question(models.Model):
 
     @property
     def rows(self):
+        if self._use_survey_cache:
+            if self._cache_rows is None:
+                self._cache_rows = list(self._get_rows())
+            return self._cache_rows
+        return self._get_rows()
+            
+    def _get_rows(self):
+        """
+            get QuestionRow using generator
+        """
         for row in self.row_set.all():
             row.set_translation_survey(self.translation_survey)
             yield row
 
     @property
     def columns(self):
+        if self._use_survey_cache:
+            if self._cache_columns is None:
+                self._cache_columns = list(self._get_columns())
+            return self._cache_columns
+        return self._get_columns()
+
+    def _get_columns(self):
         for column in self.column_set.all():
             column.set_translation_survey(self.translation_survey)
             yield column
@@ -581,13 +667,37 @@ class Question(models.Model):
         options = list(self._get_options())
         self._cache_options = options
         return options
+    
+    def set_options(self, options):
+        cache = []
+        for option in options:
+            option.question = self
+            option.set_form(self.form)
+            option.set_translation_survey(self.translation_survey)
+            cache.append(option)
+        self._cache_options = cache
 
     def _get_options(self):
-        for option in self.option_set.all():
+        for option in self.option_set.all().select_related('virtual_type'):
             option.set_form(self.form)
             option.set_translation_survey(self.translation_survey)
             yield option
-
+    
+    def set_rules(self, rules):
+        """
+            Set cached rules for the question
+        """
+        self._cache_rules = rules
+    
+    @property
+    def rules(self):
+        """
+        Get the rules associated with this question 
+        """
+        if self._use_survey_cache and self._cache_rules is not None:
+            return self._cache_rules
+        return self.subject_of_rules.all
+        
     @property
     def translation(self):
         return self.translation_question
@@ -655,12 +765,12 @@ class Question(models.Model):
         elif self.type == 'single-choice':
             open_option_data_type = self.open_option_data_type or self.data_type
             fields = [ (self.data_name, self.data_type.as_field_type(verbose_name=self.title)) ]
-            for open_option in [o for o in self.option_set.all() if o.is_open]:
+            for open_option in [o for o in self.options if o.is_open]:
                 title_open = "%s: %s Open Answer" % (self.title, open_option.value)
                 fields.append( (open_option.open_option_data_name, open_option_data_type.as_field_type(verbose_name=title_open)) )
         elif self.type == 'multiple-choice':
             fields = []
-            for option in self.option_set.all():
+            for option in self.options:
                 title = "%s: %s" % (self.title, option.value)
                 fields.append( (option.data_name, models.BooleanField(verbose_name=title)) )
                 if option.is_open:
@@ -680,13 +790,13 @@ class Question(models.Model):
 
     def set_form(self, form):
         self.form = form
+        for option in self.options:
+            option.set_form(form)
 
     def set_translation_survey(self, translation_survey):
         self.translation_survey = translation_survey
         if translation_survey:
-            r = translation_survey.translationquestion_set.all().filter(question=self)
-            default = TranslationQuestion(translation = translation_survey, question=self)
-            self.translation_question = _get_or_default(r, default)
+            self.translation_question = translation_survey.translate_question(self)
 
     def check(self):
         errors = []
@@ -886,9 +996,7 @@ class Option(models.Model):
     def set_translation_survey(self, translation_survey):
         self.translation_survey = translation_survey
         if translation_survey:
-            r = translation_survey.translationoption_set.all().filter(option=self)
-            default = TranslationOption(translation = translation_survey, option=self)
-            self.translation_option = _get_or_default(r, default)
+            self.translation_option = translation_survey.translate_option(self)
 
     def set_row_column(self, row, column):
         self.current_row_column = (row, column)
@@ -915,11 +1023,30 @@ class Rule(models.Model):
     object_question = models.ForeignKey(Question, related_name='object_of_rules', blank=True, null=True)
     object_options = models.ManyToManyField(Option, related_name='object_of_rules', limit_choices_to = {'question': object_question})
 
+    _use_cache = False
+    _cache_subject_options = None
+    _cache_object_options = None
+    
     def js_class(self):
         return self.rule_type.js_class
 
     def __unicode__(self):
         return 'Rule #%d' % (self.id)
+    
+    def get_subject_options(self):
+        if not self._use_cache:
+            return self.subject_options.all()
+        if self._cache_subject_options is None:
+            self._cache_subject_options = list(self.subject_options.all())
+        return self._cache_subject_options
+    
+    def get_object_options(self):
+        if not self._use_cache:
+            return self.object_options.all()
+        if self._cache_object_options is None:
+            self._cache_object_options = list(self.object_options.all())
+        return self._cache_object_options
+    
 
 # I18n models
 
@@ -928,6 +1055,9 @@ class TranslationSurvey(models.Model):
     language = models.CharField(max_length=3, db_index=True)
     title = models.CharField(max_length=255, blank=True, default='')
     status = models.CharField(max_length=255, default='DRAFT', choices=SURVEY_TRANSLATION_STATUS_CHOICES)
+
+    # Default
+    _use_cache = False
 
     class Meta:
         verbose_name = 'Translation'
@@ -947,6 +1077,43 @@ class TranslationSurvey(models.Model):
                 model = TranslationSurvey
                 fields = ['title', 'status']
         return TranslationSurveyForm(data, instance=self, prefix="survey")
+    
+    def prefetch_tranlations(self):
+        self._use_cache = True
+        self.prefetch_questions()
+        self.prefetch_options()
+    
+    def prefetch_questions(self):
+        qq = list(self.translationquestion_set.all())
+        self._cache_questions = dict([(q.question_id, q) for q in qq])
+
+    def prefetch_options(self):
+        qq = list(self.translationoption_set.all())
+        self._cache_options = dict([(q.option_id, q) for q in qq])
+    
+    def translate_option(self, option):
+        if self._use_cache:
+           r = self._cache_options.get(option.id)
+           if r is None:
+               return TranslationOption(translation = self, option=option)
+           r.option = option
+           return r
+        else:
+            r = self.translationoption_set.all().filter(option=option)
+            default = TranslationOption(translation = self, option=option)
+            return _get_or_default(r, default)
+        
+    def translate_question(self, question):
+        if self._use_cache:
+            r = self._cache_questions.get(question.id)
+            if r is None:
+                return TranslationQuestion(translation = self, question=question)
+            r.question = question
+            return r
+        else: 
+            r = self.translationquestion_set.all().filter(question=question)
+            default = TranslationQuestion(translation = self, question=question)
+            return _get_or_default(r, default)
 
 class TranslationQuestion(models.Model):
     translation = models.ForeignKey(TranslationSurvey, db_index=True)
