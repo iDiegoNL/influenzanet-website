@@ -44,3 +44,6 @@ POLLSTER_USER_ZIP_CODE_DATA_NAME = 'Q3'
 # used to match the zip code for the right country
 # in the pollster_zip_codes table
 POLLSTER_USER_COUNTRY_DATA_NAME = None
+
+# Activate caching feature to run survey
+POLLSTER_USE_CACHE = False
