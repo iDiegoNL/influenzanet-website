@@ -379,8 +379,7 @@ def profile_index(request):
         survey_user = get_active_survey_user(request)
     except ValueError:
         raise Http404()
-    if survey_user is None:
-
+    
     try:
         survey = pollster.models.Survey.get_by_shortname('intake')
     except:
