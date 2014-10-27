@@ -674,12 +674,13 @@ class Question(models.Model):
     
     def set_options_cache(self, options):
         cache = []
-        for option in options:
-            if self.form is not None:
-                option.set_form(self.form)
-            if self.translation_survey is not None:
-                option.set_translation_survey(self.translation_survey)
-            cache.append(option)
+        if options is not None:
+            for option in options:
+                if self.form is not None:
+                    option.set_form(self.form)
+                if self.translation_survey is not None:
+                    option.set_translation_survey(self.translation_survey)
+                cache.append(option)
         self._cache_options = cache
 
     def _get_options(self):
