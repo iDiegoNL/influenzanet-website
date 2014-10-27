@@ -8,7 +8,7 @@ def last_survey(request):
     except:
         return {}
 
-    history = list(_get_health_history(request, survey))
+    history = list(_get_health_history(request, survey, limit=1))
     if not history:
         return {}
 

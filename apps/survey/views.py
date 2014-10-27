@@ -121,7 +121,7 @@ def _get_person_is_female(global_id, table="pollster_results_intake"):
     except:
         return None
 
-def _get_health_history(request, survey, table="pollster_results_weekly"):
+def _get_health_history(request, survey, table="pollster_results_weekly", limit=None):
     results = []
     cursor = connection.cursor()
     params = { 'user_id': request.user.id }
@@ -145,13 +145,20 @@ def _get_health_history(request, survey, table="pollster_results_weekly"):
                AND W.user = %(user_id)s
              ORDER BY W.timestamp DESC""",
     }
-    cursor.execute(queries[utils.get_db_type(connection)], params)
+    query = queries[utils.get_db_type(connection)]
+    if limit is not None:
+        query += " LIMIT " + str(limit)
+    cursor.execute(query, params)
 
     results = cursor.fetchall()
     cursor.close()
+    participants = {}
     for ret in results:
         timestamp, global_id, status = ret
-        survey_user = models.SurveyUser.objects.get(global_id=global_id)
+        survey_user = participants.get(global_id)
+        if survey_user is None:
+            survey_user = models.SurveyUser.objects.get(global_id=global_id)
+            participants[global_id] = survey_user
         yield {'global_id': global_id, 'timestamp': timestamp, 'status': status, 'diag':_decode_person_health_status(status), 'survey_user': survey_user}
 
 def _get_group_last_survey(request, survey):
@@ -193,6 +200,7 @@ def group_management(request):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
     try:
         survey = pollster.models.Survey.get_by_shortname('weekly')
+        survey.set_caching(getattr(settings, 'POLLSTER_USE_CACHE', False))
     except:
         raise Exception("The survey application requires a published survey with the shortname 'weekly'")
     Weekly = survey.as_model()
