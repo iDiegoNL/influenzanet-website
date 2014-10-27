@@ -349,6 +349,7 @@ class Survey(models.Model):
         for question in questions:
             # Propgagate caching policy
             question.set_caching(self._use_survey_cache)
+            question.set_translation_survey(self.translation_survey)
             if rules is not None:
                 r = rules.get(question.id)
                 question.set_rules_cache(r)
@@ -359,7 +360,6 @@ class Survey(models.Model):
                 question.set_options_cache(o)
             if self.form is not None:            
                 question.set_form(self.form)
-            question.set_translation_survey(self.translation_survey)
             yield question
   
     @property
