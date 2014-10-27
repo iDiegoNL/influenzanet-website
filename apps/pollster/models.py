@@ -257,6 +257,8 @@ class Survey(models.Model):
     def set_caching(self, use_cache):
         self._use_survey_cache = use_cache
 
+    def get_caching(self):
+        return self._use_survey_cache
     
     @staticmethod
     def get_by_shortname(shortname):
@@ -345,17 +347,19 @@ class Survey(models.Model):
             rules = None
             options = None
         for question in questions:
-            question.set_form(self.form)
-            question.set_translation_survey(self.translation_survey)
+            # Propgagate caching policy
             question.set_caching(self._use_survey_cache)
             if rules is not None:
-               r = rules.get(question.id)
-               if r is not None:
-                   question.set_rules(r)
+                r = rules.get(question.id)
+                question.set_rules_cache(r)
             if options is not None:
-               o = options.get(question.id)
-               if o is not None:
-                   question.set_options(o)        
+                o = options.get(question.id)
+                # Set whatever the result, as we assume we had fetch all options for ALL questions of this survey
+                # If o is None, then an empty cache will be provided
+                question.set_options_cache(o)
+            if self.form is not None:            
+                question.set_form(self.form)
+            question.set_translation_survey(self.translation_survey)
             yield question
   
     @property
@@ -662,32 +666,37 @@ class Question(models.Model):
     def options(self):
         if not self._use_survey_cache:
             return self._get_options()
-        if self._cache_options:
+        if self._cache_options is not None:
             return self._cache_options
         options = list(self._get_options())
         self._cache_options = options
         return options
     
-    def set_options(self, options):
+    def set_options_cache(self, options):
         cache = []
         for option in options:
-            option.question = self
-            option.set_form(self.form)
-            option.set_translation_survey(self.translation_survey)
+            if self.form is not None:
+                option.set_form(self.form)
+            if self.translation_survey is not None:
+                option.set_translation_survey(self.translation_survey)
             cache.append(option)
         self._cache_options = cache
 
     def _get_options(self):
         for option in self.option_set.all().select_related('virtual_type'):
-            option.set_form(self.form)
+            if self.form is not None:
+                option.set_form(self.form)
             option.set_translation_survey(self.translation_survey)
             yield option
     
-    def set_rules(self, rules):
+    def set_rules_cache(self, rules):
         """
             Set cached rules for the question
         """
-        self._cache_rules = rules
+        if rules is None:
+            self._cache_rules = []
+        else:
+            self._cache_rules = rules
     
     @property
     def rules(self):
