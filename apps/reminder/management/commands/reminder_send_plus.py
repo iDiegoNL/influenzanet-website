@@ -30,7 +30,6 @@ class UserListChecker:
             self.user_list = self.get_userlist(message.userlist)
         else:
             self.user_list = None
-        print self.user_list
     
     def get_userlist(self, table):
         query = "SELECT user_id FROM " + table
@@ -56,6 +55,7 @@ class Command(BaseCommand):
         make_option('--fake', action='store_true', dest='fake', default=False, help='Fake the sending of the emails; print the emails to be sent on screen instead.'),
         make_option('--user', action='store', dest='user', default=None, help='Send only to this user (user login)'),
         make_option('--verbose', action='store_true', dest='verbose', default=False, help='Print verbose message'),
+        make_option('--debug', action='store_true', dest='debug', default=False, help='Print debug messages'),
         make_option('--counter', action='store', dest='counter', default=None, help='Store counter value into this file'),
         make_option('--log', action='store', dest='log', default=None, help='Store user email in a log file'),
         make_option('--next', action='store', dest='next', default=None, help='Next url for login url'),
@@ -68,7 +68,7 @@ class Command(BaseCommand):
         self.fake = False
 
     def get_reminder(self):
-        query = "SELECT n.id, subject, message, sender_email, sender_name, date, n.userlist FROM reminder_newslettertranslation t left join reminder_newsletter n on n.id=t.master_id where t.language_code='fr' and published=True order by date desc"
+        query = "SELECT n.id, subject, message, sender_email, sender_name, date, n.userlist, n.next FROM reminder_newslettertranslation t left join reminder_newsletter n on n.id=t.master_id where t.language_code='fr' and published=True order by date desc"
         cursor = connection.cursor()
         cursor.execute(query)
         res = cursor.fetchone()
@@ -79,6 +79,7 @@ class Command(BaseCommand):
         reminder.sender_name = res[4]
         reminder.date = res[5]
         reminder.userlist = res[6]
+        reminder.next = res[7]
         return reminder
            
     def get_mock_reminder(self):
@@ -89,6 +90,7 @@ class Command(BaseCommand):
         reminder.sender_name = "mock"
         reminder.date = datetime.now()
         reminder.userlist = None
+        reminder.next = None
         return reminder
         
     def send_reminders(self, message, target, next, batch_size):
@@ -116,13 +118,12 @@ class Command(BaseCommand):
         print "next=%s" % (next)
         try:
             for user in users :
-                if self.verbose:
+                if self.debug:
                     print user
                 if batch_size and i >= batch_size:
                     raise StopIteration 
                 
                 to_send = False
-                
 
                 info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
     
@@ -139,14 +140,14 @@ class Command(BaseCommand):
             
                 if to_send:
                     if not checker.check(user):
-                        print "checker said skip user %s" % str(user)
+                        print "[checker] skip id=%s" % str(user.id)
                         to_send = False
             
                 if to_send:
                     i += 1
                     if not self.fake:
                         if self.verbose:
-                            print 'sending', user.email 
+                            print " > sending [%d] %s " % (user.id, user.email,) 
                         send(now, user, message, language, next=next)
                     else:
                         print '[fake] sending', user.email, message.subject
@@ -158,7 +159,7 @@ class Command(BaseCommand):
         self.fake    = options.get('fake', False)
         self.log = options.get('log', None)
         self.verbose = options.get('verbose', False)
-        
+        self.debug = options.get('debug', False)
         user    = options.get('user', None)
         counter = options.get('counter', None)
         next = options.get('next', None)
@@ -181,17 +182,21 @@ class Command(BaseCommand):
         conf.last_process_started_date = datetime.now()
         conf.save()
         
-        if next is None:
-            # force next to LOGIN_REDIRECT_URL because when next is None
-            # send_reminders() set it to survey_index's url.
-            next = settings.LOGIN_REDIRECT_URL
-        
         try:
             if mock:
                 message = self.get_mock_reminder()
                 self.fake = True
             else:
                 message = self.get_reminder()
+            
+            if next is None:
+                if message.next:
+                    # use redirect page for the newsletter if defined
+                    next = message.next
+                else:
+                    # force next to LOGIN_REDIRECT_URL because when next is None
+                    # send_reminders() set it to survey_index's url.
+                    next = settings.LOGIN_REDIRECT_URL
             
             count = self.send_reminders(message=message, target=user, batch_size=batch_size, next=next)
         

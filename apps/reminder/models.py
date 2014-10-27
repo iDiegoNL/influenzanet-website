@@ -76,6 +76,8 @@ class NewsLetter(TranslatableModel):
 
     userlist = models.CharField(_("Table or view name used to get the user list"), max_length=255, blank=True, null=True)
 
+    next = models.CharField(_("Next page to follow"), max_length=255, blank=True, null=True)
+
     translations = TranslatedFields(
         subject = models.CharField(max_length=255),
         message = models.TextField(help_text="The strings {{ url }} and {{ unsubscribe_url }} may be used to refer to the profile url and unsubscribe url."),
@@ -89,7 +91,7 @@ class NewsLetter(TranslatableModel):
 
 class MockNewsLetter(object):
     def __init__(self):
-        self.date = self.sender_email= self.sender_name = self.subject = self.message = None
+        self.date = self.sender_email= self.sender_name = self.subject = self.message = self.next = None
 
 class ReminderError(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
