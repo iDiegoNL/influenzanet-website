@@ -251,7 +251,7 @@
                                             {{ option.id }}{% if not forloop.last %},{% endif%}
                                          {% endfor %} ],
                                          {{rule.object_question.id}},
-                                         [ {% for option in rule.object_options.all %}
+                                         [ {% for option in rule.get_object_options %}
                                             {{ option.id }}{% if not forloop.last %},{% endif%}
                                          {% endfor %} ], { isSufficient: {{ rule.is_sufficient|default:'false'|lower }} }));
             {% endfor %}
