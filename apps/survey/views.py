@@ -12,20 +12,12 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
-from django.db import connection
 
 from apps.survey import utils, models, forms
 from apps.pollster import views as pollster_views
 from apps.pollster import utils as pollster_utils
-from .survey import ( Specification,
-                      FormBuilder,
-                      JavascriptBuilder,
-                      get_survey_context, )
 import apps.pollster as pollster
-import pickle
 
-survey_form_helper = None
-profile_form_helper = None
 
 def get_active_survey_user(request):
     gid = request.GET.get('gid', None)
