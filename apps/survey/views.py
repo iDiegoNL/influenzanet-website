@@ -453,6 +453,14 @@ def run_index(request, shortname):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
+def run_survey(request, shortname):
+    if is_wait_launch(request, shortname):
+        return HttpResponseRedirect(reverse('survey_wait_launch'))
+    from apps.pollster.runner import SurveyRunner
+    runner = SurveyRunner()
+    return runner.run(request, shortname)
+
+@login_required
 def thanks_run(request, shortname):
     try:
         survey_user = get_active_survey_user(request)
