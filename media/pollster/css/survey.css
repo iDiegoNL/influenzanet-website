@@ -15,7 +15,7 @@
 .question .number { font-weight: bold; margin-right: 3px; }
 .question .info { display: none; }
 .question .matrix th, .question .matrix td { vertical-align: middle; padding: 1px 3px; }
-.question .matrix th { background: #EEE; border: 1px solid white; padding: 3px; }
+.question .matrix th { background: #EEE; border: 1px solid white; padding: 3px; font-size: 0.7em; }
 .question .matrix th.empty { background: none; border: none; padding: 0; }
 .question .matrix select, .question .matrix input { width: auto; margin: 0; }
 .question.mandatory .star { color: red; margin-left: -0.25em; }

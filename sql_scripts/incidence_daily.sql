@@ -50,17 +50,17 @@ SELECT global_id, first, latest, rate
                max(W.timestamp) AS latest,
                count(*)::integer AS rate
           FROM pollster_results_weekly W
-         WHERE date_trunc('day', W.timestamp) > '2012-11-01'
+         WHERE date_trunc('day', W.timestamp) > '2011-11-01'
          GROUP BY W.global_id
        ) AS ranges
        -- to be considered active an user needs at least 3 filled survey
  WHERE rate >=2
        -- the first compiled survey should be at least one day old
-   --AND date_trunc('day', first) + '1 day' < date_trunc('day', $1)
+   AND date_trunc('day', first) + '1 day' < date_trunc('day', $1)
        -- the last compilation should not be after the current date
-   --AND date_trunc('day', $1) <= date_trunc('day', latest)
+   AND date_trunc('day', $1) <= date_trunc('day', latest)
        -- include only users who have compiled at least one symptoms questionnaire every three weeks, on average
-   --AND ( (latest::date - first::date) / rate::float) < 21 
+   AND ( (latest::date - first::date) / rate::float) < 21 
 $body$ LANGUAGE 'sql';
 
 DROP FUNCTION IF EXISTS pollster_ili_users (date);
