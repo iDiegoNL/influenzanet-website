@@ -6,6 +6,8 @@ urlpatterns = patterns('',
     url(r'^main/$', views.create_surveyuser),
     url(r'^group_management/$', views.group_management, name='group_management'),
     url(r'^run/(?P<shortname>.+)/$', views.run_index, name='survey_run'),
+# Fill for test
+    url(r'^fill/(?P<shortname>.+)/$', views.run_survey, name='survey_fill'),
     url(r'^thanks/(?P<shortname>.+)/$', views.thanks_run, name='survey_run_thanks'),
 #    url(r'^group_archive/$', views.group_archive, name='group_archive'),
 #    url(r'^group_archive/(?P<year>[0-9]{4})/$', views.group_archive, name='group_archive'),

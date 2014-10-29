@@ -1,14 +1,23 @@
 from django.conf import settings
 from django.core import exceptions
-from apps.common.importlib import load_class_from_path
+from django.template import RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.utils.translation import get_language
-from . import models, views, json, fields
 import locale, datetime, urlparse, urllib
-from django.template import RequestContext
+
+from apps.common.importlib import load_class_from_path
+from apps.common.db import sql_name, get_cursor
+
+from . import models, views, json, fields
+from django.core.urlresolvers import reverse
+
+CONFIG =  getattr(settings, 'POLLSTER_RUNNER', None)
+if CONFIG is None:
+    raise exceptions.ImproperlyConfigured('SurveyRunner is not configured')
 
 def get_locale(language):
+    # @todo this function to apps.common
     locale_code = locale.locale_alias.get(language)
     if locale_code:
         locale_code = locale_code.split('.')[0].replace('_', '-')
@@ -20,6 +29,17 @@ def as_json(data):
     encoder = json.JSONEncoder(ensure_ascii=False, indent=2)
     return encoder.encode(data)
 
+def update_url_params(url, params):
+    """
+        Update url params with new params
+    """
+    url_parts = list(urlparse.urlparse(url))
+    query = dict(urlparse.parse_qsl(url_parts[4]))
+    query.update(params)
+    url_parts[4] = urllib.urlencode(query)
+    url = urlparse.urlunparse(url_parts)
+    return url
+
 def get_next_url(url, global_id):
     next_url_parts = list(urlparse.urlparse(url))
     query = dict(urlparse.parse_qsl(next_url_parts[4]))
@@ -28,6 +48,46 @@ def get_next_url(url, global_id):
     next_url = urlparse.urlunparse(next_url_parts)
     return next_url
 
+class SurveyWorkflow:
+    
+    def user_has_data(self, shortname, survey_user):
+        """
+            Check if a given user has data for a survey
+        """
+        survey = models.Survey.get_by_shortname(shortname)
+        if survey is None:
+            raise models.Survey.DoesNotExist()
+        # @todo get this directly using an dedicated method of Survey
+        table = "pollster_"  + survey.get_table_name()
+        query = "select " + sql_name("timestamp") + " from " + table +" WHERE user_id = %s AND global_id = %s LIMIT 1" 
+        cursor = get_cursor()
+        cursor.execute(query, [ survey_user.user.id, survey_user.global_id ])
+        r = cursor.fetchone()
+        if r is not None:
+            return True
+        return False
+
+    def user_get_last_data(self, shortname, survey_user):
+        survey = models.Survey.get_by_shortname(shortname)
+        if survey is None:
+            raise models.Survey.DoesNotExist()
+        survey.set_caching(getattr(settings, 'POLLSTER_USE_CACHE', False))
+        user_id = survey_user.user.id
+        global_id = survey_user.global_id
+        model = survey.as_model()
+        r = model.objects.filter(user=user_id).filter(global_id = global_id).only('timestamp')[:1]
+        if r.count() > 0:
+            return True
+        return False
+    
+    def get_survey_url(self, shortname, survey_user):
+        """
+            get a survey url 
+            @todo this is survey app specific
+        """
+        url = reverse('survey_fill', {'shortname': shortname})
+        url += '?gid=' + survey_user.global_id
+        return url
 
 
 class SurveyContext:
@@ -74,10 +134,9 @@ class SurveyRunner:
         self.before_render_hooks = []
            
     def load_hooks(self):
-        configs = getattr(settings, 'POLLSTER_RUNNER_MIDDLEWARE', None)
-        if configs is None:
-            raise exceptions.ImproperlyConfigured('SurveyRunner not configured')
-        for path in configs:
+        if not CONFIG.has_key('workflows'):
+            raise exceptions.ImproperlyConfigured('Missing workflows in pollster runner')
+        for path in CONFIG['workflows']:
             hook = load_class_from_path(path)
             
             if hasattr(hook, 'before_run'):
@@ -89,7 +148,7 @@ class SurveyRunner:
             if hasattr(hook, 'before_render'):
                 self.before_render_hooks.append(hook.before_render)
                 
-    def run(self, request, shortname):
+    def run(self, request, survey_user, shortname):
         use_cache = getattr(settings, 'POLLSTER_USE_CACHE', False)
         survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
         if use_cache:
@@ -102,7 +161,6 @@ class SurveyRunner:
         survey_context.language = language
         
         # Get survey user
-        survey_user = views._get_active_survey_user(request)
         user_id = request.user.id
         global_id = survey_user and survey_user.global_id
         

@@ -1,30 +1,23 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from django.template import Context, loader, RequestContext
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.db import connection, transaction, DatabaseError
+from django.template import  RequestContext
+from django.http import  HttpResponseRedirect, Http404
+from django.db import connection
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
+
+from apps.common.wait import is_wait_launch, get_wait_launch_context
 
 from apps.survey import utils, models, forms
 from apps.pollster import views as pollster_views
 from apps.pollster import utils as pollster_utils
 
-
-from apps.common.wait import is_wait_launch, get_wait_launch_context
-
-
 import apps.pollster as pollster
-import pickle
-
-survey_form_helper = None
-profile_form_helper = None
 
 def _get_avatars(with_list=True):
     
@@ -308,26 +301,25 @@ def thanks_profile(request):
 
 @login_required
 def select_user(request, template='survey/select_user.html'):
-    # select_user is still used in some cases: notably when there are unqualified calls to
-    # 'profile_index'. So we've not yet removed this template & view.
-    # Obviously it's a good candidate for refactoring.
-
+    # @todo: more generic select_user that can hold some extra url parameters
     next = request.GET.get('next', None)
+        
     if next is None:
-        next = reverse(index)
+        next = reverse('survey_index')
 
     users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     total = len(users)
+    survey_user = None
     if total == 0:
         survey_user = models.SurveyUser.objects.create(
             user=request.user,
             name=request.user.username,
         )
-        url = '%s?gid=%s' % (next, survey_user.global_id)
-        return HttpResponseRedirect(url)
         
     elif total == 1:
         survey_user = users[0]
+        
+    if survey_user is not None:
         url = '%s?gid=%s' % (next, survey_user.global_id)
         return HttpResponseRedirect(url)
 
@@ -456,9 +448,22 @@ def run_index(request, shortname):
 def run_survey(request, shortname):
     if is_wait_launch(request, shortname):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
+    
+    # Check of survey user is done here
+    # Because it's survey app responsability to manage the SurveyUser and create if if necessary
+    try:
+        survey_user = get_active_survey_user(request)
+    except ValueError:
+        raise Http404()
+
+    if survey_user is None:
+        # TODO allow query params forwarding (or save it in session)
+        url = '%s?next=%s' % (reverse("survey_select_user"), reverse("survey_fill", kwargs={'shortname':shortname}))
+        return HttpResponseRedirect(url)
+    
     from apps.pollster.runner import SurveyRunner
     runner = SurveyRunner()
-    return runner.run(request, shortname)
+    return runner.run(request, survey_user, shortname)
 
 @login_required
 def thanks_run(request, shortname):
