@@ -406,7 +406,7 @@ class Survey(models.Model):
         if self.prefill_method == 'prefill_previous_data':
             return prefill_previous_data(self, user_id, global_id)
 
-        raise Error("Prefill function %s does not exist" % self.prefill_method)
+        raise Exception("Prefill function %s does not exist" % self.prefill_method)
 
     def as_model(self):
         if self._use_survey_cache and self._cache_model:
@@ -1392,7 +1392,7 @@ class Chart(models.Model):
         table = "(" + table + ") AS ZIP_CODES"
 
         if settings.DATABASES["default"]["ENGINE"] == "django.db.backends.sqlite3":
-            name = settings.DATABASES["default"]["NAME"]
+            filename = settings.DATABASES["default"]["NAME"]
             return mapnik.SQLite(file=filename, wkb_format="spatialite",
                 geometry_field="geometry", estimate_extent=False, table=table)
 
