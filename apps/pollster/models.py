@@ -323,7 +323,7 @@ class Survey(models.Model):
         if self.prefill_method == 'prefill_previous_data':
             return prefill_previous_data(self, user_id, global_id)
 
-        raise Error("Prefill function %s does not exist" % self.prefill_method)
+        raise Exception("Prefill function %s does not exist" % self.prefill_method)
 
     def as_model(self):
         fields = []
