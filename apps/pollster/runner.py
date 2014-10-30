@@ -6,10 +6,11 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.utils.translation import get_language
 from django.utils.log import getLogger
 
-import locale, datetime, urlparse, urllib
+import datetime, urlparse, urllib
 
 from apps.common.importlib import load_class_from_path
 from apps.common.db import quote_query, get_cursor
+from apps.common.i18n import get_locale
 
 from . import models, views, json, fields
 
@@ -20,15 +21,6 @@ if CONFIG is None:
 logger = getLogger('pollster.runner')
 
 DEBUG = settings.DEBUG
-
-def get_locale(language):
-    # @todo this function to apps.common
-    locale_code = locale.locale_alias.get(language)
-    if locale_code:
-        locale_code = locale_code.split('.')[0].replace('_', '-')
-        if locale_code == "en-US":
-            locale_code = "en-GB"
-    return locale_code
 
 def as_json(data):
     encoder = json.JSONEncoder(ensure_ascii=False, indent=2)
