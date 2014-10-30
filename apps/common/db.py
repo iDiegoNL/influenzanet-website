@@ -1,5 +1,7 @@
 from django.db import connection
 
+import re
+
 def get_db_type(connection):
     db = None
     if connection.settings_dict['ENGINE'] == "django.db.backends.sqlite3":
@@ -31,3 +33,13 @@ def sql_param(name):
     return ':' + name
 
 sql_name = connection.ops.quote_name
+
+def quote_query(query):
+    """
+        Create a db engine specific query from a template quoting names with the proper fashion
+        object names to quote (column names) should be in {{name}} for column name
+    """
+    def qn(matches):
+        return sql_name(matches.group(1))
+    
+    return re.sub(r"\{\{(\w+)\}\}",qn, query)

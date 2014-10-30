@@ -4,16 +4,22 @@ from django.template import RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.utils.translation import get_language
+from django.utils.log import getLogger
+
 import locale, datetime, urlparse, urllib
 
 from apps.common.importlib import load_class_from_path
-from apps.common.db import sql_name, get_cursor
+from apps.common.db import quote_query, get_cursor
 
 from . import models, views, json, fields
 
 CONFIG =  getattr(settings, 'POLLSTER_RUNNER', None)
 if CONFIG is None:
     raise exceptions.ImproperlyConfigured('SurveyRunner is not configured')
+
+logger = getLogger('pollster.runner')
+
+DEBUG = settings.DEBUG
 
 def get_locale(language):
     # @todo this function to apps.common
@@ -52,13 +58,18 @@ class BaseWorkflow(object):
     def user_has_data(self, shortname, survey_user):
         """
             Check if a given user has data for a survey
+            
         """
+        # Here use a direct query to avoid the load of all the survey in order to
+        # build the model
+        # A static method in Survey class would be the best for it 
         survey = models.Survey.get_by_shortname(shortname)
         if survey is None:
             raise models.Survey.DoesNotExist()
         # @todo get this directly using an dedicated method of Survey
         table = "pollster_"  + survey.get_table_name()
-        query = "select " + sql_name("timestamp") + " from " + table +" WHERE user_id = %s AND global_id = %s LIMIT 1" 
+        query = "select {{timestamp}} from {{" + table +"}} WHERE {{user}}=%s AND {{global_id}}=%s LIMIT 1" 
+        query = quote_query(query) 
         cursor = get_cursor()
         cursor.execute(query, [ survey_user.user.id, survey_user.global_id ])
         r = cursor.fetchone()
@@ -142,6 +153,9 @@ class SurveyRunner(object):
             if hasattr(hook, 'before_render'):
                 self.before_render_hooks.append(hook.before_render)
                 
+    def _log_hook(self, hook):
+        logger.debug(hook.__name__)
+        
     def run(self, request, survey_user, shortname):
         """
             Run the survey [shortname] for the [survey_user]
@@ -166,6 +180,8 @@ class SurveyRunner(object):
         
         # Run before hook
         for hook_method in self.before_hooks:
+            if DEBUG:
+                self._log_hook(hook_method)
             response = hook_method(survey_context)
             if response and isinstance(response, HttpResponse):
                 return response
@@ -192,6 +208,8 @@ class SurveyRunner(object):
                 # before_save can modify stored data
                 # Or run extra check before save the data
                 for hook_method in self.before_save_hooks:
+                    if DEBUG:
+                        self._log_hook(hook_method)
                     response = hook_method(survey_context)
                     if response and isinstance(response, HttpResponse):
                         return response
@@ -201,6 +219,8 @@ class SurveyRunner(object):
                 
                 # Ask for hooks for a response
                 for hook_method in self.after_save_hooks:
+                    if DEBUG:
+                        self._log_hook(hook_method)
                     response = hook_method(survey_context)
                     if response and isinstance(response, HttpResponse):
                         return response
@@ -216,6 +236,8 @@ class SurveyRunner(object):
         survey_context.last_data = survey.get_prefill_data(user_id, global_id)
                 
         for hook_method in self.before_render_hooks:
+            if DEBUG:
+                self._log_hook(hook_method)
             response = hook_method(survey_context)
                         
         return render_to_response(survey_context.template, survey_context.get_template_data(), context_instance=RequestContext(request))
