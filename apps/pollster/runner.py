@@ -10,7 +10,6 @@ from apps.common.importlib import load_class_from_path
 from apps.common.db import sql_name, get_cursor
 
 from . import models, views, json, fields
-from django.core.urlresolvers import reverse
 
 CONFIG =  getattr(settings, 'POLLSTER_RUNNER', None)
 if CONFIG is None:
@@ -48,7 +47,7 @@ def get_next_url(url, global_id):
     next_url = urlparse.urlunparse(next_url_parts)
     return next_url
 
-class SurveyWorkflow:
+class BaseWorkflow(object):
     
     def user_has_data(self, shortname, survey_user):
         """
@@ -79,21 +78,11 @@ class SurveyWorkflow:
         if r.count() > 0:
             return True
         return False
-    
-    def get_survey_url(self, shortname, survey_user):
-        """
-            get a survey url 
-            @todo this is survey app specific
-        """
-        url = reverse('survey_fill', {'shortname': shortname})
-        url += '?gid=' + survey_user.global_id
-        return url
 
-
-class SurveyContext:
+class SurveyContext(object):
     """
         Running context for a survey
-        
+        Hold all data about a survey's run.
         Instance of this class is transmitted to survey hook methods 
         
     """
@@ -108,10 +97,13 @@ class SurveyContext:
         self.template = 'pollster/survey_run.html'
         self.data = {}
     
-    def add_data(self, name, value):
+    def add_template_data(self, name, value):
         self.data[name] = value
         
     def get_template_data(self):
+        """
+         get the data ready to be transmitted to the survey template
+        """
         self.data.update({
           "language": self.language,
           "locale_code": get_locale(self.language),
@@ -123,7 +115,7 @@ class SurveyContext:
         })
         return self.data
 
-class SurveyRunner:
+class SurveyRunner(object):
     """
         Survey Runner Handler
     """
@@ -132,6 +124,8 @@ class SurveyRunner:
         self.before_save_hooks = []
         self.after_save_hooks = []
         self.before_render_hooks = []
+        # Load hooks
+        self.load_hooks()
            
     def load_hooks(self):
         if not CONFIG.has_key('workflows'):
@@ -149,6 +143,10 @@ class SurveyRunner:
                 self.before_render_hooks.append(hook.before_render)
                 
     def run(self, request, survey_user, shortname):
+        """
+            Run the survey [shortname] for the [survey_user]
+        """
+        
         use_cache = getattr(settings, 'POLLSTER_USE_CACHE', False)
         survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
         if use_cache:
@@ -166,8 +164,8 @@ class SurveyRunner:
         
         survey_context.survey_user = survey_user
         
-        # Hooks for before save
-        for hook_method in self.before_hook:
+        # Run before hook
+        for hook_method in self.before_hooks:
             response = hook_method(survey_context)
             if response and isinstance(response, HttpResponse):
                 return response
@@ -190,7 +188,9 @@ class SurveyRunner:
             survey_context.form = form
             if form.is_valid():
                 
-                # Try before_save hooks
+                # Run before_save hooks
+                # before_save can modify stored data
+                # Or run extra check before save the data
                 for hook_method in self.before_save_hooks:
                     response = hook_method(survey_context)
                     if response and isinstance(response, HttpResponse):
@@ -208,7 +208,7 @@ class SurveyRunner:
                         next = response
                 
                 if next:
-                    next = self.get_next_url(next, global_id )
+                    next = self.get_next_url(next, global_id)
                 return HttpResponseRedirect(next)
             else:
                 survey.set_form(form)
@@ -219,5 +219,3 @@ class SurveyRunner:
             response = hook_method(survey_context)
                         
         return render_to_response(survey_context.template, survey_context.get_template_data(), context_instance=RequestContext(request))
-
-        
