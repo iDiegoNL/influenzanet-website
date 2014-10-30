@@ -1171,7 +1171,7 @@ class Chart(models.Model):
         table = "(" + table + ") AS ZIP_CODES"
 
         if settings.DATABASES["default"]["ENGINE"] == "django.db.backends.sqlite3":
-            name = settings.DATABASES["default"]["NAME"]
+            filename = settings.DATABASES["default"]["NAME"]
             return mapnik.SQLite(file=filename, wkb_format="spatialite",
                 geometry_field="geometry", estimate_extent=False, table=table)
 
