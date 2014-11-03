@@ -3,7 +3,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.db import connection
+from apps.common.db import get_cursor
 
 def create_global_id():
     return str(uuid.uuid4())
@@ -49,7 +49,7 @@ class SurveyUser(models.Model):
 
     def get_last_weekly_survey_date(self):
         try:
-            cursor = connection.cursor()
+            cursor = get_cursor()
             cursor.execute("select max(timestamp) from pollster_results_weekly where global_id = %s", [self.global_id])
         except:
             # (Klaas) not sure if this is still used in the actual app; it's used here at least for testing
