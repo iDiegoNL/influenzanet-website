@@ -43,3 +43,16 @@ def quote_query(query):
         return sql_name(matches.group(1))
     
     return re.sub(r"\{\{(\w+)\}\}",qn, query)
+
+def fetch_one_dict(query, params=None):
+    cursor = get_cursor()
+    cursor.execute(query, params)
+    r = cursor.fetchone()
+    if not r:
+        return {}
+    desc = cursor.description
+    columns = []
+    for col in desc:
+        columns.append(col[0])
+    r = dict(zip(columns, r))
+    return r 

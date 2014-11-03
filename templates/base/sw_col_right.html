@@ -20,11 +20,11 @@
 	<li><i class="icon icon-dashboard"></i><a href="/dashboard/">{% trans "My results" %}</a></li>
 	<li><i class="icon icon-invite"></i><a href="/invite/">{% trans "Invite people" %}</a></li>
 </ul>
-{% if surveyuser_count == 1%}
+{% if household_count == 1 %}
 	<h3>Mes Questionnaires</h3>
 <ul>
-	<li><i class="icon icon-survey"></i><a href="{%url survey_profile%}?gid={{ surveyuser_gid }}">Préliminaire </a></li>
-	<li><i class="icon icon-survey"></i><a href="{%url survey_index %}?gid={{ surveyuser_gid }}">Hebdomadaire</a></li>
+	<li><i class="icon icon-survey"></i><a href="{%url survey_profile%}?gid={{ household_gid }}">Préliminaire</a></li>
+	<li><i class="icon icon-survey"></i><a href="{%url survey_index %}?gid={{ household_gid }}">Hebdomadaire</a></li>
 </ul>
 {%endif%}
 <h2>Aide</h2>

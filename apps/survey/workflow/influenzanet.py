@@ -1,15 +1,15 @@
 ##
 # Default Workflow for influenzaNet
 ##
-from django.conf import settings 
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
 from . import SurveyWorkflow
+from .. import PROFILE_SURVEY
+from ..household import SurveyHousehold
 
-PROFILE_SURVEY = getattr(settings, 'POLLSTER_USER_PROFILE_SURVEY', 'intake')
 
 class InfluenzanetWorkflow(SurveyWorkflow):
     """
@@ -29,10 +29,13 @@ class InfluenzanetWorkflow(SurveyWorkflow):
                 return HttpResponseRedirect(self.get_survey_url(PROFILE_SURVEY, su, next_survey=shortname))
         
     def after_save(self, context):
+        shortname = context.survey.shortname
+        if shortname == PROFILE_SURVEY: 
+            h = SurveyHousehold.get_household(context.request)
+            h.profile_updated(context.request, context.survey_user.gid)  
         next_url = None
         if 'next' not in context.request.GET:
-            shortname = context.survey.shortname
-            if shortname == 'intake':
+            if shortname == PROFILE_SURVEY:
                 next_url = reverse('profile_thanks')
             elif shortname == "weekly":
                 next_url = "/dashboard"
