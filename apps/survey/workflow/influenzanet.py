@@ -32,7 +32,7 @@ class InfluenzanetWorkflow(SurveyWorkflow):
         shortname = context.survey.shortname
         if shortname == PROFILE_SURVEY: 
             h = SurveyHousehold.get_household(context.request)
-            h.profile_updated(context.request, context.survey_user.gid)  
+            h.profile_updated(context.request, context.survey_user.global_id)  
         next_url = None
         if 'next' not in context.request.GET:
             if shortname == PROFILE_SURVEY:
