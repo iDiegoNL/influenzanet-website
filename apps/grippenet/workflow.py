@@ -2,7 +2,7 @@
 from apps.survey.workflow import SurveyWorkflow
 from apps.grippenet.models import PregnantCohort
 
-class PregnantWorklflow(SurveyWorkflow):
+class PregnantWorkflow(SurveyWorkflow):
     
     def before_run(self, context):
         survey_user = context.survey_user
