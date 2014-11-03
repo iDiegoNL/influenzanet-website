@@ -485,7 +485,7 @@ class Survey(models.Model):
         if table in connection.introspection.table_names():
             now = datetime.datetime.now()
             version = self.version or 0
-            backup = table+'_v'+str(version)+'_'+format(now, '%Y%m%d%H%M%s')
+            backup = table+'_v'+str(version)+'_'+format(now, '%Y%m%d%H%M%S')
             connection.cursor().execute('ALTER TABLE '+table+' RENAME TO '+backup)
         self.status = 'UNPUBLISHED'
         self.save()

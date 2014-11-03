@@ -167,7 +167,7 @@ class SurveyRunner(object):
         
         # Prepare survey to be run
         translation = views.get_object_or_none(models.TranslationSurvey, survey=survey, language=language, status="PUBLISHED")
-        if use_cache:
+        if use_cache and translation is not None:
             translation.prefetch_tranlations()
         survey.set_translation_survey(translation)
         
