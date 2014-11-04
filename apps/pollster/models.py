@@ -17,16 +17,18 @@ DEG_TO_RAD = pi/180
 RAD_TO_DEG = 180/pi
 
 try:
-    import mapnik2 as mapnik
-    mapnik_version = 2
+    import mapnik
+    if mapnik.mapnik_version() > 200000:
+        mapnik_version = 2
+    else:
+        mapnik_version = 1
 except:
     try:
-        import mapnik
-        mapnik_version = 1
+        import mapnik2
+        mapnik_version = 2
     except ImportError:
         mapnik_version = None
         warnings.warn("No working version for library 'mapnik' found. Continuing without mapnik")
-        
 
 SURVEY_STATUS_CHOICES = (
     ('DRAFT', 'Draft'),
