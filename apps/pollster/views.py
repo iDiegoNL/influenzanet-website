@@ -198,9 +198,10 @@ def survey_run(request, shortname, next=None, clean_template=False):
         if locale_code == "en-US":
             locale_code = "en-GB"
     translation = get_object_or_none(models.TranslationSurvey, survey=survey, language=language, status="PUBLISHED")
-    if translation is not None and use_cache:
-        translation.prefetch_tranlations()
-    survey.set_translation_survey(translation)
+    if translation is not None:
+        if use_cache:
+            translation.prefetch_tranlations()
+        survey.set_translation_survey(translation)
     survey_user = _get_active_survey_user(request)
     form = None
     user_id = request.user.id

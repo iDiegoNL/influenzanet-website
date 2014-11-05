@@ -45,4 +45,10 @@ class InfluenzanetWorkflow(SurveyWorkflow):
             next_url = context.request.GET
         return next_url
         
-    
+    def before_render(self, context):
+        if context.last_data is not None:
+            data_source = context.last_data.get('_source_','')
+            if data_source == 'previousdata':
+                messages.info(context.request, _("At the beginning of the season we ask you to verify last year's information. Please check the information below."))
+       
+        

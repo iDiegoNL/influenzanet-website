@@ -39,6 +39,9 @@ def update_url_params(url, params):
 
 class BaseWorkflow(object):
     
+    def debug(self, message):
+        logger.debug(message)
+    
     def user_has_data(self, shortname, survey_user):
         """
             Check if a given user has data for a survey
@@ -89,12 +92,24 @@ class SurveyContext(object):
         self.form = None
         self.language = None 
         self.last_data = None
+        self.timestamp_last_fill = None
         self.template = 'pollster/survey_run.html'
+
+    def set_last_data(self, last_data):
+        if last_data is not None:
+            # Prefill timestamp : template behaviour is to show the last time if this timestamp is defined
+            # This value could be overriden by hooks to avoid this last time to be showed
+            # That's why template does not use directly the value from the last data
+            self.timestamp_last_fill = last_data.get('timestamp', None)
+        self.last_data = last_data
             
     def get_template_data(self):
         """
          get the data ready to be transmitted to the survey template
         """
+        # Check if url contains debug flag 
+        pollster_debug = self.request.GET.get('pollster_debug', False)
+    
         return {
           "language": self.language,
           "locale_code": get_locale(self.language),
@@ -102,6 +117,8 @@ class SurveyContext(object):
           "default_postal_code_format": fields.PostalCodeField.get_default_postal_code_format(),
           "last_participation_data_json": as_json(self.last_data),
           "form": self.form,
+          "timestamp_last_fill": self.timestamp_last_fill,
+          "pollster_debug": pollster_debug,
           "person": self.survey_user,
         }
 
@@ -212,8 +229,10 @@ class SurveyRunner(object):
             else:
                 survey.set_form(form)
 
-        survey_context.last_data = survey.get_prefill_data(user_id, global_id)
-                
+        if DEBUG:
+            logger.debug("Loading prefill data")
+        survey_context.set_last_data(survey.get_prefill_data(user_id, global_id))
+        
         for hook_method in self.before_render_hooks:
             if DEBUG:
                 self._log_hook(hook_method)
