@@ -78,7 +78,8 @@ class SurveyHousehold:
         return profile
     
     def profile_updated(self, request, gid):
-        self.profiles.pop(gid)
-        # Tell session that object has been updated
-        request.session.modified = True
+        if gid in self.profiles:
+            self.profiles.pop(gid)
+            # Tell session that object has been updated
+            request.session.modified = True
         
