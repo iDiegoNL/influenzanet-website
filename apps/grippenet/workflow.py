@@ -22,8 +22,8 @@ class PregnantWorkflow(SurveyWorkflow):
                     self.debug("Already Subscriber to pregnant cohort")
                 is_ggnet = True
         
+        form = context.form
         if shortname == "intake":
-            form = context.form
             if not is_ggnet:
                 if form.cleaned_data['G1'] == 1:
                     if DEBUG:
