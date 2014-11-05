@@ -13,7 +13,7 @@ from django.contrib import messages
 
 from apps.common.wait import is_wait_launch, get_wait_launch_context
 
-from apps.survey import utils, models
+from apps.survey import utils, models, forms
 from apps.pollster import views as pollster_views
 from apps.pollster import utils as pollster_utils
 
