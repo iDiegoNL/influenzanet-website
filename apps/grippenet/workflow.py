@@ -2,6 +2,10 @@ from apps.pollster.runner import DEBUG
 from apps.survey.workflow import SurveyWorkflow
 from apps.grippenet.models import PregnantCohort
 
+PREGNANT_QUESTION = 'Q12'
+PREGNANT_RESPONSE_YES = 0
+PREGNANT_RESPONSE_NO = 1
+
 class PregnantWorkflow(SurveyWorkflow):
     
     def before_run(self, context):
@@ -25,7 +29,7 @@ class PregnantWorkflow(SurveyWorkflow):
         form = context.form
         if shortname == "intake":
             if not is_ggnet:
-                if form.cleaned_data['G1'] == 1:
+                if form.cleaned_data[PREGNANT_QUESTION] == PREGNANT_RESPONSE_YES:
                     if DEBUG:
                         self.debug("Subscribing to pregnant cohort")
                     is_ggnet = True
@@ -33,7 +37,7 @@ class PregnantWorkflow(SurveyWorkflow):
                     part.save()
                     context.pregnant = part
             else:
-                if form.cleaned_data['G1'] == 0:
+                if form.cleaned_data[PREGNANT_QUESTION] == PREGNANT_RESPONSE_NO:
                     if DEBUG:
                         self.debug("Unsubscribing to pregnant cohort")
                     # Unsubscribe
