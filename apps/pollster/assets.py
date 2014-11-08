@@ -3,12 +3,19 @@ import os.path as osp
 import cms
 from django.conf import settings
 from apps.common.i18n import get_locale
+from django.template import loader, Context
+ 
+def render_from_template(template, data):
+    t = loader.get_template(template)
+    ctx = Context(data)
+    return t.render(ctx)
  
 js_pollster_run_base = Bundle(
     'pollster/wok/js/wok.pollster.js',
     'pollster/wok/js/wok.pollster.datatypes.js',
     'pollster/wok/js/wok.pollster.codeselect.js',
     'pollster/wok/js/wok.pollster.timeelapsed.js',
+    'pollster/wok/js/wok.pollster.visualscale.js',
     'pollster/wok/js/wok.pollster.rules.js',
     'pollster/wok/js/wok.pollster.virtualoptions.js',
     output='assets/pollster_runbase.js' # not used
