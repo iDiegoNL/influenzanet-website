@@ -82,4 +82,7 @@ class SurveyHousehold:
             self.profiles.pop(gid)
             # Tell session that object has been updated
             request.session.modified = True
-        
+    
+    def participants_updated(self, request):
+        self.load(request.user)
+        request.session.modified = True

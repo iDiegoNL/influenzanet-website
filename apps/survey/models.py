@@ -8,19 +8,37 @@ from apps.common.db import get_cursor
 def create_global_id():
     return str(uuid.uuid4())
 
-class SurveyUser(models.Model):
-    user = models.ForeignKey(User, null=True) # null=True: only so because this happens 'in the wild', i.e.
-                                              # in already existing data. Other than that there is no good
-                                              # reason for it
+class SurveyUserManager(models.Manager):
+    
+    def create_survey_user(self, user, name=None):
+        """
+        Factory to use to create SurveyYser
+        """
+        if name is None:
+            n = int(self.filter(user=user).count())
+            name= 'participant_' + str(n)
+        return self.create(user=user, name=name)
+    
+    def get_active_users(self, user):
+        return self.filter(user=user, deleted=False)
 
-    global_id = models.CharField(max_length=36, unique=True,
-                                 default=create_global_id)
+class SurveyUser(models.Model):
+    
+    user = models.ForeignKey(User, null=True) 
+    # null=True: only so because this happens 'in the wild', i.e.
+    # in already existing data. Other than that there is no good
+    # reason for it
+
+    global_id = models.CharField(max_length=36, unique=True, default=create_global_id)
     last_participation_date = models.DateTimeField(null=True, blank=True)
 
     name = models.CharField(max_length=100)
+
     deleted = models.BooleanField(default=False)
 
     avatar = models.IntegerField(default=0)
+
+    objects = SurveyUserManager()
 
     class Meta:
         verbose_name_plural = 'User'
@@ -65,3 +83,7 @@ class SurveyUser(models.Model):
             return self.user.date_joined
         return result
 
+    def remove(self):
+        self.deleted = True
+        self.name = 'ano' + str(self.id)
+        self.save()

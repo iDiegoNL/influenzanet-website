@@ -9,8 +9,6 @@ urlpatterns = patterns('',
 # Fill for test
     url(r'^fill/(?P<shortname>.+)/$', views.run_survey, name='survey_fill'),
     url(r'^thanks/(?P<shortname>.+)/$', views.thanks_run, name='survey_run_thanks'),
-#    url(r'^group_archive/$', views.group_archive, name='group_archive'),
-#    url(r'^group_archive/(?P<year>[0-9]{4})/$', views.group_archive, name='group_archive'),
     url(r'^thanks_profile/$', views.thanks_profile, name='profile_thanks'),
     url(r'^people/add/$', views.people_add, name='survey_people_add'),
     url(r'^people/edit/$', views.people_edit, name='survey_people_edit'),
