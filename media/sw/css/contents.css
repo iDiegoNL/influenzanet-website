@@ -1,0 +1,123 @@
+/* Contents */
+
+hr {
+ border-color: #e2e2e2;
+ border-style: solid;
+ border-width: 1px 0 0;
+ clear: both;
+ margin: 14px 0 14px 0;
+ height: 0;
+}
+
+#col1 ul {
+ margin: 0;
+ padding: 0 0 0 20px;
+}
+
+#col1 ol {
+ margin: 0;
+ padding: 0 0 0 24px;
+}
+
+#col1 li {
+ margin: 0;
+ padding: 0;
+ font-weight: bold;
+ line-height: 1.5em; 
+}
+
+#col1 > ul > li,
+#col1 > ol > li,
+#col2 > ul > li,
+#col2 > ol > li,
+#col3 > ul > li,
+#col3 > ol > li { /* Reduce size only for the first level */
+ font-size: 0.7em;
+}
+
+#col1 label,
+#col2 label,
+#col3 label {
+ font-size: 0.9em;
+ font-weight: bold;
+}
+
+#col1 li label,
+#col2 li label,
+#col3 li label {
+ font-size: 0.7em;
+}
+
+#col1 p, #col2 p, #col3 p {
+ margin: 1em 0 1em 0;
+ font-size: 0.7em;
+ line-height: 1.5em;
+}
+
+#col1 img.left {
+ margin: 0 14px 0 0; 
+}
+
+#col1 img.right {
+ margin: 0 0 0 14px; 
+}
+
+#col2 a { 
+ display: block;
+}
+
+#col2 p a { 
+ display: inline;
+}
+
+#col1 a,
+#col2 a,
+#col3 a {
+ text-decoration: none;
+ font-weight: bold;
+}
+
+#col1 a:hover,
+#col2 a:hover,
+#col3 a:hover {
+ text-decoration: underline;
+}
+
+
+#col1 h1 {
+ margin: 6px 0 12px 0;
+ padding: 0;
+ color: #0a0a0a;
+ font-size: 1.2em;
+ line-height: 1.1em;
+}
+
+#col1 h2 {
+ margin: 18px 0 12px 0;
+ padding: 0;
+ color: #000000;
+ font-size: 1em;
+}
+
+#col1 h3 {
+ margin: 18px 0 12px 0;
+ padding: 0;
+ color: #767676;
+ font-size: 1em;
+}
+
+#col2 p.title, #col3 p.title {
+ margin: 4px 0 0 0;
+ padding: 2px 8px 2px 8px;
+ color: #fefefe;
+ font-weight: bold;
+ font-size: 0.75em;
+}
+
+#col2 h2,
+#col3 h2 {
+ margin: 8px 0 12px 0;
+ padding: 0;
+ color: #0a0a0a;
+ font-size: 1em;
+}

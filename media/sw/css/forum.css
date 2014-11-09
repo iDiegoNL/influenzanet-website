@@ -1,0 +1,37 @@
+#footercontent-main {
+ background: url("../img/main/footerbar-main.gif") repeat-x scroll center bottom #575757;
+ border-top: 2px solid #909090;
+ color: #F8F8F8;
+ font-size: 0.75em;
+ overflow: auto;
+ padding: 20px 14px 18px;
+ width: 946px;
+}
+
+
+#footercontent-client {
+ background: url("../img/main/footerbar-client.gif") repeat-x scroll center bottom #727272;
+ border-top: 2px solid #909090;
+ color: #F8F8F8;
+ font-size: 0.75em;
+ padding: 14px 14px 18px;
+ width: 946px;
+}
+
+#footercol2 {
+ width: 230px;
+}
+
+#footercol3 {
+ width: 200px;
+}
+
+#footercol1, #footercol2, #footercol3 {
+ float: left;
+ padding: 0 30px 16px 0;
+}
+
+#footercol1 {
+ width: 340px;
+ padding: 0 60px 16px 50px; 
+}

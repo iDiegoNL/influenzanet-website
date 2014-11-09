@@ -40,14 +40,17 @@ js_mailcheck = Bundle(
 ) 
  
 css_base = Bundle(
-     'base/css/default.css',                         
+     'sw/css/_base.css',                         
      'sw/css/layout.css',
+     'sw/css/contents.css',
      'sw/css/menu.css',
+     'sw/css/influenzanet.css',
      'sw/css/survey.css',
      'sw/css/journal.css',
      'sw/css/widgets.css',
      'sw/css/facebox.css',
      'sw/css/feedback.css',
+     'sw/css/avatars.css',
      'sw/css/users.css',
      'sw/css/user-group.css',
      'sw/css/tooltip.css',

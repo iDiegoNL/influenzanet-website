@@ -1,0 +1,40 @@
+/** 
+ * User avatar
+*/
+/** 
+ * User avatar
+*/
+.avatars {
+	margin: .3em 0;
+	padding: .3em;
+	border: 1px solid #EEE;
+	width: 480px;
+	height: 170px;
+	overflow-y:auto;
+	position: relative;
+}
+.avatars div, #cur-avatar {
+	margin: 2px;
+	padding: 2px;
+	border: 2px solid #DDD;
+	float:left;
+}
+
+.avatars div:hover {
+	border-color: #999;
+}
+
+.avatars div.selected {
+	border-color: red;
+}
+
+.avatars img, #cur-avatar img, .avatar {
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+	display: inline-block;
+} 
+
+.avatar {
+	margin: .2em;
+}	
