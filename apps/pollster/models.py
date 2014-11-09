@@ -469,7 +469,7 @@ class Survey(models.Model):
         table = model._meta.db_table
         if table in connection.introspection.table_names():
             now = datetime.datetime.now()
-            backup = table+'_vx_'+format(now, '%Y%m%d%H%M%s')
+            backup = table+'_vx_'+format(now, '%Y%m%d%H%M%S')
             connection.cursor().execute('ALTER TABLE '+table+' RENAME TO '+backup)
         dynamicmodels.install(model)
         db = get_db_type(connection)
