@@ -1,30 +1,23 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-
-from django.template import Context, loader, RequestContext
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.db import connection, transaction, DatabaseError
+from urllib import urlencode
 from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.contrib import messages
+from django.db import connection
+from django.template import  RequestContext
+from django.http import  HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
-from django.contrib import messages
-
-from apps.survey import utils, models, forms
-from apps.pollster import views as pollster_views
-from apps.pollster import utils as pollster_utils
-
 
 from apps.common.wait import is_wait_launch, get_wait_launch_context
 
+from apps.survey import utils, models, forms
+from apps.survey.household import SurveyHousehold
+from apps.pollster import utils as pollster_utils
 
 import apps.pollster as pollster
-import pickle
-
-survey_form_helper = None
-profile_form_helper = None
 
 def _get_avatars(with_list=True):
     
@@ -108,19 +101,6 @@ def _get_person_health_status(request, survey, global_id):
         status = result[0] if result else None
     return (status, _decode_person_health_status(status))
 
-def _get_person_is_female(global_id, table="pollster_results_intake"):
-    try:
-        cursor = connection.cursor()
-        queries = {
-            'sqlite':"""SELECT Q1 FROM """ + table + """ WHERE global_id = %s""",
-            'mysql':"""SELECT `Q1` FROM """ + table + """ WHERE `global_id` = %s""",
-            'postgresql':"""SELECT "Q1" FROM """ + table + """ WHERE "global_id" = %s""",
-        }
-        cursor.execute(queries[utils.get_db_type(connection)], [global_id,])
-        return cursor.fetchone()[0] == 1 # 0 for male, 1 for female
-    except:
-        return None
-
 def _get_health_history(request, survey, table="pollster_results_weekly", limit=None):
     results = []
     cursor = connection.cursor()
@@ -203,7 +183,6 @@ def group_management(request):
         survey.set_caching(getattr(settings, 'POLLSTER_USE_CACHE', False))
     except:
         raise Exception("The survey application requires a published survey with the shortname 'weekly'")
-    Weekly = survey.as_model()
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
@@ -211,7 +190,9 @@ def group_management(request):
 
     if request.method == "POST":
         global_ids = request.POST.getlist('global_ids')
-
+        
+        Weekly = survey.as_model()
+    
         for survey_user in request.user.surveyuser_set.filter(global_id__in=global_ids):
             if request.POST.get('action') == 'healthy':
                 messages.add_message(request, messages.INFO, 
@@ -235,11 +216,13 @@ def group_management(request):
 
     history = list(_get_health_history(request, survey))
     last_intakes = _get_group_last_survey(request, 'intake')
-    # vaccinations = list(_get_group_vaccination(request)) 
+    
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     persons_dict = dict([(p.global_id, p) for p in persons])
+    
     for item in history:
         item['person'] = persons_dict.get(item['global_id'])
+    
     for person in persons:
         person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
@@ -249,51 +232,14 @@ def group_management(request):
         # person.vaccination_url = '%s?gid=%s' % (reverse('survey_run',kwargs={'shortname':'vaccination'}), person.global_id)
         # vacc = _get_person_is_vaccinated(person.global_id)
         # person.vaccination = vacc is not None and not vacc
+    
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
+    
     wait_launch = get_wait_launch_context(request) # is request restricted by wait_launch context
+    
     avatars = _get_avatars(with_list=False)
+    
     return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch,'avatars': avatars},
-                              context_instance=RequestContext(request))
-
-
-@login_required
-def group_archive(request, year=None):
-    try:
-        survey = pollster.models.Survey.get_by_shortname('weekly')
-    except:
-        raise Exception("The survey application requires a published survey with the shortname 'weekly'")
-
-    if not getattr(settings, 'POLLSTER_HISTORICAL_WEEKLIES') or not getattr(settings, 'POLLSTER_HISTORICAL_INTAKES'):
-        # unchecked assumptions:
-        # these are both lists of tuples (year, existing-table-name) and they the LHS of each of the tuples is identical
-        # across both lists.
-
-        # also: the most recent (current) year/season is on top
-        raise Exception("Configuration error: please configure POLLSTER_HISTORICAL_WEEKLIES and POLLSTER_HISTORICAL_INTAKES")
-
-    if year:
-        year = int(year)
-    else:
-        year = settings.POLLSTER_HISTORICAL_WEEKLIES[0][0]
-    season = "%s - %s" % (year, year + 1)
-
-    weekly_table = dict(settings.POLLSTER_HISTORICAL_WEEKLIES)[year]
-    intake_table = dict(settings.POLLSTER_HISTORICAL_INTAKES)[year]
-
-    seasons = reversed(
-        [(year, "%s - %s" % (year, year + 1)) for (year, _) in settings.POLLSTER_HISTORICAL_WEEKLIES]
-    )
-
-    history = list(_get_health_history(request, survey, table=weekly_table))
-    persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
-    persons_dict = dict([(p.global_id, p) for p in persons])
-    for item in history:
-        item['person'] = persons_dict.get(item['global_id'])
-    for person in persons:
-        person.health_history = [i for i in history if i['global_id'] == person.global_id]
-        person.is_female = _get_person_is_female(person.global_id, table=intake_table)
-
-    return render_to_response('survey/group_archive.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'seasons': seasons, 'season': season},
                               context_instance=RequestContext(request))
 
 @login_required
@@ -308,26 +254,23 @@ def thanks_profile(request):
 
 @login_required
 def select_user(request, template='survey/select_user.html'):
-    # select_user is still used in some cases: notably when there are unqualified calls to
-    # 'profile_index'. So we've not yet removed this template & view.
-    # Obviously it's a good candidate for refactoring.
-
+    # @todo: more generic select_user that can hold some extra url parameters
     next = request.GET.get('next', None)
+        
     if next is None:
-        next = reverse(index)
+        next = reverse('survey_index')
 
     users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     total = len(users)
+    survey_user = None
+    
     if total == 0:
-        survey_user = models.SurveyUser.objects.create(
-            user=request.user,
-            name=request.user.username,
-        )
-        url = '%s?gid=%s' % (next, survey_user.global_id)
-        return HttpResponseRedirect(url)
+        survey_user = models.SurveyUser.objects.create_survey_user(request.user)
         
     elif total == 1:
         survey_user = users[0]
+        
+    if survey_user is not None:
         url = '%s?gid=%s' % (next, survey_user.global_id)
         return HttpResponseRedirect(url)
 
@@ -337,120 +280,64 @@ def select_user(request, template='survey/select_user.html'):
         'avatars': _get_avatars(with_list=False)
     }, context_instance=RequestContext(request))
 
+
+def redirect_to_survey(request, shortname):
+    url = reverse('survey_fill', kwargs={'shortname': shortname })
+    query = {}
+    for v in ['next','gid']:
+        p = request.GET.get(v, None)
+        if p is not None:
+            query[v] = p
+    if len(query) > 0:
+        url = url + '?' + urlencode(query)
+    return HttpResponseRedirect( url )
+
 @login_required
 def index(request):
-    if is_wait_launch(request):
-        return HttpResponseRedirect(reverse('survey_wait_launch'))
-    # This is the index for a actual survey-taking.
-    # It falls back to 'group management' if no 'gid' is provided.
-
-    try:
-        survey_user = get_active_survey_user(request)
-    except ValueError:
-        raise Http404()
-    if survey_user is None:
-        return HttpResponseRedirect(reverse('group_management'))
-
-    # Check if the user has filled user profile. If the profile doesn't exists
-    # the user is redirected to the "intake" (profile_index view below) with a
-    # _next parameter set to this view to return here after completing the intake
-    # survey.
-
-    profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
-    if profile is None:
-        messages.add_message(request, messages.INFO, 
-            _(u'Before we take you to the symptoms questionnaire, please complete the short background questionnaire below. You will only have to complete this once.'))
-        url = reverse('survey_profile')
-        url_next = reverse('survey_index')
-        url = '%s?gid=%s&next=%s' % (url, survey_user.global_id, url_next)
-        return HttpResponseRedirect(url)
-
-    try:
-        survey = pollster.models.Survey.get_by_shortname('weekly')
-    except:
-        raise Exception("The survey application requires a published survey with the shortname 'weekly'")
-
-    next = None
-    if 'next' not in request.GET:
-        next = "/dashboard"
-
-    return pollster_views.survey_run(request, survey.shortname, next=next)
+    return redirect_to_survey(request, 'weekly')
 
 @login_required
 def profile_index(request):
-
-    # Renders an 'intake' survey.
-    if is_wait_launch(request):
-        return HttpResponseRedirect(reverse('survey_wait_launch'))
-    
-    try:
-        survey_user = get_active_survey_user(request)
-    except ValueError:
-        raise Http404()
-    
-    try:
-        survey = pollster.models.Survey.get_by_shortname('intake')
-    except:
-        raise Exception("The survey application requires a published survey with the shortname 'intake'")
-
-    next = None
-    if 'next' not in request.GET:
-        next = reverse(thanks_profile)
-
-    return pollster_views.survey_run(request, survey.shortname, next=next)
+    return redirect_to_survey(request, 'intake')
 
 @login_required
-    # indexes have become. 
 def create_surveyuser(request):
-    # This view is the target for newly created accounts. If the user doesn't already
-    # have a linked surveyuser one is created. After that the client is redirected to
-    # the group management page.
     if is_wait_launch(request):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
-
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() > 1:
         return HttpResponseRedirect(reverse(group_management))
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
-        survey_user = models.SurveyUser.objects.create(
-            user=request.user,
-            name=request.user.username,
-        )
-
+        survey_user = models.SurveyUser.objects.create_survey_user(user=request.user)
+        
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
     return HttpResponseRedirect(reverse('survey_index') + '?gid=' + gid)
 
 @login_required
 def run_index(request, shortname):
+    return HttpResponseRedirect( reverse('survey_fill', {'shortname': shortname }))
+
+@login_required
+def run_survey(request, shortname):
     if is_wait_launch(request, shortname):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
-
+    
+    # Check of survey user is done here
+    # Because it's survey app responsability to manage the SurveyUser and create if if necessary
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
         raise Http404()
 
-    if shortname == 'intake' or shortname == 'weekly':
-        if shortname == 'intake':
-            url = reverse("survey_profile")
-        else:
-            url = reverse("survey_index")
-        return HttpResponseRedirect(url)
     if survey_user is None:
-        url = '%s?next=%s' % (reverse("survey_select_user"), reverse("survey_run", kwargs={'shortname':shortname}))
+        # TODO allow query params forwarding (or save it in session)
+        url = '%s?next=%s' % (reverse("survey_select_user"), reverse("survey_fill", kwargs={'shortname':shortname}))
         return HttpResponseRedirect(url)
-
-    try:
-        survey = pollster.models.Survey.get_by_shortname(shortname)
-    except:
-        raise Exception("The survey application requires a published survey with the shortname '%s'" % shortname)
-
-    next = None
-    if 'next' not in request.GET:
-        next = reverse(thanks_run, kwargs={'shortname':shortname})
-
-    return pollster_views.survey_run(request, survey.shortname, next=next)
+    
+    from apps.pollster.runner import SurveyRunner
+    runner = SurveyRunner()
+    return runner.run(request, survey_user, shortname)
 
 @login_required
 def thanks_run(request, shortname):
@@ -458,9 +345,8 @@ def thanks_run(request, shortname):
         survey_user = get_active_survey_user(request)
     except ValueError:
         pass
-    return render_to_response('survey/thanks_'+shortname+'.html', {'person': survey_user},
+    return render_to_response('survey/thanks_'+ shortname +'.html', {'person': survey_user},
         context_instance=RequestContext(request))
-
         
 @login_required
 def people_edit(request):
@@ -473,7 +359,6 @@ def people_edit(request):
         return HttpResponseRedirect(url)
     elif survey_user.deleted == True:
         raise Http404()
-
     
     current_avatar = survey_user.avatar
     if request.method == 'POST':
@@ -482,6 +367,9 @@ def people_edit(request):
             survey_user.name = form.cleaned_data['name']
             survey_user.avatar = form.cleaned_data['avatar']
             survey_user.save()
+
+            h = SurveyHousehold.get_household(request)
+            h.participants_updated(request)
 
             return HttpResponseRedirect(reverse(group_management))
 
@@ -506,19 +394,18 @@ def people_remove(request):
 
     confirmed = request.POST.get('confirmed', None)
 
-    if confirmed == 'Y':
-        survey_user.deleted = True
-        survey_user.save()
-   
-        url = reverse(group_management)
-        return HttpResponseRedirect(url)
+    if confirmed is not None:
+        if confirmed == 'Y':
+            survey_user.remove()
+            
+            h = SurveyHousehold.get_household(request)
+            h.participants_updated(request)
+            
+        elif confirmed == 'N':
+            url = reverse(group_management)
+        return HttpResponseRedirect(reverse(group_management))
 
-    elif confirmed == 'N':
-        url = reverse(group_management)
-        return HttpResponseRedirect(url)
-
-    else:
-        return render_to_response('survey/people_remove.html', {'person': survey_user},
+    return render_to_response('survey/people_remove.html', {'person': survey_user},
                               context_instance=RequestContext(request))
 
 @login_required
@@ -531,6 +418,9 @@ def people_add(request):
             survey_user.name = form.cleaned_data['name']
             survey_user.avatar = form.cleaned_data['avatar']
             survey_user.save()
+
+            h = SurveyHousehold.get_household(request)
+            h.participants_updated(request)
 
             messages.add_message(request, messages.INFO, 
                 _('A new person has been added.'))

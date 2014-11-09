@@ -27,11 +27,16 @@
         var xml = innerXHTML($('<div></div>').append(survey)[0]);
         $.post(designer.getPostUrl(sd.id), {surveyxml: xml}, function(responseText) {
             $(evt.target).removeAttr('disabled');
-            if (isnew)
-                window.location = designer.getSurveyUrl($(responseText).find(".survey").attr("id").replace("survey-", ""));
-            else
-                window.location.reload();
-        }).error(function(jqXHR, textStatus, errorThrown) { wok.error("error on save: "+errorThrown); });
+            if (isnew) {
+				window.location = designer.getSurveyUrl($(responseText).find(".survey").attr("id").replace("survey-", ""));
+			}
+			else {
+				window.location.reload();
+			}
+        }).error(function(jqXHR, textStatus, errorThrown) { 
+			$('#pollster-messages').html(errorThrown);
+			wok.error("error on save: " + errorThrown); 
+		});
     }
 
     // DESIGNER WINDOW

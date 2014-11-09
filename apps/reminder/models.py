@@ -246,7 +246,7 @@ def get_reminders_for_users(now, users):
         if get_settings() and get_settings().interval == WEEKLY_WITH_BATCHES:
             survey_users = SurveyUser.objects.filter(user=user, deleted=False)
             if not survey_users.count():
-                survey_user = SurveyUser.objects.create(user=user, name=user.username)
+                survey_user = SurveyUser.objects.create_survey_user(user=user)
                 survey_users = SurveyUser.objects.filter(user=user, deleted=False)
 
             last_action_date = max(su.get_last_weekly_survey_date() for su in survey_users)

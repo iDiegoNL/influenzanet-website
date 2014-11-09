@@ -23,8 +23,7 @@
 	text-decoration:line-through;	
 }
 
-
-.survey-list .action {
+ .action {
 	border: 1px solid steelblue;
 	border-radius: .3em;
 	background-color: white;
@@ -42,7 +41,10 @@
 	background-color: steelblue;
 	color: white;
 }
-
+.action-list li {
+	padding-top: 1em;
+	list-style-type:none;
+}
 
 </style>
 {% endblock %}
@@ -53,7 +55,8 @@
         <table class="survey-list">
 	        {% for survey in surveys %}
             <tr class="status-{{survey.status}}">
-                <td class="title">{% if survey.title %}
+                <td>#{{survey.id}}</td>
+				<td class="title">{% if survey.title %}
                 {{ survey.title }}
                 {% else %}
                 No Name
@@ -83,17 +86,17 @@
 			</tr>				
             {% endfor %}
 			</table>
-        <ul>
+        <ul class="action-list">
             <li>
             <form action="{% url pollster_survey_import %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
                 {{ form_import.data }}
-                <button>import survey</button>
+                <button class="action">import survey</button>
             </form>
             </li>
             <li>
             <form action="{% url pollster_survey_add %}" method="GET">
-                <button>new survey</button>
+                <button class="action">new survey</button>
             </form>
             </li>
         </ul>

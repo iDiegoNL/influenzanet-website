@@ -1,13 +1,21 @@
 from webassets import Bundle
 import os.path as osp
 import cms
-
+from django.conf import settings
+from apps.common.i18n import get_locale
+from django.template import loader, Context
+ 
+def render_from_template(template, data):
+    t = loader.get_template(template)
+    ctx = Context(data)
+    return t.render(ctx)
  
 js_pollster_run_base = Bundle(
     'pollster/wok/js/wok.pollster.js',
     'pollster/wok/js/wok.pollster.datatypes.js',
     'pollster/wok/js/wok.pollster.codeselect.js',
     'pollster/wok/js/wok.pollster.timeelapsed.js',
+    'pollster/wok/js/wok.pollster.visualscale.js',
     'pollster/wok/js/wok.pollster.rules.js',
     'pollster/wok/js/wok.pollster.virtualoptions.js',
     output='assets/pollster_runbase.js' # not used
@@ -27,7 +35,6 @@ js_pollster_edit = Bundle(
   'pollster/wok/js/wok.pollster.init_edit.js',
   output='assets/pollster_edit.js'
 )
-
 
 css_pollster_run = Bundle(
    'pollster/jquery/css/smoothness/jquery-ui-1.8.14.css',
@@ -51,6 +58,17 @@ js_pollster_base = Bundle(
   osp.join(cms_media, 'cms/js/csrf.js'),                      
   output='assets/pollster_base.js'
 )
+
+for lng in settings.LANGUAGES:
+    language = lng[0]
+    locale = get_locale(language)
+    globals()['js_pollster_date_' + language] = Bundle(
+       'pollster/jquery/js/i18n/jquery.ui.datepicker-'+ language + '.js',
+       'pollster/datejs/js/date-'+ locale +'.js',
+       output='assets/pollster_date_' + language +'.js'                                              
+    )
+    
+
 
 """"
     {% if locale_code %}
