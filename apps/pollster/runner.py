@@ -13,6 +13,7 @@ from apps.common.db import quote_query, get_cursor
 from apps.common.i18n import get_locale
 
 from . import models, views, json, fields
+from django.core.urlresolvers import reverse
 
 CONFIG =  getattr(settings, 'POLLSTER_RUNNER', None)
 if CONFIG is None:
@@ -214,6 +215,7 @@ class SurveyRunner(object):
                 form.save()
                 
                 # Ask for hooks for a response
+                next_url = reverse('group_management') # default is group management page
                 for hook_method in self.after_save_hooks:
                     if DEBUG:
                         self._log_hook(hook_method)
@@ -223,8 +225,7 @@ class SurveyRunner(object):
                     if response and isinstance(response, basestring):
                         next_url = response
                 
-                if next_url:
-                    next_url = update_url_params(next_url, {"gid": global_id})
+                next_url = update_url_params(next_url, {"gid": global_id})
                 return HttpResponseRedirect(next_url)
             else:
                 survey.set_form(form)

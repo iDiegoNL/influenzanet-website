@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-
+from urllib import urlencode
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.contrib import messages
@@ -280,13 +280,25 @@ def select_user(request, template='survey/select_user.html'):
         'avatars': _get_avatars(with_list=False)
     }, context_instance=RequestContext(request))
 
+
+def redirect_to_survey(request, shortname):
+    url = reverse('survey_fill', kwargs={'shortname': shortname })
+    query = {}
+    for v in ['next','gid']:
+        p = request.GET.get(v, None)
+        if p is not None:
+            query[v] = p
+    if len(query) > 0:
+        url = url + '?' + urlencode(query)
+    return HttpResponseRedirect( url )
+
 @login_required
 def index(request):
-    return HttpResponseRedirect( reverse('survey_fill', {'shortname': 'weekly' }))
+    return redirect_to_survey(request, 'weekly')
 
 @login_required
 def profile_index(request):
-    return HttpResponseRedirect( reverse('survey_fill', {'shortname': 'intake' }))
+    return redirect_to_survey(request, 'intake')
 
 @login_required
 def create_surveyuser(request):

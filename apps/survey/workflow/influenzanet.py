@@ -40,9 +40,9 @@ class InfluenzanetWorkflow(SurveyWorkflow):
             elif shortname == "weekly":
                 next_url = "/dashboard"
             else:
-                next_url = reverse('survey_run_thanks', {"shortname": shortname})
+                next_url = reverse('survey_run_thanks', kwargs={"shortname": shortname})
         else:
-            next_url = context.request.GET
+            next_url = context.request.GET['next']
         return next_url
         
     def before_render(self, context):
