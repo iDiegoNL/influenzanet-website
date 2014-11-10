@@ -1,7 +1,7 @@
 /* Customisable styles */
 
 #account ul.anonymous li, #account ul.member li, #searchbar input#searchsubmit, input#commentsubmit {
- background: #{{ settings.light_color }};
+ background: #4D4D4D;
 }
 
 #account ul.anonymous li:hover, #account ul.member li:hover, #searchbar input#searchsubmit:hover, input#commentsubmit:hover {
@@ -15,7 +15,9 @@
 #col1 a,
 #col2 a,
 #col3 a {
- color: #{{ settings.dark_color }};
+ color: #009FE3;
+}
+
 }
 
 #box input#boxsubmit,
