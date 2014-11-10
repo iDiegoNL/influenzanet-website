@@ -5,14 +5,58 @@ Author: Antwan Wiersma (http://www.prime-creation.com/)
 Version: 1.2
 */
 
-/* @import url("../js/fancybox/jquery.fancybox-1.3.4.css"); */
 
+/* influweb Fonts */
 
+@import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=72ee94fa-68df-4796-aacc-aaede6c8f684");
+@font-face{
+font-family:"Helvetica";
+src:url("/media/base/font/Helvetica/717f8140-20c9-4892-9815-38b48f14ce2b.eot?#iefix");
+src:url("/media/base/font/Helvetica/717f8140-20c9-4892-9815-38b48f14ce2b.eot?#iefix") format("eot"),url("/media/base/font/Helvetica/03805817-4611-4dbc-8c65-0f73031c3973.woff") format("woff"),url("/media/base/font/Helvetica/d5f9f72d-afb7-4c57-8348-b4bdac42edbb.ttf") format("truetype"),url("/media/base/font/Helvetica/05ad458f-263b-413f-b054-6001a987ff3e.svg#05ad458f-263b-413f-b054-6001a987ff3e") format("svg");
+font-weight: 200;
+font-style: normal;
+}
+@font-face{
+font-family:"Helvetica";
+src:url("/media/base/font/Helvetica/7630b6bd-16c5-4dc9-b9e1-59ead28d3467.eot?#iefix");
+src:url("/media/base/font/Helvetica/7630b6bd-16c5-4dc9-b9e1-59ead28d3467.eot?#iefix") format("eot"),url("/media/base/font/Helvetica/9c3db207-1259-472f-9958-aa460cf8a464.woff") format("woff"),url("/media/base/font/Helvetica/2b853dcc-6980-40ad-b789-72d01bdf1ab9.ttf") format("truetype"),url("/media/base/font/Helvetica/6e10e416-807e-4ab6-974e-3233682fa882.svg#6e10e416-807e-4ab6-974e-3233682fa882") format("svg");
+font-weight: 200;
+font-style: italic;
+
+}
+@font-face{
+font-family:"Helvetica";
+src:url("/media/base/font/Helvetica/a1aa4fc0-53bc-4c86-8676-08b50b66376d.eot?#iefix");
+src:url("/media/base/font/Helvetica/a1aa4fc0-53bc-4c86-8676-08b50b66376d.eot?#iefix") format("eot"),url("/media/base/font/Helvetica/4686edb2-41cf-4e4b-87ee-b09427921b44.woff") format("woff"),url("/media/base/font/Helvetica/cb1c872a-9eb4-4fdb-b73c-5134dd5f1f3c.ttf") format("truetype"),url("/media/base/font/Helvetica/f5ee9809-e24e-46cd-aa5e-f3e5b6b4be0a.svg#f5ee9809-e24e-46cd-aa5e-f3e5b6b4be0a") format("svg");
+font-weight: 400;
+font-style: normal;
+}
+@font-face{
+font-family:"Helvetica";
+src:url("/media/base/font/Helvetica/8da986f2-24b4-4752-84ae-6620bf9c2b56.eot?#iefix");
+src:url("/media/base/font/Helvetica/8da986f2-24b4-4752-84ae-6620bf9c2b56.eot?#iefix") format("eot"),url("/media/base/font/Helvetica/188de9c9-6566-416c-8575-07c461cf8f79.woff") format("woff"),url("/media/base/font/Helvetica/fbdfb853-f7d1-4a02-b257-ac2c14b84fbc.ttf") format("truetype"),url("/media/base/font/Helvetica/5901d324-b47a-43ef-b310-97e09bfc930f.svg#5901d324-b47a-43ef-b310-97e09bfc930f") format("svg");
+font-weight: 200;
+font-style: italic;
+}
+@font-face{
+font-family:"Helvetica";
+src:url("/media/base/font/Helvetica/414fcac8-505f-4289-88ee-4b81418c8190.eot?#iefix");
+src:url("/media/base/font/Helvetica/414fcac8-505f-4289-88ee-4b81418c8190.eot?#iefix") format("eot"),url("/media/base/font/Helvetica/8aa768c0-545d-4502-b4a8-d3ab9e188bde.woff") format("woff"),url("/media/base/font/Helvetica/ffb00ab0-2f0a-45fe-8783-ccd35e6871c0.ttf") format("truetype"),url("/media/base/font/Helvetica/ba4fe024-beb5-4c66-9cd1-c737a3071f0a.svg#ba4fe024-beb5-4c66-9cd1-c737a3071f0a") format("svg");
+font-weight: bold;
+font-style: normal;
+
+}
+@font-face{
+font-family:"Helvetica";
+src:url("/media/base/font/Helvetica/90c7278d-fd27-4f24-8d2e-5bd654224ab6.eot?#iefix");
+src:url("/media/base/font/Helvetica/90c7278d-fd27-4f24-8d2e-5bd654224ab6.eot?#iefix") format("eot"),url("/media/base/font/Helvetica/9b555c3d-7de8-4d48-aac8-928b3d465c77.woff") format("woff"),url("/media/base/font/Helvetica/f01ae5ae-76ce-4a7a-9e20-04f7fe8ddf53.ttf") format("truetype"),url("/media/base/font/Helvetica/386b06da-aa61-4609-8936-89e987d90a22.svg#386b06da-aa61-4609-8936-89e987d90a22") format("svg");
+font-weight: bold;
+font-style: italic;
+}
 /* Main */
 
 html body {
- font-family: "aktiv-grotesk-std", sans-serif;
- font-family: "fira-sans", sans-serif;
+ font-family: Helvetica, sans-serif;
  line-height: 1.2em;
  font-size: 16px;
  -webkit-text-size-adjust: none; 
@@ -1536,4 +1580,8 @@ div#page {
 #account .button-register {
 	background: #209DD9 !important;
 }
+
+
+
+
 
