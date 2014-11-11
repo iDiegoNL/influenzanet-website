@@ -1,12 +1,12 @@
-{% load cms_tags menu_tags partnersites i18n count sekizai_tags active_accounts user_login %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ request.LANGUAGE_CODE }}" lang="{{ request.LANGUAGE_CODE }}" dir="ltr">
+{% load cms_tags menu_tags i18n count sekizai_tags active_accounts user_login %}<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xml:lang="{{ request.LANGUAGE_CODE }}" lang="{{ request.LANGUAGE_CODE }}"> <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
 <meta name="viewport" content="initial-scale=0.75, user-scalable=yes" />
 <meta name="robots" content="index, follow" />
-<meta name="viewport" content="initial-scale=0.75, user-scalable=yes" />
 <link rel="shortcut icon" href="{{ MEDIA_URL }}sw/grippenet.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="{{ MEDIA_URL }}base/img/favicon.ico" type="image/x-icon" />
 <title>{% block title %}{{ site_name }}: {% page_attribute page_title %}{% endblock title %}</title>
@@ -19,9 +19,8 @@
 <script type="text/javascript" src="{{ MEDIA_URL }}assets/base.js"></script>
 {% block add_js %}{% endblock add_js %}
 {% render_block "js" %}
-{% google_analytics %}
 </head>
-<body{% spaceless %}{% block add_body %}{% endblock add_body %}{% endspaceless %}>
+<body{% spaceless %}{% block add_body %}{% endblock add_body %}{% endspaceless %} data-gga="{{google_analytics}}">
 <div id="facebox">
    <div id="facebox-inner">
    	<div id="facebox-content"></div>
@@ -30,43 +29,10 @@
 </div>
 <div id="page" {%if user.is_authenticated %} class="user-connected" {%endif%}>
 {%if not user.is_authenticated %}
-<div id="influenzabar">
+<div id="ifn-bar">
 {% block masthead %}
-	<p class="_toggle influenzanet">Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux par internet.</p>
-	<div class="_toggle influenzabarcontent" id="top">
-		<div id="epiwork">
-			<a href="http://www.influenzanet.eu/" title="Influenzanet website" rel="external">http://www.influenzanet.eu/</a><br /><br />
-			<img src="{{ MEDIA_URL }}base/img/influbar/epiwork.gif" alt="Epiwork Logo" title="Epiwork" /><br />
-			D&eacute;velopper une infrastructure de pr&eacute;vision des &eacute;pid&eacute;mies.<br />
-			<a href="http://www.epiwork.eu/" title="Epiwork website" rel="external">http://www.epiwork.eu/</a><br /><br />
-			Le septi&egrave;me programme-cadre regroupe sous un m&ecirc;me toit toutes les initiatives de l'UE ayant trait à la recherche.<br /><br />
-			<img src="{{ MEDIA_URL }}base/img/influbar/7thframework.gif" alt="7th Framework Logo" title="7th Framework" />
-		</div>
-	    <div id="participants">
-			Pays participants et nombre de volontaires:<br /><br />
-			<a href="http://www.degrotegriepmeting.nl/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/nl.png" title="The Netherlands" alt="The Netherlands" /></a> {% member_count "nl" %}<br />
-			<a href="http://www.degrotegriepmeting.be/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/be.png" title="Belgium" alt="Belgium" /></a> {% member_count "be" %}<br />
-			<a href="http://www.gripenet.pt/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/pt.png" title="Portugal" alt="Portugal" /></a> {% member_count "pt" %}<br />
-			<a href="http://www.influweb.it/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/it.png" title="Italy" alt="Italy" /></a> {% member_count "it" %}<br />
-			<a href="http://flusurvey.org.uk/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/gb.png" title="Great Britain" alt="Great Britain" /></a> {% member_count "uk" %}<br />
-			<a href="http://www.influensakoll.se/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/se.png" title="Sweden" alt="Sweden" /></a> {% member_count "se" %}<br />
-			{%comment%}
-			<a href="http://www.aktivgegengrippe.de/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/de.png" title="Germany" alt="Germany" /></a>{% member_count "de" %}<br />
-			<a href="http://www.aktivgegengrippe.at/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/at.png" title="Austria" alt="Austria" /></a> {% member_count "at" %}<br />
-			<a href="http://www.aktivgegengrippe.ch/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ch.png" title="Switzerland" alt="Switzerland" /></a> {% member_count "ch" %}<br />
-			{%endcomment%}
-			<a href="http://www.grippenet.fr/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/fr.png" title="France" alt="France" /></a> <span id="count-fr">{% member_count "fr" %}</span><br />
-			<a href="http://www.gripenet.es/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/es.png" title="Spain" alt="Spain" /></a> {% member_count "es" %}<br />
-			<a href="http://flusurvey.ie/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/ie.png" title="Ireland" alt="Ireland" /></a> {% member_count "ie" %}<br />
-			<a href="http://www.influmeter.dk/" rel="external"><img src="{{ MEDIA_URL }}base/img/influbar/dk.png" title="Danemark" alt="Danemark" /></a>{% member_count "dk" %}<br />
-		</div>
-	    <div id="influenzatext">
-			Influenzanet est un syst&egrave;me permettant de surveiller l’activit&eacute; des syndromes grippaux avec l’aide de volontaires, par internet. Ce syst&egrave;me est op&eacute;rationnel aux Pays-Bas et en Belgique (depuis 2003), au Portugal (depuis 2005) et en Italie (depuis 2008). L’objectif actuel est d’implanter Influenzanet dans d’autres pays europ&eacute;ens.<br /><br />
-			Contrairement au syst&egrave;me traditionnel de surveillance par les m&eacute;decins g&eacute;n&eacute;ralistes, coordonn&eacute; au niveau europ&eacute;en par l’European Influenza Surveillance Scheme, Influenzanet obtient ses données directement de la population. Ceci cr&eacute;&eacute; un syst&egrave;me rapide et flexible, dont l’uniformit&eacute; permet la comparaison directe des taux de syndromes grippaux entre les diff&eacute;rents pays.<br /><br />
-			Tous les habitants d’un pays dans lequel Influenzanet est implant&eacute; peuvent participer en compl&eacute;tant en ligne un formulaire d’inscription. Les participants reçoivent chaque semaine un rappel pour d&eacute;clarer les sympt&ocirc;mes qu’ils ont pu avoir depuis leur dernière visite. L’incidence des syndromes grippaux est calcul&eacute;e sur la base d’une d&eacute;finition de cas standardis&eacute;e.<br /><br />
-			<a href="#top" class="jsclose" title="Close">Masquer ce texte</a>
-	    </div>
-	</div>
+	<p class="ifn-title">Influenzanet est un système permettant de surveiller l’activité des syndromes grippaux par internet. <a href="/influenzanet" rel="facebox" data-facebox-width="880" data-facebox-height="490">En savoir plus</a></p>
+	<div id="cc-box"></div>
 {% endblock masthead %}
 </div>
 {% endif %}	

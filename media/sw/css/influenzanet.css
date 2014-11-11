@@ -1,6 +1,6 @@
 /* Influenzanet bar */
 
-#influenzabar {
+#ifn-bar {
  width: 974px;
  margin: 0 auto;
  background: #ffffff url(../../base/img/influbar/influenzanetlogo.png) no-repeat scroll 12px 0;
@@ -9,64 +9,49 @@
  z-index: 50;
 }
 
-p.influenzanet {
+#ifn-bar p.ifn-title {
  text-align: right;
  font-size: 11px;	
- position: relative;
- padding: .9em;
+ padding: 1em;
+ padding-left: 260px;
+ line-height: 1em;
  border-bottom: 1px solid #E5E5E5;
 }
 
-.ie7 #influenzabar {
+.ie7 #ifn-bar {
  position: relative;
 }
 
-p.toggle {
- background: url(../../base/img/influbar/closed.png) top left no-repeat;
- cursor: pointer;
-}
 
-p.expanded {
- background: url(../../base/img/influbar/opened.png) top left no-repeat;
- cursor: pointer;
-}
-
-
-p.toggle a:focus, a.close:focus {
- background: #000000;
-}
-
-p.toggle a {
- color: #333333;
- text-decoration: none;
-}
-
-.influenzabarcontent,
-.influenzamapcontent {
- display: none;
-}
-
-div.influenzabarcontent{
- width: 926px;
- overflow: auto;
- padding: 0 12px 16px 12px;
- text-align: left;
- color: #333;
- font-size: 0.75em;
- line-height: 1.3em;
- background: none repeat scroll 0 0 #F4F4F4;
- border-width: 1px 2px;
- border-style: solid;
- border-color: #AAA;
- -moz-border-bottom-colors: none;
- -moz-border-image: none;
- -moz-border-left-colors: none;
- -moz-border-right-colors: none;
- -moz-border-top-colors: none;
-}
-
-#influenzatext {
- padding: 14px 194px 0 302px;
+.ifn td {
  font-size: 0.9em;
 }
 
+.epiwork {
+ vertical-align: top;
+ width: 266px;
+ padding: 12px;
+ color: #000000;
+ background: #ffffff;	
+}
+
+.epiwork a {
+ color: #484848;
+ font-weight: bold;
+}
+
+#partners {
+ width: 146px;
+}
+
+#partners img {
+ vertical-align: middle;
+}
+
+#partners a {
+ margin: 0 4px 0 0;
+}
+
+#partners li {
+	list-style-type: none;
+}

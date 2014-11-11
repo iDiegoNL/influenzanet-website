@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
-from django.views.generic.simple import redirect_to
+from django.views.generic.simple import redirect_to, direct_to_template
 
 #from haystack.views import SearchView, search_view_factory
 #from haystack.forms import SearchForm
@@ -22,18 +22,20 @@ urlpatterns = patterns('',
     url(r'^surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', name="survey_run"),
     (r'^survey/', include('apps.survey.urls')),
     (r'^reminder/', include('apps.reminder.urls')),
-    (r'^influenzanet/', 'django.views.generic.simple.direct_to_template', {'template': 'influenzanet.html'}),
-    (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
-    (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
+    (r'^influenzanet/', direct_to_template, {'template': 'influenzanet.html'}),
+    (r'^cookies-policy/', direct_to_template, {'template': 'cookies-policy.html'}),
     
-    (r'^mobile/login/$', 'apps.sw_auth.mobile.mobile_login'),
+#    (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
+#    (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
+    
+#    (r'^mobile/login/$', 'apps.sw_auth.mobile.mobile_login'),
     (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True, 'next': '/mobile/success/'}),
 #    (r'^mobile/surveys/(?P<shortname>.+)/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
-    (r'^mobile/success/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
+    (r'^mobile/success/$', direct_to_template , {'template': 'survey/mobile_success.html'}),
     (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
 #    (r'^mobile/login/$', 'views.mobile_login'),
-    (r'^mobile/(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$', 'apps.journal.views.entry', {'template_name': 'mobile'}),
-    (r'^mobile/rss/$', LatestEntriesFeed()),
+#    (r'^mobile/(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$', 'apps.journal.views.entry', {'template_name': 'mobile'}),
+#    (r'^mobile/rss/$', LatestEntriesFeed()),
 
     (r'^rss/$', LatestEntriesFeed()),
 
@@ -47,8 +49,7 @@ urlpatterns = patterns('',
 
 #    (r'^test-search/$', 'views.test_search'),
     (r'^accounts/', include('apps.sw_auth.urls')),
-    url(r'^login/$', redirect_to, {'url': settings.LOGIN_URL}, 
-                     name='loginurl-index'),
+    url(r'^login/$', redirect_to, {'url': settings.LOGIN_URL}, name='loginurl-index'),
     (r'^login/', include('loginurl.urls')),
     (r'^count/', include('apps.count.urls')),
 #    (r'^contest/', include('apps.contest.urls')),
@@ -60,10 +61,7 @@ urlpatterns = patterns('',
 
 #    (r'^colors.css$', 'apps.partnersites.views.colors_css'),
 
-    url(r'^register/$',
-        'apps.sw_auth.views.register_user',
-        name='registration_register_explanation'),
-
+    url(r'^register/$', 'apps.sw_auth.views.register_user', name='registration_register_explanation'),
 
 #    (r'^forum/', include('pybb.urls', namespace='pybb')),
     

@@ -1,0 +1,62 @@
+.cc-showed #header {
+	padding-top: 85px;
+}
+
+#cc-box {
+font-size: .9em;
+border: 2px solid #7AB800;
+padding: .4em;
+margin: .2em;
+}
+
+.cc-info, #cc-policy {
+	font-size: .8em;
+}
+
+#cc-actions, #cc-policy {
+	margin-left: .3em;
+	display: inline;
+}
+
+#cc-actions button {
+	font-size: .9em;
+	padding: .4em;
+	border-radius: .5em;
+	border: 1px solid white;
+	color: white;
+}
+
+#cc-consent {
+	background-color: darkgreen;
+}
+#cc-decline {
+	background-color: darkred;
+}
+
+#cc-types {
+	background-color: white;
+}
+
+#cc-types p {
+	font-size: .9em;
+	padding: .4em;
+	text-align: left;
+}
+
+#cc-types label {
+	margin-left: .3em;
+}
+
+#cc-types dl {
+  padding: 0;
+  margin: 0;	
+} 
+
+#cc-types dt {
+	font-weight: bold;
+}
+
+#cc-types dd {
+	margin-left: 2em;
+}
+

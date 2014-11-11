@@ -56,10 +56,6 @@ img {
 }
 
 
-a.jsclose {
- display: none;
-}
-
 a:link.close {
  color: #b2b2b2;
  text-decoration: underline;
@@ -67,35 +63,6 @@ a:link.close {
 
 .show {
  display: block;
-}
-
-#epiwork {
- float: left;
- width: 266px;
- margin: 14px 0 0 0;
- padding: 12px;
- color: #000000;
- background: #ffffff;	
-}
-
-#epiwork a {
- color: #484848;
- font-weight: bold;
-}
-
-#participants {
- float: right;
- margin: 14px 0 0;
- padding: 12px;
- width: 146px;
-}
-
-#participants img {
- vertical-align: middle;
-}
-
-#participants a {
- margin: 0 4px 0 0;
 }
 
 /* Header */
