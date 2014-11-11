@@ -31,8 +31,7 @@ div.pagination {
  font-size: 0.7em;
 }
 
-
-dd,dt {
+.journal-latest dd, .journal-latest dt {
 margin: 0;
 padding: 0;
 font-size: .7em;
