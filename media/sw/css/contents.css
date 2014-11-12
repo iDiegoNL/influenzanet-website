@@ -9,20 +9,32 @@ hr {
  height: 0;
 }
 
+#colmask p.title {
+ background: #7AB800; /* 7AB800 */
+ color: white;
+ font-weight: bold;
+}
+
+#colmask a {
+ color: #007AB8; /* Bleu complementaire de 7AB800 */
+ font-weight: bold;
+}
+
+#col1 li {
+ font-size: 1em;
+ font-weight: normal;
+ padding-top: .3em;
+}
+
 #col1 ul {
- margin: 0;
  padding: 0 0 0 20px;
 }
 
 #col1 ol {
- margin: 0;
  padding: 0 0 0 24px;
 }
 
 #col1 li {
- margin: 0;
- padding: 0;
- font-weight: bold;
  line-height: 1.5em; 
 }
 
@@ -120,4 +132,70 @@ hr {
  padding: 0;
  color: #0a0a0a;
  font-size: 1em;
+}
+
+/*
+ * Account*/
+#account ul li {
+ margin-bottom: 2px;
+ font-size: 0.85em;
+ padding: 0;
+}
+
+#account ul.anonymous li, #account ul.member li {
+background-color: #7AB800;
+border: 1px solid #59705D;
+border-radius: 2px 2px 2px 2px;
+text-align: center;
+font-weight: bold;
+border-radius: 2px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+color: #FFF;
+}
+
+#account ul.anonymous li:hover, #account ul.member li:hover{
+background-color: #DDFBA2;
+border: 1px solid #59705D;
+color: #616365;
+box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+#account ul.member li a, #account ul.anonymous li a { 
+display: block;
+height: 2em;
+padding: 0 8px 0 8px; 
+text-decoration: none;
+color: #FFF;
+line-height: 2em;
+text-align: center;
+vertical-align: middle;
+}
+
+#account ul.member li a:hover, #account ul.anonymous li a:hover { 
+color: #616365;
+}
+
+/*
+ * Counter
+ */
+
+#searchbar {
+ float: right;
+}
+
+#counter-div {
+margin: .5em;
+padding-left: 1em;
+font-size: .6em;	
+}
+
+#counter-div img {
+	vertical-align: middle;
+}
+
+.counter {
+font-size: 1.4em;
+color: #7AB800;
+font-weight: bold;
 }
