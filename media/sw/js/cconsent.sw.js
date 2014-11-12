@@ -8,7 +8,7 @@ $(function() {
 				base: true
 			},
 			'social': {
-				title: 'réseau sociaux',
+				title: 'réseaux sociaux',
 				desc: 'Ces cookies permettent aux réseaux sociaux de proposer des services (j\'aime, partager)',
 				base: false
 			},
