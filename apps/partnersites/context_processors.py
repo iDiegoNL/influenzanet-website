@@ -18,4 +18,5 @@ def site_context():
         'site_footer': mark_safe(clean_html(settings.footer, full=False)) if settings.footer else None,
         # 'show_cookie_warning': settings.show_cookie_warning,
         'google_analytics': django_settings.GOOGLE_ANALYTICS_ACCOUNT,
+        'piwik_server_url': getattr(django_settings,'PIWIK_SERVER_URL', False),
     }

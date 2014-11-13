@@ -88,9 +88,14 @@
 	 &nbsp;-&nbsp;<a href="http://www.iplesp.upmc.fr">Institut Pierre Louis, UMR S 1136</a> 			 
 	 &nbsp;-&nbsp;<a href="/le-projet/contact/">Nous contacter</a>
 	 &nbsp;-&nbsp;<a href="/mentions-legales/">Mentions légales</a> 
+	 &nbsp;-&nbsp;<a href="/cookies-policy" data-facebox-width="800" data-facebox-height="560">A propos des Cookies</a>
     </div>
 	</div>{% endblock footercontent %}
 </div>
 </div>
+{% if piwik_server_url %}
+<script type="text/javascript">start_piwik('{{piwik_server_url}}');</script>
+<noscript><p><img src="{{piwik_server_url}}piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+{% endif %}
 </body>
 </html>

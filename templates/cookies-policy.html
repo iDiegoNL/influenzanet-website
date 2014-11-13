@@ -32,6 +32,14 @@ Ils sont détaillés ici : <a href="https://developers.google.com/analytics/devg
 </p>
 <p>Conformément aux dispositions de la CNIL, cette mesure requiert votre consentement, il vous est possible de le désactiver, soit en refusant tous les cookies (non essentiels),
 soit en décochant les cookies de type "analyses d'audience" après avoir cliqué sur "Détails" de la barre de consentement.</p>
+{% if piwik_server_url %}
+<p>Nous basculons progressivement vers un nouveau système de mesure d'audience <a href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/outils-et-codes-sources/la-mesure-daudience/#c5583">conforme aux éxigeances de la CNIL</a> : PIWIK</p>
+<p>Ce système de mesure est hébergé dans notre institut, l'adresse IP est anonymisée et les données collectées sont à l'usage exclusif de notre équipe, elle ne seront jamais cédées à des tiers.
+Les données concernant vos vistes à notre sites ne seront donc pas croisées avec d'autres bases de données.</p>
+<p>Cette solution ne requiert pas de consentement a priori, mais vous avez un droit d'opposition à l'utilisation de ce système pour suivre vos visites sur notre site :
+<iframe style="border: 0; height: 200px; width: 450px;" src="{{piwik_server_url}}?module=CoreAdminHome&action=optOut&language=fr"></iframe>
+</p>
+{% endif %}
 <h2>Des outils pour protéger votre vie privée</h2>
 <dl>
 	<dt><a href="https://www.ghostery.com/fr/">Ghostery</a></dt>
@@ -41,5 +49,6 @@ soit en décochant les cookies de type "analyses d'audience" après avoir cliqu�
 	</dd>
 	<dt><a href="https://adblockplus.org/fr/">AdBlock</a>, surfez sans publicité</dt>
 	<dd>AdBlock plus, bloque la plupart des images et bannières publicitaires rencontrés sur les sites Internet. Il est disponible comme extension de plusieurs navigateur
-	comme Firefox, Chrome, Safari ou Opéra et sur Internet Explorer.</dd>
-</ul>
+	comme Firefox, Chrome, Safari ou Opéra et sur Internet Explorer.
+	</dd>
+</dl>
