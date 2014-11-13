@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
 
 from django.conf import settings
-from apps.survey.models import SurveyUser
 from django.core.exceptions import ImproperlyConfigured
 from apps.common.db import get_cursor, quote_query
 from apps.grippenet.models import Participation
@@ -43,11 +42,11 @@ class Command(BaseCommand):
         
         for (suid, p) in participants.items():
             try:
-                part = Participation.objects.get(survey_user_id=suid)
+                part = Participation.objects.get(survey_user__id=suid)
             except Participation.DoesNotExist:
                 part = Participation()
                 part.survey_user_id = suid
-            part.first_season = p.min
-            part.last_season = p.max
+            part.first_season = p['min']
+            part.last_season = p['max']
             part.save()
         
