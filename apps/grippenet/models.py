@@ -6,6 +6,7 @@ class PregnantCohort(models.Model):
     survey_user = models.ForeignKey(SurveyUser)
     date_created = models.DateField(auto_now=True)
     active = models.BooleanField(default=True)
+    change_channel = models.BooleanField(default=True)
     
 class Participation(models.Model):
     survey_user = models.ForeignKey(SurveyUser)
