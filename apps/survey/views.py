@@ -18,6 +18,7 @@ from apps.survey.household import SurveyHousehold
 from apps.pollster import utils as pollster_utils
 
 import apps.pollster as pollster
+from apps.grippenet.models import PregnantCohort
 
 def _get_avatars(with_list=True):
     
@@ -203,7 +204,7 @@ def group_management(request):
                     messages.add_message(request, messages.INFO, 
                         _(u'Please complete the background questionnaire for the participant "%(user_name)s" before marking him/her as healthy.') % {'user_name': survey_user.name})
                     continue
-
+                
                 Weekly.objects.create(
                     user=request.user.id,
                     global_id=survey_user.global_id,
@@ -214,24 +215,23 @@ def group_management(request):
                 survey_user.deleted = True
                 survey_user.save()
 
-    history = list(_get_health_history(request, survey))
     last_intakes = _get_group_last_survey(request, 'intake')
-    
+    last_weeklies = _get_group_last_survey(request, 'weekly')
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     persons_dict = dict([(p.global_id, p) for p in persons])
     
-    for item in history:
-        item['person'] = persons_dict.get(item['global_id'])
+    persons_ids = dict([(p.id, p.global_id) for p in persons])
+    
+    pregnants = list(PregnantCohort.objects.filter(survey_user__id__in=persons_ids.keys()))
+    
+    pregnants = dict([(persons_ids.get(p.id), p) for p in pregnants])
     
     for person in persons:
-        person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
-        person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
+       # person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
+       # person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
+        person.last_weekly = last_weeklies.get(person.global_id)
         person.last_intake = last_intakes.get(person.global_id)
-        #person.is_female = _get_person_is_female(person.global_id)
-        # person.vaccination = vaccinations.count(person.global_id) > 0
-        # person.vaccination_url = '%s?gid=%s' % (reverse('survey_run',kwargs={'shortname':'vaccination'}), person.global_id)
-        # vacc = _get_person_is_vaccinated(person.global_id)
-        # person.vaccination = vacc is not None and not vacc
+        person.pregnant = pregnants.get(person.global_id)
     
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
     
@@ -239,7 +239,7 @@ def group_management(request):
     
     avatars = _get_avatars(with_list=False)
     
-    return render_to_response('survey/'+template+'.html', {'persons': persons, 'history': history, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch,'avatars': avatars},
+    return render_to_response('survey/'+template+'.html', {'persons': persons, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch,'avatars': avatars},
                               context_instance=RequestContext(request))
 
 @login_required
@@ -249,7 +249,8 @@ def thanks_profile(request):
     except ValueError:
         pass
 
-    return render_to_response('survey/thanks_profile_sw.html', {'person': survey_user},
+    household = SurveyHousehold.get_household(request)
+    return render_to_response('survey/thanks_profile_sw.html', {'person': survey_user,'household':household, 'avatars': _get_avatars(with_list=False) },
         context_instance=RequestContext(request))
 
 @login_required
