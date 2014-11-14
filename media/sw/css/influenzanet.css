@@ -40,6 +40,12 @@
  font-weight: bold;
 }
 
+#ifn-body {
+	font-size: .8em;
+	text-align: justify;
+	padding: 0 .8em;
+}
+
 #partners {
  width: 146px;
 }
