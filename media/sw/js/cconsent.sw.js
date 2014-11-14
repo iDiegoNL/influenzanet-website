@@ -21,7 +21,7 @@ $(function() {
 		settings: {
 			ignoreDoNotTrack: false,
 			version: 1,
-			txtInfo: 'Ce site utilise des cookies pour suivre son activité et les réseaux sociaux',
+			txtInfo: 'Ce site utilise des cookies provenant de sites tiers',
 			txtPolicy: '<a href="/cookies-policy" id="cookie-policy" data-facebox-width="800" data-facebox-height="560">En savoir plus</a>',
 			txtApprove: 'J\'accepte',
 			txtDecline: 'Je refuse',

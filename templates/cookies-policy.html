@@ -26,6 +26,7 @@ votre consentement sur l'usage des cookies. Le boutons "Détails" vous permet d'
 qu'à l'usage de certains types de cookies (les cookies "essentiels" au fonctionnement de GrippeNet.fr ne peuvent pas être désactivés).
 Le bouton "Je refuse", désactivera <b>tous</b> les cookies non essentiels. Dans ce cas, certaines fonctionnalités du site seront désactivées (les boutons de partage, le bouton "J'aime" de <a href="https://www.facebook.com">Facebook</a> et le bouton "Nous suivre sur <a href="https://www.twitter.com">Twitter</a>").
 </p>
+<p>Si vous avez déjà répondu, vous pouvez retrouver cette page (et actualiser votre réponse) : <button onclick="$.cc.show_panel();" class="button">Revoir la barre de consentement</button>
 </p>
 <p>Nous utilisons <a href="https://www.google.fr/intl/fr/analytics/">Google Analytics</a> pour suivre la fréquentation de GrippeNet.fr. Ce service utilise des cookies pour suivre les visteurs sur notre site.
 Ils sont détaillés ici : <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage#gajs">Cookies Google Analytics</a>.
@@ -35,9 +36,9 @@ soit en décochant les cookies de type "analyses d'audience" après avoir cliqu�
 {% if piwik_server_url %}
 <p>Nous basculons progressivement vers un nouveau système de mesure d'audience <a href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/outils-et-codes-sources/la-mesure-daudience/#c5583">conforme aux éxigeances de la CNIL</a> : PIWIK</p>
 <p>Ce système de mesure est hébergé dans notre institut, l'adresse IP est anonymisée et les données collectées sont à l'usage exclusif de notre équipe, elle ne seront jamais cédées à des tiers.
-Les données concernant vos vistes à notre sites ne seront donc pas croisées avec d'autres bases de données.</p>
+Les données d'audience concernant vos vistes à ce site ne seront pas réutilisées à d'autres fins ni transmises à des tiers.</p>
 <p>Cette solution ne requiert pas de consentement a priori, mais vous avez un droit d'opposition à l'utilisation de ce système pour suivre vos visites sur notre site :
-<iframe style="border: 0; height: 200px; width: 450px;" src="{{piwik_server_url}}?module=CoreAdminHome&action=optOut&language=fr"></iframe>
+<iframe style="border: 2px solid #007AB8; margin: 1em auto; height: 200px; width: 450px;" src="{{piwik_server_url}}?module=CoreAdminHome&action=optOut&language=fr"></iframe>
 </p>
 {% endif %}
 <h2>Des outils pour protéger votre vie privée</h2>
