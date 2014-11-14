@@ -243,3 +243,8 @@
 .select-user li a:hover {
 	border-color: #007AB8;
 }
+
+.participant {
+	color: #007AB8;
+	font-weight: bold;
+}

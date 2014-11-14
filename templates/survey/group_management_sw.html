@@ -52,8 +52,8 @@
 	    <td>
 	    {% if person.last_intake %}
 			<a href="{{ person.get_survey_url }}" class="button fill-button survey-weekly" id="person-{{person.pk}}-weekly"><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
-			{% if person.health_history|length > 0 %}
-			{% with f=person.health_history|first %} 
+			{% if person.last_weekly %}
+			{% with f=person.last_weekly.timestamp %} 
 			<span class="last" title="{%trans "last survey date"%} {{f.timestamp|date:"d M Y H:i"}}">{% blocktrans with last=f.timestamp|timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 			{%endwith%}
 			{%else%}

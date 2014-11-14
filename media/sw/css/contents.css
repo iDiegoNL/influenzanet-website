@@ -24,6 +24,7 @@ hr {
  font-size: 1em;
  font-weight: normal;
  padding-top: .3em;
+ line-height: 1.5em; 
 }
 
 #col1 ul {
@@ -32,10 +33,6 @@ hr {
 
 #col1 ol {
  padding: 0 0 0 24px;
-}
-
-#col1 li {
- line-height: 1.5em; 
 }
 
 #col1 > ul > li,
@@ -65,6 +62,8 @@ hr {
  font-size: 0.7em;
  line-height: 1.5em;
 }
+
+
 
 #col1 img.left {
  margin: 0 14px 0 0; 

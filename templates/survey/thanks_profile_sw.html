@@ -3,11 +3,28 @@
 
 {% block col1 %}
 {% include "base/messages.html" %}
-<p>{% trans "Please, if you have not already done so, fill in" %}
-<a href="/survey/{% if person %}?gid={{person.global_id}}{% endif %}" class="button">{% trans "the symptoms questionaire" %}</a>.
-</p>
-<p>
+<div class="cadre">
+<h1>Merci pour votre participation !</h1>
+{% if person %}
+<p>Le questionnaire préliminaire de <span class="participant"><img src="{{person.get_avatar_url}}" class="avatar" width="32" height="32"/> {{person.name}}</span> a bien été enregistré.</p>
+{% endif%}
+<p>Vous pouvez maintenant :</p>
 {% url group_management as url_group_management %}
-<p>{% blocktrans %}To fill surveys your for this participant or for others , please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p></p>
-</p>
+<ul>
+	<li>Remplir le questionnaire <a href="{{person.get_survey_url}}" class="button">{% trans "the symptoms questionaire" %}</a>
+	pour ce participant
+	</li>
+	{% if household.participants|length > 1 %}
+	<li>
+	Remplir le questionnaire préliminiare d'un autre participant :
+	<ul>
+		{% for gid,p in household.participants.items %}
+		<li><a href="{{p.get_profile_url}}"><img src="{{p.get_avatar_url}}" class="avatar" width="32" height="32"/>{{p}}</a></li>
+		{% endfor %}
+	</ul>			
+	{% endif %}
+	</li>
+	<li>Retourner à la <a href="{{url_group_management}}">page de gestion de vos participants</a></li>
+</ul>
+</div>
 {% endblock %}
