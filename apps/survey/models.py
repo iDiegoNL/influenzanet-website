@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from apps.common.db import get_cursor
 
+from .utils import get_avatars_url
+
 def create_global_id():
     return str(uuid.uuid4())
 
@@ -64,6 +66,12 @@ class SurveyUser(models.Model):
     def get_remove_url(self):
         from . import views
         return '%s?gid=%s' % (reverse(views.people_remove), self.global_id)
+    
+    def get_avatar_url(self):
+        url = get_avatars_url()
+        if url:
+            return url + str(self.avatar) + '.png'
+        return ''
 
     def get_last_weekly_survey_date(self):
         try:
