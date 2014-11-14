@@ -3,12 +3,12 @@ $(function() {
 		target: '#cc-box',
 		types: {
 			'essential': {
-				title: 'cookies de GrippeNet.fr',
+				title: 'Cookies de GrippeNet.fr',
 				desc: 'Ces cookies sont nécessaires au fonctionnement de GrippeNet.fr, il n\'est pas possible de les désactiver.',
 				base: true
 			},
 			'social': {
-				title: 'réseaux sociaux',
+				title: 'Réseaux sociaux',
 				desc: 'Ces cookies permettent aux réseaux sociaux de proposer des services (j\'aime, partager)',
 				base: false
 			},
@@ -25,7 +25,7 @@ $(function() {
 			txtPolicy: '<a href="/cookies-policy" id="cookie-policy" data-facebox-width="800" data-facebox-height="560">En savoir plus</a>',
 			txtApprove: 'J\'accepte',
 			txtDecline: 'Je refuse',
-			txtShow: 'Détails',
+			txtShow: 'Voir le détails',
 			txtTypes: 'Les types de cookies ci dessous sont utilisés par ce site. En cliquant sur le bouton "J\'accepte" seuls les types de cookies cochés seront activés. En cliquant sur "Je refuse", ils seront tous désactivés.',
 			consent: function(types) {
 				if($.inArray('social', types)) {

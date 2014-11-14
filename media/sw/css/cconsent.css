@@ -9,6 +9,10 @@ padding: .4em;
 margin: .2em;
 }
 
+#cc-banner {
+	text-align: center;
+}
+
 .cc-info, #cc-policy {
 	font-size: .8em;
 }
@@ -49,14 +53,16 @@ margin: .2em;
 
 #cc-types dl {
   padding: 0;
-  margin: 0;	
+  margin:0 0 0 2em;
 } 
 
 #cc-types dt {
+	margin-top: .8em;
 	font-weight: bold;
 }
 
 #cc-types dd {
 	margin-left: 2em;
+	font-size: .8em;
 }
 
