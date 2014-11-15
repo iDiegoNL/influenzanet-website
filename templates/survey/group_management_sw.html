@@ -82,8 +82,7 @@
 	<td colspan="5" class="people-actions">
 	<ul >
 		<li><a href="{% url survey_people_add %}" class="action-add-people" data-facebox-width="650" data-facebox-height="{% if avatars %}580{% else %}350{% endif %}px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
-		<li><a href="{% url cohort_form %}" class="action-cohort tooltip" title="{%trans "cohort subscription help text"%}"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span ></span></li>
-		<li><span class="tooltip" title="{%trans "Update vaccination help"%}"><i class="icon icon-tip"></i>{%trans "How to update my vaccination status"%}</span></li>
+		{% comment %}<li><a href="{% url cohort_form %}" class="action-cohort tooltip" title="{%trans "cohort subscription help text"%}"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span ></span></li>{% endcomment %}
 	</ul>
 	</td>
 </tr>
@@ -91,9 +90,10 @@
 </form>
 
 {%if not wait_launch %}
-	{%comment%}
-	{%include "survey/sw_household_story.html" %}
-	{%endcomment%}
+		<p class="alert alert-info">
+			<h1>{%trans "How to update my vaccination status"%}</h1>
+			{%trans "Update vaccination help"%}
+		</p>
 {%else%}
 
 <div class="alert alert-warning">
@@ -110,7 +110,7 @@ $(function() {
 	if(fill_intake_warning.length > 0) {
 		$('#fill-intake-warning').show();
 	}
-	
+{% comment %}	
 	$.getJSON('/cohort/subscriptions', function(data) {
 		var subscribers = data.subscribers;
 		var cohorts = data.cohorts;
@@ -127,11 +127,8 @@ $(function() {
 			}
 		}
 	});
+{% endcomment %}	
 
-
-	if(typeof(init_story) != "undefined") {
-		init_story();
-	}
 });
 
 function edit_user() {
