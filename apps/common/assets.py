@@ -27,17 +27,18 @@ def optional_file(file):
 ###
 
 js_base = Bundle(
-     #'pollster/jquery/js/jquery-1.5.2.min.js',
-     'sw/js/jquery-1.8.3.min.js',
-     #'pollster/jquery/js/jquery.tools.min.js',
+     'pollster/jquery/js/jquery-1.5.2.min.js',
+     'sw/js/jquery-1.7.2.min.js',
+     'pollster/jquery/js/jquery.tools.min.js',
+     'sw/js/ui.jquerytools.js',
      'sw/js/mobile.js',
-     'sw/js/jquery.tools.1.2.7patch.min.js',
      Bundle('sw/js/thirdparties.js'), #, filters='yui_js'
      Bundle('sw/sw.js'), #, filters='yui_js'
      'sw/js/cconsent.js',
      'sw/js/cconsent.sw.js',
      output='assets/base.js'
   )
+
 js_mailcheck = Bundle(
    'sw/js/mailcheck.min.js',
    optional_file('assets/domains.js'),
@@ -45,7 +46,7 @@ js_mailcheck = Bundle(
 ) 
  
 css_base = Bundle(
-     'sw/css/_normalize.css',                         
+     'sw/css/_normalize.css',
      'sw/css/_base.css',                         
      'sw/css/layout.css',
      'sw/css/contents.css',
