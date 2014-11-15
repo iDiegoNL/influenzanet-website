@@ -3,12 +3,8 @@ import os.path as osp
 import cms
 from django.conf import settings
 from apps.common.i18n import get_locale
-from django.template import loader, Context
+
  
-def render_from_template(template, data):
-    t = loader.get_template(template)
-    ctx = Context(data)
-    return t.render(ctx)
  
 js_pollster_run_base = Bundle(
     'pollster/wok/js/wok.pollster.js',
@@ -65,6 +61,7 @@ for lng in settings.LANGUAGES:
     globals()['js_pollster_date_' + language] = Bundle(
        'pollster/jquery/js/i18n/jquery.ui.datepicker-'+ language + '.js',
        'pollster/datejs/js/date-'+ locale +'.js',
+       Bundle('sw/js/datejs.fr.js' ),
        output='assets/pollster_date_' + language +'.js'                                              
     )
     

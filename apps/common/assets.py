@@ -1,5 +1,7 @@
 from webassets import Bundle, Environment
+from webassets.filter import Filter, register_filter
 from django.conf import settings
+from django.template import Template, Context
 import os
 
 env = Environment(directory=settings.MEDIA_ROOT, url=settings.MEDIA_URL)
@@ -21,6 +23,19 @@ def optional_file(file):
         print "skipping %s" % path
 
     return Bundle()
+
+class TemplateFilter(Filter):
+    name = 'from_template'
+    
+    def output(self, _in, out, **kwargs):
+        template = Template(_in.read())
+        ctx = Context()
+        out.write(template.render(ctx))
+
+    def input(self, _in, out, **kwargs):
+        out.write(_in.read())
+
+register_filter(TemplateFilter)
 
 ###
 # Common application Bundles
