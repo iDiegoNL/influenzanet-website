@@ -60,6 +60,12 @@ js_mailcheck = Bundle(
    output='assets/mailchecker.js'                   
 ) 
  
+js_survey_intro = Bundle(
+ 'sw/js/intro.min.js',
+ 'sw/js/survey.intro.js',
+ output='assets/survey.intro.js'                         
+) 
+ 
 css_base = Bundle(
      'sw/css/_normalize.css',
      'sw/css/_base.css',                         
@@ -79,6 +85,8 @@ css_base = Bundle(
      'sw/css/tooltip.css',
      'sw/css/messages.css',
      'sw/css/cohort.css',
+     'sw/css/pregnant.css',
+     'sw/css/introjs.min.css',
      output='assets/base.css',
      filters='cssrewrite,cssmin'
 )

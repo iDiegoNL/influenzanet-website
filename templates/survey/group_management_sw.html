@@ -1,5 +1,5 @@
 {% extends "survey/base.html" %}
-{% load i18n %}
+{% load i18n survey %}
 
 {% block col1 %}
 <h1>{% trans "Manage household" %}</h1>
@@ -12,6 +12,8 @@
 </p>
 {%else%}
 <a href="/aide-premiers-pas/" title="{% trans "Help about this page"%}" class="button button-mini"><i class="icon icon-help-white"></i>{% trans "Help about this page"%}</a>
+
+<span class="button" onclick="loadIntro()">Démarrer l'intro</span>
 {%endif%}
 {%if not wait_launch%} {# Do not check in wait launch context #}
 	<p class="alert alert-warning" id="fill-intake-warning" style="display:none"><span class="icon icon-warning">&nbsp;</span>{%trans "Some users do not have a background questionnaire, please fill this survey for them"%}</p>
@@ -22,39 +24,45 @@
 	<th rowspan="2">{% trans "Name" %}</th>
 	<th colspan="2">{% trans "Fill a questionnaire" %}</th>
 </tr>
-<tr>
+<tr class="survey-types">
 	<th>{% trans "Background" %} <span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}"></span></th>
 	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>	
+	<th>&nbsp;</th>	
 </tr>	
 {% for person in persons %}
-<tr id="person-{{ person.pk }}" rel="{{person.global_id}}">
+<tr id="person-{{ person.pk }}" rel="{{person.global_id}}" class="person-row">
 	<td class="person-name">
 		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> 
+		<div id="person-{{person.pk}}-identity" class="identity">
 		{% if avatars %}
-		{%if avatars %}<img src="{{avatars.url}}{{ person.avatar }}.png" class="avatar{% if not person.avatar %} tooltip" title="Vous pouvez définir une image associée à ce participant"{% endif %} width="32" height="32" />{%endif%}
+		{%if avatars %}<img id="person-{{person.pk}}-avatar"  src="{{avatars.url}}{{ person.avatar }}.png" class="avatar{% if not person.avatar %} tooltip" title="Vous pouvez définir une image associée à ce participant"{% endif %} width="32" height="32" />{%endif%}
 		{% endif %}
 		{{ person.name }} 
-		<a rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="650" data-facebox-height="{% if avatars %}580{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
+		</div>
+		<a id="person-{{person.pk}}-edit" rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="650" data-facebox-height="{% if avatars %}580{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
 		<span id="cohort-{{person.pk}}"></span>
+		{% if person.pregnant %}
+		<span class="pregnant-cohort"></span>
+		{% endif %}
 	</td>
     {%if wait_launch %}
 	<td colspan="2">
 		{% trans "The project is not started yet for this season" %}
 	{%else%}
-	<td {% if not person.last_intake %} class="to-fill-first tooltip-alert" title="{% trans "Fill the intake survey for this participant to start his participation"%}"{% endif %}>
+	<td {% if not person.last_intake %} class="to-fill-first tooltip-alert" title="{% trans "Fill the intake survey for this participant to start his participation"%}"{% endif %} id="person-{{person.pk}}-cell-intake">
 		<a href="{{ person.get_profile_url }}" class="button fill-button survey-intake" id="person-{{person.pk}}-intake"><span class="icon icon-survey">&nbsp;</span>{% if person.last_intake %}Modifier{%else%}{% trans "Fill this survey" %}{% endif %}</a>
 		{% if person.last_intake %}
-		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{% blocktrans with last=person.last_intake|timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
+		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{% blocktrans with last=person.last_intake|survey_timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 		{%else%}
 		<span class="last">{%trans "no previous survey"%}</span>
 		{%endif%}
 		</td>
-	    <td>
+	    <td id="person-{{person.pk}}-cell-weekly">
 	    {% if person.last_intake %}
 			<a href="{{ person.get_survey_url }}" class="button fill-button survey-weekly" id="person-{{person.pk}}-weekly"><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
 			{% if person.last_weekly %}
 			{% with f=person.last_weekly.timestamp %} 
-			<span class="last" title="{%trans "last survey date"%} {{f.timestamp|date:"d M Y H:i"}}">{% blocktrans with last=f.timestamp|timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
+			<span class="last" title="{%trans "last survey date"%} {{f.timestamp|date:"d M Y H:i"}}">{% blocktrans with last=f.timestamp|survey_timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 			{%endwith%}
 			{%else%}
 			<span class="last">{%trans "no previous survey"%}</span>
@@ -63,6 +71,12 @@
 			<span>{% trans "Fill profile first" %}</span>
 		{% endif %}
 	{%endif%}	
+	</td>
+	<td {% if person.pregnant %} class="pregnant" {% endif %}>
+		{% if person.pregnant %}
+		<a href="{% url survey_fill 'pregnant' %}?gid={{person.global_id}}" class="button fill-button survey-pregnant tooltip-pregnant" title="Cette saison le projet G-Grippnet étudie les épisodes de syndromes grippaux durant la grossesse.">Fin de grossesse</a>
+		<span class="last">&nbsp;</span>
+		{% endif %}
 	</td>
 </tr>
 {% endfor %}
@@ -73,15 +87,15 @@
     {%if wait_launch %}
 		&nbsp;
 	{%else%}
-	<button type="button" onclick="submit_users('healthy')" class="button">{% trans "Mark as healthy" %}</button><span class="tooltip icon icon-tip" title="{%trans "mark as healthy help text"%}">&nbsp;</span>
+	<button type="button" onclick="submit_users('healthy')" class="button" id="button-healthy">{% trans "Mark as healthy" %}</button><span class="tooltip icon icon-tip" title="{%trans "mark as healthy help text"%}">&nbsp;</span>
 	{%endif%}
-	<button type="button" onclick="submit_users('delete')" class="button">{% trans "Delete member(s)" %}</button>
+	<button type="button" onclick="submit_users('delete')" class="button" id="button-delete">{% trans "Delete member(s)" %}</button>
 	</td>
 </tr>
 <tr>
 	<td colspan="5" class="people-actions">
 	<ul >
-		<li><a href="{% url survey_people_add %}" class="action-add-people" data-facebox-width="650" data-facebox-height="{% if avatars %}580{% else %}350{% endif %}px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
+		<li><a href="{% url survey_people_add %}"  id="link-add-people" class="action-add-people" data-facebox-width="650" data-facebox-height="{% if avatars %}580{% else %}350{% endif %}px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
 		{% comment %}<li><a href="{% url cohort_form %}" class="action-cohort tooltip" title="{%trans "cohort subscription help text"%}"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span ></span></li>{% endcomment %}
 	</ul>
 	</td>
@@ -91,7 +105,7 @@
 
 {%if not wait_launch %}
 		<p class="alert alert-info">
-			<h1>{%trans "How to update my vaccination status"%}</h1>
+			<b>{%trans "How to update my vaccination status"%}</b><br/>
 			{%trans "Update vaccination help"%}
 		</p>
 {%else%}
@@ -104,12 +118,16 @@
 {% endif %}
 <script type="text/javascript">
 var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
-	
+var first_user = $('.person-row').first().attr('id');
+ 	
 $(function() {
 	var fill_intake_warning = $('.to-fill-first');
 	if(fill_intake_warning.length > 0) {
 		$('#fill-intake-warning').show();
 	}
+	
+	$('.tooltip-pregnant').tooltip({tipClass:'hovertip hovertip-pregnant'})
+	
 {% comment %}	
 	$.getJSON('/cohort/subscriptions', function(data) {
 		var subscribers = data.subscribers;
@@ -146,6 +164,11 @@ function submit_users(action) {
 	$('#users_form').submit();
 }
 
+function loadIntro() {
+	$.getScript('{{MEDIA_URL}}assets/survey.intro.js', function() {
+		startIntro();
+	});
+}
 </script>
 {% endblock %}
 

@@ -217,21 +217,23 @@ def group_management(request):
 
     last_intakes = _get_group_last_survey(request, 'intake')
     last_weeklies = _get_group_last_survey(request, 'weekly')
+    
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
+    
     persons_dict = dict([(p.global_id, p) for p in persons])
     
-    persons_ids = dict([(p.id, p.global_id) for p in persons])
+    persons_ids = [p.id for p in persons]
     
-    pregnants = list(PregnantCohort.objects.filter(survey_user__id__in=persons_ids.keys()))
+    pregnants = list(PregnantCohort.objects.filter(survey_user__id__in=persons_ids))
     
-    pregnants = dict([(persons_ids.get(p.id), p) for p in pregnants])
+    pregnants = dict([(str(p.survey_user.id), p) for p in pregnants])
     
     for person in persons:
-       # person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
-       # person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
+        # person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
+        # person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.last_weekly = last_weeklies.get(person.global_id)
         person.last_intake = last_intakes.get(person.global_id)
-        person.pregnant = pregnants.get(person.global_id)
+        person.pregnant = pregnants.get(str(person.id))
     
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
     

@@ -1,0 +1,14 @@
+#colmask .fill-button.survey-pregnant {
+	background-color: #6f5499;
+	border: 1px solid #6f5499;
+}
+
+#colmask .fill-button {
+	white-space: nowrap;
+}
+
+.hovertip-pregnant {
+ border: 1px solid #6f5499;
+ background-color: #6f5499;
+ color: white;	
+}
