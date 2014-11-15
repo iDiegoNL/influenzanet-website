@@ -11,11 +11,29 @@
 }
 
 .survey-list .status-PUBLISHED td {
-	color: green;
+	color: #5cb85c;
+}
+
+.status-PUBLISHED .status {
+	background-color:#5cb85c;
+	color: white;
+	
+}
+
+.status-UNPUBLISHED .status {
+	color: white;
+	background-color: darkgrey;
 }
 
 .survey-list .status-UNPUBLISHED td {
 	color: grey;
+}
+
+.status {
+	font-size: .8em;
+	font-weight: bold;
+	padding: .4em;
+	border-radius: .4em;
 }
 
 .status-UNPUBLISHED td.title {
@@ -32,6 +50,18 @@
 	text-decoration: none;
 	margin: 0;
 	color: steelblue;
+}
+
+.publish {
+	background-color: #5cb85c;
+	color:white;
+	border: 1px solid #5cb85c;
+}
+
+.unpublish {
+	background-color: #d9534f;
+	color:white;
+	border: 1px solid #d9534f;
 }
 
 .survey-list form {
@@ -63,7 +93,7 @@
                 {% endif %}
 	            </td>	
 				<td>{{survey.shortname }}</td>
-				<td>{{survey.status }}</td>
+				<td><span class="status">{{survey.status }}</span></td>
 				<td><a class="action" href="{% url pollster_survey_test survey.id %}">test</a></td>
 	            <td><a class="action"  href="{% url pollster_survey_edit survey.id %}">edit</a></td>
 	            <td><a class="action"  href="{% url pollster_survey_translation_list survey.id %}">translate</a></td>
@@ -71,13 +101,13 @@
 	            <td><a class="action"  href="{% url pollster_survey_export_xml survey.id %}">export</a></td>
 	            <td>
 				{% if survey.is_draft %}
-	               <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="action">publish</button></form>
+	               <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="action publish">publish</button></form>
 	            {% endif %}
 				{% if survey.is_unpublished %}
-                   <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="action">re-publish</button></form>
+                   <form action="{% url pollster_survey_publish survey.id %}" method="POST">{% csrf_token %}<button class="action re-publish">re-publish</button></form>
 				{% endif %}
 	            {% if survey.is_published %}
-					<form action="{% url pollster_survey_unpublish survey.id %}" method="POST">{% csrf_token %}<button class="action">unpublish</button></form>
+					<form action="{% url pollster_survey_unpublish survey.id %}" method="POST">{% csrf_token %}<button class="action unpublish">unpublish</button></form>
 	                </td>
 					<td> 
 	                <a class="action"  href="{% url pollster_survey_results_csv survey.id %}">results</a>
