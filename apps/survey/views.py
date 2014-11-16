@@ -168,7 +168,14 @@ def _get_group_vaccination(request):
         results = cursor.fetchall()
         return [r[0] for r in results]
     except:
-        return []   
+        return []
+    
+def create_survey_user(request):
+    su = models.SurveyUser.objects.create_survey_user(request.user)
+    h = SurveyHousehold.get_household(request)
+    h.participants_updated(request)
+    return su
+       
 
 @login_required
 def wait_launch(request):
@@ -177,6 +184,7 @@ def wait_launch(request):
 
 @login_required
 def group_management(request):
+    
     if is_wait_launch(request):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
     try:
@@ -189,31 +197,57 @@ def group_management(request):
     except ValueError:
         pass
 
+    household = SurveyHousehold.get_household(request)
+    
     if request.method == "POST":
         global_ids = request.POST.getlist('global_ids')
         
-        Weekly = survey.as_model()
+        action = request.POST.get('action')
+        
+        if action == 'healthy':
+            Weekly = survey.as_model()
+        
+        update_household = False
     
-        for survey_user in request.user.surveyuser_set.filter(global_id__in=global_ids):
-            if request.POST.get('action') == 'healthy':
-                messages.add_message(request, messages.INFO, 
-                    _(u'The participant "%(user_name)s" has been marked as healthy.') % {'user_name': survey_user.name})
-
-                profile = pollster_utils.get_user_profile(request.user.id, survey_user.global_id)
+        for (gid, survey_user) in household.participants.items():
+            if not gid in global_ids:
+                continue
+            
+            if action == 'healthy':
+               
+                profile = household.get_simple_profile(gid)
                 if not profile:
-                    messages.add_message(request, messages.INFO, 
+                    messages.add_message(request, messages.ERROR, 
                         _(u'Please complete the background questionnaire for the participant "%(user_name)s" before marking him/her as healthy.') % {'user_name': survey_user.name})
                     continue
+                
+                pregnant = None
+                try:
+                    pregnant = PregnantCohort.objects.get(survey_user=survey_user)
+                except PregnantCohort.DoesNotExist:
+                    pass
+                
+                channel = ''
+                if pregnant is not None:
+                    if pregnant.change_channel:
+                        channel = 'G'
                 
                 Weekly.objects.create(
                     user=request.user.id,
                     global_id=survey_user.global_id,
+                    channel=channel,
                     Q1_0=True, # Q1_0 => "No symptoms. The other fields are assumed to have the correct default information in them.
                     timestamp=datetime.now(),
                 )
-            elif request.POST.get('action') == 'delete':
+                messages.add_message(request, messages.INFO, _(u'The participant "%(user_name)s" has been marked as healthy.') % {'user_name': survey_user.name})
+
+            elif action == 'delete':
                 survey_user.deleted = True
+                update_household = True
                 survey_user.save()
+            
+            if update_household:
+                household.participants_updated(request)
 
     last_intakes = _get_group_last_survey(request, 'intake')
     last_weeklies = _get_group_last_survey(request, 'weekly')
@@ -268,7 +302,7 @@ def select_user(request, template='survey/select_user.html'):
     survey_user = None
     
     if total == 0:
-        survey_user = models.SurveyUser.objects.create_survey_user(request.user)
+        survey_user = create_survey_user(request)
         
     elif total == 1:
         survey_user = users[0]
@@ -312,7 +346,7 @@ def create_surveyuser(request):
         return HttpResponseRedirect(reverse(group_management))
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
-        survey_user = models.SurveyUser.objects.create_survey_user(user=request.user)
+        survey_user = create_survey_user(request)
         
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
     return HttpResponseRedirect(reverse('survey_index') + '?gid=' + gid)
