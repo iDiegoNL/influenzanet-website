@@ -2,12 +2,12 @@
 {% load i18n %}
 
 {% block add_css %}
-<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/dashboard.css" />
+<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}sw/dashboard.css?v={{assets_version}}" />
 {% endblock %}
 
 {% block add_js %}
-<script type="text/javascript" src="{{MEDIA_URL}}assets/raphael.js" charset="UTF-8"></script> 
-<script type="text/javascript" src="{{MEDIA_URL}}sw/js/graph.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}assets/raphael.js?v={{assets_version}}" charset="UTF-8"></script> 
+<script type="text/javascript" src="{{MEDIA_URL}}sw/js/graph.js?v={{assets_version}}"></script>
 <script type="text/javascript">
 var health_status = {};
 {%for name,label in health_status.iteritems %}health_status['{{name}}']= "{{label}}";{%endfor%}

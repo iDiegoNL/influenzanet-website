@@ -19,4 +19,5 @@ def site_context():
         # 'show_cookie_warning': settings.show_cookie_warning,
         'google_analytics': django_settings.GOOGLE_ANALYTICS_ACCOUNT,
         'piwik_server_url': getattr(django_settings,'PIWIK_SERVER_URL', False),
+        'assets_version': getattr(django_settings, 'ASSETS_VERSION', 0)
     }

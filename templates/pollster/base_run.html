@@ -2,15 +2,15 @@
 {% load cms_tags %}
 
 {% block add_css %}
-    <link rel="stylesheet" type="text/css" href="/media/assets/pollster.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/media/assets/pollster.css?v={{assets_version}}" media="all" />
 {% endblock %}
 
 {% block add_js %}
-    <script type="text/javascript" src="/media/assets/pollster_base.js"></script>
+    <script type="text/javascript" src="/media/assets/pollster_base.js?v={{assets_version}}"></script>
     {% if locale_code %}
-    <script type="text/javascript" src="/media/assets/pollster_date_{{ language }}.js"></script>
+    <script type="text/javascript" src="/media/assets/pollster_date_{{ language }}.js?v={{assets_version}}"></script>
     {% else %}
-    <script type="text/javascript" src="/media/pollster/datejs/js/date.js"></script>
+    <script type="text/javascript" src="/media/pollster/datejs/js/date.js?v={{assets_version}}"></script>
     {% endif %}
     <script type="text/javascript">jQuery().cmsPatchCSRF()</script>
     <script type="text/javascript" src="{% url pollster_urls %}"></script>

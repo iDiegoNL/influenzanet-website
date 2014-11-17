@@ -16,7 +16,7 @@
 {% block add_css %}{% endblock add_css %}
 {% render_block "css" %}
 <script type="text/javascript">var MEDIA_URL='{{ MEDIA_URL }}';</script>
-<script type="text/javascript" src="{{ MEDIA_URL }}assets/base.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}assets/base.js?v={{assets_version}}"></script>
 {% block add_js %}{% endblock add_js %}
 {% render_block "js" %}
 </head>
