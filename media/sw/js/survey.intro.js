@@ -4,7 +4,7 @@ function startIntro(){
   	tooltipClass: 'survey-intro',
 	nextLabel: 'Suivant',
 	prevLabel: 'Précédent',
-	skipLabel: 'Passer',
+	skipLabel: 'Fermer',
 	doneLabel: 'Terminé',
     steps: [
       { 
@@ -17,7 +17,7 @@ function startIntro(){
       },
       {
         element: '#' + first_user +'-identity' ,
-        intro: "Chaque participant est identifié par une image (avatat) et par un nom. <br/>Pour préserver votre vie privée<br/> utilisez pseudo, surnom ou un mot (papa,...). Ces 'noms' et avatars vous aident à savoir de quel participant il s'agit si votre compte a plusieurs partiicpants. Nous ne les utilisons pas pour traiter nos données.",
+        intro: "Chaque participant est identifié par une image (avatar) et par un nom. <br/>Pour préserver votre vie privée<br/> utilisez pseudo, surnom ou un mot (papa,...). Ces 'noms' et avatars vous aident à savoir de quel participant il s'agit si votre compte a plusieurs partiicpants. Nous ne les utilisons pas pour traiter nos données.",
 		position: 'right',
 		tooltipClass: 'survey-intro large-intro'
       },
@@ -63,8 +63,13 @@ function startIntro(){
       },
      {
         element: '#link-group' ,
-        intro: "Vous retrouverez sur la page 'Vos résultats' un retour d'information sur les participants de votre compte. ",
+        intro: "Gérez les participants de votre compte grace a ce lien.",
 		position: 'left'
+      },
+     {
+        element: '#header-user' ,
+        intro: "Si vous avez une question ou que vous rencontrez un problème n'hésitez pas à utiliser la boite de commentaire.",
+		position: 'bottom'
       }
 	]
   });

@@ -18,4 +18,5 @@ info		fugues icons 3.6
 mail-air	fugues icons 3.6	
 badge32		fatcow 3.5.0 (shield)
 badge16		fatCow 3.5.0 (shield)
-dashboard	fatCor 3.5.0 (chart_pie)
+dashboard	fatCow 3.5.0 (chart_pie)
+demo		fugues icons 3.6 (projection-screen-presentation.png)

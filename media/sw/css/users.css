@@ -218,6 +218,7 @@
 .icon-edit { background-image:url(../edit.png) }
 .icon-invite {  background-image:url(../mail-air.png) }
 .icon-dashboard { background-image:url(../dashboard.png) }
+.icon-demo { background-image:url(../demo.png) }
 
 #col1 .avatar {
   display:inline-block;

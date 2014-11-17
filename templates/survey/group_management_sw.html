@@ -11,9 +11,10 @@
 	<span class="icon icon-warning">&nbsp;</span>{%trans "No user is registrer yet in your account, start by adding a user by clicking on the link 'Add a new person'"%}
 </p>
 {%else%}
-<a href="/aide-premiers-pas/" title="{% trans "Help about this page"%}" class="button button-mini"><i class="icon icon-help-white"></i>{% trans "Help about this page"%}</a>
-
-<span class="button" onclick="loadIntro()">Démarrer l'intro</span>
+<p>
+<a href="/aide-premiers-pas/" title="{% trans "Help about this page"%}" class="button button-mini" id="button-help-page"><i class="icon icon-help-white"></i>{% trans "Help about this page"%}</a>
+<span class="button" id="button-intro" style="display:none"><i class="icon icon-demo"></i>Démarrer la démonstration de cette page</span>
+</p>
 {%endif%}
 {%if not wait_launch%} {# Do not check in wait launch context #}
 	<p class="alert alert-warning" id="fill-intake-warning" style="display:none"><span class="icon icon-warning">&nbsp;</span>{%trans "Some users do not have a background questionnaire, please fill this survey for them"%}</p>
@@ -127,6 +128,11 @@ $(function() {
 	}
 	
 	$('.tooltip-pregnant').tooltip({tipClass:'hovertip hovertip-pregnant'})
+	
+	if( !$.isOldIE() ) {
+		$("#button-intro").show().click(loadIntro);
+		$('#button-help-page').hide();
+	} 
 	
 {% comment %}	
 	$.getJSON('/cohort/subscriptions', function(data) {
