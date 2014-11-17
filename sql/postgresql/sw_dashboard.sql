@@ -14,21 +14,25 @@ DROP VIEW IF EXISTS pollster_results_last_intake;
 DROP VIEW IF EXISTS pollster_results_last_location;
 DROP VIEW IF EXISTS pollster_results_last_intake_id;
 
--- datasource for particpation badge
--- Remove syndrom (because count distinct produce errornous count of weekly participation
--- by separating each distinct row with a different status
 CREATE OR REPLACE VIEW pollster_dashboard_badges AS 
  SELECT DISTINCT a.global_id, a."user", 
-  count(*) OVER (PARTITION BY a.global_id) >= 1 AS is_novice, 
-  count(*) OVER (PARTITION BY a.global_id) >= 3 AS is_junior, 
-  count(*) OVER (PARTITION BY a.global_id) >= 6 AS is_senior, 
-  count(*) OVER (PARTITION BY a.global_id) >= 10 AS is_gold, 
-  count(*) OVER (PARTITION BY a.global_id) >= 20 AS is_platinum 
+  count(*) OVER (PARTITION BY a.global_id) >= 3 AS has_3_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 6 AS has_6_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 10 AS has_10_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 20 AS infaillible 
    FROM ( SELECT DISTINCT w.global_id, w."user", to_char(w."timestamp", 'YYYYWW'::text) AS yw 
            FROM pollster_results_weekly w 
 	) a;
-
-
+	
+CREATE OR REPLACE VIEW pollster_dashboard_badges_household AS 
+ SELECT "user", 
+ sum(has_3_weekly) as household_3_weekly, 
+ sum(has_6_weekly) as household_6_weekly, 
+ sum(has_10_weekly) as household_10_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 20 AS infaillible 
+ FROM pollster_dashboard_badges
+ GROUP BY "user";
+	
 --- Get the last intake id for each participant
 CREATE VIEW pollster_results_last_intake_id AS 
 	SELECT distinct global_id, first_value(pollster_results_intake.id) OVER (PARTITION BY pollster_results_intake.global_id ORDER BY pollster_results_intake."timestamp" DESC)  AS intake_id
