@@ -15,7 +15,6 @@ from apps.common.wait import is_wait_launch, get_wait_launch_context
 
 from apps.survey import utils, models, forms
 from apps.survey.household import SurveyHousehold
-from apps.pollster import utils as pollster_utils
 
 import apps.pollster as pollster
 from apps.grippenet.models import PregnantCohort
@@ -262,12 +261,15 @@ def group_management(request):
     
     pregnants = dict([(str(p.survey_user.id), p) for p in pregnants])
     
+    has_pregnant = False
     for person in persons:
         # person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         # person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.last_weekly = last_weeklies.get(person.global_id)
         person.last_intake = last_intakes.get(person.global_id)
         person.pregnant = pregnants.get(str(person.id))
+        if person.pregnant is not None:
+            has_pregnant = True
     
     template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
     
@@ -275,8 +277,15 @@ def group_management(request):
     
     avatars = _get_avatars(with_list=False)
     
-    return render_to_response('survey/'+template+'.html', {'persons': persons, 'gid': request.GET.get("gid"), 'wait_launch':wait_launch,'avatars': avatars},
-                              context_instance=RequestContext(request))
+    ctx = {
+           'persons': persons, 
+           'gid': request.GET.get("gid"), 
+           'wait_launch':wait_launch,
+           'avatars': avatars,
+           'has_pregnant': has_pregnant,
+           }
+    
+    return render_to_response('survey/'+template+'.html', ctx, context_instance=RequestContext(request))
 
 @login_required
 def thanks_profile(request):

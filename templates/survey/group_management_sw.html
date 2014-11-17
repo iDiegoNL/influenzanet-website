@@ -28,7 +28,9 @@
 <tr class="survey-types">
 	<th>{% trans "Background" %} <span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}"></span></th>
 	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>	
+	{% if has_pregnant %}
 	<th>&nbsp;</th>	
+	{% endif %}
 </tr>	
 {% for person in persons %}
 <tr id="person-{{ person.pk }}" rel="{{person.global_id}}" class="person-row">
@@ -73,12 +75,14 @@
 		{% endif %}
 	{%endif%}	
 	</td>
+	{% if has_pregnant %}
 	<td {% if person.pregnant %} class=" survey-cell pregnant" {% endif %}>
 		{% if person.pregnant %}
-		<a href="{% url survey_fill 'pregnant' %}?gid={{person.global_id}}" class="button fill-button survey-pregnant tooltip-pregnant" title="Cette saison le projet G-Grippnet étudie les épisodes de syndromes grippaux durant la grossesse.">Fin de grossesse</a>
+		<a href="{% url survey_fill 'pregnant' %}?gid={{person.global_id}}" class="button fill-button survey-pregnant tooltip-pregnant" title="Cette saison le projet G-Grippnet étudie les épisodes de syndromes grippaux durant la grossesse. Pour compléter cette étude, nous demandons aux participantes enceinte de remplir un questionnaire après la fin de leur grossesse.">Fin de grossesse</a>
 		<span class="last">&nbsp;</span>
 		{% endif %}
 	</td>
+	{% endif %}
 </tr>
 {% endfor %}
 <tr>
