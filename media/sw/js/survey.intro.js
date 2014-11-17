@@ -55,9 +55,17 @@ function startIntro(){
         element: '#link-help-pages' ,
         intro: "Vous trouverez également un peu d'aide et d'explications sur ces pages.",
 		position: 'left'
+      },
+     {
+        element: '#link-dashboard' ,
+        intro: "Vous retrouverez sur la page 'Vos résultats' un retour d'information sur les participants de votre compte. ",
+		position: 'left'
+      },
+     {
+        element: '#link-group' ,
+        intro: "Vous retrouverez sur la page 'Vos résultats' un retour d'information sur les participants de votre compte. ",
+		position: 'left'
       }
-
-	  
 	]
   });
   intro.start();
