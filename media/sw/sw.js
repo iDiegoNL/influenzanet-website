@@ -9,18 +9,18 @@ if(!window.console) {
     };
 }
 
+$.isOldIE = function() {
+	return $('html').hasClass('lt-ie9');
+};
+
 $(function() {
+	$('html').removeClass('no-js');
 	if($.browser.msie) {
 		var v = Math.ceil(parseFloat($.browser.version));
 		v = 'ie'+ v;
 		$('body').addClass('ie ' + v);
 	}
-	if (typeof(install_ui) != "undefined") {
-		console.log('calling install ui');
-		install_ui();
-	} else {
-		console.log("no ui");
-	}
+	install_ui();
 	initUI();
 	var from = escape(document.location.pathname);
 	$('#feedback-link').attr('href', '/feedback?from='+from);
