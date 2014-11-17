@@ -58,9 +58,9 @@ class SqlDataSource(DataSource):
         """
         query = self._get_sql() 
         if self.template:
-            query = query % { 'user': user.user_id }
+            query = query % { 'user': user.id }
         else:
-            query += """ WHERE "user" = %d""" % (user.user_id)
+            query += """ WHERE "user" = %d""" % (user.id)
         if DEBUG:
             logger.debug(query)
         return self._get_row(query)

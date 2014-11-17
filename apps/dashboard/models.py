@@ -13,6 +13,8 @@ BADGE_ATTRIBUTION_CHOICES = (
  (ATTRIBUTE_TO_PARTICIPANT,'Participant'),                
 )        
 
+CURRENT_SEASON = get_current_season()
+
 class Badge(models.Model):
     """ Badge Definition """
     
@@ -44,7 +46,7 @@ class Badge(models.Model):
            
     def can_compute(self):
         if self.season:
-            season = get_current_season()
+            season = CURRENT_SEASON
             if season != self.season:
                 return False
         return True
@@ -61,7 +63,11 @@ class UserBadgeManager(models.Manager):
          if indexed, return a dictionnary index by id (for lookup)
         """
         if self._badges is None:
-            self._badges = list(Badge.objects.all())
+            bb = []
+            for b in list(Badge.objects.all()):
+                if b.can_compute():
+                    bb.append(b)  
+            self._badges = bb
         if indexed:
             badges = {  }
             names = {}
