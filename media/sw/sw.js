@@ -24,7 +24,9 @@ $(function() {
 	initUI();
 	var from = escape(document.location.pathname);
 	$('#feedback-link').attr('href', '/feedback?from='+from);
-	
+	if( $.isOldIE() ) {
+		$.getScript(MEDIA_URL + 'sw/js/oldie.js');
+	}
 });
 
 jQuery.fn.loading = function() {
