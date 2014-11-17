@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from apps.survey.models import SurveyUser
 from .badges import BadgeProvider, DATA_SOURCES_CHOICES
 from .utils import get_current_season
-from apps.dashboard.badges import NotEvaluableNow
+from .datasource import NotEvaluableNow
 
 ATTRIBUTE_TO_USER = 'U'
 ATTRIBUTE_TO_PARTICIPANT = 'P'
