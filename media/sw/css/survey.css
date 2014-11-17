@@ -112,3 +112,29 @@ padding: .3em;
 	font-weight: bold;
 	display: inline-block;
 }
+
+#colmask .vas-type .ui-slider-handle {
+ bakground-image: url();
+ background-color:#007AB8;
+}
+
+.vas-help {
+	font-size: .8em;
+}
+
+.vas-best-level,.vas-worst-level  {
+ display: inline-block;
+ width: 32px;
+ height: 32px;
+ margin: 0 .2em;
+ background: transparent url() left center no-repeat;
+ vertical-align: middle;
+}
+
+.vas-best-level {
+	 background-image: url(../avs-best.png)
+} 
+
+.vas-worst-level {
+	 background-image: url(../avs-worst.png)
+}
