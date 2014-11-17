@@ -1,5 +1,5 @@
 from functools import partial
-from ..utils import get_current_season, historical_table
+from ..utils import historical_table
 
 DATA_SOURCES_CHOICES = (
   ('loyalty1', 'Loyalty for the 2011-2012 season'),                     

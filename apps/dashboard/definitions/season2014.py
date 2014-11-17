@@ -1,6 +1,4 @@
-from functools import partial
-from ..utils import get_current_season, historical_table
-from apps.dashboard.badges import DataSource
+from ..datasource import DataSource, DEBUG
 
 DATA_SOURCES_CHOICES = (
   ('loyalty', 'Loyalty for the 2011-2012 season'),                     
