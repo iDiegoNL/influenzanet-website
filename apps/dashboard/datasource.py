@@ -14,7 +14,7 @@ class DataSource(object):
         self.need_profile = definition.get('need_profile', False)
         self.require = definition.get('require', False)
 
-class SqlDataSource(object):
+class SqlDataSource(DataSource):
 
     def __init__(self, definition):
         super(SqlDataSource, self).__init__(definition)
