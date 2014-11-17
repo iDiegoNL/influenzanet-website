@@ -8,8 +8,8 @@
 }
 
 #people-table {
-	font-size: .8em;
 	width: 80%;
+	font-size: .8em;
 	margin: .5em auto;
 }
 
@@ -23,14 +23,24 @@
 	padding: .7em;
 }
 
+
+#people-table td {
+	font-size: .9em;
+	min-width: 10em;
+}
+
 #people-table .last {
 	display: block;
-	font-size: .7em;
+	font-size: .8em;
 }
 
 #people-table td.person-name {
 	 text-align: left;
 	 white-space: nowrap;
+}
+
+#people-table .survey-types th {
+	white-space: nowrap;
 }
 
 .action-add-people {
@@ -58,3 +68,26 @@
 #story td.date {
  text-align:left;
 }
+
+/**
+ * Survey IntroJSa
+ */
+
+.identity {
+	display: inline-block;
+}
+.survey-intro {
+	border: 2px solid #7AB800;
+	font-size: .8em;
+	text-align: justify;
+	width: 35em;
+}
+
+.survey-highlight {
+	
+}
+
+.large-intro {
+	width: 60em;
+}
+

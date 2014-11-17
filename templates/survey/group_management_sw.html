@@ -49,7 +49,7 @@
 	<td colspan="2">
 		{% trans "The project is not started yet for this season" %}
 	{%else%}
-	<td {% if not person.last_intake %} class="to-fill-first tooltip-alert" title="{% trans "Fill the intake survey for this participant to start his participation"%}"{% endif %} id="person-{{person.pk}}-cell-intake">
+	<td {% if not person.last_intake %} class="survey-cell to-fill-first tooltip-alert" title="{% trans "Fill the intake survey for this participant to start his participation"%}"{%else%} class="survey-cell" {% endif %} id="person-{{person.pk}}-cell-intake">
 		<a href="{{ person.get_profile_url }}" class="button fill-button survey-intake" id="person-{{person.pk}}-intake"><span class="icon icon-survey">&nbsp;</span>{% if person.last_intake %}Modifier{%else%}{% trans "Fill this survey" %}{% endif %}</a>
 		{% if person.last_intake %}
 		<span class="last" title="{%trans "last survey date"%} {{ person.last_intake|date:"d M Y H:i"}}">{% blocktrans with last=person.last_intake|survey_timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
@@ -57,12 +57,12 @@
 		<span class="last">{%trans "no previous survey"%}</span>
 		{%endif%}
 		</td>
-	    <td id="person-{{person.pk}}-cell-weekly">
+	    <td id="person-{{person.pk}}-cell-weekly" class="survey-cell">
 	    {% if person.last_intake %}
-			<a href="{{ person.get_survey_url }}" class="button fill-button survey-weekly" id="person-{{person.pk}}-weekly"><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
+			<a href="{{ person.get_survey_url }}" class="button fill-button survey-weekly tooltip" id="person-{{person.pk}}-weekly" title="Remplissez le questionnaire hebdomadaire pour ce participant pour décrire ses symptomes actuels. "><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
 			{% if person.last_weekly %}
-			{% with f=person.last_weekly.timestamp %} 
-			<span class="last" title="{%trans "last survey date"%} {{f.timestamp|date:"d M Y H:i"}}">{% blocktrans with last=f.timestamp|survey_timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
+			{% with f=person.last_weekly %} 
+			<span class="last" title="{%trans "last survey date"%} {{f|date:"d M Y H:i"}}">{% blocktrans with last=f|survey_timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 			{%endwith%}
 			{%else%}
 			<span class="last">{%trans "no previous survey"%}</span>
@@ -72,7 +72,7 @@
 		{% endif %}
 	{%endif%}	
 	</td>
-	<td {% if person.pregnant %} class="pregnant" {% endif %}>
+	<td {% if person.pregnant %} class=" survey-cell pregnant" {% endif %}>
 		{% if person.pregnant %}
 		<a href="{% url survey_fill 'pregnant' %}?gid={{person.global_id}}" class="button fill-button survey-pregnant tooltip-pregnant" title="Cette saison le projet G-Grippnet étudie les épisodes de syndromes grippaux durant la grossesse.">Fin de grossesse</a>
 		<span class="last">&nbsp;</span>
