@@ -12,6 +12,7 @@ DATA_SOURCES_CHOICES = (
   ('none','No data source (not computed)')                      
 ) 
 
+    
 class NoviceDataSource(ClassDataSource):
         
     def get_for_participant(self, participant):
