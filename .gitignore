@@ -9,6 +9,7 @@
 .project
 epiweb.db
 MANIFEST
+assets_version.py
 local_settings.py
 ggm.db
 bin/
