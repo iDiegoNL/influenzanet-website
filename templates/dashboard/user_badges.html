@@ -5,12 +5,14 @@
 {% else %}
 {% if badges|length > 0 %}
 <div class="chart-dashboard-badges dashboard">
-    <h3>{% trans "Your badges" %} :
-	<span class="tooltip icon icon-tip" title="{% trans "This is a new feature of this website. You will win badge during the season."%}"></span> 
-	<a class="button hide-feature" id="hide-badge-feature" href="{% url dashboard_badges_disable %}?gid={{gid}}" rel="facebox" data-facebox-width="650" data-facebox-height="450" >{%trans "Disable this feature" %}</a></h3>
+    <div class="badge-header">
+	<div class="badge-title">{% trans "Your badges" %} :</div>
+	<a href="#" class="button tooltip" title="{% trans "This is a new feature of this website. You will win badge during the season."%}"><i class="icon icon-tip"></i>En savoir plus</a> 
+	<a class="button hide-feature tooltip" id="hide-badge-feature" href="{% url dashboard_badges_disable %}?gid={{gid}}" rel="facebox" data-facebox-width="650" data-facebox-height="450" title="Vous ne souhaitez plus voir ces badges, vous pouvez désactiver cette fonctionnalité en cliquant sur ce bouton." >{%trans "Disable this feature" %}</a></h3>
 	{% if new_badges.first %}
 	<div id="first-badge" style="display:none"><img src="{{MEDIA_URL}}sw/badge32.png" class="icon icon-32"/>{%trans "It's your first badge ! This is a new feature of this website. You will win badge during the season." %}</div>
 	{% endif %}
+	</div>
 	{% if new_badges.participant|length %}
 	<div class="new-badges"><img src="{{MEDIA_URL}}sw/badge16.png" class="icon"/>{%blocktrans count counter=new_badges.participant|length %}You won a new badge{% plural %}You won {{counter}} new badges{%endblocktrans%}</div>
 	{% endif %}
@@ -19,15 +21,17 @@
 		  {%if user_badge.state %}
 		    {% with badge=user_badge.badge_ %}
 		  	<div class="badge{% if badge.id in new_badges.participant %} badge-new{%endif%}">
-			<img src="{{ MEDIA_URL }}badges/64/{{badge.name}}.png" title="{{ badge.description }}" class="tooltip"/>
-			<div class="badge-label">{{ badge.label|linebreaksbr }}</div>
+				<img src="{{ MEDIA_URL }}badges/64/{{badge.name}}.png" title="{{ badge.description }}" class="tooltip"/>
+				<div class="badge-label">{{ badge.label|linebreaksbr }}</div>
 			</div>
 		  	{% endwith %}
 		  {% else %}
 		  <!-- {{badge.name}} state false -->
 		  {% endif %}
 	  {% endfor %}
-    </div>
+    <br stype="clear:both"/>
+	</div>
+	
 </div>
 <script type="text/javascript">
 initUI('.chart-dashboard-badges');

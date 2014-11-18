@@ -9,6 +9,7 @@ DATA_SOURCES_CHOICES = (
   ('household_participation','Household participation'),
   ('household', 'Household'),
   ('profile','Profile data (intake)'),
+  ('pregnant_pioneer','Pregnant is pionneer ?'),
   ('none','No data source (not computed)')                      
 ) 
 
