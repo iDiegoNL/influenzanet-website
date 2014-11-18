@@ -57,7 +57,4 @@ class PregnantWorkflow(SurveyWorkflow):
             if DEBUG:
                 self.debug("Setting channel to G")
                  
-             
-        
-         
         

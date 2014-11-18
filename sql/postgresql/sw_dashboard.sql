@@ -1,23 +1,44 @@
-DROP VIEW IF EXISTS pollster_dashboard_badges;
+DROP IF EXISTS FUNCTION pollster_dashboard_neighborhood_users_avg;
+DROP IF EXISTS FUNCTION pollster_dashboard_neighborhood_users_count;
+DROP IF EXISTS FUNCTION pollster_dashboard_neighborhood_users;
+DROP IF EXISTS FUNCTION pollster_dashboard_users_by_zip_code_count;
+DROP IF EXISTS FUNCTION pollster_dashboard_users_by_zip_code;
 
--- datasource for particpation badge
--- Remove syndrom (because count distinct produce errornous count of weekly participation
--- by separating each distinct row with a different status
-CREATE OR REPLACE VIEW pollster_dashboard_badges AS 
- SELECT DISTINCT a.global_id, a."user", 
-  count(*) OVER (PARTITION BY a.global_id) >= 1 AS is_novice, 
-  count(*) OVER (PARTITION BY a.global_id) >= 3 AS is_junior, 
-  count(*) OVER (PARTITION BY a.global_id) >= 6 AS is_senior, 
-  count(*) OVER (PARTITION BY a.global_id) >= 10 AS is_gold, 
-  count(*) OVER (PARTITION BY a.global_id) >= 20 AS is_platinum 
-   FROM ( SELECT DISTINCT w.global_id, w."user", to_char(w."timestamp", 'YYYYWW'::text) AS yw 
-           FROM pollster_results_weekly w 
-	) a;
+DROP VIEW IF EXISTS pollster_dashboard_neighborhood_ili;
+DROP VIEW IF EXISTS pollster_dashboard_badges2;
+DROP VIEW IF EXISTS pollster_dashboard_badges;
+DROP VIEW IF EXISTS pollster_dashboard_badges_household;
+DROP VIEW IF EXISTS pollster_dashboard_weekly_count;
+DROP VIEW IF EXISTS pollster_dashboard_neighborhood;
 
 DROP VIEW IF EXISTS pollster_results_last_intake;
 DROP VIEW IF EXISTS pollster_results_last_location;
 DROP VIEW IF EXISTS pollster_results_last_intake_id;
 
+DROP VIEW IF EXISTS pollster_dashboard_badges_household;
+DROP VIEW IF EXISTS pollster_dashboard_badges;
+
+CREATE OR REPLACE VIEW pollster_dashboard_badges AS 
+ SELECT DISTINCT a.global_id, a."user",
+  count(*) OVER (PARTITION BY a.global_id) >= 1 AS has_1_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 3 AS has_3_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 6 AS has_6_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 10 AS has_10_weekly, 
+  count(*) OVER (PARTITION BY a.global_id) >= 20 AS infaillible 
+   FROM ( SELECT DISTINCT w.global_id, w."user", to_char(w."timestamp", 'YYYYWW'::text) AS yw 
+           FROM pollster_results_weekly w 
+	) a;
+	
+CREATE OR REPLACE VIEW pollster_dashboard_badges_household AS 
+ SELECT "user", 
+ count(distinct "global_id") as household_nb,
+ sum(has_1_weekly::int) >= count(distinct "global_id") as household_1_weekly, 
+ sum(has_3_weekly::int) >= count(distinct "global_id") as household_3_weekly, 
+ sum(has_6_weekly::int) >= count(distinct "global_id") as household_6_weekly, 
+ sum(has_10_weekly::int) >= count(distinct "global_id") as household_10_weekly
+ FROM pollster_dashboard_badges
+ GROUP BY "user";
+ 
 --- Get the last intake id for each participant
 CREATE VIEW pollster_results_last_intake_id AS 
 	SELECT distinct global_id, first_value(pollster_results_intake.id) OVER (PARTITION BY pollster_results_intake.global_id ORDER BY pollster_results_intake."timestamp" DESC)  AS intake_id
@@ -32,14 +53,13 @@ CREATE VIEW pollster_results_last_intake AS
     SELECT i.* from
 	 pollster_results_last_intake_id l left join pollster_results_intake i on i.id=l.intake_id;
 	 
-DROP VIEW IF EXISTS pollster_dashboard_weekly_count;
+
 CREATE VIEW pollster_dashboard_weekly_count as
 SELECT DISTINCT a.global_id, a."user", 
    count(*) OVER (PARTITION BY a.global_id) as count_week
    FROM ( SELECT DISTINCT w.global_id, w."user", to_char(w."timestamp", 'YYYYWW'::text) AS to_char 
            FROM pollster_results_weekly w ) a;
 
-DROP VIEW IF EXISTS pollster_dashboard_badges2;
 CREATE VIEW pollster_dashboard_badges2 as
  SELECT  global_id, "user",
   "count_week" >= 1 AS is_novice, 
@@ -116,7 +136,6 @@ AS  $$
           FROM pollster_dashboard_users_by_zip_code($1);	
 $$ LANGUAGE SQL;
 
-DROP VIEW IF EXISTS pollster_dashboard_neighborhood;
 CREATE VIEW pollster_dashboard_neighborhood AS
         SELECT DISTINCT O.global_id, O."user",
 	        pollster_dashboard_users_by_zip_code_count(O."Q3") AS same_zip_count,
@@ -147,17 +166,3 @@ SELECT
   GROUP BY zip_code_key;		              
 
 
-SELECT zip_code_key,
-       CASE true
-  	 WHEN percent  > 10 THEN '#FF0000'
- 	 WHEN percent > 7 THEN '#FF3B00'
- 	 WHEN percent > 5 THEN '#FF6E00'
- 	 WHEN percent > 4 THEN '#FF9800'
- 	 WHEN percent > 1 THEN '#FFEB00'
- 	 WHEN percent > 0.5 THEN '#B2E800'
- 	 WHEN percent <= 0.5 THEN '#007F00'
- 	 ELSE '#EEEEEE' END as color,       
-       ili AS "Cas de syndromes grippaux",
-       active AS "Participants",
-       percent as "%%"
-  FROM pollster_dashboard_neighborhood_ili;

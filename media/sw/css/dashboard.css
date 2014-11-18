@@ -24,14 +24,11 @@
 }
 
 .household .avatar-default {
-  background: transparent url('users32.png') left center no-repeat;
+  background: transparent url(../users32.png) left center no-repeat;
 }
 
 .survey-user .avatar-default {
-  background: transparent url('user-blue.png') left center no-repeat;
-}
-
-#userswicth li.survey-user a {
+  background: transparent url(../user-blue.png) left center no-repeat;
 }
 
 
@@ -60,8 +57,8 @@
 } 
 
 .health-status {
- text-align:center;
- float:left	
+ 	text-align:center;
+ 	float:left	
 }
 
 .health-status span {
@@ -69,15 +66,65 @@
 	color: #999;
 }
 
-.chart-dashboard-badges { margin-top: 30px; }
-.badge { border: 1px solid #DDD; padding: 5px; width: 100px; float: left;  margin: 5px}
-#page .badge { text-align: center; }
-.badge img { width: 64px; }
-.badge .badge-label { font-size: .64em; text-align: center; margin: .2em auto; }
-.badge:hover { border: 1px solid #007AB8 }
-.new-badges { border: 1px solid red; padding: .2em; font-size: .8em; font-style: italic; }
-#hide-badge-feature { font-size: .7em }
+.chart-dashboard-badges { 
+	margin-top: 30px; 
+	padding: .5em;
+}
 
+
+.badge-title {
+	display: inline;
+	font-size: 1.1em;
+}
+
+.badge-header {
+	padding: .7em;
+}
+
+.badge-header a {
+	font-size: .7em;
+}
+
+.badges {
+	position: relative;
+}
+
+#page .badge { 
+	text-align: center; 
+}
+
+.badge { 
+	border: 1px solid #DDD; 
+	padding: 5px; 
+	width: 100px; 
+	float: left;  
+	margin: 5px
+}
+
+.badge img { 
+	width: 64px; 
+}
+
+.badge .badge-label { 
+	font-size: .64em; 
+	text-align: center; 
+	margin: .2em auto; 
+}
+
+.badge:hover { 
+	border: 1px solid #007AB8 
+}
+
+.badge.badge-new {
+	border: 2px dashed #7ab800
+}
+
+.new-badges { 
+	border: 2px solid #7ab800; 
+	padding: .4em; 
+	font-size: .8em; 
+	font-style: italic; 
+}
 
 .chart-box {
 	padding: .5em;
