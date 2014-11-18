@@ -118,6 +118,30 @@ padding: .3em;
  background-color:#007AB8;
 }
 
+/**
+ * slider
+ */
+.slider-range {
+	position: relative;
+	font-size: .9em;
+}
+
+.slider-wrap {
+	margin: .5em auto;
+	text-align:center;
+	width:90%
+}
+
+#slider-min {
+	float:left;
+	text-align: left;
+}
+
+#slider-max {
+ float:right;
+ text-align: right;
+}
+
 .vas-help {
 	font-size: .8em;
 }
