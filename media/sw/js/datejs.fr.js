@@ -1,6 +1,6 @@
 // Datejs Hack to handle delay names
 $.extend(Date.CultureInfo, { 
-'year':'année', 'years':'années',
+'year':'an', 'years':'ans',
 'month':'mois','months':'mois',
 'day':'jour','days':'jours'
 });
