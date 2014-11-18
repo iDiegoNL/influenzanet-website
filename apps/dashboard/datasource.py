@@ -14,6 +14,12 @@ class DataSource(object):
         self.need_profile = definition.get('need_profile', False)
         self.require = definition.get('require', False)
 
+class ClassDataSource(DataSource):
+    
+    def __init__(self, definition, provider):
+        super(ClassDataSource, self).__init__(definition)
+        self.provider = provider
+
 class SqlDataSource(DataSource):
 
     def __init__(self, definition):
@@ -48,9 +54,11 @@ class SqlDataSource(DataSource):
         else:
             # just add where clauses
             query += """ WHERE "user" = %d AND "global_id" = '%s'""" % (participant.user_id, participant.global_id )
+        row = self._get_row(query)
         if DEBUG:
             logger.debug(query)
-        return self._get_row(query)
+            logger.debug(row)
+        return row
 
     def get_for_user(self, user):
         """
@@ -58,9 +66,11 @@ class SqlDataSource(DataSource):
         """
         query = self._get_sql() 
         if self.template:
-            query = query % { 'user': user.user_id }
+            query = query % { 'user': user.id }
         else:
-            query += """ WHERE "user" = %d""" % (user.user_id)
+            query += """ WHERE "user" = %d""" % (user.id)
+        row = self._get_row(query)
         if DEBUG:
             logger.debug(query)
-        return self._get_row(query)
+            logger.debug(row)
+        return row

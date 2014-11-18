@@ -7,6 +7,7 @@ DROP IF EXISTS FUNCTION pollster_dashboard_users_by_zip_code;
 DROP VIEW IF EXISTS pollster_dashboard_neighborhood_ili;
 DROP VIEW IF EXISTS pollster_dashboard_badges2;
 DROP VIEW IF EXISTS pollster_dashboard_badges;
+DROP VIEW IF EXISTS pollster_dashboard_badges_household;
 DROP VIEW IF EXISTS pollster_dashboard_weekly_count;
 DROP VIEW IF EXISTS pollster_dashboard_neighborhood;
 
@@ -14,8 +15,12 @@ DROP VIEW IF EXISTS pollster_results_last_intake;
 DROP VIEW IF EXISTS pollster_results_last_location;
 DROP VIEW IF EXISTS pollster_results_last_intake_id;
 
+DROP VIEW IF EXISTS pollster_dashboard_badges_household;
+DROP VIEW IF EXISTS pollster_dashboard_badges;
+
 CREATE OR REPLACE VIEW pollster_dashboard_badges AS 
- SELECT DISTINCT a.global_id, a."user", 
+ SELECT DISTINCT a.global_id, a."user",
+  count(*) OVER (PARTITION BY a.global_id) >= 1 AS has_1_weekly, 
   count(*) OVER (PARTITION BY a.global_id) >= 3 AS has_3_weekly, 
   count(*) OVER (PARTITION BY a.global_id) >= 6 AS has_6_weekly, 
   count(*) OVER (PARTITION BY a.global_id) >= 10 AS has_10_weekly, 
@@ -26,13 +31,14 @@ CREATE OR REPLACE VIEW pollster_dashboard_badges AS
 	
 CREATE OR REPLACE VIEW pollster_dashboard_badges_household AS 
  SELECT "user", 
- sum(has_3_weekly) as household_3_weekly, 
- sum(has_6_weekly) as household_6_weekly, 
- sum(has_10_weekly) as household_10_weekly, 
-  count(*) OVER (PARTITION BY a.global_id) >= 20 AS infaillible 
+ count(distinct "global_id") as household_nb,
+ sum(has_1_weekly::int) >= count(distinct "global_id") as household_1_weekly, 
+ sum(has_3_weekly::int) >= count(distinct "global_id") as household_3_weekly, 
+ sum(has_6_weekly::int) >= count(distinct "global_id") as household_6_weekly, 
+ sum(has_10_weekly::int) >= count(distinct "global_id") as household_10_weekly
  FROM pollster_dashboard_badges
  GROUP BY "user";
-	
+ 
 --- Get the last intake id for each participant
 CREATE VIEW pollster_results_last_intake_id AS 
 	SELECT distinct global_id, first_value(pollster_results_intake.id) OVER (PARTITION BY pollster_results_intake.global_id ORDER BY pollster_results_intake."timestamp" DESC)  AS intake_id
