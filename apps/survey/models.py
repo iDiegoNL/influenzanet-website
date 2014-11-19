@@ -18,7 +18,7 @@ class SurveyUserManager(models.Manager):
         """
         if name is None:
             n = int(self.filter(user=user).count())
-            name= 'participant_' + str(n)
+            name= 'participant_' + str(n + 1)
         return self.create(user=user, name=name)
     
     def get_active_users(self, user):
