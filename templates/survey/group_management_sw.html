@@ -45,7 +45,7 @@
 		<a id="person-{{person.pk}}-edit" rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="720" data-facebox-height="{% if avatars %}600{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
 		<span id="cohort-{{person.pk}}"></span>
 		{% if person.pregnant %}
-		<span class="pregnant-cohort"></span>
+		<span class="pregnant-cohort tooltip-pregnant" title="Ce participant pourra participer à l'étude G-GrippeNet. Pour cela il suffira de remplir le questionnaire 'fin de grossesse' une fois la grossesse de ce participant terminée."></span>
 		{% endif %}
 	</td>
     {%if wait_launch %}
@@ -78,7 +78,7 @@
 	{% if has_pregnant %}
 	<td {% if person.pregnant %} class=" survey-cell pregnant" {% endif %}>
 		{% if person.pregnant %}
-		<a href="{% url survey_fill 'pregnant' %}?gid={{person.global_id}}" class="button fill-button survey-pregnant tooltip-pregnant" title="Cette saison le projet G-Grippnet étudie les épisodes de syndromes grippaux durant la grossesse. Pour compléter cette étude, nous demandons aux participantes enceinte de remplir un questionnaire après la fin de leur grossesse.">Fin de grossesse</a>
+		<a href="{% url survey_fill 'pregnant' %}?gid={{person.global_id}}" class="button fill-button survey-pregnant tooltip-pregnant" title="Cette saison le projet G-Grippnet étudie les épisodes de syndromes grippaux durant la grossesse. Pour compléter cette étude, nous demandons aux participantes enceinte de remplir ce questionnaire après la fin de leur grossesse.">Fin de grossesse</a>
 		<span class="last">&nbsp;</span>
 		{% endif %}
 	</td>
