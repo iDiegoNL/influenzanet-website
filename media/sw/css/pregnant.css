@@ -12,3 +12,12 @@
  background-color: #6f5499;
  color: white;	
 }
+
+.pregnant-cohort {
+ display: inline-block;
+ width: 14px;
+ height: 24px;
+ margin: 0 .2em;
+ background: transparent url(../ggnet.png) left center no-repeat;
+ vertical-align: middle;
+}

@@ -64,7 +64,6 @@ hr {
 }
 
 
-
 #col1 img.left {
  margin: 0 14px 0 0; 
 }
@@ -131,6 +130,10 @@ hr {
  padding: 0;
  color: #0a0a0a;
  font-size: 1em;
+}
+
+p.centered {
+	text-align: center;
 }
 
 /*

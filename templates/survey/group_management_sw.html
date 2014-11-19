@@ -42,7 +42,7 @@
 		{% endif %}
 		{{ person.name }} 
 		</div>
-		<a id="person-{{person.pk}}-edit" rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="650" data-facebox-height="{% if avatars %}580{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
+		<a id="person-{{person.pk}}-edit" rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="720" data-facebox-height="{% if avatars %}600{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
 		<span id="cohort-{{person.pk}}"></span>
 		{% if person.pregnant %}
 		<span class="pregnant-cohort"></span>
@@ -100,7 +100,7 @@
 <tr>
 	<td colspan="5" class="people-actions">
 	<ul >
-		<li><a href="{% url survey_people_add %}"  id="link-add-people" class="action-add-people" data-facebox-width="650" data-facebox-height="{% if avatars %}580{% else %}350{% endif %}px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
+		<li><a href="{% url survey_people_add %}"  id="link-add-people" class="action-add-people" data-facebox-width="720" data-facebox-height="{% if avatars %}600{% else %}350{% endif %}px" title="{% trans "Add new person" %}" rel="facebox">{% trans "Add new person" %}</a></li>
 		{% comment %}<li><a href="{% url cohort_form %}" class="action-cohort tooltip" title="{%trans "cohort subscription help text"%}"><span class="icon icon-cohort">&nbsp;</span>{% trans "Register a participant in a Cohort" %}</a> <span ></span></li>{% endcomment %}
 	</ul>
 	</td>

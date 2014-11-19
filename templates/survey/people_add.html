@@ -10,8 +10,9 @@
 {%if avatars %}
  {%include "survey/_avatars.html" %}
 {%endif%}
-
-<input type="submit" id="commentsubmit" value="{% trans "Add Person" %}"/>
+<p class="centered">
+<button type="submit" class="button">{% trans "Add Person" %}</button>
+</p>
 </form>
 
 {% endblock %}
