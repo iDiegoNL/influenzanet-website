@@ -8,7 +8,7 @@ function startIntro(){
 	doneLabel: 'Terminé',
     steps: [
       { 
-        intro: "Bienvenu sur l'espace participants de GrippeNet.fr. Cette introduction va vous monter tout ce qu'il y a a connaitre sur cette page."
+        intro: "Bienvenu(e) sur l'espace participant de GrippeNet.fr. Cette introduction va vous monter tout ce qu'il y a connaître sur cette page."
       },
       {
         element: '#people-table',
@@ -17,13 +17,13 @@ function startIntro(){
       },
       {
         element: '#' + first_user +'-identity' ,
-        intro: "Chaque participant est identifié par une image (avatar) et par un nom. <br/>Pour préserver votre vie privée<br/> utilisez pseudo, surnom ou un mot (papa,...). Ces 'noms' et avatars vous aident à savoir de quel participant il s'agit si votre compte a plusieurs partiicpants. Nous ne les utilisons pas pour traiter nos données.",
+        intro: "Chaque participant est identifié par une image (avatar) et par un nom. <br/>Pour préserver votre vie privée<br/> utilisez de préférence un pseudo, surnom ou un mot (papa,...). Ces 'noms' et avatars vous aident à savoir de quel participant il s'agit si votre compte a plusieurs participants. Nous ne les utilisons pas pour traiter nos données.",
 		position: 'right',
 		tooltipClass: 'survey-intro large-intro'
       },
       {
         element: '#' + first_user +'-edit' ,
-        intro: "Cliquer sur cet icone vous permet de modifier un participant : changer son nom ou choisir un autre avatar pour ce participant (vous avez le choix entre une cinquantaine d'avatar possibles).",
+        intro: "Cliquer sur cet icone vous permet de modifier les caractéristiques d'un participant : changer son nom ou choisir un autre avatar pour ce participant (vous avez le choix entre une centaine d'avatars possibles !).",
 		position: 'right'
       },
       {
@@ -38,17 +38,17 @@ function startIntro(){
       },
      {
         element: '#' + first_user +'-intake'  ,
-        intro: "Pour tout nouveau participant, la première chose à faire est de remplir le questionnaire préliminaire. C'est ce questionnaire qui permet de décrire un participant au début de la saison (si certains éléments change il est possible de le modifier en cours de saison : par exemple la vaccination antigrippale)",
+        intro: "Pour tout nouveau participant, la première chose à faire est de remplir le questionnaire préliminaire. C'est ce questionnaire qui permet de décrire un participant au début de la saison (si certains éléments changent il est possible de le modifier en cours de saison : par exemple si le participant a été vacciné contre la grippe)",
 		position: 'top'
       },
      {
         element: '#' + first_user +'-cell-weekly'  ,
-        intro: "Après le questionnaire préliminaire, un bouton sera disponible dans cette case pour remplir le questionnaire <i>hebdomadaire</i> qui nous renseignera sur vos symptomes. L'idéal est de le remplir aussi moins chaque semaine, <b>même si vous n'avez pas de symptome</b>",
+        intro: "Une fois le questionnaire préliminaire rempli, un bouton sera disponible dans cette case pour remplir le questionnaire <i>hebdomadaire</i> qui nous renseignera sur vos symptômes. L'idéal est de le remplir chaque semaine, <b>même si vous n'avez pas de symptôme</b>",
 		position: 'top'
       },
      {
         element: '#button-healthy' ,
-        intro: "Si plusieurs participants n'ont pas de symptome, vous pouvez cocher la case à coté de leur nom puis cliquer sur ce bouton pour indiquer que tout va bien.",
+        intro: "Si plusieurs participants n'ont pas de symptôme, vous pouvez cocher la case à côté de leur nom puis cliquer sur ce bouton pour indiquer que tout va bien.",
 		position: 'top'
       },
      {
