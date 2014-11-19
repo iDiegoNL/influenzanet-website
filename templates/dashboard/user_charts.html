@@ -15,11 +15,11 @@ function init_my_charts() {
 	initUI('.chart-box');
 	console.log('charts');
  	$.getJSON('{{MEDIA_URL}}results/json/syndrom.json', function(json) {
-		console.log(json);
+		//console.log(json);
 		syndrom_chart("syndrom-chart", json, health_status, last_health_status);
 		var time = Math.floor(json.time) * 1000;
 		time = new Date(time);
-		$('#syndrom-chart-update').text( time );
+		$('#syndrom-chart-update').text( time.toLocaleDateString() );
 	});
 }
 </script>

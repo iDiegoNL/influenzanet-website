@@ -143,11 +143,13 @@ function syndrom_chart(container, json, health_status, last_health_status) {
 	all_data, group, group_data, graph_data;
 	
 	all_data = prepare_data(json.data.syndrom, 'prop', last_health_status, health_status);
-	
 	group = calc_user_group(user_profile, json.params.age_group);
 	if(group) {
-		var group_data = 	json.data.syndrom_group[group.id];
+		var group_data = json.data.syndrom_group[group.id];
 		group_data = prepare_data(group_data, 'prop', last_health_status, health_status);
+        if(!group_data) {
+			group = false;
+		}
 	}
 	w = (group) ? 620 : 520;
 	paper = Raphael(container, w, 240);
