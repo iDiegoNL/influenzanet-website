@@ -17,19 +17,22 @@
 	<div class="new-badges"><img src="{{MEDIA_URL}}sw/badge16.png" class="icon"/>{%blocktrans count counter=new_badges.participant|length %}You won a new badge{% plural %}You won {{counter}} new badges{%endblocktrans%}</div>
 	{% endif %}
     <div class="badges">
-      {% for user_badge in badges %}
+      <ul class="badges-row">
+	  {% for user_badge in badges %}
 		  {%if user_badge.state %}
 		    {% with badge=user_badge.badge_ %}
-		  	<div class="badge{% if badge.id in new_badges.participant %} badge-new{%endif%}">
+		  	<li class="badge{% if badge.id in new_badges.participant %} badge-new{%endif%}">
 				<img src="{{ MEDIA_URL }}badges/64/{{badge.name}}.png" title="{{ badge.description }}" class="tooltip"/>
 				<div class="badge-label">{{ badge.label|linebreaksbr }}</div>
-			</div>
+			</li>
 		  	{% endwith %}
 		  {% else %}
 		  <!-- {{badge.name}} state false -->
 		  {% endif %}
+	  {% if forloop.counter|divisibleby:4 %}{% if not forloop.last %}</ul><ul class="badges-row">{% endif %}{% endif %}
 	  {% endfor %}
-    <br stype="clear:both"/>
+    </ul>
+	<br stype="clear:both"/>
 	</div>
 	
 </div>

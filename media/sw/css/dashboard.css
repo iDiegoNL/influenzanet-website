@@ -85,7 +85,7 @@
 	font-size: .7em;
 }
 
-.badges {
+.badges-row {
 	position: relative;
 }
 
@@ -93,11 +93,16 @@
 	text-align: center; 
 }
 
+.badges li {
+	list-style-type: none;
+	display: inline-block;
+	vertical-align: top;
+}
+
 .badge { 
 	border: 1px solid #DDD; 
 	padding: 5px; 
 	width: 100px; 
-	float: left;  
 	margin: 5px
 }
 
