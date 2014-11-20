@@ -26,7 +26,7 @@
 {% else %}
 <p>{% trans "No history for this participant yet" %}</p>
 {% endif %}
-<div id="user-charts" style="font-size:.8em">La répartition des symptomes parmi les participants n'est pas encore disponible, nous l'activerons dans quelques jours ! Merci pour votre patience.</div>
+<div id="user-charts"></div>
 <div id="user-badges"></div>
 
 <script type="text/javascript">
@@ -34,10 +34,8 @@ $(function(){
 	{% if use_badge %}
 	$('#user-badges').loading().load('/dashboard/badges/?gid={{gid}}');
 	{% endif %}
-	{% comment %}
 	{%if history|length %}
 	$('#user-charts').loading().load('/dashboard/chart/1/?gid={{gid}}', function() { init_my_charts(); });
 	{% endif %}
-	{% endcomment %}
 });
 </script>

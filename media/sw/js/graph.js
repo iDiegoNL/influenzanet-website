@@ -160,7 +160,7 @@ function syndrom_chart(container, json, health_status, last_health_status) {
 	
 	if(group) {
 		var x = margin_x + 150 + 50;
-		group_hbar = paper.hbarchart(x, 0, 150, 200, all_data.values, { 'colors':all_data.colors });
+		group_hbar = paper.hbarchart(x, 0, 150, 200, group_data.values, { 'colors':group_data.colors });
 		create_labels(paper, group_hbar, true, group_data, x, label_margin_x, false, true);
 		paper.text(x + 40, 220, group.label);
 	}
@@ -178,9 +178,7 @@ function StoryRaphael(history, users) {
 	var hh = { };
 	var n = history.length;
 	for(var i = 0; i < n; ++i) {
-	  var h = history[i],
-	   	  u = h.gid,
-		  time = h.time;
+	  var h = history[i],  u = h.gid, time = h.time;
 	  if(typeof(hh[u]) == 'undefined') {
 		hh[u] = [];
 	  }

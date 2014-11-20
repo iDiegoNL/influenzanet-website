@@ -12,7 +12,7 @@
 var health_status = {};
 {%for name,label in health_status.iteritems %}health_status['{{name}}']= "{{label}}";{%endfor%}
 var last_health_status = '{{last_health_status}}';
-var user_profile = {{ profile|safe }};
+var user_profile = {{ profile|default_if_none:"null"|safe }};
 {%if gid %}
 var user_avatar = {% if avatars %}"{{avatars.url}}{{ current_participant.avatar }}.png"{% else %}null{% endif %};
 {% endif %}

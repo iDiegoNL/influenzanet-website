@@ -9,7 +9,7 @@
  </blockquote>
 </div>
 <script type="text/javascript">
- var history = {{ history|safe }};
+ var household_history = {{ history|safe }};
  
  var users = {};
  {%for g,p in participants.iteritems %}users['{{g}}'] = '{{p.name}}';{%endfor%} 
@@ -18,7 +18,7 @@
  
  $(function() {
 	console.log('charts');
-	story = new StoryRaphael(history, users);	
+	story = new StoryRaphael(household_history, users);	
 	story.render('history');
  });
  
