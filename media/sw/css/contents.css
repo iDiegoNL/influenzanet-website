@@ -201,3 +201,11 @@ font-size: 1.4em;
 color: #7AB800;
 font-weight: bold;
 }
+
+.results-table {
+	margin: 1em;
+}
+
+.results-table td {
+	padding: .8em;
+}

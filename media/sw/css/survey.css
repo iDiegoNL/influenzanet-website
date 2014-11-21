@@ -118,6 +118,7 @@ padding: .3em;
  background-color:#007AB8;
 }
 
+
 /**
  * slider
  */
@@ -161,4 +162,13 @@ padding: .3em;
 
 .vas-worst-level {
 	 background-image: url(../avs-worst.png)
+}
+
+.vas-response  {
+	color: red;
+}
+
+.vas-response-ok {
+	color: #42D525;
+	font-weight: bold;
 }
