@@ -1,9 +1,10 @@
 import logging
 import sys
 from os import path
-
+import datetime
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.utils.http import int_to_base36
 
 from webassets import  Environment, Bundle
 from webassets.loaders import PythonLoader, LoaderError
@@ -55,6 +56,17 @@ def show_bundle(bundle, indent=0):
             print h + ' + ' + f
         else:
             show_bundle(f, indent + 2)
+            
+def update_assets_version():
+    ref = datetime.datetime(2014,11,21)
+    d = datetime.datetime.now()
+    delay = d - ref
+    version = int_to_base36(delay.seconds)
+    code = "ASSETS_VERSION= '%s'\n" % version
+    fn = path.join(settings.PROJECT_PATH, 'assets_version.py')
+    f = open(fn, 'w')
+    f.write(code)
+    f.close()
 
 class Command(BaseCommand):
 
@@ -99,8 +111,10 @@ class Command(BaseCommand):
         impl = GenericArgparseImplementation(env=env, log=log, no_global_options=True, prog=prog)
         try:
             impl.run_with_argv(args)
+            update_assets_version()
         except AssetCommandError, e:
             raise CommandError(e)
+        
         
 
 
