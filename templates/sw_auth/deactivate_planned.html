@@ -6,8 +6,16 @@
 
 <p>{%trans "Your account was planned to be deactivated because of its lack of activity"%}</p>
 
+<p>{%trans "By clicking on this link, your account has been reactivated." %}</p>
+
+{% comment %}
+ By clicking on the link the the email (conducting on this page) the user implicitly cancel the planned deactivation
+ User can deactivate manually the account, if finally
+{% endcomment %}
+
 <p class="warning">{%trans "If your want to deactivate your account click on the button below"%}
 
-<a href="{% url deactivate_request %}">
-
+<p class="centered">
+	<a href="{% url deactivate_request %}" class="button">{%trans "I confirm deactivation of my account" %}</a>
+</p>
 {% endblock %}
