@@ -46,7 +46,7 @@ js_base = Bundle(
      'sw/js/jquery-1.7.2.min.js',
      'pollster/jquery/js/jquery.tools.min.js',
      'sw/js/ui.jquerytools.js',
-     'sw/js/mobile.js',
+     'sw/js/jquery.browser.mobile.js',
      Bundle('sw/js/thirdparties.js'), #, filters='yui_js'
      Bundle('sw/sw.js'), #, filters='yui_js'
      'sw/js/cconsent.js',

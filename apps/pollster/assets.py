@@ -46,6 +46,7 @@ cms_media = osp.join(cms_path, 'media')
 js_pollster_base = Bundle(
   # 'pollster/jquery/js/jquery-1.5.2.min.js',                        
   'pollster/jquery/js/jquery-ui-1.8.14.min.js',
+  'sw/js/jquery.ui.touch-punch.min.js',
   # 'pollster/jquery/js/jquery.tools.min.js',
   'pollster/jquery/js/jquery.form.js',
   'pollster/jquery/js/jquery.cookie.js',
