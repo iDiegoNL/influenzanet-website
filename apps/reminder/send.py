@@ -7,7 +7,6 @@ from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.template import Context, loader, Template
 from django.core.urlresolvers import reverse
-from django.conf import settings
 from django.utils.html import strip_tags
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
@@ -32,6 +31,7 @@ def create_message(user, message, language, next=None):
     }
     c.update(site_context())
     c['site_logo'] = get_site_url() + c['site_logo']
+    c['site_url'] = get_site_url()
     inner = t.render(Context(c))
     template = 'reminder/message.html'
     
@@ -56,7 +56,7 @@ def send_reminders(fake=False):
     return i + 1
 
 def get_site_url():
-    return 'http://%s' % Site.objects.get_current().domain
+    return 'https://%s' % Site.objects.get_current().domain
 
 def get_media_url():
     return '%s%s' % (get_site_url(), settings.MEDIA_URL)
@@ -74,14 +74,14 @@ def get_login_url(user, next):
 
     domain = Site.objects.get_current()
     path = reverse('loginurl-index').strip('/')
-    loginurl_base = 'http://%s/%s' % (domain, path)
+    loginurl_base = 'https://%s/%s' % (domain, path)
 
     return '%s/%s' % (loginurl_base, key.key)
 
 def get_survey_url():
     domain = Site.objects.get_current()
     path = reverse('survey_index')
-    return 'http://%s%s' % (domain, path)
+    return 'https://%s%s' % (domain, path)
 
 def send(now, user, message, language, is_test_message=False, next=None):
     text_base, html_content = create_message(user, message, language, next)
