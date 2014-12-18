@@ -150,7 +150,7 @@ class Command(BaseCommand):
                             print " > sending [%d] %s " % (user.id, user.email,) 
                         send(now, user, message, language, next=next)
                     else:
-                        print '[fake] sending', user.email, message.subject
+                        print "[fake] sending [%d] %s %s " % (user.id, user.email, message.subject)
         except StopIteration:
             pass
         return i + 1
