@@ -190,8 +190,8 @@ class Command(BaseCommand):
             else:
                 message = self.get_reminder()
             
+            print "Newsletter #%d [%s] %s" % (message.id, str(message.date), message.subject)
             if check:
-                print "Newsletter #%d [%s] %s" % (message.id, str(message.date), message.subject)
                 return
             
             if next is None:
