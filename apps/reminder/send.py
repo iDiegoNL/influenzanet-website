@@ -33,8 +33,10 @@ def create_message(user, message, language, next=None):
     c.update(site_context())
     c['site_logo'] = get_site_url() + c['site_logo']
     inner = t.render(Context(c))
-
-    t = loader.get_template('reminder/message.html')
+    template = 'reminder/message.html'
+    if message.html_template is None:
+        template = message.html_template
+    t = loader.get_template(template)
     c['inner'] = inner
     c['MEDIA_URL'] = get_media_url()
     c['message'] = message

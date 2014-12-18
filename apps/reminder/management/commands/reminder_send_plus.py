@@ -8,6 +8,7 @@ from ...models import get_settings, UserReminderInfo, MockNewsLetter
 from django.db import connection
 from django.conf import settings
 from django.contrib.auth.models import User 
+from apps.reminder.models import NewsLetter
 
 
 def get_user_provider():
@@ -60,30 +61,25 @@ class Command(BaseCommand):
         make_option('--log', action='store', dest='log', default=None, help='Store user email in a log file'),
         make_option('--next', action='store', dest='next', default=None, help='Next url for login url'),
         make_option('--mock', action='store_true', dest="mock", default=False, help="Create a mock newsletter and fake send it (always fake)"),
+        make_option('--force', action='store_true', dest="force", default=False, help="Force the newsletter to be sent regardless user info state"),
+        make_option('--check', action='store_true', dest="check", default=False, help="Only check wich newsletter will be sent"),
     )
 
     def __init__(self):
         super(BaseCommand, self).__init__()
         self.log = None
         self.fake = False
+        self.force = False
 
     def get_reminder(self):
-        query = "SELECT n.id, subject, message, sender_email, sender_name, date, n.userlist, n.next FROM reminder_newslettertranslation t left join reminder_newsletter n on n.id=t.master_id where t.language_code='fr' and published=True order by date desc"
-        cursor = connection.cursor()
-        cursor.execute(query)
-        res = cursor.fetchone()
-        reminder = MockNewsLetter()
-        reminder.subject = res[1]
-        reminder.message = res[2]
-        reminder.sender_email = res[3]
-        reminder.sender_name = res[4]
-        reminder.date = res[5]
-        reminder.userlist = res[6]
-        reminder.next = res[7]
-        return reminder
+        res = list(NewsLetter.objects.language('fr').filter(published=True).order_by('-date'))
+        if(len(res) > 0):
+            return res[0]
+        raise Exception("No reminder found")
            
     def get_mock_reminder(self):
         reminder = MockNewsLetter()
+        reminder.id = 0
         reminder.subject = "Mock newsletter"
         reminder.message = "Lorem ipsum"
         reminder.sender_email = "mock@localhost"
@@ -143,6 +139,10 @@ class Command(BaseCommand):
                         print "[checker] skip id=%s" % str(user.id)
                         to_send = False
             
+                # If enforced mode : send regardless user info (only for test)
+                if self.force:
+                    to_send = True
+                
                 if to_send:
                     i += 1
                     if not self.fake:
@@ -160,11 +160,12 @@ class Command(BaseCommand):
         self.log = options.get('log', None)
         self.verbose = options.get('verbose', False)
         self.debug = options.get('debug', False)
+        self.force = options.get('force', False)
         user    = options.get('user', None)
         counter = options.get('counter', None)
         next = options.get('next', None)
         mock = options.get('mock', False)
-        
+        check = options.get('check', False)
         try:
             conf = get_settings()
         except:
@@ -188,6 +189,10 @@ class Command(BaseCommand):
                 self.fake = True
             else:
                 message = self.get_reminder()
+            
+            if check:
+                print "Newsletter #%d [%s] %s" % (message.id, str(message.date), message.subject)
+                return
             
             if next is None:
                 if message.next:

@@ -78,6 +78,8 @@ class NewsLetter(TranslatableModel):
 
     next = models.CharField(_("Next page to follow"), max_length=255, blank=True, null=True)
 
+    html_template = models.CharField(_("Email template"), max_length=255, blank=True, null=True)
+
     translations = TranslatedFields(
         subject = models.CharField(max_length=255),
         message = models.TextField(help_text="The strings {{ url }} and {{ unsubscribe_url }} may be used to refer to the profile url and unsubscribe url."),

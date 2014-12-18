@@ -68,7 +68,7 @@ admin.site.register(NewsLetterTemplate, NewsLetterTemplateAdmin)
 
 class NewsLetterAdmin(TranslatableAdmin):
     form = NewsLetterForm
-    list_display = ("__unicode__", "date")
+    list_display = ("__unicode__", "date", "published", "userlist", "next", "html_template")
 
     class Media:
         js = [join(settings.CMS_MEDIA_URL, path) for path in (
