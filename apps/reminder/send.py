@@ -34,7 +34,8 @@ def create_message(user, message, language, next=None):
     c['site_logo'] = get_site_url() + c['site_logo']
     inner = t.render(Context(c))
     template = 'reminder/message.html'
-    if message.html_template is None:
+    
+    if message.html_template is not None:
         template = message.html_template
     t = loader.get_template(template)
     c['inner'] = inner
