@@ -136,7 +136,8 @@ class Command(BaseCommand):
             
                 if to_send:
                     if not checker.check(user):
-                        print "[checker] skip id=%s" % str(user.id)
+                        if self.verbose:
+                            print "[checker] skip id=%s" % str(user.id)
                         to_send = False
             
                 # If enforced mode : send regardless user info (only for test)
