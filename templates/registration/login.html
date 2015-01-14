@@ -16,6 +16,12 @@
     </form>
 </div>
 
+<p>Se sei già un utente Influweb, fai login con la tua email e la tua password. Quando lo vorrai, potrai agganciare il tuo account influweb alle tue credenziali Facebook.</p>
+<p style="text-align:center">oppure</p>
+<p style="text-align:center">
+<a href="{% url socialauth_begin backend='facebook' %}" class="ifw-button-fb-login"><span>Accedi con Facebook</span></a>
+</p>
+
 {% endblock %}
 
 {% block col2 %}

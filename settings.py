@@ -121,6 +121,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "pybb.context_processors.processor",
     "apps.pollster.context_processors.last_survey",
     "apps.pollster.context_processors.surveyuser_count",
+    "social_auth.context_processors.social_auth_by_name_backends",
 )
 
 CMS_TEMPLATES = (
@@ -201,6 +202,7 @@ except:
     HAYSTACK_SEARCH_ENGINE = 'simple'
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
     'loginurl.backends.LoginUrlBackend',
 )

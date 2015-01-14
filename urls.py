@@ -68,6 +68,7 @@ urlpatterns = patterns('',
     
     url(r'^invite/', include('apps.sw_invitation.urls')),
 
+    url(r'^social/', include('social_auth.urls')),
 )
 
 if settings.DEBUG:

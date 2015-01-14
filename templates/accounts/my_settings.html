@@ -49,7 +49,24 @@
     <p><input type="submit" class="submitbutton" value="{% trans "Save" %}"></p>
     </form>
     <br /><hr />
-    
+
+    <h2>{% trans "Facebook" %}</h2>    
+
+    <p>Visita la nostra <a href="https://www.facebook.com/pages/Influwebit/162902929396">pagina Facebook</a> 
+       e clicca su “like” per essere sempre aggiornato sull’attività di raccolta dati per la stagione influenzale 2014/15.</p>
+
+    {% if social_auth.facebook %} 
+    <p>Sei connesso con le tue credenziali Facebook.
+    {% if social_auth.facebook.user.password != '!' %}
+    Puoi <a href="{% url socialauth_disconnect_individual social_auth.facebook.provider social_auth.facebook.id %}">disconnettere le tue credenziali</a> 
+    Facebook e usare il tuo username e password che hai scelto quando ti sei registrato a Influweb.
+    {% endif %}
+    </p>
+    {% else %}
+    <p>Sei connesso con le tue credenziali Influweb. Quando lo vorrai, potrai agganciare il tuo account influweb alle tue credenziali Facebook.</p>
+    <p><a href="{% url socialauth_begin backend='facebook' %}">Connetti a Facebook</a></p>
+    {% endif %}
+
 </div>
 
 {% endblock %}
