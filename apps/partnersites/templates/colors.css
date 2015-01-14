@@ -5,7 +5,7 @@
 }
 
 #account ul.anonymous li:hover, #account ul.member li:hover, #searchbar input#searchsubmit:hover, input#commentsubmit:hover {
- background: #{{ settings.dark_color }};
+ background: #000;
 }
 
 #col2 p.title, #col3 p.title {
@@ -29,7 +29,7 @@
 #box input#boxsubmit:focus,
 .submitbutton:hover,
 .submitbutton:focus {
- background: #{{ settings.dark_color }};
+ background: #000;
 }
 
 /* Forum */
