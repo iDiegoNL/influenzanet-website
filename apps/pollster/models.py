@@ -12,6 +12,7 @@ from . import dynamicmodels, json
 from .db.utils import get_db_type, convert_query_paramstyle
 import os, re, shutil, warnings, datetime, csv
 from django.conf import settings
+from django.utils.encoding import smart_str, smart_unicode
 
 DEG_TO_RAD = pi/180
 RAD_TO_DEG = 180/pi
@@ -1085,7 +1086,7 @@ class Chart(models.Model):
         if data and len(data) > 0:
             for i in range(len(data[0])):
                 if description[i][0] not in skip_cols:
-                    result[description[i][0]] = str(data[0][i])
+                    result[description[i][0]] = smart_str(data[0][i])
         return json.dumps(result)
 
     def get_map_tile(self, user_id, global_id, z, x, y):
