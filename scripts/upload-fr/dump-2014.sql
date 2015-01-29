@@ -22,18 +22,24 @@ SELECT 'FR',
 	"Q7", "Q7b", 
 	CASE WHEN "Q8"=6 OR "Q8"=1 THEN 1 else "Q8" END, 
 	"Q9", 
-	"Q10", "Q10b", "Q10b_1_open", "Q10c_0", "Q10c_1", "Q10c_2", "Q10c_3", "Q10c_4", "Q10c_5", "Q10c_6", "Q10c_7", "Q10c_8", "Q10c_9", "Q10d_0", "Q10d_1", "Q10d_2", "Q10d_3", "Q10d_4", "Q10d_5", "Q10d_6", "Q10d_7", "Q10d_8", "Q10d_9", "Q10d_10", "Q10d_11", "Q10d_12", "Q10d_13", "Q10d_14", 
+	"Q10", "Q10b", "Q10b_1_open", 
+	CASE WHEN "Q10c_0"=True OR "Q10c_11"=True THEN True ELSE False END as "Q10c_0", "Q10c_1", "Q10c_2", "Q10c_3", "Q10c_4", "Q10c_5", "Q10c_6", "Q10c_7", "Q10c_8", "Q10c_9", 
+	"Q10d_0", "Q10d_1", "Q10d_2", "Q10d_3", "Q10d_4", "Q10d_5", "Q10d_6", "Q10d_7", "Q10d_8", "Q10d_9", "Q10d_10", "Q10d_11", "Q10d_12", "Q10d_13", CASE WHEN  "Q10d_14"=True OR "Q10d_15"=True OR "Q10d_16" THEN True ELSE False END AS "Q10d_14", 
 	"Q11_0", "Q11_1", "Q11_2", "Q11_3", "Q11_4", "Q11_5", "Q11_6", 
 	"Q12", 
-	"Q12b", 
-	"Q13", 
+	-- Q12b
+	CASE    WHEN "Q12"=0 AND "Q12b" IS NOT NULL THEN "Q12b"
+	      WHEN "Q12"=0 AND "Q12b" IS NULL AND "G1_1_open" IS NOT NULL AND Extract(quarter from age(timestamp, "G1_1_open" - interval '294 day'))::int > 0 THEN Extract(quarter from age(timestamp, "G1_1_open" - interval '294 day'))::int - 1
+              WHEN "Q12"=0 AND "Q12b" IS NULL AND "G2_1_open" IS NOT NULL AND Extract(quarter from age(timestamp, "G2_1_open" + interval '14 day'))::int > 0 THEN Extract(quarter from age(timestamp, "G2_1_open" + interval '14 day'))::int - 1
+               ELSE NULL
+             END as "Q12b",
+	CASE WHEN "Q13"=7 THEN 6 ELSE "Q13" END as "Q13", 
 	"Q14_1", "Q14_2", "Q14_3", "Q14_4", "Q14_5", 
 	NULL, NULL, NULL, NULL, NULL, /* "Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", */
 	"Q16_0", "Q16_1", "Q16_2", "Q16_3", "Q16_4", 
 	"Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5" /* "Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5"  */
 	FROM public.pollster_results_intake
 	WHERE channel='';
-	;
 	
 /* 
 * 2014-2015 data
@@ -47,7 +53,12 @@ SELECT
 	"Q4", "Q4_0_open", 
 	"Q5", 
 	"Q6", "Q6_1_open", "Q6b", "Q6c", "Q6d", 
-	"Q7_0", "Q7_1", "Q7_3", "Q7_2", "Q7_4", "Q7_5", 
+	"Q7_0", 
+	"Q7_1", 
+	"Q7_3", 
+	"Q7_2",
+	CASE WHEN "Q7_4"=True OR "Q7_7"=True OR "Q7_8"=True OR "Q7_6"=True OR "Q7_9"=True OR "Q7_10"=True THEN True ELSE False END as "Q7_4", 
+	"Q7_5", 
 	"Q7b_multi_row1_col1", NULL, "Q7b_multi_row3_col1", "Q7b_multi_row4_col1",
 	"Q8_0", "Q8_1", "Q8_2", "Q8_3", "Q8_4", "Q8_5", 
 	"Q8b_multi_row1_col1", "Q8b_multi_row2_col1", NULL, "Q8b_multi_row3_col1", /* row3 not provided, row4<-row3 */
@@ -56,4 +67,3 @@ SELECT
 	"Q10", "Q10b", "Q10c", 
 	"Q11" FROM public.pollster_results_weekly
 	WHERE channel='';
-

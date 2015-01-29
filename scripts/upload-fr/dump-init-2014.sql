@@ -144,7 +144,12 @@ SELECT
 	"Q4", "Q4_0_open", 
 	"Q5", 
 	"Q6", "Q6_1_open", "Q6b", "Q6c", "Q6d", 
-	"Q7_0", "Q7_1", "Q7_3", "Q7_2", "Q7_4", "Q7_5", 
+	"Q7_0", 
+	"Q7_1", 
+	"Q7_3", 
+	"Q7_2", 
+	CASE WHEN "Q7_4"=True OR "Q7_7"=True OR "Q7_8"=True OR "Q7_6"=True THEN True ELSE False END as "Q7_4", 
+	"Q7_5", 
 	"Q7b_multi_row1_col1", NULL, "Q7b_multi_row3_col1", "Q7b_multi_row4_col1",
 	"Q8_0", "Q8_1", "Q8_2", "Q8_3", "Q8_4", "Q8_5", 
 	"Q8b_multi_row1_col1", "Q8b_multi_row2_col1", NULL, "Q8b_multi_row3_col1", /* row3 not provided, row4<-row3 */
