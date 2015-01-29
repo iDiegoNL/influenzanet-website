@@ -2,10 +2,10 @@
 * First Dump to insert previous season data
 */
 
-TRUNCATE TABLE epidb.pollster_results_intake;
+TRUNCATE TABLE epidb_fr.pollster_results_intake;
 
 /* 2011-2012 data */
-INSERT INTO epidb.pollster_results_intake
+INSERT INTO epidb_fr.pollster_results_intake
 SELECT 'FR',
     global_id, "timestamp", 
 	CASE WHEN "Q0"=3 OR "Q0"=1 THEN 1 ELSE "Q0" END AS "Q0", 
@@ -35,7 +35,7 @@ French changes:
 - Q8 : added proposition 6
 - Q5 Proposition 5 ajoute (non envoye)
 */
-INSERT INTO epidb.pollster_results_intake
+INSERT INTO epidb_fr.pollster_results_intake
 SELECT 'FR',
     global_id, "timestamp", 
 	CASE WHEN "Q0"=3 OR "Q0"=1 THEN 1 ELSE "Q0" END AS "Q0", 
@@ -62,7 +62,7 @@ SELECT 'FR',
 /*
 * 2013-2014 intake
 */	
-INSERT INTO epidb.pollster_results_intake
+INSERT INTO epidb_fr.pollster_results_intake
 SELECT 'FR',
     global_id, "timestamp", 
 	CASE WHEN "Q0"=3 OR "Q0"=1 THEN 1 ELSE "Q0" END AS "Q0", 
@@ -85,10 +85,10 @@ SELECT 'FR',
 	"Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5" /* "Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5"  */
 	FROM public.pollster_results_intake_2013;
 	
-TRUNCATE TABLE epidb.pollster_results_weekly;
+TRUNCATE TABLE epidb_fr.pollster_results_weekly;
 
 /* 2011-2012 data */
-INSERT INTO epidb.pollster_results_weekly
+INSERT INTO epidb_fr.pollster_results_weekly
 SELECT 
 	'FR', global_id, "timestamp", 
 	"Q1_0", "Q1_1", "Q1_2", "Q1_3", "Q1_4", "Q1_5", "Q1_6", "Q1_7", "Q1_8", "Q1_9", "Q1_10", "Q1_11", "Q1_12", "Q1_13", "Q1_14", "Q1_15", "Q1_16", "Q1_17", "Q1_18", "Q1_19", 
@@ -114,7 +114,7 @@ French changes :
 - Q9_7 (Homeopathy to remap to Q9_5(Other)
 */
 
-INSERT INTO epidb.pollster_results_weekly
+INSERT INTO epidb_fr.pollster_results_weekly
 SELECT 
 	'FR', global_id, "timestamp", 
 	"Q1_0", "Q1_1", "Q1_2", "Q1_3", "Q1_4", "Q1_5", "Q1_6", "Q1_7", "Q1_8", "Q1_9", "Q1_10", "Q1_11", "Q1_12", "Q1_13", "Q1_14", "Q1_15", "Q1_16", "Q1_17", "Q1_18", "Q1_19", 
@@ -135,7 +135,7 @@ SELECT
 /* 
 * 2013-2014 data
 */
-INSERT INTO epidb.pollster_results_weekly
+INSERT INTO epidb_fr.pollster_results_weekly
 SELECT 
 	'FR', global_id, "timestamp", 
 	"Q1_0", "Q1_1", "Q1_2", "Q1_3", "Q1_4", "Q1_5", "Q1_6", "Q1_7", "Q1_8", "Q1_9", "Q1_10", "Q1_11", "Q1_12", "Q1_13", "Q1_14", "Q1_15", "Q1_16", "Q1_17", "Q1_18", "Q1_19", 

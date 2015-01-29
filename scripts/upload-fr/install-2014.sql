@@ -1,9 +1,9 @@
-CREATE SCHEMA epidb;
+CREATE SCHEMA epidb_fr;
 
-GRANT ALL ON SCHEMA epidb To epiwork;
-GRANT ALL ON SCHEMA epidb TO "DBA";
+GRANT ALL ON SCHEMA epidb_fr To epiwork;
+GRANT ALL ON SCHEMA epidb_fr TO "DBA";
 
-CREATE TABLE epidb.pollster_results_weekly (
+CREATE TABLE epidb_fr.pollster_results_weekly (
     country character(2),
     global_id character varying(36),
     "timestamp" timestamp with time zone,
@@ -94,12 +94,12 @@ CREATE TABLE epidb.pollster_results_weekly (
     CONSTRAINT "pollster_results_weekly_Q9b_check5" CHECK (("Q9b" >= 0))
 );
 
-GRANT ALL ON TABLE epidb.pollster_results_weekly TO postgres;
-GRANT ALL ON TABLE epidb.pollster_results_weekly TO epiwork;
-GRANT ALL ON TABLE epidb.pollster_results_weekly TO "DBA";
-GRANT ALL ON TABLE epidb.pollster_results_weekly TO "Statistician";
+GRANT ALL ON TABLE epidb_fr.pollster_results_weekly TO postgres;
+GRANT ALL ON TABLE epidb_fr.pollster_results_weekly TO epiwork;
+GRANT ALL ON TABLE epidb_fr.pollster_results_weekly TO "DBA";
+GRANT ALL ON TABLE epidb_fr.pollster_results_weekly TO "Statistician";
 
-CREATE TABLE epidb.pollster_results_intake (
+CREATE TABLE epidb_fr.pollster_results_intake (
     country character(2),
     global_id character varying(36),
     "timestamp" timestamp with time zone,
@@ -219,10 +219,10 @@ CREATE TABLE epidb.pollster_results_intake (
     CONSTRAINT "pollster_results_intake_Q9_check6" CHECK (("Q9" >= 0))
 );
 
-GRANT ALL ON TABLE epidb.pollster_results_intake TO postgres;
-GRANT ALL ON TABLE epidb.pollster_results_intake TO epiwork;
-GRANT ALL ON TABLE epidb.pollster_results_intake TO "DBA";
-GRANT ALL ON TABLE epidb.pollster_results_intake TO "Statistician";
+GRANT ALL ON TABLE epidb_fr.pollster_results_intake TO postgres;
+GRANT ALL ON TABLE epidb_fr.pollster_results_intake TO epiwork;
+GRANT ALL ON TABLE epidb_fr.pollster_results_intake TO "DBA";
+GRANT ALL ON TABLE epidb_fr.pollster_results_intake TO "Statistician";
 
 -- Dump Previous seasons once
 
