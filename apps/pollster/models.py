@@ -1403,7 +1403,7 @@ class Chart(models.Model):
             username = settings.DATABASES["default"]["USER"]
             password = settings.DATABASES["default"]["PASSWORD"]
             return mapnik.PostGIS(host=host, port=port, user=username, password=password, dbname=name,
-                geometry_field="geometry", estimate_extent=False, table=table)
+                geometry_field="geometry", estimate_extent=False, table=table, srid=4326)
 
     def get_map_tile_base(self):
         return "%s/_pollster_tile_cache/survey_%s/%s" % (settings.POLLSTER_CACHE_PATH, self.survey.id, self.shortname)
@@ -1431,7 +1431,7 @@ class Chart(models.Model):
     def get_view_name(self):
         return self.get_table_name() + "_view"
 
-    def update_table(self):
+    def update_table(self, verbose=False):
         table_query = self.sqlsource
         geo_table = self.geotable
         if table_query:
@@ -1448,13 +1448,23 @@ class Chart(models.Model):
                                   FROM %s B, (SELECT * FROM %s) A
                                  WHERE upper(A.zip_code_key) = upper(B.zip_code_key)""" % (geo_table, table,)
             cursor = connection.cursor()
+            if verbose:
+                print "droping  view %s" % (view,)
             cursor.execute("DROP VIEW IF EXISTS %s" % (view,))
+            if verbose:
+                print "droping  table %s" % (table,)
             cursor.execute("DROP TABLE IF EXISTS %s" % (table,))
             if not self.realtime:
+                if verbose:
+                    print "creating  table %s" % (table,)
                 cursor.execute("CREATE TABLE %s AS %s" % (table, table_query))
                 if self.type.shortname[:10] == "google-map":
+                    if verbose:
+                        print "creating  view %s" % (view, )
                     cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
                 transaction.commit_unless_managed()
+                if verbose:
+                    print "clearing tile cache..." 
                 self.clear_map_tile_cache()
             return True
         return False
