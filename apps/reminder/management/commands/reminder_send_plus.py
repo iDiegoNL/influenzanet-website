@@ -127,7 +127,7 @@ class Command(BaseCommand):
                     continue
                 
                 if self.verbose:
-                    print info.last_reminder
+                    print "id=%d last=%s " % (user.id, str(info.last_reminder),),
                     
                 if info.last_reminder is None:
                     to_send = True
@@ -137,7 +137,7 @@ class Command(BaseCommand):
                 if to_send:
                     if not checker.check(user):
                         if self.verbose:
-                            print "[checker] skip id=%s" % str(user.id)
+                            print " [checker] skip id=%s" % str(user.id),
                         to_send = False
             
                 # If enforced mode : send regardless user info (only for test)
@@ -152,6 +152,9 @@ class Command(BaseCommand):
                         send(now, user, message, language, next=next)
                     else:
                         print "[fake] sending [%d] %s %s " % (user.id, user.email, message.subject)
+                else:
+                    if self.verbose:
+                        print " skip"
         except StopIteration:
             pass
         return i + 1
