@@ -8,7 +8,21 @@ from haystack.forms import SearchForm
 from apps.ew_contact_form.forms import ContactForm
 from views import LatestEntriesFeed
 
+
+from tastypie.api import Api
+from apps.pollster.api.access import AccessEndpoint
+from apps.pollster.api.survey import SurveyEndpoint
+from apps.pollster.api.members import MembersEndpoint
+from apps.pollster.api.results import ResultsEndpoint
+
+v1_api = Api(api_name='v1')
+v1_api.register(AccessEndpoint())
+v1_api.register(SurveyEndpoint())
+v1_api.register(MembersEndpoint())
+v1_api.register(ResultsEndpoint())
+
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -69,6 +83,8 @@ urlpatterns = patterns('',
     url(r'^invite/', include('apps.sw_invitation.urls')),
 
     url(r'^social/', include('social_auth.urls')),
+    
+    (r'^api/', include(v1_api.urls)),    
 )
 
 if settings.DEBUG:

@@ -22,4 +22,5 @@ pytils
 django-annoying
 postmarkup
 markdown
+django-tastypie
 
