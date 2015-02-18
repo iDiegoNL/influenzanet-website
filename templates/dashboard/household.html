@@ -1,4 +1,9 @@
-{% load i18n %}
+{% load i18n  sekizai_tags cms_tags menu_tags  %}
+
+{% addtoblock "js" %}<script type="text/javascript" src="//www.google.com/jsapi"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ MEDIA_URL }}pollster/wok/js/wok.pollster.charts.js"></script>{% endaddtoblock %}
+
 <p>{% blocktrans %}To manage your household, view or modify the participants of your household, please visit <a href="{{url_group_management}}">the group management page</a>{% endblocktrans %}<span class="tooltip" title="{%trans "Do you know the menu" %}"><i class="icon icon-tip"></i></span></p>
 <div class="chart-box">
 <h3>Historique des états de santé des participants enregistrés sur votre compte</h3>
@@ -7,6 +12,27 @@
  	Ce graphique indique pour chaque participants les états de santé rapportés à GrippeNet.fr (selon le classement du site). 
 	L'état de santé de chaque participant est représenté sur une ligne.
  </blockquote>
+</div>
+<div class="chart-box">
+ <h3>Carte des participants</h3>
+ <div class="survey-chart">
+  {% if chart.has_data %}
+   <div id="pollster-chart-{{ chart.id }}" class="chart chart-{{ chart.survey.shortname }}-{{ chart.shortname }}"
+        data-chart-url="{% url pollster_chart_data chart.survey.shortname chart.shortname %}"
+        data-chart-type="{{ chart.type.shortname }}" style="width:680px; height:700px">
+    </div>
+    {% else %}
+    <div class="chart chart-{{ chart.survey.shortname }}-{{ chart.shortname }} chart-no-data">No available data</div>
+    {% endif %}
+</div>
+ <blockquote>
+ 	Cette carte représente la proportion de participants ayant un syndrome grippal (selon la <a href="{% page_url  "aide-etats-de-sante" %}">définition de GrippeNet.fr</a>) par canton. Plus la proportion de participants qui ont un syndrome grippal est elevé cette semaine, plus le canton aura une couleur tendant vers le rouge.
+	Afin de prendre en compte la variation de participation d'une semaine à l'autre, les participants considérés comme actifs une semaine donnée sont comptés sur les 3 dernières semaines.
+ </blockquote>
+ <p class="alert alert-warning">
+ 	Attention, cette carte concerne les données de la semaine actuelle (reçues jusqu'a aujourd'hui), elle représente donc une situation incomplète de la semaine. Elle va se modifier quotidiennement et pourra paraitre plus "verte" que la
+	carte que nous publions dans la newsletter hebdomadaire (qui concerne de la semaine précédente, et utilise des données plus complètes).
+ </p>
 </div>
 <script type="text/javascript">
  var household_history = {{ history|safe }};
@@ -21,5 +47,9 @@
 	story = new StoryRaphael(household_history, users);	
 	story.render('history');
  });
- 
- </script>
+ wok.pollster.charts.init(function() {
+        $(function() {
+            wok.pollster.charts.createCharts('.survey-chart .chart');
+        });
+ });
+</script>

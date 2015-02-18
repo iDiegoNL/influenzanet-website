@@ -15,6 +15,7 @@ from apps.dashboard.models import UserBadge, Badge
 
 from django.http import Http404, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
+from apps.pollster.models import Chart
 
 DASHBOARD_USE_BADGE = getattr(settings, 'DASHBOARD_USE_BADGE', False)
 
@@ -206,7 +207,8 @@ def index(request):
             
     else:
         history = _get_houshold_history(user_id)
-        context['history'] = encoder.encode(history)    
+        context['history'] = encoder.encode(history)
+        context['chart'] = Chart.objects.get(shortname='canton_health')    
     
     context['avatars'] = _get_avatars(with_list=False)
     
