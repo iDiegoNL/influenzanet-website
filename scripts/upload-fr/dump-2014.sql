@@ -33,7 +33,7 @@ SELECT 'FR',
               WHEN "Q12"=0 AND "Q12b" IS NULL AND "G2_1_open" IS NOT NULL AND Extract(quarter from age(timestamp, "G2_1_open" + interval '14 day'))::int > 0 THEN Extract(quarter from age(timestamp, "G2_1_open" + interval '14 day'))::int - 1
                ELSE NULL
              END as "Q12b",
-	CASE WHEN "Q13"=7 THEN 6 ELSE "Q13" END as "Q13", 
+	CASE WHEN "Q13" = 5 OR "Q13"=6 OR "Q13"=7 THEN 0 ELSE "Q13" END, 
 	"Q14_1", "Q14_2", "Q14_3", "Q14_4", "Q14_5", 
 	NULL, NULL, NULL, NULL, NULL, /* "Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", */
 	"Q16_0", "Q16_1", "Q16_2", "Q16_3", "Q16_4", 
