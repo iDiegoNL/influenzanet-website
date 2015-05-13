@@ -61,7 +61,7 @@ class Command(BaseCommand):
         
         next = reverse('survey_fill', kwargs={'shortname':'pregnant'}) + '?gid=' + gid
         
-        text_content, html_content = create_message(user, )
+        text_content, html_content = create_message(user, next=next )
         
         text_content = strip_tags(text_content)
         msg = EmailMultiAlternatives(
@@ -74,13 +74,17 @@ class Command(BaseCommand):
 
         try:
             msg.send()
+            return True
         except Exception, e:
             print e
+            return False
     
     def handle(self, *args, **options):
         
-        #participants = PregnantCohort.objects.filter(date_reminder__gt=datetime.date())
-        participants = PregnantCohort.objects.all()[0:1]
+        now = datetime.date.today()
+        
+        participants = PregnantCohort.objects.filter(date_reminder__lt=now)
+        #participants = PregnantCohort.objects.all()[0:1]
         
         provider = EpiworkUserProxy()
         
@@ -89,19 +93,29 @@ class Command(BaseCommand):
         responsents = cursor.fetchall()
         respondents = [r[0] for r in responsents] 
         
+        print "%d particpants to scan" % ( len(participants))
         for p in participants: 
             su = p.survey_user
             suid = su.id
             dju = su.user
             
             if suid in respondents:
-                print "%d already responded" % (suid,)
+                print "participant #%d already responded" % (suid,)
                 continue 
+     
+            if p.reminder_count > 2:
+                print "participant #%d reached max reminders" % (suid,)
+                continue
             
             account = provider.find_by_django(dju)
             if account is not None:
-                self.send_email(dju, su.global_id, account.email)
-              
+                print "sending reminder to participant #%d <%s>" %(suid, account.email)
+                if self.send_email(dju, su.global_id, account.email):
+                    p.reminder_count = p.reminder_count + 1
+                    p.date_reminder = now + datetime.timedelta(days=15) # future date
+                    p.save()
+            else:
+                print "Unable to find email for participant #%d" %(suid,)
             
         
         
