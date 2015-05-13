@@ -67,7 +67,7 @@ class Command(BaseCommand):
         msg = EmailMultiAlternatives(
             'Etude G-GrippeNet',
             body=text_content,
-            to=[user.email],
+            to=[email],
             )
 
         msg.attach_alternative(html_content, "text/html")
