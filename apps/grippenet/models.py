@@ -7,6 +7,8 @@ class PregnantCohort(models.Model):
     date_created = models.DateField(auto_now=True)
     active = models.BooleanField(default=True)
     change_channel = models.BooleanField(default=True)
+    date_reminder = models.DateField(null=True)
+    reminder_count = models.IntegerField(default=0)
     
     def __str__(self):
         return '<Pregnant' + str(self.survey_user.id) +'>'
