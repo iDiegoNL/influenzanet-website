@@ -321,3 +321,31 @@ class EpiworkUserProvider(object):
     
     def next(self): 
         return self.fake(next(self.iter))
+    
+
+class EpiworkUserProxy(object):
+    """
+        Make a proxy between Sw Auth user Model (EpiworkUser) and Django classic User model (User)
+    """    
+    def __init__(self):
+        self.users = None
+    
+    def _load_users(self):
+        self.users = EpiworkUser.objects.filter(is_active=True)
+    
+    def get_users(self):
+        if self.users is None:
+            self._load_users()
+        return self.users
+    
+    def find_by_django(self, django_user):
+        """ 
+            Retrive the Epiwork User corresponding to this
+        """ 
+        username = django_user.username
+        
+        for u in self.get_users():
+            candidate_username = u.get_user()
+            if candidate_username == username:
+                return u
+        return None

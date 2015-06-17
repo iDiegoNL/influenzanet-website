@@ -40,7 +40,6 @@ class HouseholdDataSource(ClassDataSource):
         h['household_3'] = (nb == 3) & has_weekly
         h['household_4'] = (nb == 4) & has_weekly
         h['household_5'] = (nb >= 5) & has_weekly
-        print h
         return h
 
 class PregnantProfileDataSource(ClassDataSource):
