@@ -5,7 +5,11 @@ import datetime
 from apps.common.mail import send_message, create_message_from_template
 
 class Anonymizer:
-    
+    """
+    This class handles the anonymization of inactive user
+    Users are warned by an email after [login_delay] days without a login
+    If the renew their connexion
+    """
     def __init__(self):
         self.waiting_delay = 12
         self.login_delay = 30*18

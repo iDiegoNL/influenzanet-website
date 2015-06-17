@@ -216,6 +216,7 @@ class AnonymizeLog(models.Model):
     EVENT_DONE      = 2 # Account anonymized
     EVENT_MANUALLY  = 3 # Account anonymized by administrator
     EVENT_CANCELLED = 4 # Account anonymization cancelled by user login
+    EVENT_CONFIRMED = 5 # Account confirmed by user 
     
     user = models.ForeignKey(EpiworkUser)
     date = models.DateTimeField(auto_now_add=True)

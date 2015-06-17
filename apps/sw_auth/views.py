@@ -19,9 +19,8 @@ from apps.sw_auth.models import EpiworkUser
 from apps.sw_auth.utils import send_activation_email,EpiworkToken
 from apps.sw_auth.logger import auth_notify
 from apps.sw_auth.forms import UserEmailForm
-#from apps.sw_auth import anonymize
-#from apps.sw_auth.anonymize import Anonymizer
 
+from apps.sw_auth.anonymize import Anonymizer
 
 def render_template(name, request, context=None):
     return render_to_response('sw_auth/'+name+'.html',
@@ -236,8 +235,6 @@ def deactivate_request(request):
         return render_template('password_reset_error', request)
     except KeyError:
         return render_template('no_settings', request)
-    
-  
     
 def index(request):
     """
