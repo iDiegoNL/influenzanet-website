@@ -19,19 +19,13 @@ from apps.common.db import get_cursor
 from apps.sw_auth.models import EpiworkUserProxy
 
 from ...reminder import get_login_url, create_message
-from optparse import make_option
 
 class Command(BaseCommand):
     help = 'Send Reminder about Pregnant survey'
     
-    option_list = BaseCommand.option_list + (
-        make_option('-s', '--survey', action='store', type="string", dest='survey',  help='Survey to redirect to'),
-        make_option('-l', '--list', action='store', type="string",  dest='list', help='Participants from list'),
-    )
-    
-    def send_email(self, user, gid, email, shortname):
+    def send_email(self, user, gid, email):
         
-        next = reverse('survey_fill', kwargs={'shortname': shortname}) + '?gid=' + gid
+        next = reverse('survey_fill', kwargs={'shortname':'pregnant'}) + '?gid=' + gid
         
         text_content, html_content = create_message(user, next=next )
         
@@ -55,16 +49,13 @@ class Command(BaseCommand):
         
         now = datetime.date.today()
         
-        survey = options.get('survey')
-        list = options.get('list')
-        
         participants = PregnantCohort.objects.filter(date_reminder__lt=now)
         #participants = PregnantCohort.objects.all()[0:1]
         
         provider = EpiworkUserProxy()
         
         cursor = get_cursor()
-        cursor.execute("SELECT distinct s.id as person_id from %s" % (survey))
+        cursor.execute("SELECT distinct s.id as person_id from pollster_results_pregnant p left join survey_surveyuser s on p.global_id=s.global_id")
         responsents = cursor.fetchall()
         respondents = [r[0] for r in responsents] 
         
