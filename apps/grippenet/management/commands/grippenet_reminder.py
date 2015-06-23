@@ -1,33 +1,39 @@
 from django.core.management.base import BaseCommand
+from optparse import make_option
 
-from django.conf import settings
 from apps.grippenet.models import PregnantCohort
 from django.core.urlresolvers import reverse
-from django.db.models import Q
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
-from django.contrib.sites.models import Site
-from django.contrib.auth.models import User
-
-import loginurl.utils
-from apps.partnersites.context_processors import site_context
 
 import datetime
-import loginurl
 
 from apps.common.db import get_cursor
 from apps.sw_auth.models import EpiworkUserProxy
 
-from ...reminder import get_login_url, create_message
+from ...reminder import create_message
 
 class Command(BaseCommand):
     help = 'Send Reminder about Pregnant survey'
     
+    option_list = BaseCommand.option_list + (
+        make_option('-s', '--survey', action='store', type="string", dest='survey',  help='Survey to redirect to'),
+        make_option('-l', '--list', action='store', type="string",  dest='list', help='Participants from list'),
+        make_option('-t', '--template', action='store', type="string",  dest='template', help='template name (without .html)'),
+        make_option('-f', '--fake', action='store_true',  dest='fake', help='fake sending', default=False),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(Command, self).__init__(*args, **kwargs)
+        self.template = ''
+        self.survey = ''
+        self.fake = False
+
     def send_email(self, user, gid, email):
         
-        next = reverse('survey_fill', kwargs={'shortname':'pregnant'}) + '?gid=' + gid
+        next = reverse('survey_fill', kwargs={'shortname': self.survey}) + '?gid=' + gid
         
-        text_content, html_content = create_message(user, next=next )
+        text_content, html_content = create_message(user, next=next, template=self.template +'.html' )
         
         text_content = strip_tags(text_content)
         msg = EmailMultiAlternatives(
@@ -38,6 +44,10 @@ class Command(BaseCommand):
 
         msg.attach_alternative(html_content, "text/html")
 
+        if self.fake:
+            print '[fake]',
+            return True
+        
         try:
             msg.send()
             return True
@@ -45,26 +55,54 @@ class Command(BaseCommand):
             print e
             return False
     
+    def get_participants(self, listname):
+        cursor = get_cursor()
+        cursor.execute("SELECT id from %s" % (listname))
+        results = cursor.fetchall()
+        results = [r[0] for r in results] 
+        
+        p = PregnantCohort.objects.all().filter(survey_user__in=results)
+        
+        return p
+    
+    def get_respondents(self, survey):
+        cursor = get_cursor()
+        table = "pollster_results_%s" % (survey)
+        cursor.execute("SELECT distinct s.id as person_id from %s p left join survey_surveyuser s on p.global_id=s.global_id" % (table))
+        responsents = cursor.fetchall()
+        respondents = [r[0] for r in responsents] 
+        return respondents
+    
     def handle(self, *args, **options):
+        
+        survey = options.get('survey')
+        
+        self.survey = survey
+        
+        self.template = options.get('template')
+        
+        self.fake = options.get('fake')
+        
+        list = options.get('list')
         
         now = datetime.date.today()
         
-        participants = PregnantCohort.objects.filter(date_reminder__lt=now)
-        #participants = PregnantCohort.objects.all()[0:1]
+        participants = self.get_participants(list)
         
         provider = EpiworkUserProxy()
         
-        cursor = get_cursor()
-        cursor.execute("SELECT distinct s.id as person_id from pollster_results_pregnant p left join survey_surveyuser s on p.global_id=s.global_id")
-        responsents = cursor.fetchall()
-        respondents = [r[0] for r in responsents] 
+        # Get 
+        respondents = self.get_respondents(survey)
         
         print "%d particpants to scan" % ( len(participants))
         for p in participants: 
             su = p.survey_user
             suid = su.id
             dju = su.user
-                
+            if suid in respondents:
+                print "participant #%d already responded" % (suid,)
+                continue 
+    
             account = provider.find_by_django(dju)
             if account is not None:
                 print "sending reminder to participant #%d <%s>" %(suid, account.email)

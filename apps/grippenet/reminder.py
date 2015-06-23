@@ -21,10 +21,11 @@ def get_login_url(user, next):
 
     return '%s/%s' % (loginurl_base, key.key)
 
-def create_message(user, next=None):
+def create_message(user, next=None, template='pregnant.html', layout='ggrippenet.html'):
+    
     activate('fr')
 
-    t = loader.get_template('pregnant.html')
+    t = loader.get_template(template)
     c = {
         'url': get_login_url(user, next),
     }
@@ -35,8 +36,10 @@ def create_message(user, next=None):
     
     c['site_url'] = site_url
     inner = t.render(Context(c))
-    template = 'ggrippenet.html'
-    t = loader.get_template(template)
+    
+    t = loader.get_template(layout)
+    
     c['inner'] = inner
     c['MEDIA_URL'] = media_url
+    
     return inner, t.render(Context(c))
