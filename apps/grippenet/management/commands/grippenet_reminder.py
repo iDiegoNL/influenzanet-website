@@ -7,6 +7,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 
 import datetime
+import time
 
 from apps.common.db import get_cursor
 from apps.sw_auth.models import EpiworkUserProxy
@@ -122,5 +123,5 @@ class Command(BaseCommand):
                     p.save()
             else:
                 print "Unable to find email for participant #%d" %(suid,)
-
+        time.sleep(1)
 
