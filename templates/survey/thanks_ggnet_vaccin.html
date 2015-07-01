@@ -1,0 +1,14 @@
+{% extends "survey/base.html" %}
+{% load i18n %}
+
+{% block col1 %}
+<h2>Questionnaire enregistré !</h2>
+<p>Merci d'avoir répondu à ce questionnaire !</p>
+<p><img src="/media/sw/logos/ggrippenet.png" width="143" height="40" style="vertical-align:middle"/> Toute l'équipe de G-GrippeNet.fr vous remercie sincèrement du temps que vous nous avez consacré.
+Si vous accouchement n'a pas encore eu lieu, vous devriez recevoir un message pour remplir le questionnaire final de l'étude dans les semaines suivant votre accouchement.
+</p>
+
+<p class="centered">
+	<a href="{%url group_management %}" class="button">Retourner au tableau des participants de votre compte</a>
+</p>
+{% endblock %}
