@@ -1,0 +1,295 @@
+/*
+Template Name: Portuguese customizations
+Description: CSS for deployment on the Influenzanet website 
+Author: Rui Francisco (www.gripenet.pt)
+Version: 1.0
+*/
+
+
+
+#col1_pt {
+ float:left;
+ width: 24%;
+ min-height: 500px;
+ overflow: hidden;
+ background: #ffffff;
+ border-right: 1px solid #e2e2e2;
+ padding : 0px 10px 0px 10px;
+}
+
+#col2_pt {
+ float: right;
+ width: 70%;
+ min-height: 500px;
+ position: relative;
+ overflow: hidden;
+ padding-left:10px;
+ padding-right:20px;
+ text-align:justify;
+}
+
+#col2_pt img{
+  padding : 5px 10px 5px 10px;
+}
+
+#col1_pt p,
+#col1_pt h2 {
+  font-size:1em;
+}
+
+#col1_pt ul
+{
+  padding-right:10px;
+}
+
+#col1_pt ul li ul
+{
+  padding-left:10px;
+}
+
+#main1_pt {
+ float:left;
+ width: 78%;
+ min-height: 500px;
+ overflow: hidden;
+ background: #ffffff;
+ border-right: 1px solid #e2e2e2;
+ padding: 0px 5px 0px 15px;
+}
+
+#main1_pt img
+{
+  padding: 5px 10px 5px 10px;
+}
+
+#main2_pt {
+ float: left;
+ width: 17%;
+ min-height: 500px;
+ position: relative;
+ overflow: hidden;
+ padding-left:10px;
+ padding-right: 5px;
+margin-left:0px;
+}
+
+#matriz
+{
+  width:98%;
+
+}
+
+#matriz div h2 
+{
+  font-size:11px;
+}
+
+#celula, #celula2
+{
+  width:48%;
+  float:left;
+  padding-right:12px;
+  text-align:justify;
+}
+
+#col1_pt p,
+#col2_pt p,
+#main1_pt p,
+#main2_pt p
+{
+ font-size:11px;;
+ line-height: 1.5em;
+ text-align:justify;
+}
+
+#col1_pt a,
+#col2_pt a,
+#main1_pt a,
+#main2_pt a
+{
+ text-decoration: none;
+ font-weight: bold;
+}
+
+#col1_pt a:hover,
+#col2_pt a:hover,
+#main1_pt a:hover,
+#main2_pt a:hover
+{
+ text-decoration: underline;
+}
+
+
+#col2_pt h1, 
+#main1_pt h1
+{
+ margin: 6px 0 12px 0;
+ padding: 0;
+ color: #0a0a0a;
+ font-size: 1.2em;
+}
+
+#col2_pt h2,
+#main_pt h2
+{
+ margin: 18px 0 12px 0;
+ padding: 0;
+ color: #000000;
+ font-size: 1em;
+}
+
+#col2_pt h3,
+#main_pt h3
+{
+ margin: 18px 0 12px 0;
+ padding: 0;
+ color: #767676;
+ font-size: 0.9em;
+}
+
+#col2_pt p.title,
+#main2_pt p.title
+{
+ margin: 4px 0 0 0;
+ padding: 2px 8px 2px 8px;
+ color: #fefefe;
+ font-weight: bold;
+ font-size: 0.75em;
+}
+
+#col2_pt h2,
+#main2_pt h2
+{
+ margin: 8px 0 12px 0;
+ padding: 0;
+ color: #0a0a0a;
+ font-size: 1em;
+}
+
+#col2_pt ul li
+{
+   list-style-type: disc;
+   margin-left: 30px;
+   font-size: 0.7em;
+}
+#col2_pt ul.choices li
+{
+   list-style-type: none;
+   margin-left: 30px;
+   font-size: 0.7em;
+}
+
+
+
+#submenu_pt {
+ font-weight: bold;
+ font-size: 0.7em;
+ padding: 0px 4px 3px 0;
+ /*margin: 0 0 4px 0;*/
+
+}
+
+#submenu_pt li,
+#submenu_pt li a {
+ /*float: left;*/
+ margin: 3px 0 0 3px;
+ color: #8e8e8e;
+ text-decoration: none;
+ font-size: 12px;
+ line-height: 1em;
+ text-align: left;
+ vertical-align: middle;
+ list-style-type: none;
+}
+
+#submenu_pt li.selected a {
+   color: #2E2E31;
+   text-decoration: underline;
+}
+
+/*
+#submenu_pt li:first-child {
+   margin: 0 0 0 6px;  
+}
+
+#submenu_pt li li:first-child {
+   margin: 0 0 0 10px;
+}
+*/
+
+#breadcrumb
+{
+  clear:both;
+  list-style-type: none;
+  font-size: 10px;
+  text-align:left;
+  background: url("../img/main/submenu.jpg") no-repeat right top #e8e8e8;
+  width : 736px;
+
+}
+
+#breadcrumb li
+{
+   float: left;
+   padding-left :5px;
+}
+
+.imagem
+{
+  padding: 5px 5px 5px 5px;
+  display: block;
+  border: none;
+}
+
+#cel1
+{
+   font-size:0.7em;
+}
+
+
+#cel2
+{
+   font-size:0.65em;
+   vertical-align:top;
+   line-height:1em;
+   text-align:left;
+   padding-left:10px;
+   width:20%;
+}
+
+#cel1 ul li
+{
+   font-size:1em;
+}
+
+table tbody tr td
+{
+  font-size: 11px;
+}
+
+#rodape
+{
+  height:40px;
+  width:200px;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+#rodape img
+{
+  float:left;
+  display:block;
+  margin-left:auto;
+  margin-right: auto;
+  padding: 0px 20px 0px 20px;
+}
+
+/*
+.question ul.choices, .question ul.derived-values { list-style: none; margin-bottom: 10px;}
+*/
+
+#pollster-chart-16
+{
+  width:290px;
+  height:290px;
+}

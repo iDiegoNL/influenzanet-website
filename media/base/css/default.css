@@ -1015,6 +1015,12 @@ hr {
  text-decoration: underline;
 }
 
+#col1 th,
+#col2 th,
+#col3 th {
+ font-size: 0.7em;;
+}
+
 .dlicon {
  margin: 0 -2px -4px 0;
 }

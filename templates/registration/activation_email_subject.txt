@@ -1,1 +1,1 @@
-{% load i18n %}{% blocktrans %}Activate your account! {{ site }}{% endblocktrans %}
+{% load i18n %}{% blocktrans %}Active a sua conta! {{ site }}{% endblocktrans %}

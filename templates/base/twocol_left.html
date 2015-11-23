@@ -1,0 +1,21 @@
+{% extends "base/sitebase.html" %}
+{% load cms_tags %}
+{% load cache menu_tags %}
+
+{% block content %}
+        <div id="colmask">
+            <div id="col1_pt">
+
+    		<ul id="submenu_pt">
+    		   {% show_menu 1 5 0 1   %}
+		</ul>
+    
+               <br/>                                                  
+               {% block col2 %}{% placeholder "Left bar" %}{% endblock col2 %}
+            </div> 
+                                        
+            <div id="col2_pt"> 
+                {% block col1 %}{% placeholder "Main content" %}{% endblock col1 %}
+            </div> 
+        </div>
+{% endblock content %}

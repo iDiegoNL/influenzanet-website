@@ -1,8 +1,20 @@
-{% load i18n %}
-{% blocktrans %}Activate your account:
+﻿{% load i18n %}
+{% blocktrans %}Bem-vindo(a) à monitorização da Gripe através da internet!
 
-Click the following URL or copy and paste it to the browser's address bar.
+
+Active a sua conta Gripenet, clicando no endereço abaixo ou copiando-o para o seu browser.
+
 
 http://{{ site }}/accounts/activate/{{ activation_key }}/
 
-This activation URL will expire in {{ expiration_days }} days.{% endblocktrans %}
+
+Este endereço expira em {{ expiration_days }} dias.{% endblocktrans %}
+
+
+
+=====================
+Termos de utilização
+=====================
+Ao inscrever-se como participante no projeto Gripenet, está a participar num estudo científico sobre a epidemiologia da gripe, nomeadamente a monitorização da incidência gripal e fatores de risco associados ao síndrome gripal. Os participantes podem usar o nome de utilizador que entenderem e em nenhum momento é solicitado o seu endereço ou contacto telefónico. Todos os dados que fornecer serão tratados de forma confidencial e anónima. A informação que fornecer será guardada em bases de dados protegidas por acesso com chaves criptográficas e o seu e-mail estará separado da informação do seu estado de saúde, garantindo a anonimização dos dados. Ao concordar em participar neste estudo, permitirá que a equipa de projeto o contacte por e-mail, para envio de informação (newsletter semanal). Poderá sempre cancelar essa subscrição, através da ligação que aparece no final da newsletter. Para além de informação, a newsletter terá também uma ligação de acesso automático que direciona o participante para o seu questionário de sintomas sem ser necessário iniciar a sessão.
+
+Ao activar a sua conta, clicando no link acima indicado, estará a dar o seu consentimento em participar no estudo, indicando que leu (e concordou com) todos os termos deste Consentimento.

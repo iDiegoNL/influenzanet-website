@@ -43,7 +43,7 @@ class MemberCountNode(Node):
             return cache.get(key)
 
         try:
-            result = urllib2.urlopen(SOURCES[country], timeout=0.1 if settings.DEBUG else 2).read()
+            result = urllib2.urlopen(SOURCES[country], timeout=0.5 if settings.DEBUG else 5).read()
         except:
             result = '0'
 
