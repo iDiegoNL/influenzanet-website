@@ -1,31 +1,6 @@
 # Django settings for epiweb project.
 # -*- coding: utf-8 -*-
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
-
-ADMINS = (
-    ('Antwan Wiersma', 'webdev@grotegriepmeting.nl'),
-    ('Klaas van Schelven', 'klaasvanschelven@gmail.com'), # please leave this setting for a minimal amount of spam-checking
-)
-
-MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'influenzanet.db',             # Or path to database file if using sqlite3.
-        'USER': '',             # Not used with sqlite3.
-        'PASSWORD': '',         # Not used with sqlite3.
-        'HOST': '',             # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',             # Set to empty string for default. Not used with sqlite3.
-    }
-}
-
-
-SITE_ID = 1
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -42,7 +17,7 @@ LANGUAGE_CODE = 'en'
 # Use ISO3166 two-letter country code
 # See http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
 # Avaliable: be, it, nl, uk, pt, se
-COUNTRY = 'en'
+COUNTRY = 'be'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -121,6 +96,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "apps.pollster.context_processors.last_survey",
     "apps.pollster.context_processors.surveyuser_count",
+    "social_auth.context_processors.social_auth_by_name_backends",
 )
 
 CMS_TEMPLATES = (
@@ -182,11 +158,15 @@ INSTALLED_APPS = (
     'apps.contest',
     #'apps.captcha',
     #'apps.tellafriend',
+    'captcha',
+#    'apps.sw_cohort',
+#    'apps.ggm_maps',
 
     'pybb',
     'pytils',
     'sorl.thumbnail',
     'pure_pagination',
+#    'apps.sw_invitation',
 )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -194,11 +174,12 @@ HAYSTACK_SITECONF = 'search_sites'
 try:
     import xapian
     HAYSTACK_SEARCH_ENGINE = 'xapian'
-    HAYSTACK_XAPIAN_PATH = '/tmp/xapian'
+    HAYSTACK_XAPIAN_PATH = '/tmp/xapian-influweb.it'
 except:
     HAYSTACK_SEARCH_ENGINE = 'simple'
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
     'loginurl.backends.LoginUrlBackend',
 )
@@ -216,8 +197,8 @@ EMAIL_HOST = '127.0.0.1'
 # the site managers.
 DEFAULT_FROM_EMAIL = 'Influenzanet <webmaster@influenzanet.eu>'
 
-if DEBUG:
-	EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#if DEBUG:
+#	EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Subject-line prefix for email messages send with django.core.mail.mail_admins
 # or ...mail_managers.  Make sure to include the trailing space.
@@ -230,7 +211,6 @@ SURVEY_ID = 'gold-standard-weekly-1.6'
 SURVEY_PROFILE_ID = 'gold-standard-intake-1.5'
 
 MOBILE_INTERFACE_ACTIVE = False
-
 STORE_RESPONSES_LOCALLY = False
 
 CACHES = {
@@ -242,7 +222,7 @@ CACHES = {
 
 # SEO Settings
 
-GOOGLE_ANALYTICS_ACCOUNT = None
+GOOGLE_ANALYTICS_ACCOUNT = 'UA-24124829-7'
 CMS_SEO_FIELDS = True
 
 SESSION_COOKIE_AGE = 60 * 60 * 2
@@ -255,8 +235,16 @@ PYBB_TEMPLATE = 'base/forum.html'
 PYBB_ENABLE_ANONYMOUS_POST = True
 PYBB_ANONYMOUS_USERNAME = 'Gast'
 
+LOCAL_APPS = ()
+LOCAL_MIDDLEWARE = ()
+LOCAL_CMS_TEMPLATES = ()
+
 try:
     from local_settings import *
 except ImportError:
     pass
+
+INSTALLED_APPS += LOCAL_APPS
+MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE
+CMS_TEMPLATES += LOCAL_CMS_TEMPLATES
 
