@@ -27,11 +27,11 @@ def render_template(name, request, context=None):
                               context,
                               context_instance=RequestContext(request)
     )
-    
+
 def send_email_user(user, subject, template, context):
     t = get_template(template)
     send_mail(subject, t.render(Context(context)), None, [user.email])
-    
+
 @csrf_protect
 def register_user(request):
     form = None
@@ -43,14 +43,14 @@ def register_user(request):
             user = EpiworkUser.objects.create_user(d['username'], d['email'], d['password1'], d['invitation_key'])
             site = get_current_site(request)
             send_activation_email(user, site)
-            return render_template('registration_complete', request, { 'user': user}) 
+            return render_template('registration_complete', request, { 'user': user})
     if form is None:
         data = None
         if 'invitation_key' in request.GET:
             data = {'invitation_key': request.GET['invitation_key']}
         form = RegistrationForm(initial=data)
-    return render_template('registration_form', request, { 'form': form}) 
-            
+    return render_template('registration_form', request, { 'form': form})
+
 
 def activate_user(request, activation_key):
     try:
@@ -97,8 +97,8 @@ def activate_retry(request):
         if not user_found:
             messages.add_message(request, messages.ERROR,_('This email is not associated with any account'))
     return render_template('activation_retry', request, {'sended': sended, 'form':form})
-            
-            
+
+
 
 #@deprecated: Not necessary
 def activate_complete(request):
@@ -128,7 +128,7 @@ def password_reset(request):
                         'token': user.create_token_password(),
                         'protocol': request.is_secure() and 'https' or 'http',
                     }
-                    
+
                     send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
             c = {
                 'has_several': has_several,
@@ -141,7 +141,7 @@ def password_reset(request):
     return render_template('password_reset_form', request, {'form': form})
 
 @never_cache
-def password_confirm(request, token=None):    
+def password_confirm(request, token=None):
     """
     """
     assert token is not None
@@ -157,27 +157,27 @@ def password_confirm(request, token=None):
                     form.save()
                     return HttpResponseRedirect(reverse('auth_password_reset_complete'))
             if form is None:
-                form = SetPasswordForm(user)   
+                form = SetPasswordForm(user)
             return render_template('password_reset_confirm', request, {'form': form})
     except:
         pass
     return render_template('password_reset_error', request)
-    
+
 
 # @deprecated
 def password_done(request):
     """
     Nothing to do
     """
-    
+
 def password_complete(request):
     """
     """
 
 def login_token(request, login_token):
-    """ 
-    Login using a random key 
-    """ 
+    """
+    Login using a random key
+    """
     next = request.GET.get('next', None)
     if next is None:
         next = settings.LOGIN_REDIRECT_URL
@@ -191,21 +191,21 @@ def login_token(request, login_token):
         if next is not None:
             url = '%s?next=%s' % (url, next)
         return HttpResponseRedirect(url)
-    
+
     # get the token
     token = user._login_token
     del user._login_token # avoid token to propagate
     # The key is valid, then now log the user in.
     auth.login(request, user)
-    
-    token.update_usage()    
+
+    token.update_usage()
 
     if token.next is not None:
         next = token.next
-    
+
     return HttpResponseRedirect(next)
-    
-@login_required    
+
+@login_required
 def my_settings(request):
     """
     """
@@ -218,7 +218,7 @@ def my_settings(request):
                 success = True
         else:
             form = MySettingsForm(instance=request.user, epiwork=epiwork_user)
-    
+
         return render_to_response('sw_auth/my_settings.html', locals(), RequestContext(request))
     except KeyError:
         auth_notify('setting', 'No settings')
@@ -235,9 +235,9 @@ def deactivate_request(request):
         return render_template('password_reset_error', request)
     except KeyError:
         return render_template('no_settings', request)
-    
+
 def index(request):
     """
     """
     return HttpResponseRedirect(reverse('registration_register'))
-    
+

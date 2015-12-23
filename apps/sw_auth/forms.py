@@ -59,15 +59,15 @@ class AuthenticationForm(forms.Form):
 class RegistrationForm(forms.Form):
     """
     Form for registering a new user account.
-    
+
     Validates that the requested username is not already in use, and
     requires the password to be entered twice to catch typos.
-    
+
     Subclasses should feel free to add any additional validation they
     need, but should avoid defining a ``save()`` method -- the actual
     saving of collected user data is delegated to the active
     registration backend.
-    
+
     """
     username = forms.RegexField(regex=r'(?u)^[\w.@+-_]+$',
                                 max_length=255,
@@ -83,19 +83,19 @@ class RegistrationForm(forms.Form):
                                 )
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=password_dict, render_value=False),
                                 label=_("Password (again)"))
-    
+
     invitation_key = forms.CharField(
                         widget=forms.TextInput(attrs={'placeholder':_("Invitation key")}),
-                        max_length=30, 
-                        label=_("Invitation key"), 
+                        max_length=30,
+                        label=_("Invitation key"),
                         help_text=_("Invitation key is not required to register"),
                         required=False)
-    
+
     def clean_username(self):
         """
         Validate that the username is alphanumeric and is not already
         in use.
-        
+
         """
         try:
             user = EpiworkUser.objects.get(login__iexact=self.cleaned_data['username'])
@@ -107,7 +107,7 @@ class RegistrationForm(forms.Form):
         """
         Validate that the supplied email address is unique for the
         site.
-        
+
         """
         user = EpiworkUser.objects.filter(email__iexact=self.cleaned_data['email'])
         if(len(user) == 0):
@@ -116,11 +116,11 @@ class RegistrationForm(forms.Form):
 
     def clean(self):
         """
-        Verifiy that the values entered into the two password fields
+        Verify that the values entered into the two password fields
         match. Note that an error here will end up in
         ``non_field_errors()`` because it doesn't apply to a single
         field.
-        
+
         """
         if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
@@ -135,10 +135,15 @@ class PasswordResetForm(forms.Form):
         Validates that an active user exists with the given e-mail address.
         """
         email = self.cleaned_data["email"]
-       
-        try:
-            self.users_cache = EpiworkUser.objects.filter(email__iexact=email, is_active=True) 
-        except EpiworkUser.DoesNotExist:
+
+        self.users_cache = EpiworkUser.objects.filter(email__iexact=email, is_active=True)
+        if len(self.users_cache) == 0:
+            # Check if any non active user exists with this email
+            print email + " Doest exists"
+            u = EpiworkUser.objects.filter(email__iexact=email, is_active=False)
+            print(u)
+            if len(u) > 0:
+                raise forms.ValidationError(_("That e-mail address is associated with an inactive account. Did you activated ?"))
             raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
         return email
 
@@ -152,12 +157,12 @@ class UserEmailForm(forms.Form):
         """
         email = self.cleaned_data["email"]
         try:
-            self.users_cache = EpiworkUser.objects.filter(email__iexact=email) 
+            self.users_cache = EpiworkUser.objects.filter(email__iexact=email)
         except EpiworkUser.DoesNotExist:
             raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
         return email
 
-            
+
 class SetPasswordForm(forms.Form):
     """
     A form that lets a user change set his/her password without
@@ -183,17 +188,17 @@ class SetPasswordForm(forms.Form):
         if commit:
             self.user.save()
         return self.user
-    
+
 class MySettingsForm(forms.Form):
     email = forms.EmailField(label=_("Email"))
     send_reminders = forms.BooleanField(label=_("Send reminders"), help_text=_("Check this box if you wish to receive weekly reminders throughout the flu season"), required=False)
     language = forms.ChoiceField(label=_("Language"), choices=settings.LANGUAGES)
-    
+
     def __init__(self, *args, **kwargs):
-                
+
         self.instance = kwargs.pop('instance')
         self.epiwork_user = kwargs.pop('epiwork')
-        
+
         self.reminder_info, _ = UserReminderInfo.objects.get_or_create(user=self.instance, defaults={'active': True, 'last_reminder': self.instance.date_joined})
 
         initial = kwargs.pop('initial', {})
@@ -203,7 +208,7 @@ class MySettingsForm(forms.Form):
         kwargs['initial'] = initial
 
         super(MySettingsForm, self).__init__(*args, **kwargs)
-        
+
         if len(settings.LANGUAGES) == 1:
             del self.fields['language']
 
@@ -221,7 +226,7 @@ class MySettingsForm(forms.Form):
         self.epiwork_user.email = self.cleaned_data['email']
 
         self.reminder_info.active = self.cleaned_data['send_reminders']
-        
+
         if 'language' in self.cleaned_data:
             self.reminder_info.language = self.cleaned_data['language']
 
