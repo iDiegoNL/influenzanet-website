@@ -16,7 +16,7 @@ DIR=`dirname $0`
 DB_CNX=" --host=$DB_HOST --user=$DB_USER"
 
 echo "Creating export tables"
-psql $DB_CNX  -f $DIR/dump-2014.sql $DB_NAME
+psql $DB_CNX  -f $DIR/dump.sql $DB_NAME
 
 echo "Creating dump"
 pg_dump $DB_CNX -Fc -x -O -t $TABLE_NS.pollster_results_intake -t $TABLE_NS.pollster_results_weekly --clean --no-owner $DB_NAME > pollster_results_$COUNTRY.dump
