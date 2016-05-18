@@ -1,0 +1,29 @@
+{% extends "base/twocol.html" %}
+{% load i18n %}
+
+{%block add_css%}
+{%endblock add_css%}
+
+{% block col1 %}
+<h1>{% trans "Change account email" %}</h1>
+
+{% if not success %}
+	<p class="error">{% trans "The validation link is not valid. Please retry your email changing request" %}</p>
+{% else %}
+	<p>{% trans "Your email has been changed." %}</p>
+	<p>{% trans "Your account information :" %}
+	<div style="text-align:center">
+	<table style="margin: 1em auto">
+		<tr>
+			<td>Email :</td>
+			<td>{{u.email}}</td>
+		</tr>
+		<tr>
+			<td>Login :</td>
+			<td>{{u.login}}</td>
+		</tr>
+	</table>
+	</div>
+	<p>{% trans "If your email was used to log in, your loggin should have been updated too." %}</p>
+{% endif %}
+{% endblock %}

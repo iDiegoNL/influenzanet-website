@@ -6,15 +6,16 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail
 
 from crypto import AES256
-             
+
 TOKEN_ACTIVATE = 1
 TOKEN_PASSWORD = 2
 TOKEN_LOGIN    = 3
+TOKEN_EMAIL    = 4
 
 class EpiworkToken:
     """
     Token management class
-    A token is a key allowing a given action, during a validity period 
+    A token is a key allowing a given action, during a validity period
     """
     def __init__(self, token=None):
         if not token is None:
@@ -28,7 +29,7 @@ class EpiworkToken:
         except ValueError:
             self.random = token
             self.timestamp = None
-    
+
     def as_token(self):
         if self.timestamp is None:
             raise TokenException('Invalid timestamp token')
@@ -37,33 +38,36 @@ class EpiworkToken:
         ts36 = int_to_base36(self.timestamp)
         token = ts36 + '-' + self.random
         return token
-    
+
     def get_age(self):
         if self.timestamp is None:
             return None
         now = get_timestamp()
         return now - self.timestamp
-    
+
     def is_empty(self):
         return bool(self.random is None or self.random == '')
-    
+
     def validate(self, delay):
         age = self.get_age()
         if age is None:
             raise TokenException('Invalid token')
         if age > delay:
             raise TokenException('Token too old')
-        return True 
-    
+        return True
+
     def renew(self):
         self.timestamp = get_timestamp()
         self.random = random_string(32)
 
 
 class TokenException(Exception):
-    pass             
-             
+    pass
+
 def get_timestamp():
+    """
+    Get a 'timestamp', as number of days from project starting
+    """
     tm = date.today() - date(2001, 1, 1)
     return tm.days
 
@@ -96,37 +100,36 @@ def send_activation_email(user, site, renew=True, skip_younger=None):
             if age >= delay:
                 create = True
             if skip_younger is not None and age <= skip_younger:
-                return False 
+                return False
         if create:
             # recreate the token
             token = user.create_token_activate()
         else:
             # reuse the old token
             token = token.as_token()
-            
-    ctx_dict = { 
+
+    ctx_dict = {
         'activation_key': token,
         'expiration_days': delay,
-        'site': site 
+        'site': site
     }
     subject = render_to_string('sw_auth/activation_email_subject.txt', ctx_dict)
     # Email subject *must not* contain newlines
     subject = ''.join(subject.splitlines())
     message = render_to_string('sw_auth/activation_email.txt', ctx_dict)
-    
+
     send_mail(subject, message, None, [user.email])
     return True
 
 def send_user_email(template, email, data=None):
-    subject = render_to_string('sw_auth/'+ template +'_subject.txt', dictionary=data)
+    subject = render_to_string('sw_auth/mail/'+ template +'_subject.txt', dictionary=data)
     # Email subject *must not* contain newlines
     subject = ''.join(subject.splitlines())
-    message = render_to_string('sw_auth/'+ template +'.txt', dictionary=data)
-    
-    send_mail(subject, message, None, [email])
+    message = render_to_string('sw_auth/mail/'+ template +'.txt', dictionary=data)
+    if not isinstance(email, list):
+        email = [email]
+    send_mail(subject, message, None, email)
     return True
-
-
 
 
 """
@@ -138,7 +141,7 @@ def get_encryption_key():
     if not hasattr(settings,'SWAUTH_AES_KEY'):
         raise Exception("Encryption key not defined in settings")
     return settings.SWAUTH_AES_KEY
-  
+
 def encrypt_user(username):
     key = get_encryption_key()
     aes = AES256(key)
@@ -146,7 +149,7 @@ def encrypt_user(username):
 
 """
 Decrypt username
-""" 
+"""
 def decrypt_user(username):
     key = get_encryption_key()
     aes = AES256(key)

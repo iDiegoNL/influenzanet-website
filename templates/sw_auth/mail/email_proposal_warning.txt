@@ -1,0 +1,12 @@
+Bonjour,
+
+Un changement d'adresse email a été demandé pour votre compte GrippeNet.fr
+
+La nouvelle adresse est {{email}}
+
+Si vous n'avez pas demandé de changement pour cette adresse, contactez nous à l'adresse ci dessous.
+
+Bien cordialement,
+
+L'équipe GrippeNet.fr
+contact@grippenet.fr

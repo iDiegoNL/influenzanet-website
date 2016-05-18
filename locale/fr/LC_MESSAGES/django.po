@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-18 09:47+0100\n"
+"POT-Creation-Date: 2015-12-30 14:41+0100\n"
 "PO-Revision-Date: 2015-12-07 10:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Language: fr\n"
 
 #: .\apps\accounts\forms.py:17 .\apps\accounts\forms.py:21
-#: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:17
-#: .\apps\sw_auth\forms.py:75 .\templates\accounts\my_settings.html.py:46
+#: .\apps\accounts\forms.py:26 .\apps\sw_auth\forms.py:23
+#: .\apps\sw_auth\forms.py:81 .\templates\accounts\my_settings.html.py:46
 #: .\templates\base\sw_col_right.html.py:4
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\apps\accounts\forms.py:18 .\apps\sw_auth\forms.py:76
+#: .\apps\accounts\forms.py:18 .\apps\sw_auth\forms.py:82
 msgid "This value must contain only letters, numbers and underscores."
 msgstr ""
 "Saisir une valeur autorisée (lettres, nombres ou @, +, -,_, .). Pas d'espace "
@@ -40,16 +40,16 @@ msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
 
 #: .\apps\accounts\forms.py:32 .\apps\ew_contact_form\forms.py:13
-#: .\apps\sw_auth\forms.py:188
+#: .\apps\sw_auth\forms.py:219
 msgid "Email"
 msgstr "Email"
 
 #: .\apps\accounts\forms.py:33 .\apps\reminder\models.py:36
-#: .\apps\sw_auth\forms.py:189
+#: .\apps\sw_auth\forms.py:199
 msgid "Send reminders"
 msgstr "Recevoir la lettre hebdomadaire d'information :"
 
-#: .\apps\accounts\forms.py:33 .\apps\sw_auth\forms.py:189
+#: .\apps\accounts\forms.py:33
 msgid ""
 "Check this box if you wish to receive weekly reminders throughout the flu "
 "season"
@@ -57,11 +57,11 @@ msgstr ""
 "Cochez cette case si vous souhaitez recevoir la lettre hebdomadaire "
 "d'information"
 
-#: .\apps\accounts\forms.py:34 .\apps\sw_auth\forms.py:190
+#: .\apps\accounts\forms.py:34
 msgid "Language"
 msgstr "Langue"
 
-#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:215
+#: .\apps\accounts\forms.py:54 .\apps\sw_auth\forms.py:240
 msgid "This email is already in use"
 msgstr "Cet adresse email est déjà utilisée"
 
@@ -73,35 +73,37 @@ msgstr "Ce nom d'utilisateur existe déjà."
 msgid "Contest"
 msgstr "Contenu"
 
-#: .\apps\dashboard\views.py:36 .\apps\survey\views.py:63
+#: .\apps\dashboard\views.py:37 .\apps\survey\views.py:63
 msgid "No symptoms"
 msgstr "Aucun symptôme"
 
-#: .\apps\dashboard\views.py:37 .\apps\survey\views.py:64
+#: .\apps\dashboard\views.py:38 .\apps\survey\views.py:64
 msgid "Flu symptoms"
 msgstr "Symptômes grippaux"
 
-#: .\apps\dashboard\views.py:38 .\apps\survey\views.py:65
+#: .\apps\dashboard\views.py:39 .\apps\survey\views.py:65
 msgid "Common cold"
 msgstr "Rhume"
 
-#: .\apps\dashboard\views.py:39 .\apps\survey\views.py:66
+#: .\apps\dashboard\views.py:40 .\apps\survey\views.py:66
 msgid "Gastrointestinal symptoms"
 msgstr "Symptômes gastro-intestinaux"
 
-#: .\apps\dashboard\views.py:40 .\apps\survey\views.py:68
+#: .\apps\dashboard\views.py:41 .\apps\survey\views.py:68
 msgid "Allergy / hay fever"
 msgstr "Allergies"
 
-#: .\apps\dashboard\views.py:41 .\apps\survey\views.py:70
+#: .\apps\dashboard\views.py:42 .\apps\survey\views.py:70
 msgid "Other non-influenza symptons"
 msgstr "Autres symptômes non grippaux"
 
-#: .\apps\dashboard\views.py:42 .\apps\survey\views.py:77
+#: .\apps\dashboard\views.py:43 .\apps\survey\views.py:77
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:41
 msgid "Unknown"
 msgstr "Inconnu"
 
 #: .\apps\ew_contact_form\forms.py:12 .\apps\survey\forms\__init__.py:5
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\versions.html.py:5
 #: .\templates\survey\group_management.html.py:45
 #: .\templates\survey\group_management_sw.html.py:25
 #: .\templates\survey\group_management_sw_vacc.html.py:24
@@ -109,6 +111,9 @@ msgid "Name"
 msgstr "Nom"
 
 #: .\apps\ew_contact_form\forms.py:14 .\apps\tellafriend\forms.py:16
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:8
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:8
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\logging.html.py:9
 msgid "Message"
 msgstr "Message"
 
@@ -430,25 +435,43 @@ msgstr ""
 msgid "Next page to follow"
 msgstr ""
 
-#: .\apps\reminder\models.py:135
+#: .\apps\reminder\models.py:81
+msgid "Email template"
+msgstr ""
+
+#: .\apps\reminder\models.py:137
 #, python-format
 msgid "%(current)s (in %(days)s days)"
 msgstr "%(current)s (in %(days)s jours)"
 
-#: .\apps\reminder\models.py:137
+#: .\apps\reminder\models.py:139
 #, python-format
 msgid "%(current)s (in %(weeks)s weeks)"
 msgstr "%(current)s (in %(weeks)s semaines)"
 
-#: .\apps\reminder\models.py:140
+#: .\apps\reminder\models.py:142
 #, python-format
 msgid "%(current)s (%(days)s days ago)"
 msgstr "%(current)s (in %(days)s jours)"
 
-#: .\apps\reminder\models.py:142
+#: .\apps\reminder\models.py:144
 #, python-format
 msgid "%(current)s (%(weeks)s weeks ago)"
 msgstr "%(current)s (in %(weeks)s semaines)"
+
+#: .\apps\reminder\templates\reminder\ggrippenet.html.py:66
+#: .\apps\reminder\templates\reminder\message.html.py:66
+#, python-format
+msgid ""
+"You have received this email because you are registered with %(site_name)s. "
+"Your contribution helps us track the spread of flu. If you do not wish to "
+"receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s"
+"\">unsubscribe</a> from our mailings."
+msgstr ""
+"Vous recevez cet email car vous êtes inscrit sur %(site_name)s. Votre "
+"participation nous aide à suivre les tendances de la grippe. Si vous ne "
+"souhaitez plus recevoir cet email hebdomadaire de rappel, vous pouvez vous "
+"<a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste de diffusion."
 
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:4
 msgid "Logged in"
@@ -472,19 +495,6 @@ msgstr "le"
 #: .\apps\reminder\templates\reminder\latest_newsletter.html.py:29
 msgid "Last newsletter from"
 msgstr "La dernière lettre"
-
-#: .\apps\reminder\templates\reminder\message.html.py:66
-#, python-format
-msgid ""
-"You have received this email because you are registered with %(site_name)s. "
-"Your contribution helps us track the spread of flu. If you do not wish to "
-"receive this weekly reminder any longer, please <a href=\"%(unsubscribe_url)s"
-"\">unsubscribe</a> from our mailings."
-msgstr ""
-"Vous recevez cet email car vous êtes inscrit sur %(site_name)s. Votre "
-"participation nous aide à suivre les tendances de la grippe. Si vous ne "
-"souhaitez plus recevoir cet email hebdomadaire de rappel, vous pouvez vous "
-"<a href=\"%(unsubscribe_url)s\">désinscrire</a> de la liste de diffusion."
 
 #: .\apps\reminder\templates\reminder\resubscribe.html.py:6
 #: .\apps\reminder\templates\reminder\resubscribe.html.py:10
@@ -544,8 +554,8 @@ msgstr "Symptômes gastro-intestinaux et/ou rhume"
 #: .\apps\survey\views.py:220
 #, python-format
 msgid ""
-"Please complete the background questionnaire for the participant "
-"\"%(user_name)s\" before marking him/her as healthy."
+"Please complete the background questionnaire for the participant \"%"
+"(user_name)s\" before marking him/her as healthy."
 msgstr ""
 "Veuillez au préalable remplir le questionnaire préliminaire pour le "
 "participant \"%(user_name)s\" avant de remplir le questionnaire hebdomadaire."
@@ -581,37 +591,37 @@ msgstr ""
 "questionnaire préliminaire. Vous n'aurez à remplir ce questionnaire qu'une "
 "seule fois, mais pourrez revenir le modifier quand vous le souhaitez."
 
-#: .\apps\sw_auth\forms.py:10
+#: .\apps\sw_auth\forms.py:11
 msgid "Enter your password"
 msgstr "Entrer votre mot de passe"
 
-#: .\apps\sw_auth\forms.py:18 .\apps\sw_auth\forms.py:81
+#: .\apps\sw_auth\forms.py:24 .\apps\sw_auth\forms.py:87
 #: .\templates\accounts\my_settings.html.py:39
 #: .\templates\base\sw_col_right.html.py:5
 msgid "Password"
 msgstr "Mot de passe"
 
-#: .\apps\sw_auth\forms.py:38
+#: .\apps\sw_auth\forms.py:44
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
 
-#: .\apps\sw_auth\forms.py:40
+#: .\apps\sw_auth\forms.py:46
 msgid "This account is inactive."
 msgstr ""
 
-#: .\apps\sw_auth\forms.py:47
+#: .\apps\sw_auth\forms.py:53
 msgid ""
 "Your Web browser doesn't appear to have cookies enabled. Cookies are "
 "required for logging in."
 msgstr ""
 
-#: .\apps\sw_auth\forms.py:74
+#: .\apps\sw_auth\forms.py:80
 msgid "Username or email"
 msgstr "Nom d'utilisateur ou email"
 
-#: .\apps\sw_auth\forms.py:75
+#: .\apps\sw_auth\forms.py:81
 msgid ""
 "A Username or an email address with only letters, numbers or @ + - _ chars"
 msgstr ""
@@ -619,36 +629,36 @@ msgstr ""
 "lettres, nombres, ou caractères @, +, ., -, _. Ne pas utiliser de caractères "
 "avec accents ou d'espace. "
 
-#: .\apps\sw_auth\forms.py:78 .\apps\sw_auth\forms.py:79
+#: .\apps\sw_auth\forms.py:84 .\apps\sw_auth\forms.py:85
 msgid "Email address"
 msgstr "Adresse email"
 
-#: .\apps\sw_auth\forms.py:82
+#: .\apps\sw_auth\forms.py:88
 msgid "password, only letter, numbers and punctution"
 msgstr ""
 "Mot de passe (lettres,chiffres ou ponctuation: -_!#+=@&?). Evitez les "
 "caractères accentués."
 
-#: .\apps\sw_auth\forms.py:85
+#: .\apps\sw_auth\forms.py:91
 msgid "Password (again)"
 msgstr "Confirmation du mot de passe"
 
-#: .\apps\sw_auth\forms.py:88 .\apps\sw_auth\forms.py:90
+#: .\apps\sw_auth\forms.py:94 .\apps\sw_auth\forms.py:96
 msgid "Invitation key"
 msgstr "Code d'invitation (si vous avez été parainné)"
 
-#: .\apps\sw_auth\forms.py:91
+#: .\apps\sw_auth\forms.py:97
 msgid "Invitation key is not required to register"
 msgstr ""
 "Vous n'en avez pas, ce n'est pas grave. Le code d'invitation n'est pas "
 "nécessaire pour s'inscrire ! Il sert uniquement si vous avez été invité par "
 "un autre participant. "
 
-#: .\apps\sw_auth\forms.py:104
+#: .\apps\sw_auth\forms.py:110
 msgid "A user with that username already exists."
 msgstr "Ce nom d'utilisateur existe déjà."
 
-#: .\apps\sw_auth\forms.py:115
+#: .\apps\sw_auth\forms.py:121
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
@@ -656,15 +666,24 @@ msgstr ""
 "Cette adresse est déjà en cours d'utilisation. Utilisez une autre adresse ou "
 "la procédure de récupération de mot de passe pour utiliser ce compte."
 
-#: .\apps\sw_auth\forms.py:127 .\apps\sw_auth\forms.py:178
+#: .\apps\sw_auth\forms.py:133 .\apps\sw_auth\forms.py:189
 msgid "The two password fields didn't match."
 msgstr "Le mot de passe saisi et sa confirmation ne correspondent pas."
 
-#: .\apps\sw_auth\forms.py:131 .\apps\sw_auth\forms.py:147
+#: .\apps\sw_auth\forms.py:137 .\apps\sw_auth\forms.py:158
 msgid "E-mail"
 msgstr "Email"
 
-#: .\apps\sw_auth\forms.py:142 .\apps\sw_auth\forms.py:157
+#: .\apps\sw_auth\forms.py:152
+#, fuzzy
+msgid ""
+"That e-mail address is associated with an inactive account. Did you "
+"activated ?"
+msgstr ""
+"Cette adresse email n'est pas associée à un compte connu. Etes vous certain "
+"d'être inscrit avec cette adresse ?"
+
+#: .\apps\sw_auth\forms.py:153 .\apps\sw_auth\forms.py:168
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
@@ -672,27 +691,27 @@ msgstr ""
 "Cette adresse email n'est pas associée à un compte connu. Etes vous certain "
 "d'être inscrit avec cette adresse ?"
 
-#: .\apps\sw_auth\forms.py:166
+#: .\apps\sw_auth\forms.py:177
 msgid "New password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\forms.py:167
+#: .\apps\sw_auth\forms.py:178
 msgid "New password confirmation"
 msgstr "Confirmation du nouveau mot de passe :"
 
-#: .\apps\sw_auth\models.py:93 .\apps\sw_auth\models.py:95
+#: .\apps\sw_auth\models.py:91 .\apps\sw_auth\models.py:93
 msgid "username"
 msgstr "Nom de l'utilisateur"
 
-#: .\apps\sw_auth\models.py:94
+#: .\apps\sw_auth\models.py:92
 msgid "e-mail address"
 msgstr "Adresse email :"
 
-#: .\apps\sw_auth\models.py:96
+#: .\apps\sw_auth\models.py:94
 msgid "password"
 msgstr "Nouveau mot de passe :"
 
-#: .\apps\sw_auth\views.py:84
+#: .\apps\sw_auth\views.py:85
 msgid ""
 "This email is associated with several accounts. Please contact us to "
 "regularize"
@@ -700,25 +719,25 @@ msgstr ""
 "Cette adresse email est associée à plusieurs compte GrippeNet. Contactez "
 "nous pour régulariser cette situation."
 
-#: .\apps\sw_auth\views.py:90
+#: .\apps\sw_auth\views.py:91
 msgid "The user associated with this email is already activated"
 msgstr "Le compte associé à cet e-mail est déjà activé."
 
-#: .\apps\sw_auth\views.py:97
+#: .\apps\sw_auth\views.py:98
 msgid "Problem occured during activation email generation"
 msgstr ""
 "Un problème est survenu durant l'enregistrement. Veuillez réessayer plus "
 "tard ou nous contacter."
 
-#: .\apps\sw_auth\views.py:99
+#: .\apps\sw_auth\views.py:100
 msgid "This email is not associated with any account"
 msgstr "Cet adresse email n'est associée à aucun compte GrippeNet.fr"
 
-#: .\apps\sw_auth\views.py:118
+#: .\apps\sw_auth\views.py:119
 msgid "sorry no corresponding user info was found"
 msgstr "Aucun utilisateur ne correspond à ces informations."
 
-#: .\apps\sw_auth\views.py:133
+#: .\apps\sw_auth\views.py:134
 #, python-format
 msgid "Password reset on %s"
 msgstr "Réinitialisation du mot de passe %s"
@@ -839,6 +858,1097 @@ msgstr ""
 msgid "Send"
 msgstr "Envoi"
 
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\cache.py:90
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\cache.py:90
+#, python-format
+msgid "Cache: %.2fms"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\cache.py:93
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\cache.py:93
+msgid "Cache Usage"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\headers.py:36
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\headers.py:39
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\headers.py:36
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\headers.py:39
+msgid "HTTP Headers"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\logger.py:56
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\logger.py:56
+#: .\build\django-debug-toolbar\debug_toolbar\panels\logging.py:64
+#, fuzzy
+msgid "Logging"
+msgstr "Se connecter"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\logger.py:63
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\logger.py:63
+#, fuzzy
+msgid "Log Messages"
+msgstr "Message"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\request_vars.py:13
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\request_vars.py:16
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\request_vars.py:13
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\request_vars.py:16
+msgid "Request Vars"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\settings_vars.py:16
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\settings_vars.py:16
+#: .\build\django-debug-toolbar\debug_toolbar\panels\settings.py:20
+#, fuzzy
+msgid "Settings"
+msgstr "Paramètres du site"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\settings_vars.py:19
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\settings_vars.py:19
+#: .\build\django-debug-toolbar\debug_toolbar\panels\settings.py:23
+#, python-format
+msgid "Settings from <code>%s</code>"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\signals.py:39
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\signals.py:42
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\signals.py:39
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\signals.py:42
+#: .\build\django-debug-toolbar\debug_toolbar\panels\signals.py:53
+msgid "Signals"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\sql.py:147
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\sql.py:147
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:105
+msgid "SQL"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\sql.py:161
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\sql.py:161
+msgid "SQL Queries"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\template.py:55
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\template.py:55
+#: .\build\django-debug-toolbar\debug_toolbar\panels\templates\panel.py:141
+msgid "Templates"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\template.py:60
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\template.py:60
+#: .\build\django-debug-toolbar\debug_toolbar\panels\templates\panel.py:146
+#, python-format
+msgid "Templates (%(num_templates)s rendered)"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\timer.py:35
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:39
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:7
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:5
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:11
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:12
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:11
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\timer.py:35
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:39
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:7
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:5
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:11
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:12
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:11
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:34
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\logging.html.py:7
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:11
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:12
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:11
+#, fuzzy
+msgid "Time"
+msgstr "Titre"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\timer.py:47
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\timer.py:47
+msgid "Resource Usage"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\timer.py:78
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\timer.py:78
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:42
+msgid "User CPU time"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\timer.py:79
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\timer.py:79
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:43
+msgid "System CPU time"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\timer.py:80
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\timer.py:80
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:44
+msgid "Total CPU time"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\timer.py:81
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\timer.py:81
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:45
+msgid "Elapsed time"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\timer.py:82
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\timer.py:82
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:46
+#, fuzzy
+msgid "Context switches"
+msgstr "Contenu"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\version.py:20
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\panels\version.py:29
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\version.py:20
+#: .\build\django-debug-toolbar-django13\debug_toolbar\panels\version.py:29
+#: .\build\django-debug-toolbar\debug_toolbar\panels\versions.py:25
+msgid "Versions"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\base.html.py:13
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\base.html.py:13
+msgid "Hide Toolbar"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\base.html.py:13
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\base.html.py:13
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\base.html.py:21
+msgid "Hide"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\base.html.py:38
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\base.html.py:38
+msgid "Show Toolbar"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\base.html.py:44
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\base.html.py:44
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\base.html.py:55
+msgid "Close"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\redirect.html.py:7
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:9
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\redirect.html.py:7
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:9
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\logging.html.py:10
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:45
+#, fuzzy
+msgid "Location"
+msgstr "Se connecter"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\redirect.html.py:9
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\redirect.html.py:9
+msgid ""
+"The Django Debug Toolbar has intercepted a redirect to the above URL for "
+"debug viewing purposes.  You can click the above link to continue with the "
+"redirect as normal.  If you'd like to disable this feature, set the "
+"<code>DEBUG_TOOLBAR_CONFIG</code> dictionary's key "
+"<code>INTERCEPT_REDIRECTS</code> to <code>False</code>."
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:14
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:14
+msgid "Total Calls"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:16
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:16
+msgid "Total Time"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:18
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:18
+msgid "Hits"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:20
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:20
+#, fuzzy
+msgid "Misses"
+msgstr "Message"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:35
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:35
+msgid "Breakdown"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:40
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:40
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:44
+msgid "Type"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:41
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:41
+msgid "Parameters"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:42
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:42
+msgid "Function"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:5
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:5
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:8
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:27
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:48
+msgid "Key"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:6
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:39
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:65
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:87
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:109
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\settings_vars.html.py:6
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:10
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:6
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:39
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:65
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:87
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:109
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\settings_vars.html.py:6
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:10
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:9
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:28
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:49
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:33
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:59
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:85
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:110
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\settings.html.py:6
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:11
+#, fuzzy
+msgid "Value"
+msgstr "Homme"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:6
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:6
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\logging.html.py:6
+msgid "Level"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:24
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\logger.html.py:24
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\logging.html.py:26
+#, fuzzy
+msgid "No messages logged"
+msgstr "Vous êtes connecté"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:3
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:3
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:3
+msgid "View information"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:7
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:7
+msgid "View Function"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:8
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:8
+#, fuzzy
+msgid "args"
+msgstr "ans"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:9
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:9
+msgid "kwargs"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:29
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:29
+msgid "COOKIES Variables"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:38
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:64
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:86
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:108
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:38
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:64
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:86
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:108
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:32
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:58
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:84
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:109
+msgid "Variable"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:52
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:52
+msgid "No COOKIE data"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:55
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:55
+msgid "SESSION Variables"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:78
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:78
+msgid "No SESSION data"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:81
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:81
+msgid "GET Variables"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:100
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:100
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:98
+msgid "No GET data"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:103
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:103
+msgid "POST Variables"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:122
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\request_vars.html.py:122
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:123
+msgid "No POST data"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\settings_vars.html.py:5
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\settings_vars.html.py:5
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\settings.html.py:5
+#, fuzzy
+msgid "Setting"
+msgstr "Paramètres du site"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:5
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:5
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:5
+msgid "Signal"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:6
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:6
+msgid "Providing Args"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:7
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:7
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:7
+msgid "Receivers"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:6
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:6
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:21
+msgid "Action"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:7
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:7
+msgid "Stacktrace"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:8
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:8
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:18
+msgid "Query"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:38
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:38
+#, fuzzy
+msgid "Line"
+msgstr "Se connecter"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:39
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:39
+msgid "Method"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:40
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:40
+#, fuzzy
+msgid "File"
+msgstr "Titre"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:3
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:3
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:3
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\template_source.html.py:3
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:3
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:3
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:3
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\template_source.html.py:3
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:3
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:3
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:3
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\template_source.html.py:3
+msgid "Back"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:4
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:4
+msgid "SQL Explained"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:9
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:10
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:9
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:9
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:10
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:9
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:9
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:10
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:9
+msgid "Executed SQL"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:4
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:4
+#, fuzzy
+msgid "SQL Profiled"
+msgstr "Profil"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:35
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:35
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:37
+#: .\templates\500.html.py:4
+msgid "Error"
+msgstr "Erreur"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:4
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:4
+#, fuzzy
+msgid "SQL Selected"
+msgstr ""
+"Sélectionner un participant de votre compte pour répondre à ce questionnaire"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:34
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:34
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:36
+msgid "Empty set"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\template_source.html.py:4
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\template_source.html.py:4
+msgid "Template Source"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:2
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:2
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:2
+#, fuzzy
+msgid "Template path"
+msgstr ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:13
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:13
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:13
+#, fuzzy
+msgid "Template"
+msgstr ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:21
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:37
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:21
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:37
+msgid "Toggle Context"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:28
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:43
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:28
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:43
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:12
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:23
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:35
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:10
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:28
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:43
+#, fuzzy
+msgid "None"
+msgstr "Non"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:31
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:31
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:31
+#, fuzzy
+msgid "Context processor"
+msgstr ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:9
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:9
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:10
+#, fuzzy
+msgid "Resource"
+msgstr "Se réinscrire"
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\versions.html.py:6
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\versions.html.py:6
+msgid "Package"
+msgstr ""
+
+#: .\build\django-debug-toolbar-django13\build\lib\debug_toolbar\templates\debug_toolbar\panels\versions.html.py:7
+#: .\build\django-debug-toolbar-django13\debug_toolbar\templates\debug_toolbar\panels\versions.html.py:7
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\versions.html.py:6
+msgid "Version"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\apps.py:11
+msgid "Debug Toolbar"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\views.py:14
+msgid ""
+"Data for this panel isn't available anymore. Please reload the page and "
+"retry."
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\cache.py:191
+msgid "Cache"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\cache.py:196
+#, python-format
+msgid "%(cache_calls)d call in %(time).2fms"
+msgid_plural "%(cache_calls)d calls in %(time).2fms"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\cache.py:204
+#, python-format
+msgid "Cache calls from %(count)d backend"
+msgid_plural "Cache calls from %(count)d backends"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\headers.py:35
+#, fuzzy
+msgid "Headers"
+msgstr "ans"
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\logging.py:70
+#, python-format
+msgid "%(count)s message"
+msgid_plural "%(count)s messages"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\logging.py:73
+#, fuzzy
+msgid "Log messages"
+msgstr "Message"
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\profiling.py:127
+#, fuzzy
+msgid "Profiling"
+msgstr "Profil"
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\redirects.py:17
+msgid "Intercept redirects"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\request.py:18
+msgid "Request"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\request.py:35
+msgid "<no view>"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\request.py:47
+msgid "<unavailable>"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\signals.py:45
+#, python-format
+msgid "%(num_receivers)d receiver of 1 signal"
+msgid_plural "%(num_receivers)d receivers of 1 signal"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\signals.py:48
+#, python-format
+msgid "%(num_receivers)d receiver of %(num_signals)d signals"
+msgid_plural "%(num_receivers)d receivers of %(num_signals)d signals"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\staticfiles.py:89
+#, python-format
+msgid "Static files (%(num_found)s found, %(num_used)s used)"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\staticfiles.py:107
+msgid "Static files"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\staticfiles.py:112
+#, python-format
+msgid "%(num_used)s file used"
+msgid_plural "%(num_used)s files used"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:23
+#, python-format
+msgid "CPU: %(cum)0.2fms (%(total)0.2fms)"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:28
+#, python-format
+msgid "Total: %0.2fms"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:42
+#, python-format
+msgid "%(utime)0.3f msec"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:43
+#, python-format
+msgid "%(stime)0.3f msec"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:44
+#, python-format
+msgid "%(total)0.3f msec"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:45
+#, python-format
+msgid "%(total_time)0.3f msec"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\timer.py:46
+#, python-format
+msgid "%(vcsw)d voluntary, %(ivcsw)d involuntary"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:22
+msgid "Autocommit"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:23
+msgid "Read uncommitted"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:24
+msgid "Read committed"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:25
+msgid "Repeatable read"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:26
+msgid "Serializable"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:37
+msgid "Idle"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:38
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:87
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:56
+#: .\build\django-extensions\django_extensions\db\models.py:87
+#: .\build\django-extensions\django_extensions\mongodb\models.py:56
+#, fuzzy
+msgid "Active"
+msgstr "Archive"
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:39
+msgid "In transaction"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\panels\sql\panel.py:40
+#, fuzzy
+msgid "In error"
+msgstr "Erreur"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\base.html.py:21
+msgid "Hide toolbar"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\base.html.py:27
+msgid "Disable for next and successive requests"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\base.html.py:27
+msgid "Enable for next and successive requests"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\base.html.py:49
+msgid "Show toolbar"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\redirect.html.py:8
+msgid "Location:"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\redirect.html.py:10
+msgid ""
+"The Django Debug Toolbar has intercepted a redirect to the above URL for "
+"debug viewing purposes. You can click the above link to continue with the "
+"redirect as normal."
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:2
+#, fuzzy
+msgid "Summary"
+msgstr "Questionnaire"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:6
+msgid "Total calls"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:7
+msgid "Total time"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:8
+msgid "Cache hits"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:9
+msgid "Cache misses"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:21
+#, fuzzy
+msgid "Commands"
+msgstr "Rhume"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:39
+msgid "Calls"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:43
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:20
+msgid "Time (ms)"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:45
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:8
+#, fuzzy
+msgid "Arguments"
+msgstr "Alignement"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:46
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:9
+msgid "Keyword arguments"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\cache.html.py:47
+#, fuzzy
+msgid "Backend"
+msgstr "Préliminaire"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:3
+msgid "Request headers"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:22
+msgid "Response headers"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:41
+msgid "WSGI environ"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\headers.html.py:43
+msgid ""
+"Since the WSGI environ inherits the environment of the server, only a "
+"significant subset is shown below."
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\logging.html.py:8
+#, fuzzy
+msgid "Channel"
+msgstr "Changer le nom"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\profiling.html.py:5
+msgid "Call"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\profiling.html.py:6
+msgid "CumTime"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\profiling.html.py:7
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\profiling.html.py:9
+msgid "Per"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\profiling.html.py:8
+msgid "TotTime"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\profiling.html.py:10
+#, fuzzy
+msgid "Count"
+msgstr "Contact"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:7
+msgid "View function"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:10
+#, fuzzy
+msgid "URL name"
+msgstr "Nom d'utilisateur"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:24
+msgid "Cookies"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:46
+msgid "No cookies"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:50
+#, fuzzy
+msgid "Session data"
+msgstr "Date de début"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:72
+msgid "No session data"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:76
+msgid "GET data"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\request.html.py:102
+msgid "POST data"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\signals.html.py:6
+msgid "Providing"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:7
+#, python-format
+msgid "%(num)s query"
+msgid_plural "%(num)s queries"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:19
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:36
+#, fuzzy
+msgid "Timeline"
+msgstr "Titre"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:64
+msgid "Connection:"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:66
+msgid "Isolation level:"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:69
+msgid "Transaction status:"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:83
+#, fuzzy
+msgid "(unknown)"
+msgstr "Inconnu"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql.html.py:92
+msgid "No SQL queries were recorded during this request."
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:4
+msgid "SQL explained"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_explain.html.py:13
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:14
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:13
+#, fuzzy
+msgid "Database"
+msgstr "Date"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_profile.html.py:4
+#, fuzzy
+msgid "SQL profiled"
+msgstr "Profil"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\sql_select.html.py:4
+#, fuzzy
+msgid "SQL selected"
+msgstr ""
+"Sélectionner un participant de votre compte pour répondre à ce questionnaire"
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:4
+msgid "Static file path"
+msgid_plural "Static file paths"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:8
+#, python-format
+msgid "(prefix %(prefix)s)"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:15
+msgid "Static file app"
+msgid_plural "Static file apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:26
+msgid "Static file"
+msgid_plural "Static files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:40
+#, python-format
+msgid "%(payload_count)s file"
+msgid_plural "%(payload_count)s files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\staticfiles.html.py:44
+msgid "Path"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\template_source.html.py:4
+msgid "Template source:"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:21
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\templates.html.py:37
+msgid "Toggle context"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:2
+msgid "Resource usage"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:26
+msgid "Browser timing"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:35
+msgid "Timing attribute"
+msgstr ""
+
+#: .\build\django-debug-toolbar\debug_toolbar\templates\debug_toolbar\panels\timer.html.py:37
+msgid "Milliseconds since navigation start (+length)"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\admin\__init__.py:126
+#: .\build\django-extensions\django_extensions\admin\__init__.py:126
+msgid "and"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\admin\__init__.py:128
+#: .\build\django-extensions\django_extensions\admin\__init__.py:128
+#, python-format
+msgid ""
+"Use the left field to do %(model_name)s lookups in the fields %(field_list)s."
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:22
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:17
+#: .\build\django-extensions\django_extensions\db\models.py:22
+#: .\build\django-extensions\django_extensions\mongodb\models.py:17
+msgid "created"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:23
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:18
+#: .\build\django-extensions\django_extensions\db\models.py:23
+#: .\build\django-extensions\django_extensions\mongodb\models.py:18
+msgid "modified"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:36
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:29
+#: .\build\django-extensions\django_extensions\db\models.py:36
+#: .\build\django-extensions\django_extensions\mongodb\models.py:29
+#, fuzzy
+msgid "title"
+msgstr "Titre"
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:37
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:30
+#: .\build\django-extensions\django_extensions\db\models.py:37
+#: .\build\django-extensions\django_extensions\mongodb\models.py:30
+#, fuzzy
+msgid "slug"
+msgstr "Slug"
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:38
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:31
+#: .\build\django-extensions\django_extensions\db\models.py:38
+#: .\build\django-extensions\django_extensions\mongodb\models.py:31
+msgid "description"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:86
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:55
+#: .\build\django-extensions\django_extensions\db\models.py:86
+#: .\build\django-extensions\django_extensions\mongodb\models.py:55
+msgid "Inactive"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:89
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:58
+#: .\build\django-extensions\django_extensions\db\models.py:89
+#: .\build\django-extensions\django_extensions\mongodb\models.py:58
+#, fuzzy
+msgid "status"
+msgstr "Etat de santé"
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:90
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:59
+#: .\build\django-extensions\django_extensions\db\models.py:90
+#: .\build\django-extensions\django_extensions\mongodb\models.py:59
+msgid "keep empty for an immediate activation"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\db\models.py:91
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\models.py:60
+#: .\build\django-extensions\django_extensions\db\models.py:91
+#: .\build\django-extensions\django_extensions\mongodb\models.py:60
+msgid "keep empty for indefinite activation"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\mongodb\fields\__init__.py:24
+#: .\build\django-extensions\django_extensions\mongodb\fields\__init__.py:24
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: .\build\django-extensions\build\lib\django_extensions\templates\django_extensions\widgets\foreignkey_searchinput.html.py:4
+#: .\build\django-extensions\django_extensions\templates\django_extensions\widgets\foreignkey_searchinput.html.py:4
+#, fuzzy
+msgid "Lookup"
+msgstr "Se déconnecter"
+
 #: .\captcha\fields.py:54
 msgid "Play captcha as audio file"
 msgstr ""
@@ -851,6 +1961,43 @@ msgstr "Mauvais CAPTCHA"
 #: .\captcha\tests\__init__.py:97
 msgid "This field is required."
 msgstr "Ce champs est requis."
+
+#: .\src\django-nani\nani\admin.py:175
+msgid "all translations"
+msgstr ""
+
+#: .\src\django-nani\nani\admin.py:334 .\src\django-nani\nani\admin.py:569
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+msgstr ""
+
+#: .\src\django-nani\nani\admin.py:347 .\src\django-nani\nani\admin.py:582
+#, python-format
+msgid "Cannot delete %(name)s"
+msgstr ""
+
+#: .\src\django-nani\nani\admin.py:349 .\src\django-nani\nani\admin.py:584
+msgid "Are you sure?"
+msgstr ""
+
+#: .\src\django-nani\nani\templates\admin\nani\change_form.html.py:37
+#: .\src\django-nani\nani\templates\admin\nani\change_form.html.py:39
+#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:10
+msgid "Delete Translation"
+msgstr ""
+
+#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:6
+#, fuzzy
+msgid "Home"
+msgstr "accueil"
+
+#: .\src\django-nani\nani\templates\admin\nani\deletion_not_allowed.html.py:15
+#, python-format
+msgid ""
+"Deletion of the the %(language_name)s translation of %(object_name)s '%"
+"(escaped_object)s' is not allowed, because it is the last available "
+"translation of this instance."
+msgstr ""
 
 #: .\templates\404.html.py:4
 msgid "Page not found"
@@ -869,10 +2016,6 @@ msgstr ""
 #: .\templates\registration\logout.html.py:10
 msgid "home"
 msgstr "accueil"
-
-#: .\templates\500.html.py:4
-msgid "Error"
-msgstr "Erreur"
 
 #: .\templates\500.html.py:8
 msgid ""
@@ -909,7 +2052,7 @@ msgid "Account settings"
 msgstr "Parametres du compte"
 
 #: .\templates\accounts\my_settings.html.py:24
-#: .\templates\sw_auth\my_settings.html.py:9
+#: .\templates\sw_auth\my_settings.html.py:14
 msgid "Your settings have been updated"
 msgstr "Vos paramètres ont été mis à jour"
 
@@ -922,7 +2065,7 @@ msgstr "Paramètres du site"
 #: .\templates\accounts\my_settings.html.py:49
 #: .\templates\survey\group_management.html.py:76
 #: .\templates\survey\people_edit.html.py:14
-#: .\templates\sw_auth\my_settings.html.py:17
+#: .\templates\sw_auth\my_settings.html.py:25
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -988,19 +2131,18 @@ msgstr "nous contacter"
 
 #: .\templates\admin\pollster\survey\change_form.html.py:6
 #: .\templates\admin\pollster\translationsurvey\change_form.html.py:6
+#: .\templates\admin\sw_auth\epiworkuser\change_form.html.py:6
 msgid "History"
 msgstr "Antécédents"
 
 #: .\templates\admin\pollster\survey\change_form.html.py:9
-#: .\templates\admin\pollster\survey\change_list.html.py:10
+#: .\templates\admin\pollster\survey\change_list.html.py:7
 #: .\templates\admin\pollster\translationsurvey\change_form.html.py:9
 #: .\templates\admin\pollster\translationsurvey\change_list.html.py:7
+#: .\templates\admin\sw_auth\epiworkuser\change_form.html.py:9
+#: .\templates\admin\sw_auth\epiworkuser\change_list.html.py:7
 msgid "Full Editor"
 msgstr "Edition complète"
-
-#: .\templates\admin\pollster\survey\change_list.html.py:7
-msgid "Add Survey"
-msgstr "Ajouter un questionnaire"
 
 #: .\templates\base\forum.html.py:78
 msgid "My account"
@@ -1048,7 +2190,7 @@ msgid "Contact"
 msgstr "Contact"
 
 #: .\templates\base\sitebase.html.py:55
-#: .\templates\sw_auth\my_settings.html.py:5
+#: .\templates\sw_auth\my_settings.html.py:11
 msgid "My settings"
 msgstr "Mes paramètres"
 
@@ -1060,7 +2202,7 @@ msgstr "Anonyme"
 msgid "Invite people"
 msgstr "Inviter vos contacts"
 
-#: .\templates\dashboard\household.html.py:2
+#: .\templates\dashboard\household.html.py:7
 #, python-format
 msgid ""
 "To manage your household, view or modify the participants of your household, "
@@ -1071,7 +2213,7 @@ msgstr ""
 "page <a href=\"%(url_group_management)s\"><i class=\"icon icon-users\"></"
 "i>Gérer mes participants</a>"
 
-#: .\templates\dashboard\household.html.py:2
+#: .\templates\dashboard\household.html.py:7
 #: .\templates\dashboard\user_history.html.py:2
 msgid "Do you know the menu"
 msgstr ""
@@ -1080,7 +2222,7 @@ msgstr ""
 "(sous 'Mon espace')."
 
 #: .\templates\dashboard\user_badges.html.py:3
-#: .\templates\dashboard\user_badges.html.py:8
+#: .\templates\dashboard\user_badges.html.py:9
 msgid "Your badges"
 msgstr "Vos badges"
 
@@ -1092,7 +2234,7 @@ msgstr "Les badges sont désactivés pour ce participant"
 msgid "Reactivate this feature"
 msgstr "Réactivez-les en cliquant ici"
 
-#: .\templates\dashboard\user_badges.html.py:9
+#: .\templates\dashboard\user_badges.html.py:10
 msgid ""
 "This is a new feature of this website. You will win badge during the season."
 msgstr ""
@@ -1106,11 +2248,11 @@ msgstr ""
 "pour un participant (ou pour tout le compte) si vous ne souhaitez plus les "
 "voir.</p>"
 
-#: .\templates\dashboard\user_badges.html.py:10
+#: .\templates\dashboard\user_badges.html.py:11
 msgid "Disable this feature"
 msgstr "Désactiver les badges"
 
-#: .\templates\dashboard\user_badges.html.py:12
+#: .\templates\dashboard\user_badges.html.py:13
 msgid ""
 "It's your first badge ! This is a new feature of this website. You will win "
 "badge during the season."
@@ -1124,7 +2266,7 @@ msgstr ""
 "possible de désactiver cette fonctionnalité (en cliquant sur le bouton "
 "\"désactiver les badges\" au niveau de la section \"Vos badges\").</p>"
 
-#: .\templates\dashboard\user_badges.html.py:15
+#: .\templates\dashboard\user_badges.html.py:17
 #, python-format
 msgid "You won a new badge"
 msgid_plural "You won %(counter)s new badges"
@@ -2085,35 +3227,6 @@ msgstr "Votre page de résultat"
 msgid "Launch date"
 msgstr "Date de lancement"
 
-#: .\templates\sw_auth\account_deactivated.txt.py:2
-#, python-format
-msgid ""
-"Your account has been deactivated and your account information (login, "
-"password, email).\n"
-"\n"
-"If you didnt want your account to be deactivated, please contact us and "
-"indicate your account\n"
-"number.\n"
-" \n"
-"Your Account number : %(id)s\n"
-"\n"
-msgstr ""
-"Votre compte GrippeNet.fr a été désactivé et les informations de connexion "
-"(login, mot de passe, emails, nom des participants) supprimées . Les données "
-"que vous avez fournies dans les questionnaires ont été anonymisées.\n"
-"\n"
-"Si vous ne souhaitiez pas que votre compte soit désactivé, vous pouvez nous "
-"contacter afin de le réactiver en nous indiquant le numéro de compte ci-"
-"dessous.\n"
-" \n"
-"Votre numéro de compte GrippeNet.Fr : %(id)s\n"
-"\n"
-"L'équipe GrippeNet.fr vous souhaite une bonne continuation.\n"
-
-#: .\templates\sw_auth\account_deactivated_subject.txt.py:1
-msgid "Your account have been deactivated"
-msgstr "Votre compte a été désactivé"
-
 #: .\templates\sw_auth\activation_complete.html.py:9
 msgid "You can now login using your credentials"
 msgstr ""
@@ -2148,36 +3261,20 @@ msgstr ""
 "La désactivation de votre compte a été programmée."
 
 #: .\templates\sw_auth\deactivate_planned.html.py:9
+#, fuzzy
+msgid "By clicking on this link, your account has been reactivated."
+msgstr "Votre compte a été désactivé"
+
+#: .\templates\sw_auth\deactivate_planned.html.py:16
 msgid "If your want to deactivate your account click on the button below"
 msgstr ""
 "Si vous souhaitez que votre compte soit <b>désactivé</b>, cliquez sur le "
 "bouton ci-dessous"
 
-#: .\templates\sw_auth\deactivate_warning.txt.py:2
-#, python-format
-msgid ""
-"You did not connect since %(delay)s days to the website.\n"
-"Your account will be deactivated and your connection information will be "
-"deleted.\n"
-"\n"
-"If you dont want your account to be deactivated, please login to the website "
-"or click\n"
-"on the link below:\n"
-"%(login_token)s\n"
-msgstr ""
-"Vous ne vous êtes pas connecté à votre compte GrippeNet.fr depuis %(delay)s "
-"jours.\n"
-"\n"
-"En l'absence de connection de votre part, votre compte sera désactivé et vos "
-"informations de connections seront supprimées. \n"
-"\n"
-"Si vous souhaitez conserver votre compte, veuillez cliquer sur le lien ci-"
-"dessous afin de vous connecter au site: %(login_token)s\n"
-
-#: .\templates\sw_auth\deactivate_warning_subject.txt.py:1
-#, python-format
-msgid "Your account will be deactivated in %(waiting_delay)s days"
-msgstr "Votre compte sera désactivé dans %(waiting_delay)s jours"
+#: .\templates\sw_auth\deactivate_planned.html.py:19
+#, fuzzy
+msgid "I confirm deactivation of my account"
+msgstr "Réactivation de votre compte"
 
 #: .\templates\sw_auth\logout.html.py:11
 msgid "Return to home"
@@ -2234,6 +3331,61 @@ msgstr ""
 "lettres, chiffres ou ponctuaction (évitez les accents !).<br/><br/>Le code "
 "d'invitation n'est pas obligatoire et ne sert que si vous avez été parrainné "
 "par quelqu'un."
+
+#: .\templates\sw_auth\mail\account_deactivated.txt.py:2
+#, python-format
+msgid ""
+"Your account has been deactivated and your account information (login, "
+"password, email).\n"
+"\n"
+"If you didnt want your account to be deactivated, please contact us and "
+"indicate your account\n"
+"number.\n"
+" \n"
+"Your Account number : %(id)s\n"
+"\n"
+msgstr ""
+"Votre compte GrippeNet.fr a été désactivé et les informations de connexion "
+"(login, mot de passe, emails, nom des participants) supprimées . Les données "
+"que vous avez fournies dans les questionnaires ont été anonymisées.\n"
+"\n"
+"Si vous ne souhaitiez pas que votre compte soit désactivé, vous pouvez nous "
+"contacter afin de le réactiver en nous indiquant le numéro de compte ci-"
+"dessous.\n"
+" \n"
+"Votre numéro de compte GrippeNet.Fr : %(id)s\n"
+"\n"
+"L'équipe GrippeNet.fr vous souhaite une bonne continuation.\n"
+
+#: .\templates\sw_auth\mail\account_deactivated_subject.txt.py:1
+msgid "Your account have been deactivated"
+msgstr "Votre compte a été désactivé"
+
+#: .\templates\sw_auth\mail\deactivate_warning.txt.py:2
+#, python-format
+msgid ""
+"You did not connect since %(delay)s days to the website.\n"
+"Your account will be deactivated and your connection information will be "
+"deleted.\n"
+"\n"
+"If you dont want your account to be deactivated, please login to the website "
+"or click\n"
+"on the link below:\n"
+"%(login_token)s\n"
+msgstr ""
+"Vous ne vous êtes pas connecté à votre compte GrippeNet.fr depuis %(delay)s "
+"jours.\n"
+"\n"
+"En l'absence de connection de votre part, votre compte sera désactivé et vos "
+"informations de connections seront supprimées. \n"
+"\n"
+"Si vous souhaitez conserver votre compte, veuillez cliquer sur le lien ci-"
+"dessous afin de vous connecter au site: %(login_token)s\n"
+
+#: .\templates\sw_auth\mail\deactivate_warning_subject.txt.py:1
+#, python-format
+msgid "Your account will be deactivated in %(waiting_delay)s days"
+msgstr "Votre compte sera désactivé dans %(waiting_delay)s jours"
 
 #: .\templates\sw_cohort\form.html.py:15
 msgid "Register a participant into a cohort"
@@ -2434,6 +3586,9 @@ msgid ""
 msgstr ""
 "Le nombre maximum d'invitation que vous pouvez envoyer avec ce compte a été "
 "atteint. Si vous souhaitez envoyer plus d'invitation, contactez notre équipe."
+
+#~ msgid "Add Survey"
+#~ msgstr "Ajouter un questionnaire"
 
 #~ msgid "year"
 #~ msgstr "an"

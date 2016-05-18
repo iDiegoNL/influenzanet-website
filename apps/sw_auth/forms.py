@@ -5,9 +5,17 @@ from models import EpiworkUser
 from django.utils.translation import ugettext_lazy as _
 from apps.reminder.models import UserReminderInfo
 
+
 attrs_dict = { 'class': 'required' }
 
 password_dict = { 'class': 'required','placeholder':_("Enter your password") }
+
+REMINDER_STATES = (
+    (True, u'Recevoir la newsletter'),
+    (False, u'Ne pas recevoir la newsletter'),
+)
+
+EMAIL_FIELD_SIZE = 255
 
 class AuthenticationForm(forms.Form):
     """
@@ -75,7 +83,7 @@ class RegistrationForm(forms.Form):
                                 label=_("Username"), help_text=_("A Username or an email address with only letters, numbers or @ + - _ chars"),
                                 error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
-                                                               maxlength=75,placeholder=_("Email address"))),
+                                                               maxlength=EMAIL_FIELD_SIZE, placeholder=_("Email address"))),
                              label=_("Email address"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=password_dict, render_value=False),
                                 label=_("Password"),
@@ -128,7 +136,7 @@ class RegistrationForm(forms.Form):
         return self.cleaned_data
 
 class PasswordResetForm(forms.Form):
-    email = forms.EmailField(label=_("E-mail"), max_length=75)
+    email = forms.EmailField(label=_("E-mail"), max_length=EMAIL_FIELD_SIZE)
 
     def clean_email(self):
         """
@@ -149,7 +157,7 @@ class PasswordResetForm(forms.Form):
 
 
 class UserEmailForm(forms.Form):
-    email = forms.EmailField(label=_("E-mail"), max_length=80)
+    email = forms.EmailField(label=_("E-mail"), max_length=EMAIL_FIELD_SIZE)
 
     def clean_email(self):
         """
@@ -189,28 +197,38 @@ class SetPasswordForm(forms.Form):
             self.user.save()
         return self.user
 
-class MySettingsForm(forms.Form):
-    email = forms.EmailField(label=_("Email"))
-    send_reminders = forms.BooleanField(label=_("Send reminders"), help_text=_("Check this box if you wish to receive weekly reminders throughout the flu season"), required=False)
-    language = forms.ChoiceField(label=_("Language"), choices=settings.LANGUAGES)
+class ReminderSettings(forms.Form):
+    send_reminders = forms.BooleanField(label=_("Send reminders"),  widget=forms.RadioSelect(choices=REMINDER_STATES), required=False)
 
     def __init__(self, *args, **kwargs):
 
         self.instance = kwargs.pop('instance')
-        self.epiwork_user = kwargs.pop('epiwork')
 
         self.reminder_info, _ = UserReminderInfo.objects.get_or_create(user=self.instance, defaults={'active': True, 'last_reminder': self.instance.date_joined})
 
         initial = kwargs.pop('initial', {})
-        initial['email'] = self.epiwork_user.email
         initial['send_reminders'] = self.reminder_info.active
-        initial['language'] = self.reminder_info.language if self.reminder_info.language else settings.LANGUAGE_CODE
         kwargs['initial'] = initial
 
-        super(MySettingsForm, self).__init__(*args, **kwargs)
+        super(ReminderSettings, self).__init__(*args, **kwargs)
 
-        if len(settings.LANGUAGES) == 1:
-            del self.fields['language']
+    def save(self):
+        self.reminder_info.active = self.cleaned_data['send_reminders']
+        self.reminder_info.save()
+
+
+class EmailForm(forms.Form):
+    email = forms.EmailField(label=_("Email"))
+
+    def __init__(self, *args, **kwargs):
+
+        self.epiwork_user = kwargs.pop('instance')
+
+        initial = kwargs.pop('initial', {})
+        initial['email'] = self.epiwork_user.email
+        kwargs['initial'] = initial
+
+        super(EmailForm, self).__init__(*args, **kwargs)
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -219,17 +237,3 @@ class MySettingsForm(forms.Form):
             if EpiworkUser.objects.exclude(id=self.epiwork_user.id).filter(email=email).count():
                 raise forms.ValidationError(_("This email is already in use"))
         return email
-
-    def save(self):
-        if self.epiwork_user.email == self.epiwork_user.login:
-            self.epiwork_user.username = self.cleaned_data['email']
-        self.epiwork_user.email = self.cleaned_data['email']
-
-        self.reminder_info.active = self.cleaned_data['send_reminders']
-
-        if 'language' in self.cleaned_data:
-            self.reminder_info.language = self.cleaned_data['language']
-
-        #self.instance.save()
-        self.reminder_info.save()
-        self.epiwork_user.save()

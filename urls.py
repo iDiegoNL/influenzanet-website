@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     ('^admin/cms/page/18/edit-plugin/[0-9]+/.*escapeHtml.*icon_src.*/$', 'django.views.defaults.page_not_found'),
 
     (r'^admin/surveys-editor/', include('apps.pollster.urls')),
+    (r'^admin/users/', include('apps.sw_auth.urls_admin')),
     (r'^admin/', include(admin.site.urls)),
     url(r'^surveys/(?P<survey_shortname>.+)/charts/(?P<chart_shortname>.+)/tile/(?P<z>\d+)/(?P<x>\d+)/(?P<y>\d+)$', 'apps.pollster.views.map_tile', name='pollster_map_tile'),
     url(r'^surveys/(?P<survey_shortname>.+)/charts/(?P<chart_shortname>.+)/click/(?P<lat>[\d.-]+)/(?P<lng>[\d.-]+)$', 'apps.pollster.views.map_click', name='pollster_map_click'),
@@ -24,10 +25,10 @@ urlpatterns = patterns('',
     (r'^reminder/', include('apps.reminder.urls')),
     (r'^influenzanet/', direct_to_template, {'template': 'influenzanet.html'}),
     (r'^cookies-policy/', direct_to_template, {'template': 'cookies-policy.html'}),
-    
+
 #    (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
 #    (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
-    
+
 #    (r'^mobile/login/$', 'apps.sw_auth.mobile.mobile_login'),
     (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True, 'next': '/mobile/success/'}),
 #    (r'^mobile/surveys/(?P<shortname>.+)/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
@@ -64,7 +65,7 @@ urlpatterns = patterns('',
     url(r'^register/$', 'apps.sw_auth.views.register_user', name='registration_register_explanation'),
 
 #    (r'^forum/', include('pybb.urls', namespace='pybb')),
-    
+
 )
 
 if settings.DEBUG:
@@ -77,7 +78,7 @@ if settings.DEBUG:
 if settings.MOBILE_INTERFACE_ACTIVE:
     urlpatterns += patterns('', (r'^ema/', include('apps.survey.api.urls')))
 
-urlpatterns += patterns('', 
+urlpatterns += patterns('',
     url(r'^municipal/', include('apps.municipal.urls')),
     url(r'^feedback/', include('apps.sw_feedback.urls')),
     url(r'^news/', include('apps.journal.urls')),

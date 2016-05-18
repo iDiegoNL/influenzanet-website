@@ -1,22 +1,79 @@
 {% extends "base/twocol.html" %}
 {% load i18n %}
 
+{%block add_css%}
+<style>
+.form-settings {
+ margin: 1em;
+ border: 1px solid #EEE;
+ border-radius: .3em;
+}
+.form-settings td { padding: .3em; font-size: .9em }
+.form-settings li { list-style-type: none }
+.form-settings .title { text-align: left; font-size: 1.1em; border-bottom: 1px solid #EEE; padding: .8em }
+.form-settings .buttons { text-align: center }
+.form-settings .note { font-size: .8em }
+.form-settings .email_proposal { color: blue; font-weight: bold }
+.errorlist { color: red; font-size: .8em}
+</style>
+{%endblock add_css%}
+
 {% block col1 %}
 <h1>{% trans "My settings" %}</h1>
 
 {% if success %}
-<p>
-{% trans "Your settings have been updated" %}
-</p>
+ <p class="alert">{{msg}}</p>
 {% endif %}
 
+<form action="" method="post" class="form-settings">{% csrf_token %}
+<input type="hidden" name="action" value="settings"/>
 <table>
-<form action="" method="post">{% csrf_token %}
-{{ form.as_table }}
-<tr><td>
-<button type="submit" class="button">{% trans "Save" %}</button>
-</td></tr>
-</form>
+<tr>
+	<td colspan="2" class="title">Lettre d'information</td>
+</tr>
+{{ form_reminder.as_table }}
+<tr>
+	<td colspan="2" class="buttons">
+		<button type="submit" class="button">{% trans "Save" %}</button>
+	</td>
+</tr>
 </table>
+</form>
+
+<form action="" method="post" class="form-settings">{% csrf_token %}
+<input type="hidden" name="action" value="email"/>
+<table>
+<tr>
+	<td colspan="2" class="title">Votre compte</td>
+</tr>
+<tr>
+	<td>Email principal :</td>
+	<td style="font-weight:bold">{{epiwork_user.email}}</td>
+</tr>
+<tr>
+	<td colspan="2" class="note">
+		{% trans "If you want to change your account email address, please enter a new email adress in the form below" %}
+	</td>
+</tr>
+{% if epiwork_user.email_proposal %}
+<tr>
+	<td colspan="2">
+		Un changement d'adresse a été demandé pour l'adresse <span class="email_proposal">{{epiwork_user.email_proposal}}</span>
+	</td>
+</tr>
+{% endif %}
+{{ form_email.as_table }}
+<tr>
+	<td colspan="2" class="note">
+		{% trans "You will receive an email to this email address to activate this adress as your new one." %}
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="buttons">
+		<button type="submit" class="button">{% trans "Change my email" %}</button>
+	</td>
+</tr>
+</table>
+</form>
 
 {% endblock %}

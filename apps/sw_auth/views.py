@@ -13,14 +13,17 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import never_cache
-from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm, MySettingsForm
+from django.contrib.admin.views.decorators import staff_member_required
 from apps.common.wait import get_wait_launch_date
 from apps.sw_auth.models import EpiworkUser
-from apps.sw_auth.utils import send_activation_email,EpiworkToken
+from apps.sw_auth.utils import send_activation_email,EpiworkToken,\
+    send_user_email
 from apps.sw_auth.logger import auth_notify
-from apps.sw_auth.forms import UserEmailForm
+
+from .forms import PasswordResetForm, RegistrationForm, SetPasswordForm, UserEmailForm, ReminderSettings,EmailForm
 
 from apps.sw_auth.anonymize import Anonymizer
+from django.utils.http import int_to_base36
 
 def render_template(name, request, context=None):
     return render_to_response('sw_auth/'+name+'.html',
@@ -28,7 +31,7 @@ def render_template(name, request, context=None):
                               context_instance=RequestContext(request)
     )
 
-def send_email_user(user, subject, template, context):
+def send_email_user_old(user, subject, template, context):
     t = get_template(template)
     send_mail(subject, t.render(Context(context)), None, [user.email])
 
@@ -57,7 +60,7 @@ def activate_user(request, activation_key):
         token = EpiworkToken(activation_key)
         if token.validate(settings.ACCOUNT_ACTIVATION_DAYS):
             user = EpiworkUser.objects.get(token_activate=activation_key, is_active=False)
-            user.activate()
+            user.activate(email_valid=True)
             d = get_wait_launch_date()
             return render_template('activation_complete', request, {'launch_date': d, 'email': user.email, 'login': user.login})
     except:
@@ -129,7 +132,7 @@ def password_reset(request):
                         'protocol': request.is_secure() and 'https' or 'http',
                     }
 
-                    send_email_user(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
+                    send_email_user_old(user, _("Password reset on %s") % site_name, 'sw_auth/password_reset_email.html', c)
             c = {
                 'has_several': has_several,
                 'count': len(form.users_cache),
@@ -205,24 +208,95 @@ def login_token(request, login_token):
 
     return HttpResponseRedirect(next)
 
+
+def email_change_confirm(request, user_id, token):
+    """
+        Confirm the email is valid using a token
+    """
+    success = True
+
+    tok = EpiworkToken(token)
+
+    try:
+        tok.validate(7)
+        u = EpiworkUser.objects.get(token_email=token)
+
+        uid = int_to_base36(u.id)
+        if not uid == user_id:
+            auth_notify('email', "User id doesnt match %s %s " % (user_id, uid))
+            success = False
+    except Exception, e:
+        print e
+        success = False
+
+    if not success:
+        return render_template('email_change_confirm', request, {'success':False, 'msg': _('Invalid email token') })
+
+    # All is ok change email
+    u.use_email_proposal()
+
+    request.session['epiwork_user'] = u # Update the current user in session
+
+    return render_template('email_change_confirm', request, {'success':True, 'u': u })
+
+
+
 @login_required
 def my_settings(request):
     """
     """
     try:
         epiwork_user = request.session['epiwork_user']
-        if request.method == "POST":
-            form = MySettingsForm(request.POST, instance=request.user, epiwork=epiwork_user)
-            if form.is_valid():
-                form.save()
-                success = True
-        else:
-            form = MySettingsForm(instance=request.user, epiwork=epiwork_user)
-
-        return render_to_response('sw_auth/my_settings.html', locals(), RequestContext(request))
     except KeyError:
         auth_notify('setting', 'No settings')
-        return render_to_response('sw_auth/no_settings.html', locals(), RequestContext(request))
+        return render_template('no_settings', request)
+
+    context = {'epiwork_user': epiwork_user}
+
+    form_reminder = None
+    form_email = None
+    success = False
+    msg = None
+    if request.method == "POST":
+
+        action = request.POST.get('action')
+
+        if action == 'settings':
+            form_reminder = ReminderSettings(request.POST, instance=request.user)
+            if form_reminder.is_valid() :
+                form_reminder.save()
+                success = True
+                msg = _('Your settings have been updated')
+
+        if action == 'email':
+            form_email = EmailForm(request.POST, instance=epiwork_user)
+            if form_email.is_valid():
+                email = form_email.cleaned_data['email']
+
+                token = epiwork_user.create_email_proposal(email)
+                user_id = int_to_base36(epiwork_user.id)
+
+                u = reverse('auth_email_change', kwargs={'user_id': user_id, 'token': token})
+
+                url = request.build_absolute_uri( u )
+
+                send_user_email('email_proposal', email, data={'url':url})
+                send_user_email('email_proposal_warning', epiwork_user.email, {'email': email})
+                msg = _(u'An email has been sent to %(email)s with a link you need to follow to activate this address') % {'email': email }
+                success = True
+
+    if form_reminder is None:
+        form_reminder = ReminderSettings(instance=request.user)
+
+    if form_email is None:
+        form_email = EmailForm(request.POST, instance=epiwork_user)
+
+    context['msg'] = msg
+    context['form_reminder'] = form_reminder
+    context['form_email'] = form_email
+    context['success'] = success
+
+    return render_template('my_settings', request, context)
 
 def deactivate_planned(request):
     return render_template('deactivate_planned', request)
@@ -241,3 +315,7 @@ def index(request):
     """
     return HttpResponseRedirect(reverse('registration_register'))
 
+
+@staff_member_required
+def admin_index(request):
+    return render_template('admin/index', request)
