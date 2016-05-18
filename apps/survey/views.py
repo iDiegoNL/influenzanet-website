@@ -20,16 +20,16 @@ import apps.pollster as pollster
 from apps.grippenet.models import PregnantCohort
 
 def _get_avatars(with_list=True):
-    
+
     """
-    Return the avatar configuration if activated, None otherwise 
+    Return the avatar configuration if activated, None otherwise
     list :list of available avatars (list of the file number in the SURVEY_AVATARS directory (subdirectory of media)
     An avatar is just a 32x32 png image
     url: url to the avatar dir
     """
-    
+
     SURVEY_AVATARS = getattr(settings, 'SURVEY_AVATARS', None)
-    
+
     ## Path to the avatars files, relative to media directory
     if not SURVEY_AVATARS:
         return None
@@ -44,9 +44,9 @@ def _get_avatars(with_list=True):
             conf = {'list': AVATARS, 'url': url }
     else:
         # list not request, return only url
-        conf = {'url': url} 
+        conf = {'url': url}
     return conf
-    
+
 def get_active_survey_user(request):
     gid = request.GET.get('gid', None)
     if gid is None:
@@ -65,7 +65,7 @@ def _get_all_health_status():
         "COMMON-COLD":                                  _('Common cold'),
         "GASTROINTESTINAL":                             _('Gastrointestinal symptoms'),
         "ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL":    _('Allergy / hay fever and gastrointestinal symptoms'),
-        "ALLERGY-or-HAY-FEVER":                         _('Allergy / hay fever'), 
+        "ALLERGY-or-HAY-FEVER":                         _('Allergy / hay fever'),
         "COMMON-COLD-and-GASTROINTESTINAL":             _('Common cold and gastrointestinal symptoms'),
         "NON-SPECIFIC-SYMPTOMS":                        _('Other non-influenza symptons'),
     }
@@ -147,7 +147,7 @@ def _get_group_last_survey(request, survey):
     queries = {
         'sqlite':"SELECT MAX(W.timestamp), W.global_id FROM pollster_results_" + survey + " W WHERE W.user = :user_id GROUP BY W.global_id",
         'mysql': "SELECT MAX(W.timestamp), W.global_id FROM pollster_results_" + survey + " W WHERE W.user = :user_id GROUP BY W.global_id",
-        'postgresql':"SELECT MAX(W.timestamp), W.global_id FROM pollster_results_" + survey + " W WHERE W.user =  %(user_id)s GROUP BY W.global_id", 
+        'postgresql':"SELECT MAX(W.timestamp), W.global_id FROM pollster_results_" + survey + " W WHERE W.user =  %(user_id)s GROUP BY W.global_id",
     }
     cursor.execute(queries[utils.get_db_type(connection)], params)
     data = cursor.fetchall()
@@ -157,24 +157,24 @@ def _get_group_last_survey(request, survey):
         timestamp, global_id = d
         results[global_id] = timestamp
     return results
-        
+
 def _get_group_vaccination(request):
     try:
         cursor = connection.cursor()
         #params = { 'user_id':  }
-        query = "SELECT s.global_id from vaccination_surveyuser v left join survey_surveyuser s on v.surveyuser_id=s.id where s.user_id= %d" % request.user.id 
+        query = "SELECT s.global_id from vaccination_surveyuser v left join survey_surveyuser s on v.surveyuser_id=s.id where s.user_id= %d" % request.user.id
         cursor.execute(query)
         results = cursor.fetchall()
         return [r[0] for r in results]
     except:
         return []
-    
+
 def create_survey_user(request):
     su = models.SurveyUser.objects.create_survey_user(request.user)
     h = SurveyHousehold.get_household(request)
     h.participants_updated(request)
     return su
-       
+
 
 @login_required
 def wait_launch(request):
@@ -183,7 +183,7 @@ def wait_launch(request):
 
 @login_required
 def group_management(request):
-    
+
     if is_wait_launch(request):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
     try:
@@ -197,40 +197,40 @@ def group_management(request):
         pass
 
     household = SurveyHousehold.get_household(request)
-    
+
     if request.method == "POST":
         global_ids = request.POST.getlist('global_ids')
-        
+
         action = request.POST.get('action')
-        
+
         if action == 'healthy':
             Weekly = survey.as_model()
-        
+
         update_household = False
-    
+
         for (gid, survey_user) in household.participants.items():
             if not gid in global_ids:
                 continue
-            
+
             if action == 'healthy':
-               
+
                 profile = household.get_simple_profile(gid)
                 if not profile:
-                    messages.add_message(request, messages.ERROR, 
+                    messages.add_message(request, messages.ERROR,
                         _(u'Please complete the background questionnaire for the participant "%(user_name)s" before marking him/her as healthy.') % {'user_name': survey_user.name})
                     continue
-                
+
                 pregnant = None
                 try:
                     pregnant = PregnantCohort.objects.get(survey_user=survey_user)
                 except PregnantCohort.DoesNotExist:
                     pass
-                
+
                 channel = ''
                 if pregnant is not None:
                     if pregnant.change_channel:
                         channel = 'G'
-                
+
                 Weekly.objects.create(
                     user=request.user.id,
                     global_id=survey_user.global_id,
@@ -244,23 +244,23 @@ def group_management(request):
                 survey_user.deleted = True
                 update_household = True
                 survey_user.save()
-            
+
             if update_household:
                 household.participants_updated(request)
 
     last_intakes = _get_group_last_survey(request, 'intake')
     last_weeklies = _get_group_last_survey(request, 'weekly')
-    
+
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
-    
+
     persons_dict = dict([(p.global_id, p) for p in persons])
-    
+
     persons_ids = [p.id for p in persons]
-    
+
     pregnants = list(PregnantCohort.objects.filter(survey_user__id__in=persons_ids))
-    
+
     pregnants = dict([(str(p.survey_user.id), p) for p in pregnants])
-    
+
     has_pregnant = False
     for person in persons:
         # person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
@@ -270,21 +270,21 @@ def group_management(request):
         person.pregnant = pregnants.get(str(person.id))
         if person.pregnant is not None:
             has_pregnant = True
-    
-    template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')    
-    
+
+    template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')
+
     wait_launch = get_wait_launch_context(request) # is request restricted by wait_launch context
-    
+
     avatars = _get_avatars(with_list=False)
-    
+
     ctx = {
-           'persons': persons, 
-           'gid': request.GET.get("gid"), 
+           'persons': persons,
+           'gid': request.GET.get("gid"),
            'wait_launch':wait_launch,
            'avatars': avatars,
            'has_pregnant': has_pregnant,
            }
-    
+
     return render_to_response('survey/'+template+'.html', ctx, context_instance=RequestContext(request))
 
 @login_required
@@ -302,20 +302,20 @@ def thanks_profile(request):
 def select_user(request, template='survey/select_user.html'):
     # @todo: more generic select_user that can hold some extra url parameters
     next = request.GET.get('next', None)
-        
+
     if next is None:
         next = reverse('survey_index')
 
     users = models.SurveyUser.objects.filter(user=request.user, deleted=False)
     total = len(users)
     survey_user = None
-    
+
     if total == 0:
         survey_user = create_survey_user(request)
-        
+
     elif total == 1:
         survey_user = users[0]
-        
+
     if survey_user is not None:
         url = '%s?gid=%s' % (next, survey_user.global_id)
         return HttpResponseRedirect(url)
@@ -356,19 +356,19 @@ def create_surveyuser(request):
 
     if models.SurveyUser.objects.filter(user=request.user, deleted=False).count() == 0:
         survey_user = create_survey_user(request)
-        
+
     gid = models.SurveyUser.objects.get(user=request.user, deleted=False).global_id
     return HttpResponseRedirect(reverse('survey_index') + '?gid=' + gid)
 
 @login_required
 def run_index(request, shortname):
-    return HttpResponseRedirect( reverse('survey_fill', {'shortname': shortname }))
+    return redirect_to_survey(request, shortname)
 
 @login_required
 def run_survey(request, shortname):
     if is_wait_launch(request, shortname):
         return HttpResponseRedirect(reverse('survey_wait_launch'))
-    
+
     # Check of survey user is done here
     # Because it's survey app responsability to manage the SurveyUser and create if if necessary
     try:
@@ -380,7 +380,7 @@ def run_survey(request, shortname):
         # TODO allow query params forwarding (or save it in session)
         url = '%s?next=%s' % (reverse("survey_select_user"), reverse("survey_fill", kwargs={'shortname':shortname}))
         return HttpResponseRedirect(url)
-    
+
     from apps.pollster.runner import SurveyRunner
     runner = SurveyRunner()
     return runner.run(request, survey_user, shortname)
@@ -393,7 +393,7 @@ def thanks_run(request, shortname):
         pass
     return render_to_response('survey/thanks_'+ shortname +'.html', {'person': survey_user},
         context_instance=RequestContext(request))
-        
+
 @login_required
 def people_edit(request):
     try:
@@ -405,7 +405,7 @@ def people_edit(request):
         return HttpResponseRedirect(url)
     elif survey_user.deleted == True:
         raise Http404()
-    
+
     current_avatar = survey_user.avatar
     if request.method == 'POST':
         form = forms.AddPeople(request.POST)
@@ -443,10 +443,10 @@ def people_remove(request):
     if confirmed is not None:
         if confirmed == 'Y':
             survey_user.remove()
-            
+
             h = SurveyHousehold.get_household(request)
             h.participants_updated(request)
-            
+
         elif confirmed == 'N':
             url = reverse(group_management)
         return HttpResponseRedirect(reverse(group_management))
@@ -468,7 +468,7 @@ def people_add(request):
             h = SurveyHousehold.get_household(request)
             h.participants_updated(request)
 
-            messages.add_message(request, messages.INFO, 
+            messages.add_message(request, messages.INFO,
                 _('A new person has been added.'))
 
             next = request.GET.get('next', None)
