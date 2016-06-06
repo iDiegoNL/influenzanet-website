@@ -100,7 +100,7 @@ class ResultsEndpoint(Resource):
         if form.is_valid():
             form.save()
         else:
-            pass
+            print form.errors
         return bundle
             
     def obj_update(self, bundle, **kwargs):

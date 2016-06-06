@@ -1,13 +1,13 @@
 import os
 import sys
 
-path = '/home/influweb/web'
+path = '/home/influweb/web-api'
 if path not in sys.path:
     sys.path.append(path)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
-activate_this = '/home/influweb/web/bin/activate_this.py'
+activate_this = '/home/influweb/web-api/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
 import django.core.handlers.wsgi

@@ -1,0 +1,222 @@
+from urllib import urlencode
+from urllib2 import urlopen, HTTPError
+from django.utils import simplejson
+from django.contrib.auth.models import User
+from django.db.utils import IntegrityError
+from tastypie import fields
+from tastypie.authentication import Authentication
+from tastypie.authentication import MultiAuthentication
+from tastypie.authentication import BasicAuthentication
+from tastypie.authentication import ApiKeyAuthentication
+from tastypie.authorization import Authorization
+from tastypie.resources import Resource
+from tastypie.exceptions import NotFound
+from tastypie.models import ApiKey
+from tastypie.bundle import Bundle
+from social_auth.models import UserSocialAuth
+from social_auth.utils import setting
+from social_auth.backends.pipeline.user import get_username
+from apps.survey.models import SurveyUser
+
+import re
+
+class UserProxy(object):
+    def __init__(self, username=None, email=None, apikey=None):
+        self.username = username  
+        self.email = email   
+        if apikey:
+            self.key = apikey.key
+        else:
+            self.key = ''
+
+
+class RegisterEndpoint(Resource):
+    key = fields.CharField(attribute='key')
+    username = fields.CharField(attribute='username', null=True)
+    email = fields.CharField(attribute='email', null=True)
+    error = fields.CharField(attribute='error', null=True)
+    
+    class Meta:
+        resource_name = 'register'
+        object_class = UserProxy
+        always_return_data = True
+        authentication = Authentication()
+        authorization = Authorization()
+
+    def detail_uri_kwargs(self, bundle_or_obj):
+        kwargs = {}
+        if isinstance(bundle_or_obj, Bundle):
+            kwargs['pk'] = bundle_or_obj.obj.username
+        else:
+            kwargs['pk'] = bundle_or_obj.username
+
+        return kwargs
+
+    def get_object_list(self, request):
+        raise NotImplementedError()
+        
+    def obj_get_list(self, bundle, **kwargs):
+        return self.get_object_list(bundle.request)
+
+    def obj_get(self, bundle, **kwargs):
+        raise NotImplementedError()
+
+    def obj_create(self, bundle, **kwargs):
+        # Create the user.
+        try:
+            user = User.objects.create_user(
+                bundle.data['username'],
+                email=bundle.data['email'],
+                password=bundle.data['password']
+            )
+        except IntegrityError:
+            # If the user already exists return a proxy with an error.
+            bundle.obj = UserProxy()
+            bundle.obj.error = "USER-ALREADY-EXISTS"
+            bundle.data = {}
+            return bundle
+        # Create the associated SurveyUser.
+        SurveyUser.objects.create(
+            user=user,
+            name=user.username
+        )
+        # Also create an API key to allow for immediate connection.
+        key = ApiKey.objects.create(user=user)
+        # And return the full bundle.
+        bundle.obj = UserProxy(user.username, user.email, key)
+        bundle.data = {}
+        return bundle
+
+    def obj_update(self, bundle, **kwargs):
+        raise NotImplementedError()
+
+    def obj_delete_list(self, bundle, **kwargs):
+        raise NotImplementedError()
+
+    def obj_delete(self, bundle, **kwargs):
+        raise NotImplementedError()
+
+    def rollback(self, bundles):
+        pass
+
+
+class RegisterFacebookEndpoint(Resource):
+    key = fields.CharField(attribute='key', null=True)
+    username = fields.CharField(attribute='username', null=True)
+    access_token = fields.CharField(attribute='access_token', null=True)
+    
+    class Meta:
+        resource_name = 'register_facebook'
+        object_class = UserProxy
+        always_return_data = True
+        authentication = MultiAuthentication(
+            BasicAuthentication(), ApiKeyAuthentication(), Authentication())
+        authorization = Authorization()
+
+    def detail_uri_kwargs(self, bundle_or_obj):
+        kwargs = {}
+
+        if isinstance(bundle_or_obj, Bundle):
+            kwargs['pk'] = bundle_or_obj.obj.username
+        else:
+            kwargs['pk'] = bundle_or_obj.username
+
+        return kwargs
+
+    def get_object_list(self, request):
+        raise NotImplementedError()
+        
+    def obj_get_list(self, bundle, **kwargs):
+        return self.get_object_list(bundle.request)
+
+    def obj_get(self, bundle, **kwargs):
+        raise NotImplementedError()
+        
+    def obj_create(self, bundle, **kwargs):
+        access_token = bundle.data['access_token']
+        if access_token:
+            # Check that access_token really comes from Influweb application.
+            params = {'access_token': access_token}
+            url = "https://graph.facebook.com/app?" + urlencode(params)
+            try:
+                data = simplejson.load(urlopen(url))
+            except HTTPError:
+                raise NotFound("access_token doesn't match")                
+            if data['id'] != setting('FACEBOOK_APP_ID', None):
+                raise NotFound("access_token generated by unsupported application")
+            # Check that user id is NOT already registered in our database
+            # by retrieving the UID from Facebook: the data will also be used
+            # during the user cretion step.
+            url = "https://graph.facebook.com/me?" + urlencode(params)
+            try:
+                data = simplejson.load(urlopen(url))
+            except HTTPError:
+                raise NotFound("access_token doesn't match")
+            try:
+                social_user = UserSocialAuth.objects.get(uid=data['id'])                                
+            except:
+                social_user = None
+            if social_user:
+                # User already exists; make this the equivalent of a login.
+                user = User.objects.get(id=social_user.user_id)
+                keys = ApiKey.objects.filter(user=user)
+                if len(keys) == 1:
+                    bundle.obj = UserProxy(user.username, user.email, keys[0])
+                else:
+                    bundle.obj = UserProxy(user.username, user.email, ApiKey.objects.create(user=user))
+            else:
+                # User doesn't exists so we go on and create it or bind an
+                # already existing user with the same email. First we try
+                # to associate accounts registered with the same email address,
+                # only if it's a single object. AuthException is raised if 
+                # multiple objects are returned.
+                try:
+                    user = UserSocialAuth.get_user_by_email(email=data['email'])
+                    # DEBUG: don't bind via email.
+                    user = None
+                except:
+                    user = None
+                if not user:  
+                    proposed_username = re.sub('[^a-zA-Z0-9@._-]+', '', data['name'])
+                    final_username = get_username({
+                        'username': proposed_username,
+                        'email': data['email']
+                    })
+                    user = UserSocialAuth.create_user(
+                        final_username['username'],
+                        email=data['email']
+                    )
+                    user.first_name = data.get('first_name')
+                    user.last_name = data.get('last_name')
+                    user.save()
+                    # Create the associated SurveyUser.
+                    SurveyUser.objects.create(
+                        user=user,
+                        name=data.get('firstname') or data['name']
+                    )                    
+                # Also create an API key to allow for immediate connection.
+                keys = ApiKey.objects.filter(user=user)
+                if len(keys) == 1:
+                    key = keys[0]
+                else:
+                    key = ApiKey.objects.create(user=user)                        
+                # And eventually bind the social user to the Django user.
+                social_user = UserSocialAuth.create_social_auth(user, data['id'], 'facebook')
+                social_user.extra_data = data
+                social_user.save()
+                # Return all the data to the client.                
+                bundle.obj = UserProxy(user.username, user.email, key)                
+                
+        return bundle
+    
+    def obj_update(self, bundle, **kwargs):
+        raise NotImplementedError()
+
+    def obj_delete_list(self, bundle, **kwargs):
+        raise NotImplementedError()
+
+    def obj_delete(self, bundle, **kwargs):
+        raise NotImplementedError()
+
+    def rollback(self, bundles):
+        pass

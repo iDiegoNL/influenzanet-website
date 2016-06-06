@@ -1403,3 +1403,19 @@ class SurveyPlugin(CMSPlugin):
     def render(self, context):
         return self.get_template().render(context)
 
+class NotifyToken(models.Model):
+    user = models.OneToOneField(User, db_index=True)
+    atoken = models.TextField(blank=True, default='')
+    itoken = models.TextField(blank=True, default='')
+    created = models.DateTimeField()
+    updated = models.DateTimeField()
+    is_gcm_invalid = models.BooleanField(default=False)
+    last_gcm_message_id = models.TextField(blank=True, default='')
+    last_gcm_message_timestamp = models.DateTimeField(blank=True, null=True)
+    last_gcm_failure = models.TextField(blank=True, default='')
+    is_apns_invalid = models.BooleanField(default=False)
+    last_apns_message_id = models.TextField(blank=True, default='')
+    last_apns_message_timestamp = models.DateTimeField(blank=True, null=True)
+    last_apns_failure = models.TextField(blank=True, default='')
+
+

@@ -10,13 +10,17 @@ from views import LatestEntriesFeed
 
 
 from tastypie.api import Api
-from apps.pollster.api.access import AccessEndpoint
+from apps.pollster.api.access import AccessEndpoint, AccessFacebookEndpoint
+from apps.pollster.api.register import RegisterEndpoint, RegisterFacebookEndpoint
 from apps.pollster.api.survey import SurveyEndpoint
 from apps.pollster.api.members import MembersEndpoint
 from apps.pollster.api.results import ResultsEndpoint
 
 v1_api = Api(api_name='v1')
 v1_api.register(AccessEndpoint())
+v1_api.register(AccessFacebookEndpoint())
+v1_api.register(RegisterEndpoint())
+v1_api.register(RegisterFacebookEndpoint())
 v1_api.register(SurveyEndpoint())
 v1_api.register(MembersEndpoint())
 v1_api.register(ResultsEndpoint())
@@ -41,13 +45,6 @@ urlpatterns = patterns('',
     (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
     (r'map.html$', 'django.views.generic.simple.direct_to_template', {'template': 'map.html'}),
     
-    (r'^mobile/login/$', 'views.mobile_login'),
-    (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True, 'next': '/mobile/success/'}),
-    (r'^mobile/success/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
-    (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
-    (r'^mobile/login/$', 'views.mobile_login'),
-    (r'^mobile/(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$', 'apps.journal.views.entry', {'template_name': 'mobile'}),
-
     (r'^rss/$', LatestEntriesFeed()),
 
     url(r'^captcha/', include('captcha.urls')),
