@@ -36,13 +36,13 @@ TIME_ZONE = 'Europe/Amsterdam'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 # LANGUAGE_CODE = 'en'
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'fr'
 
 # For checking postcodes etc.
 # Use ISO3166 two-letter country code
 # See http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
 # Avaliable: be, it, nl, uk, pt, se
-COUNTRY = 'es'
+COUNTRY = 'ch'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -86,7 +86,7 @@ CMS_FILE_ICON_PATH = os.path.join(MEDIA_ROOT, 'file_icons/')
 CMS_FILE_ICON_URL = os.path.join(MEDIA_URL, 'file_icons/')
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'swgm*3%po62mg76m4iq!k8h3j+_)x=8b--7skjc_0wiak^wksr'
+SECRET_KEY = 'swgm*3%po6ue739die237!kdj+_)x=8b--7skjc_0wiak^wksr'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -109,6 +109,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.multilingual.MultilingualURLMiddleware',
     'apps.pollster.middleware.ForceResponseMiddleware',
 )
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.i18n",
@@ -216,7 +217,7 @@ EMAIL_HOST = '127.0.0.1'
 
 # Default e-mail address to use for various automated correspondence from
 # the site managers.
-DEFAULT_FROM_EMAIL = 'Influenzanet <webmaster@influenzanet.eu>'
+DEFAULT_FROM_EMAIL = 'Grippenet <webmaster@grippenet.ch>'
 
 if DEBUG:
 	EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

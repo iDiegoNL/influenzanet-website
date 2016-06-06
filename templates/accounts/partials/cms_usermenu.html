@@ -1,0 +1,18 @@
+{% load i18n %}
+
+<p class="title">{% trans "Mein Konto" %}</p>
+<div id="userdisplay">
+  	<span class="username">{{ user.username }}</span><br />
+    <span class="usermail"><a href="mailto:{{ user.email }}">{{ user.email }}</a>
+</div>
+
+<div id="usermenu">
+    <ul class="icons">
+        <li><i class="icon-edit"></i> <a href="/dashboard">{% trans "Meine Ergebnisse" %}</a></li>
+        <li><i class="icon-user"></i> <a href="{% url apps.survey.views.group_management %}">{% trans "Mein Haushalt" %}</a></li>
+        <li><i class="icon-inbox"></i> <a href="{% url apps.reminder.views.latest_newsletter %}">{% trans "Newsletter" %}</a></li>
+        <li><i class="icon-cog"></i> <a href="{% url apps.accounts.views.my_settings %}">{% trans "Konto Einstellungen" %}</a></li>
+        <li><i class="icon-off"></i> <a href="{% url django.contrib.auth.views.logout %}">{% trans "Abmelden" %}</a></li>
+    </ul>
+</div>
+

@@ -6,37 +6,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 11:52+0100\n"
+"POT-Creation-Date: 2015-12-02 16:14+0100\n"
 "PO-Revision-Date: 2012-01-24 11:57+0100\n"
 "Last-Translator: Markus Schwehm <Markus.Schwehm@explosys.de>\n"
 "Language-Team: Very good.\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.7.0-mac-beta-1\n"
 
 #: apps/accounts/forms.py:16 apps/accounts/forms.py:20
-#: apps/accounts/forms.py:25 templates/accounts/my_settings.html:32
+#: apps/accounts/forms.py:25 src/django-registration/registration/forms.py:35
+#: templates/accounts/my_settings.html:46
 #, fuzzy
 msgid "Username"
-msgstr "Absender Name"
+msgstr "Benutzername"
 
 #: apps/accounts/forms.py:17
 #, fuzzy
 msgid "This value must contain only letters, numbers and underscores."
 msgstr ""
-"Eingabe eines Bezeichners bestehend aus Buchstaben, Zahlen oder dem "
-"Unterstrich '_'"
+"Dieser Wert darf nur aus Buchstaben, Zahlen oder "
+"Unterstrichen '_' bestehen."
 
 #: apps/accounts/forms.py:21 apps/accounts/forms.py:26
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
-msgstr ""
+msgstr "Notwending. 30 Zeichen oder weniger. Nur Buchstaben, Ziffern oder @/./+/-/_."
 
 #: apps/accounts/forms.py:22 apps/accounts/forms.py:27
+#: src/django-registration/registration/forms.py:36
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
-msgstr ""
+msgstr "Dieser Wert darf nur Buchstaben, Zahlen und @/./+/-/_ enthalten."
 
 #: apps/accounts/forms.py:31 apps/ew_contact_form/forms.py:13
 msgid "Email"
@@ -54,10 +56,10 @@ msgstr ""
 "Wählen Sie diese Box aus, wenn Sie während der Grippe-Saison wöchentliche "
 "Erinnerungs-E-Mails erhalten wollen"
 
-#: apps/accounts/forms.py:33
+#: apps/accounts/forms.py:33 pybb/models.py:302
 #, fuzzy
 msgid "Language"
-msgstr "Verwalten"
+msgstr "Sprache"
 
 #: apps/accounts/forms.py:53
 msgid "This email is already in use"
@@ -65,39 +67,33 @@ msgstr "Diese E-Mail-Adresse wird bereits verwendet"
 
 #: apps/accounts/forms.py:79
 msgid "A user with this username already exists"
-msgstr ""
-
-#: apps/captcha/fields.py:54
-msgid "Play captcha as audio file"
-msgstr ""
-
-#: apps/captcha/fields.py:72 apps/captcha/fields.py:97
-#: apps/captcha/tests/__init__.py:70
-msgid "Invalid CAPTCHA"
-msgstr ""
-
-#: apps/captcha/tests/__init__.py:97
-msgid "This field is required."
-msgstr ""
+msgstr "Ein Benutzer mit diesem Benutzernamen existiert bereits"
 
 #: apps/contest/cms_plugins.py:14
 msgid "Contest"
-msgstr "Preisfrage"
+msgstr "Wettkampf"
 
 #: apps/ew_contact_form/forms.py:12 apps/survey/forms/__init__.py:16
+#: pybb/models.py:59 pybb/models.py:90
+#: templates/survey/group_management.html:47
 msgid "Name"
 msgstr "Name"
 
 #: apps/ew_contact_form/forms.py:14 apps/tellafriend/forms.py:16
+#: pybb/admin.py:88 pybb/models.py:214
 msgid "Message"
 msgstr "Mitteilung"
+
+#: apps/ggm_maps/cms_plugins.py:11
+msgid "GGM Maps"
+msgstr "GGM Karten"
 
 #: apps/journal/admin.py:38
 #, python-format
 msgid "%(count)d newsitem was published"
-msgid_plural "%(count)d newsitems where published"
-msgstr[0] "%(count)d Nachricht wurde veröffentlicht"
-msgstr[1] "%(count)d Nachricht wurde veröffentlicht"
+msgid_plural "%(count)d newsitems were published"
+msgstr[0] "%(count)d Nachrichten wurden veröffentlicht"
+msgstr[1] "%(count)d Nachrichten wurden veröffentlicht"
 
 #: apps/journal/admin.py:41
 msgid "Publish selected news"
@@ -106,7 +102,7 @@ msgstr "Veröffentliche ausgewählte Nachrichten"
 #: apps/journal/admin.py:48
 #, python-format
 msgid "%(count)d newsitem was unpublished"
-msgid_plural "%(count)d newsitems where unpublished"
+msgid_plural "%(count)d newsitems were unpublished"
 msgstr[0] "%(count)d Nachricht wurde zurückgezogen"
 msgstr[1] "%(count)d Nachrichten wurden zurückgezogen"
 
@@ -136,11 +132,11 @@ msgstr ""
 msgid "Title"
 msgstr "Titel"
 
-#: apps/journal/models.py:19
+#: apps/journal/models.py:19 pybb/models.py:67 pybb/models.py:89
 msgid "Category"
 msgstr "Kategorie"
 
-#: apps/journal/models.py:20
+#: apps/journal/models.py:20 pybb/models.py:68
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -153,7 +149,7 @@ msgstr ""
 
 #: apps/journal/models.py:40
 msgid "Excerpt"
-msgstr "Exzerpt"
+msgstr "Auszug"
 
 #: apps/journal/models.py:41
 msgid "Content"
@@ -197,11 +193,11 @@ msgstr "Einträge"
 
 #: apps/journal/models.py:83
 msgid "Number of entries to show"
-msgstr "Anzahl der darzustellenden Einträge"
+msgstr "Anzahl der gezeigten Einträge"
 
 #: apps/journal/models.py:84
 msgid "Limits the number of entries that will be displayed"
-msgstr "Begrenzt die Anzahl der dargestellten Einträge"
+msgstr "Begrenzt die Anzahl der gezeigten Einträge"
 
 #: apps/journal/models.py:85
 msgid "Leave this field blank to match all categories"
@@ -224,7 +220,7 @@ msgstr ""
 
 #: apps/partnersites/forms.py:9
 msgid "Use a hexidecimal value (length: 6) without the preceding #"
-msgstr ""
+msgstr "Verwende einen Hexadezimalwert (Länge: 6) ohne vorangestelltes #"
 
 #: apps/partnersites/models.py:8
 msgid "Logo"
@@ -236,43 +232,63 @@ msgstr "Bevorzugte Höhe: 70px, maximale Breite: 750px"
 
 #: apps/partnersites/models.py:10
 msgid "Footer"
-msgstr "Fußtext"
+msgstr "Fußnote"
 
 #: apps/partnersites/models.py:10
 msgid "The footer will be displayed at the bottom of each page"
-msgstr "Die Fußnote wird am unteren Ende jeder Seite dargestellt"
+msgstr "Die Fußnote wird am unteren Ende jeder Seite angezeigt"
 
 #: apps/partnersites/models.py:12
 msgid "Show cookie warning"
-msgstr ""
+msgstr "Cookie-Warnung anzeigen"
 
 #: apps/partnersites/models.py:20 apps/partnersites/models.py:23
 #: apps/partnersites/models.py:24
 msgid "Site settings"
-msgstr "Grundeinstellungen der Site"
+msgstr "Grundeinstellungen der Seite"
 
-#: apps/pollster/cms_plugins.py:9
+#: apps/pollster/cms_plugins.py:32
+msgid "Survey"
+msgstr "Umfrage"
+
+#: apps/pollster/cms_plugins.py:137
 msgid "Survey Chart"
 msgstr "Erhebungsdiagramm"
 
-#: apps/pollster/fields.py:34
+#: apps/pollster/fields.py:35
 msgid "Enter a valid year and month."
-msgstr "Eingabe von Jahr und Monat"
+msgstr "Geben Sie ein gültiges Jahr und einen gültigen Monat ein."
 
-#: apps/pollster/fields.py:63
+#: apps/pollster/fields.py:64
 #, fuzzy
 msgid "Enter a valid date."
-msgstr "Eingabe der Postleitzahl"
+msgstr "Geben Sie ein gültiges Datum ein."
 
-#: apps/pollster/fields.py:92
+#: apps/pollster/fields.py:93
 msgid "Enter a valid postal code."
-msgstr "Eingabe der Postleitzahl"
+msgstr "Eingabe der Postleitzahl."
 
 #: apps/pollster/forms.py:17
 msgid "Enter a valid value consisting of letters, numbers or underscores"
 msgstr ""
-"Eingabe eines Bezeichners bestehend aus Buchstaben, Zahlen oder dem "
-"Unterstrich '_'"
+"Geben Sie einen Werte bestehend aus Buchstaben, Zahlen oder "
+"Unterstrichen '_' ein."
+
+#: apps/pollster/views.py:210
+msgid "Thanks - your diagnosis:"
+msgstr "Danke - Ihre Diagnose:"
+
+#: apps/pollster/views.py:212 templates/survey/thanks.html:22
+msgid "Thanks for taking the time to fill out this survey."
+msgstr "Vielen Dank, dass Sie sich Zeit für das Ausfüllen dieses Fragebogens genommen haben."
+
+#: apps/pollster/views.py:224
+msgid ""
+"At the beginning of the season we ask you to verify last year's information. "
+"Please check the information below."
+msgstr ""
+"Zu Beginn der Saison bitten wir Sie darum, die Angaben des letzten Jahres zu bestätigen. "
+"Bitte überprüfen Sie die unten stehenden Informationen."
 
 #: apps/pollster/db/models/fields.py:10
 msgid "Year and month (in YYYY-MM format)"
@@ -281,21 +297,30 @@ msgstr "Jahr und Monat (im Format JJJJ-MM)"
 #: apps/pollster/db/models/fields.py:25
 #, fuzzy
 msgid "Date (in YYYY-MM-DD format)"
-msgstr "Jahr und Monat (im Format JJJJ-MM)"
+msgstr "Jahr und Monat (im Format JJJJ-MM-DD)"
 
 #: apps/pollster/db/models/fields.py:33
 msgid "Postal code"
 msgstr "Postleitzahl"
 
-#: apps/reminder/forms.py:17
+#: apps/reminder/forms.py:19
 msgid ""
 "If 'send_reminders' is checked the other fields pertaining to reminders are "
 "required"
 msgstr ""
-"Falls 'Erinnerungen senden' gewünscht ist, sind auch die anderen Felder mit "
-"Bezug zu Erinnerungen erforderlich"
+"Falls 'Erinnerungen senden' gewünscht ist, müssen auch die dazugehörigen Felder "
+"ausgefüllt werden."
 
-#: apps/reminder/forms.py:31
+#: apps/reminder/forms.py:23
+#, fuzzy
+msgid ""
+"If 'send_resubscribe_email' is checked the other fields pertaining to "
+"resubscription are required"
+msgstr ""
+"Falls 'Sende Wiederanmeldungsmail' gewünscht ist, müssen auch die dazugehörigen Felder "
+"ausgefüllt werden."
+
+#: apps/reminder/forms.py:38
 msgid "If no dates are shown here, check your site settings"
 msgstr ""
 "Falls hier keine Daten eingezeigt werden, bitte die Grundeinstellungen der "
@@ -319,91 +344,92 @@ msgstr "Alle zwei Wochen"
 
 #: apps/reminder/models.py:37
 msgid "Don't send reminders at a fixed interval"
-msgstr ""
+msgstr "Sende keine Erinnerungen in festen Zeitabständen"
 
 #: apps/reminder/models.py:38
 msgid "Begin date"
 msgstr "Anfangsdatum"
 
-#: apps/reminder/models.py:44
+#: apps/reminder/models.py:48
 msgid "Reminder settings"
 msgstr "Einstellungen für Erinnerungen"
 
-#: apps/reminder/models.py:52
+#: apps/reminder/models.py:56
 msgid "Is default reminder"
 msgstr "Ist eine Standarderinnerung"
 
-#: apps/reminder/models.py:52
+#: apps/reminder/models.py:56
 msgid ""
 "If this option is checked this template is the standard template for "
 "reminder emails."
 msgstr ""
-"Falls ausgewählt, ist diese Vorlage die Standardvorlage für Erinnerungs-E-"
-"Mails"
+"Falls ausgewählt, ist dies die Standardvorlage für Erinnerungsmails"
+""
 
-#: apps/reminder/models.py:53
+#: apps/reminder/models.py:57
 msgid "Is default newsitem"
-msgstr "Standard-Nachrichten"
+msgstr "Standard-Nachricht"
 
-#: apps/reminder/models.py:53
+#: apps/reminder/models.py:57
 msgid ""
 "If this option is checked this template is the standard template for new "
 "news items."
-msgstr "Standardvorlage für Nachrichten"
+msgstr "Falls ausgewählt, ist dies die Standardvorlage für neue Nachrichten."
 
-#: apps/reminder/models.py:54 apps/reminder/models.py:68
+#: apps/reminder/models.py:58 apps/reminder/models.py:72
 msgid "Sender email"
 msgstr "Absender E-Mail "
 
-#: apps/reminder/models.py:55 apps/reminder/models.py:69
+#: apps/reminder/models.py:59 apps/reminder/models.py:73
 msgid "Sender name"
 msgstr "Absender Name"
 
-#: apps/reminder/models.py:66
+#: apps/reminder/models.py:70
 msgid "Date"
 msgstr "Datum"
 
-#: apps/reminder/models.py:127
+#: apps/reminder/models.py:131
 #, python-format
 msgid "%(current)s (in %(days)s days)"
-msgstr ""
+msgstr "%(current)s (in %(days)s Tagen)"
 
-#: apps/reminder/models.py:129
+#: apps/reminder/models.py:133
 #, python-format
 msgid "%(current)s (in %(weeks)s weeks)"
-msgstr ""
+msgstr "%(current)s (in %(weeks)s Wochen)"
 
-#: apps/reminder/models.py:132
+#: apps/reminder/models.py:136
 #, python-format
 msgid "%(current)s (%(days)s days ago)"
-msgstr ""
+msgstr "%(current)s (vor %(days)s Tagen)"
 
-#: apps/reminder/models.py:134
+#: apps/reminder/models.py:138
 #, python-format
 msgid "%(current)s (%(weeks)s weeks ago)"
-msgstr ""
+msgstr "%(current)s (vor %(weeks)s Wochen)"
 
 #: apps/reminder/templates/reminder/latest_newsletter.html:4
 #, fuzzy
 msgid "Logged in"
-msgstr "Angemeldet als"
+msgstr "Angemeldet"
 
-#: apps/reminder/templates/reminder/latest_newsletter.html:7
+#: apps/reminder/templates/reminder/latest_newsletter.html:21
 msgid "You are logged in"
-msgstr ""
+msgstr "Sie sind angemeldet"
 
-#: apps/reminder/templates/reminder/latest_newsletter.html:10
-#: templates/survey/group_management.html:14
+#: apps/reminder/templates/reminder/latest_newsletter.html:24
+#: templates/survey/group_management.html:36
 msgid "The last survey was submitted for"
-msgstr ""
+msgstr "Die letzte Umfrage wurde abgesendet für"
 
-#: apps/reminder/templates/reminder/latest_newsletter.html:10
+#: apps/reminder/templates/reminder/latest_newsletter.html:24
+#: templates/survey/group_management.html:36
 msgid "on"
-msgstr ""
+msgstr "an"
 
-#: apps/reminder/templates/reminder/latest_newsletter.html:15
+#: apps/reminder/templates/reminder/latest_newsletter.html:29
 msgid "Last newsletter from"
-msgstr ""
+msgstr "Letzter Newsletter von"
 
 #: apps/reminder/templates/reminder/message.html:66
 #, fuzzy, python-format
@@ -416,12 +442,34 @@ msgstr ""
 "Sie erhalten diese E-Mail, weil sie sich auf der Webseite \"Aktiv gegen "
 "Grippe\" angemeldet haben. Ihr Beitrag hilft uns, die Ausbreitung der Grippe "
 "zu verfolgen. Wenn Sie diese wöchentliche Erinnerungsmail nicht mehr "
-"erhalten wollen, dann können Sie dies ganz einfach <a href=\"%"
-"(unsubscribe_url)s\">abmelden</a>."
+"erhalten wollen, dann können Sie dies ganz einfach <a href="
+"\"%(unsubscribe_url)s\">abmelden</a>."
+
+#: apps/reminder/templates/reminder/resubscribe.html:6
+#: apps/reminder/templates/reminder/resubscribe.html:10
+#: apps/reminder/templates/reminder/resubscribe_successful.html:6
+#, fuzzy
+msgid "Resubscribe"
+msgstr "Wieder bestellen"
+
+#: apps/reminder/templates/reminder/resubscribe.html:7
+#, fuzzy
+msgid ""
+"You may resubscribe to the Influenzanet reminder/newsletter by pressing the "
+"button below."
+msgstr ""
+"Sie können die Influenzanet-Erinnerungen/den Newsletter mit dem "
+"untenstehenden Knopf wieder bestellen"
+
+#: apps/reminder/templates/reminder/resubscribe_successful.html:7
+#, fuzzy
+msgid "You have been successfully resubscribed to the mailing list"
+msgstr "Sie wurden erfolgreich beim Verteiler wieder angemeldet"
 
 #: apps/reminder/templates/reminder/unsubscribe.html:6
 #: apps/reminder/templates/reminder/unsubscribe.html:10
 #: apps/reminder/templates/reminder/unsubscribe_successful.html:6
+#: pybb/templates/pybb/topic.html:63
 msgid "Unsubscribe"
 msgstr "Abbestellen"
 
@@ -437,44 +485,57 @@ msgstr ""
 msgid "You have been successfully unsubscribed from the mailing list"
 msgstr "Sie wurden erfolgreich vom Verteiler abgemeldet"
 
-#: apps/survey/views.py:43
+#: apps/survey/views.py:54
 msgid "No symptoms"
 msgstr "Keine Symptome"
 
-#: apps/survey/views.py:45
+#: apps/survey/views.py:55
 msgid "Flu symptoms"
 msgstr "Grippesymptome"
 
-#: apps/survey/views.py:47
-msgid "Cold / allergy"
-msgstr "Erkältung / Allergie"
-
+#: apps/survey/views.py:56
 msgid "Common cold"
-msgstr "Symptomen die passen bij verkoudheid"
+msgstr "Gewöhnliche Erkältung"
 
-msgid "Allergy / hay fever and gastrointestinal symptoms"
-msgstr ""
-
-msgid "Allergy / hay fever"
-msgstr ""
-
-msgid "Common cold and gastrointestinal symptoms"
-msgstr ""
-
-
-#: apps/survey/views.py:49
+#: apps/survey/views.py:57
 msgid "Gastrointestinal symptoms"
 msgstr "Magen-Darm-Symptome"
 
-#: apps/survey/views.py:51
-msgid "Other non-influenza symptons"
+#: apps/survey/views.py:58
+msgid "Allergy / hay fever and gastrointestinal symptoms"
+msgstr "Allergie/Heuschnupfen und Magen-Darm-Symptome"
+
+#: apps/survey/views.py:59
+msgid "Allergy / hay fever"
+msgstr "Allergie/Heuschnupfen"
+
+#: apps/survey/views.py:60
+msgid "Common cold and gastrointestinal symptoms"
+msgstr "Gewöhnliche Erkältunge und Magen-Darm-Symptome"
+
+#: apps/survey/views.py:61
+#, fuzzy
+msgid "Other non-influenza symptoms"
 msgstr "Andere nicht-Grippe-Symptome"
 
-#: apps/survey/views.py:53
+#: apps/survey/views.py:66
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: apps/survey/views.py:222
+#: apps/survey/views.py:157
+#, python-format
+msgid "El participante \"%(user_name)s\"  ha sido marcado como sano."
+msgstr "Der Teilnehmer \"%(user_name)s\" ist wieder gesund."
+
+#: apps/survey/views.py:162
+#, python-format
+msgid ""
+"Please complete the background questionnaire for the participant "
+"\"%(user_name)s\" before marking him/her as healthy."
+msgstr ""
+"Bitte vervollständigen Sie den Hintergrund-Fragebogen für den Teilnehmer "
+"\"%(user_name)s\" bevor Sie Ihn/Sie as gesund markieren."
+#: apps/survey/views.py:260
 msgid ""
 "Before we take you to the symptoms questionnaire, please complete the short "
 "background questionnaire below. You will only have to complete this once."
@@ -483,13 +544,13 @@ msgstr ""
 "folgenden Anmelde-Fragebogen. Dieser Fragebogen muss nur einmal ausgefüllt "
 "werden."
 
-#: apps/survey/views.py:348
+#: apps/survey/views.py:384
 msgid "A new person has been added."
 msgstr "Eine neue Person wurde hinzugefügt"
 
 #: apps/tellafriend/forms.py:13
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/tellafriend/forms.py:14
 #, fuzzy
@@ -498,56 +559,676 @@ msgstr "Senden"
 
 #: apps/tellafriend/forms.py:15
 msgid "Recipient"
-msgstr ""
+msgstr "Empfänger"
 
-#: apps/tellafriend/forms.py:17
+#: apps/tellafriend/forms.py:17 pybb/forms.py:105
 msgid "Please enter the characters shown in the image in the field next to it."
-msgstr ""
+msgstr "Bitte geben Sie die Zeichen in das nebenstehende Feld ein."
 
-#: apps/tellafriend/forms.py:17
+#: apps/tellafriend/forms.py:17 pybb/forms.py:105
 msgid "Captcha"
-msgstr ""
+msgstr "Captcha"
 
 #: apps/tellafriend/views.py:34
 #, python-format
 msgid "Recommendation by %s"
-msgstr ""
+msgstr "Empfehlung von %s"
 
 #: apps/tellafriend/templates/tellafriend/email.html:2
-#: templates/tellafriend/email.html:2
+#: apps/tellafriend/templates/tellafriend/email.txt:1
+#: templates/tellafriend/email.html:2 templates/tellafriend/email.txt:1
 msgid "Recommendation"
-msgstr ""
+msgstr "Empfehlung"
 
 #: apps/tellafriend/templates/tellafriend/email.html:3
-#: templates/tellafriend/email.html:3
+#: apps/tellafriend/templates/tellafriend/email.txt:3
+#: templates/tellafriend/email.html:3 templates/tellafriend/email.txt:3
 #, python-format
 msgid "%(email_sender)s recommends this page to you:"
-msgstr ""
+msgstr "%(email_sender)s empfiehlt Ihnen diese Seite:"
 
 #: apps/tellafriend/templates/tellafriend/success.html:5
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:5
 #: templates/tellafriend/success.html:5
 #: templates/tellafriend/tellafriend.html:5
 msgid "Recommend"
-msgstr ""
+msgstr "Empfehlen"
 
 #: apps/tellafriend/templates/tellafriend/success.html:6
 #: templates/tellafriend/success.html:6
 msgid "Your recommendation was sent out successfully."
-msgstr ""
+msgstr "Ihre Empfehlung wurde erfolgreich versendet."
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:6
 #: templates/tellafriend/tellafriend.html:6
 msgid ""
 "Please enter your and the recipient's e-mail address, and an optional "
 "message."
-msgstr ""
+msgstr "Bitte geben Sie Ihre, die E-Mail Adresse des Empfängers und "
+"eine optionale Nachricht ein."
 
 #: apps/tellafriend/templates/tellafriend/tellafriend.html:35
 #: templates/contact_form/contact_form.html:10
 #: templates/tellafriend/tellafriend.html:35
 msgid "Send"
 msgstr "Senden"
+
+#: captcha/fields.py:54
+msgid "Play captcha as audio file"
+msgstr "Captcha als Audio-Datei abspielen."
+
+#: captcha/fields.py:72 captcha/fields.py:97 captcha/tests/__init__.py:70
+msgid "Invalid CAPTCHA"
+msgstr "Ungültiges CAPTCHA"
+
+#: captcha/tests/__init__.py:97
+msgid "This field is required."
+msgstr "Dies is ein Pflichfeld"
+
+#: pybb/admin.py:36 pybb/admin.py:56 pybb/admin.py:83 pybb/admin.py:105
+msgid "Additional options"
+msgstr "Weitere Optionen"
+
+#: pybb/admin.py:119
+msgid "View post"
+msgstr "Eintrag ansehen"
+
+#: pybb/admin.py:124
+#, fuzzy
+msgid "Edit post"
+msgstr "Bearbeiten"
+
+#: pybb/feeds.py:23 pybb/feeds.py:24 pybb/templates/pybb/base.html:9
+msgid "Latest posts on forum"
+msgstr "Letzter Eintrag im Forum"
+
+#: pybb/feeds.py:33 pybb/feeds.py:34 pybb/templates/pybb/base.html:10
+msgid "Latest topics on forum"
+msgstr "Letztes Thema im Forum"
+
+#: pybb/forms.py:26
+msgid "Attachment is too big"
+msgstr "Anhang ist zu gross"
+
+#: pybb/forms.py:31 pybb/models.py:143
+msgid "Subject"
+msgstr "Thema"
+
+#: pybb/forms.py:112 pybb/models.py:146 pybb/models.py:227 pybb/models.py:331
+#: pybb/templates/pybb/mail_templates/subscription_email_body.html:3
+#, fuzzy
+msgid "User"
+msgstr "Absender Name"
+
+#: pybb/forms.py:146
+#, python-format
+msgid "Avatar is too large, max size: %s bytes"
+msgstr "Avatar is zu gross, max. Grösse: %s Bytes"
+
+#: pybb/models.py:60 pybb/models.py:91
+msgid "Position"
+msgstr "Position"
+
+#: pybb/models.py:61 pybb/models.py:97 pybb/templates/pybb/category.html:4
+#: pybb/templates/pybb/category.html:24
+msgid "Hidden"
+msgstr "Verborgen"
+
+#: pybb/models.py:62
+msgid "If checked, this category will be visible only for staff"
+msgstr "Falls ausgewählt, wird die Kategorie nur Mitarbeitern angezeigt"
+
+#: pybb/models.py:92
+msgid "Description"
+msgstr "Beschreibung"
+
+#: pybb/models.py:93
+msgid "Moderators"
+msgstr "Moderatoren"
+
+#: pybb/models.py:94 pybb/models.py:145 pybb/models.py:229
+msgid "Updated"
+msgstr "Aktualisiert"
+
+#: pybb/models.py:95 pybb/models.py:156 pybb/models.py:307
+#, fuzzy
+msgid "Post count"
+msgstr "Beitrags-Zähler"
+
+#: pybb/models.py:96
+#, fuzzy
+msgid "Topic count"
+msgstr "Themen-Zähler"
+
+#: pybb/models.py:99
+msgid "Headline"
+msgstr "Überschrift"
+
+#: pybb/models.py:103 pybb/models.py:142 pybb/templates/pybb/category.html:8
+msgid "Forum"
+msgstr "Forum"
+
+#: pybb/models.py:104
+msgid "Forums"
+msgstr "Foren"
+
+#: pybb/models.py:144 pybb/models.py:228
+msgid "Created"
+msgstr "Erstellt"
+
+#: pybb/models.py:147
+msgid "Views count"
+msgstr "Zähler ansehen"
+
+#: pybb/models.py:148 pybb/templates/pybb/forum.html:40
+msgid "Sticky"
+msgstr "Haftend"
+
+#: pybb/models.py:149 pybb/templates/pybb/forum.html:41
+msgid "Closed"
+msgstr "Geschlossen"
+
+#: pybb/models.py:153 pybb/templates/pybb/topic.html:82
+#, fuzzy
+msgid "Subscribers"
+msgstr "Abonnenten"
+
+#: pybb/models.py:158 pybb/models.py:231
+msgid "On moderation"
+msgstr "Wird moderiert"
+
+#: pybb/models.py:162 pybb/models.py:226 pybb/templates/pybb/forum.html:23
+msgid "Topic"
+msgstr "Thema"
+
+#: pybb/models.py:163 pybb/templates/pybb/category.html:11
+#: pybb/templates/pybb/user_posts.html:19
+#: pybb/templates/pybb/user_topics.html:22
+msgid "Topics"
+msgstr "Themen"
+
+#: pybb/models.py:215
+msgid "HTML version"
+msgstr "HTML-Version"
+
+#: pybb/models.py:216
+msgid "Text version"
+msgstr "Text-Version"
+
+#: pybb/models.py:230
+msgid "User IP"
+msgstr "Benutzer IP"
+
+#: pybb/models.py:235 pybb/models.py:347
+msgid "Post"
+msgstr "Beitrag"
+
+#: pybb/models.py:236 pybb/templates/pybb/category.html:14
+#: pybb/templates/pybb/forum.html:26 pybb/templates/pybb/topic.html:19
+#: pybb/templates/pybb/topic.html.py:35
+msgid "Posts"
+msgstr "Beiträge"
+
+#: pybb/models.py:296
+msgid "Signature"
+msgstr "Signatur"
+
+#: pybb/models.py:298
+msgid "Signature HTML Version"
+msgstr "Signatur HTML Version"
+
+#: pybb/models.py:300
+msgid "Time zone"
+msgstr "Zeitzone"
+
+#: pybb/models.py:305
+msgid "Show signatures"
+msgstr "Signaturen anzeigen"
+
+#: pybb/models.py:308
+msgid "Avatar"
+msgstr "Avatar"
+
+#: pybb/models.py:310
+msgid "Automatically subscribe"
+msgstr "Automatisch abonnieren"
+
+#: pybb/models.py:311
+msgid "Automatically subscribe to topics that you answer"
+msgstr "Automatisch Beiträge abonnieren die ich beantworte"
+
+#: pybb/models.py:334
+#, fuzzy
+msgid "Profile"
+msgstr "Profil"
+
+#: pybb/models.py:335
+#, fuzzy
+msgid "Profiles"
+msgstr "Profile"
+
+#: pybb/models.py:344
+msgid "Attachment"
+msgstr "Anhang"
+
+#: pybb/models.py:345
+msgid "Attachments"
+msgstr "Anhänge"
+
+#: pybb/models.py:348
+msgid "Size"
+msgstr "Grösse"
+
+#: pybb/models.py:349
+msgid "File"
+msgstr "Datei"
+
+#: pybb/models.py:371
+msgid "Topic read tracker"
+msgstr "Themen-Lese-Tracker"
+
+#: pybb/models.py:372
+msgid "Topic read trackers"
+msgstr "Themen-Lese-Tracker"
+
+#: pybb/models.py:383
+msgid "Forum read tracker"
+msgstr "Foren-Lese-Tracker"
+
+#: pybb/models.py:384
+msgid "Forum read trackers"
+msgstr "Foren-Lese-Tracker"
+
+#: pybb/views.py:445
+msgid "All forums marked as read"
+msgstr "Alle Foren als gelesen markiert"
+
+#: pybb/views.py:455
+msgid "User successfuly blocked"
+msgstr "Benutzer erfolgreich blockiert"
+
+#: pybb/templates/pybb/add_post.html:23 pybb/templates/pybb/forum.html:79
+#: pybb/templates/pybb/forum.html.py:81
+msgid "New topic"
+msgstr "Neues Thema"
+
+#: pybb/templates/pybb/add_post.html:23
+msgid "New reply"
+msgstr "Neue Antwort"
+
+#: pybb/templates/pybb/attachments_formset.html:4
+msgid "Add attachments"
+msgstr "Anhang hinzufügen"
+
+#: pybb/templates/pybb/attachments_formset.html:10
+#: pybb/templates/pybb/edit_profile.html:37
+msgid "delete"
+msgstr "löschen"
+
+#: pybb/templates/pybb/breadcrumb.html:4
+#: src/django-nani/nani/templates/admin/nani/deletion_not_allowed.html:6
+msgid "Home"
+msgstr "Startseite"
+
+#: pybb/templates/pybb/category.html:17
+msgid "Last posts"
+msgstr "Letzter Beitrag"
+
+#: pybb/templates/pybb/category.html:42
+msgid "No forums created"
+msgstr "Kein Forum erstellt"
+
+#: pybb/templates/pybb/category.html:43
+msgid "Add forum now"
+msgstr "Jetzt Forum hinzufügen"
+
+#: pybb/templates/pybb/delete_post.html:5
+msgid "Are you sure you want to delete this message?"
+msgstr "Sind Sie sich sicher, dass Sie diese Nachricht löschen möchten?"
+
+#: pybb/templates/pybb/delete_post.html:12
+msgid "No, take me back"
+msgstr "Nein, zurück bitte"
+
+#: pybb/templates/pybb/delete_post.html:13
+msgid "Yes, I am sure"
+msgstr "Ja, ih bin sicher"
+
+#: pybb/templates/pybb/edit_post.html:4 pybb/templates/pybb/edit_post.html:12
+msgid "Editing the post"
+msgstr "Beitrag bearbeiten"
+
+#: pybb/templates/pybb/edit_profile.html:4
+#: pybb/templates/pybb/edit_profile.html:7
+#: pybb/templates/pybb/edit_profile.html:19
+msgid "Profile editing"
+msgstr "Profil bearbeiten"
+
+#: pybb/templates/pybb/edit_profile.html:15
+#, fuzzy
+msgid "Change the password"
+msgstr "Passwort ändern"
+
+#: pybb/templates/pybb/edit_profile.html:23
+#: pybb/templates/pybb/edit_profile.html:25
+#: templates/accounts/my_settings.html:35
+#: templates/accounts/my_settings.html:42
+#: templates/accounts/my_settings.html:49 templates/survey/people_edit.html:10
+msgid "Save"
+msgstr "Speichern"
+
+#: pybb/templates/pybb/edit_profile.html:30
+msgid "Subscriptions on topics"
+msgstr "Themen abonnieren"
+
+#: pybb/templates/pybb/forum.html:29
+msgid "Views"
+msgstr "Besuche"
+
+#: pybb/templates/pybb/forum.html:32
+msgid "Last post"
+msgstr "Letzter Beitrag"
+
+#: pybb/templates/pybb/forum.html:45
+msgid "pages"
+msgstr "Seiten"
+
+#: pybb/templates/pybb/index.html:16
+msgid "Forum categories are not created"
+msgstr "Foren-Kategorien werden nicht erstellt."
+
+#: pybb/templates/pybb/index.html:17
+msgid "Add a category now"
+msgstr "Jetzt eine Kategorie hinzufügen"
+
+#: pybb/templates/pybb/index.html:22
+msgid "Mark all forums as read"
+msgstr "Alle Foren als gelesen markieren"
+
+#: pybb/templates/pybb/pagination.html:8
+#, fuzzy
+msgid "previous page"
+msgstr "Vorherige Seite"
+
+#: pybb/templates/pybb/pagination.html:22
+msgid "next page"
+msgstr "Nächste Seite"
+
+#: pybb/templates/pybb/post_form.html:25 pybb/templates/pybb/post_form.html:27
+#: templates/pollster/cms_survey.html:242
+#: templates/pollster/questions_run.html:205 templates/survey/form.html:21
+msgid "Submit"
+msgstr "Absenden"
+
+#: pybb/templates/pybb/post_template.html:18
+msgid "Rank"
+msgstr "Rang"
+
+#: pybb/templates/pybb/post_template.html:32 pybb/templates/pybb/user.html:38
+msgid "Edit"
+msgstr "Editieren"
+
+#: pybb/templates/pybb/post_template.html:36
+msgid "Delete post?"
+msgstr "Beitrag löschen?"
+
+#: pybb/templates/pybb/post_template.html:37
+#: templates/survey/group_management.html:58
+msgid "Delete"
+msgstr "Löschen"
+
+#: pybb/templates/pybb/post_template.html:39
+msgid "Approve post"
+msgstr "Beitrag annehmen"
+
+#: pybb/templates/pybb/post_template.html:44 pybb/templates/pybb/topic.html:54
+msgid "Admin"
+msgstr "Admin"
+
+#: pybb/templates/pybb/post_template.html:59
+#, fuzzy
+msgid "Edited"
+msgstr "Editieren"
+
+#: pybb/templates/pybb/post_template.html:72
+msgid "quote"
+msgstr "Zitieren"
+
+#: pybb/templates/pybb/topic.html:43
+msgid "Unstick topic"
+msgstr "Thema entfernen"
+
+#: pybb/templates/pybb/topic.html:45
+msgid "Stick topic"
+msgstr "Thema hinzufügen"
+
+#: pybb/templates/pybb/topic.html:49
+msgid "Open topic"
+msgstr "Thema eröffnen"
+
+#: pybb/templates/pybb/topic.html:51
+msgid "Close topic"
+msgstr "Thema schliessen"
+
+#: pybb/templates/pybb/topic.html:65
+#, fuzzy
+msgid "Subscribe"
+msgstr "Abbestellen"
+
+#: pybb/templates/pybb/topic.html:77 templates/base/forum.html:85
+#: templates/base/sitebase.html:133
+#: templates/registration/registration_explanation.html:4
+#: templates/registration/registration_explanation.html:13
+#: templates/registration/registration_form.html:4
+#: templates/registration/registration_form.html:15
+msgid "Register"
+msgstr "Registrieren"
+
+#: pybb/templates/pybb/topic.html:77
+#: templates/registration/activation_complete.html:9
+msgid "or"
+msgstr "oder"
+
+#: pybb/templates/pybb/topic.html:77
+#, fuzzy
+msgid "login"
+msgstr "Anmeldung"
+
+#: pybb/templates/pybb/topic.html:77
+msgid "to create to post a reply"
+msgstr "erzeugen, um eine Antwort zu geben"
+
+#: pybb/templates/pybb/user.html:17
+msgid "Statistics"
+msgstr "Statistiken"
+
+#: pybb/templates/pybb/user.html:18
+#, fuzzy
+msgid "Number of posts"
+msgstr "Anzahl der darzustellenden Beiträge"
+
+#: pybb/templates/pybb/user.html:20
+#, fuzzy
+msgid "Number of topics"
+msgstr "Anzahl der darzustellenden Themen"
+
+#: pybb/templates/pybb/user.html:29
+msgid "Date of registration"
+msgstr "Registrierungsdatum"
+
+#: pybb/templates/pybb/user.html:35
+msgid "Block"
+msgstr "Blockieren"
+
+#: pybb/templates/pybb/user_topics.html:4
+#: pybb/templates/pybb/user_topics.html:7
+msgid "All topics created by"
+msgstr "Alle Themen erzeugt von"
+
+#: pybb/templates/pybb/users.html:5 pybb/templates/pybb/users.html.py:21
+#, fuzzy
+msgid "Users"
+msgstr "Benutzer"
+
+#: pybb/templates/pybb/users.html:9 templates/base/forum.html:98
+#: templates/base/sitebase.html:146 templates/search/search.html:9
+msgid "Search"
+msgstr "Suchen"
+
+#: pybb/templates/pybb/mail_templates/subscription_email_body.html:3
+msgid "replied in topic to which you are subscribed."
+msgstr "antwortete auf ein Thema das Sie abonniert haben."
+
+#: pybb/templates/pybb/mail_templates/subscription_email_body.html:4
+msgid "Link to post:"
+msgstr "Link zum Beitrag:"
+
+#: pybb/templates/pybb/mail_templates/subscription_email_body.html:5
+msgid "Link to topic:"
+msgstr "Link zum Thema:"
+
+#: pybb/templates/pybb/mail_templates/subscription_email_body.html:8
+msgid ""
+"If you don't want to recive notifications on new messages in this topic "
+"visit following link:"
+msgstr ""
+
+#: pybb/templates/pybb/mail_templates/subscription_email_subject.html:2
+msgid "New answer in topic that you subscribed."
+msgstr "Neue Antwort in von Ihnen abonniertem Thema"
+
+#: pybb/templatetags/pybb_tags.py:60
+msgid "seconds ago,seconds ago,seconds ago"
+msgstr "vor Sekunden, vor Sekunden, vor Sekunden"
+
+#: pybb/templatetags/pybb_tags.py:63
+msgid "seconds ago"
+msgstr "vor Sekunden"
+
+#: pybb/templatetags/pybb_tags.py:69
+msgid "minutes ago,minutes ago,minutes ago"
+msgstr "vor Minuten, vor Minuten, vor Minuten"
+
+#: pybb/templatetags/pybb_tags.py:72
+msgid "minutes ago"
+msgstr "vor Minuten"
+
+#: pybb/templatetags/pybb_tags.py:82
+#, python-format
+msgid "today, %s"
+msgstr "heute, %s"
+
+#: pybb/templatetags/pybb_tags.py:84
+#, python-format
+msgid "yesterday, %s"
+msgstr "gestern, %s"
+
+#: src/django-nani/nani/admin.py:175
+msgid "all translations"
+msgstr "alle Übersetzungen"
+
+#: src/django-nani/nani/admin.py:334 src/django-nani/nani/admin.py:569
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+msgstr "The %(name)s \"%(obj)s\" wure erfolgreich gelöscht."
+
+#: src/django-nani/nani/admin.py:347 src/django-nani/nani/admin.py:582
+#, python-format
+msgid "Cannot delete %(name)s"
+msgstr " %(name)s kann nicht gelöscht werden"
+
+#: src/django-nani/nani/admin.py:349 src/django-nani/nani/admin.py:584
+msgid "Are you sure?"
+msgstr "Sind Sie sich sicher?"
+
+#: src/django-nani/nani/templates/admin/nani/change_form.html:37
+#: src/django-nani/nani/templates/admin/nani/change_form.html:39
+#: src/django-nani/nani/templates/admin/nani/deletion_not_allowed.html:10
+msgid "Delete Translation"
+msgstr "Übersetzung löschen"
+
+#: src/django-nani/nani/templates/admin/nani/deletion_not_allowed.html:15
+#, python-format
+msgid ""
+"Deletion of the the %(language_name)s translation of %(object_name)s "
+"'%(escaped_object)s' is not allowed, because it is the last available "
+"translation of this instance."
+msgstr "Löschen von %(language_name)s Übersetzung von %(object_name)s "
+"'%(escaped_object)s' ist nicht gestattet, da es die letzte verfügbare"
+"Übersetzung dieser Instanz ist."
+
+#: src/django-registration/registration/admin.py:23
+msgid "Activate users"
+msgstr "Benutzer aktivieren"
+
+#: src/django-registration/registration/admin.py:43
+#, fuzzy
+msgid "Re-send activation emails"
+msgstr "Aktivierungsmail nochmal senden"
+
+#: src/django-registration/registration/forms.py:39
+#, fuzzy
+msgid "E-mail"
+msgstr "E-Mail"
+
+#: src/django-registration/registration/forms.py:41
+#: templates/accounts/my_settings.html:39
+#, fuzzy
+msgid "Password"
+msgstr "Passwort zurücksetzen"
+
+#: src/django-registration/registration/forms.py:43
+#, fuzzy
+msgid "Password (again)"
+msgstr "Passwort ändern"
+
+#: src/django-registration/registration/forms.py:53
+msgid "A user with that username already exists."
+msgstr "Ein Benutzer mit diesem Name existiert bereits."
+
+#: src/django-registration/registration/forms.py:67
+msgid "The two password fields didn't match."
+msgstr "Die zwei Passwörter stimmen nicht überein"
+
+#: src/django-registration/registration/forms.py:78
+msgid "I have read and agree to the Terms of Service"
+msgstr "I habe die Nutzungsbestimmungen gelesen und akzeptiere sie"
+
+#: src/django-registration/registration/forms.py:79
+msgid "You must agree to the terms to register"
+msgstr "Sie müssen den Nutzungsbedingungen zustimmen, um sich zu registrieren"
+
+#: src/django-registration/registration/forms.py:95
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr "Diese E-Mail-Adresse existiert bereits, Bitte geben Sie eine andere Adresse an"
+
+#: src/django-registration/registration/forms.py:122
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr "Registrierung mit gratis E-Mail-Adresse ist nicht gestattet. Bitte"
+"geben Sie eine andere E-Mail-Adresse an."
+
+#: src/django-registration/registration/models.py:176
+msgid "user"
+msgstr "Benutzer"
+
+#: src/django-registration/registration/models.py:177
+#, fuzzy
+msgid "activation key"
+msgstr "Anmeldungs-Schlüssel"
+
+#: src/django-registration/registration/models.py:182
+#, fuzzy
+msgid "registration profile"
+msgstr "Anmedlungs-Profil"
+
+#: src/django-registration/registration/models.py:183
+#, fuzzy
+msgid "registration profiles"
+msgstr "Anmeldungs-Profile"
 
 #: templates/404.html:4
 msgid "Page not found"
@@ -588,47 +1269,35 @@ msgid "You have been logged out. Go to "
 msgstr "Sie haben sich abgemeldet. Weiter mit "
 
 #: templates/accounts/my_profile.html:4
-#: templates/accounts/partials/usermenu.html:16
 #, fuzzy
 msgid "My profile"
 msgstr "Profil"
 
-#: templates/accounts/my_profile.html:18
+#: templates/accounts/my_profile.html:32
 #, fuzzy
 msgid "My Profile"
 msgstr "Profil"
 
-#: templates/accounts/my_settings.html:4 templates/accounts/my_settings.html:7
-#: templates/accounts/partials/usermenu.html:19
+#: templates/accounts/my_settings.html:4
+#: templates/accounts/my_settings.html:21
+#: templates/accounts/partials/usermenu.html:13
+#: templates/accounts/partials/usermenu_old.html:14
 #, fuzzy
 msgid "Account settings"
 msgstr "Konto-Aktivierung"
 
-#: templates/accounts/my_settings.html:10
+#: templates/accounts/my_settings.html:24
 msgid "Your settings have been updated"
 msgstr "Ihre Einstellungen wurden aktualisiert"
 
-#: templates/accounts/my_settings.html:18
+#: templates/accounts/my_settings.html:32
 #, fuzzy
 msgid "Email settings"
 msgstr "Grundeinstellungen der Site"
 
-#: templates/accounts/my_settings.html:21
-#: templates/accounts/my_settings.html:28
-#: templates/accounts/my_settings.html:35
-#: templates/survey/group_management.html:53
-#: templates/survey/people_edit.html:10
-msgid "Save"
-msgstr "Speichern"
-
-#: templates/accounts/my_settings.html:25
-#, fuzzy
-msgid "Password"
-msgstr "Passwort zurücksetzen"
-
 #: templates/accounts/partials/usermap.html:3
 msgid "Your neighbourhood"
-msgstr ""
+msgstr "Ihre Nachbarschaft"
 
 #: templates/accounts/partials/usermap.html:9
 msgid ""
@@ -640,49 +1309,65 @@ msgid ""
 "displayed in <strong class=\"cold\">▸ blue</strong>."
 msgstr ""
 
+"Gegenden, in denen wir im Augenblick Berichte von Grippe-ähnlichen Erkrankungen "
+"haben, sind <strong class=\"flu\">▸ red</strong>. Gegenden, in denen keiner "
+"unserer Teilnehmer augenblicklich Grippe-ähnliche Erkrankungen berichtet, sind "
+"<strong class=\"nosymptoms\">▸ gray</strong>. Berichte von Magen-Darm-Erkrankungen "
+"<strong class=\"gastro\">▸ yellow</strong> und gewöhnlichen Erkältungen werden in "
+"<strong class=\"cold\">▸ blue</strong> angezeigt."
+
 # translations should reflect however often maps are updated
 #: templates/accounts/partials/usermap.html:10 templates/survey/thanks.html:96
 msgid "Map updated hourly."
 msgstr "Die Karte wird stündlich aktualisiert"
 
 #: templates/accounts/partials/usermenu.html:3
+#: templates/accounts/partials/usermenu_old.html:3
 #, fuzzy
 msgid "Your account"
 msgstr "Mein Konto"
 
-#: templates/accounts/partials/usermenu.html:12
-msgid "Newsletter"
-msgstr ""
-
-#: templates/accounts/partials/usermenu.html:15
-msgid "Weekly survey"
-msgstr "Wöchentlicher Fragebogen"
-
-#: templates/accounts/partials/usermenu.html:18
-#: templates/survey/group_management.html:4
-#: templates/survey/group_management.html:11
+#: templates/accounts/partials/usermenu.html:11
+#: templates/accounts/partials/usermenu_old.html:11
 #, fuzzy
-msgid "Your results"
+msgid "My results"
 msgstr "Gruppenmitglieder"
 
-#: templates/accounts/partials/usermenu.html:20 templates/base/forum.html:79
-#: templates/base/sitebase.html:82
+#: templates/accounts/partials/usermenu.html:12
+#: templates/accounts/partials/usermenu_old.html:12
+#, fuzzy
+msgid "My household"
+msgstr "Teilnehmer verwalten"
+
+#: templates/accounts/partials/usermenu.html:14
+#: templates/accounts/partials/usermenu_old.html:15
+#: templates/base/forum.html:79 templates/base/sitebase.html:127
 msgid "Log out"
 msgstr "Abmelden"
 
-#: templates/accounts/partials/usermenu.html:25
+#: templates/accounts/partials/usermenu.html:19
+#: templates/accounts/partials/usermenu_old.html:20
 msgid ""
 "You can add multiple people (i.e. from your household, class or company) "
-"through \"Your results\". Each account can only have one <a href=\"/"
-"accounts/settings/\">username</a> and <a href=\"/accounts/settings/\">email "
-"address</a>. To leave feedback or get support,"
+"through \"Your results\". Each account can only have one <a href=\"/accounts/"
+"settings/\">username</a> and <a href=\"/accounts/settings/\">email address</"
+"a>. To leave feedback or get support,"
 msgstr ""
+"Sie können mehrere Personen (d.h. von Haushalt, Klasse oder Unternehmen) "
+"durch \"Your results\" hinzufügen. Jeder Account kann nur einen <a href=\"/accounts/"
+"settings/\">Benutzernamen</a> und eine <a href=\"/accounts/settings/\">"
+"E-Mail Adresse</a> haben. Um Rückmeldung zu geben oder Hilfe zu erhalten,"
 
-#: templates/accounts/partials/usermenu.html:25
+#: templates/accounts/partials/usermenu.html:19
+#: templates/accounts/partials/usermenu_old.html:20
 #: templates/registration/activate.html:9
 #: templates/registration/registration_complete.html:10
 msgid "contact us"
 msgstr "nehmen Sie mit uns Kontakt auf"
+
+#: templates/accounts/partials/usermenu_old.html:13
+msgid "Newsletter"
+msgstr "Newsletter"
 
 #: templates/admin/pollster/survey/change_form.html:6
 #: templates/admin/pollster/translationsurvey/change_form.html:6
@@ -694,51 +1379,126 @@ msgstr "Historie"
 #: templates/admin/pollster/translationsurvey/change_form.html:9
 #: templates/admin/pollster/translationsurvey/change_list.html:7
 msgid "Full Editor"
-msgstr "Voll-Editor"
+msgstr "Vollständiger Editor"
 
 #: templates/admin/pollster/survey/change_list.html:7
 #, fuzzy
 msgid "Add Survey"
-msgstr "Ihre Daten"
+msgstr "Ihre Umfragen"
 
-#: templates/base/forum.html:78 templates/base/sitebase.html:81
+#: templates/base/forum.html:78
 msgid "My account"
 msgstr "Mein Konto"
 
-#: templates/base/forum.html:81 templates/base/sitebase.html:84
+#: templates/base/forum.html:81 templates/base/sitebase.html:129
 msgid "Logged in as"
 msgstr "Angemeldet als"
 
-#: templates/base/forum.html:84 templates/base/sitebase.html:87
-#: templates/registration/boxbase.html:11 templates/registration/login.html:13
+#: templates/base/forum.html:84 templates/base/sitebase.html:132
+#: templates/registration/boxbase.html:11 templates/registration/login.html:15
 #: templates/registration/password_reset_complete.html:10
 msgid "Log in"
 msgstr "Anmelden"
 
-#: templates/base/forum.html:85 templates/base/sitebase.html:88
-#: templates/registration/registration_explanation.html:4
-#: templates/registration/registration_explanation.html:13
-#: templates/registration/registration_form.html:4
-#: templates/registration/registration_form.html:13
-msgid "Register"
-msgstr "Registrieren"
-
-#: templates/base/forum.html:87 templates/base/sitebase.html:90
+#: templates/base/forum.html:87 templates/base/sitebase.html:135
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
 
-#: templates/base/forum.html:98 templates/base/sitebase.html:101
-#: templates/search/search.html:9
-msgid "Search"
-msgstr "Suchen"
-
-#: templates/base/forum.html:160 templates/base/sitebase.html:136
+#: templates/base/forum.html:160 templates/base/sitebase.html:183
 msgid "Contact us"
 msgstr "Nehmen Sie mit uns Kontakt auf"
 
-#: templates/base/forum.html:160 templates/base/sitebase.html:136
+#: templates/base/forum.html:160 templates/base/sitebase.html:183
 msgid "Contact"
 msgstr "Kontakt"
+
+# ##########################
+# Cookie Consent translation below #
+# ##########################
+#: templates/base/sitebase.html:48
+msgid "Your experience on this site will be improved by allowing cookies"
+msgstr "Das Verwenden dieser Seite wird durch das zulassen von Cookies verbessert."
+
+#: templates/base/sitebase.html:49
+msgid "Allow cookies"
+msgstr "Cookies erlauben"
+
+#: templates/base/sitebase.html:50
+msgid "Save preference"
+msgstr "Einstellungen speichern"
+
+#: templates/base/sitebase.html:51
+msgid "see details"
+msgstr "Details anzeigen"
+
+#: templates/base/sitebase.html:52
+msgid "hide details"
+msgstr "Details verbergen"
+
+#: templates/base/sitebase.html:53
+msgid "Strictly necessary"
+msgstr "Zwingend notwendig"
+
+#: templates/base/sitebase.html:54
+msgid ""
+"Some cookies on this website are strictly necessary and can not be disabled."
+msgstr ""
+"Manche Cookies auf dieser Webseite sind zwingend notwendig und können nicht abgestellt werden."
+
+#: templates/base/sitebase.html:55
+msgid "Social media"
+msgstr "Sociale Medien"
+
+#: templates/base/sitebase.html:56
+msgid ""
+"Facebook, Twitter and other social websites need to know who you are to work "
+"properly."
+msgstr ""
+"Facebook, Twitter und andere soziale Medien müssen wissen, wer Sie sind, um richtig zu funktionieren."
+
+#: templates/base/sitebase.html:57
+msgid "Analytics"
+msgstr "Analyse"
+
+#: templates/base/sitebase.html:58
+msgid ""
+"We anonymously measure your use of this website to improve your experience."
+msgstr ""
+"Zur Verbesserung dieser Webseite messen wir anonym Ihr Nutzerverhalten."
+
+#: templates/base/sitebase.html:59
+msgid "Privacy settings"
+msgstr "Privatspäre Einstellugen"
+
+#: templates/base/sitebase.html:60
+msgid "for this website"
+msgstr "für diese Website"
+
+#: templates/base/sitebase.html:61
+msgid ""
+"Some features of this website need your consent to remember who you are."
+msgstr ""
+"Manche Teile dieser Webseite benötigen Ihr Einverständnis, sich an Sie zu erinnern."
+
+#: templates/base/sitebase.html:62
+msgid "I consent"
+msgstr "I stimme zu"
+
+#: templates/base/sitebase.html:63
+msgid "I decline"
+msgstr "I stimme nicht zu"
+
+#: templates/base/sitebase.html:64
+msgid "Close window"
+msgstr "Fenster schliessen"
+
+#: templates/base/sitebase.html:126
+msgid "Surveys and Results"
+msgstr "Umfragen und Ergebnisse"
+
+#: templates/base/sitebase.html:183
+msgid "Cookie settings"
+msgstr "Cookie Einstellungen"
 
 #: templates/journal/archive.html:6
 msgid "Latest Entries"
@@ -748,7 +1508,7 @@ msgstr "Neueste Einträge"
 #: templates/journal/archive_month.html:18
 #: templates/journal/archive_year.html:18 templates/search/search.html:25
 msgid "Previous"
-msgstr "Vorherig"
+msgstr "Vorheriges"
 
 #: templates/journal/archive.html:21 templates/journal/archive_day.html:21
 #: templates/journal/archive_month.html:21
@@ -777,17 +1537,15 @@ msgstr "Weiterlesen..."
 msgid "No news yet"
 msgstr "Noch keine Nachrichten vorhanden"
 
-#: templates/pollster/questions_run.html:5
+#: templates/pollster/cms_survey.html:45
+#: templates/pollster/questions_run.html:8
 msgid "Questionnaire for participant"
 msgstr "Fragebogen für Teilnehmer "
 
-#: templates/pollster/questions_run.html:9
+#: templates/pollster/cms_survey.html:49
+#: templates/pollster/questions_run.html:12
 msgid "Please check the answers for the highlighted questions."
 msgstr "Bitte überprüfen Sie die Antworten zu den markierten Fragen."
-
-#: templates/pollster/questions_run.html:202 templates/survey/form.html:21
-msgid "Submit"
-msgstr "Absenden"
 
 #: templates/registration/activate.html:4
 #: templates/registration/activation_complete.html:4
@@ -808,7 +1566,7 @@ msgstr ""
 
 #: templates/registration/activate.html:9
 msgid "log in"
-msgstr "sich anzumelden "
+msgstr "anmelden "
 
 #: templates/registration/activate.html:9
 msgid ""
@@ -826,35 +1584,38 @@ msgstr ""
 "mit einem anderem Teilnehmernamen. wenn alles nicht funktioniert, zögern sie "
 "nicht und "
 
-#: templates/registration/activate.html:15
-#: templates/registration/activation_complete.html:16
-#: templates/registration/password_change_done.html:15
-#: templates/registration/password_change_form.html:27
-#: templates/registration/password_reset_complete.html:16
-#: templates/registration/password_reset_confirm.html:35
-#: templates/registration/password_reset_done.html:15
-#: templates/registration/password_reset_form.html:23
-#: templates/registration/registration_complete.html:16
-msgid "Influenza virus"
-msgstr ""
-
 #: templates/registration/activate.html:17
 #: templates/registration/activation_complete.html:18
-#: templates/registration/registration_complete.html:18
-msgid ""
-"Be part of a Europe-wide project to improve our understanding of how flu "
-"spreads."
-msgstr ""
-
-#: templates/registration/activate.html:18
-#: templates/registration/activation_complete.html:9
 #: templates/registration/password_change_done.html:17
 #: templates/registration/password_change_form.html:29
 #: templates/registration/password_reset_complete.html:18
 #: templates/registration/password_reset_confirm.html:37
 #: templates/registration/password_reset_done.html:17
 #: templates/registration/password_reset_form.html:25
-#: templates/registration/registration_complete.html:19
+#: templates/registration/registration_complete.html:18
+#: templates/survey/thanks_profile.html:35
+msgid "Influenza virus"
+msgstr "Influenza-Virus"
+
+#: templates/registration/activate.html:19
+#: templates/registration/activation_complete.html:20
+#: templates/registration/registration_complete.html:20
+msgid ""
+"Be part of a Europe-wide project to improve our understanding of how flu "
+"spreads."
+msgstr ""
+"Seien Sie Teil eines europaweiten Projekts, das unser Verständnis der"
+"Grippeausbreitung verbessern soll."
+
+#: templates/registration/activate.html:20
+#: templates/registration/activation_complete.html:9
+#: templates/registration/password_change_done.html:19
+#: templates/registration/password_change_form.html:31
+#: templates/registration/password_reset_complete.html:20
+#: templates/registration/password_reset_confirm.html:39
+#: templates/registration/password_reset_done.html:19
+#: templates/registration/password_reset_form.html:27
+#: templates/registration/registration_complete.html:21
 msgid "Back to the home page"
 msgstr "Zurück zur Startseite"
 
@@ -862,13 +1623,34 @@ msgstr "Zurück zur Startseite"
 msgid "Activation is complete."
 msgstr "Aktivierung ist erfolgt"
 
-#: templates/registration/activation_complete.html:9
-msgid "or"
-msgstr "oder"
-
 #: templates/registration/activation_complete.html:10
 msgid "proceed to the login page"
 msgstr "Weiter zur Anmeldeseite"
+
+#: templates/registration/activation_email.txt:2
+#, python-format
+msgid ""
+"Activate your account:\n"
+"\n"
+"Click the following URL or copy and paste it to the browser's address bar.\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"This activation URL will expire in %(expiration_days)s days."
+msgstr ""
+"Kontoaktivierung:\n"
+"\n"
+"Klicken Sie auf den folgenden Link oder kopieren Sie den Link in die "
+"Adresszeile Ihres Browsers:\n"
+"\n"
+"http://%(site)s/accounts/activate/%(activation_key)s/\n"
+"\n"
+"Dieser Aktivierungslink bleibt %(expiration_days)s Tage gültig."
+
+#: templates/registration/activation_email_subject.txt:1
+#, python-format
+msgid "Activate your account! %(site)s"
+msgstr "Aktivieren Sie Ihr Konto! %(site)s"
 
 #: templates/registration/boxbase.html:4 templates/registration/boxbase.html:9
 #: templates/registration/login.html:4 templates/registration/login.html:8
@@ -891,9 +1673,26 @@ msgstr "Passwort ändern"
 msgid "Update Profile"
 msgstr "Profil aktualisieren"
 
-#: templates/registration/login.html:21
+#: templates/registration/login.html:23
 msgid "Please login to continue"
-msgstr ""
+msgstr "Bitte loggen Sie sich ein um weiter fortzufahren"
+
+# ##########################
+# Login and Register helptexts translationbelow #
+# ##########################
+#: templates/registration/login.html:25
+msgid "If you have forgotten your password or username, you can"
+msgstr "Falls Sie Ihr Passwort oder Ihren Benutzernamen vergessen habe, können Sie"
+
+#: templates/registration/login.html:25
+#: templates/registration/registration_form.html:26
+msgid "request a new password"
+msgstr "ein neues Passwort anfordern"
+
+#: templates/registration/login.html:25
+#: templates/registration/registration_form.html:26
+msgid "and find out your username."
+msgstr "und finden Sie Ihren Benutzernamen heraus"
 
 #: templates/registration/password_change_done.html:4
 #: templates/registration/password_change_done.html:8
@@ -917,21 +1716,21 @@ msgstr ""
 "Bitte geben Sie zur Sicherheit zuerst ihr altes Passwort ein, und dann "
 "zweimal das neue Passwort."
 
-#: templates/registration/password_change_form.html:14
+#: templates/registration/password_change_form.html:16
 msgid "Old password:"
 msgstr "Altes Passwort"
 
-#: templates/registration/password_change_form.html:16
+#: templates/registration/password_change_form.html:18
 #: templates/registration/password_reset_confirm.html:16
 msgid "New password:"
 msgstr "Neues Passwort"
 
-#: templates/registration/password_change_form.html:18
+#: templates/registration/password_change_form.html:20
 #: templates/registration/password_reset_confirm.html:18
 msgid "Confirm password:"
 msgstr "Passwort bestätigen"
 
-#: templates/registration/password_change_form.html:19
+#: templates/registration/password_change_form.html:21
 #: templates/registration/password_reset_confirm.html:19
 msgid "Change my password"
 msgstr "Paswort ändern"
@@ -960,20 +1759,20 @@ msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
-"Bitte geben Sie ihr neues Passwort zweimal ein, damit die die Korrektheit "
+"Bitte geben Sie ihr neues Passwort zweimal ein, damit wir die Korrektheit "
 "überprüfen können."
 
-#: templates/registration/password_reset_confirm.html:25
-msgid "Password reset unsuccessful"
-msgstr "Rücksetzen des Passworts nicht erfolgreich"
-
 #: templates/registration/password_reset_confirm.html:27
+msgid "Password reset unsuccessful"
+msgstr "Zurücksetzen des Passworts nicht erfolgreich"
+
+#: templates/registration/password_reset_confirm.html:29
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
 "Der Link zum Rücksetzen des Passworts ist ungültig, vermutlich weil er "
-"bereits verwendet wurde. Bitte fordern die Passwort-Rücksetzung erneut an."
+"bereits verwendet wurde. Bitte fordern Sie die Passwort-Rücksetzung erneut an."
 
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
@@ -992,12 +1791,12 @@ msgstr ""
 msgid "You're receiving this e-mail because you requested a password reset"
 msgstr ""
 "Sie erhalten diese E-Mail, weil Sie die Rücksetzung ihres Passworts "
-"angefordert haebn."
+"angefordert haben."
 
 #: templates/registration/password_reset_email.html:4
 #, python-format
 msgid "for your user account at %(site_name)s"
-msgstr "für ihr Teilnehmerkonto bei %(site_name)s"
+msgstr "für ihr Benutzerkonto bei %(site_name)s"
 
 #: templates/registration/password_reset_email.html:6
 msgid "Please go to the following page and choose a new password:"
@@ -1005,7 +1804,7 @@ msgstr "Bitte gehen Sie auf die nächste Seite und wählen ein neues Passwort:"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Your username, in case you've forgotten:"
-msgstr "Ihr Teilnehmername:"
+msgstr "Ihr Benutzername:"
 
 #: templates/registration/password_reset_email.html:12
 msgid "Thanks for using our site!"
@@ -1063,9 +1862,25 @@ msgstr ""
 msgid "Registration Form"
 msgstr "Registrierung"
 
-#: templates/registration/registration_form.html:21
+#: templates/registration/registration_form.html:23
 msgid "Join the survey"
+msgstr "An der Umfrage teilnehmen"
+
+#: templates/registration/registration_form.html:25
+msgid ""
+"You will need a working email address in order to register for the flusurvey."
+msgstr "" 
+"Sie brauchen eine funktionierende E-mail-Adresse, um sich für die Grippe-Umfrage einzuschreiben."
+
+#: templates/registration/registration_form.html:26
+msgid ""
+"Choose a username consisting of numbers, letters and/or underscores (no "
+"spaces) and a password.<br />If you have forgotten your password or "
+"username, you can"
 msgstr ""
+"Wählen Sie einen Benutzernamen bestehend aus Zahlen, Buchstaben und/oder "
+"Unterstrichen (keine Leerzeichen) und ein Passwort.<br />Falls Sie Ihr "
+"Passwort oder Ihren Benutzernamen vergessen haben, können Sie "
 
 #: templates/search/search.html:5
 msgid "Search result"
@@ -1079,49 +1894,24 @@ msgstr "Ergebnisse"
 msgid "No results found"
 msgstr "Keine Ergebnisse gefunden"
 
-#: templates/survey/group_management.html:14
-msgid "on "
-msgstr ""
-
-#: templates/survey/group_management.html:22
-msgid "Select/deselect all"
-msgstr ""
-
-#: templates/survey/group_management.html:22
+#: templates/survey/group_archive.html:4
+#: templates/survey/group_archive.html:27
+#: templates/survey/group_management.html:4
 #, fuzzy
-msgid "Add person"
-msgstr "Teilnehmer hinzufügen"
+msgid "Your results"
+msgstr "Ihre Ergebnisse"
 
-#: templates/survey/group_management.html:22
-msgid "Survey"
-msgstr ""
+#: templates/survey/group_archive.html:40
+msgid "No data available for this season"
+msgstr "Keine Daten für diese Saison verfügbar"
 
-#: templates/survey/group_management.html:22
-msgid "Status"
-msgstr ""
-
-#: templates/survey/group_management.html:30
-msgid "Report"
-msgstr ""
-
-#: templates/survey/group_management.html:30 templates/survey/thanks.html:43
-msgid "Change profile"
-msgstr "Profil bearbeiten"
-
-#: templates/survey/group_management.html:50
-msgid "Mark as healthy"
-msgstr "Markieren wie gesund"
-
-#: templates/survey/group_management.html:51
-msgid "Delete member(s)"
-msgstr "Löschen"
-
-msgid "Are you absolutely sure you want to delete this user/these users?"
-msgstr ""
-
-#: templates/survey/group_management.html:58 templates/survey/thanks.html:62
+#: templates/survey/group_archive.html:48
 msgid ""
-"The health status of each participant is based on the symptoms you reported. <strong>This is not a medical diagnosis</strong>. We only ask for symptoms indicative of influenza-like illness, common colds, allergies and gastric flu. If you have other symptoms, or you are at all worried, we recommend that you contact your doctor or telephone NHS Direct / NHS 24."
+"The health status of each participant is based on the symptoms you reported. "
+"<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
+"indicative of influenza-like illness, common colds, allergies and gastric "
+"flu. If you have other symptoms, or you are at all worried, we recommend "
+"that you contact your doctor or telephone NHS Direct / NHS 24."
 msgstr ""
 "Der Grippe-Status wird aufgrund der Symptome ermittelt, die Sie angegeben "
 "haben. <strong>Dies ist keine medizinische Diagnose</strong>. Wir fragen nur "
@@ -1129,15 +1919,44 @@ msgstr ""
 "Erkältungen zu tun haben. Falls Sie andere Symptome haben, oder sonstige "
 "Fragen haben, sollten Sie sich an Ihren Hausarzt wenden. "
 
+#: templates/survey/group_management.html:27
+#, fuzzy
+msgid "Group Management"
+msgstr "Gruppenverwaltung"
+
+#: templates/survey/group_management.html:46
+#, fuzzy
+msgid "Add person"
+msgstr "Teilnehmer hinzufügen"
+
+#: templates/survey/group_management.html:47
+msgid "Select/deselect all"
+msgstr "Alle auswählen/entfernen"
+
+#: templates/survey/group_management.html:57
+#, fuzzy
+msgid "Rename"
+msgstr "Umbennen"
+
+#: templates/survey/group_management.html:68
+#, fuzzy
+msgid "Mark selected as healthy"
+msgstr "Als gesund markieren"
+
+#: templates/survey/group_management.html:75
+msgid "Are you absolutely sure you want to delete this user?"
+msgstr "Sind Sie sich sicher, dass Sie diesen Benutzer löschen möchten?"
+
 #: templates/survey/index.html:16
 msgid "Survey Form"
 msgstr "Fragebogen"
 
 #: templates/survey/mobile_success.html:6
-msgid "Put your success message here"
-msgstr ""
+#, fuzzy
+msgid "Thank you for your submission!"
+msgstr "Danke für Ihre Unterstützung!"
 
-#: templates/survey/people_add.html:5 templates/survey/people_add.html:10
+#: templates/survey/people_add.html:19 templates/survey/people_add.html:24
 msgid "Add Person"
 msgstr "Teilnehmer hinzufügen"
 
@@ -1151,7 +1970,7 @@ msgstr "Entfernen bestätigen"
 
 #: templates/survey/people_remove.html:8
 msgid "Confirm the removal of the person:"
-msgstr "Teilnehmer entfernen bestätigen:"
+msgstr "Entfernen des Teilnehmers bestätigen:"
 
 #: templates/survey/people_remove.html:16
 msgid "Yes"
@@ -1167,18 +1986,14 @@ msgstr "Profil bearbeiten"
 
 #: templates/survey/select_user.html:5
 msgid "Select User"
-msgstr "Teilnehmer auswählen"
-
-#: templates/survey/thanks.html:22
-msgid "Thanks for taking the time to fill out this survey."
-msgstr "Vielen Dank für das Ausfüllen dieses Fragebogens."
+msgstr "Benutzer auswählen"
 
 #: templates/survey/thanks.html:25
 msgid ""
 "Here is a summary of the information you entered for you and the members of "
 "your group or family:"
 msgstr ""
-"Hier sehen Sie eine Zusammenfassung der Informationen die Sie für sich und "
+"Hier sehen Sie eine Zusammenfassung der Informationen, die Sie für sich und "
 "Mitglieder Ihrer Gruppe oder Familie eingegeben haben."
 
 #: templates/survey/thanks.html:30
@@ -1195,7 +2010,11 @@ msgstr "Verwalten"
 
 #: templates/survey/thanks.html:42
 msgid "Change name"
-msgstr "Teilnehmernamen ändern"
+msgstr "Teilnehmername ändern"
+
+#: templates/survey/thanks.html:43
+msgid "Change profile"
+msgstr "Profil bearbeiten"
 
 #: templates/survey/thanks.html:44
 msgid "Enter symptoms"
@@ -1204,6 +2023,21 @@ msgstr "Symptome eingeben"
 #: templates/survey/thanks.html:46
 msgid "Remove"
 msgstr "Entfernen"
+
+#: templates/survey/thanks.html:62
+#, fuzzy
+msgid ""
+"The flu status of each participant is based on the symptoms you reported. "
+"<strong>This is not a medical diagnosis</strong>. We only ask for symptoms "
+"indicative of influenza-like illness, common colds, gastric flu. If you have "
+"other symptoms, or you are at all worried, we recommend that you contact "
+"your doctor or telephone NHS Direct / NHS 24."
+msgstr ""
+"Der Grippe-Status wird aufgrund der Symptome ermittelt, die Sie angegeben "
+"haben. <strong>Dies ist keine medizinische Diagnose</strong>. Wir fragen nur "
+"nach Symptomen, die mit grippeähnlichen Erkrankungen, Darmgrippe oder "
+"Erkältungen zu tun haben. Falls Sie andere Symptome haben, oder sonstige "
+"Fragen haben, sollten Sie sich an Ihren Hausarzt wenden. "
 
 # translations should reflect whatever can be seen on the map of the thanks page
 #: templates/survey/thanks.html:95
@@ -1223,11 +2057,11 @@ msgstr "Ausfüll-Datum"
 
 #: templates/survey/thanks.html:105
 msgid "Member"
-msgstr "Teilnehmer"
+msgstr "Mitglied"
 
 #: templates/survey/thanks_profile.html:5
 msgid "Thanks for changing your profile,"
-msgstr "Danke für die Bearbeitung des Profils"
+msgstr "Danke für die Bearbeitung Ihres Profils"
 
 #: templates/survey/thanks_profile.html:12
 msgid "Please, if you have not already done so, fill in"
@@ -1235,188 +2069,77 @@ msgstr "Bitte hier eingeben (falls Sie das noch nicht getan haben)"
 
 #: templates/survey/thanks_profile.html:18
 msgid "the symptoms questionaire"
-msgstr "Der wöchentliche Fragebogen"
+msgstr "Der Symptom-Fragebogen"
 
-msgid ""
-"Date & time of the first reminder and point of reference for subsequent "
-"reminders; (Time zone: MET)"
-msgstr ""
-"Datum und Uhrzeit für die erste Erinnerung und Richtwert für nachfolgende "
-"Erinnerungen; (Zeitzone MEZ)"
+#: templates/survey/thanks_profile.html:21
+msgid "You can also visit your"
+msgstr "Sie können auch besuchen: "
 
-msgid "Next status"
-msgstr "Nachster Status"
+#: templates/survey/thanks_profile.html:27
+#, fuzzy
+msgid "profile page"
+msgstr "Profil"
 
-msgid "You have to fill your profile data first."
-msgstr "Sie müssen zuerst ihr Profil erstellen"
+#~ msgid "Cold / allergy"
+#~ msgstr "Erkältung / Allergie"
 
-msgid ""
-"One or more questions have empty or invalid answer. Please fix it first."
-msgstr ""
-"Eine oder mehrere Fragen haben keine oder eine ungültige Antwort. Bitte "
-"zuerst korrigieren"
+#~ msgid "Weekly survey"
+#~ msgstr "Wöchentlicher Fragebogen"
 
-msgid "People"
-msgstr "Teilnehmer"
+#~ msgid "Delete member(s)"
+#~ msgstr "Löschen"
 
-msgid "Edit"
-msgstr "Editieren"
+#~ msgid ""
+#~ "Date & time of the first reminder and point of reference for subsequent "
+#~ "reminders; (Time zone: MET)"
+#~ msgstr ""
+#~ "Datum und Uhrzeit für die erste Erinnerung und Richtwert für nachfolgende "
+#~ "Erinnerungen; (Zeitzone MEZ)"
 
-msgid "Add new person"
-msgstr "Neuen Teilnehmer hinzufügen"
+#~ msgid "Next status"
+#~ msgstr "Nachster Status"
 
-msgid ""
-"Activate your account:\n"
-"\n"
-"Click the following URL or copy and paste it to the browser's address "
-"bar.\n"
-"\n"
-"http://%(site)s/accounts/activate/%(activation_key)s/\n"
-"\n"
-"This activation URL will expire in %(expiration_days)s days."
-msgstr ""
-"Kontoaktivierung:\n"
-"\n"
-"Klicken Sie auf den folgenden Link oder kopieren Sie den Link in die "
-"Adresszeile Ihres Browsers:\n"
-"\n"
-"http://%(site)s/accounts/activate/%(activation_key)s/\n"
-"\n"
-"Dieser Aktivierungslink bleibt %(expiration_days)s Tage gültig."
+#~ msgid "You have to fill your profile data first."
+#~ msgstr "Sie müssen zuerst ihr Profil erstellen"
 
-msgid "Activate your account! %(site)s"
-msgstr "Aktivieren Sie Ihr Konto! %(site)s"
+#~ msgid ""
+#~ "One or more questions have empty or invalid answer. Please fix it first."
+#~ msgstr ""
+#~ "Eine oder mehrere Fragen haben keine oder eine ungültige Antwort. Bitte "
+#~ "zuerst korrigieren"
 
-msgid "Manage household"
-msgstr "Teilnehmer verwalten"
+#~ msgid "People"
+#~ msgstr "Teilnehmer"
 
-msgid ""
-"Below is the list of participants currently managed by you. Click the "
-"corresponding option next to the participant to complete the background "
-"or symptoms questionnaire for that person, or to remove a participant."
-msgstr ""
-"Hier ist die Liste der Personen, die Sie als Teilnehmer angemeldet haben. "
-"Sie können für jeden Teilnehmer einen neuen Anmelde- oder Wochen-"
-"Fragebogen ausfüllen bzw. Ihre früheren Angaben ändern. Sie müssen dazu "
-"nur das entsprechende Feld neben dem Teilnehmernamen anklicken. Mit einem "
-"Klick können Sie auf diese Weise auch Ihren Teilnahme an unserem Projekt "
-"wider beenden bzw. einen der anderen Teilnehmer aus Ihrem Konto entfernen."
+#~ msgid "Add new person"
+#~ msgstr "Neuen Teilnehmer hinzufügen"
 
-msgid "Background"
-msgstr "Anmelde-Fragebogen"
+#~ msgid ""
+#~ "Below is the list of participants currently managed by you. Click the "
+#~ "corresponding option next to the participant to complete the background "
+#~ "or symptoms questionnaire for that person, or to remove a participant."
+#~ msgstr ""
+#~ "Hier ist die Liste der Personen, die Sie als Teilnehmer angemeldet haben. "
+#~ "Sie können für jeden Teilnehmer einen neuen Anmelde- oder Wochen-"
+#~ "Fragebogen ausfüllen bzw. Ihre früheren Angaben ändern. Sie müssen dazu "
+#~ "nur das entsprechende Feld neben dem Teilnehmernamen anklicken. Mit einem "
+#~ "Klick können Sie auf diese Weise auch Ihren Teilnahme an unserem Projekt "
+#~ "wider beenden bzw. einen der anderen Teilnehmer aus Ihrem Konto entfernen."
 
-msgid "Symptoms"
-msgstr "Wochen-Fragebogen"
+#~ msgid "Background"
+#~ msgstr "Anmelde-Fragebogen"
 
-msgid "Completing for participant"
-msgstr "Durchführung für Teilnehmer "
+#~ msgid "Symptoms"
+#~ msgstr "Wochen-Fragebogen"
 
-msgid "Symptoms survey"
-msgstr "Wochen-Fragebogen"
+#~ msgid "Completing for participant"
+#~ msgstr "Durchführung für Teilnehmer "
 
-msgid "register"
-msgstr "sich erneut  zu registrieren "
+#~ msgid "Symptoms survey"
+#~ msgstr "Wochen-Fragebogen"
 
-msgid "My settings"
-msgstr "E-Mail"
+#~ msgid "register"
+#~ msgstr "sich erneut  zu registrieren "
 
-msgid "Change password"
-msgstr "Passwort ändern"
-
-# ##########################
-# Login and Register helptexts translationbelow #
-# ##########################
-
-msgid "If you have forgotten your password or username, you can"
-msgstr ""
-
-msgid "request a new password"
-msgstr ""
-
-msgid "and find out your username."
-msgstr ""
-
-msgid ""
-"You will need a working email address in order to register for the flusurvey."
-msgstr ""
-
-msgid ""
-"Choose a username consisting of numbers, letters and/or underscores (no "
-"spaces) and a password.<br />If you have forgotten your password or "
-"username, you can"
-msgstr ""
-
-# ##########################
-# Cookie Consent translation below #
-# ##########################
-
-msgid "Your experience on this site will be improved by allowing cookies"
-msgstr ""
-
-msgid "Allow cookies"
-msgstr ""
-
-msgid "Save preference"
-msgstr ""
-
-msgid "see details"
-msgstr ""
-
-msgid "hide details"
-msgstr ""
-
-msgid "Strictly necessary"
-msgstr ""
-
-msgid ""
-"Some cookies on this website are strictly necessary and can not be disabled."
-msgstr ""
-
-msgid "Social media"
-msgstr ""
-
-msgid ""
-"Facebook, Twitter and other social websites need to know who you are to work "
-"properly."
-msgstr ""
-
-msgid "Analytics"
-msgstr ""
-
-msgid ""
-"We anonymously measure your use of this website to improve your experience."
-msgstr ""
-
-msgid "Privacy settings"
-msgstr ""
-
-msgid "for this website"
-msgstr ""
-
-msgid ""
-"Some features of this website need your consent to remember who you are."
-msgstr ""
-
-msgid "I consent"
-msgstr ""
-
-msgid "I decline"
-msgstr ""
-
-msgid "Close window"
-msgstr ""
-
-msgid "Cookie settings"
-msgstr ""
-
-msgid "Thanks - your diagnosis:"
-msgstr ""
-
-msgid "Please complete the background questionnaire for the participant \"%(user_name)s\" before marking him/her as healthy."
-msgstr ""
-
-msgid "Your result archive"
-msgstr ""
-
-msgid "No data available for this season" 
-msgstr ""
+#~ msgid "My settings"
+#~ msgstr "E-Mail"
