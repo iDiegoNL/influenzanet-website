@@ -39,25 +39,25 @@ def update_url_params(url, params):
     return url
 
 class BaseWorkflow(object):
-    
+
     def debug(self, message):
         logger.debug(message)
-    
+
     def user_has_data(self, shortname, survey_user):
         """
             Check if a given user has data for a survey
-            
+
         """
         # Here use a direct query to avoid the load of all the survey in order to
         # build the model
-        # A static method in Survey class would be the best for it 
+        # A static method in Survey class would be the best for it
         survey = models.Survey.get_by_shortname(shortname)
         if survey is None:
             raise models.Survey.DoesNotExist()
         # @todo get this directly using an dedicated method of Survey
         table = "pollster_"  + survey.get_table_name()
-        query = "select {{timestamp}} from {{" + table +"}} WHERE {{user}}=%s AND {{global_id}}=%s LIMIT 1" 
-        query = quote_query(query) 
+        query = "select {{timestamp}} from {{" + table +"}} WHERE {{user}}=%s AND {{global_id}}=%s LIMIT 1"
+        query = quote_query(query)
         cursor = get_cursor()
         cursor.execute(query, [ survey_user.user.id, survey_user.global_id ])
         r = cursor.fetchone()
@@ -75,23 +75,25 @@ class BaseWorkflow(object):
         model = survey.as_model()
         r = model.objects.filter(user=user_id).filter(global_id = global_id).only('timestamp')[:1]
         if r.count() > 0:
-            return True
+            return r
         return False
+
+
 
 class SurveyContext(object):
     """
         Running context for a survey
         Hold all data about a survey's run.
-        Instance of this class is transmitted to survey hook methods 
-        
+        Instance of this class is transmitted to survey hook methods
+
     """
-    
+
     def __init__(self, request, survey):
         self.request = request
         self.survey = survey
         self.survey_user = None
         self.form = None
-        self.language = None 
+        self.language = None
         self.last_data = None
         self.timestamp_last_fill = None
         self.template = 'pollster/survey_run.html'
@@ -103,14 +105,14 @@ class SurveyContext(object):
             # That's why template does not use directly the value from the last data
             self.timestamp_last_fill = last_data.get('timestamp', None)
         self.last_data = last_data
-            
+
     def get_template_data(self):
         """
          get the data ready to be transmitted to the survey template
         """
-        # Check if url contains debug flag 
+        # Check if url contains debug flag
         pollster_debug = self.request.GET.get('pollster_debug', False)
-    
+
         return {
           "language": self.language,
           "locale_code": get_locale(self.language),
@@ -134,13 +136,13 @@ class SurveyRunner(object):
         self.before_render_hooks = []
         # Load hooks
         self.load_hooks()
-           
+
     def load_hooks(self):
         if not CONFIG.has_key('workflows'):
             raise exceptions.ImproperlyConfigured('Missing workflows in pollster runner')
         for path in CONFIG['workflows']:
             hook = load_class_from_path(path)
-            
+
             if hasattr(hook, 'before_run'):
                 self.before_hooks.append(hook.before_run)
             if hasattr(hook, 'before_save'):
@@ -149,32 +151,33 @@ class SurveyRunner(object):
                 self.after_save_hooks.append(hook.after_save)
             if hasattr(hook, 'before_render'):
                 self.before_render_hooks.append(hook.before_render)
-                
+
     def _log_hook(self, hook):
-        logger.debug(hook.__name__)
-        
+        cn = hook.__self__.__class__.__name__
+        logger.debug(cn + ':'  + hook.__name__ )
+
     def run(self, request, survey_user, shortname):
         """
             Run the survey [shortname] for the [survey_user]
         """
-        
+
         use_cache = getattr(settings, 'POLLSTER_USE_CACHE', False)
         survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
         if use_cache:
             survey.set_caching(True)
-        
+
         survey_context = SurveyContext(request, survey)
-        
+
         language = get_language()
-        
+
         survey_context.language = language
-        
+
         # Get survey user
         user_id = request.user.id
         global_id = survey_user and survey_user.global_id
-        
+
         survey_context.survey_user = survey_user
-        
+
         # Run before hook
         for hook_method in self.before_hooks:
             if DEBUG:
@@ -182,15 +185,15 @@ class SurveyRunner(object):
             response = hook_method(survey_context)
             if response and isinstance(response, HttpResponse):
                 return response
-        
+
         # Prepare survey to be run
         translation = views.get_object_or_none(models.TranslationSurvey, survey=survey, language=language, status="PUBLISHED")
         if use_cache and translation is not None:
             translation.prefetch_tranlations()
         survey.set_translation_survey(translation)
-        
+
         form = None
-        
+
         # Now check if response has been submitted
         if request.method == 'POST':
             data = request.POST.copy()
@@ -200,7 +203,7 @@ class SurveyRunner(object):
             form = survey.as_form()(data)
             survey_context.form = form
             if form.is_valid():
-                
+
                 # Run before_save hooks
                 # before_save can modify stored data
                 # Or run extra check before save the data
@@ -210,21 +213,24 @@ class SurveyRunner(object):
                     response = hook_method(survey_context)
                     if response and isinstance(response, HttpResponse):
                         return response
-                
+
                 # Now save the data
                 form.save()
-                
+
                 # Ask for hooks for a response
                 next_url = reverse('group_management') # default is group management page
                 for hook_method in self.after_save_hooks:
                     if DEBUG:
                         self._log_hook(hook_method)
                     response = hook_method(survey_context)
+                    if DEBUG:
+                        logger.debug(response)
                     if response and isinstance(response, HttpResponse):
                         return response
                     if response and isinstance(response, basestring):
                         next_url = response
-                
+                        break
+
                 next_url = update_url_params(next_url, {"gid": global_id})
                 return HttpResponseRedirect(next_url)
             else:
@@ -233,10 +239,10 @@ class SurveyRunner(object):
         if DEBUG:
             logger.debug("Loading prefill data")
         survey_context.set_last_data(survey.get_prefill_data(user_id, global_id))
-        
+
         for hook_method in self.before_render_hooks:
             if DEBUG:
                 self._log_hook(hook_method)
             response = hook_method(survey_context)
-                        
+
         return render_to_response(survey_context.template, survey_context.get_template_data(), context_instance=RequestContext(request))

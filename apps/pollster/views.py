@@ -129,7 +129,7 @@ def survey_test(request, id, language=None):
     # user_id = request.user.id
     # global_id = survey_user and survey_user.global_id
     last_participation_data = None
-    
+
     # In test env, do not get the user_id from global_id
     # to allow test with real data (for debugging)
     global_id = request.GET.get('gid')
@@ -141,8 +141,8 @@ def survey_test(request, id, language=None):
             last_participation_data = survey.get_prefill_data(user_id, global_id)
         except SurveyUser.DoesNotExist:
             pass
-        
-    
+
+
     if request.method == 'POST':
         data = request.POST.copy()
         data['user'] = user_id
@@ -186,7 +186,7 @@ def survey_run(request, shortname, next=None, clean_template=False):
         if clean_template: # i.e. "if is_mobile"
             return HttpResponse(simplejson.dumps({'error': True, 'error_code': 3, 'error_msg': 'you must be logged in'}), mimetype="application/json")
         return redirect_to_login(request.path)
-    
+
     use_cache = getattr(settings, 'POLLSTER_USE_CACHE', False)
     survey = get_object_or_404(models.Survey, shortname=shortname, status='PUBLISHED')
     if use_cache:
@@ -550,7 +550,7 @@ def _get_first_survey_user(request):
         return None
 
     survey_users = SurveyUser.objects.filter(user=request.user, deleted=False).order_by("id")
-        
+
     if len(survey_users) >= 1:
         return survey_users[0]
 

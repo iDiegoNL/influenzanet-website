@@ -1,13 +1,20 @@
 from apps.pollster.runner import DEBUG
 from apps.survey.workflow import SurveyWorkflow
+from apps.survey import WEEKLY_SURVEY, THANKS_WEEKLY_SURVEY
 from apps.grippenet.models import PregnantCohort, Participation
+
+from django.conf import settings
+from django.core.urlresolvers import reverse
+
+AWARENESS_ITERATION = getattr(settings, 'AWARENESS_ITERATION', 0)
+AWARENESS_SURVEY = 'awareness'
 
 PREGNANT_QUESTION = 'Q12'
 PREGNANT_RESPONSE_YES = 0
 PREGNANT_RESPONSE_NO = 1
 
 class PregnantWorkflow(SurveyWorkflow):
-    
+
     def before_run(self, context):
         survey_user = context.survey_user
         pregnant = None
@@ -32,6 +39,7 @@ class PregnantWorkflow(SurveyWorkflow):
             pregnant.change_channel = False
         pregnant.save()
         return pregnant
+
     def before_save(self, context):
         shortname = context.survey.shortname
         is_ggnet = False
@@ -56,5 +64,34 @@ class PregnantWorkflow(SurveyWorkflow):
             setattr(form.instance, 'channel', 'G')
             if DEBUG:
                 self.debug("Setting channel to G")
-                 
-        
+
+class AwarenessWorkflow(SurveyWorkflow):
+
+    def before_save(self, context):
+        shortname = context.survey.shortname
+        if shortname == AWARENESS_SURVEY:
+            setattr(context.form.instance, 'channel', str(AWARENESS_ITERATION))
+
+    def after_save(self, context):
+        shortname = context.survey.shortname
+
+        self.debug(shortname)
+        self.debug('Awareness = ' + str(AWARENESS_ITERATION))
+
+        if AWARENESS_ITERATION == 0:
+            return None
+
+        if shortname == WEEKLY_SURVEY:
+            self.debug('Checking awareness  for user ' + str(context.survey_user))
+            r = self.user_get_last_data(AWARENESS_SURVEY, context.survey_user)
+            need_fill = True
+            print r
+            self.debug(' Need fill' + str(need_fill))
+            if need_fill:
+                return self.get_survey_url(AWARENESS_SURVEY, context.survey_user)
+
+        if shortname == AWARENESS_SURVEY:
+            return reverse(THANKS_WEEKLY_SURVEY)
+
+
+
