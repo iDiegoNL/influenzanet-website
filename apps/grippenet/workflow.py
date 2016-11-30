@@ -76,6 +76,10 @@ class AwarenessWorkflow(SurveyWorkflow):
         shortname = context.survey.shortname
 
         self.debug(shortname)
+
+        if shortname == AWARENESS_SURVEY:
+            return reverse(THANKS_WEEKLY_SURVEY)
+
         self.debug('Awareness = ' + str(AWARENESS_ITERATION))
 
         if AWARENESS_ITERATION == 0:
@@ -95,8 +99,6 @@ class AwarenessWorkflow(SurveyWorkflow):
             if need_fill:
                 return self.get_survey_url(AWARENESS_SURVEY, context.survey_user)
 
-        if shortname == AWARENESS_SURVEY:
-            return reverse(THANKS_WEEKLY_SURVEY)
 
 
 
