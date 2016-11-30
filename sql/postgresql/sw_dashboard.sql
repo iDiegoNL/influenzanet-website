@@ -1,15 +1,14 @@
-DROP IF EXISTS FUNCTION pollster_dashboard_neighborhood_users_avg;
-DROP IF EXISTS FUNCTION pollster_dashboard_neighborhood_users_count;
-DROP IF EXISTS FUNCTION pollster_dashboard_neighborhood_users;
-DROP IF EXISTS FUNCTION pollster_dashboard_users_by_zip_code_count;
-DROP IF EXISTS FUNCTION pollster_dashboard_users_by_zip_code;
+
+DROP VIEW IF EXISTS pollster_dashboard_neighborhood;
+DROP FUNCTION IF EXISTS  pollster_dashboard_neighborhood_users_avg(text);
+DROP FUNCTION IF EXISTS  pollster_dashboard_neighborhood_users_count(text);
+DROP FUNCTION IF EXISTS  pollster_dashboard_neighborhood_users(text);
+DROP FUNCTION IF EXISTS  pollster_dashboard_users_by_zip_code_count(text);
+DROP FUNCTION IF EXISTS  pollster_dashboard_users_by_zip_code(text);
 
 DROP VIEW IF EXISTS pollster_dashboard_neighborhood_ili;
 DROP VIEW IF EXISTS pollster_dashboard_badges2;
-DROP VIEW IF EXISTS pollster_dashboard_badges;
-DROP VIEW IF EXISTS pollster_dashboard_badges_household;
 DROP VIEW IF EXISTS pollster_dashboard_weekly_count;
-DROP VIEW IF EXISTS pollster_dashboard_neighborhood;
 
 DROP VIEW IF EXISTS pollster_results_last_intake;
 DROP VIEW IF EXISTS pollster_results_last_location;
@@ -17,6 +16,7 @@ DROP VIEW IF EXISTS pollster_results_last_intake_id;
 
 DROP VIEW IF EXISTS pollster_dashboard_badges_household;
 DROP VIEW IF EXISTS pollster_dashboard_badges;
+
 
 CREATE OR REPLACE VIEW pollster_dashboard_badges AS 
  SELECT DISTINCT a.global_id, a."user",
@@ -143,6 +143,7 @@ CREATE VIEW pollster_dashboard_neighborhood AS
 		pollster_dashboard_neighborhood_users_avg(O."Q3") AS neighbors_avg
            FROM pollster_results_last_intake O;
            
+DROP VIEW IF EXISTS pollster_dashboard_neighborhood_ili;
 CREATE VIEW pollster_dashboard_neighborhood_ili AS
 SELECT zip_code_key,
        count(ili) AS ili,
@@ -157,7 +158,7 @@ SELECT
        pollster_zip_codes AS P,
       (SELECT DISTINCT ON (global_id) *
          FROM pollster_results_weekly
-        WHERE timestamp BETWEEN 'tomorrow'::date-21 AND 'tomorrow'
+        WHERE timestamp BETWEEN current_date - 21 AND current_date
         ORDER BY global_id, timestamp DESC) AS W
      WHERE S.pollster_results_weekly_id = W.id
        AND W.global_id = I.global_id
