@@ -73,7 +73,7 @@ class BaseWorkflow(object):
         user_id = survey_user.user.id
         global_id = survey_user.global_id
         model = survey.as_model()
-        r = model.objects.filter(user=user_id).filter(global_id = global_id).only('timestamp')[:1]
+        r = model.objects.filter(user=user_id).filter(global_id = global_id).order_by('timestamp').reverse()[:1]
         if r.count() > 0:
             return r
         return False
