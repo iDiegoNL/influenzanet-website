@@ -26,7 +26,7 @@ except:
     except ImportError:
         mapnik_version = None
         warnings.warn("No working version for library 'mapnik' found. Continuing without mapnik")
-        
+
 
 SURVEY_STATUS_CHOICES = (
     ('DRAFT', 'Draft'),
@@ -77,51 +77,51 @@ SURVEY_EXTRA_SQL = {
                            and ("Q1_5" or "Q1_6" or "Q1_7")
                               then 'ILI'
 
-                          when 
+                          when
                             (
-                                (not "Q1_1") and (not "Q1_2") 
-                                and (("Q6d" = 0) or ("Q6d" is null)) 
+                                (not "Q1_1") and (not "Q1_2")
+                                and (("Q6d" = 0) or ("Q6d" is null))
                                 and ("Q1_3" or "Q1_4" or "Q1_14")
                                 and ("Q11" = 2)
                             ) and (
-                                case true when "Q1_17" then 1 else 0 end + 
-                                case true when "Q1_15" then 1 else 0 end + 
-                                case true when "Q1_16" then 1 else 0 end + 
+                                case true when "Q1_17" then 1 else 0 end +
+                                case true when "Q1_15" then 1 else 0 end +
+                                case true when "Q1_16" then 1 else 0 end +
                                 case true when "Q1_18" then 1 else 0 end >= 2
                             ) then 'ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL'
 
-                          when (not "Q1_1") and (not "Q1_2") 
-                           and (("Q6d" = 0) or ("Q6d" is null)) 
+                          when (not "Q1_1") and (not "Q1_2")
+                           and (("Q6d" = 0) or ("Q6d" is null))
                            and ("Q1_3" or "Q1_4" or "Q1_14")
                            and ("Q11" = 2)
-                              then 'ALLERGY-or-HAY-FEVER' 
+                              then 'ALLERGY-or-HAY-FEVER'
 
                           when
                             (
-                                case true when "Q1_3" then 1 else 0 end + 
-                                case true when "Q1_4" then 1 else 0 end + 
-                                case true when "Q1_6" then 1 else 0 end + 
+                                case true when "Q1_3" then 1 else 0 end +
+                                case true when "Q1_4" then 1 else 0 end +
+                                case true when "Q1_6" then 1 else 0 end +
                                 case true when "Q1_5" then 1 else 0 end >= 2
                                   -- note: common cold after all allergy-related branches
                             ) and (
-                                case true when "Q1_17" then 1 else 0 end + 
-                                case true when "Q1_15" then 1 else 0 end + 
-                                case true when "Q1_16" then 1 else 0 end + 
+                                case true when "Q1_17" then 1 else 0 end +
+                                case true when "Q1_15" then 1 else 0 end +
+                                case true when "Q1_16" then 1 else 0 end +
                                 case true when "Q1_18" then 1 else 0 end >= 2
                             ) then 'COMMON-COLD-and-GASTROINTESTINAL'
 
-                          when 
-                            case true when "Q1_3" then 1 else 0 end + 
-                            case true when "Q1_4" then 1 else 0 end + 
-                            case true when "Q1_6" then 1 else 0 end + 
+                          when
+                            case true when "Q1_3" then 1 else 0 end +
+                            case true when "Q1_4" then 1 else 0 end +
+                            case true when "Q1_6" then 1 else 0 end +
                             case true when "Q1_5" then 1 else 0 end >= 2
                               -- note: common cold after all allergy-related branches
                               then 'COMMON-COLD'
 
-                          when 
-                            case true when "Q1_17" then 1 else 0 end + 
-                            case true when "Q1_15" then 1 else 0 end + 
-                            case true when "Q1_16" then 1 else 0 end + 
+                          when
+                            case true when "Q1_17" then 1 else 0 end +
+                            case true when "Q1_15" then 1 else 0 end +
+                            case true when "Q1_16" then 1 else 0 end +
                             case true when "Q1_18" then 1 else 0 end >= 2
                               then 'GASTROINTESTINAL'
 
@@ -144,51 +144,51 @@ SURVEY_EXTRA_SQL = {
                            and (Q1_5 or Q1_6 or Q1_7)
                               then 'ILI'
 
-                          when 
+                          when
                             (
-                                (not Q1_1) and (not Q1_2) 
-                                and ((Q6d = 0) or (Q6d is null)) 
+                                (not Q1_1) and (not Q1_2)
+                                and ((Q6d = 0) or (Q6d is null))
                                 and (Q1_3 or Q1_4 or Q1_14)
                                 and (Q11 = 2)
                             ) and (
-                                case true when Q1_17 then 1 else 0 end + 
-                                case true when Q1_15 then 1 else 0 end + 
-                                case true when Q1_16 then 1 else 0 end + 
+                                case true when Q1_17 then 1 else 0 end +
+                                case true when Q1_15 then 1 else 0 end +
+                                case true when Q1_16 then 1 else 0 end +
                                 case true when Q1_18 then 1 else 0 end >= 2
                             ) then 'ALLERGY-or-HAY-FEVER-and-GASTROINTESTINAL'
 
-                          when (not Q1_1) and (not Q1_2) 
-                           and ((Q6d = 0) or (Q6d is null)) 
+                          when (not Q1_1) and (not Q1_2)
+                           and ((Q6d = 0) or (Q6d is null))
                            and (Q1_3 or Q1_4 or Q1_14)
                            and (Q11 = 2)
-                              then 'ALLERGY-or-HAY-FEVER' 
+                              then 'ALLERGY-or-HAY-FEVER'
 
                           when
                             (
-                                case true when Q1_3 then 1 else 0 end + 
-                                case true when Q1_4 then 1 else 0 end + 
-                                case true when Q1_6 then 1 else 0 end + 
+                                case true when Q1_3 then 1 else 0 end +
+                                case true when Q1_4 then 1 else 0 end +
+                                case true when Q1_6 then 1 else 0 end +
                                 case true when Q1_5 then 1 else 0 end >= 2
                                   -- note: common cold after all allergy-related branches
                             ) and (
-                                case true when Q1_17 then 1 else 0 end + 
-                                case true when Q1_15 then 1 else 0 end + 
-                                case true when Q1_16 then 1 else 0 end + 
+                                case true when Q1_17 then 1 else 0 end +
+                                case true when Q1_15 then 1 else 0 end +
+                                case true when Q1_16 then 1 else 0 end +
                                 case true when Q1_18 then 1 else 0 end >= 2
                             ) then 'COMMON-COLD-and-GASTROINTESTINAL'
 
-                          when 
-                            case true when Q1_3 then 1 else 0 end + 
-                            case true when Q1_4 then 1 else 0 end + 
-                            case true when Q1_6 then 1 else 0 end + 
+                          when
+                            case true when Q1_3 then 1 else 0 end +
+                            case true when Q1_4 then 1 else 0 end +
+                            case true when Q1_6 then 1 else 0 end +
                             case true when Q1_5 then 1 else 0 end >= 2
                               -- note: common cold after all allergy-related branches
                               then 'COMMON-COLD'
 
-                          when 
-                            case true when Q1_17 then 1 else 0 end + 
-                            case true when Q1_15 then 1 else 0 end + 
-                            case true when Q1_16 then 1 else 0 end + 
+                          when
+                            case true when Q1_17 then 1 else 0 end +
+                            case true when Q1_15 then 1 else 0 end +
+                            case true when Q1_16 then 1 else 0 end +
                             case true when Q1_18 then 1 else 0 end >= 2
                               then 'GASTROINTESTINAL'
 
@@ -210,7 +210,7 @@ def prefill_previous_data(survey, user_id, global_id):
      """
      fetch data to prefill a user's survey looking first at the current data table and then to another
      table containing previous data for the user (for example from the last year data table)
-     The only assumption made on this table are the keys global_id and user_id, and the table name 
+     The only assumption made on this table are the keys global_id and user_id, and the table name
      """
      data = survey.get_last_participation_data(user_id, global_id)
      if data is not None:
@@ -223,9 +223,9 @@ def prefill_previous_data(survey, user_id, global_id):
      desc = cursor.description
      if res is not None:
          res = dict(zip([col[0] for col in desc], res))
-         # Put a flag in the data 
+         # Put a flag in the data
          res["_source_"] = "previousdata"
-     return res 
+     return res
 
 class Survey(models.Model):
     parent = models.ForeignKey('self', db_index=True, blank=True, null=True)
@@ -236,7 +236,9 @@ class Survey(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=255, default='DRAFT', choices=SURVEY_STATUS_CHOICES)
     prefill_method = models.CharField(max_length=255, blank=True, default="LAST")
-    
+    introduction = models.TextField(blank=True, default='')
+
+
     form = None
     translation_survey = None
 
@@ -245,7 +247,7 @@ class Survey(models.Model):
         ('global_id', models.CharField(max_length=36, null=True, blank=True, verbose_name="Person")),
         ('channel', models.CharField(max_length=36, null=True, blank=True, verbose_name="Channel"))
     ]
-    
+
     """
         Use survey cache allow to prefetch questions & options data for one survey
         and cache the result to avoid query deluge
@@ -253,13 +255,13 @@ class Survey(models.Model):
     _use_survey_cache = False
     _cache_questions = None
     _cache_model = None
-    
+
     def set_caching(self, use_cache):
         self._use_survey_cache = use_cache
 
     def get_caching(self):
         return self._use_survey_cache
-    
+
     @staticmethod
     def get_by_shortname(shortname):
         return Survey.objects.all().get(shortname=shortname, status="PUBLISHED")
@@ -289,15 +291,15 @@ class Survey(models.Model):
     @property
     def questions(self):
         """
-            Get questions of the survey, 
+            Get questions of the survey,
         """
         if not self._use_survey_cache:
             return self._get_questions()
         if self._cache_questions is None:
             self._cache_questions = list(self._get_questions())
         return self._cache_questions
-        
-    def _prefetch_rules(self, q_dict):    
+
+    def _prefetch_rules(self, q_dict):
         """
             Prefetch Rules for all the survey and return a dictionnary with all rules for each question (indexed by question_id)
         """
@@ -315,7 +317,7 @@ class Survey(models.Model):
                 rules[qid] = []
             rules[qid].append(rule)
         return rules
-            
+
     def _prefetch_options(self, q_dict):
         """
             Prefetch all options used in the Survey
@@ -332,7 +334,7 @@ class Survey(models.Model):
                 options[qid] = []
             options[qid].append(option)
         return options
-        
+
     def _get_questions(self):
         """
         get questions list for this survey
@@ -358,10 +360,10 @@ class Survey(models.Model):
                 # Set whatever the result, as we assume we had fetch all options for ALL questions of this survey
                 # If o is None, then an empty cache will be provided
                 question.set_options_cache(o)
-            if self.form is not None:            
+            if self.form is not None:
                 question.set_form(self.form)
             yield question
-  
+
     @property
     def translation(self):
         return self.translation_survey
@@ -395,7 +397,7 @@ class Survey(models.Model):
             get previous data for a user following the survey policy (prefill_method)
             'LAST' value fetch the last available data (in the current data table)
             other values should be a function name with the signature func(survey, user_id, global_id)
-        
+
         """
         if self.prefill_method == '':
             return None
@@ -576,14 +578,14 @@ class Question(models.Model):
     form = None
     translation_survey = None
     translation_question = None
-    
+
     # Define cache fields
     _use_survey_cache = False
     _cache_options = None
     _cache_rules = None
-    _cache_rows = None 
+    _cache_rows = None
     _cache_columns = None
-    
+
     def set_caching(self, use_cache):
         self._use_survey_cache = use_cache
         self._cache_rows = None
@@ -626,7 +628,7 @@ class Question(models.Model):
                 self._cache_rows = list(self._get_rows())
             return self._cache_rows
         return self._get_rows()
-            
+
     def _get_rows(self):
         """
             get QuestionRow using generator
@@ -671,7 +673,7 @@ class Question(models.Model):
         options = list(self._get_options())
         self._cache_options = options
         return options
-    
+
     def set_options_cache(self, options):
         cache = []
         if options is not None:
@@ -689,7 +691,7 @@ class Question(models.Model):
                 option.set_form(self.form)
             option.set_translation_survey(self.translation_survey)
             yield option
-    
+
     def set_rules_cache(self, rules):
         """
             Set cached rules for the question
@@ -698,16 +700,16 @@ class Question(models.Model):
             self._cache_rules = []
         else:
             self._cache_rules = rules
-    
+
     @property
     def rules(self):
         """
-        Get the rules associated with this question 
+        Get the rules associated with this question
         """
         if self._use_survey_cache and self._cache_rules is not None:
             return self._cache_rules
         return self.subject_of_rules.all
-        
+
     @property
     def translation(self):
         return self.translation_question
@@ -1036,27 +1038,27 @@ class Rule(models.Model):
     _use_cache = False
     _cache_subject_options = None
     _cache_object_options = None
-    
+
     def js_class(self):
         return self.rule_type.js_class
 
     def __unicode__(self):
         return 'Rule #%d' % (self.id)
-    
+
     def get_subject_options(self):
         if not self._use_cache:
             return self.subject_options.all()
         if self._cache_subject_options is None:
             self._cache_subject_options = list(self.subject_options.all())
         return self._cache_subject_options
-    
+
     def get_object_options(self):
         if not self._use_cache:
             return self.object_options.all()
         if self._cache_object_options is None:
             self._cache_object_options = list(self.object_options.all())
         return self._cache_object_options
-    
+
 
 # I18n models
 
@@ -1087,12 +1089,12 @@ class TranslationSurvey(models.Model):
                 model = TranslationSurvey
                 fields = ['title', 'status']
         return TranslationSurveyForm(data, instance=self, prefix="survey")
-    
+
     def prefetch_tranlations(self):
         self._use_cache = True
         self.prefetch_questions()
         self.prefetch_options()
-    
+
     def prefetch_questions(self):
         qq = list(self.translationquestion_set.all())
         self._cache_questions = dict([(q.question_id, q) for q in qq])
@@ -1100,7 +1102,7 @@ class TranslationSurvey(models.Model):
     def prefetch_options(self):
         qq = list(self.translationoption_set.all())
         self._cache_options = dict([(q.option_id, q) for q in qq])
-    
+
     def translate_option(self, option):
         if self._use_cache:
            r = self._cache_options.get(option.id)
@@ -1112,7 +1114,7 @@ class TranslationSurvey(models.Model):
             r = self.translationoption_set.all().filter(option=option)
             default = TranslationOption(translation = self, option=option)
             return _get_or_default(r, default)
-        
+
     def translate_question(self, question):
         if self._use_cache:
             r = self._cache_questions.get(question.id)
@@ -1120,7 +1122,7 @@ class TranslationSurvey(models.Model):
                 return TranslationQuestion(translation = self, question=question)
             r.question = question
             return r
-        else: 
+        else:
             r = self.translationquestion_set.all().filter(question=question)
             default = TranslationQuestion(translation = self, question=question)
             return _get_or_default(r, default)
@@ -1437,7 +1439,7 @@ class Chart(models.Model):
         if table_query:
             table = self.get_table_name()
             view = self.get_view_name()
-            
+
             if re.search(r'\bzip_code_country\b', table_query):
                 view_query = """SELECT A.*, B.id AS OGC_FID, B.geometry
                                   FROM %s B, (SELECT * FROM %s) A
@@ -1464,7 +1466,7 @@ class Chart(models.Model):
                     cursor.execute("CREATE VIEW %s AS %s" % (view, view_query))
                 transaction.commit_unless_managed()
                 if verbose:
-                    print "clearing tile cache..." 
+                    print "clearing tile cache..."
                 self.clear_map_tile_cache()
             return True
         return False
@@ -1572,7 +1574,7 @@ class Chart(models.Model):
     def render(self, context):
         """Adds data to context and use it to render template."""
         template = self.get_template()
-        if self.type.shortname == "template":            
+        if self.type.shortname == "template":
             if template:
                 user_id = context["user_id"]
                 global_id = context["global_id"]
@@ -1601,14 +1603,14 @@ class GoogleProjection:
             self.zc.append((e,e))
             self.Ac.append(c)
             c *= 2
-                
+
     def fromLLtoPixel(self,ll,zoom):
          d = self.zc[zoom]
          e = round(d[0] + ll[0] * self.Bc[zoom])
          f = min(max(sin(DEG_TO_RAD * ll[1]),-0.9999),0.9999)
          g = round(d[1] + 0.5*log((1+f)/(1-f))*-self.Cc[zoom])
          return (e,g)
-     
+
     def fromPixelToLL(self,px,zoom):
          e = self.zc[zoom]
          f = (px[0] - e[0])/self.Bc[zoom]
