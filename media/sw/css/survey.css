@@ -62,12 +62,18 @@ cursor: pointer;
 color: #007AB8;
 }
 
+#survey-intro {
+ margin: 1em;
+ padding: .5em;
+ border: 3px solid #7AB800;
+ font-size: .9em;
+}
 
 #survey-title {
  text-align: center;
  margin: 1em;
  font-weight: bold;
- color: #007AB8;		
+ color: #007AB8;
 }
 
 .survey-user-name {
@@ -158,7 +164,7 @@ padding: .3em;
 
 .vas-best-level {
 	 background-image: url(../avs-best.png)
-} 
+}
 
 .vas-worst-level {
 	 background-image: url(../avs-worst.png)

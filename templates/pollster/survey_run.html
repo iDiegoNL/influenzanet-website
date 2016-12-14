@@ -9,7 +9,9 @@
 {% block col1 %}
 <div id="wok-main-panel-content">
 <div id="survey-title">{{ survey.translated_title }} {% trans "Questionnaire for participant" %} <img src="{{person.get_avatar_url}}"/ class="avatar"/><span class="survey-user-name">{{ person }}</span></div>
-
+{% if survey.introduction %}
+<div id="survey-intro">{{survey.introduction}}</div>
+{%endif%}
 {%include "base/messages.html" %}
 
 {% include "pollster/questions_run.html" %}
