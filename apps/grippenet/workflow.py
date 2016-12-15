@@ -90,7 +90,8 @@ class AwarenessWorkflow(SurveyWorkflow):
             r = self.user_get_last_data(AWARENESS_SURVEY, context.survey_user)
             need_fill = True
             if r:
-                last_channel = r.get('channel')
+                last_channel = r.channel
+
                 self.debug('Last response was for iteration ' + str(last_channel))
                 if last_channel >= AWARENESS_ITERATION:
                     # User has already responded to this iteration

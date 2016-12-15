@@ -66,6 +66,9 @@ class BaseWorkflow(object):
         return False
 
     def user_get_last_data(self, shortname, survey_user):
+        """
+        Returns the last available response of a survey
+        """
         survey = models.Survey.get_by_shortname(shortname)
         if survey is None:
             raise models.Survey.DoesNotExist()
@@ -74,8 +77,8 @@ class BaseWorkflow(object):
         global_id = survey_user.global_id
         model = survey.as_model()
         r = model.objects.filter(user=user_id).filter(global_id = global_id).order_by('timestamp').reverse()[:1]
-        if r.count() > 0:
-            return r
+        if len(r) > 0:
+            return r[0]
         return False
 
 
