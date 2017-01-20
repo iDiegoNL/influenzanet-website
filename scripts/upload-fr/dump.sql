@@ -2,14 +2,9 @@
 * First Dump to insert previous season data
 */
 
-DELETE FROM epidb_fr.pollster_results_intake WHERE timestamp >= '2015-11-25';
-DELETE FROM epidb_fr.pollster_results_weekly WHERE timestamp >= '2014-11-19';
+DELETE FROM epidb_fr.pollster_results_intake WHERE timestamp >= '2016-11-30';
+DELETE FROM epidb_fr.pollster_results_weekly WHERE timestamp >= '2016-11-30';
 
--- extract(quarter from age(current_date, "G1_1_open" - interval '9 month'))::int - 1
-
-/*
-* 2015-2016 intake
-*/	
 INSERT INTO epidb_fr.pollster_results_intake
 SELECT 'FR',
     global_id, "timestamp", 
@@ -42,7 +37,7 @@ SELECT 'FR',
 	WHERE channel='';
 	
 /* 
-* 2015-2016 data
+* 2016-2017 data
 */
 INSERT INTO epidb_fr.pollster_results_weekly
 SELECT 
@@ -67,3 +62,4 @@ SELECT
 	"Q10", "Q10b", "Q10c", 
 	"Q11" FROM public.pollster_results_weekly
 	WHERE channel='';
+
