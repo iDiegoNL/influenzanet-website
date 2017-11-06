@@ -178,8 +178,10 @@ def create_survey_user(request):
 
 @login_required
 def wait_launch(request):
+    h = SurveyHousehold.get_household(request)
+    avatars = _get_avatars(with_list=False)
     wait_launch = get_wait_launch_context(request)
-    return render_to_response('survey/wait_launch.html',{'wait': wait_launch}, context_instance=RequestContext(request))
+    return render_to_response('survey/wait_launch.html', {'wait': wait_launch, 'household': h, 'avatars': avatars}, context_instance=RequestContext(request))
 
 @login_required
 def group_management(request):
