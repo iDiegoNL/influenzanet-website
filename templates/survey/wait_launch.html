@@ -18,31 +18,36 @@
 
 <h1>La saison 2017/2018 de GrippeNet.fr n'a pas commencé</h1>
 
-<p>GrippeNet.fr démarrera le 22 novembre 2017.</p>
+{% comment %}
 
-{% if household.participants|length > 0 %}
-	<h2>Etude Vaccination 2017 : avant le démarrage de GrippeNet.fr</h2>
-	<p>En attendant le début de cette saison nous vous proposons de répondre à un questionnaire sur le thème de la vaccination</p>
-	<table border="0" id="people-table">
-	<tr>
-	  <th>{% trans "Name" %}</th>
-	  <th>{% trans "Fill a questionnaire" %}</th>
-	</tr>
-	{% for gid,person in household.participants.items %}
-	<tr>
-	  <td class="person-name">
-	  <div id="person-{{person.pk}}-identity" class="identity">
-		{% if avatars %}
-		{%if avatars %}<img id="person-{{person.pk}}-avatar"  src="{{avatars.url}}{{ person.avatar }}.png" class="avatar{% if not person.avatar %} tooltip" title="Vous pouvez dÃ©finir une image associÃ©e Ã  ce participant"{% endif %} width="32" height="32" />{%endif%}
-		{% endif %}
-		{{ person.name }}
-		</div>
-	  </td>
-	  <td>
-	    <a href="{% url survey_run shortname="vacc2017"%}?gid={{person.global_id}}"><i class="icon icon-survey"></i>Répondre au questionnaire Vaccination 2017</a>
-	  </td>
-	</tr>
-	{% endfor %}
-	</table>
-{%endif%}
+	<p>GrippeNet.fr démarrera le 22 novembre 2017.</p>
+
+	{% if household.participants|length > 0 %}
+		<h2>Etude Vaccination 2017 : avant le démarrage de GrippeNet.fr</h2>
+		<p>En attendant le début de cette saison nous vous proposons de répondre à un questionnaire sur le thème de la vaccination</p>
+		<table border="0" id="people-table">
+		<tr>
+		  <th>{% trans "Name" %}</th>
+		  <th>{% trans "Fill a questionnaire" %}</th>
+		</tr>
+		{% for gid,person in household.participants.items %}
+		<tr>
+		  <td class="person-name">
+		  <div id="person-{{person.pk}}-identity" class="identity">
+			{% if avatars %}
+			{%if avatars %}<img id="person-{{person.pk}}-avatar"  src="{{avatars.url}}{{ person.avatar }}.png" class="avatar{% if not person.avatar %} tooltip" title="Vous pouvez dÃ©finir une image associÃ©e Ã  ce participant"{% endif %} width="32" height="32" />{%endif%}
+			{% endif %}
+			{{ person.name }}
+			</div>
+		  </td>
+		  <td>
+		    <a href="{% url survey_run shortname="vacc2017"%}?gid={{person.global_id}}"><i class="icon icon-survey"></i>Répondre au questionnaire Vaccination 2017</a>
+		  </td>
+		</tr>
+		{% endfor %}
+		</table>
+	{%endif%}
+
+{% endcomment %}
+
 {% endblock %}
