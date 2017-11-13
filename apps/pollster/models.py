@@ -571,7 +571,7 @@ class Question(models.Model):
     open_option_data_type = models.ForeignKey(QuestionDataType, related_name="questions_with_open_option", null=True, blank=True)
     data_name = models.CharField(max_length=255)
     visual = models.CharField(max_length=255, blank=True, default='')
-    tags = models.CharField(max_length=255, blank=True, default='')
+    tags = models.TextField(blank=True, default='')
     regex = models.CharField(max_length=1023, blank=True, default='')
     error_message = models.TextField(blank=True, default='')
 
