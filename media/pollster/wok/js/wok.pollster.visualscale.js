@@ -80,17 +80,14 @@
 
 						$r.append($m);
 						$r.append('<div style="clear:both">&nbsp;</div>');
-						$r.append('<div class="vas-response" id="'+ id +'-vas-response">Vous n\'avez pas répondu</div><div class="vas-help">Glissez le curseur ou cliquez sur les boutons +/- en dessous, pour le placer sur la barre jusqu\'au niveau qui correspond le mieux à votre réponse.<br/> <b style="color:red">Attention </b>:Cliquez sur le curseur au moins une fois pour que votre réponse soit prise en compte (le curseur deviendra vert).</div>');
+						$r.append('<div class="vas-response" id="'+ id +'-vas-response">Vous n\'avez pas répondu</div><div class="vas-help">Glissez le curseur ou cliquez sur les boutons +/- en dessous, pour le placer sur la barre jusqu\'au niveau qui correspond le mieux à votre ressenti.<br/> <b style="color:red">Attention </b>:Cliquez sur le curseur au moins une fois pour que votre réponse soit prise en compte (le curseur deviendra vert).</div>');
 
 						$field.after($r);
 
-						//$field.after(''</div><div id="slider-max"><span class="vas-best-level"></span><br/>'+scale_end+'</div><div style="clear:both">&nbsp;</div><div class="vas-response" id="'+ id +'-vas-response">Vous n\'avez pas répondu</div><div class="vas-help">Glissez le curseur pour le placer sur la barre jusqu\'au niveau qui correspond le mieux à l\'état de santé global du participant aujourd\'hui.<br/> <b style="color:red">Attention </b>:Cliquez sur le curseur au moins une fois pour que votre réponse soit prise en compte(le curseur deviendra vert).</div></div>');
 
 						$wrap = $('<div class="slider-wrap"></div>');
 
-						//$wrap.append(b1)
 						$wrap.append($slider);
-						//$wrap.append(b2)
 						$field.after($wrap);
 			    }
             });
