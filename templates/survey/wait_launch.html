@@ -18,13 +18,12 @@
 
 <h1>La saison 2017/2018 de GrippeNet.fr n'a pas commencé</h1>
 
-{% comment %}
-
 	<p>GrippeNet.fr démarrera le 22 novembre 2017.</p>
 
 	{% if household.participants|length > 0 %}
 		<h2>Etude Vaccination 2017 : avant le démarrage de GrippeNet.fr</h2>
 		<p>En attendant le début de cette saison nous vous proposons de répondre à un questionnaire sur le thème de la vaccination</p>
+		<p>Il n'est pas nécessaire de répondre pour chaque personne de votre compte, une seule réponse par compte est attendue</p>
 		<table border="0" id="people-table">
 		<tr>
 		  <th>{% trans "Name" %}</th>
@@ -47,7 +46,5 @@
 		{% endfor %}
 		</table>
 	{%endif%}
-
-{% endcomment %}
 
 {% endblock %}
