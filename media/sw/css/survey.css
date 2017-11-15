@@ -47,16 +47,6 @@ background: #FFF url(../home.png) left center no-repeat;
 	font-size: .8em;
 }
 
-input[type="submit"] {
-padding: .4em;
--webkit-border-radius: .3em;
--moz-border-radius: .3em;
-border-radius: .3em;
-}
-
-.survey label {
-cursor: pointer;
-}
 
 .survey label:hover {
 color: #007AB8;
@@ -91,6 +81,8 @@ color: #007AB8;
 	font-style: italic;
 }
 
+
+
 #col1 .question { /* Hack to make priority higher*/
 width: 80%;
 }
@@ -102,11 +94,6 @@ width: 512px;
 #col1 table.matrix th {
 font-size: 11px;
 padding: .3em;
-}
-
-.survey .actions {
-	padding: .8em;
-	text-align: center;
 }
 
 .question-date-delay {
@@ -130,7 +117,7 @@ padding: .3em;
  */
 .slider-range {
 	position: relative;
-	font-size: .9em;
+	font-size: .84em;
 }
 
 .slider-wrap {

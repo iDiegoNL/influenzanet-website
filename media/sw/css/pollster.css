@@ -1,0 +1,23 @@
+/**
+* File included after standard pollster css
+*/
+
+input[type="submit"] {
+padding: .4em;
+-webkit-border-radius: .3em;
+-moz-border-radius: .3em;
+border-radius: .3em;
+}
+
+.survey label {
+cursor: pointer;
+}
+
+.question select {
+	font-size: .84em;
+}
+
+.survey .actions {
+	padding: .8em;
+	text-align: center;
+}

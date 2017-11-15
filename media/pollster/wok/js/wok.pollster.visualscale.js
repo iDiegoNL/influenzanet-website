@@ -8,8 +8,10 @@
                 bind: function($field) {
                         var id = $field.attr('id');
 						var value = $field.val();
+						var has_value = true;
 						if(value == '') {
 							value = 50;
+							has_value = false;
 						}
 						var tags = $field.parents('.question').data('tags');
 						var scale_start ='Très mal';
@@ -68,11 +70,11 @@
 						if(icon) {
 						$m.append('<span class="vas-worst-level"/>');
 						}
-						$m.append('<span class="vas-start-level">'+scale_start+'</span>');
+						$m.append('<span class="vas-start-level">' + scale_start + '</span>');
 						$r.append($m);
 
 						$m = $('<div id="slider-max"/>');
-						$m.append('<span class="vas-start-level">'+scale_end+'</span>');
+						$m.append('<span class="vas-start-level">' + scale_end + '</span>');
 						if(icon) {
 							$m.append('<span class="vas-best-level"/>');
 						}
@@ -80,15 +82,25 @@
 
 						$r.append($m);
 						$r.append('<div style="clear:both">&nbsp;</div>');
-						$r.append('<div class="vas-response" id="'+ id +'-vas-response">Vous n\'avez pas répondu</div><div class="vas-help">Glissez le curseur ou cliquez sur les boutons +/- en dessous, pour le placer sur la barre jusqu\'au niveau qui correspond le mieux à votre ressenti.<br/> <b style="color:red">Attention </b>:Cliquez sur le curseur au moins une fois pour que votre réponse soit prise en compte (le curseur deviendra vert).</div>');
+
+						var t, k;
+						if(!has_value) {
+							t = 'Vous n\'avez pas répondu';
+							k = '';
+						} else {
+							t = 'Votre réponse a été prise en compte';
+							k = ' vas-response-ok';
+						}
+
+						$r.append('<div class="vas-response' + k + '" id="'+ id +'-vas-response">'+ t +'</div><div class="vas-help">Glissez le curseur ou cliquez sur les boutons +/- en dessous, pour le placer sur la barre jusqu\'au niveau qui correspond le mieux à votre ressenti.<br/> <b style="color:red">Attention </b>:Cliquez sur le curseur au moins une fois pour que votre réponse soit prise en compte (le curseur deviendra vert).</div>');
 
 						$field.after($r);
-
 
 						$wrap = $('<div class="slider-wrap"></div>');
 
 						$wrap.append($slider);
 						$field.after($wrap);
+
 			    }
             });
         }
