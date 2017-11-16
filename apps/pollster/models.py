@@ -27,6 +27,8 @@ except:
         mapnik_version = None
         warnings.warn("No working version for library 'mapnik' found. Continuing without mapnik")
 
+SURVEY_QUESTION_TITLE_SIZE = 4096
+
 
 SURVEY_STATUS_CHOICES = (
     ('DRAFT', 'Draft'),
@@ -564,7 +566,7 @@ class Question(models.Model):
     starts_hidden = models.BooleanField(default=False)
     is_mandatory = models.BooleanField(default=False)
     ordinal = models.IntegerField()
-    title = models.CharField(max_length=255, blank=True, default='')
+    title = models.TextField(max_length=SURVEY_QUESTION_TITLE_SIZE, blank=True, default='')
     description = models.TextField(blank=True, default='')
     type = models.CharField(max_length=255, choices=QUESTION_TYPE_CHOICES)
     data_type = models.ForeignKey(QuestionDataType)
@@ -1130,7 +1132,7 @@ class TranslationSurvey(models.Model):
 class TranslationQuestion(models.Model):
     translation = models.ForeignKey(TranslationSurvey, db_index=True)
     question = models.ForeignKey(Question, db_index=True)
-    title = models.CharField(max_length=255, blank=True, default='')
+    title = models.CharField(max_length=SURVEY_QUESTION_TITLE_SIZE, blank=True, default='')
     description = models.TextField(blank=True, default='')
     error_message = models.TextField(blank=True, default='')
 
