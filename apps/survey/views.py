@@ -389,12 +389,12 @@ def run_survey(request, shortname):
 
 @login_required
 def thanks_run(request, shortname):
+    survey_user = None
     try:
         survey_user = get_active_survey_user(request)
     except ValueError:
         pass
-    return render_to_response('survey/thanks_'+ shortname +'.html', {'person': survey_user},
-        context_instance=RequestContext(request))
+    return render_to_response('survey/thanks_'+ shortname +'.html', {'person': survey_user}, context_instance=RequestContext(request))
 
 @login_required
 def people_edit(request):
