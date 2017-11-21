@@ -37,10 +37,12 @@
         <div id="question-{{ question.id }}" class="{{ question.css_classes|join:' ' }}"
              data-question-type="{{ question.type }}" data-data-type="{{ question.data_type.id }}" data-tags="{{ question.tags }}"
              data-regex="{{ question.regex|default:'' }}">
-	        {% if question.translated_description %}<div class="question-tip"><span class="tooltip icon icon-tip" title="{{ question.translated_description }}" alt="">&nbsp;</span></div>{% endif %}
-            <p class="data">
+	        <p class="data">
                 {% if question.is_mandatory %}<span class="star">*</span>{% endif %}
-                <span class="title">{{ question.translated_title }}</span>
+                <span class="title">{{ question.translated_title }}{% if question.translated_description %}<span class="question-tip-toggle" onclick="$('#question-tip-{{question.id}}').toggle();">[+ d'information]</span>{% endif %}
+                {% if question.translated_description %}
+                	<div class="question-tip" style="display:none" id="question-tip-{{question.id}}">{{ question.translated_description }}</div>
+                {% endif %}
             </p>
             {% if question.is_text %}
             <input type="{%if question.data_type.title == 'CodeSelect'%}hidden{% else %}text{%endif%}" name="{{ question.data_name }}" id="question-{{ question.id }}-field"

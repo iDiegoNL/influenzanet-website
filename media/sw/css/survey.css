@@ -111,6 +111,18 @@ padding: .3em;
  background-color:#007AB8;
 }
 
+.question-tip-toggle {
+ margin-left: .3em;
+ font-size: .8em;
+ font-style: italic;
+ cursor: pointer;
+ white-space: nowrap;
+}
+
+.question-tip {
+ padding: .5em;
+ font-size: .8em;
+}
 
 /**
  * slider
