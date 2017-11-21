@@ -1,7 +1,7 @@
 from apps.pollster.runner import DEBUG
 from apps.survey.workflow import SurveyWorkflow
-from apps.survey import WEEKLY_SURVEY, THANKS_WEEKLY_SURVEY
-from apps.grippenet.models import PregnantCohort, Participation
+from apps.survey import WEEKLY_SURVEY, THANKS_WEEKLY_SURVEY, PROFILE_SURVEY
+from apps.grippenet.models import PregnantCohort, Participation, ImmunoCohort
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -12,6 +12,12 @@ AWARENESS_SURVEY = 'awareness'
 PREGNANT_QUESTION = 'Q12'
 PREGNANT_RESPONSE_YES = 0
 PREGNANT_RESPONSE_NO = 1
+
+IMMUNO_QUESTION = 'Q30'
+IMMUNO_RESPONSE_YES = 1
+IMMUNO_RESPONSE_NO = 0
+
+IMMUNO_CHANNEL = 'I'
 
 class PregnantWorkflow(SurveyWorkflow):
 
@@ -101,5 +107,56 @@ class AwarenessWorkflow(SurveyWorkflow):
                 return self.get_survey_url(AWARENESS_SURVEY, context.survey_user)
 
 
+class ImmunoWorkflow(SurveyWorkflow):
+
+    def before_run(self, context):
+        survey_user = context.survey_user
+        immuno = None
+        try:
+            immuno = ImmunoCohort.objects.get(survey_user=survey_user)
+        except ImmunoCohort.DoesNotExist:
+            pass
+        context.immuno = immuno
+
+    def create_immuno(self, survey_user):
+        part = None
+        try:
+            part = Participation.objects.get(survey_user=survey_user)
+        except Participation.DoesNotExist:
+            pass
+        immuno = ImmunoCohort.objects.create(survey_user=survey_user)
+        if part is None:
+            # If new participant of this season
+            immuno.change_channel = True
+        else:
+            # If participant from previous years, consider standard channel
+            immuno.change_channel = False
+        immuno.save()
+        return immuno
+
+    def before_save(self, context):
+        shortname = context.survey.shortname
+        is_ggnet = False
+        change_channel = False # Do we need to change the channel field value
+        if context.immuno is not None:
+            if DEBUG:
+                self.debug("Already Subscriber to immuno cohort")
+            is_ggnet = True
+            change_channel = context.immuno.change_channel
+        form = context.form
+        if shortname == PROFILE_SURVEY:
+            if not is_ggnet:
+                if form.cleaned_data[IMMUNO_QUESTION] == IMMUNO_RESPONSE_YES:
+                    if DEBUG:
+                        self.debug("Subscribing to immuno cohort")
+                    is_ggnet = True
+                    immuno = self.create_immuno(context.survey_user)
+                    context.immuno = immuno
+                    change_channel = immuno.change_channel
+        if change_channel:
+            # Update the "channel" field in model instance
+            setattr(form.instance, 'channel', IMMUNO_CHANNEL)
+            if DEBUG:
+                self.debug("Setting channel to I")
 
 

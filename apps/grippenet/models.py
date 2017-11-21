@@ -23,6 +23,22 @@ class PregnantCohort(models.Model):
     def __str__(self):
         return '<Pregnant' + str(self.survey_user.id) +'>'
 
+class ImmunoCohort(models.Model):
+    survey_user = models.ForeignKey(SurveyUser)
+
+    # Inclusion date
+    date_created = models.DateField(auto_now_add=True)
+
+    # Is active in cohort
+    active = models.BooleanField(default=True)
+
+    # Do need to change the channel on the survey data
+    change_channel = models.BooleanField(default=True)
+
+    def __str__(self):
+        return '<Immuno ' + str(self.survey_user.id) +'>'
+
+
 class Participation(models.Model):
     survey_user = models.ForeignKey(SurveyUser)
     first_season = models.IntegerField()
