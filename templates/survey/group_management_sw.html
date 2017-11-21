@@ -27,25 +27,28 @@
 </tr>
 <tr class="survey-types">
 	<th>{% trans "Background" %} <span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}"></span></th>
-	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>	
-	{% if has_pregnant %}
-	<th>&nbsp;</th>	
+	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>
+	{% if 'pregnant' in cohorts %}
+	<th>&nbsp;</th>
 	{% endif %}
-</tr>	
+	{% if 'immuno' in cohorts %}
+		<th>&nbsp;</th>
+	{% endif %}
+</tr>
 {% for person in persons %}
 <tr id="person-{{ person.pk }}" rel="{{person.global_id}}" class="person-row">
 	<td class="person-name">
-		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/> 
+		<input type="checkbox" name="global_ids" value="{{ person.global_id}}"/>
 		<div id="person-{{person.pk}}-identity" class="identity">
 		{% if avatars %}
 		{%if avatars %}<img id="person-{{person.pk}}-avatar"  src="{{avatars.url}}{{ person.avatar }}.png" class="avatar{% if not person.avatar %} tooltip" title="Vous pouvez définir une image associée à ce participant"{% endif %} width="32" height="32" />{%endif%}
 		{% endif %}
-		{{ person.name }} 
+		{{ person.name }}
 		</div>
 		<a id="person-{{person.pk}}-edit" rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="720" data-facebox-height="{% if avatars %}600{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
 		<span id="cohort-{{person.pk}}"></span>
 		{% if person.pregnant %}
-		<span class="pregnant-cohort tooltip-pregnant" title="Ce participant pourra participer à l'étude G-GrippeNet. Pour cela il suffira de remplir le questionnaire 'fin de grossesse' une fois la grossesse de ce participant terminée."></span>
+			<span class="pregnant-cohort tooltip-pregnant" title="Ce participant pourra participer à l'étude G-GrippeNet. Pour cela il suffira de remplir le questionnaire 'fin de grossesse' une fois la grossesse de ce participant terminée."></span>
 		{% endif %}
 	</td>
     {%if wait_launch %}
@@ -64,7 +67,7 @@
 	    {% if person.last_intake %}
 			<a href="{{ person.get_survey_url }}" class="button fill-button survey-weekly tooltip" id="person-{{person.pk}}-weekly" title="Remplissez le questionnaire hebdomadaire pour ce participant pour décrire ses symptomes actuels. "><span class="icon icon-survey">&nbsp;</span>{% trans "Fill this survey" %}</a>
 			{% if person.last_weekly %}
-			{% with f=person.last_weekly %} 
+			{% with f=person.last_weekly %}
 			<span class="last" title="{%trans "last survey date"%} {{f|date:"d M Y H:i"}}">{% blocktrans with last=f|survey_timesince %}last survey filled {{last}} ago{% endblocktrans %}</span>
 			{%endwith%}
 			{%else%}
@@ -73,13 +76,20 @@
 		{% else %}
 			<span>{% trans "Fill profile first" %}</span>
 		{% endif %}
-	{%endif%}	
+	{%endif%}
 	</td>
-	{% if has_pregnant %}
+	{% if 'pregnant' in cohorts %}
 	<td {% if person.pregnant %} class=" survey-cell pregnant" {% endif %}>
 		{% if person.pregnant %}
 		<a href="{% url survey_fill 'pregnant' %}?gid={{person.global_id}}" class="button fill-button survey-pregnant tooltip-pregnant" title="Cette saison le projet G-Grippnet étudie les épisodes de syndromes grippaux durant la grossesse. Pour compléter cette étude, nous demandons aux participantes enceinte de remplir ce questionnaire après la fin de leur grossesse.">Fin de grossesse</a>
 		<span class="last">&nbsp;</span>
+		{% endif %}
+	</td>
+	{% endif %}
+	{% if 'immuno' in cohorts %}
+	<td {% if person.immuno %} class=" survey-cell immuno" {% endif %}>
+		{% if person.immuno %}
+		<span class="tooltip" title="Ce participant est enregistré pour le projet ID-GrippeNet réalisant un suivi particulier des participants présentant une maladie inflammatoire ou auto-immune chronique recevant un traitement immunosuppresseur ou une biothérapie. Il pourra vous être proposé de remplir des questionnaires supplémentaires durant la saison">Projet ID-GrippeNet</span>
 		{% endif %}
 	</td>
 	{% endif %}
@@ -124,21 +134,21 @@
 <script type="text/javascript">
 var users = [ {% for p in persons %}'{{p.name}}'{%if not forloop.last%},{%endif%}{%endfor%} ];
 var first_user = $('.person-row').first().attr('id');
- 	
+
 $(function() {
 	var fill_intake_warning = $('.to-fill-first');
 	if(fill_intake_warning.length > 0) {
 		$('#fill-intake-warning').show();
 	}
-	
+
 	$('.tooltip-pregnant').tooltip({tipClass:'hovertip hovertip-pregnant'})
-	
+
 	if( !$.isOldIE() ) {
 		$("#button-intro").show().click(loadIntro);
 		$('#button-help-page').hide();
-	} 
-	
-{% comment %}	
+	}
+
+{% comment %}
 	$.getJSON('/cohort/subscriptions', function(data) {
 		var subscribers = data.subscribers;
 		var cohorts = data.cohorts;
@@ -155,7 +165,7 @@ $(function() {
 			}
 		}
 	});
-{% endcomment %}	
+{% endcomment %}
 
 });
 
@@ -168,7 +178,7 @@ function submit_users(action) {
 	if(action == 'delete') {
 		if( !confirm('{% trans "Delete selected users ?" %}') ) {
 			return;
-		}		
+		}
 	}
 	$('#input_action').val(action);
 	$('#users_form').submit();

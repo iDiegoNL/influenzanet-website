@@ -17,6 +17,8 @@ from apps.survey import utils, models, forms
 from apps.survey.household import SurveyHousehold
 
 import apps.pollster as pollster
+
+from apps.grippenet.cohorts import get_survey_user_channel, get_cohort_users
 from apps.grippenet.models import PregnantCohort
 
 def _get_avatars(with_list=True):
@@ -222,16 +224,7 @@ def group_management(request):
                         _(u'Please complete the background questionnaire for the participant "%(user_name)s" before marking him/her as healthy.') % {'user_name': survey_user.name})
                     continue
 
-                pregnant = None
-                try:
-                    pregnant = PregnantCohort.objects.get(survey_user=survey_user)
-                except PregnantCohort.DoesNotExist:
-                    pass
-
-                channel = ''
-                if pregnant is not None:
-                    if pregnant.change_channel:
-                        channel = 'G'
+                channel = get_survey_user_channel(survey_user)
 
                 Weekly.objects.create(
                     user=request.user.id,
@@ -255,36 +248,34 @@ def group_management(request):
 
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
 
-    persons_dict = dict([(p.global_id, p) for p in persons])
+    cohorts = get_cohort_users(persons)
 
-    persons_ids = [p.id for p in persons]
-
-    pregnants = list(PregnantCohort.objects.filter(survey_user__id__in=persons_ids))
-
-    pregnants = dict([(str(p.survey_user.id), p) for p in pregnants])
-
-    has_pregnant = False
+    active_cohorts = {}
     for person in persons:
         # person.health_status, person.diag = _get_person_health_status(request, survey, person.global_id)
         # person.health_history = [i for i in history if i['global_id'] == person.global_id][:10]
         person.last_weekly = last_weeklies.get(person.global_id)
         person.last_intake = last_intakes.get(person.global_id)
-        person.pregnant = pregnants.get(str(person.id))
-        if person.pregnant is not None:
-            has_pregnant = True
+        for cohort_id, subscribers in cohorts.items():
+            p = subscribers.get(str(person.id))
+            if p is not None:
+                active_cohorts[cohort_id] = True
+            setattr(person, cohort_id, p)
 
-    template = getattr(settings,'SURVEY_GROUP_TEMPLATE','group_management')
+    template = getattr(settings, 'SURVEY_GROUP_TEMPLATE', 'group_management')
 
     wait_launch = get_wait_launch_context(request) # is request restricted by wait_launch context
 
     avatars = _get_avatars(with_list=False)
+
+    active_cohorts = active_cohorts.keys()
 
     ctx = {
            'persons': persons,
            'gid': request.GET.get("gid"),
            'wait_launch':wait_launch,
            'avatars': avatars,
-           'has_pregnant': has_pregnant,
+           'cohorts': active_cohorts,
            }
 
     return render_to_response('survey/'+template+'.html', ctx, context_instance=RequestContext(request))

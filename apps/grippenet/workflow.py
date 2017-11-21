@@ -12,14 +12,19 @@ AWARENESS_SURVEY = 'awareness'
 PREGNANT_QUESTION = 'Q12'
 PREGNANT_RESPONSE_YES = 0
 PREGNANT_RESPONSE_NO = 1
+PREGNANT_COHORT_ID = 'pregnant'
+PREGNAT_CHANNEL = 'G'
 
 IMMUNO_QUESTION = 'Q30'
 IMMUNO_RESPONSE_YES = 1
 IMMUNO_RESPONSE_NO = 0
-
 IMMUNO_CHANNEL = 'I'
+IMMUNO_COHORT_ID = 'immuno'
 
 class PregnantWorkflow(SurveyWorkflow):
+
+    def get_cohort_id(self):
+        return PREGNANT_COHORT_ID
 
     def before_run(self, context):
         survey_user = context.survey_user
@@ -108,6 +113,9 @@ class AwarenessWorkflow(SurveyWorkflow):
 
 
 class ImmunoWorkflow(SurveyWorkflow):
+
+    def get_cohort_id(self):
+        return IMMUNO_COHORT_ID
 
     def before_run(self, context):
         survey_user = context.survey_user

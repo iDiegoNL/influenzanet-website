@@ -19,6 +19,23 @@ CONFIG =  getattr(settings, 'POLLSTER_RUNNER', None)
 if CONFIG is None:
     raise exceptions.ImproperlyConfigured('SurveyRunner is not configured')
 
+if not CONFIG.has_key('workflows'):
+    raise exceptions.ImproperlyConfigured('Missing workflows in pollster runner')
+
+WORKFLOWS = []
+WORKFLOWS_LOADED = False
+
+def get_workflows():
+    global WORKFLOWS
+    global WORKFLOWS_LOADED
+    if not WORKFLOWS_LOADED:
+        print 'loading'
+        for path in CONFIG['workflows']:
+            w = load_class_from_path(path)
+            WORKFLOWS.append(w)
+        WORKFLOWS_LOADED = True
+    return WORKFLOWS
+
 logger = getLogger('pollster.runner')
 
 DEBUG = settings.DEBUG
@@ -141,11 +158,8 @@ class SurveyRunner(object):
         self.load_hooks()
 
     def load_hooks(self):
-        if not CONFIG.has_key('workflows'):
-            raise exceptions.ImproperlyConfigured('Missing workflows in pollster runner')
-        for path in CONFIG['workflows']:
-            hook = load_class_from_path(path)
-
+        workflows = get_workflows()
+        for hook in workflows:
             if hasattr(hook, 'before_run'):
                 self.before_hooks.append(hook.before_run)
             if hasattr(hook, 'before_save'):
