@@ -67,18 +67,18 @@ color: #007AB8;
 }
 
 .survey-user-name {
-	font-weight: bolder;
-	color: green;
-	border: 1px solid green;
-	padding: .3em;
-	border-radius: .3em;
-	-moz-border-radius: .3em;
-	-webkit-border-radius: .3em;
+font-weight: bolder;
+color: green;
+border: 1px solid green;
+padding: .3em;
+border-radius: .3em;
+-moz-border-radius: .3em;
+-webkit-border-radius: .3em;
 }
 
 .survey-last-fill-time {
-	font-size: .8em;
-	font-style: italic;
+font-size: .8em;
+font-style: italic;
 }
 
 
@@ -121,7 +121,8 @@ padding: .3em;
 
 .question-tip {
  padding: .5em;
- font-size: .8em;
+ padding-left: 2em;
+ font-size: .74em;
 }
 
 /**

@@ -39,9 +39,9 @@
              data-regex="{{ question.regex|default:'' }}">
 	        <p class="data">
                 {% if question.is_mandatory %}<span class="star">*</span>{% endif %}
-                <span class="title">{{ question.translated_title }}{% if question.translated_description %}<span class="question-tip-toggle" onclick="$('#question-tip-{{question.id}}').toggle();">[+ d'information]</span>{% endif %}
+                <span class="title">{{ question.translated_title }}{% if question.translated_description %}<span class="question-tip-toggle" onclick="$('#question-tip-{{question.id}}').toggle();"><i class="icon-qmark16"></i></span>{% endif %}
                 {% if question.translated_description %}
-                	<div class="question-tip" style="display:none" id="question-tip-{{question.id}}">{{ question.translated_description }}</div>
+                	<div class="question-tip" style="display:none" id="question-tip-{{question.id}}">{{ question.translated_description|safe }}</div>
                 {% endif %}
             </p>
             {% if question.is_text %}

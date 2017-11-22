@@ -18,8 +18,8 @@
 }
 
 .widget-box ul {
-	margin: 0; 
-	padding: 0;	
+	margin: 0;
+	padding: 0;
 }
 
 .widget-box  li {
@@ -28,12 +28,20 @@
 	padding: 0;
 	margin: .8em .1em .3em 0;
 	line-height: 1.1em;
-} 
+}
 
 .icon-sentiweb, .icon-invs, .icon-grog, .icon-qmark {
  padding-left: 40px;
  line-height: 35px;
  background: #FFF url() left center no-repeat;
+}
+
+.icon-qmark16 {
+ margin-left: .3em;
+ display:inline-block;
+ width: 16px;
+ height: 15px;
+ background: #FFF url(../qmark16.png) left center no-repeat;
 }
 
 .icon-sentiweb { background-image: url(../logos/sentiweb-xs.gif) }
@@ -43,7 +51,7 @@
 
 #social-widgets {
 	margin: .5em 0;
-	padding:0; 
+	padding:0;
 	max-width: 300px;
 }
 
