@@ -19,6 +19,14 @@
 {%if not wait_launch%} {# Do not check in wait launch context #}
 	<p class="alert alert-warning" id="fill-intake-warning" style="display:none"><span class="icon icon-warning">&nbsp;</span>{%trans "Some users do not have a background questionnaire, please fill this survey for them"%}</p>
 {%endif%}
+
+{% if not has_vacc2017 %}
+<p class="alert alert-info">
+	Cette année nous proposons un <a href="{% url survey_run shortname="vacc2017" %}">questionnaire de début de saison sur la vaccination</a><br/>
+	Ce questionnaire ne vous sera proposé que pour un seul participant de votre compte. (cliquez sur le lien ci-dessus pour le remplir)
+</p>
+{% endif %}
+
 <form action="" method="POST" id="users_form">{% csrf_token %}
 <table border="0" id="people-table">
 <tr>

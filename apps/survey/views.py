@@ -246,6 +246,8 @@ def group_management(request):
     last_intakes = _get_group_last_survey(request, 'intake')
     last_weeklies = _get_group_last_survey(request, 'weekly')
 
+    vacc2017 = _get_group_last_survey(request, 'vacc2017')
+
     persons = models.SurveyUser.objects.filter(user=request.user, deleted=False)
 
     cohorts = get_cohort_users(persons)
@@ -271,6 +273,7 @@ def group_management(request):
     active_cohorts = active_cohorts.keys()
 
     ctx = {
+           'has_vacc2017': len(vacc2017) > 0,
            'persons': persons,
            'gid': request.GET.get("gid"),
            'wait_launch':wait_launch,

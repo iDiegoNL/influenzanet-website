@@ -7,12 +7,12 @@
 	<button type="submit" class="button">Se connecter</button>
 	</div>
 <p id="passwd-reset"><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>
-</form>	
+</form>
 <div id="user-buttons">
 	<a href="/accounts/register" id="register-button">S'inscrire</a>
 	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
 </div>
-{% else %}	
+{% else %}
 <div class="widget-box" id="user-box">
 <h2>Mon espace</h2>
 <ul>
@@ -23,8 +23,9 @@
 {% if household_count == 1 %}
 	<h3>Mes Questionnaires</h3>
 <ul>
-	<li><i class="icon icon-survey"></i><a href="{%url survey_profile%}?gid={{ household_gid }}">Préliminaire</a></li>
-	<li><i class="icon icon-survey"></i><a href="{%url survey_index %}?gid={{ household_gid }}">Hebdomadaire</a></li>
+	<li><i class="icon icon-survey"></i><a href="{% url survey_profile%}?gid={{ household_gid }}">Préliminaire</a></li>
+	<li><i class="icon icon-survey"></i><a href="{% url survey_index %}?gid={{ household_gid }}">Hebdomadaire</a></li>
+	<li><i class="icon icon-survey"></i><a href="{% url survey_run shortname="vacc2017" %}?gid={{ household_gid }}">Vaccination</a></li>
 </ul>
 {%endif%}
 <h2>Aide</h2>
@@ -40,8 +41,8 @@
 {% endif %}
 
 <div id="logos">
- <a href="http://www.inserm.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/inserm.gif" width="150" height="38" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"/></a> 
+ <a href="http://www.inserm.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/inserm.gif" width="150" height="38" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"/></a>
  <a href="http://www.upmc.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/upmc.gif" width="150" height="55" alt="UPMC" title="Université Pierre et Marie Curie"/></a>
  <a href="http://www.invs.sante.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/spf.png" width="93" height="65" alt="SPF" title="Santé Publique France"/></a>
- <a href="http://www.agence-nationale-recherche.fr/" rel="external"><img src="{{MEDIA_URL}}sw/logos/anr.gif" width="152" height="62" alt="ANR" title="Agence Nationale de la Recherche"/></a> 
+ <a href="http://www.agence-nationale-recherche.fr/" rel="external"><img src="{{MEDIA_URL}}sw/logos/anr.gif" width="152" height="62" alt="ANR" title="Agence Nationale de la Recherche"/></a>
 </div>
