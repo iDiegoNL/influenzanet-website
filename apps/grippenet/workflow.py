@@ -5,6 +5,7 @@ from apps.grippenet.models import PregnantCohort, Participation, ImmunoCohort
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.db.utils import IntegrityError
 
 AWARENESS_ITERATION = getattr(settings, 'AWARENESS_ITERATION', 0)
 AWARENESS_SURVEY = 'awareness'
@@ -132,7 +133,10 @@ class ImmunoWorkflow(SurveyWorkflow):
             part = Participation.objects.get(survey_user=survey_user)
         except Participation.DoesNotExist:
             pass
-        immuno = ImmunoCohort.objects.create(survey_user=survey_user)
+        try:
+            immuno = ImmunoCohort.objects.create(survey_user=survey_user)
+        except IntegrityError:
+            immuno = ImmunoCohort.objects.get(survey_user=survey_user)
         if part is None:
             # If new participant of this season
             immuno.change_channel = True

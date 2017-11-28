@@ -24,7 +24,7 @@ class PregnantCohort(models.Model):
         return '<Pregnant' + str(self.survey_user.id) +'>'
 
 class ImmunoCohort(models.Model):
-    survey_user = models.ForeignKey(SurveyUser)
+    survey_user = models.ForeignKey(SurveyUser, unique=True, primary_key=True)
 
     # Inclusion date
     date_created = models.DateField(auto_now_add=True)
