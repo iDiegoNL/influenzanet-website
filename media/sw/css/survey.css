@@ -125,6 +125,10 @@ padding: .3em;
  font-size: .74em;
 }
 
+.question-tip i {
+	text-decoration: underline;
+}
+
 /**
  * slider
  */

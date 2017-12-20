@@ -89,8 +89,8 @@ class AwarenessWorkflow(SurveyWorkflow):
 
         self.debug(shortname)
 
-        if shortname == AWARENESS_SURVEY:
-            return reverse(THANKS_WEEKLY_SURVEY)
+        #if shortname == AWARENESS_SURVEY:
+        #    return reverse(THANKS_WEEKLY_SURVEY)
 
         self.debug('Awareness = ' + str(AWARENESS_ITERATION))
 
