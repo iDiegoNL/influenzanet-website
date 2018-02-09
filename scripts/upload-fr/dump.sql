@@ -1,9 +1,13 @@
 /*
-* First Dump to insert previous season data
+* Current season season data
 */
 
-DELETE FROM epidb_fr.pollster_results_intake WHERE timestamp >= '2016-11-30';
-DELETE FROM epidb_fr.pollster_results_weekly WHERE timestamp >= '2016-11-30';
+DELETE FROM epidb_fr.pollster_results_intake WHERE timestamp >= '2017-11-22';
+DELETE FROM epidb_fr.pollster_results_weekly WHERE timestamp >= '2017-11-22';
+
+/* 
+* 2017-2018 data
+*/
 
 INSERT INTO epidb_fr.pollster_results_intake
 SELECT 'FR',
@@ -22,22 +26,15 @@ SELECT 'FR',
 	"Q10d_0", "Q10d_1", "Q10d_2", "Q10d_3", "Q10d_4", "Q10d_5", "Q10d_6", "Q10d_7", "Q10d_8", "Q10d_9", "Q10d_10", "Q10d_11", "Q10d_12", "Q10d_13", CASE WHEN  "Q10d_14"=True OR "Q10d_15"=True OR "Q10d_16" THEN True ELSE False END AS "Q10d_14", 
 	"Q11_0", "Q11_1", "Q11_2", "Q11_3", "Q11_4", "Q11_5", "Q11_6", 
 	"Q12", 
-	-- Q12b
-	CASE    WHEN "Q12"=0 AND "Q12b" IS NOT NULL THEN "Q12b"
-	      WHEN "Q12"=0 AND "Q12b" IS NULL AND "G1_1_open" IS NOT NULL AND Extract(quarter from age(timestamp, "G1_1_open" - interval '294 day'))::int > 0 THEN Extract(quarter from age(timestamp, "G1_1_open" - interval '294 day'))::int - 1
-              WHEN "Q12"=0 AND "Q12b" IS NULL AND "G2_1_open" IS NOT NULL AND Extract(quarter from age(timestamp, "G2_1_open" + interval '14 day'))::int > 0 THEN Extract(quarter from age(timestamp, "G2_1_open" + interval '14 day'))::int - 1
-               ELSE NULL
-             END as "Q12b",
-	CASE WHEN "Q13" = 5 OR "Q13"=6 OR "Q13"=7 THEN 0 ELSE "Q13" END, 
+	CASE WHEN "Q13" = 5 OR "Q13"=6 THEN 0 ELSE "Q13" END, 
 	"Q14_1", "Q14_2", "Q14_3", "Q14_4", "Q14_5", 
 	NULL, NULL, NULL, NULL, NULL, /* "Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", */
 	"Q16_0", "Q16_1", "Q16_2", "Q16_3", "Q16_4", 
 	"Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5" /* "Q17_0", "Q17_1", "Q17_2", "Q17_3", "Q17_4", "Q17_5"  */
 	FROM public.pollster_results_intake
-	WHERE channel='';
-	
+	WHERE channel='';	
 /* 
-* 2016-2017 data
+* 2017-2018 data
 */
 INSERT INTO epidb_fr.pollster_results_weekly
 SELECT 
