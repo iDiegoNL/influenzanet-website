@@ -38,9 +38,11 @@
 <tr class="survey-types">
 	<th>{% trans "Background" %} <span class="tooltip icon icon-tip" title="{%trans "Background survey help"%}"></span></th>
 	<th>{% trans "Symptoms" %} <span class="tooltip icon icon-tip" title="{%trans "Weekly survey help"%}"></span></th>
-	{% if 'pregnant' in cohorts %}
-	<th>&nbsp;</th>
-	{% endif %}
+	{% comment %}
+		{% if 'pregnant' in cohorts %}
+			<th>&nbsp;</th>
+		{% endif %}
+	{% endcomment %}
 	{% if 'immuno' in cohorts %}
 		<th>&nbsp;</th>
 	{% endif %}
@@ -57,9 +59,12 @@
 		</div>
 		<a id="person-{{person.pk}}-edit" rel="facebox" href="{{ person.get_edit_url }}" class="edit-user" data-facebox-width="720" data-facebox-height="{% if avatars %}600{% else %}350{% endif %}px" title="{%trans "Edit Person"%}"><span class="icon icon-edit tooltip" title="{%trans "Edit Person"%}"></span></a>
 		<span id="cohort-{{person.pk}}"></span>
+
+		{% comment %}
 		{% if person.pregnant %}
 			<span class="pregnant-cohort tooltip-pregnant" title="Ce participant pourra participer à l'étude G-GrippeNet. Pour cela il suffira de remplir le questionnaire 'fin de grossesse' une fois la grossesse de ce participant terminée."></span>
 		{% endif %}
+		{% endcomment %}
 	</td>
     {%if wait_launch %}
 	<td colspan="2">
@@ -88,6 +93,8 @@
 		{% endif %}
 	{%endif%}
 	</td>
+
+	{% comment %}
 	{% if 'pregnant' in cohorts %}
 	<td {% if person.pregnant %} class=" survey-cell pregnant" {% endif %}>
 		{% if person.pregnant %}
@@ -96,6 +103,8 @@
 		{% endif %}
 	</td>
 	{% endif %}
+	{% endcomment %}
+
 	{% if 'immuno' in cohorts %}
 	<td {% if person.immuno %} class=" survey-cell immuno" {% endif %}>
 		{% if person.immuno %}
