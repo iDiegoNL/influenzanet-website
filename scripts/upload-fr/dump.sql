@@ -26,6 +26,7 @@ SELECT 'FR',
 	"Q10d_0", "Q10d_1", "Q10d_2", "Q10d_3", "Q10d_4", "Q10d_5", "Q10d_6", "Q10d_7", "Q10d_8", "Q10d_9", "Q10d_10", "Q10d_11", "Q10d_12", "Q10d_13", CASE WHEN  "Q10d_14"=True OR "Q10d_15"=True OR "Q10d_16" THEN True ELSE False END AS "Q10d_14", 
 	"Q11_0", "Q11_1", "Q11_2", "Q11_3", "Q11_4", "Q11_5", "Q11_6", 
 	"Q12", 
+	NULL as "Q12b", /* Q12b not provided this year ? */
 	CASE WHEN "Q13" = 5 OR "Q13"=6 THEN 0 ELSE "Q13" END, 
 	"Q14_1", "Q14_2", "Q14_3", "Q14_4", "Q14_5", 
 	NULL, NULL, NULL, NULL, NULL, /* "Q15_0", "Q15_1", "Q15_2", "Q15_3", "Q15_4", */
