@@ -29,3 +29,5 @@ epidb/client/epidb_results.sql*
 lib64/
 .settings/
 .pydevproject
+env.bat
+_dev
