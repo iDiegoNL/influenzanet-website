@@ -7,7 +7,7 @@ from ...send import send
 from ...models import get_settings, UserReminderInfo, MockNewsLetter
 from django.db import connection
 from django.conf import settings
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from apps.reminder.models import NewsLetter
 
 
@@ -25,20 +25,20 @@ class UserListChecker:
     """
     UserChecker check if a given user should receive a newsletter based on a userlist field
     which contains the name of a table/view with the target users' id (user_id field)
-    """   
+    """
     def __init__(self, message):
         if message.userlist:
             self.user_list = self.get_userlist(message.userlist)
         else:
             self.user_list = None
-    
+
     def get_userlist(self, table):
         query = "SELECT user_id FROM " + table
         cursor = connection.cursor()
         cursor.execute(query)
         userlist = [ row[0] for row in cursor.fetchall()]
         return userlist
-    
+
     def check(self, user):
         if self.user_list is None:
             return True
@@ -47,7 +47,7 @@ class UserListChecker:
             return True
         except Exception as e:
             return False
-            
+
 
 class Command(BaseCommand):
     help = "Send reminders."
@@ -71,12 +71,16 @@ class Command(BaseCommand):
         self.fake = False
         self.force = False
 
+        self.headers = {
+         'Sender': settings.EMAIL_DEFAULT_SENDER,
+        }
+
     def get_reminder(self):
         res = list(NewsLetter.objects.language('fr').filter(published=True).order_by('-date'))
         if(len(res) > 0):
             return res[0]
         raise Exception("No reminder found")
-           
+
     def get_mock_reminder(self):
         reminder = MockNewsLetter()
         reminder.id = 0
@@ -88,16 +92,16 @@ class Command(BaseCommand):
         reminder.userlist = None
         reminder.next = None
         return reminder
-        
+
     def send_reminders(self, message, target, next, batch_size):
-        
+
         now = datetime.now()
-        
+
         users = get_user_provider()
-        
+
         if self.verbose:
             print "> User provider class : %s " % str(users.__class__)
-        
+
         if(target is not None):
             print "> target user=%s" % (target)
             try:
@@ -107,8 +111,8 @@ class Command(BaseCommand):
                 print "Unable to find user %s" % str(target)
                 return
 
-        checker = UserListChecker(message)    
-        
+        checker = UserListChecker(message)
+
         i = -1
         language = 'fr'
         print "next=%s" % (next)
@@ -117,39 +121,39 @@ class Command(BaseCommand):
                 if self.debug:
                     print user
                 if batch_size and i >= batch_size:
-                    raise StopIteration 
-                
+                    raise StopIteration
+
                 to_send = False
 
                 info, _ = UserReminderInfo.objects.get_or_create(user=user, defaults={'active': True, 'last_reminder': user.date_joined})
-    
+
                 if not info.active:
                     continue
-                
+
                 if self.verbose:
                     print "id=%d last=%s " % (user.id, str(info.last_reminder),),
-                    
+
                 if info.last_reminder is None:
                     to_send = True
                 elif info.last_reminder < message.date:
-                    to_send = True    
-            
+                    to_send = True
+
                 if to_send:
                     if not checker.check(user):
                         if self.verbose:
                             print " [checker] skip id=%s" % str(user.id),
                         to_send = False
-            
+
                 # If enforced mode : send regardless user info (only for test)
                 if self.force:
                     to_send = True
-                
+
                 if to_send:
                     i += 1
                     if not self.fake:
                         if self.verbose:
-                            print " > sending [%d] %s " % (user.id, user.email,) 
-                        send(now, user, message, language, next=next)
+                            print " > sending [%d] %s " % (user.id, user.email,)
+                        send(now, user, message, language, next=next, headers=self.headers)
                     else:
                         print "[fake] sending [%d] %s %s " % (user.id, user.email, message.subject)
                 else:
@@ -174,7 +178,7 @@ class Command(BaseCommand):
             conf = get_settings()
         except:
             return u"0 Unable to load reminder configuration"
-        
+
         if conf is None:
             return u"0 reminders sent - not configured"
         else:
@@ -186,18 +190,18 @@ class Command(BaseCommand):
         conf.currently_sending = True
         conf.last_process_started_date = datetime.now()
         conf.save()
-        
+
         try:
             if mock:
                 message = self.get_mock_reminder()
                 self.fake = True
             else:
                 message = self.get_reminder()
-            
+
             print "Newsletter #%d [%s] %s" % (message.id, str(message.date), message.subject)
             if check:
                 return
-            
+
             if next is None:
                 if message.next:
                     # use redirect page for the newsletter if defined
@@ -206,14 +210,14 @@ class Command(BaseCommand):
                     # force next to LOGIN_REDIRECT_URL because when next is None
                     # send_reminders() set it to survey_index's url.
                     next = settings.LOGIN_REDIRECT_URL
-            
+
             count = self.send_reminders(message=message, target=user, batch_size=batch_size, next=next)
-        
+
             if(counter is not None):
                 file(counter,'w').write(str(count))
-            return u'%d reminders sent.\n' % count 
+            return u'%d reminders sent.\n' % count
         finally:
             # conf = get_settings()
             conf.currently_sending = False
             conf.save()
-            
+

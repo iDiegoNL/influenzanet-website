@@ -34,7 +34,7 @@ def create_message(user, message, language, next=None):
     c['site_url'] = get_site_url()
     inner = t.render(Context(c))
     template = 'reminder/message.html'
-    
+
     if message.html_template is not None and message.html_template != "":
         template = message.html_template
     t = loader.get_template(template)
@@ -83,7 +83,7 @@ def get_survey_url():
     path = reverse('survey_index')
     return 'https://%s%s' % (domain, path)
 
-def send(now, user, message, language, is_test_message=False, next=None):
+def send(now, user, message, language, is_test_message=False, next=None, headers=None):
     text_base, html_content = create_message(user, message, language, next)
     text_content = strip_tags(text_base)
 
@@ -92,6 +92,7 @@ def send(now, user, message, language, is_test_message=False, next=None):
         text_content,
         "%s <%s>" % (message.sender_name, message.sender_email),
         [user.email],
+        headers=headers,
     )
 
     msg.attach_alternative(html_content, "text/html")
@@ -133,7 +134,7 @@ def send_unsubscribe_email(user):
     html_content = t.render(Context(c))
 
     text_content = strip_tags(inner)
-    
+
     msg = EmailMultiAlternatives(
         reminder_settings.resubscribe_email_message,
         text_content,
