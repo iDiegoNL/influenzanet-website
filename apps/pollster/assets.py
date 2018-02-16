@@ -1,8 +1,11 @@
 from webassets import Bundle
+from webassets.filter import get_filter
 import os.path as osp
 import cms
 from django.conf import settings
 from apps.common.i18n import get_locale
+
+import re
 
 js_pollster_run_base = Bundle(
     'pollster/wok/js/wok.pollster.js',
@@ -31,7 +34,10 @@ js_pollster_edit = Bundle(
 )
 
 css_pollster_run = Bundle(
-   'pollster/jquery/css/smoothness/jquery-ui-1.8.14.css',
+   Bundle(
+        'pollster/jquery/css/smoothness/jquery-ui-1.8.14.css',
+        filters=get_filter('cssrewrite', replace=lambda url: re.sub(r'^images/', '../pollster/jquery/css/smoothness/images/', url))
+   ),
    'pollster/css/survey.css',
    'pollster/css/skin.css',
    'sw/css/pollster.css',
