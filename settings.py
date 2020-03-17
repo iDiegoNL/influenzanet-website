@@ -1,7 +1,7 @@
 # Django settings for epiweb project.
 # -*- coding: utf-8 -*-
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 
